@@ -316,7 +316,40 @@ class BU_Block_List_Table extends Admin\WP_List_Table {
 	 * @param    object $item A row's data.
 	 */
 	protected function column_name( $item ) {
-		echo $item->get_name();
+
+		// Empty row of actions.
+		$actions = array();
+
+		// Initial query args for the activate/deactivate URL.
+		$query_args = array(
+			'page'     =>  wp_unslash( $_REQUEST['page'] ),
+			'action'   => 'change_block_status',
+			'bu_block' => get_class( $item ),
+			'_wpnonce' => wp_create_nonce( 'change_block_status' ),
+		);
+
+		// If block is activated, add args to flag as a 'Deactivate' action.
+		if ( $item->activation_status ) {
+			// Add a status argument set to flag 'deactivate'.
+			$query_args['status'] = 'inactive';
+			// Set the link text.
+			$status_link_text = __( 'Deactivate', 'bu-blocks' );
+		} else {
+			// Add a status argument set to flag 'activate'.
+			$query_args['status'] = 'active';
+			// Set the link text.
+			$status_link_text = __( 'Activate', 'bu-blocks' );
+		}
+
+		// Adds the 'activate' or 'deactivate' action to this row.
+		$actions['change_block_status'] = '
+			<a href="' . esc_url( add_query_arg( $query_args, $this->admin_url ) ) . '">' .
+				esc_html( $status_link_text ) . '
+			</a>
+		';
+
+		$row_value = '<strong>' . $item->get_name() . '</strong>';
+		return $row_value . $this->row_actions( $actions );
 	}
 
 	/**
@@ -391,6 +424,140 @@ class BU_Block_List_Table extends Admin\WP_List_Table {
 	 */
 	protected function column_origin_site( $item ) {
 		echo esc_html( $item->get_origin_site() );
+	}
+
+
+	/**
+	 * Returns an associative array containing the bulk action
+	 *
+	 * @since    1.0.0
+	 *
+	 * @return array
+	 */
+	public function get_bulk_actions() {
+
+		/**
+		 * On hitting apply in bulk actions the url paramas are set as
+		 * ?action=activate&paged=1&action2=-1
+		 *
+		 * `action` and `action2` are set based on the triggers above or below the table.
+		 */
+		$actions = array(
+			'activate'   => __( 'Activate', 'bu-blocks' ),
+			'deactivate' => __( 'Deactivate', 'bu-blocks' ),
+		);
+
+		return $actions;
+	}
+
+	/**
+	 * Processes actions triggered by the user.
+	 *
+	 * @since    1.0.0
+	 */
+	public function handle_table_actions() {
+
+		/**
+		 * Note: Table bulk_actions can be identified by checking $_REQUEST['action'] and $_REQUEST['action2']
+		 *
+		 * - `action`  - is set if checkbox from top-most select-all is set, otherwise returns -1.
+		 * - `action2` - is set if checkbox the bottom-most select-all checkbox is set, otherwise returns -1.
+		 */
+
+		// Check for individual row actions.
+		$the_table_action = $this->current_action();
+
+		if ( 'activate' === $the_table_action ) {
+			$nonce = wp_unslash( $_REQUEST['_wpnonce'] );
+			// verify the nonce.
+			if ( ! wp_verify_nonce( $nonce, 'change_block_status' ) ) {
+				$this->invalid_nonce_redirect();
+			} else {
+				$this->page_view_usermeta( absint( $_REQUEST['user_id']) );
+				$this->graceful_exit();
+			}
+		}
+
+		if ( 'deactivate' === $the_table_action ) {
+			$nonce = wp_unslash( $_REQUEST['_wpnonce'] );
+			// verify the nonce.
+			if ( ! wp_verify_nonce( $nonce, 'deactivate_block_nonce' ) ) {
+				$this->invalid_nonce_redirect();
+			} else {
+				$this->page_add_usermeta( absint( $_REQUEST['user_id']) );
+				$this->graceful_exit();
+			}
+		}
+
+		// Check for table bulk actions.
+		if ( $this->has_bulk_action( array( 'activate', 'deactivate' ) ) ) {
+
+			// Stores the nonce.
+			$nonce = wp_unslash( $_REQUEST['_wpnonce'] );
+
+			/**
+			 * Verifies the nonce.
+			 *
+			 * Note: the nonce field is set by the parent class
+			 * wp_nonce_field( 'bulk-' . $this->_args['plural'] );
+			 */
+			if ( ! wp_verify_nonce( $nonce, 'bulk-users' ) ) {
+				$this->invalid_nonce_redirect();
+			} else {
+				$this->page_bulk_download( $_REQUEST['users']);
+				$this->graceful_exit();
+			}
+		}
+
+	}
+
+	/**
+	 * Return true if there is a bulk action.
+	 *
+	 * @param array $action_values Bulk action values.
+	 * @return boolean
+	 */
+	public function has_bulk_action( $action_values = array() ) {
+		$has_bulk_action = false;
+		if ( ! empty( $action_values ) ) {
+			foreach ( $action_values as $action_value ) {
+				if ( ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === $action_value ) || ( isset( $_REQUEST['action2'] ) && $_REQUEST['action2'] === $action_value ) ) {
+					return true;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Stops execution and exits.
+	 *
+	 * @since    1.0.0
+	 */
+	public function graceful_exit() {
+		exit;
+	}
+
+	/**
+	 * Dies when the nonce check fails.
+	 *
+	 * @since    1.0.0
+	 */
+	public function invalid_nonce_redirect() {
+		wp_die(
+			__( 'Invalid Nonce', 'bu-blocks' ),
+			__( 'Error', 'bu-blocks' ),
+			array(
+				'response'  => 403,
+				'back_link' => esc_url(
+					add_query_arg(
+						array(
+							'page' => wp_unslash( $_REQUEST['page'] ),
+						),
+						admin_url( 'options-general.php' )
+					)
+				),
+			)
+		);
 	}
 
 }
