@@ -215,8 +215,14 @@ class BU_Block_List_Table extends Admin\WP_List_Table {
 				$table_data,
 				function( $row ) use ( $search_key ) {
 					foreach ( $row as $row_val ) {
-						if ( stripos( $row_val, $search_key ) !== false ) {
-							return true;
+						if ( is_array( $row_val ) ) {
+							if ( in_array( $search_key, $row_val, true ) ) {
+								return true;
+							}
+						} elseif ( is_string( $row_val ) ) {
+							if ( stripos( $row_val, $search_key ) !== false ) {
+								return true;
+							}
 						}
 					}
 				}

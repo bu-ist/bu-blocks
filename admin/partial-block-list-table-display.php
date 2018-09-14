@@ -15,7 +15,11 @@
 	<div id="bu-blocks-wp-list-table">
 		<div id="bu-blocks-post-body">
 			<form id="bu-blocks-list-form" method="get">
-				<?php $this->block_list_table->display(); ?>
+				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+				<?php
+					$this->block_list_table->search_box( __( 'Search BU Blocks', 'bu-blocks' ), 'bu-blocks-find' );
+					$this->block_list_table->display();
+				?>
 			</form>
 		</div>
 	</div>
