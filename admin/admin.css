@@ -1,0 +1,17 @@
+.bu-block-activation-status {
+	background-color: #888888;
+	border-radius: 50%;
+	display: inline-block;
+	height: 12px;
+	margin-right: 6px;
+	vertical-align: middle;
+	width: 12px;
+}
+
+.bu-block-activation-status.is-active {
+	background-color: #7ad03a;
+}
+
+.bu-block-activation-status.is-inactive {
+	background-color: #dc3232;
+}
