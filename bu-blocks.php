@@ -64,6 +64,5 @@ require_once BU_BLOCKS_DIR . 'includes/class-bu-blocks.php';
 function run_bu_blocks() {
 	// The constructor method of this class will kick off hooks.
 	$plugin = new BU_Blocks();
-	$plugin->run();
 }
 run_bu_blocks();

@@ -49,22 +49,6 @@ class BU_Blocks {
 	 */
 	public $block_instances = array();
 
-	/**
-	 * A blank constructor method.
-	 *
-	 * To initialize the plugin, the `run()` method is called.
-	 * See the main plugin file for the when the method is called.
-	 *
-	 * The `__construct` method is empty so that the class can be
-	 * instantiated at any time to retrieve basic information such as
-	 * the current available blocks in the `get_blocks` method.
-	 * the run method
-	 *
-	 * @since    1.0.0
-	 */
-	public function __construct() {
-
-	}
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -75,7 +59,7 @@ class BU_Blocks {
 	 *
 	 * @since    1.0.0
 	 */
-	public function run() {
+	public function __construct() {
 
 		// Loads the required plugin classes and files.
 		$this->load_dependencies();
