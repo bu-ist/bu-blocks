@@ -27,6 +27,26 @@ define( 'BU_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BU_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 
 /**
+ * Displays admin notice and prevents activation if Gutenberg is deactivated.
+ *
+ * @since    1.0.0
+ */
+function bu_blocks_gutenberg_notice() {
+	if ( ! function_exists( 'gutenberg_pre_init' ) ) {
+		?>
+			<div class="notice notice-error is-dismissible">
+				<p>
+					<?php esc_html_e( 'BU Blocks Error: The Gutenberg plugin must be installed and activated. Please install and activate Gutenberg to use BU Blocks.', 'bu-blocks' ); ?>
+				</p>
+				<p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e( 'Get Gutenberg', 'bu-blocks' ); ?></a></p>
+			</div>
+		<?php
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+	}
+}
+add_action( 'admin_notices', 'bu_blocks_gutenberg_notice' );
+
+/**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
