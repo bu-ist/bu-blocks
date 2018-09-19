@@ -29,25 +29,22 @@
 class BU_Blocks {
 
 	/**
-	 * Array of blocks and their class instances.
-	 *
-	 * Each class instance should extend the parent `BU_Block` class
-	 * so they share the same base properties and methods.
+	 * The unique identifier of this plugin.
 	 *
 	 * @since    1.0.0
-	 * @var      array $blocks An array containing "BU_Block Class name" => "path/to/file.php"
-	 *                         value pairs.
+	 * @access   protected
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
-	public $blocks = array();
+	protected $plugin_name;
 
 	/**
-	 * Array of BU Block instances, once all classes have been instantiated.
+	 * The current version of the plugin.
 	 *
 	 * @since    1.0.0
-	 * @var      array $block_instances An array containing "BU_Block Class name" => BU_Block instance
-	 *                                  value pairs.
+	 * @access   protected
+	 * @var      string    $version    The current version of the plugin.
 	 */
-	public $block_instances = array();
+	protected $version;
 
 
 	/**
@@ -61,12 +58,15 @@ class BU_Blocks {
 	 */
 	public function __construct() {
 
+		if ( defined( 'BU_BLOCKS_VERSION' ) ) {
+			$this->version = BU_BLOCKS_VERSION;
+		} else {
+			$this->version = '1.0.0';
+		}
+		$this->plugin_name = 'bu-blocks';
+
 		// Loads the required plugin classes and files.
 		$this->load_dependencies();
-		// Sets the available blocks at runtime.
-		$this->blocks = $this->get_blocks();
-		// Iterates through blocks and instantiates their classes.
-		$this->initialize_blocks( $this->blocks );
 		// Sets translation settings.
 		$this->define_i18n_hooks();
 		// Define admin hooks.
@@ -90,15 +90,6 @@ class BU_Blocks {
 		// The class responsible for defining all actions that occur in the admin area.
 		require_once BU_BLOCKS_DIR . 'admin/class-bu-blocks-admin.php';
 
-		// Pulls in a copy of the WP_List_Table class.
-		require_once BU_BLOCKS_DIR . 'admin/class-wp-list-table.php';
-
-		// Requires the subclass that extends WP_List_Table for the BU_Block_List_Table.
-		require_once BU_BLOCKS_DIR . 'admin/class-bu-block-list-table.php';
-
-		// Require the abstract class of the BU Block model, so subclasses can extend it.
-		require_once BU_BLOCKS_DIR . 'includes/blocks/class-bu-block.php';
-
 	}
 
 	/**
@@ -120,9 +111,10 @@ class BU_Blocks {
 	private function define_admin_hooks() {
 
 		// Admin Class hooks.
-		$plugin_admin = new BU_Blocks_Admin( $this->block_instances );
+		$plugin_admin = new BU_Blocks_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		// Add admin plugin settings page.
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
 		add_action( 'admin_menu', array( $plugin_admin, 'add_plugin_admin_menu' ) );
 	}
@@ -143,85 +135,24 @@ class BU_Blocks {
 	}
 
 	/**
-	 * Retrieves plugin blocks.
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since    1.0.0
-	 *
-	 * @return   array $this->blocks Filtered list of blocks
+	 * @since     1.0.0
+	 * @return    string    The name of the plugin.
 	 */
-	public function get_blocks() {
-
-		/**
-		 * Filter to allow modifications to available BU Blocks
-		 *
-		 * @since    1.0.0
-		 *
-		 * @param    array $this->blocks The array of defalt BU Blocks baked into the plugin.
-		 */
-		$this->blocks = apply_filters( 'bu_blocks', $this->get_default_blocks() );
-
-		return $this->blocks;
+	public function get_plugin_name() {
+		return $this->plugin_name;
 	}
 
 	/**
-	 * Retrieves default plugin blocks.
+	 * Retrieve the version number of the plugin.
 	 *
-	 * @since    1.0.0
-	 *
-	 * @return   array An array of classnames that extend BU_Block as the keys,
-	 *                 and their file locations as values.
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
 	 */
-	public function get_default_blocks() {
-
-		// Stores the directory to all blocks for brevity.
-		$blocks_dir = BU_BLOCKS_DIR . 'includes/blocks/';
-
-		// Require sub classes.
-		return array(
-			'BU_Block_Example_1' => $blocks_dir . 'block-example-1/class-bu-block-example-1.php',
-			// 'BU_Block_Example_2' => $blocks_dir . 'block-example-2/class-bu-block-example-2.php',
-			// 'BU_Block_Example_3' => $blocks_dir . 'block-example-3/class-bu-block-example-3.php',
-		);
-
+	public function get_version() {
+		return $this->version;
 	}
 
-	/**
-	 * Initializes all BU Blocks.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 *
-	 * @param    array $blocks An array of BU Blocks subclasses to instantiate, and their filepaths.
-	 * @return   array $blocks An array of classnames that extend BU_Block as the keys,
-	 *                 and their file locations as values.
-	 */
-	private function initialize_blocks( $blocks = array() ) {
-
-		// Return immediately if empty.
-		if ( empty( $blocks ) ) {
-			return false;
-		}
-
-		// Iterate through blocks and call the `init` method to register them.
-		foreach ( $blocks as $classname => $filepath ) {
-
-			// Validates the file exists before requiring.
-			if ( file_exists( $filepath ) ) {
-				require_once $filepath;
-			}
-
-			// Validates the class exists before instantiating.
-			if ( class_exists( $classname ) && ! in_array( $classname, $this->block_instances, true ) ) {
-				$this->block_instances[ $classname ] = new $classname();
-
-				// Validates the `init` method exists before calling.
-				if ( method_exists( $this->block_instances[ $classname ], 'init' ) ) {
-					$this->block_instances[ $classname ]->init();
-				}
-			}
-		}
-
-		return $this->block_instances;
-
-	}
 }
