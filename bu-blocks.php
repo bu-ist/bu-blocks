@@ -27,16 +27,25 @@ define( 'BU_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BU_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Displays admin notice and prevents activation if Gutenberg is deactivated.
+ * Displays admin notice and prevents activation.
+ *
+ * Deactivates plugin if the function to register blocks does not exist
+ * (meaning this is not a WP 5.0.0 install, or the site does not have the
+ * Gutenberg plugin activated.
  *
  * @since    1.0.0
  */
 function bu_blocks_gutenberg_notice() {
-	if ( ! function_exists( 'gutenberg_pre_init' ) ) {
+
+	// Only targets WordPress versions before 5.0, that don't have gutenberg activated.
+	if ( ! function_exists( 'register_block_type' ) ) {
 		?>
 			<div class="notice notice-error is-dismissible">
 				<p>
-					<?php esc_html_e( 'BU Blocks Error: The Gutenberg plugin must be installed and activated. Please install and activate Gutenberg to use BU Blocks.', 'bu-blocks' ); ?>
+					<?php esc_html_e( 'BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks' ); ?>
+				</p>
+				<p>
+					<?php esc_html_e( 'Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks' ); ?>
 				</p>
 				<p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e( 'Get Gutenberg', 'bu-blocks' ); ?></a></p>
 			</div>
