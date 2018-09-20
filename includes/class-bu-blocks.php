@@ -34,6 +34,8 @@ class BU_Blocks {
 	 * @since    1.0.0
 	 * @access   protected
 	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 *                                     Used to set slugs like the admin page menu or the
+	 *                                     name of any plugin scripts/styles that are enqueued.
 	 */
 	protected $plugin_name;
 
@@ -42,7 +44,8 @@ class BU_Blocks {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string    $version    The current version of the plugin. Used to bust the
+	 *                                 cache on plugin scripts/styles that are enqueued.
 	 */
 	protected $version;
 
@@ -76,11 +79,6 @@ class BU_Blocks {
 
 	/**
 	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - BU_Block. The abstract parent class that all blocks extend for shared
-	 *   functionality.
 	 *
 	 * @since    1.0.0
 	 * @access   private

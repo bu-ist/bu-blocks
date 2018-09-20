@@ -6,7 +6,7 @@
  * @since      1.0.0
  *
  * @package    Bu_Blocks
- * @subpackage Bu_Blocks/admin
+ * @subpackage Bu_Blocks/admin/partials
  */
 
 ?>
@@ -22,8 +22,8 @@
 				 *
 				 * This div is required for the gutenberg scripts to run,
 				 * so wp.blocks.getBlockTypes() can be called and retrieve
-				 * all ~66 blocks registered by WordPress and additional
-				 * blocks registered by 3rd party plugins and themes.
+				 * all blocks registered by WordPress and 3rd party plugins
+				 * and themes.
 				 */
 				?>
 				<div id="editor" class="gutenberg__editor"></div>

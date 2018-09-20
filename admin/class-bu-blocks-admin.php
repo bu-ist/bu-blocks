@@ -13,7 +13,7 @@
  * The admin-specific functionality of the plugin.
  *
  * Defines the plugin name, version, enqueues the admin-specific
- * stylesheet and JavaScript. Adds meta boxes
+ * stylesheet and JavaScript. Registers settings page.
  *
  * @since      1.0.0
  * @package    Bu_Blocks
@@ -23,20 +23,23 @@
 class BU_Blocks_Admin {
 
 	/**
-	 * The ID of this plugin.
+	 * The unique identifier of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 *                                     Used to set slugs like the admin page menu or the
+	 *                                     name of any plugin scripts/styles that are enqueued.
 	 */
 	private $plugin_name;
 
 	/**
-	 * The version of this plugin.
+	 * The current version of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string    $version    The current version of the plugin. Used to bust the
+	 *                                 cache on plugin scripts/styles that are enqueued.
 	 */
 	private $version;
 
@@ -146,8 +149,8 @@ class BU_Blocks_Admin {
 		 * Result: $page_hook = 'load-settings_page_bu-blocks'.
 		 */
 		$page_hook = add_options_page(
-			'BU Blocks',
-			'BU Blocks',
+			__( 'BU Blocks', 'bu-blocks' ),
+			__( 'BU Blocks', 'bu-blocks' ),
 			'manage_options',
 			$this->plugin_name,
 			array( $this, 'load_bu_blocks_admin_page' )
@@ -167,24 +170,22 @@ class BU_Blocks_Admin {
 		 * @link    https://codex.wordpress.org/Plugin_API/Action_Reference/load-(page).
 		 * @link    https://www.sitepoint.com/using-wp_list_table-to-create-wordpress-admin-tables/
 		 */
-		add_action( 'load-' . $page_hook, array( $this, 'load_bu_blocks_admin_pages_hook' ) );
+		add_action( 'load-' . $page_hook, array( $this, 'load_bu_blocks_admin_page_hook' ) );
 	}
 
 	/**
-	 * Callback to load screen options for settings page.
-	 *
-	 * Callback for the load-($page_hook_suffix).
-	 * Called when the plugin page is loaded.
+	 * Callback to load when plugin settings page is loaded.
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_bu_blocks_admin_pages_hook() {
+	public function load_bu_blocks_admin_page_hook() {
 	}
 
 	/**
 	 * Displays the plugin settings page.
 	 *
-	 * Callback for the add_options_page() in the add_plugin_admin_menu() method of this class.
+	 * Callback for the add_options_page() in the add_plugin_admin_menu()
+	 * method of this class.
 	 *
 	 * @since    1.0.0
 	 */
