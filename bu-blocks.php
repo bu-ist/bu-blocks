@@ -4,7 +4,7 @@
  * Plugin URI:      https://github.com/bu-ist/bu-blocks
  * Description:     A WordPress plugin to centrally manage all BU editor blocks for the new WordPress editor.
  * Author:          Boston University
- * Author URI:      http://www.bu.edu/
+ * Author URI:      http://www.bu.edu/interactive-design/
  * Text Domain:     bu-blocks
  * Domain Path:     /languages
  * Version:         0.1.0

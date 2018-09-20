@@ -5,7 +5,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       www.bu.edu
+ * @link       www.bu.edu/interactive-design/
  * @since      1.0.0
  *
  * @package    Bu_Blocks

@@ -2,7 +2,7 @@
 /**
  * Displays the plugin settings page
  *
- * @link       www.bu.edu
+ * @link       www.bu.edu/interactive-design/
  * @since      1.0.0
  *
  * @package    Bu_Blocks

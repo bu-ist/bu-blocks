@@ -43,5 +43,5 @@ msgid "Boston University"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.bu.edu/"
+msgid "http://www.bu.edu/interactive-design/"
 msgstr ""

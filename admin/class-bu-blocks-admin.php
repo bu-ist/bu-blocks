@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       www.bu.edu
+ * @link       www.bu.edu/interactive-design/
  * @since      1.0.0
  *
  * @package    Bu_Blocks
