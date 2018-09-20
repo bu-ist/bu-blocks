@@ -8,16 +8,27 @@
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-A WordPress plugin to centrally manage all BU editor blocks for the new WordPress editor.
+BU Blocks is a WordPress plugin that registers additional blocks for the
+new WordPress editor, and provides a way to centrally manage all available
+blocks.
 
 ## Description ##
 
-The BU Blocks plugin is intended to contain all blocks created for any BU website.
-Once activated, an administrator to the site can enable or disable any number of
-blocks to be used for a given site. The goal is to re-use editor blocks that may
-have already been created to reduce development time, and allow site adminstrators
-to control which blocks are required for a site to reduce clutter and noise in the
-editor.
+BU Blocks provides content editors with additional blocks for the new
+WordPress editor. These blocks were built for various sites within the
+BU WordPress ecosystem and have been tested and designed to be re-used
+for any project.
+
+Secondly, BU Blocks gives site administrators the ability to globally
+enable or disable any block (from WordPress core or 3rd party plugins
+and themes) on the plugin settings page. Developers also will have this
+ability via hooks and filters.
+
+BU Blocks aims to reduce development time by providing this continously
+updated repository of editor blocks that have been required and used
+on previous projects so less time is spent reinventing the wheel. And
+since a site may __not__ need all the blocks, site administrators and
+developers have the ability to turn off ones that are not relevant.
 
 ## Dependencies ##
 * [Gutenberg plugin 3.8](https://wordpress.org/plugins/gutenberg/)
@@ -29,17 +40,14 @@ or upload the contents of this repository to the `/wp-content/plugins/` director
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 ## Permissions ##
-Users with the capability `manage_options` will have the ability to view the Settings
-page for BU Blocks.
+Users with the capability `manage_options` will have the ability to view and make
+changes on the plugin settings page.
 
 ## Plugin Settings
-BU Blocks adds an admin submenu page to the current Settings admin menu page. This
-settings page is only visible to users who have the `manage_options` capability.
-The settings page lists all BU Blocks using the familiar
-[WP_List_Table class](https://codex.wordpress.org/Class_Reference/WP_List_Table).
-Each row in the table represents a BU Block, and has information such as a
-description, site(s) that it was created for, a category/tag that can be used
-to find other similar BU Blocks of that type, and its current status (active/inactive).
+Upon activation, a new submenu page will be visible under the "Settings" admin menu item.
+This settings page is only visible to users who have the `manage_options` capability.
+The settings page lists all registered blocks and provides a user interface for turning
+on or off any block in the editor.
 
 ## Frequently Asked Questions ##
 
