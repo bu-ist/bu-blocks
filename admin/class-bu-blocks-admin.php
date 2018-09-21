@@ -107,8 +107,8 @@ class BU_Blocks_Admin {
 			 * Defined in `wp-content/plugins/gutenberg/lib/client-assets.php`.
 			 *
 			 * Adds gutenberg inline scripts that are needed so we can call `wp.blocks.getBlockTypes()`
-			 * outside of gutenberg contexts (like the post editor page), and leverage its API
-			 * on admin settings page where the editor won't be used.
+			 * outside of gutenberg contexts like in the plugin settings page. Allows plugin page
+			 * to leverage gutenberg JS API where the editor won't be used.
 			 */
 			if ( 'post.php' !== $hook_suffix && function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 				gutenberg_editor_scripts_and_styles( $hook_suffix );
