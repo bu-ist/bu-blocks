@@ -24,30 +24,22 @@ enable or disable any block (from WordPress core or 3rd party plugins
 and themes) on the plugin settings page. Developers also will have this
 ability via hooks and filters.
 
-BU Blocks aims to reduce development time by providing this continously
-updated repository of editor blocks that have been required and used
-on previous projects so less time is spent reinventing the wheel. And
-since a site may __not__ need all the blocks, site administrators and
-developers have the ability to turn off ones that are not relevant.
-
 ## Dependencies ##
 * [Gutenberg plugin 3.8](https://wordpress.org/plugins/gutenberg/)
-* [WordPress 4.9.8](https://wordpress.org/download/)
+* [WordPress 4.9.8](https://wordpress.org/download/) or later
 
 ## Installation Instructions ##
-1. Download this repository and either upload the zip file to the Add New plugin screen,
-or upload the contents of this repository to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Download this repository and either upload the zip file to the Add New
+   plugin screen, or upload the contents of this repository to the
+   `/wp-content/plugins/` directory.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
 
 ## Permissions ##
-Users with the capability `manage_options` will have the ability to view and make
-changes on the plugin settings page.
+Any user with editing capabilities can use registered blocks.
 
-## Plugin Settings
-Upon activation, a new submenu page will be visible under the "Settings" admin menu item.
-This settings page is only visible to users who have the `manage_options` capability.
-The settings page lists all registered blocks and provides a user interface for turning
-on or off any block in the editor.
+Only users with the `manage_options` capability have access to the plugin settings
+page listed under Settings > BU Blocks. From there, users have full capabilities
+to unregister blocks.
 
 ## Frequently Asked Questions ##
 
