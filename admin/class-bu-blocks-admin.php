@@ -110,7 +110,7 @@ class BU_Blocks_Admin {
 			 * outside of gutenberg contexts (like the post editor page), and leverage its API
 			 * on admin settings page where the editor won't be used.
 			 */
-			if ( function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
+			if ( 'post.php' !== $hook_suffix && function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 				gutenberg_editor_scripts_and_styles( $hook_suffix );
 			}
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bu-blocks-admin.js', array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n', 'wp-block-library', 'wp-editor', 'wp-edit-post' ), $this->version, true );
