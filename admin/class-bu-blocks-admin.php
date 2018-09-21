@@ -114,6 +114,14 @@ class BU_Blocks_Admin {
 				gutenberg_editor_scripts_and_styles( $hook_suffix );
 			}
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bu-blocks-admin.js', array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n', 'wp-block-library', 'wp-editor', 'wp-edit-post' ), $this->version, true );
+			wp_localize_script(
+				$this->plugin_name,
+				'BU_Blocks_Settings',
+				array(
+					'admin_page'          => $hook_suffix, // Identifies the admin page to run correct js.
+					'unregistered_blocks' => $this->get_unregistered_blocks(), // Flags blocks to hide on post edit.
+				)
+			);
 		}
 	}
 
@@ -191,6 +199,41 @@ class BU_Blocks_Admin {
 	 */
 	public function load_bu_blocks_admin_page() {
 		include_once plugin_dir_path( __FILE__ ) . 'partials/settings-page.php';
+	}
+
+	/**
+	 * Returns unregistered blocks.
+	 *
+	 * Todo: Return user settings from options table.
+	 *
+	 * @since    1.0.0
+	 *
+	 * @return   array $blocks Blocks to unregister.
+	 */
+	public function get_unregistered_blocks() {
+
+		// Array of blocks to unregister. In the future can retrieve via options table.
+		$blocks = array(
+			// 'core/video',
+			// 'namespace/block-name',
+			// 'etc',
+		);
+
+		/**
+		 * Filters blocks to unregister.
+		 *
+		 * Useful for turning blocks off via hooks instead
+		 * of the plugin settings page. Allows developers to
+		 * potentially override settings stored in the options
+		 * table.
+		 *
+		 * @since    1.0.0
+		 * @param    array $blocks Blocks to unregister (settings stored in options table).
+		 */
+		$blocks = (array) apply_filters( 'bu_blocks_unregister_blocks', $blocks );
+
+		return $blocks;
+
 	}
 
 }
