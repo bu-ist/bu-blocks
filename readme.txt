@@ -1,18 +1,18 @@
-# BU Blocks #
+=== BU Blocks ===
 
-**Contributors:** toddmilliken  
-**Tags:** gutenberg, blocks  
-**Requires at least:** 4.9.8  
-**Tested up to:** 4.9.8  
-**Stable tag:** trunk  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+Contributors: toddmilliken
+Tags: gutenberg, blocks
+Requires at least: 4.9.8
+Tested up to: 4.9.8
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 BU Blocks is a WordPress plugin that registers additional blocks for the
 new WordPress editor, and provides a way to centrally manage all available
 blocks.
 
-## Description ##
+== Description ==
 
 BU Blocks provides content editors with additional blocks for the new
 WordPress editor. These blocks were built for various sites within the
@@ -24,11 +24,11 @@ enable or disable any block (from WordPress core or 3rd party plugins
 and themes) on the plugin settings page. Developers also will have this
 ability via hooks and filters.
 
-## Dependencies ##
+== Dependencies ==
 * [Gutenberg plugin 3.8](https://wordpress.org/plugins/gutenberg/)
 * [WordPress 4.9.8](https://wordpress.org/download/) or later
 
-## Resources ##
+== Resources ==
 This plugin was built using a few open source plugin boilerplate examples:
 * [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/)
     * The unofficial plugin boilerplate code
@@ -58,46 +58,42 @@ This plugin was built using a few open source plugin boilerplate examples:
 	 development workflow without needing to require each PHP file.
 	 Encapsulates plugin code from the global namespace to avoid conflicts.
 
-## Installation Instructions ##
+== Installation Instructions ==
 1. Download this repository and either upload the zip file to the Add New
    plugin screen, or upload the contents of this repository to the
    `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 
-## Permissions ##
+== Permissions ==
 Any user with editing capabilities can use registered blocks.
 
 Only users with the `manage_options` capability have access to the plugin settings
 page listed under Settings > BU Blocks. From there, users have full capabilities
 to unregister blocks.
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
-### A question someone might have ###
+= A question someone might have =
 
 An answer to that question
 
-## Screenshots ##
+== Screenshots ==
 
-### 1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from ###
-![This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from](http://ps.w.org/bu-blocks/assets/screenshot-1.png)
-
+1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
 the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
 directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
 (or jpg, jpeg, gif).
-### 2. This is the second screen shot ###
-![This is the second screen shot](http://ps.w.org/bu-blocks/assets/screenshot-2.png)
+1. This is the second screen shot
 
-
-## Running tests locally in docker ##
-### Requirements ###
+== Running tests locally in docker ==
+= Requirements =
 Running tests locally in docker requires docker and docker-compose to be installed in your machine.
 
 You can download it here https://www.docker.com/community-edition#/download.
 
 Note: docker-compose comes with Docker for Mac and Docker for Windows. On linux you need to install docker-compose separately.
 
-### Steps ###
+= Steps =
 1. Go to the plugin/theme directory.
 	```
 	cd /path/to/plugin
@@ -115,8 +111,8 @@ Note: docker-compose comes with Docker for Mac and Docker for Windows. On linux 
 	bash bin/wpdc.sh down
 	```
 
-## bin/wpdc.sh commands ##
-### `up` ###
+== bin/wpdc.sh commands ==
+= `up` =
 Starts docker containers and sets up WordPress testing environment so that we can use the test command.
 *Usage*
 ```
@@ -143,7 +139,7 @@ bash bin/wpdc.sh up latest 4.8
 bash bin/wpdc.sh up 5.6 4.3
 ```
 
-### `down` ###
+= `down` =
 Stops and removes everything created with the up command.
 *Usage*
 ```
@@ -151,7 +147,7 @@ bash bin/wpdc.sh down
 ```
 It takes no arguments.
 
-### `test` ###
+= `test` =
 Runs the phpunit tests inside the docker container.
 *Usage*
 ```
@@ -159,27 +155,27 @@ bash bin/wpdc.sh test
 ```
 It takes no arguments.
 
-## Create Guten Block ##
+== Create Guten Block ==
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 
 Below you will find some information on how to run scripts.
 
 >You can find the most recent version of this guide [here](https://github.com/ahmadawais/create-guten-block).
 
-### 👉  `npm start` ###
+= 👉  `npm start` =
 * Use to compile and run the block in development mode.
 * Watches for any changes and reports back any errors in your code.
 
-### 👉  `npm run build` ###
+= 👉  `npm run build` =
 * Use to build production code for your block inside `dist` folder.
 * Runs once and reports back the gzip file sizes of the produced code.
 
-### 👉  `npm run eject` ###
+= 👉  `npm run eject` =
 * Use to eject your plugin out of `create-guten-block`.
 * Provides all the configurations so you can customize the project as you want.
 * It's a one-way street, `eject` and you have to maintain everything yourself.
 * You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block` and from there onwards you have to update and maintain all the dependencies on your own.
 
-## Changelog ##
+== Changelog ==
 
-### 1.0.0 ###
+= 1.0.0 =

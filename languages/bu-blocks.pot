@@ -1,0 +1,62 @@
+# Copyright (C) 2018 Boston University: Interactive Design
+# This file is distributed under the same license as the BU Blocks package.
+msgid ""
+msgstr ""
+"Project-Id-Version: BU Blocks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bu-blocks-cgb\n"
+"POT-Creation-Date: 2018-09-25 18:57:03+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n1.0.2\n"
+
+#: bu-blocks.php:44
+msgid ""
+"BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the "
+"Gutenberg plugin to be installed and activated on any version previous to "
+"5.0.0."
+msgstr ""
+
+#: bu-blocks.php:47
+msgid "Please install and activate the Gutenberg plugin to use BU Blocks."
+msgstr ""
+
+#: bu-blocks.php:49
+msgid "Get Gutenberg"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "BU Blocks"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/bu-ist/bu-blocks"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"CGB A WordPress plugin to centrally manage all BU editor blocks for the new "
+"WordPress editor."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Boston University: Interactive Design"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.bu.edu/interactive-design/"
+msgstr ""

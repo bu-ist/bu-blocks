@@ -1,0 +1,20 @@
+{
+  "name": "bu-blocks",
+  "version": "0.1.0",
+  "private": true,
+  "main": "Gruntfile.js",
+  "author": "Boston University: Interactive Design",
+  "scripts": {
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject"
+  },
+  "dependencies": {
+    "cgb-scripts": "1.9.8"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-wp-i18n": "^1.0.2",
+    "grunt-wp-readme-to-markdown": "~1.0.0"
+  }
+}
