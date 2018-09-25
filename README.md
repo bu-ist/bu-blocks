@@ -71,25 +71,7 @@ Only users with the `manage_options` capability have access to the plugin settin
 page listed under Settings > BU Blocks. From there, users have full capabilities
 to unregister blocks.
 
-## Frequently Asked Questions ##
-
-### A question someone might have ###
-
-An answer to that question
-
-## Screenshots ##
-
-### 1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from ###
-![This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from](http://ps.w.org/bu-blocks/assets/screenshot-1.png)
-
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-### 2. This is the second screen shot ###
-![This is the second screen shot](http://ps.w.org/bu-blocks/assets/screenshot-2.png)
-
-
-## Running tests locally in docker ##
+## Running PHPUnit tests locally in docker ##
 ### Requirements ###
 Running tests locally in docker requires docker and docker-compose to be installed in your machine.
 
@@ -115,7 +97,7 @@ Note: docker-compose comes with Docker for Mac and Docker for Windows. On linux 
 	bash bin/wpdc.sh down
 	```
 
-## bin/wpdc.sh commands ##
+## Docker commands in bin/wpdc.sh script ##
 ### `up` ###
 Starts docker containers and sets up WordPress testing environment so that we can use the test command.
 *Usage*
@@ -179,7 +161,3 @@ Below you will find some information on how to run scripts.
 * Provides all the configurations so you can customize the project as you want.
 * It's a one-way street, `eject` and you have to maintain everything yourself.
 * You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block` and from there onwards you have to update and maintain all the dependencies on your own.
-
-## Changelog ##
-
-### 1.0.0 ###

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     BU Blocks
  * Plugin URI:      https://github.com/bu-ist/bu-blocks
- * Description:     CGB A WordPress plugin to centrally manage all BU editor blocks for the new WordPress editor.
+ * Description:     A WordPress plugin to centrally manage all BU editor blocks for the new WordPress editor.
  * Author:          Boston University: Interactive Design
  * Author URI:      http://www.bu.edu/interactive-design/
  * Text Domain:     bu-blocks
