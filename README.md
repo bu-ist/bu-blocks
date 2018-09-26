@@ -9,8 +9,7 @@
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 BU Blocks is a WordPress plugin that registers additional blocks for the
-new WordPress editor, and provides a way to centrally manage all available
-blocks.
+new WordPress editor.
 
 ## Description ##
 
@@ -19,44 +18,9 @@ WordPress editor. These blocks were built for various sites within the
 BU WordPress ecosystem and have been tested and designed to be re-used
 for any project.
 
-Secondly, BU Blocks gives site administrators the ability to globally
-enable or disable any block (from WordPress core or 3rd party plugins
-and themes) on the plugin settings page. Developers also will have this
-ability via hooks and filters.
-
 ## Dependencies ##
 * [Gutenberg plugin 3.8](https://wordpress.org/plugins/gutenberg/)
 * [WordPress 4.9.8](https://wordpress.org/download/) or later
-
-## Resources ##
-This plugin was built using a few open source plugin boilerplate examples:
-* [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/)
-    * The unofficial plugin boilerplate code
-	* Provides organization and structure by separating code into
-	 admin-facing vs public-facing functionality.
-	* Consolidates all hooks in one main plugin class, which helps
-	 maintainability.
-* [WP CLI `wp scaffold plugin` command](https://developer.wordpress.org/cli/commands/scaffold/plugin/)
-    * WordPress official plugin boilerplate.
-	* Includes an initial package.json file for its Gruntfile which
-	 creates pot files for translations and converts the standard WordPress
-	 `readme.txt` file that is required for the official WordPress plugin
-	 repository to the more traditional  `README.md` markdown format that
-	 Github can parse.
-	* Normalizes editor preferences, adds PHPUnit tests.
-* [BU Sample Plugin (feature/use_docker branch)](https://github.com/bu-ist/sample-plugin/tree/feature/use_docker)
-    * Adds `docker-compose.yml` and some scripts in `bin/` for running
-	 the PHPUnit tests locally in an isolated docker container.
-* [Create Guten Block](https://github.com/ahmadawais/create-guten-block)
-	* A zero-configuration boilerplate for creating blocks for the new editor
-	 without having to configure webpack or babel.
-	* Provides the base structure of this plugin.
-* [WDS Blocks](https://github.com/WebDevStudios/WDS-Blocks)
-    * An open-source plugin by WebDevStudios for extending the new editor
-	 with additional blocks.
-	* Borrowed the autoloading strategy and namespacing to speed up
-	 development workflow without needing to require each PHP file.
-	 Encapsulates plugin code from the global namespace to avoid conflicts.
 
 ## Installation Instructions ##
 1. Download this repository and either upload the zip file to the Add New
@@ -64,12 +28,70 @@ This plugin was built using a few open source plugin boilerplate examples:
    `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 
-## Permissions ##
-Any user with editing capabilities can use registered blocks.
+## Resources ##
+This plugin was built using a few open source plugin boilerplate examples:
+* [Create Guten Block](https://github.com/ahmadawais/create-guten-block) --
+  A zero-configuration boilerplate for creating blocks for the new editor
+  without having to configure webpack or babel.
+    * Provides the base structure of this plugin.
+    * Provides npm scripts that transpile ES6+/Next JavaScript into traditional
+      ES2015 JavaScript that all modern browsers can understand.
+    * Compiles all block sass to CSS.
+    * Supplies the `src/` directory where block development occurs.
+    * Supplies the `dist/` directory where the npm scripts distribute the
+      final build files that get enqueued into the Editor and front-end.
+    * Adds the hidden eslint config files.
+* [WP CLI `wp scaffold plugin` command](https://developer.wordpress.org/cli/commands/scaffold/plugin/) --
+  The official WordPress plugin boilerplate.
+    * Provides the initial package.json file for running Grunt tasks.
+    * Adds two Grunt tasks for generating .pot file for translations and another
+      task for converting the standard WordPress `readme.txt` file that is required
+      for the official WordPress plugin repository to the more traditional  `README.md`
+      markdown format that Github can parse.
+    * Adds the hidden `.distignore`, `.gitignore`, `.editorconfig` configuration files.
+    * Adds `.travis.yml`, `phpunit.xml.dist`, and initial `tests/` directory for continuous
+      integration setup and PHPUnit testing.
+    * Adds `phpcs.xml.dist` to define the WordPress Coding Standards this project follows.
+* [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) --
+  The unofficial plugin boilerplate code, with an opinionated object-oriented structure.
+    * Although this plugin doesn't use a lot of the code, the project provides plugin
+      organization principles that still apply for separating admin from public facing hooks.
+    * Consolidates all hooks in one main plugin class, which helps maintainability. This logic
+      exists in `/src/init.php` where `define_admin_hooks()` exists for consolidating all
+      admin-specific hooks.
+* [BU Sample Plugin (feature/use_docker branch)](https://github.com/bu-ist/sample-plugin/tree/feature/use_docker)
+    * Adds the `docker-compose.yml` and the `bin/wpdc.sh` scripts for running the PHPUnit
+	  tests locally in an isolated docker container.
+* [WDS Blocks](https://github.com/WebDevStudios/WDS-Blocks) --
+  An open-source plugin by WebDevStudios for adding blocks to the new WordPress editor.
+    * Borrows the autoloading strategy in `src/init.php` to help development focus on
+      the creation of blocks rather than adding includes and requires for each block-specific
+      PHP file that needs to be created.
+    * Follows the same namespacing patterns for each PHP file so code is scoped
+      to this plugin and avoids any conflicts with external dependencies that may have
+      the same class names, function names, etc.
 
-Only users with the `manage_options` capability have access to the plugin settings
-page listed under Settings > BU Blocks. From there, users have full capabilities
-to unregister blocks.
+## Create Guten Block ##
+This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
+
+Below you will find some information on how to run scripts.
+
+>You can find the most recent version of this guide [here](https://github.com/ahmadawais/create-guten-block).
+
+### 👉  `npm start` ###
+* Use to compile and run the block in development mode.
+* Watches for any changes and reports back any errors in your code.
+
+### 👉  `npm run build` ###
+* Use to build production code for your block inside `dist` folder.
+* Runs once and reports back the gzip file sizes of the produced code.
+
+### 👉  `npm run eject` ###
+* Use to eject your plugin out of `create-guten-block`.
+* Provides all the configurations so you can customize the project as you want.
+* It's a one-way street, `eject` and you have to maintain everything yourself.
+* You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block`
+  and from there onwards you have to update and maintain all the dependencies on your own.
 
 ## Running PHPUnit tests locally in docker ##
 ### Requirements ###
@@ -140,24 +162,3 @@ Runs the phpunit tests inside the docker container.
 bash bin/wpdc.sh test
 ```
 It takes no arguments.
-
-## Create Guten Block ##
-This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
-
-Below you will find some information on how to run scripts.
-
->You can find the most recent version of this guide [here](https://github.com/ahmadawais/create-guten-block).
-
-### 👉  `npm start` ###
-* Use to compile and run the block in development mode.
-* Watches for any changes and reports back any errors in your code.
-
-### 👉  `npm run build` ###
-* Use to build production code for your block inside `dist` folder.
-* Runs once and reports back the gzip file sizes of the produced code.
-
-### 👉  `npm run eject` ###
-* Use to eject your plugin out of `create-guten-block`.
-* Provides all the configurations so you can customize the project as you want.
-* It's a one-way street, `eject` and you have to maintain everything yourself.
-* You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block` and from there onwards you have to update and maintain all the dependencies on your own.

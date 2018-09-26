@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     BU Blocks
  * Plugin URI:      https://github.com/bu-ist/bu-blocks
- * Description:     A WordPress plugin to centrally manage all BU editor blocks for the new WordPress editor.
+ * Description:     A WordPress plugin that registers additional blocks for the new WordPress editor.
  * Author:          Boston University: Interactive Design
  * Author URI:      http://www.bu.edu/interactive-design/
  * Text Domain:     bu-blocks
@@ -22,12 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Defines the plugin version.
 define( 'BU_BLOCKS_VERSION', '0.1.0' );
 
-// Defines the path to the plugin's root directory.
-define( 'BU_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
-
-// Defines the URL to the plugin's root directory.
-define( 'BU_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
-
 /**
  * Displays admin notice and prevents activation.
  *
@@ -35,7 +29,7 @@ define( 'BU_BLOCKS_DIR_URL', plugin_dir_url( __FILE__ ) );
  * (meaning this is not a WP 5.0.0 install, or the site does not have the
  * Gutenberg plugin activated.
  *
- * @since    1.0.0
+ * @since    0.1.0
  */
 function gutenberg_notice() {
 	?>
@@ -54,10 +48,11 @@ function gutenberg_notice() {
 
 
 /**
- * Initializes plugin on plugins_loaded to
- * properly call function_exists.
+ * Initializes plugin on plugins_loaded.
  *
- * @since    1.0.0
+ * Waits for plugins_loaded hook to properly call function_exists.
+ *
+ * @since    0.1.0
  */
 function init_plugin() {
 
