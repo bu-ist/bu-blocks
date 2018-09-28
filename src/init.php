@@ -89,7 +89,7 @@ function bu_blocks_load_textdomain() {
 function enqueue_block_assets() {
 	// Styles.
 	wp_enqueue_style(
-		'bu_blocks_cgb-cgb-style-css', // Handle.
+		'bu-blocks-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
 		array( 'wp-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
@@ -108,7 +108,7 @@ function enqueue_block_assets() {
 function enqueue_block_editor_assets() {
 	// Scripts.
 	wp_enqueue_script(
-		'bu_blocks_cgb-cgb-block-js', // Handle.
+		'bu-blocks-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
@@ -117,7 +117,7 @@ function enqueue_block_editor_assets() {
 
 	// Styles.
 	wp_enqueue_style(
-		'bu_blocks_cgb-cgb-block-editor-css', // Handle.
+		'bu-blocks-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
