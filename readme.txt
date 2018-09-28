@@ -1,34 +1,34 @@
-# BU Blocks #
+=== BU Blocks ===
 
-**Contributors:** toddmilliken  
-**Tags:** gutenberg, blocks  
-**Requires at least:** 4.9.8  
-**Tested up to:** 4.9.8  
-**Stable tag:** trunk  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+Contributors: toddmilliken
+Tags: gutenberg, blocks
+Requires at least: 4.9.8
+Tested up to: 4.9.8
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 BU Blocks is a WordPress plugin that registers additional blocks for the
 new WordPress editor.
 
-## Description ##
+== Description ==
 
 BU Blocks provides content editors with additional blocks for the new
 WordPress editor. These blocks were built for various sites within the
 BU WordPress ecosystem and have been tested and designed to be re-used
 for any project.
 
-## Dependencies ##
+== Dependencies ==
 * [Gutenberg plugin 3.8](https://wordpress.org/plugins/gutenberg/)
 * [WordPress 4.9.8](https://wordpress.org/download/) or later
 
-## Installation Instructions ##
+== Installation Instructions ==
 1. Download this repository and either upload the zip file to the Add New
    plugin screen, or upload the contents of this repository to the
    `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 
-## Resources ##
+== Resources ==
 This plugin was built using a few open source plugin boilerplate examples:
 * [Create Guten Block](https://github.com/ahmadawais/create-guten-block) --
   A zero-configuration boilerplate for creating blocks for the new editor
@@ -71,37 +71,37 @@ This plugin was built using a few open source plugin boilerplate examples:
       to this plugin and avoids any conflicts with external dependencies that may have
       the same class names, function names, etc.
 
-## Create Guten Block ##
+== Create Guten Block ==
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 
 Below you will find some information on how to run scripts.
 
 >You can find the most recent version of this guide [here](https://github.com/ahmadawais/create-guten-block).
 
-### 👉  `npm start` ###
+= 👉  `npm start` =
 * Use to compile and run the block in development mode.
 * Watches for any changes and reports back any errors in your code.
 
-### 👉  `npm run build` ###
+= 👉  `npm run build` =
 * Use to build production code for your block inside `dist` folder.
 * Runs once and reports back the gzip file sizes of the produced code.
 
-### 👉  `npm run eject` ###
+= 👉  `npm run eject` =
 * Use to eject your plugin out of `create-guten-block`.
 * Provides all the configurations so you can customize the project as you want.
 * It's a one-way street, `eject` and you have to maintain everything yourself.
 * You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block`
   and from there onwards you have to update and maintain all the dependencies on your own.
 
-## Running PHPUnit tests locally in docker ##
-### Requirements ###
+== Running PHPUnit tests locally in docker ==
+= Requirements =
 Running tests locally in docker requires docker and docker-compose to be installed in your machine.
 
 You can download it here https://www.docker.com/community-edition#/download.
 
 Note: docker-compose comes with Docker for Mac and Docker for Windows. On linux you need to install docker-compose separately.
 
-### Steps ###
+= Steps =
 1. Go to the plugin/theme directory.
 	```
 	cd /path/to/plugin
@@ -119,8 +119,8 @@ Note: docker-compose comes with Docker for Mac and Docker for Windows. On linux 
 	bash bin/wpdc.sh down
 	```
 
-## Docker commands in bin/wpdc.sh script ##
-### `up` ###
+== Docker commands in bin/wpdc.sh script ==
+= `up` =
 Starts docker containers and sets up WordPress testing environment so that we can use the test command.
 *Usage*
 ```
@@ -147,7 +147,7 @@ bash bin/wpdc.sh up latest 4.8
 bash bin/wpdc.sh up 5.6 4.3
 ```
 
-### `down` ###
+= `down` =
 Stops and removes everything created with the up command.
 *Usage*
 ```
@@ -155,7 +155,7 @@ bash bin/wpdc.sh down
 ```
 It takes no arguments.
 
-### `test` ###
+= `test` =
 Runs the phpunit tests inside the docker container.
 *Usage*
 ```
