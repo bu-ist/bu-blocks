@@ -16,3 +16,7 @@
   margin: 0 auto;
   max-width: 740px;
   padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: green; }
