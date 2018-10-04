@@ -17,11 +17,16 @@ $red: orangered;
 // Libraries and Dependencies
 // =================================================================
 
-$burf-extras:							   false;
+$burf-extras:							   true ;
 $use-default-icons:                        false;
 $print-icon-classes:                       false;
 
-@import 'node_modules/responsive-foundation/css-dev/_burf-tools.scss';
+
+
+
+@import '~responsive-foundation/css-dev/burf-tools/tools-cgb';
+//@import 'node_modules/responsive-foundation/css-dev/burf-tools/_tools-cgb.scss';
+//@import '~responsive-foundation/css-dev/burf-tools';
 //@import 'prepress-global/functions';
 
 // =================================================================

@@ -21,6 +21,6 @@
     "grunt-kss": "^5.0.1",
     "grunt-browser-sync": "^2.2.0",
     "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#develop",
-    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#feature/reduce-dependencies"
+    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#feature/reduce-dependencies-sass-imports"
   }
 }

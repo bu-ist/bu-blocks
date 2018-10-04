@@ -1,6 +1,6 @@
 === BU Blocks ===
 
-Contributors: toddmilliken
+Contributors: toddmilliken, acketon
 Tags: gutenberg, blocks
 Requires at least: 4.9.8
 Tested up to: 4.9.8
