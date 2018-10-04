@@ -51,8 +51,7 @@ module.exports = function( grunt ) {
 			},
 			styles: {
 				files: [
-					'css-dev/**/*.scss',
-					'src/**/**/*.scss'
+					'dist/**/**/*.css'
 				],
 				tasks: [ 'styles' ],
 				options: {
@@ -61,7 +60,6 @@ module.exports = function( grunt ) {
 			},
 			kss: {
 				files: [
-					'css-dev/**/*.hbs',
 					'src/**/*.hbs'
 				],
 				tasks: [ 'styles' ],
@@ -69,28 +67,6 @@ module.exports = function( grunt ) {
 					spawn: false
 				}
 			},
-		},
-		sass: {
-			options: {
-				outputStyle: 'compressed',
-				sourceMap: true,
-				indentType: 'space',
-				indentWidth: 2,
-				precision: '5',
-				bundleExec: true,
-				includePaths: [
-					'node_modules/normalize.scss/sass',
-					'node_modules/mathsass/dist/',
-					'node_modules/responsive-foundation/css-dev',
-					'css-dev/',
-					'src/'
-				],
-			},
-			prod: {
-				files: {
-					'style.css': 'css-dev/style.scss'
-				}
-			}
 		},
 		copy: {
 			css: {
@@ -124,7 +100,7 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				src: [
-					['css-dev', 'src']
+					['src']
 				],
 				dest: '_styleguide'
 			}
@@ -146,19 +122,16 @@ module.exports = function( grunt ) {
 	// 3. Where we tell Grunt we plan to use this plug-in.
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-kss' );
 	grunt.loadNpmTasks( 'grunt-browser-sync' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
 
-
+	// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask( 'i18n', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'readme', [ 'wp_readme_to_markdown' ] );
-
-	// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask( 'install',  [ 'build' ] );
-	grunt.registerTask( 'styles',   [ 'sass', 'kss', 'copy:css', 'copy:kssassets' ] );
+	grunt.registerTask( 'styles',   [ 'kss', 'copy:css', 'copy:kssassets' ] );
 	grunt.registerTask( 'build',    [ 'styles', 'kss', 'copy:css', 'copy:kssassets'  ] );
 	grunt.registerTask( 'default',  [ 'browserSync', 'watch' ] );
 
