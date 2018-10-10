@@ -1,0 +1,14 @@
+// Aside Block
+//
+// Allows editor to create a box floated to a side of the text.
+// The box would be for sidebar or "Aside" tag type content,
+// for instance a short bio on a Professor or a related video, or a small explainer about subatomic particles in a longer story about physics.
+//
+// Status: In-Progress
+//
+// Markup:
+// <aside class="wp-block-editorial-aside {{modifier_class}}"><figure><img src="#" alt="" /></figure><h2>Title</h2><p>Lorem ipsum dolor sit amet</p><a href="#" class="call-to-action">Call to Action Text</a></aside>
+//
+// .block-aside-boxed - Aside Boxed Style
+//
+// Styleguide Blocks.Editorial.Aside
