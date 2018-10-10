@@ -1,0 +1,29 @@
+// The final Blocks configuration map.
+// Controls all defaults, and can either be modified
+// via a $blocks-config-theme map, or overridden
+// altogether by defining your own $blocks-config
+// in your custom theme. This can be useful if you
+// need to redeclare or regenerate multiple themes
+// for a single Blocks element in the same stylesheet.
+
+$blocks-config: ();
+
+// Defaults for $blocks-config. Overrideable by themes.
+
+$blocks-defaults: (
+	scope: wp,
+	primary-color: red,
+	secondary-color: yellow,
+	tertiary-color: blue,
+	border-radius: 10px
+);
+
+// Merge defaults with the final map.
+
+$blocks-config: map-merge( $blocks-defaults, $blocks-config );
+
+// Allow themes to override defaults.
+
+@if variable-exists( blocks-config-theme ) {
+	$blocks-config: map_merge( $blocks-config, $blocks-config-theme );
+}
