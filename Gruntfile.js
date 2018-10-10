@@ -133,7 +133,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'install',  [ 'build' ] );
 	grunt.registerTask( 'styles',   [ 'kss', 'copy:css', 'copy:kssassets' ] );
 	grunt.registerTask( 'build',    [ 'styles', 'kss', 'copy:css', 'copy:kssassets'  ] );
-	grunt.registerTask( 'default',  [ 'browserSync', 'watch' ] );
+	grunt.registerTask( 'default',  [ 'kss', 'browserSync', 'watch' ] );
 
 	grunt.util.linefeed = '\n';
 };
