@@ -26,8 +26,8 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-sample {
 	border-radius: blocks-get( 'border-radius' );
-
-	sample {
+	font-family: blocks-get( 'font-family');
+	p {
 		color: blocks-get( 'primary-color' );
 	}
 }

@@ -9,13 +9,17 @@
 $blocks-config: ();
 
 // Defaults for $blocks-config. Overrideable by themes.
+// Set to null for if plugin should inherit from Responsive Framework Stylesheet
+// If set to null that property won't be output until overridden in child theme or block override
 
 $blocks-defaults: (
 	scope: wp,
 	primary-color: red,
 	secondary-color: yellow,
 	tertiary-color: blue,
-	border-radius: 10px
+	border-radius: 10px,
+	font-family: null,
+
 );
 
 // Merge defaults with the final map.
