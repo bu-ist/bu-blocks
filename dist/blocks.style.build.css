@@ -19,4 +19,67 @@
 
 .block-test-class {
   background: blue;
-  border-color: green; }
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
