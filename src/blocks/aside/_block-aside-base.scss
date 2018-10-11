@@ -7,8 +7,18 @@
 // Status: In-Progress
 //
 // Markup:
-// <aside class="wp-block-editorial-aside {{modifier_class}}"><figure><img src="#" alt="" /></figure><h2>Title</h2><p>Lorem ipsum dolor sit amet</p><a href="#" class="call-to-action">Call to Action Text</a></aside>
+// <aside class="wp-block-editorial-aside"><figure><img src="#" alt="" /></figure><h2>Title</h2><p>Lorem ipsum dolor sit amet</p><a href="#" class="call-to-action">Call to Action Text</a></aside>
 //
 // .block-aside-boxed - Aside Boxed Style
 //
 // Styleguide Blocks.Editorial.Aside
+
+.wp-block-editorial-aside {
+	@extend %col-full;
+	@extend %col-sm-third;
+
+	h2 {
+		font-size: 1.5em;
+		color: pink;
+	}
+}
