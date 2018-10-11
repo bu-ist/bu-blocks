@@ -21,13 +21,13 @@
   background: blue;
   border-color: red; }
 
+.block-sample-variant1 {
+  text-align: right; }
+
 .wp-block-sample {
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
 
 /**
  * #.# Editor Styles
@@ -65,13 +65,13 @@
   background: blue;
   border-color: red; }
 
+.block-sample-variant1 {
+  text-align: right; }
+
 .wp-block-sample {
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
 
 /**
  * #.# Editor Styles
