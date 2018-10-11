@@ -5,6 +5,8 @@
 
 @import 'src/global/config';
 @import 'src/blocks/sample/block-sample-base';
+@import 'src/blocks/sample/block-sample-themeable';
+
 
 // Default styles which apply to all instances of
 // this block, regardless of where it shows up,
@@ -23,11 +25,4 @@
 //
 // Styleguide Blocks.Global.Sample
 
-.wp-block-sample {
-	//your custom styles here
-}
 
-.block-sample-variant1 {
-	//example of variant1 specific markup
-	text-align: right;
-}

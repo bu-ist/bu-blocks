@@ -1,33 +1,8 @@
-// =================================================================
-// Sample Styles - Configurable
-// =================================================================
-
-$blocks-block-sample-config: ();
-
-// Use the default Blocks configuration. You can override this globally
-// in a theme.
-
-$blocks-block-sample-config: map-merge( $blocks-block-sample-config, $blocks-config );
-
-// This allows themes to optionally set theme options for this
-// block only. You can set all or a few options - only the options
-// you set in $block-block-sample-theme will override the defaults.
-
-@if variable-exists( blocks-block-sample-theme ) {
-	$blocks-block-sample-config: map_merge( $blocks-block-sample-config, $blocks-block-sample-theme );
+.wp-block-sample {
+	//your custom styles here
 }
 
-// A global helper variable for the block-get mixin.
-
-$current-map: $blocks-block-sample-config;
-
-
-$scope: blocks-get( 'scope' );
-
-.#{$scope}-block-sample {
-	border-radius: blocks-get( 'border-radius' );
-	font-family: blocks-get( 'font-family');
-	p {
-		color: blocks-get( 'primary-color' );
-	}
+.block-sample-variant1 {
+	//example of variant1 specific markup
+	text-align: right;
 }
