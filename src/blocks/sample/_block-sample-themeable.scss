@@ -57,8 +57,17 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-sample {
 	border-radius: blocks-get( 'border-radius' );
-	font-family: blocks-get( 'font-family');
+	font-family: blocks-get( 'font-primary');
 	p {
-		color: blocks-get( 'primary-color' );
+		color: blocks-get( 'color-primary' );
+	}
+
+	&.is-open {
+		color: blocks-get( 'color-secondary');
+	}
+
+	&.is-style-layoutBig {
+		font-family: blocks-get( 'font-secondary' );
 	}
 }
+
