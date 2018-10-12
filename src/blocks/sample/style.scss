@@ -3,9 +3,9 @@
 // TODO: Should this be in Responsive Foundation?
 // =================================================================
 
-@import 'src/global/config';
-@import 'src/blocks/sample/block-sample-base';
-@import 'src/blocks/sample/block-sample-themeable';
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/sample/bu-blocks-block-sample-base';
+@import 'src/blocks/sample/bu-blocks-block-sample-themeable';
 
 
 // Default styles which apply to all instances of
@@ -19,9 +19,10 @@
 //
 // Status: In-Progress
 //
-// Markup: block-sample.hbs
+// Markup: bu-blocks-block-sample.hbs
 //
 // .block-sample-variant1 - Example of a Layout Variation
+// .is-style-layoutBig - layout big
 //
 // Styleguide Blocks.Global.Sample
 
