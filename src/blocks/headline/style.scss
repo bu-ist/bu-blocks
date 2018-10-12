@@ -1,0 +1,52 @@
+// =================================================================
+// Headline Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/config';
+@import 'src/blocks/headline/block-headline-base';
+@import 'src/blocks/headline/block-headline-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Headline CSS for guidance purposes only,
+// do not use in production.
+
+// Headline Block
+//
+// This is a Headline Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: block-headline.hbs
+//
+// .block-headline-variant1 - Example of a Layout Variation
+//
+// Styleguide Blocks.Global.Headline
+
+
+.wp-block-headline {
+	display: block;
+	span {
+		color: $color-heading-small;
+		display: block;
+		font-weight: 400;
+		font-size: $font-size-base;
+		&:empty {
+			display: none;
+		}
+	}
+}
+.block-headline-emphasis-weight {
+	font-weight: 100;
+	strong {
+		font-weight: 700;
+	}
+}
+.block-headline-emphasis-color {
+	color: $color-heading-small;
+	strong {
+		color: $color-heading;
+	}
+}
