@@ -21,32 +21,7 @@
 //
 // Markup: block-headline.hbs
 //
-// .block-headline-variant1 - Example of a Layout Variation
+// .is-style-emphasis-weight - Example of font weight emphasis headline variation
+// .is-style-emphasis-color - Example of font color emphasis headline variation
 //
 // Styleguide Blocks.Global.Headline
-
-
-.wp-block-headline {
-	display: block;
-	span {
-		color: $color-heading-small;
-		display: block;
-		font-weight: 400;
-		font-size: $font-size-base;
-		&:empty {
-			display: none;
-		}
-	}
-}
-.block-headline-emphasis-weight {
-	font-weight: 100;
-	strong {
-		font-weight: 700;
-	}
-}
-.block-headline-emphasis-color {
-	color: $color-heading-small;
-	strong {
-		color: $color-heading;
-	}
-}

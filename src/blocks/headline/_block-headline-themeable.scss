@@ -25,9 +25,13 @@ $current-map: $blocks-block-headline-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-headline {
-	border-radius: blocks-get( 'border-radius' );
-	font-family: blocks-get( 'font-family');
-	p {
-		color: blocks-get( 'primary-color' );
+	span {
+		color:  blocks-get( 'color-tertiary');
+	}
+}
+.is-style-emphasis-color {
+	color:  blocks-get( 'color-secondary');
+	strong {
+		color:  blocks-get( 'color-primary');
 	}
 }
