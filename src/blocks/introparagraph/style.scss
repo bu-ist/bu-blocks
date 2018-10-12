@@ -1,0 +1,28 @@
+// =================================================================
+// Intro Paragraph Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/config';
+@import 'src/blocks/introparagraph/block-introparagraph-base';
+@import 'src/blocks/introparagraph/block-introparagraph-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Intro Paragraph Block
+//
+// This is a Intro Paragraph Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: block-introparagraph.hbs
+//
+// .block-introparagraph-variant1 - Example of a Layout Variation
+//
+// Styleguide Blocks.Global.Intro Paragraph
+
+
