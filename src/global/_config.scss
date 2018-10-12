@@ -14,12 +14,13 @@ $blocks-config: ();
 
 $blocks-defaults: (
 	scope: wp,
-	primary-color: red,
-	secondary-color: yellow,
-	tertiary-color: blue,
+	color-primary: red,
+	color-secondary: yellow,
+	color-tertiary: blue,
 	border-radius: 10px,
-	font-family: null,
-
+	font-primary: null,
+	font-secondary: null,
+	font-tertiary: null,
 );
 
 // Merge defaults with the final map.
@@ -31,3 +32,4 @@ $blocks-config: map-merge( $blocks-defaults, $blocks-config );
 @if variable-exists( blocks-config-theme ) {
 	$blocks-config: map_merge( $blocks-config, $blocks-config-theme );
 }
+

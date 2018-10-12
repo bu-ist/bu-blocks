@@ -28,6 +28,8 @@
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
 
 .wp-block-headline {
   border-radius: 10px; }
@@ -100,6 +102,8 @@
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
 
 .wp-block-headline {
   border-radius: 10px; }
@@ -133,3 +137,5 @@
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
