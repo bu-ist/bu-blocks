@@ -28,6 +28,8 @@
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
 
 /**
  * #.# Styles
@@ -75,6 +77,8 @@
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
 
 .block-sample-variant1 {
   text-align: right; }
@@ -83,3 +87,5 @@
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
