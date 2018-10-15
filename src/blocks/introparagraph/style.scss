@@ -3,9 +3,9 @@
 // TODO: Should this be in Responsive Foundation?
 // =================================================================
 
-@import 'src/global/config';
-@import 'src/blocks/introparagraph/block-introparagraph-base';
-@import 'src/blocks/introparagraph/block-introparagraph-themeable';
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/introparagraph/bu-blocks-block-introparagraph-base';
+@import 'src/blocks/introparagraph/bu-blocks-block-introparagraph-themeable';
 
 
 // Default styles which apply to all instances of
@@ -19,7 +19,7 @@
 //
 // Status: In-Progress
 //
-// Markup: block-introparagraph.hbs
+// Markup: bu-blocks-block-introparagraph.hbs
 //
 // .is-style-large - Example Larger Opening Paragraph
 // .is-style-split - Example 2 Column Split Opening Paragraph
