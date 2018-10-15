@@ -5,6 +5,33 @@
  * that are used across the project.
 */
 /**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
+
+/**
  * #.# Editor Styles
  *
  * CSS for just Backend enqueued after style.scss
@@ -24,15 +51,35 @@
  * that are used across the project.
 */
 /**
- * #.# Editor Styles
+ * #.# Styles
  *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
+ * CSS for both Frontend+Backend.
  */
 .wp-block-cgb-block-bu-blocks-cgb {
-  background: #bada55;
+  background: orangered;
   border: 0.2rem solid #292929;
   color: #292929;
   margin: 0 auto;
   max-width: 740px;
   padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
+
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */

@@ -1,0 +1,28 @@
+// =================================================================
+// Sample Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/config';
+@import 'src/blocks/sample/block-sample-base';
+@import 'src/blocks/sample/block-sample-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Sample Block
+//
+// This is a Sample Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: block-sample.hbs
+//
+// .block-sample-variant1 - Example of a Layout Variation
+//
+// Styleguide Blocks.Global.Sample
+
+

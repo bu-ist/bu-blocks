@@ -10,4 +10,4 @@
  */
 
 import './blocks/block/block.js';
-import './blocks/aside/aside.js';
+import './blocks/sample/sample.js';
