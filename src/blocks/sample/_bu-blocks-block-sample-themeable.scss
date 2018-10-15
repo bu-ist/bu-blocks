@@ -68,6 +68,9 @@ $scope: blocks-get( 'scope' );
 
 	&.is-style-layoutBig {
 		font-family: blocks-get( 'font-secondary' );
+		p {
+			color: blocks-get( 'color-tertiary' );
+		}
 	}
 }
 
