@@ -21,6 +21,16 @@
   background: blue;
   border-color: red; }
 
+.wp-block-introparagraph.is-style-split p:first-of-type {
+  -webkit-column-count: 2;
+          column-count: 2; }
+
+.wp-block-introparagraph.has-dropcap p:first-of-type:first-letter {
+  float: left;
+  font-size: 4em;
+  line-height: 1em;
+  margin: 0 0.25em .125em 0; }
+
 .block-sample-variant1 {
   text-align: right; }
 
@@ -66,6 +76,16 @@
 .block-test-class {
   background: blue;
   border-color: red; }
+
+.wp-block-introparagraph.is-style-split p:first-of-type {
+  -webkit-column-count: 2;
+          column-count: 2; }
+
+.wp-block-introparagraph.has-dropcap p:first-of-type:first-letter {
+  float: left;
+  font-size: 4em;
+  line-height: 1em;
+  margin: 0 0.25em .125em 0; }
 
 .block-sample-variant1 {
   text-align: right; }

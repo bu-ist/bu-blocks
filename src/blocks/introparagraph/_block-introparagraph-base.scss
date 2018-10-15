@@ -9,5 +9,17 @@
 //
 
 .wp-block-introparagraph {
-	//your custom styles here
+	&.is-style-split {
+		p:first-of-type {
+			column-count: 2;
+		}
+	}
+	&.has-dropcap {
+		p:first-of-type:first-letter {
+			float: left;
+			font-size: 4em;
+			line-height: 1em;
+			margin: 0 0.25em .125em 0;
+		}
+	}
 }
