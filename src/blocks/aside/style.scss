@@ -4,17 +4,28 @@
  * CSS for both Frontend+Backend.
  */
 
+.wp-block-editorial-aside  {
+	@extend %col-full;
+	@extend %col-sm-quarter;
+	background: darken( $color-grayscale-f, 10%);
+	padding: 20px;
 
-.wp-block-cgb-block-bu-blocks-cgb  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
-}
+	h2 {
+		@extend %font-size-4;
+		font-family: $font-family-base;
+	}
 
-.block-test-class {
-	background:blue;
-	border-color: green;
+	p,
+	.call-to-action {
+		font-family: $font-family-sans-serif;
+	}
+
+	p {
+		margin: 0 0 1em 0;
+	}
+
+	.call-to-action {
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 }
