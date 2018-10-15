@@ -1,31 +1,28 @@
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
+// =================================================================
+// Aside Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
 
-.wp-block-editorial-aside  {
-	@extend %col-full;
-	@extend %col-sm-quarter;
-	background: darken( $color-grayscale-f, 10%);
-	padding: 20px;
+@import 'src/global/config';
+@import 'src/blocks/aside/block-aside-base';
+@import 'src/blocks/aside/block-aside-themeable';
 
-	h2 {
-		@extend %font-size-4;
-		font-family: $font-family-base;
-	}
 
-	p,
-	.call-to-action {
-		font-family: $font-family-sans-serif;
-	}
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
 
-	p {
-		margin: 0 0 1em 0;
-	}
+// Aside Block
+//
+// This is an Aside Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: block-aside.hbs
+//
+// .block-aside-long - Example of a Layout Variation
+//
+// Styleguide Blocks.Global.Aside
 
-	.call-to-action {
-		font-weight: 700;
-		text-transform: uppercase;
-	}
-}
+
