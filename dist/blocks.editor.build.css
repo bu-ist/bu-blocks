@@ -24,12 +24,17 @@
 .block-sample-variant1 {
   text-align: right; }
 
+.is-style-layoutBig p {
+  font-size: 2em; }
+
 .wp-block-sample {
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
   .wp-block-sample.is-open {
     color: yellow; }
+  .wp-block-sample.is-style-layoutBig p {
+    color: blue; }
 
 /**
  * #.# Editor Styles
@@ -70,12 +75,17 @@
 .block-sample-variant1 {
   text-align: right; }
 
+.is-style-layoutBig p {
+  font-size: 2em; }
+
 .wp-block-sample {
   border-radius: 10px; }
   .wp-block-sample p {
     color: red; }
   .wp-block-sample.is-open {
     color: yellow; }
+  .wp-block-sample.is-style-layoutBig p {
+    color: blue; }
 
 /**
  * #.# Editor Styles
