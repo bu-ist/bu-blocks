@@ -11,7 +11,7 @@
 .wp-block-editorial-aside {
 	@extend %col-full;
 	@extend %col-sm-quarter;
-	background: darken( $color-grayscale-f, 8%);
+	background: transparent;
 	float: right;
 	margin: 10px 0 40px;
 	padding: 30px 20px 40px 20px;
