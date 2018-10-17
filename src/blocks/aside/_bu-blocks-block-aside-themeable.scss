@@ -56,18 +56,46 @@ $current-map: $blocks-block-aside-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-aside {
-	border-radius: blocks-get( 'border-radius' );
 	font-family: blocks-get( 'font-primary');
+
+	h2 {
+		font-family: blocks-get( 'font-primary');
+	}
+
 	p {
-		color: blocks-get( 'color-primary' );
+		font-family: blocks-get( 'font-secondary');
+		color: blocks-get( 'color-aside-type' );
 	}
 
-	&.is-open {
-		color: blocks-get( 'color-secondary');
+	.call-to-action {
+		color: blocks-get( 'color-link' );
+		font-family: blocks-get( 'font-tertiary');
+
+		&::before {
+			color: blocks-get( 'color-primary' );
+		}
 	}
 
-	&.is-style-layoutBig {
-		font-family: blocks-get( 'font-secondary' );
+	&.has-light-background {
+		background: blocks-get( 'background-light' );
+	}
+
+	&.has-dark-background {
+		background: blocks-get( 'background-dark' );
+
+		p {
+			color: blocks-get( 'color-aside-type-lighter' );
+		}
+	}
+
+	&.has-primary-background {
+		background: blocks-get( 'color-primary' );
+
+			.call-to-action {
+			&::before {
+				color: blocks-get( 'color-link' );
+			}
+		}
 	}
 }
 
