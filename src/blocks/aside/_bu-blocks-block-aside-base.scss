@@ -67,3 +67,17 @@
 	}
 }
 
+.has-dark-background {
+	h2 {
+		color: $color-editorial-gray-f;
+	}
+}
+
+.has-primary-background {
+	h2,
+	p,
+	.call-to-action {
+		color: $color-editorial-gray-f;
+	}
+}
+
