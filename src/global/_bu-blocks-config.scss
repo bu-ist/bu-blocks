@@ -13,14 +13,24 @@ $blocks-config: ();
 // If set to null that property won't be output until overridden in child theme or block override
 
 $blocks-defaults: (
-	scope: wp,
-	color-primary: red,
-	color-secondary: yellow,
-	color-tertiary: blue,
-	border-radius: 10px,
-	font-primary: null,
-	font-secondary: null,
-	font-tertiary: null,
+	scope: 							wp,
+
+	color-primary: 					null,
+	color-secondary: 				null,
+	color-tertiary: 				null,
+	color-quaternary: 				null,
+	color-quinary: 					null,
+
+	font-family-primary: 			null,
+	font-family-secondary: 		 	null,
+	font-family-tertiary: 			null,
+
+	font-color-base: 				null,
+	font-color-heading: 			null,
+	font-color-heading-small: 		null,
+	font-color-link: 				null,
+	font-color-link-active: 		null,
+	font-color-link-visited: 		null,
 );
 
 // Merge defaults with the final map.
