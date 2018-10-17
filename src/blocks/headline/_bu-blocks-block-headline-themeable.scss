@@ -26,12 +26,12 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-headline {
 	span {
-		color:  blocks-get( 'color-tertiary');
+		color:  blocks-get( 'font-color-heading-small');
 	}
-}
-.is-style-emphasis-color {
-	color:  blocks-get( 'color-secondary');
-	strong {
-		color:  blocks-get( 'color-primary');
+	&.is-style-emphasis-color {
+		color:  blocks-get( 'font-color-heading');
+		strong {
+			color:  blocks-get( 'color-primary');
+		}
 	}
 }
