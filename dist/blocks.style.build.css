@@ -27,21 +27,11 @@
 .is-style-layoutBig p {
   font-size: 2em; }
 
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
-
 .wp-block-headline {
   display: block; }
   .wp-block-headline span {
     display: block;
-    font-weight: 400;
-    font-size: 18px; }
+    font-weight: 400; }
     .wp-block-headline span:empty {
       display: none; }
 
@@ -50,13 +40,17 @@
   .is-style-emphasis-weight strong {
     font-weight: 700; }
 
-.wp-block-headline span {
-  color: blue; }
+.is-style-emphasis-color strong {
+  font-weight: inherit; }
 
-.is-style-emphasis-color {
-  color: yellow; }
-  .is-style-emphasis-color strong {
-    color: red; }
+h2.wp-block-headline span {
+  font-size: .66em; }
+
+h3.wp-block-headline span {
+  font-size: .75em; }
+
+h4.wp-block-headline span {
+  font-size: .8em; }
 
 /**
  * #.# Styles
@@ -103,21 +97,11 @@
 .is-style-layoutBig p {
   font-size: 2em; }
 
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
-
 .wp-block-headline {
   display: block; }
   .wp-block-headline span {
     display: block;
-    font-weight: 400;
-    font-size: 18px; }
+    font-weight: 400; }
     .wp-block-headline span:empty {
       display: none; }
 
@@ -126,25 +110,20 @@
   .is-style-emphasis-weight strong {
     font-weight: 700; }
 
-.wp-block-headline span {
-  color: blue; }
+.is-style-emphasis-color strong {
+  font-weight: inherit; }
 
-.is-style-emphasis-color {
-  color: yellow; }
-  .is-style-emphasis-color strong {
-    color: red; }
+h2.wp-block-headline span {
+  font-size: .66em; }
+
+h3.wp-block-headline span {
+  font-size: .75em; }
+
+h4.wp-block-headline span {
+  font-size: .8em; }
 
 .block-sample-variant1 {
   text-align: right; }
 
 .is-style-layoutBig p {
   font-size: 2em; }
-
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }

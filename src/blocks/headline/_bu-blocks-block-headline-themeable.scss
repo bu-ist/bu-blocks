@@ -31,7 +31,7 @@ $scope: blocks-get( 'scope' );
 	&.is-style-emphasis-color {
 		color:  blocks-get( 'font-color-heading');
 		strong {
-			color:  blocks-get( 'color-primary');
+			color:  blocks-get( 'color-primary-text');
 		}
 	}
 }
