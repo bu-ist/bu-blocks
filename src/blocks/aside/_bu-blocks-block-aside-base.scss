@@ -8,44 +8,81 @@
 //
 //
 
+%remove-rounded-border {
+	border-radius: 0;
+	height: auto;
+	width: auto;
+
+	img {
+		height: auto;
+		width: 100%;
+	}
+}
+
 .wp-block-editorial-aside {
 	@extend %col-full;
 	@extend %col-sm-quarter;
 	background: transparent;
+	clear: both;
 	float: right;
 	margin: 10px 0 40px;
-	padding: 30px 20px 40px 20px;
+	padding: 30px;
 	text-align: center;
 
 	@include breakpoint( $sm ) {
 		margin: 0 -10px 20px 30px;
 	}
 
+	figure {
+		@include border-radius( 50% );
+		margin-bottom: 0.7em;
+		height: 100px;
+		margin: 0 auto 0.7em auto;
+		width: 100px;
+		overflow: hidden;
+
+		img {
+			height: 100%;
+			width: auto;
+		}
+	}
+
 	h2 {
 		@extend %font-size-4;
 		font-family: $font-family-base;
+		margin-bottom: 0.7em;
 		margin-top: 0;
 	}
 
 	p,
 	.call-to-action {
 		font-family: $font-family-sans-serif;
-		font-size: 16px;
 	}
 
 	p {
 		color: $color-grayscale-6;
+		line-height: 1.4;
 		margin: 0 0 1em 0;
+		font-size: 14px;
 	}
 
 	.call-to-action {
 		@extend %icon-navigateright;
+		font-size: 16px;
 		font-weight: 700;
 		text-transform: uppercase;
 
 		&::before {
 			color: $color-grayscale-8;
-			margin: 0.2em;
+			margin-right: 0.2em;
+		}
+	}
+
+	&.has-dark-background,
+	&.has-light-background,
+	&.has-primary-background {
+		figure {
+			@extend %remove-rounded-border;
 		}
 	}
 }
@@ -57,6 +94,12 @@
 	@include breakpoint( $sm ) {
 		float: right;
 		margin-right: -100px;
+		padding: 40px;
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 1.6;
 	}
 }
 
@@ -69,16 +112,29 @@
 }
 
 .has-dark-background {
+	background: $color-grayscale-4;
+
 	h2 {
-		color: $color-editorial-gray-f;
+		color: $color-grayscale-f;
+	}
+
+	p {
+		color: $color-grayscale-f0;
+	}
+
+	a {
+		color: $color-grayscale-e;
 	}
 }
 
+.has-light-background {
+	background: $color-grayscale-e;
+}
+
 .has-primary-background {
-	h2,
-	p,
-	.call-to-action {
-		color: $color-editorial-gray-f;
+	h2 {
+		color: $color-grayscale-f;
 	}
 }
+
 
