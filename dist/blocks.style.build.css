@@ -199,14 +199,6 @@
   .wp-block-sample.is-style-layoutBig p {
     color: blue; }
 
-.wp-block-editorial-aside.has-dark-background figure, .wp-block-editorial-aside.has-light-background figure, .wp-block-editorial-aside.has-primary-background figure {
-  border-radius: 0;
-  height: auto;
-  width: auto; }
-  .wp-block-editorial-aside.has-dark-background figure img, .wp-block-editorial-aside.has-light-background figure img, .wp-block-editorial-aside.has-primary-background figure img {
-    height: auto;
-    width: 100%; }
-
 .wp-block-editorial-aside {
   background: transparent;
   clear: both;
@@ -218,15 +210,7 @@
     .wp-block-editorial-aside {
       margin: 0 -10px 20px 30px; } }
   .wp-block-editorial-aside figure {
-    border-radius: 50%;
-    margin-bottom: 0.7em;
-    height: 100px;
-    margin: 0 auto 0.7em auto;
-    width: 100px;
-    overflow: hidden; }
-    .wp-block-editorial-aside figure img {
-      height: 100%;
-      width: auto; }
+    margin-bottom: 0.7em; }
   .wp-block-editorial-aside h2 {
     font-family: "TiemposText", Georgia, serif;
     margin-bottom: 0.7em;
