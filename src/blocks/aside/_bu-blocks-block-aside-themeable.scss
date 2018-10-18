@@ -91,7 +91,12 @@ $scope: blocks-get( 'scope' );
 	&.has-primary-background {
 		background: blocks-get( 'color-primary' );
 
-			.call-to-action {
+		.call-to-action,
+		p {
+			color: blocks-get( 'color-aside-type-lighter' );
+		}
+
+		.call-to-action {
 			&::before {
 				color: blocks-get( 'color-link' );
 			}
