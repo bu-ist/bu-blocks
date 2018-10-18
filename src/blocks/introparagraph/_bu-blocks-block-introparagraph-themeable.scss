@@ -56,53 +56,78 @@ $current-map: $blocks-block-introparagraph-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-introparagraph {
+	&.is-style-large {
+		p {
+			color: blocks-get( 'font-color-heading-small');
+			font-family: blocks-get( 'font-family-secondary');
+		}
+	}
+	&.has-paragraph-color-primary {
+		p {
+			color: blocks-get( 'color-primary-text');
+		}
+	}
+	&.has-paragraph-color-secondary {
+		p {
+			color: blocks-get( 'color-secondary-text');
+		}
+	}
 	&.has-dropcap {
 		p:first-of-type:first-letter {
-			font-family: blocks-get( 'font-secondary');
+			font-family: blocks-get( 'font-family-secondary');
 		}
 	}
-	&.is-style-dropcap-a {
+	&.has-dropcap-color-primary {
 		p:first-of-type:first-letter {
-			color: blocks-get( 'color-primary');
+			color: blocks-get( 'color-primary-text');
 		}
 	}
-	&.is-style-dropcap-b {
+	&.has-dropcap-color-secondary {
 		p:first-of-type:first-letter {
-			color: blocks-get( 'color-secondary');
+			color: blocks-get( 'color-secondary-text');
 		}
 	}
-	&.is-style-dropcap-c {
+	&.is-style-dropcap-dimensional {
+		&.has-dropcap-color-primary {
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-primary');
+			}
+		}
+		&.has-dropcap-color-secondary {
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-secondary');
+			}
+		}
 		p:first-of-type:first-letter {
-			background-color: blocks-get( 'color-secondary');
-			font-family: blocks-get( 'font-primary');
+			text-shadow:	1px 1px blocks-get( 'color-gray-f'),
+							2px 2px blocks-get( 'color-gray-f'),
+							3px 3px blocks-get( 'color-gray-f'),
+							4px 4px blocks-get( 'color-gray-f'),
+							5px 5px blocks-get( 'color-gray-f'),
+							6px 6px blocks-get( 'color-gray-f'),
+							7px 7px blocks-get( 'color-gray-f'),
+							8px 8px blocks-get( 'color-gray-f'),
+							9px 9px blocks-get( 'color-gray-f'),
+							10px 10px blocks-get( 'color-gray-f');
 		}
 	}
-	&.is-style-dropcap-d {
+	&.is-style-dropcap-boxed {
 		p:first-of-type:first-letter {
-			color: blocks-get( 'color-secondary');
-			font-family: blocks-get( 'font-primary');
+			color: blocks-get( 'color-page');
+			background-color: blocks-get( 'font-color-heading');
 		}
-	}
-	&.is-style-dropcap-e {
-		p:first-of-type:first-letter {
-			color: blocks-get( 'color-primary');
-			text-shadow:	1px 1px blocks-get( 'color-tertiary'),
-							2px 2px blocks-get( 'color-tertiary'),
-							3px 3px blocks-get( 'color-tertiary'),
-							4px 4px blocks-get( 'color-tertiary'),
-							5px 5px blocks-get( 'color-tertiary'),
-							6px 6px blocks-get( 'color-tertiary'),
-							7px 7px blocks-get( 'color-tertiary'),
-							8px 8px blocks-get( 'color-tertiary'),
-							9px 9px blocks-get( 'color-tertiary'),
-							10px 10px blocks-get( 'color-tertiary');
+		&.has-dropcap-color-primary {
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-page');
+				background-color: blocks-get( 'color-primary');
+			}
 		}
-	}
-	&.is-style-large {
-		p:first-of-type {
-			font-family: blocks-get( 'font-secondary');
-			color: blocks-get( 'color-secondary');
-		}
+		&.has-dropcap-color-secondary {
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-page');
+				background-color: blocks-get( 'color-secondary');
+			}
+		}	
 	}
 }
 
