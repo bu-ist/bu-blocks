@@ -8,17 +8,6 @@
 //
 //
 
-%remove-rounded-border {
-	border-radius: 0;
-	height: auto;
-	width: auto;
-
-	img {
-		height: auto;
-		width: 100%;
-	}
-}
-
 .wp-block-editorial-aside {
 	@extend %col-full;
 	@extend %col-sm-quarter;
