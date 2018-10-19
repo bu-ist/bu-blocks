@@ -59,17 +59,17 @@ $scope: blocks-get( 'scope' );
 	font-family: blocks-get( 'font-primary');
 
 	h2 {
-		font-family: blocks-get( 'font-primary');
+		font-family: blocks-get( 'font-family-primary');
 	}
 
 	p {
-		font-family: blocks-get( 'font-secondary');
-		color: blocks-get( 'color-aside-type' );
+		font-family: blocks-get( 'font-family-secondary');
+		color: blocks-get( 'font-color-aside' );
 	}
 
 	.call-to-action {
-		color: blocks-get( 'color-link' );
-		font-family: blocks-get( 'font-tertiary');
+		color: blocks-get( 'font-color-link' );
+		font-family: blocks-get( 'font-family-tertiary');
 
 		&::before {
 			color: blocks-get( 'color-primary' );
@@ -77,14 +77,14 @@ $scope: blocks-get( 'scope' );
 	}
 
 	&.has-light-background {
-		background: blocks-get( 'background-light' );
+		background: blocks-get( 'background-color-light' );
 	}
 
 	&.has-dark-background {
-		background: blocks-get( 'background-dark' );
+		background: blocks-get( 'background-color-dark' );
 
 		p {
-			color: blocks-get( 'color-aside-type-lighter' );
+			color: blocks-get( 'font-color-aside-lighter' );
 		}
 	}
 
@@ -93,12 +93,12 @@ $scope: blocks-get( 'scope' );
 
 		.call-to-action,
 		p {
-			color: blocks-get( 'color-aside-type-lighter' );
+			color: blocks-get( 'font-color-aside-lighter' );
 		}
 
 		.call-to-action {
 			&::before {
-				color: blocks-get( 'color-link' );
+				color: blocks-get( 'font-color-link' );
 			}
 		}
 	}
