@@ -1,0 +1,28 @@
+// =================================================================
+// Pullquote Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/pullquote/bu-blocks-block-pullquote-base';
+@import 'src/blocks/pullquote/bu-blocks-block-pullquote-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Pullquote Block
+//
+// This is a Pullquote Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-pullquote.hbs
+//
+// .is-style-large														 - Larger Opening Paragraph
+//
+// Styleguide Blocks.Global.Pullquote
+
+

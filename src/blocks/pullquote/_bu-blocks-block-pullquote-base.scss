@@ -1,0 +1,17 @@
+// =================================================================
+// Intro Pullquote Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-pullquote {
+	&.is-style-large {
+		p {
+			font-size: 1.25em;
+		}
+	}
+}
