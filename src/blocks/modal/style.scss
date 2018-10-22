@@ -1,0 +1,30 @@
+// =================================================================
+// modal Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/modal/bu-blocks-block-modal-base';
+@import 'src/blocks/modal/bu-blocks-block-modal-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// modal Block
+//
+// This is an modal Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-modal.hbs
+//
+// .is-left-aligned - Example of a Layout Variation
+// .has-light-background - Example of a light background
+// .has-dark-background - Example of a dark background
+//
+// Styleguide Blocks.Global.modal
+
+

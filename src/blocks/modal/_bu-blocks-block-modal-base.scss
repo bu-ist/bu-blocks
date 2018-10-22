@@ -1,0 +1,47 @@
+// =================================================================
+// Sample Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-editorial-modal {
+	@extend %col-full;
+	clear: both;
+	text-align: center;
+	position: relative;
+
+	.modal-media {
+		width: 100%;
+		max-height: 600px;
+
+		.modal-image {
+			display: block;
+			height: auto;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	}
+
+	.modal-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		margin: 0;
+	}
+
+	h1 {
+		color: $color-grayscale-f;
+	}
+}
+
