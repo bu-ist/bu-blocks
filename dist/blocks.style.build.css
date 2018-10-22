@@ -1,109 +1,3 @@
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
-
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -111,12 +5,12 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-editorial-aside {
+.wp-block-editorial-aside, .wp-block-editorial-modal {
   float: left;
   position: relative;
   min-height: 1px; }
 
-.wp-block-editorial-aside {
+.wp-block-editorial-aside, .wp-block-editorial-modal {
   width: 100%; }
 
 @media screen and (min-width: 768px) {
@@ -198,6 +92,544 @@
     color: yellow; }
   .wp-block-sample.is-style-layoutBig p {
     color: blue; }
+
+.wp-block-editorial-aside {
+  background: transparent;
+  clear: both;
+  float: right;
+  margin: 10px 0 40px;
+  padding: 30px;
+  text-align: center; }
+  @media screen and (min-width: 768px) {
+    .wp-block-editorial-aside {
+      margin: 0 -10px 20px 30px; } }
+  .wp-block-editorial-aside figure {
+    margin-bottom: 0.7em; }
+  .wp-block-editorial-aside h2 {
+    font-family: "TiemposText", Georgia, serif;
+    margin-bottom: 0.7em;
+    margin-top: 0; }
+  .wp-block-editorial-aside p,
+  .wp-block-editorial-aside .call-to-action {
+    font-family: "Benton-Sans", "Helvetica", sans-serif; }
+  .wp-block-editorial-aside p {
+    color: #666;
+    line-height: 1.4;
+    margin: 0 0 1em 0;
+    font-size: 14px; }
+  .wp-block-editorial-aside .call-to-action {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase; }
+    .wp-block-editorial-aside .call-to-action::before {
+      color: #888;
+      margin-right: 0.2em; }
+
+.is-layout-long {
+  text-align: left; }
+  @media screen and (min-width: 768px) {
+    .is-layout-long {
+      float: right;
+      margin-right: -100px;
+      padding: 40px; } }
+  .is-layout-long p {
+    font-size: 16px;
+    line-height: 1.6; }
+
+.is-left-aligned {
+  float: left; }
+  @media screen and (min-width: 768px) {
+    .is-left-aligned {
+      margin: 0 30px 20px -40px; } }
+
+.has-dark-background {
+  background: #444; }
+  .has-dark-background h2 {
+    color: #fff; }
+  .has-dark-background p {
+    color: #f0f0f0; }
+  .has-dark-background a {
+    color: #eee; }
+
+.has-light-background {
+  background: #eee; }
+
+.has-primary-background h2 {
+  color: #fff; }
+
+.wp-block-aside .call-to-action::before {
+  color: red; }
+
+.wp-block-aside.has-primary-background {
+  background: red; }
+
+.wp-block-editorial-modal {
+  clear: both;
+  text-align: center;
+  position: relative; }
+  .wp-block-editorial-modal .modal-media {
+    width: 100%;
+    max-height: 600px; }
+    .wp-block-editorial-modal .modal-media .modal-image {
+      display: block;
+      height: auto;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+  .wp-block-editorial-modal .modal-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    margin: 0; }
+  .wp-block-editorial-modal h1 {
+    color: #fff; }
+
+.wp-block-modal .call-to-action::before {
+  color: red; }
+
+.wp-block-modal.has-primary-background {
+  background: red; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+@charset "UTF-8";
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-editorial-aside, .wp-block-editorial-modal {
+  float: left;
+  position: relative;
+  min-height: 1px; }
+
+.wp-block-editorial-aside, .wp-block-editorial-modal {
+  width: 100%; }
+
+@media screen and (min-width: 768px) {
+  .wp-block-editorial-aside {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 25%; }
+  .is-layout-long {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 33.33333%; } }
+
+.wp-block-editorial-aside .call-to-action::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .wp-block-editorial-aside .call-to-action, .wp-block-editorial-aside .lt-ie9:hover .call-to-action {
+  -ms-zoom: 1; }
+
+.wp-block-editorial-aside .call-to-action span {
+  display: none; }
+
+.wp-block-editorial-aside .call-to-action::before {
+  content: "▻"; }
+
+.wp-block-editorial-aside h2 {
+  font-size: 1.08839em;
+  line-height: 1.25887; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-aside h2 {
+      font-size: 1.18169em;
+      line-height: 1.25887; } }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.is-style-layoutBig p {
+  font-size: 2em; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
+  .wp-block-sample.is-style-layoutBig p {
+    color: blue; }
+
+.wp-block-editorial-aside {
+  background: transparent;
+  clear: both;
+  float: right;
+  margin: 10px 0 40px;
+  padding: 30px;
+  text-align: center; }
+  @media screen and (min-width: 768px) {
+    .wp-block-editorial-aside {
+      margin: 0 -10px 20px 30px; } }
+  .wp-block-editorial-aside figure {
+    margin-bottom: 0.7em; }
+  .wp-block-editorial-aside h2 {
+    font-family: "TiemposText", Georgia, serif;
+    margin-bottom: 0.7em;
+    margin-top: 0; }
+  .wp-block-editorial-aside p,
+  .wp-block-editorial-aside .call-to-action {
+    font-family: "Benton-Sans", "Helvetica", sans-serif; }
+  .wp-block-editorial-aside p {
+    color: #666;
+    line-height: 1.4;
+    margin: 0 0 1em 0;
+    font-size: 14px; }
+  .wp-block-editorial-aside .call-to-action {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase; }
+    .wp-block-editorial-aside .call-to-action::before {
+      color: #888;
+      margin-right: 0.2em; }
+
+.is-layout-long {
+  text-align: left; }
+  @media screen and (min-width: 768px) {
+    .is-layout-long {
+      float: right;
+      margin-right: -100px;
+      padding: 40px; } }
+  .is-layout-long p {
+    font-size: 16px;
+    line-height: 1.6; }
+
+.is-left-aligned {
+  float: left; }
+  @media screen and (min-width: 768px) {
+    .is-left-aligned {
+      margin: 0 30px 20px -40px; } }
+
+.has-dark-background {
+  background: #444; }
+  .has-dark-background h2 {
+    color: #fff; }
+  .has-dark-background p {
+    color: #f0f0f0; }
+  .has-dark-background a {
+    color: #eee; }
+
+.has-light-background {
+  background: #eee; }
+
+.has-primary-background h2 {
+  color: #fff; }
+
+.wp-block-aside .call-to-action::before {
+  color: red; }
+
+.wp-block-aside.has-primary-background {
+  background: red; }
+
+.wp-block-editorial-modal {
+  clear: both;
+  text-align: center;
+  position: relative; }
+  .wp-block-editorial-modal .modal-media {
+    width: 100%;
+    max-height: 600px; }
+    .wp-block-editorial-modal .modal-media .modal-image {
+      display: block;
+      height: auto;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+  .wp-block-editorial-modal .modal-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    margin: 0; }
+  .wp-block-editorial-modal h1 {
+    color: #fff; }
+
+.wp-block-modal .call-to-action::before {
+  color: red; }
+
+.wp-block-modal.has-primary-background {
+  background: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.is-style-layoutBig p {
+  font-size: 2em; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
+  .wp-block-sample.is-style-layoutBig p {
+    color: blue; }
+@charset "UTF-8";
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-editorial-aside, .wp-block-editorial-modal {
+  float: left;
+  position: relative;
+  min-height: 1px; }
+
+.wp-block-editorial-aside, .wp-block-editorial-modal {
+  width: 100%; }
+
+@media screen and (min-width: 768px) {
+  .wp-block-editorial-aside {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 25%; }
+  .is-layout-long {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 33.33333%; } }
+
+.wp-block-editorial-aside .call-to-action::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .wp-block-editorial-aside .call-to-action, .wp-block-editorial-aside .lt-ie9:hover .call-to-action {
+  -ms-zoom: 1; }
+
+.wp-block-editorial-aside .call-to-action span {
+  display: none; }
+
+.wp-block-editorial-aside .call-to-action::before {
+  content: "▻"; }
+
+.wp-block-editorial-aside h2 {
+  font-size: 1.08839em;
+  line-height: 1.25887; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-aside h2 {
+      font-size: 1.18169em;
+      line-height: 1.25887; } }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.is-style-layoutBig p {
+  font-size: 2em; }
+
+.wp-block-sample {
+  border-radius: 10px; }
+  .wp-block-sample p {
+    color: red; }
+  .wp-block-sample.is-open {
+    color: yellow; }
+  .wp-block-sample.is-style-layoutBig p {
+    color: blue; }
+
+.wp-block-editorial-aside {
+  background: transparent;
+  clear: both;
+  float: right;
+  margin: 10px 0 40px;
+  padding: 30px;
+  text-align: center; }
+  @media screen and (min-width: 768px) {
+    .wp-block-editorial-aside {
+      margin: 0 -10px 20px 30px; } }
+  .wp-block-editorial-aside figure {
+    margin-bottom: 0.7em; }
+  .wp-block-editorial-aside h2 {
+    font-family: "TiemposText", Georgia, serif;
+    margin-bottom: 0.7em;
+    margin-top: 0; }
+  .wp-block-editorial-aside p,
+  .wp-block-editorial-aside .call-to-action {
+    font-family: "Benton-Sans", "Helvetica", sans-serif; }
+  .wp-block-editorial-aside p {
+    color: #666;
+    line-height: 1.4;
+    margin: 0 0 1em 0;
+    font-size: 14px; }
+  .wp-block-editorial-aside .call-to-action {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase; }
+    .wp-block-editorial-aside .call-to-action::before {
+      color: #888;
+      margin-right: 0.2em; }
+
+.is-layout-long {
+  text-align: left; }
+  @media screen and (min-width: 768px) {
+    .is-layout-long {
+      float: right;
+      margin-right: -100px;
+      padding: 40px; } }
+  .is-layout-long p {
+    font-size: 16px;
+    line-height: 1.6; }
+
+.is-left-aligned {
+  float: left; }
+  @media screen and (min-width: 768px) {
+    .is-left-aligned {
+      margin: 0 30px 20px -40px; } }
+
+.has-dark-background {
+  background: #444; }
+  .has-dark-background h2 {
+    color: #fff; }
+  .has-dark-background p {
+    color: #f0f0f0; }
+  .has-dark-background a {
+    color: #eee; }
+
+.has-light-background {
+  background: #eee; }
+
+.has-primary-background h2 {
+  color: #fff; }
+
+.wp-block-aside .call-to-action::before {
+  color: red; }
+
+.wp-block-aside.has-primary-background {
+  background: red; }
+
+.wp-block-editorial-modal {
+  clear: both;
+  text-align: center;
+  position: relative; }
+  .wp-block-editorial-modal .modal-media {
+    width: 100%;
+    max-height: 600px; }
+    .wp-block-editorial-modal .modal-media .modal-image {
+      display: block;
+      height: auto;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+  .wp-block-editorial-modal .modal-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    margin: 0; }
+  .wp-block-editorial-modal h1 {
+    color: #fff; }
+
+.wp-block-modal .call-to-action::before {
+  color: red; }
+
+.wp-block-modal.has-primary-background {
+  background: red; }
 
 .wp-block-editorial-aside {
   background: transparent;
