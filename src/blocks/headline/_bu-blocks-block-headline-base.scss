@@ -10,8 +10,8 @@
 
 .wp-block-headline {
 	display: block;
-	.pretext,
-	.posttext {
+	.wp-block-headline-pretext,
+	.wp-block-headline-posttext {
 		display: block;
 		font-weight: 400;
 		&:empty {
@@ -31,20 +31,20 @@
 	}
 }
 h2.wp-block-headline {
-	.pretext,
-	.posttext {
+	.wp-block-headline-pretext,
+	.wp-block-headline-posttext {
 		font-size: .66em;
 	}
 }
 h3.wp-block-headline {
-	.pretext,
-	.posttext {
+	.wp-block-headline-pretext,
+	.wp-block-headline-posttext {
 		font-size: .75em;
 	}
 }
 h4.wp-block-headline {
-	.pretext,
-	.posttext {
+	.wp-block-headline-pretext,
+	.wp-block-headline-posttext {
 		font-size: .8em;
 	}
 }
