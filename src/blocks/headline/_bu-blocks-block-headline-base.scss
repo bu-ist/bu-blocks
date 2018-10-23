@@ -10,7 +10,8 @@
 
 .wp-block-headline {
 	display: block;
-	span {
+	.pretext,
+	.posttext {
 		display: block;
 		font-weight: 400;
 		&:empty {
@@ -30,17 +31,20 @@
 	}
 }
 h2.wp-block-headline {
-	span {
+	.pretext,
+	.posttext {
 		font-size: .66em;
 	}
 }
 h3.wp-block-headline {
-	span {
+	.pretext,
+	.posttext {
 		font-size: .75em;
 	}
 }
 h4.wp-block-headline {
-	span {
+	.pretext,
+	.posttext {
 		font-size: .8em;
 	}
 }
