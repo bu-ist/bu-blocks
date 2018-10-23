@@ -48,20 +48,3 @@ h4.wp-block-headline {
 		font-size: .8em;
 	}
 }
-@include breakpoint( $xs ) {
-	// h2.wp-block-headline {
-	// 	span {
-	// 		font-size: .66em;
-	// 	}
-	// }
-	// h3.wp-block-headline {
-	// 	span {
-	// 		font-size: .66em;
-	// 	}
-	// }
-	// h4.wp-block-headline {
-	// 	span {
-	// 		font-size: .6em;
-	// 	}
-	// }
-}
