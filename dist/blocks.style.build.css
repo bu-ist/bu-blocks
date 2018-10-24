@@ -152,8 +152,8 @@ h4.wp-block-headline .wp-block-headline-posttext {
   width: 100%; }
 
 @media screen and (min-width: 768px) {
-  .is-left-aligned,
-  .is-right-aligned {
+  .alignleft,
+  .alignright {
     float: left;
     position: relative;
     min-height: 1px;
@@ -227,16 +227,16 @@ h4.wp-block-headline .wp-block-headline-posttext {
     margin: 0 0 1em 0;
     font-size: 16px; }
 
-.is-left-aligned {
+.alignleft {
   float: left; }
   @media screen and (min-width: 768px) {
-    .is-left-aligned {
+    .alignleft {
       margin: 0 30px 20px -40px; } }
 
-.is-right-aligned {
+.alignright {
   float: right; }
   @media screen and (min-width: 768px) {
-    .is-right-aligned {
+    .alignright {
       margin: 0 -10px 20px 30px; } }
 
 .has-dark-background,
