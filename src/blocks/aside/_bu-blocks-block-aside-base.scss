@@ -10,68 +10,28 @@
 
 .wp-block-editorial-aside {
 	@extend %col-full;
-	@extend %col-sm-quarter;
-	background: transparent;
+	border: 1px solid $color-grayscale-d;
+	border-top: 3px solid $color-grayscale-1;
 	clear: both;
-	float: right;
 	margin: 10px 0 40px;
 	padding: 30px;
 	text-align: center;
-
-	@include breakpoint( $sm ) {
-		margin: 0 -10px 20px 30px;
-	}
 
 	figure {
 		margin-bottom: 0.7em;
 	}
 
-	h2 {
-		@extend %font-size-4;
-		font-family: $font-family-base;
-		margin-bottom: 0.7em;
-		margin-top: 0;
-	}
-
-	p,
-	.call-to-action {
-		font-family: $font-family-sans-serif;
-	}
-
 	p {
 		color: $color-grayscale-6;
-		line-height: 1.4;
+		line-height: 1.5;
 		margin: 0 0 1em 0;
-		font-size: 14px;
-	}
-
-	.call-to-action {
-		@extend %icon-navigateright;
 		font-size: 16px;
-		font-weight: 700;
-		text-transform: uppercase;
-
-		&::before {
-			color: $color-grayscale-8;
-			margin-right: 0.2em;
-		}
 	}
 }
 
-.is-layout-long {
+.is-left-aligned,
+.is-right-aligned {
 	@extend %col-sm-third;
-	text-align: left;
-
-	@include breakpoint( $sm ) {
-		float: right;
-		margin-right: -100px;
-		padding: 40px;
-	}
-
-	p {
-		font-size: 16px;
-		line-height: 1.6;
-	}
 }
 
 .is-left-aligned {
@@ -80,6 +40,19 @@
 	@include breakpoint( $sm ) {
 		margin: 0 30px 20px -40px;
 	}
+}
+
+.is-right-aligned {
+	float: right;
+
+	@include breakpoint( $sm ) {
+		margin: 0 -10px 20px 30px;
+	}
+}
+
+.has-dark-background,
+.has-light-background {
+	border: none;
 }
 
 .has-dark-background {
@@ -91,10 +64,6 @@
 
 	p {
 		color: $color-grayscale-f0;
-	}
-
-	a {
-		color: $color-grayscale-e;
 	}
 }
 
