@@ -84,14 +84,35 @@
 .is-style-layoutBig p {
   font-size: 2em; }
 
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
+.wp-block-headline {
+  display: block; }
+  .wp-block-headline .wp-block-headline-pretext,
+  .wp-block-headline .wp-block-headline-posttext {
+    display: block;
+    font-weight: 400; }
+    .wp-block-headline .wp-block-headline-pretext:empty,
+    .wp-block-headline .wp-block-headline-posttext:empty {
+      display: none; }
+
+.is-style-emphasis-weight {
+  font-weight: 100; }
+  .is-style-emphasis-weight strong {
+    font-weight: 700; }
+
+.is-style-emphasis-color strong {
+  font-weight: inherit; }
+
+h2.wp-block-headline .wp-block-headline-pretext,
+h2.wp-block-headline .wp-block-headline-posttext {
+  font-size: .66em; }
+
+h3.wp-block-headline .wp-block-headline-pretext,
+h3.wp-block-headline .wp-block-headline-posttext {
+  font-size: .75em; }
+
+h4.wp-block-headline .wp-block-headline-pretext,
+h4.wp-block-headline .wp-block-headline-posttext {
+  font-size: .8em; }
 
 .wp-block-editorial-aside {
   background: transparent;
@@ -298,14 +319,35 @@
 .is-style-layoutBig p {
   font-size: 2em; }
 
-.wp-block-sample {
-  border-radius: 10px; }
-  .wp-block-sample p {
-    color: red; }
-  .wp-block-sample.is-open {
-    color: yellow; }
-  .wp-block-sample.is-style-layoutBig p {
-    color: blue; }
+.wp-block-headline {
+  display: block; }
+  .wp-block-headline .wp-block-headline-pretext,
+  .wp-block-headline .wp-block-headline-posttext {
+    display: block;
+    font-weight: 400; }
+    .wp-block-headline .wp-block-headline-pretext:empty,
+    .wp-block-headline .wp-block-headline-posttext:empty {
+      display: none; }
+
+.is-style-emphasis-weight {
+  font-weight: 100; }
+  .is-style-emphasis-weight strong {
+    font-weight: 700; }
+
+.is-style-emphasis-color strong {
+  font-weight: inherit; }
+
+h2.wp-block-headline .wp-block-headline-pretext,
+h2.wp-block-headline .wp-block-headline-posttext {
+  font-size: .66em; }
+
+h3.wp-block-headline .wp-block-headline-pretext,
+h3.wp-block-headline .wp-block-headline-posttext {
+  font-size: .75em; }
+
+h4.wp-block-headline .wp-block-headline-pretext,
+h4.wp-block-headline .wp-block-headline-posttext {
+  font-size: .8em; }
 
 .wp-block-editorial-aside {
   background: transparent;
