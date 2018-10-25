@@ -56,24 +56,11 @@ $current-map: $blocks-block-aside-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-aside {
-	font-family: blocks-get( 'font-primary');
-
-	h2 {
-		font-family: blocks-get( 'font-family-primary');
-	}
+	font-family: blocks-get( 'font-family-primary');
 
 	p {
 		font-family: blocks-get( 'font-family-secondary');
 		color: blocks-get( 'font-color-aside' );
-	}
-
-	.call-to-action {
-		color: blocks-get( 'font-color-link' );
-		font-family: blocks-get( 'font-family-tertiary');
-
-		&::before {
-			color: blocks-get( 'color-primary' );
-		}
 	}
 
 	&.has-light-background {
@@ -91,15 +78,8 @@ $scope: blocks-get( 'scope' );
 	&.has-primary-background {
 		background: blocks-get( 'color-primary' );
 
-		p,
-		a {
+		p {
 			color: blocks-get( 'font-color-aside-lighter' );
-		}
-
-		.call-to-action {
-			&::before {
-				color: blocks-get( 'font-color-link' );
-			}
 		}
 	}
 }
