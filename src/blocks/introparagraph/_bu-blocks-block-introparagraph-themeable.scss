@@ -129,5 +129,17 @@ $scope: blocks-get( 'scope' );
 			}
 		}	
 	}
+	&.is-style-dropcap-image {
+		.has-dropcap-color-primary {
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-primary');
+			}
+		}
+		.has-dropcap-color-secondary {
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-secondary');
+			}
+		}
+	}
 }
 
