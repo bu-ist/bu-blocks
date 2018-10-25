@@ -10,38 +10,74 @@
 
 .wp-block-editorial-modal {
 	@extend %col-full;
-	clear: both;
+	background: $color-grayscale-d;
 	text-align: center;
 	position: relative;
+	margin: 40px 0;
+
 
 	.modal-media {
 		width: 100%;
-		max-height: 600px;
 
 		.modal-image {
 			display: block;
 			height: auto;
 			width: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
+		}
+
+		img {
+			object-fit: cover;
 		}
 	}
 
 	.modal-content {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 100%;
-		position: absolute;
-		width: 100%;
-		margin: 0;
+		max-width: 80%;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		padding: 20px;
+
+		@include breakpoint( $xs ) {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			top: 0;
+			height: 100%;
+			padding: 40px;
+		}
 	}
 
-	h1 {
-		color: $color-grayscale-f;
+	h1,
+	p {
+		@include breakpoint( $xs ) {
+			color: $color-grayscale-f;
+		}
+	}
+}
+
+
+.wp-block-editorial-modal-content {
+	@extend %col-full;
+	padding: 60px 24px 24px;
+	background: $color-grayscale-d;
+	position: relative;
+
+	@include breakpoint( $xs ) {
+		padding: 90px 60px 60px;
+	}
+
+	.overlay-close {
+		@extend %icon-close;
+		position: absolute;
+		top: 20px;
+		left: 0;
+		right: 0;
+		text-align: center;
+
+		@include breakpoint( $xs ) {
+			top: 40px;
+		}
 	}
 }
 
