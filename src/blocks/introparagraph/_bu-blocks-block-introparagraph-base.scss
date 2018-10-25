@@ -9,14 +9,16 @@
 //
 
 .wp-block-introparagraph {
+
 	&.is-style-large {
 		p:first-of-type {
 			font-size: 1.25em;
 		}
 	}
 	&.is-style-split {
-		p:first-of-type {
+		.wp-block-introparagraph-content {
 			column-count: 2;
+			column-gap: 2em;
 		}
 	}
 	&.has-dropcap {
@@ -55,5 +57,12 @@
 							9px 9px,
 							10px 10px;
 		}
+	}
+}
+
+.wp-block-introparagraph-toc {
+	li {
+		font-style:italic;
+		font-size:0.9em;
 	}
 }

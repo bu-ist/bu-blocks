@@ -21,6 +21,15 @@
   background: blue;
   border-color: red; }
 
+.wp-block-introparagraph.is-style-large p:first-of-type {
+  font-size: 1.25em; }
+
+.wp-block-introparagraph.is-style-split .wp-block-introparagraph-content {
+  -webkit-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 2em;
+          column-gap: 2em; }
+
 .wp-block-introparagraph.has-dropcap p:first-of-type:first-letter {
   font-weight: 700;
   display: inline-block;
@@ -29,43 +38,24 @@
   line-height: 1em;
   margin: 0 0.25em .125em 0; }
 
-.wp-block-introparagraph.is-style-dropcap-c p:first-of-type:first-letter {
+.wp-block-introparagraph.is-style-dropcap-boxed p:first-of-type:first-letter {
   color: white;
   padding: 0.125em 0.25em; }
 
-.wp-block-introparagraph.is-style-dropcap-d p:first-of-type:first-letter {
+.wp-block-introparagraph.is-style-dropcap-outlined p:first-of-type:first-letter {
   border-width: 2px;
   border-style: solid;
   padding: 0.125em 0.25em; }
 
-.wp-block-introparagraph.is-style-dropcap-e p:first-of-type:first-letter {
+.wp-block-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
   text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
 
-.wp-block-introparagraph.is-style-large p:first-of-type {
-  font-size: 1.25em; }
+.wp-block-introparagraph-toc li {
+  font-style: italic;
+  font-size: 0.9em; }
 
-.wp-block-introparagraph.is-style-split p:first-of-type {
-  -webkit-column-count: 2;
-          column-count: 2; }
-
-.wp-block-introparagraph.is-style-dropcap-a p:first-of-type:first-letter {
-  color: red; }
-
-.wp-block-introparagraph.is-style-dropcap-b p:first-of-type:first-letter {
-  color: yellow; }
-
-.wp-block-introparagraph.is-style-dropcap-c p:first-of-type:first-letter {
-  background-color: yellow; }
-
-.wp-block-introparagraph.is-style-dropcap-d p:first-of-type:first-letter {
-  color: yellow; }
-
-.wp-block-introparagraph.is-style-dropcap-e p:first-of-type:first-letter {
-  color: red;
-  text-shadow: 1px 1px blue, 2px 2px blue, 3px 3px blue, 4px 4px blue, 5px 5px blue, 6px 6px blue, 7px 7px blue, 8px 8px blue, 9px 9px blue, 10px 10px blue; }
-
-.wp-block-introparagraph.is-style-large p:first-of-type {
-  color: yellow; }
+.wp-block-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
+  text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
 
 .block-sample-variant1 {
   text-align: right; }
@@ -139,6 +129,15 @@ h4.wp-block-headline .wp-block-headline-posttext {
   background: blue;
   border-color: red; }
 
+.wp-block-introparagraph.is-style-large p:first-of-type {
+  font-size: 1.25em; }
+
+.wp-block-introparagraph.is-style-split .wp-block-introparagraph-content {
+  -webkit-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 2em;
+          column-gap: 2em; }
+
 .wp-block-introparagraph.has-dropcap p:first-of-type:first-letter {
   font-weight: 700;
   display: inline-block;
@@ -147,43 +146,24 @@ h4.wp-block-headline .wp-block-headline-posttext {
   line-height: 1em;
   margin: 0 0.25em .125em 0; }
 
-.wp-block-introparagraph.is-style-dropcap-c p:first-of-type:first-letter {
+.wp-block-introparagraph.is-style-dropcap-boxed p:first-of-type:first-letter {
   color: white;
   padding: 0.125em 0.25em; }
 
-.wp-block-introparagraph.is-style-dropcap-d p:first-of-type:first-letter {
+.wp-block-introparagraph.is-style-dropcap-outlined p:first-of-type:first-letter {
   border-width: 2px;
   border-style: solid;
   padding: 0.125em 0.25em; }
 
-.wp-block-introparagraph.is-style-dropcap-e p:first-of-type:first-letter {
+.wp-block-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
   text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
 
-.wp-block-introparagraph.is-style-large p:first-of-type {
-  font-size: 1.25em; }
+.wp-block-introparagraph-toc li {
+  font-style: italic;
+  font-size: 0.9em; }
 
-.wp-block-introparagraph.is-style-split p:first-of-type {
-  -webkit-column-count: 2;
-          column-count: 2; }
-
-.wp-block-introparagraph.is-style-dropcap-a p:first-of-type:first-letter {
-  color: red; }
-
-.wp-block-introparagraph.is-style-dropcap-b p:first-of-type:first-letter {
-  color: yellow; }
-
-.wp-block-introparagraph.is-style-dropcap-c p:first-of-type:first-letter {
-  background-color: yellow; }
-
-.wp-block-introparagraph.is-style-dropcap-d p:first-of-type:first-letter {
-  color: yellow; }
-
-.wp-block-introparagraph.is-style-dropcap-e p:first-of-type:first-letter {
-  color: red;
-  text-shadow: 1px 1px blue, 2px 2px blue, 3px 3px blue, 4px 4px blue, 5px 5px blue, 6px 6px blue, 7px 7px blue, 8px 8px blue, 9px 9px blue, 10px 10px blue; }
-
-.wp-block-introparagraph.is-style-large p:first-of-type {
-  color: yellow; }
+.wp-block-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
+  text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
 
 .block-sample-variant1 {
   text-align: right; }
