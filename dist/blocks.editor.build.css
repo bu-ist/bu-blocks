@@ -1,15 +1,16 @@
+@charset "UTF-8";
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-editorial-aside, .wp-block-editorial-modal {
+.wp-block-editorial-aside, .wp-block-editorial-modal, .wp-block-editorial-modal-content {
   float: left;
   position: relative;
   min-height: 1px; }
 
-.wp-block-editorial-aside, .wp-block-editorial-modal {
+.wp-block-editorial-aside, .wp-block-editorial-modal, .wp-block-editorial-modal-content {
   width: 100%; }
 
 @media screen and (min-width: 768px) {
@@ -19,6 +20,34 @@
     position: relative;
     min-height: 1px;
     width: 33.33333%; } }
+
+.wp-block-editorial-modal-content .overlay-close::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .wp-block-editorial-modal-content .overlay-close, .wp-block-editorial-modal-content .lt-ie9:hover .overlay-close {
+  -ms-zoom: 1; }
+
+.wp-block-editorial-modal-content .overlay-close span {
+  display: none; }
+
+.wp-block-editorial-modal-content .overlay-close::before {
+  content: ""; }
 
 /**
  * #.# Styles
@@ -89,34 +118,58 @@
   color: #fff; }
 
 .wp-block-editorial-modal {
-  clear: both;
+  background: #ddd;
   text-align: center;
-  position: relative; }
+  position: relative;
+  margin: 40px 0; }
   .wp-block-editorial-modal .modal-media {
-    width: 100%;
-    max-height: 600px; }
+    width: 100%; }
     .wp-block-editorial-modal .modal-media .modal-image {
       display: block;
       height: auto;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0; }
+      width: 100%; }
+    .wp-block-editorial-modal .modal-media img {
+      -o-object-fit: cover;
+         object-fit: cover; }
   .wp-block-editorial-modal .modal-content {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-        align-items: center;
-    -ms-flex-pack: center;
-        justify-content: center;
-    height: 100%;
+    max-width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 20px; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal .modal-content {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 40px; } }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal h1,
+    .wp-block-editorial-modal p {
+      color: #fff; } }
+
+.wp-block-editorial-modal-content {
+  padding: 60px 24px 24px;
+  background: #ddd;
+  position: relative; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-content {
+      padding: 90px 60px 60px; } }
+  .wp-block-editorial-modal-content .overlay-close {
     position: absolute;
-    width: 100%;
-    margin: 0; }
-  .wp-block-editorial-modal h1 {
-    color: #fff; }
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal-content .overlay-close {
+        top: 40px; } }
 
 /**
  * #.# Editor Styles
@@ -131,18 +184,19 @@
   margin: 0 auto;
   max-width: 740px;
   padding: 2rem; }
+@charset "UTF-8";
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-editorial-aside, .wp-block-editorial-modal {
+.wp-block-editorial-aside, .wp-block-editorial-modal, .wp-block-editorial-modal-content {
   float: left;
   position: relative;
   min-height: 1px; }
 
-.wp-block-editorial-aside, .wp-block-editorial-modal {
+.wp-block-editorial-aside, .wp-block-editorial-modal, .wp-block-editorial-modal-content {
   width: 100%; }
 
 @media screen and (min-width: 768px) {
@@ -152,6 +206,34 @@
     position: relative;
     min-height: 1px;
     width: 33.33333%; } }
+
+.wp-block-editorial-modal-content .overlay-close::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .wp-block-editorial-modal-content .overlay-close, .wp-block-editorial-modal-content .lt-ie9:hover .overlay-close {
+  -ms-zoom: 1; }
+
+.wp-block-editorial-modal-content .overlay-close span {
+  display: none; }
+
+.wp-block-editorial-modal-content .overlay-close::before {
+  content: ""; }
 
 /**
  * #.# Styles
@@ -222,34 +304,58 @@
   color: #fff; }
 
 .wp-block-editorial-modal {
-  clear: both;
+  background: #ddd;
   text-align: center;
-  position: relative; }
+  position: relative;
+  margin: 40px 0; }
   .wp-block-editorial-modal .modal-media {
-    width: 100%;
-    max-height: 600px; }
+    width: 100%; }
     .wp-block-editorial-modal .modal-media .modal-image {
       display: block;
       height: auto;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0; }
+      width: 100%; }
+    .wp-block-editorial-modal .modal-media img {
+      -o-object-fit: cover;
+         object-fit: cover; }
   .wp-block-editorial-modal .modal-content {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-        align-items: center;
-    -ms-flex-pack: center;
-        justify-content: center;
-    height: 100%;
+    max-width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 20px; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal .modal-content {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 40px; } }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal h1,
+    .wp-block-editorial-modal p {
+      color: #fff; } }
+
+.wp-block-editorial-modal-content {
+  padding: 60px 24px 24px;
+  background: #ddd;
+  position: relative; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-content {
+      padding: 90px 60px 60px; } }
+  .wp-block-editorial-modal-content .overlay-close {
     position: absolute;
-    width: 100%;
-    margin: 0; }
-  .wp-block-editorial-modal h1 {
-    color: #fff; }
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal-content .overlay-close {
+        top: 40px; } }
 
 /**
  * #.# Editor Styles
@@ -257,18 +363,19 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+@charset "UTF-8";
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-editorial-aside, .wp-block-editorial-modal {
+.wp-block-editorial-aside, .wp-block-editorial-modal, .wp-block-editorial-modal-content {
   float: left;
   position: relative;
   min-height: 1px; }
 
-.wp-block-editorial-aside, .wp-block-editorial-modal {
+.wp-block-editorial-aside, .wp-block-editorial-modal, .wp-block-editorial-modal-content {
   width: 100%; }
 
 @media screen and (min-width: 768px) {
@@ -278,6 +385,34 @@
     position: relative;
     min-height: 1px;
     width: 33.33333%; } }
+
+.wp-block-editorial-modal-content .overlay-close::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .wp-block-editorial-modal-content .overlay-close, .wp-block-editorial-modal-content .lt-ie9:hover .overlay-close {
+  -ms-zoom: 1; }
+
+.wp-block-editorial-modal-content .overlay-close span {
+  display: none; }
+
+.wp-block-editorial-modal-content .overlay-close::before {
+  content: ""; }
 
 /**
  * #.# Styles
@@ -348,34 +483,58 @@
   color: #fff; }
 
 .wp-block-editorial-modal {
-  clear: both;
+  background: #ddd;
   text-align: center;
-  position: relative; }
+  position: relative;
+  margin: 40px 0; }
   .wp-block-editorial-modal .modal-media {
-    width: 100%;
-    max-height: 600px; }
+    width: 100%; }
     .wp-block-editorial-modal .modal-media .modal-image {
       display: block;
       height: auto;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0; }
+      width: 100%; }
+    .wp-block-editorial-modal .modal-media img {
+      -o-object-fit: cover;
+         object-fit: cover; }
   .wp-block-editorial-modal .modal-content {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-        align-items: center;
-    -ms-flex-pack: center;
-        justify-content: center;
-    height: 100%;
+    max-width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 20px; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal .modal-content {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 40px; } }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal h1,
+    .wp-block-editorial-modal p {
+      color: #fff; } }
+
+.wp-block-editorial-modal-content {
+  padding: 60px 24px 24px;
+  background: #ddd;
+  position: relative; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-content {
+      padding: 90px 60px 60px; } }
+  .wp-block-editorial-modal-content .overlay-close {
     position: absolute;
-    width: 100%;
-    margin: 0; }
-  .wp-block-editorial-modal h1 {
-    color: #fff; }
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal-content .overlay-close {
+        top: 40px; } }
 
 /**
  * #.# Editor Styles
