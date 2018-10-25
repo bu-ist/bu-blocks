@@ -15,13 +15,15 @@
 
 // Aside Block
 //
-// This is an Aside Block, you can use this as a base line for writing up the static markup and styles for a new block.
+// A block for Aside tag type content, like a short bio on a Professor in the story, or a small explainer about subatomic particles in a longer story about physics.
+// This is a parent block that allows specific child blocks, like image block, headline block, paragraph block, button block, etc. which can be added or removed as necessary.
 //
-// Status: In-Progress
+// Status: Ready
 //
 // Markup: bu-blocks-block-aside.hbs
 //
-// .is-left-aligned - Example of a Layout Variation
+// .alignleft - Example of a left-aligned layout
+// .alignright - Example of a right-aligned layout
 // .has-light-background - Example of a light background
 // .has-dark-background - Example of a dark background
 //
