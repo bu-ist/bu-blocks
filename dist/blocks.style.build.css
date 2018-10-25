@@ -240,7 +240,8 @@ h4.wp-block-headline .wp-block-headline-posttext {
       margin: 0 -10px 20px 30px; } }
 
 .has-dark-background,
-.has-light-background {
+.has-light-background,
+.has-primary-background {
   border: none; }
 
 .has-dark-background {
