@@ -76,6 +76,44 @@
 		@include breakpoint( $xs ) {
 			top: 40px;
 		}
+
+		&::before {
+			color: $color-grayscale-6;
+		}
+	}
+}
+
+.wp-block-editorial-modal-callout-content {
+	max-width: 80%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	padding: 20px;
+
+	@include breakpoint( $xs ) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 0;
+		height: 100%;
+		padding: 40px;
+	}
+}
+
+.has-light-theme {
+	.wp-block-editorial-modal-content {
+		background: $color-grayscale-e;
+	}
+}
+
+.has-dark-theme {
+	.wp-block-editorial-modal-content {
+		background: $color-grayscale-1;
+	}
+
+	.overlay-close {
+		color: $color-grayscale-e;
 	}
 }
 
