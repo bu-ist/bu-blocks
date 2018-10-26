@@ -8,6 +8,7 @@
 //
 //
 
+
 .alignfull { // universal, needs to be moved out
 	@include breakpoint( $sm ) {
 		width: 100vw;
@@ -24,7 +25,16 @@
 	}
 }
 
-.wp-block-editorial-modal {
+
+.bu-blocks-modal-noscroll {
+  overflow: hidden;
+}
+
+.wp-block-editorial-modal{
+
+}
+
+.wp-block-editorial-modal-callout {
 	@extend %col-full;
 	background: $color-grayscale-d;
 	text-align: center;
@@ -56,6 +66,7 @@
 }
 
 .wp-block-editorial-modal-content {
+	display:none;
 	@extend %col-full;
 	padding: 60px 24px 24px;
 	background: $color-grayscale-d;
@@ -65,7 +76,7 @@
 		padding: 90px 60px 60px;
 	}
 
-	.overlay-close {
+	.wp-block-editorial-modal-overlay-close {
 		@extend %icon-close;
 		position: absolute;
 		top: 20px;
@@ -115,5 +126,17 @@
 	.overlay-close {
 		color: $color-grayscale-e;
 	}
+
+
 }
 
+.wp-block-editorial-modal-content.show-overlay {
+	display:block;
+	position: fixed;
+	overflow-y: scroll;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10000;
+}
