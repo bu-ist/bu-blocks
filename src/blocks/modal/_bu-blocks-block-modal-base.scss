@@ -47,24 +47,6 @@
 		}
 	}
 
-	.wp-block-editorial-modal-callout-content {
-		max-width: 80%;
-		left: 0;
-		right: 0;
-		margin: 0 auto;
-		padding: 20px;
-
-		@include breakpoint( $xs ) {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			position: absolute;
-			top: 0;
-			height: 100%;
-			padding: 40px;
-		}
-	}
-
 	h1,
 	p {
 		@include breakpoint( $xs ) {
@@ -72,7 +54,6 @@
 		}
 	}
 }
-
 
 .wp-block-editorial-modal-content {
 	@extend %col-full;
