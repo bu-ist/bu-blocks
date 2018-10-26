@@ -64,28 +64,6 @@ $scope: blocks-get( 'scope' );
 
 	p {
 		font-family: blocks-get( 'font-family-secondary');
-		color: blocks-get( 'font-color-modal' );
-	}
-
-	.call-to-action {
-		color: blocks-get( 'font-color-link' );
-		font-family: blocks-get( 'font-family-tertiary');
-
-		&::before {
-			color: blocks-get( 'color-primary' );
-		}
-	}
-
-	&.has-light-background {
-		background: blocks-get( 'background-color-light' );
-	}
-
-	&.has-dark-background {
-		background: blocks-get( 'background-color-dark' );
-
-		p {
-			color: blocks-get( 'font-color-modal-lighter' );
-		}
 	}
 
 	&.has-primary-background {
