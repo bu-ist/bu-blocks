@@ -8,12 +8,29 @@
 //
 //
 
+.alignfull { // universal, needs to be moved out
+	@include breakpoint( $sm ) {
+		width: 100vw;
+		max-width: 100vw;
+		margin-left: calc( 50% - 50vw );
+	}
+}
+
+.alignwide { // universal, needs to be moved out
+	@include breakpoint( $sm ) {
+		width: 100vw;
+		max-width: 86vw;
+		margin-left: calc( 50% - 43vw);
+	}
+}
+
 .wp-block-editorial-modal {
 	@extend %col-full;
 	background: $color-grayscale-d;
 	text-align: center;
 	position: relative;
-	margin: 40px 0;
+	margin-top: 40px;
+	margin-bottom: 60px;
 
 
 	.wp-block-editorial-modal-media {
