@@ -104,3 +104,23 @@ $scope: blocks-get( 'scope' );
 	}
 }
 
+.wp-block-editorial-modal-content {
+	a,
+	.overlay-close,
+	.overlay-close::before {
+		color: blocks-get( 'color-primary' );
+	}
+
+	&.has-dark-theme {
+		background: blocks-get( 'background-color-dark' );
+
+		p {
+			color: blocks-get( 'font-color-theme-dark' );
+		}
+	}
+
+	&.has-light-theme {
+		background: blocks-get( 'background-color-light' );
+	}
+}
+
