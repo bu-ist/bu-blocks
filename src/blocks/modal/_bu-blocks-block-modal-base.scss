@@ -127,15 +127,16 @@
 		color: $color-grayscale-e;
 	}
 
-	&.show-overlay {
-		display:block;
-		position: fixed;
-		overflow-y: scroll;
- 		top: 0;
- 		right: 0;
- 		bottom: 0;
- 		left: 0;
- 		z-index: 10000;
-	}
+
 }
 
+.wp-block-editorial-modal-content.show-overlay {
+	display:block;
+	position: fixed;
+	overflow-y: scroll;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10000;
+}

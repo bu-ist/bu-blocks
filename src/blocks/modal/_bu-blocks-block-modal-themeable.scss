@@ -55,7 +55,7 @@ $current-map: $blocks-block-modal-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-modal {
+.#{$scope}-block-modal-callout {
 	font-family: blocks-get( 'font-family-primary');
 
 	h1 {
