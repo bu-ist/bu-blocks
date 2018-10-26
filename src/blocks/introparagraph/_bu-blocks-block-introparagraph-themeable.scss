@@ -73,7 +73,8 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 	&.has-dropcap {
-		p:first-of-type:first-letter {
+		p:first-of-type:first-letter,
+		svg text {
 			font-family: blocks-get( 'font-family-secondary');
 		}
 	}
