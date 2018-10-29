@@ -198,7 +198,7 @@
 .has-dark-theme .wp-block-editorial-modal-content {
   background: #111; }
 
-.has-dark-theme .overlay-close {
+.has-dark-theme .wp-block-editorial-modal-overlay-close {
   color: #eee; }
 
 .wp-block-editorial-modal-content.show-overlay {
