@@ -108,5 +108,18 @@ $scope: blocks-get( 'scope' );
 			background: blocks-get( 'background-color-light' );
 		}
 	}
+
+	&.has-primary-theme {
+		.wp-block-editorial-modal-content {
+			background: blocks-get( 'color-primary' ); // TO DO: Test for WCAG compatibility
+
+			a,
+			.wp-block-editorial-modal-overlay-close,
+			.wp-block-editorial-modal-overlay-close::before,
+			p {
+				color: blocks-get( 'font-color-aside-lighter' );
+			}
+		}
+	}
 }
 
