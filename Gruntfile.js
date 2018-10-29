@@ -74,12 +74,12 @@ module.exports = function( grunt ) {
 					mode: true
 				},
 				src: 'dist/blocks.style.build.css',
-				dest: '_styleguide/blocks.style.build.css'
+				dest: 'docs/blocks.style.build.css'
 			},
 			kssassets: {
 				cwd: 'kss-assets',  // set working folder / root to copy
 				src: '**/*',           // copy all files and subfolders
-				dest: '_styleguide/kss-assets',    // destination folder
+				dest: 'docs/kss-assets',    // destination folder
 				expand: true           // required when using cwd
 			}
 		},
@@ -102,18 +102,18 @@ module.exports = function( grunt ) {
 				src: [
 					['src']
 				],
-				dest: '_styleguide'
+				dest: 'docs'
 			}
 		},
 
 		browserSync: {
 			bsFiles: {
-				src : '_styleguide/*.html'
+				src : 'docs/*.html'
 			},
 			options: {
 				watchTask: true,
 				server: {
-					baseDir: "./_styleguide"
+					baseDir: "./docs"
 				}
 			}
 		}
