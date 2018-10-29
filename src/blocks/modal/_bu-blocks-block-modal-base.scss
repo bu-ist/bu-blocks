@@ -30,10 +30,6 @@
   overflow: hidden;
 }
 
-.wp-block-editorial-modal{
-
-}
-
 .wp-block-editorial-modal-callout {
 	@extend %col-full;
 	background: $color-grayscale-d;
@@ -123,15 +119,13 @@
 		background: $color-grayscale-1;
 	}
 
-	.overlay-close {
+	.wp-block-editorial-modal-overlay-close {
 		color: $color-grayscale-e;
 	}
-
-
 }
 
 .wp-block-editorial-modal-content.show-overlay {
-	display:block;
+	display: block;
 	position: fixed;
 	overflow-y: scroll;
 	top: 0;
