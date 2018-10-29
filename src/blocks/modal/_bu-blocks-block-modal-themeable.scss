@@ -82,25 +82,31 @@ $scope: blocks-get( 'scope' );
 	}
 }
 
-.#{$scope}-block-modal.wp-block-editorial-modal-content {
+.#{$scope}-block-modal {
+	.wp-block-editorial-modal-content {
 	background: blocks-get( 'background-color-default' );
 
-	a,
-	.overlay-close,
-	.overlay-close::before {
-		color: blocks-get( 'color-primary' );
+		a,
+		.wp-block-editorial-modal-overlay-close,
+		.wp-block-editorial-modal-overlay-close::before {
+			color: blocks-get( 'color-primary-text' );
+		}
 	}
 
 	&.has-dark-theme {
-		background: blocks-get( 'background-color-dark' );
+		.wp-block-editorial-modal-content {
+			background: blocks-get( 'background-color-dark' );
 
-		p {
-			color: blocks-get( 'font-color-theme-dark' );
+			p {
+				color: blocks-get( 'font-color-theme-dark' );
+			}
 		}
 	}
 
 	&.has-light-theme {
-		background: blocks-get( 'background-color-light' );
+		.wp-block-editorial-modal-content {
+			background: blocks-get( 'background-color-light' );
+		}
 	}
 }
 
