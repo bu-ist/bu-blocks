@@ -111,11 +111,23 @@
 
 .has-dark-theme {
 	.wp-block-editorial-modal-content {
-		background: $color-grayscale-1;
+		background: $color-grayscale-3;
 	}
 
-	.wp-block-editorial-modal-overlay-close {
+	.wp-block-editorial-modal-overlay-close,
+	p {
 		color: $color-grayscale-e;
+	}
+}
+
+.has-primary-theme {
+	.wp-block-editorial-modal-content {
+		a,
+		.wp-block-editorial-modal-overlay-close,
+		.wp-block-editorial-modal-overlay-close::before,
+		p {
+			color: $color-grayscale-1;
+		}
 	}
 }
 
@@ -129,3 +141,4 @@
 	left: 0;
 	z-index: 10000;
 }
+
