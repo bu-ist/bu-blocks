@@ -111,14 +111,13 @@ $scope: blocks-get( 'scope' );
 
 	&.has-primary-theme {
 		.wp-block-editorial-modal-content {
-			background: blocks-get( 'color-primary' ); // TO DO: Test for WCAG compatibility
+			background: blocks-get( 'color-primary' );
+		}
+	}
 
-			a,
-			.wp-block-editorial-modal-overlay-close,
-			.wp-block-editorial-modal-overlay-close::before,
-			p {
-				color: blocks-get( 'font-color-aside-lighter' );
-			}
+	&.has-secondary-theme {
+		.wp-block-editorial-modal-content {
+			background: blocks-get( 'color-secondary' );
 		}
 	}
 }
