@@ -8,23 +8,18 @@
 //
 //
 
+.content-area > * { // TO DO: Move to global location
+	margin-left: auto;
+	margin-right: auto;
 
-.alignfull { // universal, needs to be moved out
-	@include breakpoint( $sm ) {
-		width: 100vw;
-		max-width: 100vw;
-		margin-left: calc( 50% - 50vw );
+	&:not( .alignwide ):not( .alignfull ) {
+		max-width: 740px;
 	}
 }
 
-.alignwide { // universal, needs to be moved out
-	@include breakpoint( $sm ) {
-		width: 100vw;
-		max-width: 86vw;
-		margin-left: calc( 50% - 43vw);
-	}
+.content-area > *.alignwide { // TO DO: Move to global location
+	max-width: 1024px;
 }
-
 
 .bu-blocks-modal-noscroll {
   overflow: hidden;
