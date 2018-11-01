@@ -209,3 +209,122 @@ h4.wp-block-headline .wp-block-headline-posttext {
 
 .is-style-layoutBig p {
   font-size: 2em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-editorial-aside {
+  float: left;
+  position: relative;
+  min-height: 1px; }
+
+.wp-block-editorial-aside {
+  width: 100%; }
+
+@media screen and (min-width: 768px) {
+  .alignleft,
+  .alignright {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 33.33333%; } }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-cgb-block-bu-blocks-cgb {
+  background: orangered;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.block-test-class {
+  background: blue;
+  border-color: red; }
+
+.block-sample-variant1 {
+  text-align: right; }
+
+.is-style-layoutBig p {
+  font-size: 2em; }
+
+.wp-block-headline {
+  display: block; }
+  .wp-block-headline .wp-block-headline-pretext,
+  .wp-block-headline .wp-block-headline-posttext {
+    display: block;
+    font-weight: 400; }
+    .wp-block-headline .wp-block-headline-pretext:empty,
+    .wp-block-headline .wp-block-headline-posttext:empty {
+      display: none; }
+
+.is-style-emphasis-weight {
+  font-weight: 100; }
+  .is-style-emphasis-weight strong {
+    font-weight: 700; }
+
+.is-style-emphasis-color strong {
+  font-weight: inherit; }
+
+h2.wp-block-headline .wp-block-headline-pretext,
+h2.wp-block-headline .wp-block-headline-posttext {
+  font-size: .66em; }
+
+h3.wp-block-headline .wp-block-headline-pretext,
+h3.wp-block-headline .wp-block-headline-posttext {
+  font-size: .75em; }
+
+h4.wp-block-headline .wp-block-headline-pretext,
+h4.wp-block-headline .wp-block-headline-posttext {
+  font-size: .8em; }
+
+.wp-block-editorial-aside {
+  border: 1px solid #ddd;
+  border-top: 3px solid #111;
+  clear: both;
+  margin: 10px 0 40px;
+  padding: 30px;
+  text-align: center; }
+  .wp-block-editorial-aside figure {
+    margin-bottom: 0.7em; }
+  .wp-block-editorial-aside p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 1em 0;
+    font-size: 16px; }
+
+.alignleft {
+  float: left; }
+  @media screen and (min-width: 768px) {
+    .alignleft {
+      margin: 0 30px 20px -40px; } }
+
+.alignright {
+  float: right; }
+  @media screen and (min-width: 768px) {
+    .alignright {
+      margin: 0 -10px 20px 30px; } }
+
+.has-dark-background,
+.has-light-background,
+.has-primary-background {
+  border: none; }
+
+.has-dark-background {
+  background: #444; }
+  .has-dark-background h2 {
+    color: #fff; }
+  .has-dark-background p {
+    color: #f0f0f0; }
+
+.has-light-background {
+  background: #eee; }
+
+.has-primary-background h2 {
+  color: #fff; }
