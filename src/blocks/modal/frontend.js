@@ -95,6 +95,3 @@ bu_blocks.modal = (function() {
 		}
 	};
 })();
-
-
-//console.log(bu_blocks.modal.getmodalBlocks());

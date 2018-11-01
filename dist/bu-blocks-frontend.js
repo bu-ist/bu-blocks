@@ -96,6 +96,3 @@ const bu_blocks = {};
 		}
 	};
 })();
-
-
-//console.log(bu_blocks.modal.getmodalBlocks());
