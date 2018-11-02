@@ -1,0 +1,144 @@
+// =================================================================
+// Sample Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.content-area > * { // TO DO: Move to global location
+	margin-left: auto;
+	margin-right: auto;
+
+	&:not( .alignwide ):not( .alignfull ) {
+		max-width: 740px;
+	}
+}
+
+.content-area > *.alignwide { // TO DO: Move to global location
+	max-width: 1024px;
+}
+
+.bu-blocks-modal-noscroll {
+  overflow: hidden;
+}
+
+.wp-block-editorial-modal-callout {
+	@extend %col-full;
+	background: $color-grayscale-d;
+	text-align: center;
+	position: relative;
+	margin-top: 40px;
+	margin-bottom: 60px;
+
+
+	.wp-block-editorial-modal-media {
+		width: 100%;
+
+		.wp-block-editorial-modal-image {
+			display: block;
+			height: auto;
+			width: 100%;
+		}
+
+		img {
+			object-fit: cover;
+		}
+	}
+
+	h1,
+	p {
+		@include breakpoint( $xs ) {
+			color: $color-grayscale-f;
+		}
+	}
+}
+
+.wp-block-editorial-modal-content {
+	display:none;
+	@extend %col-full;
+	padding: 60px 24px 24px;
+	background: $color-grayscale-d;
+	position: relative;
+
+	@include breakpoint( $xs ) {
+		padding: 90px 60px 60px;
+	}
+
+	.wp-block-editorial-modal-overlay-close {
+		@extend %icon-close;
+		position: absolute;
+		top: 20px;
+		left: 0;
+		right: 0;
+		text-align: center;
+
+		@include breakpoint( $xs ) {
+			top: 40px;
+		}
+
+		&::before {
+			color: $color-grayscale-6;
+		}
+	}
+}
+
+.wp-block-editorial-modal-callout-content {
+	max-width: 90%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	padding: 20px;
+
+	@include breakpoint( $xs ) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 0;
+		height: 100%;
+		padding: 40px;
+	}
+}
+
+.has-light-theme {
+	.wp-block-editorial-modal-content {
+		background: $color-grayscale-e;
+	}
+}
+
+.has-dark-theme {
+	.wp-block-editorial-modal-content {
+		background: $color-grayscale-3;
+	}
+
+	.wp-block-editorial-modal-overlay-close,
+	p {
+		color: $color-grayscale-e;
+	}
+}
+
+.has-primary-theme {
+	.wp-block-editorial-modal-content {
+		a,
+		.wp-block-editorial-modal-overlay-close,
+		.wp-block-editorial-modal-overlay-close::before,
+		p {
+			color: $color-grayscale-1;
+		}
+	}
+}
+
+.wp-block-editorial-modal-content.show-overlay {
+	display: block;
+	position: fixed;
+	overflow-y: scroll;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10000;
+}
+

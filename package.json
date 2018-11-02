@@ -14,12 +14,13 @@
   },
   "devDependencies": {
     "grunt": "^1.0.3",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-kss": "^5.0.1",
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "~1.0.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-kss": "^5.0.1",
-    "grunt-browser-sync": "^2.2.0",
     "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#develop",
     "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#feature/reduce-dependencies-sass-imports"
   }

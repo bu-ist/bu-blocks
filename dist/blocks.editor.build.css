@@ -5,131 +5,6 @@
  * that are used across the project.
 */
 /**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-headline {
-  display: block; }
-  .wp-block-headline .wp-block-headline-pretext,
-  .wp-block-headline .wp-block-headline-posttext {
-    display: block;
-    font-weight: 400; }
-    .wp-block-headline .wp-block-headline-pretext:empty,
-    .wp-block-headline .wp-block-headline-posttext:empty {
-      display: none; }
-
-.is-style-emphasis-weight {
-  font-weight: 100; }
-  .is-style-emphasis-weight strong {
-    font-weight: 700; }
-
-.is-style-emphasis-color strong {
-  font-weight: inherit; }
-
-h2.wp-block-headline .wp-block-headline-pretext,
-h2.wp-block-headline .wp-block-headline-posttext {
-  font-size: .66em; }
-
-h3.wp-block-headline .wp-block-headline-pretext,
-h3.wp-block-headline .wp-block-headline-posttext {
-  font-size: .75em; }
-
-h4.wp-block-headline .wp-block-headline-pretext,
-h4.wp-block-headline .wp-block-headline-posttext {
-  font-size: .8em; }
-
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-headline {
-  display: block; }
-  .wp-block-headline .wp-block-headline-pretext,
-  .wp-block-headline .wp-block-headline-posttext {
-    display: block;
-    font-weight: 400; }
-    .wp-block-headline .wp-block-headline-pretext:empty,
-    .wp-block-headline .wp-block-headline-posttext:empty {
-      display: none; }
-
-.is-style-emphasis-weight {
-  font-weight: 100; }
-  .is-style-emphasis-weight strong {
-    font-weight: 700; }
-
-.is-style-emphasis-color strong {
-  font-weight: inherit; }
-
-h2.wp-block-headline .wp-block-headline-pretext,
-h2.wp-block-headline .wp-block-headline-posttext {
-  font-size: .66em; }
-
-h3.wp-block-headline .wp-block-headline-pretext,
-h3.wp-block-headline .wp-block-headline-posttext {
-  font-size: .75em; }
-
-h4.wp-block-headline .wp-block-headline-pretext,
-h4.wp-block-headline .wp-block-headline-posttext {
-  font-size: .8em; }
-
-/**
  * #.# Editor Styles
  *
  * CSS for just Backend enqueued after style.scss
@@ -142,58 +17,17 @@ h4.wp-block-headline .wp-block-headline-posttext {
  * that are used across the project.
 */
 /**
- * #.# Styles
+ * #.# Editor Styles
  *
- * CSS for both Frontend+Backend.
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
  */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-headline {
-  display: block; }
-  .wp-block-headline .wp-block-headline-pretext,
-  .wp-block-headline .wp-block-headline-posttext {
-    display: block;
-    font-weight: 400; }
-    .wp-block-headline .wp-block-headline-pretext:empty,
-    .wp-block-headline .wp-block-headline-posttext:empty {
-      display: none; }
-
-.is-style-emphasis-weight {
-  font-weight: 100; }
-  .is-style-emphasis-weight strong {
-    font-weight: 700; }
-
-.is-style-emphasis-color strong {
-  font-weight: inherit; }
-
-h2.wp-block-headline .wp-block-headline-pretext,
-h2.wp-block-headline .wp-block-headline-posttext {
-  font-size: .66em; }
-
-h3.wp-block-headline .wp-block-headline-pretext,
-h3.wp-block-headline .wp-block-headline-posttext {
-  font-size: .75em; }
-
-h4.wp-block-headline .wp-block-headline-pretext,
-h4.wp-block-headline .wp-block-headline-posttext {
-  font-size: .8em; }
-
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 /**
  * #.# Editor Styles
  *
