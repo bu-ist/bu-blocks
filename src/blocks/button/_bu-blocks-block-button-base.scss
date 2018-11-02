@@ -1,5 +1,5 @@
 // =================================================================
-// Sample Styles - Configurable
+// Button Styles - Configurable
 // =================================================================
 //
 //
@@ -8,13 +8,85 @@
 //
 //
 
+a:active,
+a:visited { // TO DO: move to more global location
+	color: inherit;
+}
+
 .wp-block-button {
-	display: block;
-	padding: 10px 0;
+	@include transition( all, 0.2s, ease-in-out, 0s)
+	display: inline-block;
+	padding: 0.5em 1em;
+	background: $color-grayscale-d;
+	border-radius: 6px;
+	text-decoration: none;
+	color: inherit;
+	text-align: center;
+
+	&:hover {
+		background: $color-grayscale-c;
+	}
+
+	&[class*="icon-"] {
+		&::before {
+			font-size: 0.7em;
+			color: $color-grayscale-a;
+		}
+	}
 }
 
 .is-style-outline {
-	border: 2px solid $color-grayscale-4;
+	border: 2px solid $color-grayscale-d;
+	background: transparent;
+
+	&:hover {
+		background: transparent;
+		border-color: $color-grayscale-c;
+	}
 }
 
+.is-style-squared {
+	border-radius: 0;
+}
 
+.is-style-text {
+	background: transparent;
+	padding: 0.5em 0;
+
+	&:hover {
+		background: transparent;
+	}
+}
+
+.has-dark-theme {
+	background: $color-grayscale-3;
+	color: $color-grayscale-f !important;
+
+	&:hover {
+		background: $color-grayscale-2;
+	}
+}
+
+.has-light-theme {
+	background: $color-grayscale-e;
+
+	&:hover {
+		background: $color-grayscale-d;
+	}
+}
+
+.align-icon-right {
+	&::before {
+		float: right;
+		display: block;
+		padding-top: 9px;
+		margin-left: 0.5em;
+		margin-right: 0;
+	}
+}
+
+.align-icon-left {
+	&::before {
+		padding-top: -2px;
+	}
+}
