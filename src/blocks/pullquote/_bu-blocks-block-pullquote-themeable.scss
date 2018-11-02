@@ -56,9 +56,22 @@ $current-map: $blocks-block-pullquote-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-pullquote {
-	&.is-style-large {
-		p {
-			color: blocks-get( 'font-color-heading-small');
+	hr {
+	}
+	blockquote {
+	}
+	&:not(.is-style-modern):not(.is-style-pop) {
+		blockquote {
+			&::before,
+			&::after {
+				background: blocks-get( 'color-page');
+				color: blocks-get( 'color-primary');
+				font-family: blocks-get( 'font-family-secondary');
+			}
+			&::before {
+			}
+			&::after {
+			}
 		}
 	}
 }
