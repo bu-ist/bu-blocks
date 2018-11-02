@@ -202,7 +202,11 @@
 .has-primary-theme .wp-block-editorial-modal-content a,
 .has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
 .has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
-.has-primary-theme .wp-block-editorial-modal-content p {
+.has-primary-theme .wp-block-editorial-modal-content p,
+.has-secondary-theme .wp-block-editorial-modal-content a,
+.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
+.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
+.has-secondary-theme .wp-block-editorial-modal-content p {
   color: #111; }
 
 .wp-block-editorial-modal-content.show-overlay {
