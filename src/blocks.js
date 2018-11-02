@@ -9,6 +9,7 @@
  * Webpack is compiling as the input file.
  */
 
-import './blocks/block/block.js';
+//import './blocks/block/block.js';
 import './blocks/sample/sample.js';
 import './blocks/aside/aside.js';
+import './blocks/modal/modal.js';
