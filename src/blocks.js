@@ -13,3 +13,4 @@
 import './blocks/sample/sample.js';
 import './blocks/aside/aside.js';
 import './blocks/modal/modal.js';
+import './blocks/button/button.js';
