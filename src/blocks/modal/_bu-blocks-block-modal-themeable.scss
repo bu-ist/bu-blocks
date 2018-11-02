@@ -93,5 +93,17 @@ $scope: blocks-get( 'scope' );
 			background: blocks-get( 'color-secondary' );
 		}
 	}
+
+	&.has-tertiary-theme {
+		.wp-block-editorial-modal-content {
+			background: blocks-get( 'color-tertiary' );
+		}
+	}
+
+	&.has-quaternary-theme {
+		.wp-block-editorial-modal-content {
+			background: blocks-get( 'color-quaternary' );
+		}
+	}
 }
 
