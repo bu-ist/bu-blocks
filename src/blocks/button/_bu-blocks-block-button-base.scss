@@ -11,8 +11,10 @@
 .wp-block-button {
 	display: block;
 	padding: 10px 0;
-
-	&.is-style-outline {
-		border: 2px solid $color-grayscale-4;
-	}
 }
+
+.is-style-outline {
+	border: 2px solid $color-grayscale-4;
+}
+
+
