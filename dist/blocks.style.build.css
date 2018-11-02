@@ -218,3 +218,66 @@
   bottom: 0;
   left: 0;
   z-index: 10000; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+a:active,
+a:visited {
+  color: inherit; }
+
+.wp-block-button {
+  -webkit-transition: all, 0.2s, ease-in-out, 0s;
+  -o-transition: all, 0.2s, ease-in-out, 0s;
+  transition: all, 0.2s, ease-in-out, 0s;
+  display: inline-block;
+  padding: 0.5em 1em;
+  background: #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center; }
+  .wp-block-button:hover {
+    background: #ccc; }
+  .wp-block-button[class*="icon-"]::before {
+    font-size: 0.7em;
+    color: #aaa; }
+
+.is-style-outline {
+  border: 2px solid #ddd;
+  background: transparent; }
+  .is-style-outline:hover {
+    background: transparent;
+    border-color: #ccc; }
+
+.is-style-squared {
+  border-radius: 0; }
+
+.is-style-text {
+  background: transparent;
+  padding: 0.5em 0; }
+  .is-style-text:hover {
+    background: transparent; }
+
+.has-dark-theme {
+  background: #333;
+  color: #fff !important; }
+  .has-dark-theme:hover {
+    background: #222; }
+
+.has-light-theme {
+  background: #eee; }
+  .has-light-theme:hover {
+    background: #ddd; }
+
+.align-icon-right::before {
+  float: right;
+  display: block;
+  padding-top: 9px;
+  margin-left: 0.5em;
+  margin-right: 0; }
+
+.align-icon-left::before {
+  padding-top: -2px; }
