@@ -9,6 +9,8 @@
 //
 
 .wp-block-pullquote {
+	position: relative;
+	min-height: 5em;
 	background-size: 0%;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -21,6 +23,7 @@
 		padding: 1em 0px;
 		position: relative;
 		z-index: 3;
+		overflow: hidden;
 	}
 	.graphic {
 		background-repeat: no-repeat;
@@ -53,6 +56,7 @@
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			padding: 0.001em 0;
+			margin: 0 3em;
 			&::before,
 			&::after {
 				box-sizing: content-box;
@@ -76,6 +80,7 @@
 				bottom: 0.25em;
 			}
 			hr {
+				background: none;
 				border: none;
 				height: 1px;
 				position: relative;
@@ -96,6 +101,10 @@
 					right: 0;
 				}
 			}
+		}
+	}
+	&:not(.is-style-modern) {
+		blockquote {
 		}
 	}
 	&.has-image {
@@ -135,9 +144,22 @@
 			background-position-y: 75%;
 		}
 	}
+	&.is-style-modern,
+	&.is-style-pop {
+		&:not(.alignwide):not(.alignfull) {
+			blockquote {
+				margin-top: 3em;
+				margin-bottom: 3em;
+			}
+			hr {
+				display: none;
+			}
+		}
+	}
 	&.is-style-modern {
+		overflow: hidden;
 		.graphic {
-			width: 10em;
+			width: 5em;
 			display: inline-block;
 			position: absolute;
 			&::before,
@@ -148,7 +170,7 @@
 			}
 			&::before {
 				content: '“';
-				font-size: 10em;
+				font-size: 5em;
 				line-height: 1.5em;
 				height: 1em;
 				z-index: 2;
@@ -157,13 +179,51 @@
 				content: '';
 				height: 100%;
 			}
+			@include breakpoint( $xs ) {
+				width: 10em;
+				&::before {
+					font-size: 10em;
+				}
+			}
 		}
 		blockquote {
-			width: calc(100% - 10em);
+			width: calc(100% - 5em);
 			margin-left: auto;
-			padding: 1em;
+			padding: 0 1em;
+			@include breakpoint( $xs ) {
+				width: calc(100% - 10em);
+			}
 		}
-		&.has-image {
+	}
+	&.is-style-pop {
+		.graphic {
+			&::before {
+				content: '“';
+				font-size: 30em;
+				line-height: 1.5em;
+				height: 1em;
+				z-index: 2;
+				top: -0.5em;
+				left: 0;
+				position: absolute;
+			}
+		}
+		blockquote {
+			width: calc(100% - 5em);
+			margin-left: auto;
+			padding: 0 1em;
+			@include breakpoint( $xs ) {
+				width: calc(100% - 10em);
+			}
+		}
+		&.alignwide,
+		&.alignfull {
+			.graphic {
+				&::before {
+					top: 50%;
+					margin-top: -0.5em;
+				}
+			}
 		}
 	}
 	.tint {
