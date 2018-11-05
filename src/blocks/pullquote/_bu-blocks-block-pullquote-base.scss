@@ -9,6 +9,9 @@
 //
 
 .wp-block-pullquote {
+	background-size: 0%;
+	background-repeat: no-repeat;
+	background-position: center center;
 	text-align: center;
 	hr {
 		margin: 2em 0;
@@ -17,13 +20,41 @@
 		margin: 0;
 		padding: 1em 0px;
 		position: relative;
+		z-index: 3;
+	}
+	.graphic {
+		background-repeat: no-repeat;
+		background-size: 0%;
+		&:not(.is-style-modern) {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		.tint {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 1;
+			background: none;
+		}
+	}
+	.wp-block-pullquote-image {
+		position: absolute;
+		object-fit: cover;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			padding: 0.001em 0;
 			&::before,
 			&::after {
-				background: #fff;
 				box-sizing: content-box;
 				display: block;
 				font-size: 4em;
@@ -44,6 +75,103 @@
 				content: '”';
 				bottom: 0.25em;
 			}
+			hr {
+				border: none;
+				height: 1px;
+				position: relative;
+				&::before,
+				&::after {
+					content: '';
+					background: #000;
+					display: block;
+					position: absolute;
+					width: calc(50% - 3em);
+					top: 0;
+					bottom: 0;
+				}
+				&::before {
+					left: 0;
+				}
+				&::after {
+					right: 0;
+				}
+			}
+		}
+	}
+	&.has-image {
+		.graphic {
+			background-size: cover;
+			background-position-x: 50%;
+			background-position-y: 50%;
+		}
+	}
+	&.is-style-image-x-left {
+		.graphic {
+			background-position-x: 25%;
+		}
+	}
+	&.is-style-image-x-center {
+		.graphic {
+			background-position-x: 50%;
+		}
+	}
+	&.is-style-image-x-right {
+		.graphic {
+			background-position-x: 75%;
+		}
+	}
+	&.is-style-image-y-top {
+		.graphic {
+			background-position-y: 25%;
+		}
+	}
+	&.is-style-image-y-middle {
+		.graphic {
+			background-position-y: 50%;
+		}
+	}
+	&.is-style-image-y-bottom {
+		.graphic {
+			background-position-y: 75%;
+		}
+	}
+	&.is-style-modern {
+		.graphic {
+			width: 10em;
+			display: inline-block;
+			position: absolute;
+			&::before,
+			&::after {
+				display: inline-block;
+				vertical-align: middle;
+				position: relative;
+			}
+			&::before {
+				content: '“';
+				font-size: 10em;
+				line-height: 1.5em;
+				height: 1em;
+				z-index: 2;
+			}
+			&::after{
+				content: '';
+				height: 100%;
+			}
+		}
+		blockquote {
+			width: calc(100% - 10em);
+			margin-left: auto;
+			padding: 1em;
+		}
+		&.has-image {
+		}
+	}
+	.tint {
+		display: none;
+	}
+	&.has-tint {
+		.tint {
+			display: block;
 		}
 	}
 }
