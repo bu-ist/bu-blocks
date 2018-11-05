@@ -64,7 +64,6 @@ $scope: blocks-get( 'scope' );
 		blockquote {
 			&::before,
 			&::after {
-				background: blocks-get( 'color-page');
 				color: blocks-get( 'color-primary');
 				font-family: blocks-get( 'font-family-secondary');
 			}
@@ -72,6 +71,37 @@ $scope: blocks-get( 'scope' );
 			}
 			&::after {
 			}
+		}
+	}
+	&.has-image {
+		&:not(.is-style-modern) {
+			blockquote {
+				color: blocks-get( 'color-page');
+				&::before,
+				&::after {
+					color: blocks-get( 'color-page');
+				}
+				&::before {
+				}
+				&::after {
+				}
+			}
+		}
+		&.has-tint-dark {
+			&:not(.is-style-modern) {
+			}
+		}
+
+	}
+	&.is-style-modern {
+		.graphic {
+			background-color:  blocks-get( 'color-primary');
+			color: blocks-get( 'color-page');
+		}
+	}
+	&.is-style-tint {
+		.tint {
+			background-color: blocks-get( 'color-tint');
 		}
 	}
 }
