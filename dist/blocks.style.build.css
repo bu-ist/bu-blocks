@@ -238,46 +238,41 @@ a:visited {
   border-radius: 6px;
   text-decoration: none;
   color: inherit;
-  text-align: center; }
+  text-align: center;
+  text-transform: uppercase; }
   .wp-block-button:hover {
     background: #ccc; }
   .wp-block-button[class*="icon-"]::before {
     font-size: 0.7em;
     color: #aaa; }
-
-.is-style-outline {
-  border: 2px solid #ddd;
-  background: transparent; }
-  .is-style-outline:hover {
-    background: transparent;
-    border-color: #ccc; }
-
-.is-style-squared {
-  border-radius: 0; }
-
-.is-style-text {
-  background: transparent;
-  padding: 0.5em 0; }
-  .is-style-text:hover {
-    background: transparent; }
-
-.has-dark-theme {
-  background: #333;
-  color: #fff !important; }
-  .has-dark-theme:hover {
-    background: #222; }
-
-.has-light-theme {
-  background: #eee; }
-  .has-light-theme:hover {
-    background: #ddd; }
-
-.align-icon-right::before {
-  float: right;
-  display: block;
-  padding-top: 9px;
-  margin-left: 0.5em;
-  margin-right: 0; }
-
-.align-icon-left::before {
-  padding-top: -2px; }
+  .wp-block-button.is-style-outline {
+    border: 2px solid #ddd;
+    background: transparent !important; }
+    .wp-block-button.is-style-outline:hover {
+      background: transparent;
+      border-color: #ccc; }
+  .wp-block-button.is-style-squared {
+    border-radius: 0; }
+  .wp-block-button.is-style-text {
+    background: transparent !important;
+    padding: 0.5em 0;
+    text-decoration: underline; }
+    .wp-block-button.is-style-text:hover {
+      background: transparent !important; }
+  .wp-block-button.has-dark-theme {
+    background: #333;
+    color: #fff !important; }
+    .wp-block-button.has-dark-theme:hover {
+      background: #222; }
+  .wp-block-button.has-light-theme {
+    background: #eee; }
+    .wp-block-button.has-light-theme:hover {
+      background: #ddd; }
+  .wp-block-button.align-icon-right::before {
+    float: right;
+    display: block;
+    padding-top: 9px;
+    margin-left: 0.5em;
+    margin-right: 0; }
+  .wp-block-button.align-icon-left::before {
+    padding-top: -2px; }
