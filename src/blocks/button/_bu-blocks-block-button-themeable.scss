@@ -56,20 +56,20 @@ $current-map: $blocks-block-button-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-button {
-	background: blocks-get( 'background-color-default' );
+	background: blocks-get( 'color-secondary' );
+	border-radius: blocks-get( 'border-radius' );
+	font-family: blocks-get( 'font-family-tertiary' );
 
-		a,
-		.wp-block-editorial-button-overlay-close,
-		.wp-block-editorial-button-overlay-close::before {
-			color: blocks-get( 'color-primary-text' );
-		}
+	&.is-style-outline {
+		border-color: blocks-get( 'color-secondary' );
+	}
+
+	&[class*="icon-"]::before {
+		color: blocks-get( 'font-color-base' );
+	}
 
 	&.has-dark-theme {
 		background: blocks-get( 'background-color-dark' );
-
-		p {
-			color: blocks-get( 'font-color-theme-dark' );
-		}
 	}
 
 	&.has-light-theme {
@@ -78,18 +78,98 @@ $scope: blocks-get( 'scope' );
 
 	&.has-primary-theme {
 		background: blocks-get( 'color-primary' );
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-primary' );
+		}
 	}
 
 	&.has-secondary-theme {
 		background: blocks-get( 'color-secondary' );
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-secondary' );
+		}
 	}
 
 	&.has-tertiary-theme {
 		background: blocks-get( 'color-tertiary' );
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-tertiary' );
+		}
 	}
 
 	&.has-quaternary-theme {
 		background: blocks-get( 'color-quaternary' );
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-quaternary' );
+		}
 	}
 }
+
+.is-style-outline,
+.is-style-text {
+	&.#{$scope}-block-button {
+		&[class*="icon-"] {
+			&::before {
+				color: blocks-get( 'font-color-base' );
+			}
+		}
+	}
+}
+
+.has-primary-theme {
+	&.#{$scope}-block-button {
+		&.is-style-outline,
+		&.is-style-text {
+			&[class*="icon-"] {
+				&::before {
+					color: blocks-get( 'color-primary' );
+				}
+			}
+		}
+	}
+}
+
+.has-secondary-theme {
+	&.#{$scope}-block-button {
+		&.is-style-outline,
+		&.is-style-text {
+			&[class*="icon-"] {
+				&::before {
+					color: blocks-get( 'color-secondary' );
+				}
+			}
+		}
+	}
+}
+
+.has-tertiary-theme {
+	&.#{$scope}-block-button {
+		&.is-style-outline,
+		&.is-style-text {
+			&[class*="icon-"] {
+				&::before {
+					color: blocks-get( 'color-tertiary' );
+				}
+			}
+		}
+	}
+}
+
+.has-quaternary-theme {
+	&.#{$scope}-block-button {
+		&.is-style-outline,
+		&.is-style-text {
+			&[class*="icon-"] {
+				&::before {
+					color: blocks-get( 'color-quaternary' );
+				}
+			}
+		}
+	}
+}
+
 
