@@ -21,24 +21,53 @@ $grid-base: ($column-base * 12) +  ($gutter-base * 11) +  ($margin-base * 2);
 	width: ( $column-base * $number ) + ( $gutter-base * ( $number - 1 ) ) + px;
 }
 
-@mixin set-column-width( $number, $break:null ) {
-	// @if $break == $lg {
-	// 	@include breakpoint( $break ) {
-	// 		@include set-column-width-function-px($number);
-	// 	}
-	// }
-	@if ($break) {
-		@include breakpoint( $break ) {
-			@include set-column-width-function($number);
-		}
-		@include breakpoint( $lg ) {
-			@include set-column-width-function-px($number);
+@mixin set-column-width( $for-base:null, $for-xs:null, $for-sm:null, $for-md:null, $for-lg:null, $for-xl:null ) {
+	@if ($for-base != null) {
+		@include set-column-width-function( $for-base );
+	}
+	@if ($for-xs != null) {
+		@include breakpoint( $xs ) {
+			@include set-column-width-function( $for-xs );
 		}
 	}
-	@else {
-		@include set-column-width-function($number);
+	@if ($for-sm != null) {
+		@include breakpoint( $sm ) {
+			@include set-column-width-function( $for-sm );
+		}
+	}
+	@if ($for-md != null) {
+		@include breakpoint( $md ) {
+			@include set-column-width-function( $for-md );
+		}
+	}
+	@if ($for-lg != null) {
 		@include breakpoint( $lg ) {
-			@include set-column-width-function-px($number);
+			@include set-column-width-function( $for-lg );
+		}
+	}
+	@if $for-xl {
+		@include breakpoint( $xl ) {
+			@include set-column-width-function-px( $for-xl );
+		}
+	}
+	@else if $for-lg {
+		@include breakpoint( $xl ) {
+			@include set-column-width-function-px( $for-md );
+		}
+	}
+	@else if $for-md {
+		@include breakpoint( $xl ) {
+			@include set-column-width-function-px( $for-md );
+		}
+	}
+	@else if $for-sm {
+		@include breakpoint( $xl ) {
+			@include set-column-width-function-px( $for-sm );
+		}
+	}
+	@else if $for-xs {
+		@include breakpoint( $xl ) {
+			@include set-column-width-function-px( $for-xs );
 		}
 	}
 }
@@ -48,15 +77,13 @@ $grid-base: ($column-base * 12) +  ($gutter-base * 11) +  ($margin-base * 2);
 	margin-right: auto;
 
 	&:not( .alignwide ):not( .alignfull ) {
-		@include set-column-width(10, );
-		@include set-column-width(8, $md);
-		@include set-column-width(6, $lg);
+		@include set-column-width( $for-base:12, $for-sm:10, $for-md:8 );
 
 	}
 }
 
 .content-area > *.alignwide { // TO DO: Move to global location
-	max-width: 1024px;
+	@include set-column-width( $for-base:12, $for-sm:12, $for-md:10 );
 }
 
 .bu-blocks-modal-noscroll {
