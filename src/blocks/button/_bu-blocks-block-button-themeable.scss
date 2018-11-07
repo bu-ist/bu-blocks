@@ -56,55 +56,108 @@ $current-map: $blocks-block-button-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-button {
-	background: blocks-get( 'color-secondary' );
 	border-radius: blocks-get( 'border-radius' );
 	font-family: blocks-get( 'font-family-tertiary' );
-
-	&.is-style-outline {
-		border-color: blocks-get( 'color-secondary' );
-	}
 
 	&[class*="icon-"]::before {
 		color: blocks-get( 'font-color-base' );
 	}
 
-	&.has-dark-theme {
-		background: blocks-get( 'background-color-dark' );
+	&.is-style-default {
+		.has-dark-theme & {
+			background: blocks-get( 'background-color-dark' );
+		}
+
+		.has-light-theme & {
+			background: blocks-get( 'background-color-light' );
+		}
 	}
 
-	&.has-light-theme {
-		background: blocks-get( 'background-color-light' );
+	&.is-style-outline {
+		border-color: blocks-get( 'color-secondary' );
+
+		&:hover {
+			border-color: blocks-get( 'color-secondary-darker' );
+		}
+
+		&.has-dark-theme {
+			border-color: blocks-get( 'background-color-dark' );
+		}
+
+		&.has-light-theme {
+			border-color: blocks-get( 'background-color-light' );
+		}
 	}
 
 	&.has-primary-theme {
-		background: blocks-get( 'color-primary' );
+		&.is-style-default {
+			background: blocks-get( 'color-primary' );
+
+			&:hover {
+				background: blocks-get( 'color-primary-darker' );
+			}
+		}
 
 		&.is-style-outline {
 			border-color: blocks-get( 'color-primary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-primary-darker' );
+			}
 		}
 	}
 
 	&.has-secondary-theme {
-		background: blocks-get( 'color-secondary' );
+		&.is-style-default {
+			background: blocks-get( 'color-secondary' );
+
+			&:hover {
+				background: blocks-get( 'color-secondary-darker' );
+			}
+		}
 
 		&.is-style-outline {
 			border-color: blocks-get( 'color-secondary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-secondary-darker' );
+			}
 		}
 	}
 
 	&.has-tertiary-theme {
-		background: blocks-get( 'color-tertiary' );
+		&.is-style-default {
+			background: blocks-get( 'color-tertiary' );
+
+			&:hover {
+				background: blocks-get( 'color-tertiary-darker' );
+			}
+		}
 
 		&.is-style-outline {
 			border-color: blocks-get( 'color-tertiary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-tertiary-darker' );
+			}
 		}
 	}
 
 	&.has-quaternary-theme {
-		background: blocks-get( 'color-quaternary' );
+		&.is-style-default {
+			background: blocks-get( 'color-quaternary' );
+
+			&:hover {
+				background: blocks-get( 'color-quaternary-darker' );
+			}
+		}
 
 		&.is-style-outline {
 			border-color: blocks-get( 'color-quaternary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-quaternary-darker' );
+			}
 		}
 	}
 }
