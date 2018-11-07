@@ -14,19 +14,15 @@ a:visited { // TO DO: move to more global location
 }
 
 .wp-block-button {
-	@include transition( all, 0.2s, ease-in-out, 0s)
+	@include transition( all, 0.2s, ease-in-out, 0s);
 	display: inline-block;
-	padding: 0.5em 1em;
-	background: $color-grayscale-d;
+	background: transparent;
 	border-radius: 6px;
 	text-decoration: none;
 	color: inherit;
 	text-align: center;
 	text-transform: uppercase;
-
-	&:hover {
-		background: $color-grayscale-c;
-	}
+	padding: 0.5em 0;
 
 	&[class*="icon-"] {
 		&::before {
@@ -35,13 +31,58 @@ a:visited { // TO DO: move to more global location
 		}
 	}
 
-	&.is-style-outline {
-		border: 2px solid $color-grayscale-d;
-		background: transparent !important;
+	&.is-style-default,
+	&.is-style-outline,
+	&.is-style-squared {
+		padding: 0.5em 1em;
+	}
+
+	&.is-style-default {
+		background: $color-grayscale-d;
 
 		&:hover {
-			background: transparent;
+			background: $color-grayscale-c;
+		}
+
+		&.has-dark-theme {
+			background: $color-grayscale-3;
+			color: $color-grayscale-f !important;
+
+			&:hover {
+				background: $color-grayscale-2;
+			}
+		}
+
+		&.has-light-theme {
+			background: $color-grayscale-e;
+
+			&:hover {
+				background: $color-grayscale-d;
+			}
+		}
+	}
+
+	&.is-style-outline {
+		border: 2px solid $color-grayscale-d;
+
+		&:hover {
 			border-color: $color-grayscale-c;
+		}
+
+		&.has-dark-theme {
+			border-color: $color-grayscale-4;
+
+			&:hover {
+				border-color: $color-grayscale-0;
+			}
+		}
+
+		&.has-light-theme {
+			border-color: $color-grayscale-e;
+
+			&:hover {
+				border-color: $color-grayscale-d;
+			}
 		}
 	}
 
@@ -50,29 +91,10 @@ a:visited { // TO DO: move to more global location
 	}
 
 	&.is-style-text {
-		background: transparent !important;
-		padding: 0.5em 0;
 		text-decoration: underline;
 
 		&:hover {
-			background: transparent !important;
-		}
-	}
-
-	&.has-dark-theme {
-		background: $color-grayscale-3;
-		color: $color-grayscale-f !important;
-
-		&:hover {
-			background: $color-grayscale-2;
-		}
-	}
-
-	&.has-light-theme {
-		background: $color-grayscale-e;
-
-		&:hover {
-			background: $color-grayscale-d;
+			text-decoration: none;
 		}
 	}
 
@@ -80,7 +102,7 @@ a:visited { // TO DO: move to more global location
 		&::before {
 			float: right;
 			display: block;
-			padding-top: 9px;
+			padding-top: 7px;
 			margin-left: 0.5em;
 			margin-right: 0;
 		}
