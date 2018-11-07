@@ -233,45 +233,53 @@ a:visited {
   -o-transition: all, 0.2s, ease-in-out, 0s;
   transition: all, 0.2s, ease-in-out, 0s;
   display: inline-block;
-  padding: 0.5em 1em;
-  background: #ddd;
+  background: transparent;
   border-radius: 6px;
   text-decoration: none;
   color: inherit;
   text-align: center;
-  text-transform: uppercase; }
-  .wp-block-button:hover {
-    background: #ccc; }
+  text-transform: uppercase;
+  padding: 0.5em 0; }
   .wp-block-button[class*="icon-"]::before {
     font-size: 0.7em;
     color: #aaa; }
+  .wp-block-button.is-style-default, .wp-block-button.is-style-outline, .wp-block-button.is-style-squared {
+    padding: 0.5em 1em; }
+  .wp-block-button.is-style-default {
+    background: #ddd; }
+    .wp-block-button.is-style-default:hover {
+      background: #ccc; }
+    .wp-block-button.is-style-default.has-dark-theme {
+      background: #333;
+      color: #fff !important; }
+      .wp-block-button.is-style-default.has-dark-theme:hover {
+        background: #222; }
+    .wp-block-button.is-style-default.has-light-theme {
+      background: #eee; }
+      .wp-block-button.is-style-default.has-light-theme:hover {
+        background: #ddd; }
   .wp-block-button.is-style-outline {
-    border: 2px solid #ddd;
-    background: transparent !important; }
+    border: 2px solid #ddd; }
     .wp-block-button.is-style-outline:hover {
-      background: transparent;
       border-color: #ccc; }
+    .wp-block-button.is-style-outline.has-dark-theme {
+      border-color: #444; }
+      .wp-block-button.is-style-outline.has-dark-theme:hover {
+        border-color: #000; }
+    .wp-block-button.is-style-outline.has-light-theme {
+      border-color: #eee; }
+      .wp-block-button.is-style-outline.has-light-theme:hover {
+        border-color: #ddd; }
   .wp-block-button.is-style-squared {
     border-radius: 0; }
   .wp-block-button.is-style-text {
-    background: transparent !important;
-    padding: 0.5em 0;
     text-decoration: underline; }
     .wp-block-button.is-style-text:hover {
-      background: transparent !important; }
-  .wp-block-button.has-dark-theme {
-    background: #333;
-    color: #fff !important; }
-    .wp-block-button.has-dark-theme:hover {
-      background: #222; }
-  .wp-block-button.has-light-theme {
-    background: #eee; }
-    .wp-block-button.has-light-theme:hover {
-      background: #ddd; }
+      text-decoration: none; }
   .wp-block-button.align-icon-right::before {
     float: right;
     display: block;
-    padding-top: 9px;
+    padding-top: 7px;
     margin-left: 0.5em;
     margin-right: 0; }
   .wp-block-button.align-icon-left::before {
