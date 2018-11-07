@@ -8,12 +8,50 @@
 //
 //
 
+
+$column-base: 69;
+$gutter-base: 60;
+$margin-base: $gutter-base + 10; //page margin
+$grid-base: ($column-base * 12) +  ($gutter-base * 11) +  ($margin-base * 2);
+
+@mixin set-column-width-function( $number ) {
+	width: ( ( $column-base / $grid-base ) * $number * 100 ) + ( ( $gutter-base / $grid-base ) * ( $number - 1 ) * 100 ) + vw;
+}
+@mixin set-column-width-function-px( $number ) {
+	width: ( $column-base * $number ) + ( $gutter-base * ( $number - 1 ) ) + px;
+}
+
+@mixin set-column-width( $number, $break:null ) {
+	// @if $break == $lg {
+	// 	@include breakpoint( $break ) {
+	// 		@include set-column-width-function-px($number);
+	// 	}
+	// }
+	@if ($break) {
+		@include breakpoint( $break ) {
+			@include set-column-width-function($number);
+		}
+		@include breakpoint( $lg ) {
+			@include set-column-width-function-px($number);
+		}
+	}
+	@else {
+		@include set-column-width-function($number);
+		@include breakpoint( $lg ) {
+			@include set-column-width-function-px($number);
+		}
+	}
+}
+
 .content-area > * { // TO DO: Move to global location
 	margin-left: auto;
 	margin-right: auto;
 
 	&:not( .alignwide ):not( .alignfull ) {
-		max-width: 740px;
+		@include set-column-width(10, );
+		@include set-column-width(8, $md);
+		@include set-column-width(6, $lg);
+
 	}
 }
 
