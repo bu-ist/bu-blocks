@@ -24,7 +24,7 @@ $current-map: $blocks-block-headline-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-headline {
+.#{$scope}-block-editorial-headline {
 	span {
 		color:  blocks-get( 'font-color-heading-small');
 	}
