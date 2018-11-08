@@ -10,7 +10,7 @@
 
 $dropcap-size:		4em;
 
-.wp-block-introparagraph {
+.wp-block-editorial-introparagraph {
 	p {
 		background-size: 0%;
 	}
@@ -24,7 +24,7 @@ $dropcap-size:		4em;
 		}
 	}
 	&.is-style-split {
-		.wp-block-introparagraph-content {
+		.wp-block-editorial-introparagraph-content {
 			column-count: 2;
 			column-gap: 2em;
 		}
@@ -54,7 +54,7 @@ $dropcap-size:		4em;
 		}
 	}
 	&.is-style-dropcap-image {
-		.wp-block-introparagraph-content {
+		.wp-block-editorial-introparagraph-content {
 			position: relative;
 		}
 		svg  {
@@ -81,7 +81,7 @@ $dropcap-size:		4em;
 	}
 }
 
-.wp-block-introparagraph-toc {
+.wp-block-editorial-introparagraph-toc {
 	li {
 		font-style:italic;
 		font-size:0.9em;
