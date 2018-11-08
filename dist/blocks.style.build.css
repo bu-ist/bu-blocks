@@ -257,64 +257,63 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-editorial-introparagraph p {
-  background-size: 0%; }
+a:active,
+a:visited {
+  color: inherit; }
 
-.wp-block-editorial-introparagraph svg {
-  display: none; }
-
-.wp-block-editorial-introparagraph.is-style-large p:first-of-type {
-  font-size: 1.25em; }
-
-.wp-block-editorial-introparagraph.is-style-split .wp-block-editorial-introparagraph-content {
-  -webkit-column-count: 2;
-          column-count: 2;
-  -webkit-column-gap: 2em;
-          column-gap: 2em; }
-
-.wp-block-editorial-introparagraph.has-dropcap p:first-of-type:first-letter,
-.wp-block-editorial-introparagraph.has-dropcap svg text {
-  font-weight: 700;
+.wp-block-button {
+  -webkit-transition: all, 0.2s, ease-in-out, 0s;
+  -o-transition: all, 0.2s, ease-in-out, 0s;
+  transition: all, 0.2s, ease-in-out, 0s;
   display: inline-block;
-  float: left;
-  font-size: 4em;
-  line-height: 1em;
-  margin: 0 0.25em .125em 0; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-boxed p:first-of-type:first-letter {
-  color: white;
-  padding: 0.125em 0.25em; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-outlined p:first-of-type:first-letter {
-  border-width: 2px;
-  border-style: solid;
-  padding: 0.125em 0.25em; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-image .wp-block-editorial-introparagraph-content {
-  position: relative; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-image svg {
-  position: absolute;
-  display: block; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-image svg,
-.wp-block-editorial-introparagraph.is-style-dropcap-image text {
-  height: 4em;
-  width: 4em; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-image .dropcap-filltext {
-  fill: url(#dropcap-texture); }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-image p:first-of-type:first-letter {
-  color: transparent; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-primary p:first-of-type:first-letter,
-.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-secondary p:first-of-type:first-letter {
-  color: transparent; }
-
-.wp-block-editorial-introparagraph-toc li {
-  font-style: italic;
-  font-size: 0.9em; }
-
-.wp-block-editorial-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
-  text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
+  background: transparent;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.5em 0; }
+  .wp-block-button[class*="icon-"]::before {
+    font-size: 0.7em;
+    color: #aaa; }
+  .wp-block-button.is-style-default, .wp-block-button.is-style-outline, .wp-block-button.is-style-squared {
+    padding: 0.5em 1em; }
+  .wp-block-button.is-style-default {
+    background: #ddd; }
+    .wp-block-button.is-style-default:hover {
+      background: #ccc; }
+    .wp-block-button.is-style-default.has-dark-theme {
+      background: #333;
+      color: #fff !important; }
+      .wp-block-button.is-style-default.has-dark-theme:hover {
+        background: #222; }
+    .wp-block-button.is-style-default.has-light-theme {
+      background: #eee; }
+      .wp-block-button.is-style-default.has-light-theme:hover {
+        background: #ddd; }
+  .wp-block-button.is-style-outline {
+    border: 2px solid #ddd; }
+    .wp-block-button.is-style-outline:hover {
+      border-color: #ccc; }
+    .wp-block-button.is-style-outline.has-dark-theme {
+      border-color: #444; }
+      .wp-block-button.is-style-outline.has-dark-theme:hover {
+        border-color: #000; }
+    .wp-block-button.is-style-outline.has-light-theme {
+      border-color: #eee; }
+      .wp-block-button.is-style-outline.has-light-theme:hover {
+        border-color: #ddd; }
+  .wp-block-button.is-style-squared {
+    border-radius: 0; }
+  .wp-block-button.is-style-text {
+    text-decoration: underline; }
+    .wp-block-button.is-style-text:hover {
+      text-decoration: none; }
+  .wp-block-button.align-icon-right::before {
+    float: right;
+    display: block;
+    padding-top: 7px;
+    margin-left: 0.5em;
+    margin-right: 0; }
+  .wp-block-button.align-icon-left::before {
+    padding-top: -2px; }
