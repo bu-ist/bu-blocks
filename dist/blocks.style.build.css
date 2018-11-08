@@ -257,6 +257,73 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.wp-block-editorial-introparagraph p {
+  background-size: 0%; }
+
+.wp-block-editorial-introparagraph svg {
+  display: none; }
+
+.wp-block-editorial-introparagraph.is-style-large p:first-of-type {
+  font-size: 1.25em; }
+
+.wp-block-editorial-introparagraph.is-style-split .wp-block-editorial-introparagraph-content {
+  -webkit-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 2em;
+          column-gap: 2em; }
+
+.wp-block-editorial-introparagraph.has-dropcap p:first-of-type:first-letter,
+.wp-block-editorial-introparagraph.has-dropcap svg text {
+  font-weight: 700;
+  display: inline-block;
+  float: left;
+  font-size: 4em;
+  line-height: 1em;
+  margin: 0 0.25em .125em 0; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed p:first-of-type:first-letter {
+  color: white;
+  padding: 0.125em 0.25em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-outlined p:first-of-type:first-letter {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0.125em 0.25em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image .wp-block-editorial-introparagraph-content {
+  position: relative; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image svg {
+  position: absolute;
+  display: block; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image svg,
+.wp-block-editorial-introparagraph.is-style-dropcap-image text {
+  height: 4em;
+  width: 4em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image .dropcap-filltext {
+  fill: url(#dropcap-texture); }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image p:first-of-type:first-letter {
+  color: transparent; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-primary p:first-of-type:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-secondary p:first-of-type:first-letter {
+  color: transparent; }
+
+.wp-block-editorial-introparagraph-toc li {
+  font-style: italic;
+  font-size: 0.9em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
+  text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 a:active,
 a:visited {
   color: inherit; }

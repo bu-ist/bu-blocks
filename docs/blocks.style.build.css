@@ -4,139 +4,44 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
 .block-sample-variant1 {
   text-align: right; }
 
 .is-style-layoutBig p {
   font-size: 2em; }
-
-.wp-block-headline {
-  display: block; }
-  .wp-block-headline .wp-block-headline-pretext,
-  .wp-block-headline .wp-block-headline-posttext {
-    display: block;
-    font-weight: 400; }
-    .wp-block-headline .wp-block-headline-pretext:empty,
-    .wp-block-headline .wp-block-headline-posttext:empty {
-      display: none; }
-
-.is-style-emphasis-weight {
-  font-weight: 100; }
-  .is-style-emphasis-weight strong {
-    font-weight: 700; }
-
-.is-style-emphasis-color strong {
-  font-weight: inherit; }
-
-h2.wp-block-headline .wp-block-headline-pretext,
-h2.wp-block-headline .wp-block-headline-posttext {
-  font-size: .66em; }
-
-h3.wp-block-headline .wp-block-headline-pretext,
-h3.wp-block-headline .wp-block-headline-posttext {
-  font-size: .75em; }
-
-h4.wp-block-headline .wp-block-headline-pretext,
-h4.wp-block-headline .wp-block-headline-posttext {
-  font-size: .8em; }
-
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-headline {
+.wp-block-editorial-headline {
   display: block; }
-  .wp-block-headline .wp-block-headline-pretext,
-  .wp-block-headline .wp-block-headline-posttext {
+  .wp-block-editorial-headline .wp-block-editorial-headline-pretext,
+  .wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     display: block;
     font-weight: 400; }
-    .wp-block-headline .wp-block-headline-pretext:empty,
-    .wp-block-headline .wp-block-headline-posttext:empty {
+    .wp-block-editorial-headline .wp-block-editorial-headline-pretext:empty,
+    .wp-block-editorial-headline .wp-block-editorial-headline-posttext:empty {
       display: none; }
+  .wp-block-editorial-headline.is-style-emphasis-weight {
+    font-weight: 100; }
+    .wp-block-editorial-headline.is-style-emphasis-weight strong {
+      font-weight: 700; }
+  .wp-block-editorial-headline.is-style-emphasis-color strong {
+    font-weight: inherit; }
 
-.is-style-emphasis-weight {
-  font-weight: 100; }
-  .is-style-emphasis-weight strong {
-    font-weight: 700; }
-
-.is-style-emphasis-color strong {
-  font-weight: inherit; }
-
-h2.wp-block-headline .wp-block-headline-pretext,
-h2.wp-block-headline .wp-block-headline-posttext {
+h2.wp-block-editorial-headline .wp-block-editorial-headline-pretext,
+h2.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   font-size: .66em; }
 
-h3.wp-block-headline .wp-block-headline-pretext,
-h3.wp-block-headline .wp-block-headline-posttext {
+h3.wp-block-editorial-headline .wp-block-editorial-headline-pretext,
+h3.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   font-size: .75em; }
 
-h4.wp-block-headline .wp-block-headline-pretext,
-h4.wp-block-headline .wp-block-headline-posttext {
+h4.wp-block-editorial-headline .wp-block-editorial-headline-pretext,
+h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   font-size: .8em; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
 /**
  * #.# Common SCSS
  *
@@ -158,59 +63,6 @@ h4.wp-block-headline .wp-block-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 33.33333%; } }
-
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-bu-blocks-cgb {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.block-test-class {
-  background: blue;
-  border-color: red; }
-
-.block-sample-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
-
-.wp-block-headline {
-  display: block; }
-  .wp-block-headline .wp-block-headline-pretext,
-  .wp-block-headline .wp-block-headline-posttext {
-    display: block;
-    font-weight: 400; }
-    .wp-block-headline .wp-block-headline-pretext:empty,
-    .wp-block-headline .wp-block-headline-posttext:empty {
-      display: none; }
-
-.is-style-emphasis-weight {
-  font-weight: 100; }
-  .is-style-emphasis-weight strong {
-    font-weight: 700; }
-
-.is-style-emphasis-color strong {
-  font-weight: inherit; }
-
-h2.wp-block-headline .wp-block-headline-pretext,
-h2.wp-block-headline .wp-block-headline-posttext {
-  font-size: .66em; }
-
-h3.wp-block-headline .wp-block-headline-pretext,
-h3.wp-block-headline .wp-block-headline-posttext {
-  font-size: .75em; }
-
-h4.wp-block-headline .wp-block-headline-pretext,
-h4.wp-block-headline .wp-block-headline-posttext {
-  font-size: .8em; }
 
 .wp-block-editorial-aside {
   border: 1px solid #ddd;
@@ -256,3 +108,279 @@ h4.wp-block-headline .wp-block-headline-posttext {
 
 .has-primary-background h2 {
   color: #fff; }
+@charset "UTF-8";
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-editorial-modal-callout, .wp-block-editorial-modal-content {
+  float: left;
+  position: relative;
+  min-height: 1px; }
+
+.wp-block-editorial-modal-callout, .wp-block-editorial-modal-content {
+  width: 100%; }
+
+.wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close, .wp-block-editorial-modal-content .lt-ie9:hover .wp-block-editorial-modal-overlay-close {
+  -ms-zoom: 1; }
+
+.wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close span {
+  display: none; }
+
+.wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
+  content: ""; }
+
+.content-area > * {
+  margin-left: auto;
+  margin-right: auto; }
+  .content-area > *:not(.alignwide):not(.alignfull) {
+    max-width: 740px; }
+
+.content-area > *.alignwide {
+  max-width: 1024px; }
+
+.bu-blocks-modal-noscroll {
+  overflow: hidden; }
+
+.wp-block-editorial-modal-callout {
+  background: #ddd;
+  text-align: center;
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 60px; }
+  .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
+    width: 100%; }
+    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
+      display: block;
+      height: auto;
+      width: 100%; }
+    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
+      -o-object-fit: cover;
+         object-fit: cover; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-callout h1,
+    .wp-block-editorial-modal-callout p {
+      color: #fff; } }
+
+.wp-block-editorial-modal-content {
+  display: none;
+  padding: 60px 24px 24px;
+  background: #ddd;
+  position: relative; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-content {
+      padding: 90px 60px 60px; } }
+  .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center; }
+    @media screen and (min-width: 500px) {
+      .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close {
+        top: 40px; } }
+    .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
+      color: #666; }
+
+.wp-block-editorial-modal-callout-content {
+  max-width: 90%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 20px; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-callout-content {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+          align-items: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      padding: 40px; } }
+
+.has-light-theme .wp-block-editorial-modal-content {
+  background: #eee; }
+
+.has-dark-theme .wp-block-editorial-modal-content {
+  background: #333; }
+
+.has-dark-theme .wp-block-editorial-modal-overlay-close,
+.has-dark-theme p {
+  color: #eee; }
+
+.has-primary-theme .wp-block-editorial-modal-content a,
+.has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
+.has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
+.has-primary-theme .wp-block-editorial-modal-content p,
+.has-secondary-theme .wp-block-editorial-modal-content a,
+.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
+.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
+.has-secondary-theme .wp-block-editorial-modal-content p {
+  color: #111; }
+
+.wp-block-editorial-modal-content.show-overlay {
+  display: block;
+  position: fixed;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-editorial-introparagraph p {
+  background-size: 0%; }
+
+.wp-block-editorial-introparagraph svg {
+  display: none; }
+
+.wp-block-editorial-introparagraph.is-style-large p:first-of-type {
+  font-size: 1.25em; }
+
+.wp-block-editorial-introparagraph.is-style-split .wp-block-editorial-introparagraph-content {
+  -webkit-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 2em;
+          column-gap: 2em; }
+
+.wp-block-editorial-introparagraph.has-dropcap p:first-of-type:first-letter,
+.wp-block-editorial-introparagraph.has-dropcap svg text {
+  font-weight: 700;
+  display: inline-block;
+  float: left;
+  font-size: 4em;
+  line-height: 1em;
+  margin: 0 0.25em .125em 0; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed p:first-of-type:first-letter {
+  color: white;
+  padding: 0.125em 0.25em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-outlined p:first-of-type:first-letter {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0.125em 0.25em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image .wp-block-editorial-introparagraph-content {
+  position: relative; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image svg {
+  position: absolute;
+  display: block; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image svg,
+.wp-block-editorial-introparagraph.is-style-dropcap-image text {
+  height: 4em;
+  width: 4em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image .dropcap-filltext {
+  fill: url(#dropcap-texture); }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image p:first-of-type:first-letter {
+  color: transparent; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-primary p:first-of-type:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-secondary p:first-of-type:first-letter {
+  color: transparent; }
+
+.wp-block-editorial-introparagraph-toc li {
+  font-style: italic;
+  font-size: 0.9em; }
+
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
+  text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+a:active,
+a:visited {
+  color: inherit; }
+
+.wp-block-button {
+  -webkit-transition: all, 0.2s, ease-in-out, 0s;
+  -o-transition: all, 0.2s, ease-in-out, 0s;
+  transition: all, 0.2s, ease-in-out, 0s;
+  display: inline-block;
+  background: transparent;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.5em 0; }
+  .wp-block-button[class*="icon-"]::before {
+    font-size: 0.7em;
+    color: #aaa; }
+  .wp-block-button.is-style-default, .wp-block-button.is-style-outline, .wp-block-button.is-style-squared {
+    padding: 0.5em 1em; }
+  .wp-block-button.is-style-default {
+    background: #ddd; }
+    .wp-block-button.is-style-default:hover {
+      background: #ccc; }
+    .wp-block-button.is-style-default.has-dark-theme {
+      background: #333;
+      color: #fff !important; }
+      .wp-block-button.is-style-default.has-dark-theme:hover {
+        background: #222; }
+    .wp-block-button.is-style-default.has-light-theme {
+      background: #eee; }
+      .wp-block-button.is-style-default.has-light-theme:hover {
+        background: #ddd; }
+  .wp-block-button.is-style-outline {
+    border: 2px solid #ddd; }
+    .wp-block-button.is-style-outline:hover {
+      border-color: #ccc; }
+    .wp-block-button.is-style-outline.has-dark-theme {
+      border-color: #444; }
+      .wp-block-button.is-style-outline.has-dark-theme:hover {
+        border-color: #000; }
+    .wp-block-button.is-style-outline.has-light-theme {
+      border-color: #eee; }
+      .wp-block-button.is-style-outline.has-light-theme:hover {
+        border-color: #ddd; }
+  .wp-block-button.is-style-squared {
+    border-radius: 0; }
+  .wp-block-button.is-style-text {
+    text-decoration: underline; }
+    .wp-block-button.is-style-text:hover {
+      text-decoration: none; }
+  .wp-block-button.align-icon-right::before {
+    float: right;
+    display: block;
+    padding-top: 7px;
+    margin-left: 0.5em;
+    margin-right: 0; }
+  .wp-block-button.align-icon-left::before {
+    padding-top: -2px; }
