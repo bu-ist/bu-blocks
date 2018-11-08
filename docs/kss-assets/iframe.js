@@ -8,6 +8,8 @@
 
 	$( document ).ready(function() {
 
+		var kssStorage = window.localStorage;
+
 		/*
 
 		Loop through all example markup blocks
@@ -27,7 +29,7 @@
 
 			var $iframe = $(this).find('.id-kss-example-iframe');
 			var $iframeWindow = $iframe.contents();
-			var $markup = $(this).find('.id-kss-example-markup');
+			var $markup = $(this).find('.template-iframe');
 			var markup = $markup.html(); // get the current markup and store
 
 			$markup.remove(); //now remove the current (old) markup example
@@ -45,8 +47,16 @@
 				var script = $iframe[0].contentWindow.document.createElement("script");
 				script.type = "text/javascript";
 				script.src = "kss-assets/iframe-scripts.js";
-				$iframe[0].contentWindow.document.body.appendChild(script);
+				$iframe[0].contentWindow.document.head.appendChild(script);
 			};
+
+			if( themeScriptsURL ) {
+				//lets add the theme scripts js file
+				var themescript = $iframe[0].contentWindow.document.createElement("script");
+				themescript.type = "text/javascript";
+				themescript.src = themeScriptsURL;
+				$iframe[0].contentWindow.document.head.appendChild(themescript);
+			}
 
 			if( exampleStylesheetURL ) {
 				//lets add the stylesheet from gruntfile options paramter
@@ -69,8 +79,9 @@
 			$iframeWindow
 				.contents()
 				.find( 'body' )
-				.html( "<div class='iframe-wrapper' id='" + newID + "'><div class='wrapper'><main id='main' role='main' class='content'><div class='content-container'>" + markup + "</div></main></div></div>" );
-
+				//.html( "<div class='iframe-wrapper' id='" + newID + "'><div class='wrapper'><main id='main' role='main' class='content'><div class='content-container'>" + markup + "</div></main></div></div>" );
+				.append( markup )
+				.find('.iframe-wrapper').attr("id", newID );
 
 			$(this).resizable({
 				handleSelector: ".id-kss-example-iframe-handle",
@@ -83,4 +94,48 @@
 			});
 
 		});
+
+
+
+
+
+  		//
+  		// Theme (publication) Tabs for iFrame Examples
+  		// sets up the event handlers and loads the last
+  		// state from local storage for the tabbed controller
+  		// that displays iframe examples of a block for
+  		// a specific theme (defined in the Gruntfile)
+  		//
+
+
+	    $('.id-kss-example-tabs').each(function(){
+	    	var tabs = $(this);
+
+	    	tabs.children('nav').children('a').each(function(){
+	    		var slug = $(this).attr("href").split('#')[1];
+	    		$(this).on('click', function(e){
+	    			e.preventDefault();
+
+	    			//remove active class from previous and add to new button
+	    			tabs.children('nav').children('a.active').removeClass("active");
+	    			$(this).addClass('active');
+
+	    			tabs.find('.id-kss-example-tab:visible').hide();
+	    			tabs.find('.id-kss-example-tab#'+slug).show();
+
+	    			kssStorage.setItem( 'activetheme', slug );
+	    		});
+	    	});
+
+	    });
+
+
+	    //check localstorage for a saved active theme
+	    if( kssStorage.getItem( 'activetheme' ) ) {
+	      $('.id-kss-example-tabs > nav a.'+kssStorage.getItem( 'activetheme' ) ).trigger('click');
+	    } else {
+	      $('.id-kss-example-tabs > nav').children('a').first().trigger("click");
+	    }
+
+
 	});
