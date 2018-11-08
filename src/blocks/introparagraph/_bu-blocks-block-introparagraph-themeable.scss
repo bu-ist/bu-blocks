@@ -100,16 +100,16 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 		p:first-of-type:first-letter {
-			text-shadow:	1px 1px blocks-get( 'color-gray-f'),
-							2px 2px blocks-get( 'color-gray-f'),
-							3px 3px blocks-get( 'color-gray-f'),
-							4px 4px blocks-get( 'color-gray-f'),
-							5px 5px blocks-get( 'color-gray-f'),
-							6px 6px blocks-get( 'color-gray-f'),
-							7px 7px blocks-get( 'color-gray-f'),
-							8px 8px blocks-get( 'color-gray-f'),
-							9px 9px blocks-get( 'color-gray-f'),
-							10px 10px blocks-get( 'color-gray-f');
+			text-shadow:	1px 1px blocks-get( 'color-gray-e'),
+							2px 2px blocks-get( 'color-gray-e'),
+							3px 3px blocks-get( 'color-gray-e'),
+							4px 4px blocks-get( 'color-gray-e'),
+							5px 5px blocks-get( 'color-gray-e'),
+							6px 6px blocks-get( 'color-gray-e'),
+							7px 7px blocks-get( 'color-gray-e'),
+							8px 8px blocks-get( 'color-gray-e'),
+							9px 9px blocks-get( 'color-gray-e'),
+							10px 10px blocks-get( 'color-gray-e');
 		}
 	}
 	&.is-style-dropcap-boxed {
