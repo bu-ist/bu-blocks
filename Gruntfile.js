@@ -58,6 +58,16 @@ module.exports = function( grunt ) {
 					spawn: false
 				}
 			},
+			js: {
+				files: [
+					'src/blocks-frontend.js',
+					'src/**/**/frontend.js'
+				],
+				tasks: [ 'build' ],
+				options: {
+					spawn: false
+				}
+			},
 			kss: {
 				files: [
 					'src/**/*.hbs'
@@ -76,6 +86,13 @@ module.exports = function( grunt ) {
 				src: 'dist/blocks.style.build.css',
 				dest: '_styleguide/blocks.style.build.css'
 			},
+			js: {
+				options: {
+					mode: true
+				},
+				src: 'dist/bu-blocks-frontend.js',
+				dest: '_styleguide/bu-blocks-frontend.js'
+			},
 			kssassets: {
 				cwd: 'kss-assets',  // set working folder / root to copy
 				src: '**/*',           // copy all files and subfolders
@@ -91,7 +108,7 @@ module.exports = function( grunt ) {
 				  "/blocks.style.build.css",
 				],
 				js: [
-				  "/script.js",
+				  "/bu-blocks-frontend.js",
 				],
 				extend: 'node_modules/id-kss-builder/extend',
 				gitURL: 'https://github.com/bu-ist/bu-blocks/',
@@ -105,7 +122,15 @@ module.exports = function( grunt ) {
 				dest: '_styleguide'
 			}
 		},
-
+		concat: {
+			options: {
+				separator: ';',
+			},
+			dist: {
+				src: ['src/blocks-frontend.js', 'src/blocks/**/frontend.js'],
+				dest: 'dist/bu-blocks-frontend.js',
+			},
+		},
 		browserSync: {
 			bsFiles: {
 				src : '_styleguide/*.html'
@@ -122,6 +147,7 @@ module.exports = function( grunt ) {
 	// 3. Where we tell Grunt we plan to use this plug-in.
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
+	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-kss' );
 	grunt.loadNpmTasks( 'grunt-browser-sync' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
@@ -132,7 +158,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'readme', [ 'wp_readme_to_markdown' ] );
 	grunt.registerTask( 'install',  [ 'build' ] );
 	grunt.registerTask( 'styles',   [ 'kss', 'copy:css', 'copy:kssassets' ] );
-	grunt.registerTask( 'build',    [ 'styles', 'kss', 'copy:css', 'copy:kssassets'  ] );
+	grunt.registerTask( 'build',    [ 'styles', 'kss', 'concat', 'copy:css', 'copy:js', 'copy:kssassets'  ] );
 	grunt.registerTask( 'default',  [ 'kss', 'browserSync', 'watch' ] );
 
 	grunt.util.linefeed = '\n';
