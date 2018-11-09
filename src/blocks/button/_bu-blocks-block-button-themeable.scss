@@ -77,7 +77,7 @@ $scope: blocks-get( 'scope' );
 		border-color: blocks-get( 'color-secondary' );
 
 		&:hover {
-			border-color: blocks-get( 'color-secondary-darker' );
+			border-color: blocks-get( 'color-secondary-darkest' );
 		}
 
 		&.has-dark-theme {
@@ -102,7 +102,16 @@ $scope: blocks-get( 'scope' );
 			border-color: blocks-get( 'color-primary' );
 
 			&:hover {
-				border-color: blocks-get( 'color-primary-darker' );
+				border-color: blocks-get( 'color-primary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-primary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-primary-darkest' );
 			}
 		}
 	}
@@ -120,7 +129,16 @@ $scope: blocks-get( 'scope' );
 			border-color: blocks-get( 'color-secondary' );
 
 			&:hover {
-				border-color: blocks-get( 'color-secondary-darker' );
+				border-color: blocks-get( 'color-secondary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-secondary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-secondary-darkest' );
 			}
 		}
 	}
@@ -138,7 +156,16 @@ $scope: blocks-get( 'scope' );
 			border-color: blocks-get( 'color-tertiary' );
 
 			&:hover {
-				border-color: blocks-get( 'color-tertiary-darker' );
+				border-color: blocks-get( 'color-tertiary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-tertiary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-tertiary-darkest' );
 			}
 		}
 	}
@@ -156,7 +183,16 @@ $scope: blocks-get( 'scope' );
 			border-color: blocks-get( 'color-quaternary' );
 
 			&:hover {
-				border-color: blocks-get( 'color-quaternary-darker' );
+				border-color: blocks-get( 'color-quaternary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-quaternary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quaternary-darkest' );
 			}
 		}
 	}
