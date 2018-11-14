@@ -33,7 +33,7 @@ registerBlockType( 'editorial/aside', {
 		},
 	},
 
-	edit( { attributes, setAttributes } ) {
+	edit( { attributes, setAttributes, className } ) {
 		const { colorScheme } = attributes;
 
 		return (
@@ -53,16 +53,18 @@ registerBlockType( 'editorial/aside', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<aside>
+				<aside className={ [ className, colorScheme ].join( ' ' ).trim() }>
 					<InnerBlocks />
 				</aside>
 			</Fragment>
 		);
 	},
 
-	save() {
+	save( { attributes,  className } ) {
+		const { colorScheme } = attributes;
+
 		return (
-			<aside>
+			<aside className={ [ className, colorScheme ].join( ' ' ).trim() }>
 				<InnerBlocks.Content />
 			</aside>
 		);
