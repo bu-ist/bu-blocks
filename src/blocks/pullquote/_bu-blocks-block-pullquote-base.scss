@@ -256,16 +256,18 @@
 	}
 	&.is-style-pop {
 		.graphic {
-			background-color: #f66;
-			&::before {
+			// background-color: #f66;  //for testing
+			&::before, &::after {
 				content: '“';
 				font-size: 30em;
 				line-height: 1.5em;
 				height: 1em;
 				z-index: 2;
-				top: -0.5em;
+				top: 50%;
+				margin-top: -0.5em;
 				left: 0;
 				position: absolute;
+				transform: translateX(-33%);
 			}
 		}
 		blockquote {
@@ -279,7 +281,7 @@
 		&.alignwide,
 		&.alignfull {
 			.graphic {
-				&::before {
+				&::before, &::after {
 					top: 50%;
 					margin-top: -0.5em;
 				}
@@ -319,7 +321,7 @@
 		}
 		&.alignfull {
 			.graphic {
-				&:before {
+				&:before, &:after {
 					@extend .col-offset-1;
 					@extend .col-sm-offset-2;
 					@extend .col-3;

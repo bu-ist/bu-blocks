@@ -112,6 +112,15 @@ $scope: blocks-get( 'scope' );
 			color: blocks-get( 'color-page');
 		}
 	}
+	&.is-style-pop {
+		&.has-image {
+			.graphic {
+				&::before, &::after {
+					color: blocks-get( 'background-color-light');
+				}
+			}
+		}
+	}
 	&.is-style-tint {
 		.tint {
 			background-color: blocks-get( 'color-tint');
