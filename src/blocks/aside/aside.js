@@ -12,7 +12,9 @@ import './editor.scss';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { InnerBlocks } = wp.editor;
+const { Fragment } = wp.element;
+const { PanelBody, SelectControl } = wp.components;
+const { InspectorControls, InnerBlocks } = wp.editor;
 
 // Register the block.
 registerBlockType( 'editorial/aside', {
@@ -24,12 +26,37 @@ registerBlockType( 'editorial/aside', {
 	supports: {
 		align: [ 'left', 'right' ],
 	},
+	attributes: {
+		colorScheme: {
+			type: 'string',
+			default: '',
+		},
+	},
 
-	edit() {
+	edit( { attributes, setAttributes } ) {
+		const { colorScheme } = attributes;
+
 		return (
-			<aside>
-				<InnerBlocks />
-			</aside>
+			<Fragment>
+				<InspectorControls>
+					<PanelBody title={ __( 'Color Settings' ) }>
+						<SelectControl
+							label={ __( 'Color Scheme' ) }
+							value={ colorScheme || '' }
+							onChange={ value => setAttributes( { colorScheme: value } ) }
+							options={ [
+								{ value: '', label: __( 'None' ) },
+								{ value: 'has-light-background', label: __( 'Light Background' ) },
+								{ value: 'has-dark-background', label: __( 'Dark Background' ) },
+								{ value: 'has-primary-background', label: __( 'Primary Background' ) },
+							] }
+						/>
+					</PanelBody>
+				</InspectorControls>
+				<aside>
+					<InnerBlocks />
+				</aside>
+			</Fragment>
 		);
 	},
 
