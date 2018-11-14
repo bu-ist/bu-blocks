@@ -140,8 +140,16 @@ function filter_block_categories( $categories ) {
 		),
 	);
 
+	$bu_editorial_presets = array(
+		array(
+			'slug'  => 'bu-editorial-presets',
+			'title' => __( 'Preset Editorial Blocks', 'bu-blocks' ),
+		),
+	);
+
 	return array_merge(
 		$bu_editorial,
+		$bu_editorial_presets,
 		$categories
 	);
 }
