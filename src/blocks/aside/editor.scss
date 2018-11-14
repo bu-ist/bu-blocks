@@ -4,3 +4,14 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+
+ .wp-block-editorial-aside {
+	float: none;
+}
+
+.editor-block-list__block[data-align="right"] .wp-block-editorial-aside .editor-block-list__block-edit,
+.editor-block-list__block[data-align="left"] .wp-block-editorial-aside .editor-block-list__block-edit {
+	float: none;
+	margin-left: 0;
+	margin-right: 0;
+}
