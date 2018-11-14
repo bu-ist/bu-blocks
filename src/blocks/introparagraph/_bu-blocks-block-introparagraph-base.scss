@@ -1,0 +1,89 @@
+// =================================================================
+// Intro Paragraph Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+$dropcap-size:		4em;
+
+.wp-block-editorial-introparagraph {
+	p {
+		background-size: 0%;
+	}
+	svg {
+		display: none;
+	}
+
+	&.is-style-large {
+		p:first-of-type {
+			font-size: 1.25em;
+		}
+	}
+	&.is-style-split {
+		.wp-block-editorial-introparagraph-content {
+			column-count: 2;
+			column-gap: 2em;
+		}
+	}
+	&.has-dropcap {
+		p:first-of-type:first-letter,
+		svg text {
+			font-weight: 700;
+			display: inline-block;
+			float: left;
+			font-size: $dropcap-size;
+			line-height: 1em;
+			margin: 0 0.25em .125em 0;
+		}
+	}
+	&.is-style-dropcap-boxed {
+		p:first-of-type:first-letter {
+			color: white;
+			padding: 0.125em 0.25em;
+		}
+	}
+	&.is-style-dropcap-outlined {
+		p:first-of-type:first-letter {
+			border-width: 2px;
+			border-style: solid;
+			padding: 0.125em 0.25em;
+		}
+	}
+	&.is-style-dropcap-image {
+		.wp-block-editorial-introparagraph-content {
+			position: relative;
+		}
+		svg  {
+			position: absolute;
+			display: block;
+		}
+		svg,
+		text {
+			height: $dropcap-size;
+			width: $dropcap-size;
+		}
+		.dropcap-filltext {
+			fill: url(#dropcap-texture);
+		}
+		p:first-of-type:first-letter {
+			color: transparent;
+		}
+		.has-dropcap-color-primary,
+		.has-dropcap-color-secondary {
+			p:first-of-type:first-letter {
+				color: transparent;
+			}
+		}
+	}
+}
+
+.wp-block-editorial-introparagraph-toc {
+	li {
+		font-style:italic;
+		font-size:0.9em;
+	}
+}
