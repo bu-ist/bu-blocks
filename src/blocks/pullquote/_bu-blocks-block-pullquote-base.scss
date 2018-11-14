@@ -26,6 +26,12 @@
 		z-index: 3;
 		overflow: hidden;
 	}
+	.text-container {
+		min-height: 6em;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
 	.graphic {
 		background-repeat: no-repeat;
 		background-size: 0%;
@@ -56,8 +62,6 @@
 	}
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
-			padding: 0.001em 0;
-			margin: 0 3em;
 			&::before,
 			&::after {
 				box-sizing: content-box;
@@ -74,11 +78,11 @@
 			}
 			&::before {
 				content: '“';
-				top: 0.25em;
+				top: 0.5em;
 			}
 			&::after {
 				content: '”';
-				bottom: 0.25em;
+				bottom: 0.5em;
 			}
 			hr {
 				background: none;
@@ -101,6 +105,14 @@
 				&::after {
 					right: 0;
 				}
+			}
+		}
+		&.alignfull {
+			blockquote {
+				@extend .col-12;
+				@extend .col-sm-10;
+				margin-left: auto;
+				margin-right: auto;
 			}
 		}
 	}
@@ -160,7 +172,6 @@
 	&.is-style-modern {
 		overflow: hidden;
 		.graphic {
-			width: 5em;
 			display: inline-block;
 			position: absolute;
 			&::before,
@@ -181,23 +192,71 @@
 				height: 100%;
 			}
 			@include breakpoint( $xs ) {
-				width: 10em;
 				&::before {
 					font-size: 10em;
 				}
 			}
 		}
 		blockquote {
-			width: calc(100% - 5em);
 			margin-left: auto;
 			padding: 0 1em;
-			@include breakpoint( $xs ) {
-				width: calc(100% - 10em);
+		}
+		&:not(.alignwide):not(.alignfull)  {
+			.graphic {
+				@extend .col-3;
+				@extend .col-xs-4;
+				@extend .col-sm-2;
+			}
+			blockquote {
+				@extend .col-offset-3;
+				@extend .col-xs-offset-4;
+				@extend .col-sm-offset-2;
+				@extend .col-9;
+				@extend .col-xs-8;
+				@extend .col-sm-6;
+			}
+		}
+		&.alignwide {
+			.graphic {
+				margin-top: 2em;
+				margin-bottom: 2em;
+				@extend .col-3;
+				@extend .col-xs-4;
+				@extend .col-sm-3;
+			}
+			blockquote {
+				@extend .col-offset-3;
+				@extend .col-xs-offset-4;
+				@extend .col-sm-offset-3;
+				@extend .col-9;
+				@extend .col-xs-8;
+				@extend .col-sm-7;
+			}
+		}
+		&.alignfull {
+			.graphic {
+				margin-top: 2em;
+				margin-bottom: 2em;
+				@extend .col-offset-1;
+				@extend .col-sm-offset-2;
+				@extend .col-3;
+				@extend .col-xs-4;
+				@extend .col-sm-3;
+				@extend .col-sm-3;
+			}
+			blockquote {
+				@extend .col-offset-4;
+				@extend .col-xs-offset-5;
+				@extend .col-sm-offset-5;
+				@extend .col-9;
+				@extend .col-xs-8;
+				@extend .col-sm-7;
 			}
 		}
 	}
 	&.is-style-pop {
 		.graphic {
+			background-color: #f66;
 			&::before {
 				content: '“';
 				font-size: 30em;
@@ -225,6 +284,66 @@
 					margin-top: -0.5em;
 				}
 			}
+		}
+		&:not(.alignwide):not(.alignfull)  {
+			.graphic {
+				@extend .col-3;
+				@extend .col-xs-4;
+				@extend .col-sm-2;
+			}
+			blockquote {
+				@extend .col-offset-3;
+				@extend .col-xs-offset-4;
+				@extend .col-sm-offset-2;
+				@extend .col-9;
+				@extend .col-xs-8;
+				@extend .col-sm-6;
+			}
+		}
+		&.alignwide {
+			.graphic {
+				margin-top: 2em;
+				margin-bottom: 2em;
+				@extend .col-3;
+				@extend .col-xs-4;
+				@extend .col-sm-3;
+			}
+			blockquote {
+				@extend .col-offset-3;
+				@extend .col-xs-offset-4;
+				@extend .col-sm-offset-3;
+				@extend .col-9;
+				@extend .col-xs-8;
+				@extend .col-sm-7;
+			}
+		}
+		&.alignfull {
+			.graphic {
+				&:before {
+					@extend .col-offset-1;
+					@extend .col-sm-offset-2;
+					@extend .col-3;
+					@extend .col-xs-4;
+					@extend .col-sm-3;
+					@extend .col-sm-3;
+				}
+			}
+			blockquote {
+				@extend .col-offset-4;
+				@extend .col-xs-offset-5;
+				@extend .col-sm-offset-5;
+				@extend .col-9;
+				@extend .col-xs-8;
+				@extend .col-sm-7;
+			}
+		}
+	}
+	&.alignwide,
+	&.alignfull {
+		.text-container {
+			// @extend .col-sm-8;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 	.tint {
