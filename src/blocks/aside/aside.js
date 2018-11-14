@@ -35,6 +35,7 @@ registerBlockType( 'editorial/aside', {
 
 	edit( { attributes, setAttributes, className } ) {
 		const { colorScheme } = attributes;
+		const allowedBlocks = [ 'core/image', 'core/heading', 'core/paragraph', 'core/button' ];
 
 		return (
 			<Fragment>
@@ -54,13 +55,15 @@ registerBlockType( 'editorial/aside', {
 					</PanelBody>
 				</InspectorControls>
 				<aside className={ [ className, colorScheme ].join( ' ' ).trim() }>
-					<InnerBlocks />
+					<InnerBlocks
+						allowedBlocks={ allowedBlocks }
+					/>
 				</aside>
 			</Fragment>
 		);
 	},
 
-	save( { attributes,  className } ) {
+	save( { attributes, className } ) {
 		const { colorScheme } = attributes;
 
 		return (
