@@ -9,6 +9,9 @@
 import './style.scss';
 import './editor.scss';
 
+// Internal dependencies.
+import RegisterBlockPreset from '../../global/register-block-preset.js';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
@@ -17,7 +20,7 @@ const { PanelBody, SelectControl } = wp.components;
 const { InspectorControls, InnerBlocks } = wp.editor;
 
 // Register the block.
-registerBlockType( 'editorial/aside', {
+const asideBlock = registerBlockType( 'editorial/aside', {
 
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
@@ -33,7 +36,8 @@ registerBlockType( 'editorial/aside', {
 		},
 	},
 
-	edit( { attributes, setAttributes, className } ) {
+	edit( props ) {
+		const { attributes, setAttributes, className, presetTemplate } = props;
 		const { colorScheme } = attributes;
 		const allowedBlocks = [ 'core/image', 'core/heading', 'core/paragraph', 'core/button' ];
 
@@ -57,6 +61,7 @@ registerBlockType( 'editorial/aside', {
 				<aside className={ [ className, colorScheme ].join( ' ' ).trim() }>
 					<InnerBlocks
 						allowedBlocks={ allowedBlocks }
+						template={ presetTemplate }
 					/>
 				</aside>
 			</Fragment>
@@ -73,3 +78,12 @@ registerBlockType( 'editorial/aside', {
 		);
 	},
 } );
+
+const presetTemplate = [
+	[ 'core/image' ],
+	[ 'core/heading', { placeholder: 'Enter aside title…' } ],
+	[ 'core/paragraph', { placeholder: 'Enter aside content…' } ],
+	[ 'core/button' ]
+];
+
+RegisterBlockPreset( asideBlock, presetTemplate );
