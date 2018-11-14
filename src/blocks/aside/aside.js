@@ -19,6 +19,9 @@ const { Fragment } = wp.element;
 const { PanelBody, SelectControl } = wp.components;
 const { InspectorControls, InnerBlocks } = wp.editor;
 
+// The current publication owner.
+const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
 
@@ -35,6 +38,7 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 			default: '',
 		},
 	},
+	publicationClassName: publicationClass + '-block-aside',
 
 	edit( props ) {
 		const { attributes, setAttributes, className, presetTemplate } = props;
