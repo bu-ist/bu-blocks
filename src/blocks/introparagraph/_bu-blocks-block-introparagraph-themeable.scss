@@ -18,18 +18,18 @@
 // in the stylesheet multiple times (for each publication)
 //
 
-$blocks-block-introparagraph-config: ();
+$blocks-block-editorial-introparagraph-config: ();
 
 // use the above array if you need to override the global $blocks-defaults array
 // of styles ONLY for this block IN the plugin.
-// You can then override THIS array by using $blocks-block-introparagraph-theme in the child theme to
+// You can then override THIS array by using $blocks-block-editorial-introparagraph-theme in the child theme to
 // override this array
 //
 // Remember, with great power comes great responsibility. This should not be used unless
 // you really need it. Think carefully about why you aren't modifying the global config by adding
 // a different variable.
 //
-// $blocks-block-introparagraph-config: (
+// $blocks-block-editorial-introparagraph-config: (
 // 		primary-color:red,
 // 		secondary-color: rebeccapurple,
 // );
@@ -38,24 +38,24 @@ $blocks-block-introparagraph-config: ();
 // Use the default Blocks configuration. You can override this globally
 // in a theme.
 
-$blocks-block-introparagraph-config: map-merge( $blocks-block-introparagraph-config, $blocks-config );
+$blocks-block-editorial-introparagraph-config: map-merge( $blocks-block-editorial-introparagraph-config, $blocks-config );
 
 // This allows themes to optionally set theme options for this
 // block only. You can set all or a few options - only the options
-// you set in $block-block-introparagraph-theme will override the defaults.
+// you set in $block-block-editorial-introparagraph-theme will override the defaults.
 
-@if variable-exists( blocks-block-introparagraph-theme ) {
-	$blocks-block-introparagraph-config: map_merge( $blocks-block-introparagraph-config, $blocks-block-introparagraph-theme );
+@if variable-exists( blocks-block-editorial-introparagraph-theme ) {
+	$blocks-block-editorial-introparagraph-config: map_merge( $blocks-block-editorial-introparagraph-config, $blocks-block-editorial-introparagraph-theme );
 }
 
 // A global helper variable for the block-get mixin.
 
-$current-map: $blocks-block-introparagraph-config;
+$current-map: $blocks-block-editorial-introparagraph-config;
 
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-introparagraph {
+.#{$scope}-block-editorial-introparagraph {
 	&.is-style-large {
 		p {
 			color: blocks-get( 'font-color-heading-small');
@@ -100,16 +100,16 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 		p:first-of-type:first-letter {
-			text-shadow:	1px 1px blocks-get( 'color-gray-f'),
-							2px 2px blocks-get( 'color-gray-f'),
-							3px 3px blocks-get( 'color-gray-f'),
-							4px 4px blocks-get( 'color-gray-f'),
-							5px 5px blocks-get( 'color-gray-f'),
-							6px 6px blocks-get( 'color-gray-f'),
-							7px 7px blocks-get( 'color-gray-f'),
-							8px 8px blocks-get( 'color-gray-f'),
-							9px 9px blocks-get( 'color-gray-f'),
-							10px 10px blocks-get( 'color-gray-f');
+			text-shadow:	1px 1px blocks-get( 'color-gray-e'),
+							2px 2px blocks-get( 'color-gray-e'),
+							3px 3px blocks-get( 'color-gray-e'),
+							4px 4px blocks-get( 'color-gray-e'),
+							5px 5px blocks-get( 'color-gray-e'),
+							6px 6px blocks-get( 'color-gray-e'),
+							7px 7px blocks-get( 'color-gray-e'),
+							8px 8px blocks-get( 'color-gray-e'),
+							9px 9px blocks-get( 'color-gray-e'),
+							10px 10px blocks-get( 'color-gray-e');
 		}
 	}
 	&.is-style-dropcap-boxed {
@@ -128,7 +128,7 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-page');
 				background-color: blocks-get( 'color-secondary');
 			}
-		}	
+		}
 	}
 	&.is-style-dropcap-image {
 		.has-dropcap-color-primary {

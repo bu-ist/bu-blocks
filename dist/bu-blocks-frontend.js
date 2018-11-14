@@ -1,5 +1,5 @@
 const bu_blocks = {};
-;bu_blocks.modal = (function() {
+;;bu_blocks.modal = (function() {
 	const modalBlocks = [];
 	const $body = document.getElementsByTagName('body')[0];
 	const eventOpen = new Event('bu-blocks-modal-open');

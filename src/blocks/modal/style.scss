@@ -15,9 +15,9 @@
 
 // Modal Block
 //
-// This is an modal Block, you can use this as a base line for writing up the static markup and styles for a new block.
+// A block that allows for the creation of an overlay with content in it. Should support laying out the content in the overlay and some way to trigger opening it. The opening trigger may need to be a separate block, and should support multiple on a page so each will need a unique ID for the JS to target automagically. Overlay block should be able to contain child blocks, for instance, slideshow, gallery, video, text, etc.
 //
-// Status: In-Progress
+// Status: Ready
 //
 // Markup: bu-blocks-block-modal.hbs
 //

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>BU Blocks Style Guide</title>
+
+	<meta name="description" content="">
+	<meta name="generator" content="id-kss-node">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="kss-assets/kss.css">
+
+
+</head>
+<body id="id-kss-node" class="id-kss-fullscreen-mode">
+<script type="text/javascript">
+	//load the theme stylesheet as a variable to be used
+	//by iframe.js to add stylesheets to each iframe example
+	var themeStylesheetURL = '/blocks.style.build.css';
+	var exampleStylesheetURL = 'https://www.bu.edu/wp-content/themes/responsive-framework-2-x/style.min.css';
+	var themeScriptsURL = '/bu-blocks-frontend.js';
+</script>
+<script type="text/javascript">
+//menu
+[{"header":"Blocks","description":"<p>Blocks are Gutenberg Blocks that can be used in WordPress\nExamples may include buttons, audio players, and callouts.</p>\n<p>Blocks should be further categorized by a sub-category such as:\nGlobal, Homepage, Edition, Article corresponding to how they are used\nand where they are available to users in the theme. Such as restricted by post type.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks","referenceNumber":"1","referenceURI":"blocks","weight":0,"colors":[],"depth":1,"is-header":"true","isActive":false,"isGrandChild":false,"children":[{"header":"Global","description":"<p>These are blocks that are available throughout the site on\nmultiple post types and page templates</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global","referenceNumber":"1.1","referenceURI":"blocks-global","weight":-10,"colors":[],"depth":2,"is-subheader":"true","isActive":false,"isGrandChild":false},{"header":"Aside Block","description":"<p>A block for Aside tag type content, like a short bio on a Professor in the story, or a small explainer about subatomic particles in a longer story about physics.\nThis is a parent block that allows specific child blocks, like image block, headline block, paragraph block, button block, etc. which can be added or removed as necessary.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Aside","referenceNumber":"1.1.1","referenceURI":"blocks-global-aside","weight":0,"colors":[],"depth":3,"status":"Ready","markupFile":"blocks/aside/bu-blocks-block-aside.hbs","isActive":false,"isGrandChild":true},{"header":"Base Block","description":"<p>The description for this base block. Cum sociis natoque penatibus et magnis dis\nparturient montes, nascetur ridiculus mus. Cras mattis consectetur purus\nsit amet fermentum.</p>\n<h2>A subheader</h2>\n<p>Cras mattis consectetur purus sit amet\nfermentum. Donec ullamcorper nulla non metus auctor fringilla. Vivamus\nsagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Base Block","referenceNumber":"1.1.2","referenceURI":"blocks-global-base-block","weight":0,"colors":[],"depth":3,"status":"In-Progress","isActive":false,"isGrandChild":true},{"header":"Button Block","description":"<p>This is an button Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Button","referenceNumber":"1.1.3","referenceURI":"blocks-global-button","weight":0,"colors":[],"depth":3,"status":"In-Progress","markupFile":"blocks/button/bu-blocks-block-button.hbs","isActive":false,"isGrandChild":true},{"header":"Headline Block","description":"<p>This is a Headline Block, It has the headline text itself in additon to optional spans containing preemptive text, and post-text for follow up. Also a unique ID is added tot he h tag.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Headline","referenceNumber":"1.1.4","referenceURI":"blocks-global-headline","weight":0,"colors":[],"depth":3,"status":"Ready","markupFile":"blocks/headline/bu-blocks-block-headline.hbs","isActive":false,"isGrandChild":true},{"header":"Intro Paragraph Block","description":"<p>This is a Intro Paragraph Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Intro Paragraph","referenceNumber":"1.1.5","referenceURI":"blocks-global-intro-paragraph","weight":0,"colors":[],"depth":3,"status":"In-Progress","markupFile":"blocks/introparagraph/bu-blocks-block-introparagraph.hbs","isActive":false,"isGrandChild":true},{"header":"Modal Block","description":"<p>A block that allows for the creation of an overlay with content in it. Should support laying out the content in the overlay and some way to trigger opening it. The opening trigger may need to be a separate block, and should support multiple on a page so each will need a unique ID for the JS to target automagically. Overlay block should be able to contain child blocks, for instance, slideshow, gallery, video, text, etc.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Modal","referenceNumber":"1.1.6","referenceURI":"blocks-global-modal","weight":0,"colors":[],"depth":3,"status":"Ready","markupFile":"blocks/modal/bu-blocks-block-modal.hbs","isActive":true,"isGrandChild":true},{"header":"Sample Block","description":"<p>This is a Sample Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Sample","referenceNumber":"1.1.7","referenceURI":"blocks-global-sample","weight":0,"colors":[],"depth":3,"status":"In-Progress","markupFile":"blocks/sample/bu-blocks-block-sample.hbs","isActive":false,"isGrandChild":true},{"header":"Editorial","description":"<p>These are blocks that are typically used for editorial posts, blog posts, and\nsimilar content in WordPress sites.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Editorial","referenceNumber":"1.2","referenceURI":"blocks-editorial","weight":0,"colors":[],"depth":2,"is-subheader":"true","isActive":false,"isGrandChild":false}]},{"header":"Components","description":"<p>Components are smaller building blocks of Gutenberg Blocks. Example:\nButtons, Input Fields, etc.</p>\n","deprecated":false,"experimental":false,"reference":"Components","referenceNumber":"2","referenceURI":"components","weight":0,"colors":[],"depth":1,"is-header":"true","isActive":false,"isGrandChild":false,"children":[]},{"header":"Utilities","description":"<p>Need to define these</p>\n","deprecated":false,"experimental":false,"reference":"Utilities","referenceNumber":"3","referenceURI":"utilities","weight":0,"colors":[],"depth":1,"is-header":"true","isActive":false,"isGrandChild":false,"children":[]}]
+</script>
+<script type="text/javascript">
+//nestedmenu
+[{"header":"Blocks","description":"<p>Blocks are Gutenberg Blocks that can be used in WordPress\nExamples may include buttons, audio players, and callouts.</p>\n<p>Blocks should be further categorized by a sub-category such as:\nGlobal, Homepage, Edition, Article corresponding to how they are used\nand where they are available to users in the theme. Such as restricted by post type.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks","referenceNumber":"1","referenceURI":"blocks","weight":0,"colors":[],"depth":1,"is-header":"true","isActive":false,"isGrandChild":false,"children":[{"header":"Global","description":"<p>These are blocks that are available throughout the site on\nmultiple post types and page templates</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global","referenceNumber":"1.1","referenceURI":"blocks-global","weight":-10,"colors":[],"depth":2,"is-subheader":"true","isActive":false,"isGrandChild":false,"parentreferenceURI":"blocks","sectionreferenceURI":"blocks","children":[{"header":"Aside Block","description":"<p>A block for Aside tag type content, like a short bio on a Professor in the story, or a small explainer about subatomic particles in a longer story about physics.\nThis is a parent block that allows specific child blocks, like image block, headline block, paragraph block, button block, etc. which can be added or removed as necessary.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Aside","referenceNumber":"1.1.1","referenceURI":"blocks-global-aside","weight":0,"colors":[],"depth":3,"status":"Ready","markupFile":"blocks/aside/bu-blocks-block-aside.hbs","isActive":false,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]},{"header":"Base Block","description":"<p>The description for this base block. Cum sociis natoque penatibus et magnis dis\nparturient montes, nascetur ridiculus mus. Cras mattis consectetur purus\nsit amet fermentum.</p>\n<h2>A subheader</h2>\n<p>Cras mattis consectetur purus sit amet\nfermentum. Donec ullamcorper nulla non metus auctor fringilla. Vivamus\nsagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Base Block","referenceNumber":"1.1.2","referenceURI":"blocks-global-base-block","weight":0,"colors":[],"depth":3,"status":"In-Progress","isActive":false,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]},{"header":"Button Block","description":"<p>This is an button Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Button","referenceNumber":"1.1.3","referenceURI":"blocks-global-button","weight":0,"colors":[],"depth":3,"status":"In-Progress","markupFile":"blocks/button/bu-blocks-block-button.hbs","isActive":false,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]},{"header":"Headline Block","description":"<p>This is a Headline Block, It has the headline text itself in additon to optional spans containing preemptive text, and post-text for follow up. Also a unique ID is added tot he h tag.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Headline","referenceNumber":"1.1.4","referenceURI":"blocks-global-headline","weight":0,"colors":[],"depth":3,"status":"Ready","markupFile":"blocks/headline/bu-blocks-block-headline.hbs","isActive":false,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]},{"header":"Intro Paragraph Block","description":"<p>This is a Intro Paragraph Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Intro Paragraph","referenceNumber":"1.1.5","referenceURI":"blocks-global-intro-paragraph","weight":0,"colors":[],"depth":3,"status":"In-Progress","markupFile":"blocks/introparagraph/bu-blocks-block-introparagraph.hbs","isActive":false,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]},{"header":"Modal Block","description":"<p>A block that allows for the creation of an overlay with content in it. Should support laying out the content in the overlay and some way to trigger opening it. The opening trigger may need to be a separate block, and should support multiple on a page so each will need a unique ID for the JS to target automagically. Overlay block should be able to contain child blocks, for instance, slideshow, gallery, video, text, etc.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Modal","referenceNumber":"1.1.6","referenceURI":"blocks-global-modal","weight":0,"colors":[],"depth":3,"status":"Ready","markupFile":"blocks/modal/bu-blocks-block-modal.hbs","isActive":true,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]},{"header":"Sample Block","description":"<p>This is a Sample Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Sample","referenceNumber":"1.1.7","referenceURI":"blocks-global-sample","weight":0,"colors":[],"depth":3,"status":"In-Progress","markupFile":"blocks/sample/bu-blocks-block-sample.hbs","isActive":false,"isGrandChild":true,"parentreferenceURI":"blocks-global","sectionreferenceURI":"blocks","children":[]}]},{"header":"Editorial","description":"<p>These are blocks that are typically used for editorial posts, blog posts, and\nsimilar content in WordPress sites.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Editorial","referenceNumber":"1.2","referenceURI":"blocks-editorial","weight":0,"colors":[],"depth":2,"is-subheader":"true","isActive":false,"isGrandChild":false,"parentreferenceURI":"blocks","sectionreferenceURI":"blocks","children":[]}]},{"header":"Components","description":"<p>Components are smaller building blocks of Gutenberg Blocks. Example:\nButtons, Input Fields, etc.</p>\n","deprecated":false,"experimental":false,"reference":"Components","referenceNumber":"2","referenceURI":"components","weight":0,"colors":[],"depth":1,"is-header":"true","isActive":false,"isGrandChild":false,"children":[]},{"header":"Utilities","description":"<p>Need to define these</p>\n","deprecated":false,"experimental":false,"reference":"Utilities","referenceNumber":"3","referenceURI":"utilities","weight":0,"colors":[],"depth":1,"is-header":"true","isActive":false,"isGrandChild":false,"children":[]}]
+</script>
+<script type="text/javascript">
+{"source":["/Users/acketon/Git/bu-blocks/src"],"destination":"/Users/acketon/Git/bu-blocks/docs","mask":"*.css|*.less|*.sass|*.scss|*.styl|*.stylus","builder":"/Users/acketon/Git/bu-blocks/node_modules/id-kss-builder","css":["/blocks.style.build.css"],"js":["/bu-blocks-frontend.js"],"custom":["status","hidden","git-source","is-subheader","is-header"],"extend":["/Users/acketon/Git/bu-blocks/node_modules/id-kss-builder/extend","/Users/acketon/Git/bu-blocks/node_modules/id-kss-builder/extend","/Users/acketon/Git/bu-blocks/node_modules/id-kss-builder/extend/partials"],"homepage":"homepage.md","markup":false,"placeholder":"[modifier class]","nav-depth":3,"title":"BU Blocks Style Guide","themes":[],"gitURL":"https://github.com/bu-ist/bu-blocks/","gitURLCSSDEV":"https://github.com/bu-ist/bu-blocks/tree/develop/src","exampleStylesheetURL":"https://www.bu.edu/wp-content/themes/responsive-framework-2-x/style.min.css"}
+</script>
+<script type="text/javascript">
+{"customPropertyNames":["status","is-header","is-subheader","markupFile"],"hasNumericReferences":false,"referenceDelimiter":".","sections":[{"header":"Blocks","description":"<p>Blocks are Gutenberg Blocks that can be used in WordPress\nExamples may include buttons, audio players, and callouts.</p>\n<p>Blocks should be further categorized by a sub-category such as:\nGlobal, Homepage, Edition, Article corresponding to how they are used\nand where they are available to users in the theme. Such as restricted by post type.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks","referenceNumber":"1","referenceURI":"blocks","weight":0,"colors":[],"markup":"","source":{"filename":"kssheadings.scss","path":"/Users/acketon/Git/bu-blocks/src/kssheadings.scss","line":1},"depth":1,"modifiers":[],"parameters":[],"is-header":"true"},{"header":"Global","description":"<p>These are blocks that are available throughout the site on\nmultiple post types and page templates</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global","referenceNumber":"1.1","referenceURI":"blocks-global","weight":-10,"colors":[],"markup":"","source":{"filename":"kssheadings.scss","path":"/Users/acketon/Git/bu-blocks/src/kssheadings.scss","line":14},"depth":2,"modifiers":[],"parameters":[],"is-subheader":"true"},{"header":"Aside Block","description":"<p>A block for Aside tag type content, like a short bio on a Professor in the story, or a small explainer about subatomic particles in a longer story about physics.\nThis is a parent block that allows specific child blocks, like image block, headline block, paragraph block, button block, etc. which can be added or removed as necessary.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Aside","referenceNumber":"1.1.1","referenceURI":"blocks-global-aside","weight":0,"colors":[],"markup":"bu-blocks-block-aside.hbs","source":{"filename":"blocks/aside/style.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/aside/style.scss","line":16},"depth":3,"modifiers":[{"name":".alignleft","description":"Example of a left-aligned layout","className":"alignleft"},{"name":".alignright","description":"Example of a right-aligned layout","className":"alignright"},{"name":".has-light-background","description":"Example of a light background","className":"has-light-background"},{"name":".has-dark-background","description":"Example of a dark background","className":"has-dark-background"}],"parameters":[],"status":"Ready","markupFile":"blocks/aside/bu-blocks-block-aside.hbs"},{"header":"Base Block","description":"<p>The description for this base block. Cum sociis natoque penatibus et magnis dis\nparturient montes, nascetur ridiculus mus. Cras mattis consectetur purus\nsit amet fermentum.</p>\n<h2>A subheader</h2>\n<p>Cras mattis consectetur purus sit amet\nfermentum. Donec ullamcorper nulla non metus auctor fringilla. Vivamus\nsagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Base Block","referenceNumber":"1.1.2","referenceURI":"blocks-global-base-block","weight":0,"colors":[],"markup":"<div class=\"wp-block-cgb-block-bu-blocks-cgb {{modifier_class}}\"><h2 class=\"font-size-maximum\">base block</h2></div>","source":{"filename":"blocks/block/_block-base.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/block/_block-base.scss","line":1},"depth":3,"modifiers":[{"name":".block-base-class","description":"Box Green","className":"block-base-class"}],"parameters":[],"status":"In-Progress"},{"header":"Button Block","description":"<p>This is an button Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Button","referenceNumber":"1.1.3","referenceURI":"blocks-global-button","weight":0,"colors":[],"markup":"bu-blocks-block-button.hbs","source":{"filename":"blocks/button/style.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/button/style.scss","line":16},"depth":3,"modifiers":[{"name":".is-style-default","description":"Default style","className":"is-style-default"},{"name":".is-style-outline","description":"Outline style","className":"is-style-outline"},{"name":".is-style-squared.is-style-default","description":"Squared style","className":"is-style-squared is-style-default"},{"name":".is-style-squared.is-style-outline","description":"Squared style","className":"is-style-squared is-style-outline"},{"name":".has-dark-theme.is-style-default","description":"Dark theme variation","className":"has-dark-theme is-style-default"},{"name":".has-dark-theme.is-style-outline","description":"Dark theme variation","className":"has-dark-theme is-style-outline"},{"name":".has-light-theme.is-style-default","description":"Light theme variation","className":"has-light-theme is-style-default"},{"name":".has-light-theme.is-style-outline","description":"Light theme variation","className":"has-light-theme is-style-outline"}],"parameters":[],"status":"In-Progress","markupFile":"blocks/button/bu-blocks-block-button.hbs"},{"header":"Headline Block","description":"<p>This is a Headline Block, It has the headline text itself in additon to optional spans containing preemptive text, and post-text for follow up. Also a unique ID is added tot he h tag.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Headline","referenceNumber":"1.1.4","referenceURI":"blocks-global-headline","weight":0,"colors":[],"markup":"bu-blocks-block-headline.hbs","source":{"filename":"blocks/headline/style.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/headline/style.scss","line":16},"depth":3,"modifiers":[{"name":".is-style-emphasis-weight","description":"Example of font weight emphasis headline variation","className":"is-style-emphasis-weight"},{"name":".is-style-emphasis-color","description":"Example of font color emphasis headline variation","className":"is-style-emphasis-color"}],"parameters":[],"status":"Ready","markupFile":"blocks/headline/bu-blocks-block-headline.hbs"},{"header":"Intro Paragraph Block","description":"<p>This is a Intro Paragraph Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Intro Paragraph","referenceNumber":"1.1.5","referenceURI":"blocks-global-intro-paragraph","weight":0,"colors":[],"markup":"bu-blocks-block-introparagraph.hbs","source":{"filename":"blocks/introparagraph/style.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/introparagraph/style.scss","line":16},"depth":3,"modifiers":[{"name":".is-style-large","description":"Larger Opening Paragraph","className":"is-style-large"},{"name":".is-style-large.has-paragraph-color-primary","description":"Larger Opening Paragraph with Color","className":"is-style-large has-paragraph-color-primary"},{"name":".is-style-large.has-paragraph-color-secondary","description":"Larger Opening Paragraph with Secondary Color","className":"is-style-large has-paragraph-color-secondary"},{"name":".is-style-large.has-paragraph-color-secondary","description":"Larger Opening Paragraph","className":"is-style-large has-paragraph-color-secondary"},{"name":".is-style-split","description":"2 Column Split Opening Paragraph","className":"is-style-split"},{"name":".has-dropcap","description":"Initial Drop Cap Styling","className":"has-dropcap"},{"name":".has-dropcap.has-dropcap-color-primary","description":"Drop Cap Color Added","className":"has-dropcap has-dropcap-color-primary"},{"name":".has-dropcap.has-dropcap-color-secondary","description":"Drop Cap Secondary Color Added","className":"has-dropcap has-dropcap-color-secondary"},{"name":".has-dropcap.is-style-dropcap-boxed","description":"Drop Cap Boxed Style","className":"has-dropcap is-style-dropcap-boxed"},{"name":".has-dropcap.is-style-dropcap-boxed.has-dropcap-color-primary","description":"Drop Cap Boxed Style with Color","className":"has-dropcap is-style-dropcap-boxed has-dropcap-color-primary"},{"name":".has-dropcap.is-style-dropcap-boxed.has-dropcap-color-secondary","description":"Drop Cap Boxed Style with Secondary Color","className":"has-dropcap is-style-dropcap-boxed has-dropcap-color-secondary"},{"name":".has-dropcap.is-style-dropcap-outlined","description":"Drop Cap Outline Style","className":"has-dropcap is-style-dropcap-outlined"},{"name":".has-dropcap.is-style-dropcap-outlined.has-dropcap-color-primary","description":"Drop Cap Outline Style with Color","className":"has-dropcap is-style-dropcap-outlined has-dropcap-color-primary"},{"name":".has-dropcap.is-style-dropcap-outlined.has-dropcap-color-secondary","description":"Drop Cap Outline Style with Secondary Color","className":"has-dropcap is-style-dropcap-outlined has-dropcap-color-secondary"},{"name":".has-dropcap.is-style-dropcap-dimensional","description":"Drop Cap with Drop-Sadhow","className":"has-dropcap is-style-dropcap-dimensional"},{"name":".has-dropcap.is-style-dropcap-dimensional.has-dropcap-color-primary","description":"Drop Cap with Drop-Sadhow and Color","className":"has-dropcap is-style-dropcap-dimensional has-dropcap-color-primary"},{"name":".has-dropcap.is-style-dropcap-dimensional.has-dropcap-color-secondary","description":"Drop Cap with Drop-Sadhow and Secondary Color","className":"has-dropcap is-style-dropcap-dimensional has-dropcap-color-secondary"},{"name":".has-dropcap.is-style-dropcap-image","description":"Drop Cap with image knock out.","className":"has-dropcap is-style-dropcap-image"}],"parameters":[],"status":"In-Progress","markupFile":"blocks/introparagraph/bu-blocks-block-introparagraph.hbs"},{"header":"Modal Block","description":"<p>A block that allows for the creation of an overlay with content in it. Should support laying out the content in the overlay and some way to trigger opening it. The opening trigger may need to be a separate block, and should support multiple on a page so each will need a unique ID for the JS to target automagically. Overlay block should be able to contain child blocks, for instance, slideshow, gallery, video, text, etc.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Modal","referenceNumber":"1.1.6","referenceURI":"blocks-global-modal","weight":0,"colors":[],"markup":"bu-blocks-block-modal.hbs","source":{"filename":"blocks/modal/style.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/modal/style.scss","line":16},"depth":3,"modifiers":[{"name":".alignwide","description":"Wide layout","className":"alignwide"},{"name":".alignfull","description":"Full layout","className":"alignfull"},{"name":".has-light-theme","description":"Light background variation","className":"has-light-theme"},{"name":".has-dark-theme","description":"Dark background variation","className":"has-dark-theme"}],"parameters":[],"status":"Ready","markupFile":"blocks/modal/bu-blocks-block-modal.hbs"},{"header":"Sample Block","description":"<p>This is a Sample Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Global.Sample","referenceNumber":"1.1.7","referenceURI":"blocks-global-sample","weight":0,"colors":[],"markup":"bu-blocks-block-sample.hbs","source":{"filename":"blocks/sample/style.scss","path":"/Users/acketon/Git/bu-blocks/src/blocks/sample/style.scss","line":16},"depth":3,"modifiers":[{"name":".block-sample-variant1","description":"Example of a Layout Variation","className":"block-sample-variant1"},{"name":".is-style-layoutBig","description":"layout big","className":"is-style-layoutBig"}],"parameters":[],"status":"In-Progress","markupFile":"blocks/sample/bu-blocks-block-sample.hbs"},{"header":"Editorial","description":"<p>These are blocks that are typically used for editorial posts, blog posts, and\nsimilar content in WordPress sites.</p>\n","deprecated":false,"experimental":false,"reference":"Blocks.Editorial","referenceNumber":"1.2","referenceURI":"blocks-editorial","weight":0,"colors":[],"markup":"","source":{"filename":"kssheadings.scss","path":"/Users/acketon/Git/bu-blocks/src/kssheadings.scss","line":27},"depth":2,"modifiers":[],"parameters":[],"is-subheader":"true"},{"header":"Components","description":"<p>Components are smaller building blocks of Gutenberg Blocks. Example:\nButtons, Input Fields, etc.</p>\n","deprecated":false,"experimental":false,"reference":"Components","referenceNumber":"2","referenceURI":"components","weight":0,"colors":[],"markup":"","source":{"filename":"kssheadings.scss","path":"/Users/acketon/Git/bu-blocks/src/kssheadings.scss","line":40},"depth":1,"modifiers":[],"parameters":[],"is-header":"true"},{"header":"Utilities","description":"<p>Need to define these</p>\n","deprecated":false,"experimental":false,"reference":"Utilities","referenceNumber":"3","referenceURI":"utilities","weight":0,"colors":[],"markup":"","source":{"filename":"kssheadings.scss","path":"/Users/acketon/Git/bu-blocks/src/kssheadings.scss","line":55},"depth":1,"modifiers":[],"parameters":[],"is-header":"true"}]}
+</script>
+
+<header class="id-kss-header" >
+	<div class="id-kss-header-bar">
+	<h1 class="id-kss-doc-title">
+		<a href="./">
+			BU Blocks Style Guide
+		</a>
+	</h1>
+	<div class="id-kss-header-wrapper">
+		<nav class="id-kss-main-nav">
+					<a href="section-blocks.html" class="id-kss-main-nav-link">Blocks</a>
+					<a href="section-components.html" class="id-kss-main-nav-link">Components</a>
+					<a href="section-utilities.html" class="id-kss-main-nav-link">Utilities</a>
+		</nav>
+		<div id="id-kss-search"></div>
+	</div>
+	</div>
+	<div id="id-kss-toolbar">
+		<div id="id-kss-breakpoints-control" class="id-kss-breakpoints-control"></div>
+		<div class="id-kss-sidebar-control">
+			<span class="id-kss-toolbar-label">Sidebar</span>
+			<input type="checkbox" name="sidebar" checked>
+		</div>
+	</div>
+</header>
+<div class="id-kss-sidebar id-kss-style">
+	<nav class="id-kss-nav" aria-label="Style Guide">
+			<ul class="id-kss-nav-menu">
+			</ul>
+	</nav>
+</div>
+<main class="id-kss-main" aria-label="Content">
+	<article>
+
+
+
+		<div id="kssref-blocks-global-modal" class="id-kss-section id-kss-section--depth-3 is-fullscreen">
+			<div class="id-kss-style id-kss-component-content">
+				<header class="id-kss-title-block">
+					<h2 class="id-kss-title id-kss-title--level-3 ">
+
+						<span class="id-kss-title-section">Global</span>
+
+						<span class="id-kss-title-name">Modal Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-modal">Link</a></span>
+					</h2>
+						<span class="id-kss-status id-kss-status-ready">
+							Ready
+						</span>
+
+							<span class="id-kss-open-github-issue">
+								<a href="https://github.com/bu-ist/bu-blocks//issues/new" class="button button-small" title="Opens a new Issue on Github">New Issue</a>
+							</span>
+
+					<!--<span class="id-kss-title__ref">
+						1.1.6
+						<span class="id-kss-title__permalink-hash">
+								#Blocks.Global.Modal
+						</span>
+					</span>-->
+				</header>
+					<div class="id-kss-description">
+						<p>A block that allows for the creation of an overlay with content in it. Should support laying out the content in the overlay and some way to trigger opening it. The opening trigger may need to be a separate block, and should support multiple on a page so each will need a unique ID for the JS to target automagically. Overlay block should be able to contain child blocks, for instance, slideshow, gallery, video, text, etc.</p>
+
+					</div>
+
+
+			</div>
+
+				<div class="id-kss-modifier__wrapper">
+					<div class="id-kss-modifier-heading id-kss-docs-heading id-kss-style">
+						Examples
+
+							<span class="id-kss-source id-kss-style">
+								Source: <code>blocks/modal/style.scss, line 16</code>
+									<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/modal/style.scss#L16">
+										View Source
+									</a>
+							</span>
+					</div>
+
+
+
+
+
+							<div class="id-kss-info-wrapper">
+								<div class="is-example-default">
+										<div class="id-kss-class-name id-kss-modifier-default-name id-kss-style">
+											Default styling
+										</div>
+							
+									<div class="id-kss-modifier-example ">
+										<div class="id-kss-example-wrapper">
+											<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+											<script type="text/template" class="template-iframe">
+													<style type="text/css">
+														body {
+															background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+														}
+													</style>
+													<div class="iframe-wrapper " id="">
+														<article class="content-area">
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.</p>
+													
+													<aside class="wp-block-editorial-modal js-bu-block-modal ">
+														<div class="wp-block-editorial-modal-callout">
+															<div class="wp-block-editorial-modal-media">
+																<figure class="wp-block-editorial-modal-image">
+																	<img src="http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg" class="banner-placeholder">
+																</figure>
+															</div>
+															<div class="wp-block-editorial-modal-callout-content">
+																<div class="modal-valign">
+																	<h1>Modal Title</h1>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																	<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
+																</div>
+															</div>
+														</div>
+													
+														<div class="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+															<div class="overlay overlay-scale one">
+																<a href="#one" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+																<article>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius, nibh vel rutrum convallis, libero erat dictum diam, sit amet consectetur urna odio a mi. Nulla facilisi. Aenean finibus aliquam mauris eu faucibus. Cras id dictum nibh. Sed cursus magna quis ipsum efficitur dictum. Curabitur a risus posuere tortor laoreet porttitor. Maecenas fermentum tellus lacus, sed sagittis nunc laoreet pellentesque. Sed porta vel eros in convallis. In hac habitasse platea dictumst. Sed cursus est vitae odio pulvinar, et euismod tellus maximus. Donec efficitur justo a nisl sodales, quis tempus nibh sagittis. Donec at mi at turpis tempor aliquet eu vel leo. Nulla ac mattis purus, quis vehicula neque. In luctus orci in nibh suscipit, at imperdiet mi pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+													
+													
+																	<p>In sit amet justo maximus, efficitur tortor non, lobortis nisi. Mauris est mauris, commodo et faucibus at, molestie vel tortor. Etiam at tortor orci. Curabitur mattis elementum odio, at sagittis nulla ullamcorper eu. Morbi orci sapien, consequat a lobortis ut, bibendum et risus. Donec a laoreet orci. Donec iaculis egestas porta. Fusce libero ante, finibus in luctus in, mattis et massa. Vestibulum rhoncus commodo felis, ac imperdiet nulla consectetur ac. Phasellus a felis hendrerit, pretium nulla vel, vehicula urna. Curabitur ut consectetur felis, id vehicula elit. Morbi tellus orci, tincidunt vitae sapien vitae, tempor consectetur eros. Fusce quis blandit justo. In at turpis eros.</p>
+													
+																	<p>Etiam imperdiet laoreet pulvinar. Donec augue magna, euismod at tortor vel, gravida facilisis est. Proin tempor felis leo, eu sodales arcu tempor ac. Vestibulum mollis, lorem sed porta volutpat, mauris neque ultrices urna, vitae dictum nisi tortor non nisi. Nam convallis ligula a purus imperdiet, nec porttitor lorem accumsan. Maecenas quis dictum magna. Etiam eget euismod dolor.</p>
+													
+																	<p>Mauris id tincidunt arcu. Vestibulum sagittis justo consequat, condimentum nulla et, rutrum odio. Mauris varius ac libero quis dignissim. Ut maximus vel justo sed vulputate. Vestibulum ex elit, convallis eu efficitur vel, pulvinar ut leo. Praesent ac justo eget erat tincidunt ornare ut blandit elit. Sed rutrum molestie nibh. Ut et finibus elit, sit amet porttitor justo. Donec dignissim, dolor non mattis dapibus, nibh ante hendrerit ex, ut vestibulum velit mauris in ipsum. Nullam pharetra tellus sit amet sapien tempor, sit amet ornare tellus ultrices. Nullam vehicula, nulla eu egestas ornare, erat nisi tempor nisl, et rhoncus massa ligula sed nibh. Maecenas auctor semper enim. Maecenas vestibulum neque sapien, quis hendrerit magna auctor vitae. Nulla consectetur magna id mauris blandit, vitae posuere est tempus. Aenean vehicula quam id mauris pellentesque aliquam. Pellentesque metus ante, egestas et commodo sed, iaculis et lectus.</p>
+													
+																	<p>Mauris gravida lacus ac dolor finibus, at aliquam mauris hendrerit. Ut ac mi mauris. Aenean tristique, magna sed accumsan feugiat, orci neque ultricies purus, a venenatis augue lacus quis lorem. Duis porttitor finibus lorem eu tincidunt. Praesent lobortis, justo quis dignissim malesuada, turpis lacus fringilla velit, placerat ultrices justo nisl congue elit. Ut consequat mattis elit, id molestie nibh mollis tristique. Proin hendrerit maximus eros vitae ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at odio quam.</p>
+																</article>
+															</div>
+														</div>
+													</aside>
+													<p>Nullam ultrices neque in quam malesuada, volutpat varius diam vulputate. Nulla facilisi. Proin pulvinar, lectus sit amet pellentesque luctus, elit arcu euismod turpis, et iaculis urna odio et nisl. Ut in molestie elit. Praesent lacinia sodales euismod. Ut consequat eleifend nulla, eu auctor nisl euismod vel. Curabitur luctus rhoncus mauris id porta. Etiam faucibus tellus non porta egestas. Praesent et tincidunt ex, ac tincidunt tortor. Vivamus ullamcorper nulla nunc, a scelerisque augue elementum vel.</p>
+													</article>
+													</div>				</script>
+							
+											<div class="id-kss-example-iframe-handle"></div>
+										</div>
+										<div class="id-kss-modifier-example-footer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="id-kss-info-wrapper">
+							
+							
+									<div class="is-example-variant alignwide">
+										<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+											.alignwide
+										</div>
+										<p class="id-kss-modifier-description id-kss-style">
+											Wide layout
+										</p>
+										<div class="id-kss-modifier-example">
+											<div class="id-kss-example-wrapper">
+												<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+												<script type="text/template" class="template-iframe">
+														<style type="text/css">
+															body {
+																background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+															}
+														</style>
+														<div class="iframe-wrapper " id="">
+															<article class="content-area">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.</p>
+														
+														<aside class="wp-block-editorial-modal js-bu-block-modal alignwide">
+															<div class="wp-block-editorial-modal-callout">
+																<div class="wp-block-editorial-modal-media">
+																	<figure class="wp-block-editorial-modal-image">
+																		<img src="http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg" class="banner-placeholder">
+																	</figure>
+																</div>
+																<div class="wp-block-editorial-modal-callout-content">
+																	<div class="modal-valign">
+																		<h1>Modal Title</h1>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																		<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
+																	</div>
+																</div>
+															</div>
+														
+															<div class="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+																<div class="overlay overlay-scale one">
+																	<a href="#one" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+																	<article>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius, nibh vel rutrum convallis, libero erat dictum diam, sit amet consectetur urna odio a mi. Nulla facilisi. Aenean finibus aliquam mauris eu faucibus. Cras id dictum nibh. Sed cursus magna quis ipsum efficitur dictum. Curabitur a risus posuere tortor laoreet porttitor. Maecenas fermentum tellus lacus, sed sagittis nunc laoreet pellentesque. Sed porta vel eros in convallis. In hac habitasse platea dictumst. Sed cursus est vitae odio pulvinar, et euismod tellus maximus. Donec efficitur justo a nisl sodales, quis tempus nibh sagittis. Donec at mi at turpis tempor aliquet eu vel leo. Nulla ac mattis purus, quis vehicula neque. In luctus orci in nibh suscipit, at imperdiet mi pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+														
+														
+																		<p>In sit amet justo maximus, efficitur tortor non, lobortis nisi. Mauris est mauris, commodo et faucibus at, molestie vel tortor. Etiam at tortor orci. Curabitur mattis elementum odio, at sagittis nulla ullamcorper eu. Morbi orci sapien, consequat a lobortis ut, bibendum et risus. Donec a laoreet orci. Donec iaculis egestas porta. Fusce libero ante, finibus in luctus in, mattis et massa. Vestibulum rhoncus commodo felis, ac imperdiet nulla consectetur ac. Phasellus a felis hendrerit, pretium nulla vel, vehicula urna. Curabitur ut consectetur felis, id vehicula elit. Morbi tellus orci, tincidunt vitae sapien vitae, tempor consectetur eros. Fusce quis blandit justo. In at turpis eros.</p>
+														
+																		<p>Etiam imperdiet laoreet pulvinar. Donec augue magna, euismod at tortor vel, gravida facilisis est. Proin tempor felis leo, eu sodales arcu tempor ac. Vestibulum mollis, lorem sed porta volutpat, mauris neque ultrices urna, vitae dictum nisi tortor non nisi. Nam convallis ligula a purus imperdiet, nec porttitor lorem accumsan. Maecenas quis dictum magna. Etiam eget euismod dolor.</p>
+														
+																		<p>Mauris id tincidunt arcu. Vestibulum sagittis justo consequat, condimentum nulla et, rutrum odio. Mauris varius ac libero quis dignissim. Ut maximus vel justo sed vulputate. Vestibulum ex elit, convallis eu efficitur vel, pulvinar ut leo. Praesent ac justo eget erat tincidunt ornare ut blandit elit. Sed rutrum molestie nibh. Ut et finibus elit, sit amet porttitor justo. Donec dignissim, dolor non mattis dapibus, nibh ante hendrerit ex, ut vestibulum velit mauris in ipsum. Nullam pharetra tellus sit amet sapien tempor, sit amet ornare tellus ultrices. Nullam vehicula, nulla eu egestas ornare, erat nisi tempor nisl, et rhoncus massa ligula sed nibh. Maecenas auctor semper enim. Maecenas vestibulum neque sapien, quis hendrerit magna auctor vitae. Nulla consectetur magna id mauris blandit, vitae posuere est tempus. Aenean vehicula quam id mauris pellentesque aliquam. Pellentesque metus ante, egestas et commodo sed, iaculis et lectus.</p>
+														
+																		<p>Mauris gravida lacus ac dolor finibus, at aliquam mauris hendrerit. Ut ac mi mauris. Aenean tristique, magna sed accumsan feugiat, orci neque ultricies purus, a venenatis augue lacus quis lorem. Duis porttitor finibus lorem eu tincidunt. Praesent lobortis, justo quis dignissim malesuada, turpis lacus fringilla velit, placerat ultrices justo nisl congue elit. Ut consequat mattis elit, id molestie nibh mollis tristique. Proin hendrerit maximus eros vitae ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at odio quam.</p>
+																	</article>
+																</div>
+															</div>
+														</aside>
+														<p>Nullam ultrices neque in quam malesuada, volutpat varius diam vulputate. Nulla facilisi. Proin pulvinar, lectus sit amet pellentesque luctus, elit arcu euismod turpis, et iaculis urna odio et nisl. Ut in molestie elit. Praesent lacinia sodales euismod. Ut consequat eleifend nulla, eu auctor nisl euismod vel. Curabitur luctus rhoncus mauris id porta. Etiam faucibus tellus non porta egestas. Praesent et tincidunt ex, ac tincidunt tortor. Vivamus ullamcorper nulla nunc, a scelerisque augue elementum vel.</p>
+														</article>
+														</div>					</script>
+							
+												<div class="id-kss-example-iframe-handle"></div>
+											</div>
+											<div class="id-kss-modifier-example-footer"></div>
+										</div>
+									</div>
+							
+							
+									<div class="is-example-variant alignfull">
+										<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+											.alignfull
+										</div>
+										<p class="id-kss-modifier-description id-kss-style">
+											Full layout
+										</p>
+										<div class="id-kss-modifier-example">
+											<div class="id-kss-example-wrapper">
+												<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+												<script type="text/template" class="template-iframe">
+														<style type="text/css">
+															body {
+																background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+															}
+														</style>
+														<div class="iframe-wrapper " id="">
+															<article class="content-area">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.</p>
+														
+														<aside class="wp-block-editorial-modal js-bu-block-modal alignfull">
+															<div class="wp-block-editorial-modal-callout">
+																<div class="wp-block-editorial-modal-media">
+																	<figure class="wp-block-editorial-modal-image">
+																		<img src="http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg" class="banner-placeholder">
+																	</figure>
+																</div>
+																<div class="wp-block-editorial-modal-callout-content">
+																	<div class="modal-valign">
+																		<h1>Modal Title</h1>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																		<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
+																	</div>
+																</div>
+															</div>
+														
+															<div class="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+																<div class="overlay overlay-scale one">
+																	<a href="#one" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+																	<article>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius, nibh vel rutrum convallis, libero erat dictum diam, sit amet consectetur urna odio a mi. Nulla facilisi. Aenean finibus aliquam mauris eu faucibus. Cras id dictum nibh. Sed cursus magna quis ipsum efficitur dictum. Curabitur a risus posuere tortor laoreet porttitor. Maecenas fermentum tellus lacus, sed sagittis nunc laoreet pellentesque. Sed porta vel eros in convallis. In hac habitasse platea dictumst. Sed cursus est vitae odio pulvinar, et euismod tellus maximus. Donec efficitur justo a nisl sodales, quis tempus nibh sagittis. Donec at mi at turpis tempor aliquet eu vel leo. Nulla ac mattis purus, quis vehicula neque. In luctus orci in nibh suscipit, at imperdiet mi pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+														
+														
+																		<p>In sit amet justo maximus, efficitur tortor non, lobortis nisi. Mauris est mauris, commodo et faucibus at, molestie vel tortor. Etiam at tortor orci. Curabitur mattis elementum odio, at sagittis nulla ullamcorper eu. Morbi orci sapien, consequat a lobortis ut, bibendum et risus. Donec a laoreet orci. Donec iaculis egestas porta. Fusce libero ante, finibus in luctus in, mattis et massa. Vestibulum rhoncus commodo felis, ac imperdiet nulla consectetur ac. Phasellus a felis hendrerit, pretium nulla vel, vehicula urna. Curabitur ut consectetur felis, id vehicula elit. Morbi tellus orci, tincidunt vitae sapien vitae, tempor consectetur eros. Fusce quis blandit justo. In at turpis eros.</p>
+														
+																		<p>Etiam imperdiet laoreet pulvinar. Donec augue magna, euismod at tortor vel, gravida facilisis est. Proin tempor felis leo, eu sodales arcu tempor ac. Vestibulum mollis, lorem sed porta volutpat, mauris neque ultrices urna, vitae dictum nisi tortor non nisi. Nam convallis ligula a purus imperdiet, nec porttitor lorem accumsan. Maecenas quis dictum magna. Etiam eget euismod dolor.</p>
+														
+																		<p>Mauris id tincidunt arcu. Vestibulum sagittis justo consequat, condimentum nulla et, rutrum odio. Mauris varius ac libero quis dignissim. Ut maximus vel justo sed vulputate. Vestibulum ex elit, convallis eu efficitur vel, pulvinar ut leo. Praesent ac justo eget erat tincidunt ornare ut blandit elit. Sed rutrum molestie nibh. Ut et finibus elit, sit amet porttitor justo. Donec dignissim, dolor non mattis dapibus, nibh ante hendrerit ex, ut vestibulum velit mauris in ipsum. Nullam pharetra tellus sit amet sapien tempor, sit amet ornare tellus ultrices. Nullam vehicula, nulla eu egestas ornare, erat nisi tempor nisl, et rhoncus massa ligula sed nibh. Maecenas auctor semper enim. Maecenas vestibulum neque sapien, quis hendrerit magna auctor vitae. Nulla consectetur magna id mauris blandit, vitae posuere est tempus. Aenean vehicula quam id mauris pellentesque aliquam. Pellentesque metus ante, egestas et commodo sed, iaculis et lectus.</p>
+														
+																		<p>Mauris gravida lacus ac dolor finibus, at aliquam mauris hendrerit. Ut ac mi mauris. Aenean tristique, magna sed accumsan feugiat, orci neque ultricies purus, a venenatis augue lacus quis lorem. Duis porttitor finibus lorem eu tincidunt. Praesent lobortis, justo quis dignissim malesuada, turpis lacus fringilla velit, placerat ultrices justo nisl congue elit. Ut consequat mattis elit, id molestie nibh mollis tristique. Proin hendrerit maximus eros vitae ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at odio quam.</p>
+																	</article>
+																</div>
+															</div>
+														</aside>
+														<p>Nullam ultrices neque in quam malesuada, volutpat varius diam vulputate. Nulla facilisi. Proin pulvinar, lectus sit amet pellentesque luctus, elit arcu euismod turpis, et iaculis urna odio et nisl. Ut in molestie elit. Praesent lacinia sodales euismod. Ut consequat eleifend nulla, eu auctor nisl euismod vel. Curabitur luctus rhoncus mauris id porta. Etiam faucibus tellus non porta egestas. Praesent et tincidunt ex, ac tincidunt tortor. Vivamus ullamcorper nulla nunc, a scelerisque augue elementum vel.</p>
+														</article>
+														</div>					</script>
+							
+												<div class="id-kss-example-iframe-handle"></div>
+											</div>
+											<div class="id-kss-modifier-example-footer"></div>
+										</div>
+									</div>
+							
+							
+									<div class="is-example-variant has-light-theme">
+										<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+											.has-light-theme
+										</div>
+										<p class="id-kss-modifier-description id-kss-style">
+											Light background variation
+										</p>
+										<div class="id-kss-modifier-example">
+											<div class="id-kss-example-wrapper">
+												<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+												<script type="text/template" class="template-iframe">
+														<style type="text/css">
+															body {
+																background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+															}
+														</style>
+														<div class="iframe-wrapper " id="">
+															<article class="content-area">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.</p>
+														
+														<aside class="wp-block-editorial-modal js-bu-block-modal has-light-theme">
+															<div class="wp-block-editorial-modal-callout">
+																<div class="wp-block-editorial-modal-media">
+																	<figure class="wp-block-editorial-modal-image">
+																		<img src="http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg" class="banner-placeholder">
+																	</figure>
+																</div>
+																<div class="wp-block-editorial-modal-callout-content">
+																	<div class="modal-valign">
+																		<h1>Modal Title</h1>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																		<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
+																	</div>
+																</div>
+															</div>
+														
+															<div class="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+																<div class="overlay overlay-scale one">
+																	<a href="#one" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+																	<article>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius, nibh vel rutrum convallis, libero erat dictum diam, sit amet consectetur urna odio a mi. Nulla facilisi. Aenean finibus aliquam mauris eu faucibus. Cras id dictum nibh. Sed cursus magna quis ipsum efficitur dictum. Curabitur a risus posuere tortor laoreet porttitor. Maecenas fermentum tellus lacus, sed sagittis nunc laoreet pellentesque. Sed porta vel eros in convallis. In hac habitasse platea dictumst. Sed cursus est vitae odio pulvinar, et euismod tellus maximus. Donec efficitur justo a nisl sodales, quis tempus nibh sagittis. Donec at mi at turpis tempor aliquet eu vel leo. Nulla ac mattis purus, quis vehicula neque. In luctus orci in nibh suscipit, at imperdiet mi pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+														
+														
+																		<p>In sit amet justo maximus, efficitur tortor non, lobortis nisi. Mauris est mauris, commodo et faucibus at, molestie vel tortor. Etiam at tortor orci. Curabitur mattis elementum odio, at sagittis nulla ullamcorper eu. Morbi orci sapien, consequat a lobortis ut, bibendum et risus. Donec a laoreet orci. Donec iaculis egestas porta. Fusce libero ante, finibus in luctus in, mattis et massa. Vestibulum rhoncus commodo felis, ac imperdiet nulla consectetur ac. Phasellus a felis hendrerit, pretium nulla vel, vehicula urna. Curabitur ut consectetur felis, id vehicula elit. Morbi tellus orci, tincidunt vitae sapien vitae, tempor consectetur eros. Fusce quis blandit justo. In at turpis eros.</p>
+														
+																		<p>Etiam imperdiet laoreet pulvinar. Donec augue magna, euismod at tortor vel, gravida facilisis est. Proin tempor felis leo, eu sodales arcu tempor ac. Vestibulum mollis, lorem sed porta volutpat, mauris neque ultrices urna, vitae dictum nisi tortor non nisi. Nam convallis ligula a purus imperdiet, nec porttitor lorem accumsan. Maecenas quis dictum magna. Etiam eget euismod dolor.</p>
+														
+																		<p>Mauris id tincidunt arcu. Vestibulum sagittis justo consequat, condimentum nulla et, rutrum odio. Mauris varius ac libero quis dignissim. Ut maximus vel justo sed vulputate. Vestibulum ex elit, convallis eu efficitur vel, pulvinar ut leo. Praesent ac justo eget erat tincidunt ornare ut blandit elit. Sed rutrum molestie nibh. Ut et finibus elit, sit amet porttitor justo. Donec dignissim, dolor non mattis dapibus, nibh ante hendrerit ex, ut vestibulum velit mauris in ipsum. Nullam pharetra tellus sit amet sapien tempor, sit amet ornare tellus ultrices. Nullam vehicula, nulla eu egestas ornare, erat nisi tempor nisl, et rhoncus massa ligula sed nibh. Maecenas auctor semper enim. Maecenas vestibulum neque sapien, quis hendrerit magna auctor vitae. Nulla consectetur magna id mauris blandit, vitae posuere est tempus. Aenean vehicula quam id mauris pellentesque aliquam. Pellentesque metus ante, egestas et commodo sed, iaculis et lectus.</p>
+														
+																		<p>Mauris gravida lacus ac dolor finibus, at aliquam mauris hendrerit. Ut ac mi mauris. Aenean tristique, magna sed accumsan feugiat, orci neque ultricies purus, a venenatis augue lacus quis lorem. Duis porttitor finibus lorem eu tincidunt. Praesent lobortis, justo quis dignissim malesuada, turpis lacus fringilla velit, placerat ultrices justo nisl congue elit. Ut consequat mattis elit, id molestie nibh mollis tristique. Proin hendrerit maximus eros vitae ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at odio quam.</p>
+																	</article>
+																</div>
+															</div>
+														</aside>
+														<p>Nullam ultrices neque in quam malesuada, volutpat varius diam vulputate. Nulla facilisi. Proin pulvinar, lectus sit amet pellentesque luctus, elit arcu euismod turpis, et iaculis urna odio et nisl. Ut in molestie elit. Praesent lacinia sodales euismod. Ut consequat eleifend nulla, eu auctor nisl euismod vel. Curabitur luctus rhoncus mauris id porta. Etiam faucibus tellus non porta egestas. Praesent et tincidunt ex, ac tincidunt tortor. Vivamus ullamcorper nulla nunc, a scelerisque augue elementum vel.</p>
+														</article>
+														</div>					</script>
+							
+												<div class="id-kss-example-iframe-handle"></div>
+											</div>
+											<div class="id-kss-modifier-example-footer"></div>
+										</div>
+									</div>
+							
+							
+									<div class="is-example-variant has-dark-theme">
+										<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+											.has-dark-theme
+										</div>
+										<p class="id-kss-modifier-description id-kss-style">
+											Dark background variation
+										</p>
+										<div class="id-kss-modifier-example">
+											<div class="id-kss-example-wrapper">
+												<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+												<script type="text/template" class="template-iframe">
+														<style type="text/css">
+															body {
+																background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+															}
+														</style>
+														<div class="iframe-wrapper " id="">
+															<article class="content-area">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.</p>
+														
+														<aside class="wp-block-editorial-modal js-bu-block-modal has-dark-theme">
+															<div class="wp-block-editorial-modal-callout">
+																<div class="wp-block-editorial-modal-media">
+																	<figure class="wp-block-editorial-modal-image">
+																		<img src="http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg" class="banner-placeholder">
+																	</figure>
+																</div>
+																<div class="wp-block-editorial-modal-callout-content">
+																	<div class="modal-valign">
+																		<h1>Modal Title</h1>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																		<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
+																	</div>
+																</div>
+															</div>
+														
+															<div class="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+																<div class="overlay overlay-scale one">
+																	<a href="#one" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+																	<article>
+																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius, nibh vel rutrum convallis, libero erat dictum diam, sit amet consectetur urna odio a mi. Nulla facilisi. Aenean finibus aliquam mauris eu faucibus. Cras id dictum nibh. Sed cursus magna quis ipsum efficitur dictum. Curabitur a risus posuere tortor laoreet porttitor. Maecenas fermentum tellus lacus, sed sagittis nunc laoreet pellentesque. Sed porta vel eros in convallis. In hac habitasse platea dictumst. Sed cursus est vitae odio pulvinar, et euismod tellus maximus. Donec efficitur justo a nisl sodales, quis tempus nibh sagittis. Donec at mi at turpis tempor aliquet eu vel leo. Nulla ac mattis purus, quis vehicula neque. In luctus orci in nibh suscipit, at imperdiet mi pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+														
+														
+																		<p>In sit amet justo maximus, efficitur tortor non, lobortis nisi. Mauris est mauris, commodo et faucibus at, molestie vel tortor. Etiam at tortor orci. Curabitur mattis elementum odio, at sagittis nulla ullamcorper eu. Morbi orci sapien, consequat a lobortis ut, bibendum et risus. Donec a laoreet orci. Donec iaculis egestas porta. Fusce libero ante, finibus in luctus in, mattis et massa. Vestibulum rhoncus commodo felis, ac imperdiet nulla consectetur ac. Phasellus a felis hendrerit, pretium nulla vel, vehicula urna. Curabitur ut consectetur felis, id vehicula elit. Morbi tellus orci, tincidunt vitae sapien vitae, tempor consectetur eros. Fusce quis blandit justo. In at turpis eros.</p>
+														
+																		<p>Etiam imperdiet laoreet pulvinar. Donec augue magna, euismod at tortor vel, gravida facilisis est. Proin tempor felis leo, eu sodales arcu tempor ac. Vestibulum mollis, lorem sed porta volutpat, mauris neque ultrices urna, vitae dictum nisi tortor non nisi. Nam convallis ligula a purus imperdiet, nec porttitor lorem accumsan. Maecenas quis dictum magna. Etiam eget euismod dolor.</p>
+														
+																		<p>Mauris id tincidunt arcu. Vestibulum sagittis justo consequat, condimentum nulla et, rutrum odio. Mauris varius ac libero quis dignissim. Ut maximus vel justo sed vulputate. Vestibulum ex elit, convallis eu efficitur vel, pulvinar ut leo. Praesent ac justo eget erat tincidunt ornare ut blandit elit. Sed rutrum molestie nibh. Ut et finibus elit, sit amet porttitor justo. Donec dignissim, dolor non mattis dapibus, nibh ante hendrerit ex, ut vestibulum velit mauris in ipsum. Nullam pharetra tellus sit amet sapien tempor, sit amet ornare tellus ultrices. Nullam vehicula, nulla eu egestas ornare, erat nisi tempor nisl, et rhoncus massa ligula sed nibh. Maecenas auctor semper enim. Maecenas vestibulum neque sapien, quis hendrerit magna auctor vitae. Nulla consectetur magna id mauris blandit, vitae posuere est tempus. Aenean vehicula quam id mauris pellentesque aliquam. Pellentesque metus ante, egestas et commodo sed, iaculis et lectus.</p>
+														
+																		<p>Mauris gravida lacus ac dolor finibus, at aliquam mauris hendrerit. Ut ac mi mauris. Aenean tristique, magna sed accumsan feugiat, orci neque ultricies purus, a venenatis augue lacus quis lorem. Duis porttitor finibus lorem eu tincidunt. Praesent lobortis, justo quis dignissim malesuada, turpis lacus fringilla velit, placerat ultrices justo nisl congue elit. Ut consequat mattis elit, id molestie nibh mollis tristique. Proin hendrerit maximus eros vitae ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at odio quam.</p>
+																	</article>
+																</div>
+															</div>
+														</aside>
+														<p>Nullam ultrices neque in quam malesuada, volutpat varius diam vulputate. Nulla facilisi. Proin pulvinar, lectus sit amet pellentesque luctus, elit arcu euismod turpis, et iaculis urna odio et nisl. Ut in molestie elit. Praesent lacinia sodales euismod. Ut consequat eleifend nulla, eu auctor nisl euismod vel. Curabitur luctus rhoncus mauris id porta. Etiam faucibus tellus non porta egestas. Praesent et tincidunt ex, ac tincidunt tortor. Vivamus ullamcorper nulla nunc, a scelerisque augue elementum vel.</p>
+														</article>
+														</div>					</script>
+							
+												<div class="id-kss-example-iframe-handle"></div>
+											</div>
+											<div class="id-kss-modifier-example-footer"></div>
+										</div>
+									</div>
+							</div>
+				</div>
+
+					<details class="id-kss-markup id-kss-style" open="">
+						<summary class="id-kss-docs-heading">
+								Markup <code>blocks/modal/bu-blocks-block-modal.hbs</code>
+						</summary>
+						<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content-area"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal js-bu-block-modal </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal-callout"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal-media"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal-image"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"banner-placeholder"</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal-callout-content"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"modal-valign"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Modal Title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#one"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"js-bu-block-modal-trigger-overlay button"</span>&gt;</span>Explore<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal-content js-bu-block-modal-overlay"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"overlay overlay-scale one"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#one"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close"</span>&gt;</span>Close<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius, nibh vel rutrum convallis, libero erat dictum diam, sit amet consectetur urna odio a mi. Nulla facilisi. Aenean finibus aliquam mauris eu faucibus. Cras id dictum nibh. Sed cursus magna quis ipsum efficitur dictum. Curabitur a risus posuere tortor laoreet porttitor. Maecenas fermentum tellus lacus, sed sagittis nunc laoreet pellentesque. Sed porta vel eros in convallis. In hac habitasse platea dictumst. Sed cursus est vitae odio pulvinar, et euismod tellus maximus. Donec efficitur justo a nisl sodales, quis tempus nibh sagittis. Donec at mi at turpis tempor aliquet eu vel leo. Nulla ac mattis purus, quis vehicula neque. In luctus orci in nibh suscipit, at imperdiet mi pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>In sit amet justo maximus, efficitur tortor non, lobortis nisi. Mauris est mauris, commodo et faucibus at, molestie vel tortor. Etiam at tortor orci. Curabitur mattis elementum odio, at sagittis nulla ullamcorper eu. Morbi orci sapien, consequat a lobortis ut, bibendum et risus. Donec a laoreet orci. Donec iaculis egestas porta. Fusce libero ante, finibus in luctus in, mattis et massa. Vestibulum rhoncus commodo felis, ac imperdiet nulla consectetur ac. Phasellus a felis hendrerit, pretium nulla vel, vehicula urna. Curabitur ut consectetur felis, id vehicula elit. Morbi tellus orci, tincidunt vitae sapien vitae, tempor consectetur eros. Fusce quis blandit justo. In at turpis eros.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Etiam imperdiet laoreet pulvinar. Donec augue magna, euismod at tortor vel, gravida facilisis est. Proin tempor felis leo, eu sodales arcu tempor ac. Vestibulum mollis, lorem sed porta volutpat, mauris neque ultrices urna, vitae dictum nisi tortor non nisi. Nam convallis ligula a purus imperdiet, nec porttitor lorem accumsan. Maecenas quis dictum magna. Etiam eget euismod dolor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Mauris id tincidunt arcu. Vestibulum sagittis justo consequat, condimentum nulla et, rutrum odio. Mauris varius ac libero quis dignissim. Ut maximus vel justo sed vulputate. Vestibulum ex elit, convallis eu efficitur vel, pulvinar ut leo. Praesent ac justo eget erat tincidunt ornare ut blandit elit. Sed rutrum molestie nibh. Ut et finibus elit, sit amet porttitor justo. Donec dignissim, dolor non mattis dapibus, nibh ante hendrerit ex, ut vestibulum velit mauris in ipsum. Nullam pharetra tellus sit amet sapien tempor, sit amet ornare tellus ultrices. Nullam vehicula, nulla eu egestas ornare, erat nisi tempor nisl, et rhoncus massa ligula sed nibh. Maecenas auctor semper enim. Maecenas vestibulum neque sapien, quis hendrerit magna auctor vitae. Nulla consectetur magna id mauris blandit, vitae posuere est tempus. Aenean vehicula quam id mauris pellentesque aliquam. Pellentesque metus ante, egestas et commodo sed, iaculis et lectus.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Mauris gravida lacus ac dolor finibus, at aliquam mauris hendrerit. Ut ac mi mauris. Aenean tristique, magna sed accumsan feugiat, orci neque ultricies purus, a venenatis augue lacus quis lorem. Duis porttitor finibus lorem eu tincidunt. Praesent lobortis, justo quis dignissim malesuada, turpis lacus fringilla velit, placerat ultrices justo nisl congue elit. Ut consequat mattis elit, id molestie nibh mollis tristique. Proin hendrerit maximus eros vitae ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at odio quam.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Nullam ultrices neque in quam malesuada, volutpat varius diam vulputate. Nulla facilisi. Proin pulvinar, lectus sit amet pellentesque luctus, elit arcu euismod turpis, et iaculis urna odio et nisl. Ut in molestie elit. Praesent lacinia sodales euismod. Ut consequat eleifend nulla, eu auctor nisl euismod vel. Curabitur luctus rhoncus mauris id porta. Etiam faucibus tellus non porta egestas. Praesent et tincidunt ex, ac tincidunt tortor. Vivamus ullamcorper nulla nunc, a scelerisque augue elementum vel.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></span></code></pre>
+					</details>
+
+		</div>
+</article>
+</main>
+<!-- SCRIPTS -->
+<script src="kss-assets/kss.js"></script>
+<script src="kss-assets/scrollspy.js"></script>
+<script src="kss-assets/kss-fullscreen.js"></script>
+<script src="kss-assets/kss-guides.js"></script>
+<script src="kss-assets/kss-markup.js"></script>
+<script src="kss-assets/kss-breakpoints.js"></script>
+<script src="kss-assets/kss-sidebar.js"></script>
+<script src="kss-assets/jquery.js"></script>
+<script src="kss-assets/jquery-resizable.js"></script>
+<script src="kss-assets/iframe.js"></script>
+<script src="kss-assets/mark.min.js"></script>
+<script src="kss-assets/kss-search.js"></script>
+
+<script type="text/javascript">
+	var spy = new ScrollSpy('#id-kss-node', {
+		nav: '.id-kss-nav-menu-child > li > a',
+		className: 'is-in-viewport'
+	});
+	var kssFullScreen = new KssFullScreen({
+		idPrefix: 'id-kss-fullscreen-',
+		bodyClass: 'id-kss-fullscreen-mode',
+		elementClass: 'is-fullscreen'
+	});
+	var kssSidebar = new KssSidebar({
+		bodyClass: 'id-kss-sidebar-open',
+	});
+	var kssGuides = new KssGuides({
+		bodyClass: 'id-kss-guides-mode'
+	});
+	var kssBreakpoints = new KssBreakpoints({
+		bodyClass: 'id-kss-breakpoint-xs'
+	});
+	var kssMarkup = new KssMarkup({
+		bodyClass: 'id-kss-markup-mode',
+		detailsClass: 'id-kss-markup'
+	});
+	var kssSearch = new KssSearch({
+		inputID: 'kss-search-field',
+		searchButtonID: 'kss-search-button',
+    	searchAreaClass: '.id-homepage-nav'
+	});
+
+</script>
+
+
+<!-- Automatically built using <a href="https://github.com/kss-node/kss-node">kss-node</a>. -->
+</body>
+</html>
