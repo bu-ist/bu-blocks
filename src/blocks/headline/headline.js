@@ -20,6 +20,9 @@ const { Fragment } = wp.element;
 const { RichText, BlockControls } = wp.editor;
 const { select } = wp.data;
 
+// The current publication owner.
+const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+
 // Register the block.
 registerBlockType( 'editorial/headline', {
 
@@ -62,6 +65,7 @@ registerBlockType( 'editorial/headline', {
 			label: __( 'Emphasize color' )
 		},
 	],
+	publicationClassName: publicationClass + '-block-editorial-headline',
 
 	edit( props ) {
 		const { attributes, setAttributes, className, clientId } = props;
