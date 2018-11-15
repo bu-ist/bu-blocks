@@ -8,10 +8,14 @@
 import './style.scss';
 import './editor.scss';
 
+// Import internal dependencies.
+import HeadingToolbar from './heading-toolbar';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { RichText } = wp.editor;
+const { Fragment } = wp.element;
+const { RichText, BlockControls } = wp.editor;
 
 // Register the block.
 registerBlockType( 'editorial/headline', {
@@ -29,29 +33,40 @@ registerBlockType( 'editorial/headline', {
 			source: 'html',
 			selector: '.wp-block-editorial-headline',
 		},
+		level: {
+			type: 'number',
+			default: 2,
+		},
 	},
 
 	edit( props ) {
 		const { attributes, setAttributes, className } = props;
-		const { content } = attributes;
+		const { content, level } = attributes;
+		const tagName = 'h' + level;
 
 		return (
-			<RichText
-				tagName='h2'
-				className={ className }
-				value={ content }
-				onChange={ content => setAttributes( { content } ) }
-				placeholder={ __( 'Write headline…' ) }
-			/>
+			<Fragment>
+				<BlockControls>
+					<HeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+				</BlockControls>
+				<RichText
+					tagName={ tagName }
+					className={ className }
+					value={ content }
+					onChange={ content => setAttributes( { content } ) }
+					placeholder={ __( 'Write headline…' ) }
+				/>
+			</Fragment>
 		);
 	},
 
 	save( { attributes } ) {
-		const { content } = attributes;
+		const { content, level } = attributes;
+		const tagName = 'h' + level;
 
 		return (
 			<RichText.Content
-				tagName='h2'
+				tagName={ tagName }
 				value={ content }
 			/>
 		);
