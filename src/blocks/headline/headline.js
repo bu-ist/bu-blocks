@@ -10,6 +10,8 @@ import './editor.scss';
 
 // Import internal dependencies.
 import HeadingToolbar from './heading-toolbar';
+import './pretext-format.js'
+import './posttext-format.js'
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -55,7 +57,7 @@ registerBlockType( 'editorial/headline', {
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
-					formattingControls={ [ 'bold', 'italic' ] }
+					formattingControls={ [ 'pretext', 'posttext', 'bold', 'italic' ] }
 				/>
 			</Fragment>
 		);
