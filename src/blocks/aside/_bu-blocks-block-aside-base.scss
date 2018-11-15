@@ -27,55 +27,54 @@
 		margin: 0 0 1em 0;
 		font-size: 16px;
 	}
-}
 
-.alignleft,
-.alignright {
-	@extend %col-sm-third;
-}
-
-.alignleft {
-	float: left;
-
-	@include breakpoint( $sm ) {
-		margin: 0 30px 20px -40px;
-	}
-}
-
-.alignright {
-	float: right;
-
-	@include breakpoint( $sm ) {
-		margin: 0 -10px 20px 30px;
-	}
-}
-
-.has-dark-background,
-.has-light-background,
-.has-primary-background {
-	border: none;
-}
-
-.has-dark-background {
-	background: $color-grayscale-4;
-
-	h2 {
-		color: $color-grayscale-f;
+	.alignleft,
+	.alignright {
+		@extend %col-sm-third;
 	}
 
-	p {
-		color: $color-grayscale-f0;
+	.alignleft {
+		float: left;
+
+		@include breakpoint( $sm ) {
+			margin: 0 30px 20px -40px;
+		}
+	}
+
+	.alignright {
+		float: right;
+
+		@include breakpoint( $sm ) {
+			margin: 0 -10px 20px 30px;
+		}
+	}
+
+	.has-dark-background,
+	.has-light-background,
+	.has-primary-background {
+		border: none;
+	}
+
+	.has-dark-background {
+		background: $color-grayscale-4;
+
+		h2 {
+			color: $color-grayscale-f;
+		}
+
+		p {
+			color: $color-grayscale-f0;
+		}
+	}
+
+	.has-light-background {
+		background: $color-grayscale-e;
+	}
+
+	.has-primary-background {
+		h2 {
+			color: $color-grayscale-f;
+		}
 	}
 }
-
-.has-light-background {
-	background: $color-grayscale-e;
-}
-
-.has-primary-background {
-	h2 {
-		color: $color-grayscale-f;
-	}
-}
-
 
