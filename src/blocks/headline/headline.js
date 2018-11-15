@@ -55,6 +55,7 @@ registerBlockType( 'editorial/headline', {
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
+					formattingControls={ [ 'bold', 'italic' ] }
 				/>
 			</Fragment>
 		);
