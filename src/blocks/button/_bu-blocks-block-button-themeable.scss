@@ -111,7 +111,7 @@ $scope: blocks-get( 'scope' );
 
 			&::before,
 			&::after {
-				border-color: blocks-get( 'color-primary-darkest' );
+				border-color: blocks-get( 'color-primary-darker' );
 			}
 		}
 	}
@@ -138,7 +138,7 @@ $scope: blocks-get( 'scope' );
 
 			&::before,
 			&::after {
-				border-color: blocks-get( 'color-secondary-darkest' );
+				border-color: blocks-get( 'color-secondary-darker' );
 			}
 		}
 	}
@@ -165,7 +165,7 @@ $scope: blocks-get( 'scope' );
 
 			&::before,
 			&::after {
-				border-color: blocks-get( 'color-tertiary-darkest' );
+				border-color: blocks-get( 'color-tertiary-darker' );
 			}
 		}
 	}
@@ -192,7 +192,7 @@ $scope: blocks-get( 'scope' );
 
 			&::before,
 			&::after {
-				border-color: blocks-get( 'color-quaternary-darkest' );
+				border-color: blocks-get( 'color-quaternary-darker' );
 			}
 		}
 	}
