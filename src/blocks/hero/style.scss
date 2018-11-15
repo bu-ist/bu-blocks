@@ -1,0 +1,30 @@
+// =================================================================
+// Hero Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/hero/bu-blocks-block-hero-base';
+@import 'src/blocks/hero/bu-blocks-block-hero-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Hero Block
+//
+// This is a Hero Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-hero.hbs
+//
+// .alignwide																	 - Wide version of hero
+// .alignfull																	 - full version of hero
+// .is-style-x																	 - x
+//
+// Styleguide Blocks.Global.Hero
+
+
