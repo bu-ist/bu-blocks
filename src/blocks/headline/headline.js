@@ -18,6 +18,7 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
 const { RichText, BlockControls } = wp.editor;
+const { select } = wp.data;
 
 // Register the block.
 registerBlockType( 'editorial/headline', {
@@ -39,6 +40,12 @@ registerBlockType( 'editorial/headline', {
 			type: 'number',
 			default: 2,
 		},
+		anchor: {
+			type: 'string',
+			source: 'attribute',
+			attribute: 'id',
+			selector: '.wp-block-editorial-headline',
+		},
 	},
 	styles: [
 		{
@@ -57,9 +64,19 @@ registerBlockType( 'editorial/headline', {
 	],
 
 	edit( props ) {
-		const { attributes, setAttributes, className } = props;
-		const { content, level } = attributes;
+		const { attributes, setAttributes, className, clientId } = props;
+		const { content, level, anchor } = attributes;
 		const tagName = 'h' + level;
+
+		// Generate an index-based value for the anchor attribute if it is not set.
+		if ( ! anchor ) {
+			const allBlocks = select( 'core/editor' ).getBlocks();
+			const headlineBlocks = allBlocks.filter( e => e.name === 'editorial/headline' );
+			const HeadlineIndex = headlineBlocks.findIndex( e => e.clientId === clientId );
+			const id = 'headline-' + ( HeadlineIndex + 1 );
+
+			setAttributes( { anchor: id } );
+		}
 
 		return (
 			<Fragment>
