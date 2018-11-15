@@ -28,12 +28,12 @@
 		font-size: 16px;
 	}
 
-	.alignleft,
-	.alignright {
+	&.alignleft,
+	&.alignright {
 		@extend %col-sm-third;
 	}
 
-	.alignleft {
+	&.alignleft {
 		float: left;
 
 		@include breakpoint( $sm ) {
@@ -41,7 +41,7 @@
 		}
 	}
 
-	.alignright {
+	&.alignright {
 		float: right;
 
 		@include breakpoint( $sm ) {
@@ -49,13 +49,13 @@
 		}
 	}
 
-	.has-dark-background,
-	.has-light-background,
-	.has-primary-background {
+	&.has-dark-background,
+	&.has-light-background,
+	&.has-primary-background {
 		border: none;
 	}
 
-	.has-dark-background {
+	&.has-dark-background {
 		background: $color-grayscale-4;
 
 		h2 {
@@ -67,11 +67,11 @@
 		}
 	}
 
-	.has-light-background {
+	&.has-light-background {
 		background: $color-grayscale-e;
 	}
 
-	.has-primary-background {
+	&.has-primary-background {
 		h2 {
 			color: $color-grayscale-f;
 		}
