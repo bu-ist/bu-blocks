@@ -329,9 +329,9 @@ a:visited {
   color: inherit; }
 
 .wp-block-button {
-  -webkit-transition: all, 0.2s, ease-in-out, 0s;
-  -o-transition: all, 0.2s, ease-in-out, 0s;
-  transition: all, 0.2s, ease-in-out, 0s;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
   display: inline-block;
   background: transparent;
   border-radius: 6px;
@@ -341,10 +341,21 @@ a:visited {
   text-transform: uppercase;
   padding: 0.5em 0; }
   .wp-block-button[class*="icon-"]::before {
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
     font-size: 0.7em;
     color: #aaa; }
   .wp-block-button.is-style-default, .wp-block-button.is-style-outline, .wp-block-button.is-style-squared {
     padding: 0.5em 1em; }
+    .wp-block-button.is-style-default.align-icon-right::before, .wp-block-button.is-style-outline.align-icon-right::before, .wp-block-button.is-style-squared.align-icon-right::before {
+      float: right;
+      display: block;
+      padding-top: 7px;
+      margin-left: 0.5em;
+      margin-right: 0; }
+    .wp-block-button.is-style-default.align-icon-left::before, .wp-block-button.is-style-outline.align-icon-left::before, .wp-block-button.is-style-squared.align-icon-left::before {
+      padding-top: -2px; }
   .wp-block-button.is-style-default {
     background: #ddd; }
     .wp-block-button.is-style-default:hover {
@@ -376,11 +387,3 @@ a:visited {
     text-decoration: underline; }
     .wp-block-button.is-style-text:hover {
       text-decoration: none; }
-  .wp-block-button.align-icon-right::before {
-    float: right;
-    display: block;
-    padding-top: 7px;
-    margin-left: 0.5em;
-    margin-right: 0; }
-  .wp-block-button.align-icon-left::before {
-    padding-top: -2px; }
