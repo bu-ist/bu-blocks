@@ -57,8 +57,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   width: 100%; }
 
 @media screen and (min-width: 768px) {
-  .wp-block-editorial-aside .alignleft,
-  .wp-block-editorial-aside .alignright {
+  .wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright {
     float: left;
     position: relative;
     min-height: 1px;
@@ -78,29 +77,27 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     line-height: 1.5;
     margin: 0 0 1em 0;
     font-size: 16px; }
-  .wp-block-editorial-aside .alignleft {
+  .wp-block-editorial-aside.alignleft {
     float: left; }
     @media screen and (min-width: 768px) {
-      .wp-block-editorial-aside .alignleft {
+      .wp-block-editorial-aside.alignleft {
         margin: 0 30px 20px -40px; } }
-  .wp-block-editorial-aside .alignright {
+  .wp-block-editorial-aside.alignright {
     float: right; }
     @media screen and (min-width: 768px) {
-      .wp-block-editorial-aside .alignright {
+      .wp-block-editorial-aside.alignright {
         margin: 0 -10px 20px 30px; } }
-  .wp-block-editorial-aside .has-dark-background,
-  .wp-block-editorial-aside .has-light-background,
-  .wp-block-editorial-aside .has-primary-background {
+  .wp-block-editorial-aside.has-dark-background, .wp-block-editorial-aside.has-light-background, .wp-block-editorial-aside.has-primary-background {
     border: none; }
-  .wp-block-editorial-aside .has-dark-background {
+  .wp-block-editorial-aside.has-dark-background {
     background: #444; }
-    .wp-block-editorial-aside .has-dark-background h2 {
+    .wp-block-editorial-aside.has-dark-background h2 {
       color: #fff; }
-    .wp-block-editorial-aside .has-dark-background p {
+    .wp-block-editorial-aside.has-dark-background p {
       color: #f0f0f0; }
-  .wp-block-editorial-aside .has-light-background {
+  .wp-block-editorial-aside.has-light-background {
     background: #eee; }
-  .wp-block-editorial-aside .has-primary-background h2 {
+  .wp-block-editorial-aside.has-primary-background h2 {
     color: #fff; }
 @charset "UTF-8";
 /**
