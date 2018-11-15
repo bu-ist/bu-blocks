@@ -40,6 +40,21 @@ registerBlockType( 'editorial/headline', {
 			default: 2,
 		},
 	},
+	styles: [
+		{
+			name: 'default',
+			label: __( 'Regular' ),
+			isDefault: true
+		},
+		{
+			name: 'emphasis-weight',
+			label: __( 'Emphasize weight' )
+		},
+		{
+			name: 'emphasis-color',
+			label: __( 'Emphasize color' )
+		},
+	],
 
 	edit( props ) {
 		const { attributes, setAttributes, className } = props;
