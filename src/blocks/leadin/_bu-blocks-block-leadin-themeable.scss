@@ -1,5 +1,5 @@
 // =================================================================
-// Hero Styles - Configurable
+// Lead-In Styles - Configurable
 // =================================================================
 //
 //
@@ -18,18 +18,18 @@
 // in the stylesheet multiple times (for each publication)
 //
 
-$blocks-block-hero-config: ();
+$blocks-block-leadin-config: ();
 
 // use the above array if you need to override the global $blocks-defaults array
 // of styles ONLY for this block IN the plugin.
-// You can then override THIS array by using $blocks-block-hero-theme in the child theme to
+// You can then override THIS array by using $blocks-block-leadin-theme in the child theme to
 // override this array
 //
 // Remember, with great power comes great responsibility. This should not be used unless
 // you really need it. Think carefully about why you aren't modifying the global config by adding
 // a different variable.
 //
-// $blocks-block-hero-config: (
+// $blocks-block-leadin-config: (
 // 		primary-color:red,
 // 		secondary-color: rebeccapurple,
 // );
@@ -38,23 +38,23 @@ $blocks-block-hero-config: ();
 // Use the default Blocks configuration. You can override this globally
 // in a theme.
 
-$blocks-block-hero-config: map-merge( $blocks-block-hero-config, $blocks-config );
+$blocks-block-leadin-config: map-merge( $blocks-block-leadin-config, $blocks-config );
 
 // This allows themes to optionally set theme options for this
 // block only. You can set all or a few options - only the options
-// you set in $block-block-hero-theme will override the defaults.
+// you set in $block-block-leadin-theme will override the defaults.
 
-@if variable-exists( blocks-block-hero-theme ) {
-	$blocks-block-hero-config: map_merge( $blocks-block-hero-config, $blocks-block-hero-theme );
+@if variable-exists( blocks-block-leadin-theme ) {
+	$blocks-block-leadin-config: map_merge( $blocks-block-leadin-config, $blocks-block-leadin-theme );
 }
 
 // A global helper variable for the block-get mixin.
 
-$current-map: $blocks-block-hero-config;
+$current-map: $blocks-block-leadin-config;
 
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-hero {
+.#{$scope}-block-leadin {
 }
 
