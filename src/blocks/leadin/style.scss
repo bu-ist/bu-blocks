@@ -1,0 +1,38 @@
+// =================================================================
+// Lead-In Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/leadin/bu-blocks-block-leadin-base';
+@import 'src/blocks/leadin/bu-blocks-block-leadin-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Lead-In Block (Codename)
+//
+// This is a Lead-In Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-leadin.hbs
+//
+// .is-style-text-to-image																		 - Text is presented first and followed by the image
+// .is-style-image-to-text																		 - Image is presented first and followed by the text
+// .is-style-emphasis-on-text																	 - 
+// .is-style-emphasis-on-text.has-box															 - 
+// .is-style-text-over-image-boxed																 - 
+// .is-style-text-over-image-tinted																 - 
+// .is-style-text-over-image-tinted.has-text-position-x-bottom-right							 - 
+// .is-style-side-by-side																		 - 
+// .is-style-side-by-side.has-wide																 - 
+// .is-style-side-by-side.has-wider																 - 
+// .is-style-side-by-side.has-wider.has-flip													 - 
+//
+// Styleguide Blocks.Editorial.Lead-In
+
+
