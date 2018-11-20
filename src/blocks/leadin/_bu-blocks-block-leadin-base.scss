@@ -9,4 +9,20 @@
 //
 
 .wp-block-leadin {
+	&.is-style-text-to-image {
+		.container-lockup {
+			display: flex;
+			flex-flow: column;
+		}
+		.container-image {
+			order: 2;
+		}
+		.container-text {
+			order: 1;
+		}
+	}
+	&.is-style-image-to-text {}
+	&.is-style-text-over-image-boxed {}
+	&.is-style-text-over-image-tinted {}
+	&.is-style-side-by-side {}
 }
