@@ -18,6 +18,8 @@ const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
 const { PanelBody, SelectControl } = wp.components;
 const { InspectorControls, InnerBlocks } = wp.editor;
+const { select } = wp.data;
+const { getSelectedBlockClientId, getClientIdsOfDescendants } = select( 'core/editor' );
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
@@ -37,12 +39,36 @@ registerBlockType( 'editorial/modal', {
 			type: 'string',
 			default: '',
 		},
+		selectedDescendants: {
+			type: 'bool',
+			default: '',
+		},
+		clientId: {
+			type: 'number',
+		},
 	},
 	publicationClassName: publicationClass + '-block-modal',
 
-	edit( { attributes, setAttributes, className } ) {
+	// Add the `selected-modal` data attribute when this block or its descendants are selected.
+	getEditWrapperProps( attributes ) {
+		const { clientId } = attributes;
+
+		if ( clientId ) {
+			let modalClientIds = getClientIdsOfDescendants( [ clientId ] );
+				modalClientIds.push( clientId );
+
+			const selectedIsBlockInModal = modalClientIds.includes( getSelectedBlockClientId() );
+
+			return { 'data-selected-modal': ( selectedIsBlockInModal ) ? 'true' : undefined }
+		}
+	},
+
+	edit( { attributes, setAttributes, className, clientId } ) {
 		const { background } = attributes;
 		const classList = [ className, background ].join( ' ' ).trim();
+
+		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
+		setAttributes( { clientId: clientId } );
 
 		return (
 			<Fragment>
