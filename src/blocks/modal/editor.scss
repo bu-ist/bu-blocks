@@ -4,3 +4,20 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+
+.wp-block-editorial-modal-callout,
+.wp-block-editorial-modal-content {
+	float: none;
+}
+
+.wp-block-editorial-modal-media figure {
+	margin: 0;
+
+	img {
+		display: block;
+	}
+}
+
+[data-selected-modal="true"] .wp-block-editorial-modal-content {
+	display: block;
+}
