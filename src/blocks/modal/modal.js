@@ -19,7 +19,7 @@ const { Fragment } = wp.element;
 const { PanelBody, SelectControl } = wp.components;
 const { InspectorControls, InnerBlocks } = wp.editor;
 const { select } = wp.data;
-const { getSelectedBlockClientId, getClientIdsOfDescendants } = select( 'core/editor' );
+const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
@@ -54,12 +54,9 @@ registerBlockType( 'editorial/modal', {
 		const { clientId } = attributes;
 
 		if ( clientId ) {
-			let modalClientIds = getClientIdsOfDescendants( [ clientId ] );
-				modalClientIds.push( clientId );
+			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
 
-			const selectedIsBlockInModal = modalClientIds.includes( getSelectedBlockClientId() );
-
-			return { 'data-selected-modal': ( selectedIsBlockInModal ) ? 'true' : undefined }
+			return { 'data-selected-modal': ( modalHasSelectedBlock ) ? 'true' : undefined }
 		}
 	},
 
