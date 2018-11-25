@@ -64,6 +64,7 @@ function define_editor_hooks() {
 	// Enqueue block scripts and styles for admin and front-end.
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
 }
 
 /**
@@ -124,6 +125,34 @@ function enqueue_block_editor_assets() {
 	);
 }
 
+/**
+ * Filter the list of default editor block categories.
+ *
+ * @since    0.1.0
+ *
+ * @param    array $categories Default block categories.
+ */
+function filter_block_categories( $categories ) {
+	$bu_editorial = array(
+		array(
+			'slug'  => 'bu-editorial',
+			'title' => __( 'Editorial Blocks', 'bu-blocks' ),
+		),
+	);
+
+	$bu_editorial_presets = array(
+		array(
+			'slug'  => 'bu-editorial-presets',
+			'title' => __( 'Preset Editorial Blocks', 'bu-blocks' ),
+		),
+	);
+
+	return array_merge(
+		$bu_editorial,
+		$bu_editorial_presets,
+		$categories
+	);
+}
 
 /**
  * Recursively load all PHP files within the /src/ directory.
