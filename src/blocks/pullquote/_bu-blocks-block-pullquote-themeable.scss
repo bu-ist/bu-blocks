@@ -56,10 +56,6 @@ $current-map: $blocks-block-pullquote-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-pullquote {
-	hr {
-	}
-	blockquote {
-	}
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			&::before,
@@ -67,67 +63,101 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-primary');
 				font-family: blocks-get( 'font-family-secondary');
 			}
-			&::before {
-			}
-			&::after {
-			}
 		}
-	}
-	&.has-image {
-		&:not(.is-style-modern):not(.is-style-pop) {
-			blockquote {
-				hr {
-					background-color: transparent;
-				}
+		&.has-image {
+			color: blocks-get( 'color-page');
+			hr::before,
+			hr::after {
+				background-color: blocks-get( 'color-page');
 			}
-		}
-		&:not(.is-style-modern) {
-			blockquote {
+			blockquote::before,
+			blockquote::after {
 				color: blocks-get( 'color-page');
-				hr {
-					background-color: blocks-get( 'color-page');
-					&::before,
-					&::after {
-						background-color: blocks-get( 'color-page');
-					}
-				}
-				&::before,
-				&::after {
-					color: blocks-get( 'color-page');
-				}
-				&::before {
-				}
-				&::after {
-				}
 			}
 		}
-		&.has-tint-dark {
-			&:not(.is-style-modern) {
+		&.alignfull {
+			background-color: blocks-get( 'background-color-light');
+			&.has-tint-dark {
+				&.has-image {
+					background-color: blocks-get( 'background-color-dark');
+				}
+			}
+			&.has-tint-primary {
+				&.has-image {
+					background-color: blocks-get( 'color-primary');
+				}
+			}
+			&.has-tint-secondary {
+				&.has-image {
+					background-color: blocks-get( 'color-secondary');
+				}
 			}
 		}
 	}
 	&.is-style-modern {
-		.graphic {
-			background-color:  blocks-get( 'color-primary');
+		&.alignwide {
+			.container-lockup {
+				background-color: blocks-get( 'background-color-light');
+			}
+		}
+		&.alignfull {
+			background-color: blocks-get( 'background-color-light');
+		}
+		.container-icon-inner {
+			background-color: blocks-get( 'color-primary');
 			color: blocks-get( 'color-page');
 		}
-	}
-	&.is-style-pop {
-		&.has-image {
-			.graphic {
-				&::before, &::after {
-					color: blocks-get( 'background-color-light');
+		&.has-tint-dark {
+			&.has-image {
+				.container-icon-inner {
+					background-color: blocks-get( 'background-color-dark');
+				}
+			}
+		}
+		&.has-tint-primary {
+			&.has-image {
+				.container-icon-inner {
+					background-color: blocks-get( 'color-primary');
+				}
+			}
+		}
+		&.has-tint-secondary {
+			&.has-image {
+				.container-icon-inner {
+					background-color: blocks-get( 'color-secondary');
 				}
 			}
 		}
 	}
-	&.is-style-tint {
-		.tint {
-			background-color: blocks-get( 'color-tint');
-		}
-	}
-	&.alignfull {
+	&.is-style-pop {
 		background-color: blocks-get( 'background-color-light');
+		.container-icon-inner {
+			color: blocks-get( 'color-primary');
+		}
+		&.has-image {
+			color: blocks-get( 'color-page');
+			hr {
+				background-color: blocks-get( 'color-page');
+			}
+			.container-icon-inner {
+				color: blocks-get( 'color-page');
+			}
+		}
+		&.has-tint-dark {
+			&.has-image {
+				background-color: blocks-get( 'background-color-dark');
+			}
+		}
+		&.has-tint-primary {
+			&.has-image {
+				background-color: blocks-get( 'color-primary');
+			}
+		}
+		&.has-tint-secondary {
+			&.has-image {
+				background-color: blocks-get( 'color-secondary');
+			}
+		}
 	}
 }
 

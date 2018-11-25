@@ -10,55 +10,35 @@
 
 .wp-block-pullquote {
 	position: relative;
-	min-height: 5em;
-	background-size: 0%;
-	background-repeat: no-repeat;
-	background-position: center center;
 	text-align: center;
 	margin-bottom: 1.5em;
+	img {
+		display: none;
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 	hr {
 		margin: 2em 0;
 	}
 	blockquote {
 		margin: 0;
-		padding: 1em 0px;
 		position: relative;
-		z-index: 3;
-		overflow: hidden;
 	}
-	.text-container {
-		min-height: 6em;
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-	}
-	.graphic {
-		background-repeat: no-repeat;
-		background-size: 0%;
-		&:not(.is-style-modern) {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-		}
-		.tint {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			z-index: 1;
-			background: none;
+	.container-text {
+		&::after, &::before {
+			display: table;
+			clear: both;
+			content: "";
 		}
 	}
-	.wp-block-pullquote-image {
-		position: absolute;
-		object-fit: cover;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+	.quote-sizing {
+			@extend %font-size-3;
+		@include breakpoint( $xs ) {
+		}
 	}
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
@@ -78,11 +58,11 @@
 			}
 			&::before {
 				content: '“';
-				top: 0.5em;
+				top: 0.25em;
 			}
 			&::after {
 				content: '”';
-				bottom: 0.5em;
+				bottom: 0.25em;
 			}
 			hr {
 				background: none;
@@ -107,253 +87,149 @@
 				}
 			}
 		}
-		&.alignfull {
-			blockquote {
-				@extend .col-12;
-				@extend .col-sm-10;
-				margin-left: auto;
-				margin-right: auto;
+		&.has-image {
+			color: #fff;
+			> img {
+				display: block;
 			}
 		}
-	}
-	&:not(.is-style-modern) {
-		blockquote {
+		.container-lockup {
+			@extend .row;
 		}
-	}
-	&.has-image {
-		.graphic {
-			background-size: cover;
-			background-position-x: 50%;
-			background-position-y: 50%;
-		}
-	}
-	&.is-style-image-x-left {
-		.graphic {
-			background-position-x: 25%;
-		}
-	}
-	&.is-style-image-x-center {
-		.graphic {
-			background-position-x: 50%;
-		}
-	}
-	&.is-style-image-x-right {
-		.graphic {
-			background-position-x: 75%;
-		}
-	}
-	&.is-style-image-y-top {
-		.graphic {
-			background-position-y: 25%;
-		}
-	}
-	&.is-style-image-y-middle {
-		.graphic {
-			background-position-y: 50%;
-		}
-	}
-	&.is-style-image-y-bottom {
-		.graphic {
-			background-position-y: 75%;
+		.container-text {
+			@extend %row-child-styles;
+			@extend .col-12;
 		}
 	}
 	&.is-style-modern,
 	&.is-style-pop {
-		&:not(.alignwide):not(.alignfull) {
-			blockquote {
-				margin-top: 3em;
-				margin-bottom: 3em;
-			}
-			hr {
-				display: none;
-			}
+		.container-lockup {
+			@extend .row;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-direction: row;
+			flex-direction: row;
+		}
+		.container-icon-outer {
+			@extend %row-child-styles;
+			@extend .col-4;
+			display: -ms-flexbox;
+			display: flex;
+		}
+		.container-icon-inner {	
+			width: 100%;
+			position: relative;
+		}
+		.container-text {
+			@extend %row-child-styles;
+			@extend .col-8;
 		}
 	}
 	&.is-style-modern {
-		overflow: hidden;
-		.graphic {
-			display: inline-block;
-			position: absolute;
-			&::before,
-			&::after {
-				display: inline-block;
-				vertical-align: middle;
-				position: relative;
-			}
+		.container-icon-outer {
+			margin: 2em 0;
+		}
+		.container-icon-inner {
 			&::before {
 				content: '“';
-				font-size: 5em;
+				font-size: 6em;
 				line-height: 1.5em;
 				height: 1em;
+				position: absolute;
+				top: 50%;
+				left: 50%;
 				z-index: 2;
-			}
-			&::after{
-				content: '';
-				height: 100%;
-			}
-			@include breakpoint( $xs ) {
-				&::before {
-					font-size: 10em;
+				margin-left: -0.25em;
+				margin-top: -0.5em;
+				@include breakpoint( $xs ) {
+					font-size: 15em;
 				}
 			}
 		}
-		blockquote {
-			margin-left: auto;
-			padding: 0 1em;
-		}
-		&:not(.alignwide):not(.alignfull)  {
-			.graphic {
-				@extend .col-3;
-				@extend .col-xs-4;
-				@extend .col-sm-2;
-			}
-			blockquote {
-				@extend .col-offset-3;
-				@extend .col-xs-offset-4;
-				@extend .col-sm-offset-2;
-				@extend .col-9;
-				@extend .col-xs-8;
-				@extend .col-sm-6;
-			}
-		}
-		&.alignwide {
-			.graphic {
-				margin-top: 2em;
-				margin-bottom: 2em;
-				@extend .col-3;
-				@extend .col-xs-4;
-				@extend .col-sm-3;
-			}
-			blockquote {
-				@extend .col-offset-3;
-				@extend .col-xs-offset-4;
-				@extend .col-sm-offset-3;
-				@extend .col-9;
-				@extend .col-xs-8;
-				@extend .col-sm-7;
-			}
-		}
-		&.alignfull {
-			.graphic {
-				margin-top: 2em;
-				margin-bottom: 2em;
-				// @extend .col-offset-1;
-				@extend .col-sm-offset-1;
-				@extend .col-3;
-				@extend .col-xs-4;
-				@extend .col-sm-3;
-				@extend .col-sm-3;
-			}
-			blockquote {
-				@extend .col-offset-3;
-				// @extend .col-xs-offset-5;
-				@extend .col-xs-offset-4;
-				@extend .col-9;
-				@extend .col-xs-8;
-				@extend .col-sm-7;
+		&.has-image {
+			.container-icon-inner {	
+				color: #fff;
+				img {
+					display: block;
+				}
 			}
 		}
 	}
 	&.is-style-pop {
-		.graphic {
-			// background-color: #f66;  //for testing
-			&::before, &::after {
+		.container-icon-inner {
+			&::before {
 				content: '“';
-				font-size: 30em;
+				font-size: 6em;
 				line-height: 1.5em;
 				height: 1em;
-				z-index: 2;
-				top: 50%;
-				margin-top: -0.5em;
-				left: 0;
 				position: absolute;
-				transform: translateX(-33%);
+				top: 50%;
+				left: 50%;
+				z-index: 2;
+				margin-left: -0.25em;
+				margin-top: -0.5em;
+				@include breakpoint( $xs ) {
+					font-size: 50vw;
+					top: 0.09em;
+				}
+				@include breakpoint( $xl ) {
+					font-size: 815px;
+				}
+			}
+		}
+		&.has-image {
+			color: #fff;
+			> img {
+				display: block;
 			}
 		}
 		blockquote {
-			width: calc(100% - 5em);
-			margin-left: auto;
-			padding: 0 1em;
-			@include breakpoint( $xs ) {
-				width: calc(100% - 10em);
-			}
-		}
-		&.alignwide,
-		&.alignfull {
-			.graphic {
-				&::before, &::after {
-					top: 50%;
-					margin-top: -0.5em;
-				}
-			}
-		}
-		&:not(.alignwide):not(.alignfull)  {
-			.graphic {
-				@extend .col-3;
-				@extend .col-xs-4;
-				@extend .col-sm-2;
-			}
-			blockquote {
-				@extend .col-offset-3;
-				@extend .col-xs-offset-4;
-				@extend .col-sm-offset-2;
-				@extend .col-9;
-				@extend .col-xs-8;
-				@extend .col-sm-6;
-			}
-		}
-		&.alignwide {
-			.graphic {
-				margin-top: 2em;
-				margin-bottom: 2em;
-				@extend .col-3;
-				@extend .col-xs-4;
-				@extend .col-sm-3;
-			}
-			blockquote {
-				@extend .col-offset-3;
-				@extend .col-xs-offset-4;
-				@extend .col-sm-offset-3;
-				@extend .col-9;
-				@extend .col-xs-8;
-				@extend .col-sm-7;
-			}
-		}
-		&.alignfull {
-			.graphic {
-				&:before, &:after {
-					@extend .col-offset-1;
-					@extend .col-sm-offset-2;
-					@extend .col-3;
-					@extend .col-xs-4;
-					@extend .col-sm-3;
-					@extend .col-sm-3;
-				}
-			}
-			blockquote {
-				@extend .col-offset-4;
-				@extend .col-xs-offset-5;
-				@extend .col-sm-offset-5;
-				@extend .col-9;
-				@extend .col-xs-8;
-				@extend .col-sm-7;
-			}
+			@extend %row-child-styles;
 		}
 	}
-	&.alignwide,
-	&.alignfull {
-		.text-container {
-			// @extend .col-sm-8;
-			margin-left: auto;
-			margin-right: auto;
+	&.has-image-focus-top-left {
+		img {
+			object-position: 25% 25%;
 		}
 	}
-	.tint {
-		display: none;
+	&.has-image-focus-top-center {
+		img {
+			object-position: 25% 50%;
+		}
 	}
-	&.has-tint {
-		.tint {
-			display: block;
+	&.has-image-focus-top-right {
+		img {
+			object-position: 25% 75%;
+		}
+	}
+	&.has-image-focus-middle-left {
+		img {
+			object-position: 50% 25%;
+		}
+	}
+	&.has-image-focus-middle-center {
+		img {
+			object-position: 50% 50%;
+		}
+	}
+	&.has-image-focus-middle-right {
+		img {
+			object-position: 50% 75%;
+		}
+	}
+	&.has-image-focus-bottom-left {
+		img {
+			object-position: 75% 25%;
+		}
+	}
+	&.has-image-focus-bottom-center {
+		img {
+			object-position: 75% 50%;
+		}
+	}
+	&.has-image-focus-bottom-right {
+		img {
+			object-position: 75% 75%;
 		}
 	}
 }
