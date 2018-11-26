@@ -128,13 +128,13 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 					{ children }
 				</div>
 			) }
-			{ 'image' === backgroundType && (
+			{ ( backgroundMediaUrl && 'image' === backgroundType ) && (
 				<img
 					className={ classes }
 					src={ backgroundMediaUrl }
 				/>
 			) }
-			{ 'video' === backgroundType && (
+			{ ( backgroundMediaUrl && 'video' === backgroundType ) && (
 				<video
 					className={ classes }
 					autoPlay
