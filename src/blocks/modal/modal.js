@@ -75,9 +75,7 @@ registerBlockType( 'editorial/modal', {
 	publicationClassName: publicationClass + '-block-modal',
 
 	// Add the `selected-modal` data attribute when this block or its descendants are selected.
-	getEditWrapperProps( attributes ) {
-		const { clientId } = attributes;
-
+	getEditWrapperProps( { clientId } ) {
 		if ( clientId ) {
 			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
 
@@ -87,9 +85,11 @@ registerBlockType( 'editorial/modal', {
 
 	edit( { attributes, setAttributes, className, clientId } ) {
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
-		setAttributes( { clientId: clientId } );
+		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
+			setAttributes( { clientId: clientId } );
+		}
 
-		const { theme, backgroundMediaUrl } = attributes;
+		const { theme } = attributes;
 		const classList = [ className, theme ].join( ' ' ).trim();
 
 		const controls = (
