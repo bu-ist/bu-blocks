@@ -10,7 +10,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import Callout from './modal-callout.js';
-import Background from './../../components/background.js';
+import Background from '../../components/background/background.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;

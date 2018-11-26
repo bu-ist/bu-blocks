@@ -4,10 +4,13 @@
  * An absraction of the default Cover block for more general use.
  */
 
+// Import CSS.
+import './editor.scss';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
-const { Toolbar, IconButton, PanelBody, BaseControl, Button, RangeControl } = wp.components;
+const { Toolbar, IconButton, PanelBody, BaseControl, RangeControl } = wp.components;
 const { BlockControls, InspectorControls, MediaUpload, MediaPlaceholder } = wp.editor;
 
 function Background( { inspectorPanelTitle = 'Background Settings', allowedMediaTypes, attributes, setAttributes, className, children, ...props } ) {
@@ -15,7 +18,11 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 
 	const onSelectMedia = ( media ) => {
 		if ( ! media || ! media.url ) {
-			setAttributes( { backgroundMediaUrl: undefined, backgroundMediaId: undefined } );
+			setAttributes( {
+				backgroundMediaUrl: undefined,
+				backgroundMediaId: undefined
+			} );
+
 			return;
 		}
 
@@ -43,6 +50,14 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 		} );
 	};
 
+	const onRemoveMedia = () => {
+		setAttributes( {
+			backgroundType: undefined,
+			backgroundMediaUrl: undefined,
+			backgroundMediaId: undefined,
+		} );
+	};
+
 	const controls = (
 		<Fragment>
 			{ !! backgroundMediaUrl && (
@@ -66,36 +81,52 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 			) }
 			<InspectorControls>
 				<PanelBody title={ inspectorPanelTitle }>
-					<BaseControl title={ __( 'media' ) }>
-						{ ! backgroundMediaUrl && (
-							<MediaPlaceholder
-								icon='format-image'
-								className={ className }
-								labels={ {
-									title: __( 'Background Media' ),
-									instructions: __( 'Drag, upload, or select a file from your library.' ),
-								} }
-								onSelect={ onSelectMedia }
-								allowedTypes={ allowedMediaTypes }
-							/>
-						) }
-						{ !! backgroundMediaUrl && (
+					<BaseControl>
+
+					{ ! backgroundMediaUrl && (
+						<MediaPlaceholder
+							icon='format-image'
+							className={ className }
+							labels={ {
+								title: __( 'Background Media' ),
+								instructions: __( 'Drag, upload, or select a file from your library.' ),
+							} }
+							onSelect={ onSelectMedia }
+							allowedTypes={ allowedMediaTypes }
+						/>
+					) }
+
+					{ !! backgroundMediaUrl && (
+						<div className='components-bu-background-media'>
 							<MediaUpload
 								onSelect={ onSelectMedia }
 								allowedTypes={ allowedMediaTypes }
 								value={ backgroundMediaId }
 								render={ ( { open } ) => (
-									<Button
+									<IconButton
 										onClick={ open }
+										icon='edit'
+										label={ __( 'Edit Background Media' ) }
 										isDefault
-										isSmall
+										isLarge
 									>
-										{ __( 'Edit Background Media' ) }
-									</Button>
+										{ __( 'Edit' ) }
+									</IconButton>
 								) }
 							/>
-						) }
+							<IconButton
+								onClick={ onRemoveMedia }
+								icon='no'
+								label={ ( 'Remove Background Media' ) }
+								isDefault
+								isLarge
+							>
+								{ __( 'Remove' ) }
+							</IconButton>
+						</div>
+					) }
 					</BaseControl>
+
 					<BaseControl>
 						<RangeControl
 							label={ __( 'Background Opacity' ) }
