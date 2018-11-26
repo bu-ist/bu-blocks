@@ -7,17 +7,21 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
-
 .wp-block-leadin {
 	&.is-style-text-to-image {
 		.container-lockup {
+			display: -ms-flexbox;
 			display: flex;
-			flex-flow: column;
+			-ms-flex-direction: column;
+			flex-direction: column;
 		}
 		.container-image {
+			-ms-flex-order: 2;
 			order: 2;
+
 		}
 		.container-text {
+			-ms-flex-order: 1;
 			order: 1;
 		}
 	}
@@ -25,4 +29,202 @@
 	&.is-style-text-over-image-boxed {}
 	&.is-style-text-over-image-tinted {}
 	&.is-style-side-by-side {}
+	.container-image {
+		position: relative;
+		height: 50vh;
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&.has-image-focus-middle-center {
+		img {
+			object-position: 50% 50%;
+		}
+	}
+	&.has-image-focus-middle-right {
+		img {
+			object-position: 50% 75%;
+		}
+	}
+	&.has-image-focus-bottom-left {
+		img {
+			object-position: 75% 25%;
+		}
+	}
+	&.has-image-focus-bottom-center {
+		img {
+			object-position: 75% 50%;
+		}
+	}
+}
+
+$metabar-layout-switch: $md !default;
+
+.metabar-outer {
+	@extend %row-styles;
+}
+.metabar-inner {
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+		display: -ms-flexbox;
+		display: flex;
+		flex-wrap: wrap;
+	@include breakpoint( $metabar-layout-switch ) {
+		flex-wrap: nowrap;
+		-ms-flex-align: stretch;
+		align-items: stretch;
+	}
+	> * {
+		@extend %row-child-styles;
+		text-align: center;
+		@include breakpoint( $metabar-layout-switch ) {
+			padding-top: 1em;
+			padding-bottom: 1em;
+			border-right: 1px solid;
+			width: auto;
+		}
+		&:last-child {
+			border-width: 0;
+		}
+	}
+	.date,
+	.comments,
+	.share {
+		@include breakpoint( $metabar-layout-switch ) {
+			display: flex;
+			align-items: center;
+		}
+	}
+	.date {
+		width: 100%;
+		@include breakpoint( $metabar-layout-switch ) {
+			width: auto;
+			white-space: nowrap;
+			padding-left: 0;
+		}
+	}
+	.comments {
+		white-space: nowrap;
+		-ms-flex-order: 3;
+		text-align: right;
+		order: 3;
+		width: 50%;
+		a {
+			text-decoration: none;
+			& > * {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			&:after{
+				content: " Comments";
+			}
+		}
+		svg {
+			height: 32px;
+			font-size: 12px;
+			margin-top: -4px;
+		}
+		@include breakpoint( $metabar-layout-switch ) {
+			width: auto;
+			-ms-flex-order: unset;
+			order: unset;
+			svg {
+				margin-top: 0;
+			}
+			a:after{
+				content: none;
+			}
+		}
+	}
+	.credits {
+		flex-grow: 2;
+		text-align: center;
+		width: 100%;
+		@include breakpoint( $metabar-layout-switch ) {
+			text-align: left;
+			width: auto;
+		}
+		ul {
+			margin: 0 0;
+			padding: 0 0;
+			display: inline-block;
+			&:empty {
+				display: none;
+			}
+		}
+		li {
+			display: inline-block;
+			list-style: none;
+			&:after {
+				content: ",";
+			}
+		
+			&:nth-last-of-type(1) {
+				&:before {
+					content: "& "
+				}
+				&:after {
+					content: ""
+				}
+			}
+			&:nth-of-type(1) {
+				&:before {
+					content: ""
+				}
+				&:after {
+					content: ""
+				}
+			}
+		}
+		.writing {
+			&:before {
+				content: "Written by "
+			}
+		}
+		.photo {
+			&:before {
+				content: "Photography by "
+			}
+		}
+		.video {
+			&:before {
+				content: "Video by "
+			}
+		}
+	}
+	.share {
+		text-align: left;
+		-ms-flex-order: 4;
+		order: 4;
+		justify-content: flex-end;
+		width: 50%;
+		.icon-twitter, 
+		.icon-facebook {
+			display: none;
+		}
+		@include breakpoint( $metabar-layout-switch ) {
+			width: unset;
+			-ms-flex-order: unset;
+			order: unset;
+			padding-right: 0;
+			.icon-twitter, 
+			.icon-facebook {
+				display: inline;
+			}
+		}
+		.icon-action {
+			white-space: nowrap;
+			&::after {
+				content: "Share This";
+				@include breakpoint( $metabar-layout-switch ) {
+					content: "Share";
+				}
+			}
+		}
+	}
 }

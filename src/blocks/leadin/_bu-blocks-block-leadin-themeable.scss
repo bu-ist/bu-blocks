@@ -56,5 +56,15 @@ $current-map: $blocks-block-leadin-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-leadin {
+	.comments {
+		svg {
+			font-family: blocks-get( 'font-family-secondary' );
+			.icon{
+				fill: blocks-get( 'color-primary' );
+			}
+			text {
+				fill: blocks-get( 'color-page' );
+			}
+		}
+	}
 }
-
