@@ -9,8 +9,8 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import './modal-callout';
-import './modal-content';
+import Callout from './modal-callout.js';
+import Background from './../../components/background.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -24,8 +24,8 @@ const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
 
-const allowedBlocks = [ 'editorial/modal-callout', 'editorial/modal-content' ];
-const template = [ [ 'editorial/modal-callout' ], [ 'editorial/modal-content' ] ];
+// Allowed media types for the background component.
+const allowedBackgroundMediaTypes = [ 'image', 'video' ];
 
 // Register the block.
 registerBlockType( 'editorial/modal', {
@@ -35,16 +35,41 @@ registerBlockType( 'editorial/modal', {
 	icon: 'admin-page',
 	category: 'bu-editorial',
 	attributes: {
-		background: {
+		clientId: {
+			type: 'number',
+		},
+		theme: {
 			type: 'string',
 			default: '',
 		},
-		selectedDescendants: {
-			type: 'bool',
-			default: '',
+		calloutHeading: {
+			type: 'array',
+			source: 'children',
+			selector: 'h1'
 		},
-		clientId: {
+		calloutText: {
+			type: 'array',
+			source: 'children',
+			selector: '.editorial-modal-callout-text'
+		},
+		trigger: {
+			type: 'array',
+			source: 'children',
+			selector: '.js-bu-block-modal-trigger-overlay'
+		},
+		backgroundType: {
+			type: 'string',
+			default: 'image',
+		},
+		backgroundMediaUrl: {
+			type: 'string',
+		},
+		backgroundMediaId: {
 			type: 'number',
+		},
+		dimRatio: {
+			type: 'number',
+			default: 50,
 		},
 	},
 	publicationClassName: publicationClass + '-block-modal',
@@ -61,50 +86,95 @@ registerBlockType( 'editorial/modal', {
 	},
 
 	edit( { attributes, setAttributes, className, clientId } ) {
-		const { background } = attributes;
-		const classList = [ className, background ].join( ' ' ).trim();
-
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		setAttributes( { clientId: clientId } );
 
+		const { theme, backgroundMediaUrl } = attributes;
+		const classList = [ className, theme ].join( ' ' ).trim();
+
+		const controls = (
+			<InspectorControls>
+				<PanelBody title={ __( 'Display Settings' ) }>
+					<SelectControl
+						label={ __( 'Theme' ) }
+						value={ theme || '' }
+						onChange={ value => setAttributes( { theme: value } ) }
+						options={ [
+							{ value: '', label: __( 'Default' ) },
+							{ value: 'has-light-theme', label: __( 'Light' ) },
+							{ value: 'has-dark-theme', label: __( 'Dark' ) },
+							{ value: 'has-primary-theme', label: __( 'Primary' ) },
+							{ value: 'has-secondary-theme', label: __( 'Secondary' ) },
+							{ value: 'has-tertiary-theme', label: __( 'Tertiary' ) },
+							{ value: 'has-quaternary-theme', label: __( 'Quaternary' ) },
+						] }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		);
+
 		return (
 			<Fragment>
-				<InspectorControls>
-					<PanelBody title={ __( 'Modal Background Settings' ) }>
-						<SelectControl
-							label={ __( 'Background' ) }
-							value={ background || '' }
-							onChange={ value => setAttributes( { background: value } ) }
-							options={ [
-								{ value: '', label: __( 'Default' ) },
-								{ value: 'has-light-theme', label: __( 'Light' ) },
-								{ value: 'has-dark-theme', label: __( 'Dark' ) },
-								{ value: 'has-primary-theme', label: __( 'Primary' ) },
-								{ value: 'has-secondary-theme', label: __( 'Secondary' ) },
-								{ value: 'has-tertiary-theme', label: __( 'Tertiary' ) },
-								{ value: 'has-quaternary-theme', label: __( 'Quaternary' ) },
-							] }
-						/>
-					</PanelBody>
-				</InspectorControls>
+				{ controls }
 				<aside className={ classList }>
-					<InnerBlocks
-						allowedBlocks={ allowedBlocks }
-						template={ template }
-						templateLock='all'
-					/>
+					<Callout
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+					>
+						<Background
+							inspectorPanelTitle={ __( 'Callout Background' ) }
+							allowedMediaTypes={ allowedBackgroundMediaTypes }
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+							className="banner-placeholder"
+						/>
+					</Callout>
+					<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+						<div className="overlay overlay-scale">
+							<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+							<article>
+								<InnerBlocks />
+							</article>
+						</div>
+					</div>
 				</aside>
 			</Fragment>
 		);
 	},
 
 	save( { attributes, className } ) {
-		const { background } = attributes;
-		const classList = [ className, background, 'js-bu-block-modal' ].join( ' ' ).trim();
+		const { theme, calloutHeading, calloutText, trigger } = attributes;
+		const classList = [ className, theme, 'js-bu-block-modal' ].join( ' ' ).trim();
 
 		return (
 			<aside className={ classList }>
-				<InnerBlocks.Content />
+				<div className="wp-block-editorial-modal-callout">
+					<div className="wp-block-editorial-modal-media">
+						<figure className="wp-block-editorial-modal-image">
+							<Background
+								attributes={ attributes }
+								className="banner-placeholder"
+							/>
+						</figure>
+					</div>
+					<div className="wp-block-editorial-modal-callout-content">
+						<div className="modal-valign">
+							<h1>{ calloutHeading }</h1>
+							<p className="editorial-modal-callout-text">{ calloutText }</p>
+							<p>
+								<a href="#" className="js-bu-block-modal-trigger-overlay button">{ trigger }</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
+					<div className="overlay overlay-scale">
+						<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+						<article>
+							<InnerBlocks.Content />
+						</article>
+					</div>
+				</div>
 			</aside>
 		);
 	},

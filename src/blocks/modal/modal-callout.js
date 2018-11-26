@@ -1,156 +1,57 @@
 /**
- * BLOCK: editorial-modal-callout
- *
- * The callout for the modal block.
+ * The callout component for the modal block.
  */
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { Toolbar, IconButton } = wp.components;
-const { BlockControls, InnerBlocks, MediaPlaceholder, MediaUpload } = wp.editor;
+const { RichText } = wp.editor;
 
-// Register the block.
-registerBlockType( 'editorial/modal-callout', {
+function Callout( { attributes, setAttributes, children } ) {
+	const { calloutHeading, calloutText, trigger } = attributes;
 
-	title: __( 'Modal callout' ),
-	description: __( 'The callout for the modal block.' ),
-	icon: 'admin-page',
-	category: 'bu-editorial',
-	parent: [ 'editorial/modal' ],
-	supports: {
-		inserter: false,
-	},
-	attributes: {
-		url: {
-			attribute: 'src',
-			selector: '.banner-placeholder',
-			type: 'string',
-		},
-		id: {
-			type: 'number',
-		},
-		alt: {
-			attribute: 'alt',
-			selector: '.banner-placeholder',
-			type: 'string',
-		},
-	},
+	return (
+		<div className="wp-block-editorial-modal-callout">
 
-	edit( { className, attributes, setAttributes } ) {
-		const { url, id, alt } = attributes;
+			<div className="wp-block-editorial-modal-media">
+				<figure className="wp-block-editorial-modal-image">
+					{ children }
+				</figure>
+			</div>
 
-		const onSelectMedia = ( media ) => {
-			if ( ! media || ! media.url ) {
-				setAttributes( { url: undefined, id: undefined } );
-				return;
-			}
+			<div className="wp-block-editorial-modal-callout-content">
+				<div className="modal-valign">
 
-			setAttributes( {
-				url: media.url,
-				id: media.id,
-			} );
-		};
-
-		const controls = (
-			<Fragment>
-				<BlockControls>
-					{ !! url && (
-						<Toolbar>
-							<MediaUpload
-								onSelect={ onSelectMedia }
-								allowedTypes={ [ 'image' ] }
-								value={ id }
-								render={ ( { open } ) => (
-									<IconButton
-										className="components-toolbar__control"
-										label={ __( 'Edit image' ) }
-										icon="edit"
-										onClick={ open }
-									/>
-								) }
-							/>
-						</Toolbar>
-					) }
-				</BlockControls>
-			</Fragment>
-		);
-
-		if ( ! url ) {
-			return (
-				<Fragment>
-					{ controls }
-					<MediaPlaceholder
-						icon='format-image'
-						className={ className }
-						labels={ {
-							title: __( 'Modal callout' ),
-							instructions: __( 'Drag an image, upload a new one or select a file from your library.' ),
-						} }
-						onSelect={ onSelectMedia }
-						accept="image/*"
-						allowedTypes={ [ 'image '] }
+					<RichText
+						tagName="h1"
+						onChange={ value => setAttributes( { calloutHeading: value } ) }
+						value={ calloutHeading }
+						placeholder={ __( 'Enter heading…' ) }
+						formattingControls={ [] }
 					/>
-				</Fragment>
-			);
-		}
 
-		return (
-			<Fragment>
-				{ controls }
-				<div className={ className }>
-					<div class="wp-block-editorial-modal-media">
-						<figure class="wp-block-editorial-modal-image">
-							<img
-								className="banner-placeholder"
-								src={ url }
-								alt={ ( alt ) ? alt : '' }
-							/>
-						</figure>
-					</div>
-					<div class="wp-block-editorial-modal-callout-content">
-						<div class="modal-valign">
-							<InnerBlocks templateLock={ false } />
-							<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
-						</div>
-					</div>
-				</div>
-			</Fragment>
-		);
-	},
+					<RichText
+						tagName="p"
+						onChange={ value => setAttributes( { calloutText: value } ) }
+						value={ calloutText }
+						placeholder={ __( 'Enter text…' ) }
+						formattingControls={ [ 'bold', 'italic', 'link' ] }
+					/>
 
-	save( { attributes } ) {
-		const { url, alt } = attributes;
+					<p>
+						<RichText
+							tagName="a"
+							className="js-bu-block-modal-trigger-overlay button"
+							onChange={ value => setAttributes( { trigger: value } ) }
+							value={ trigger }
+							placeholder={ __( 'Enter trigger label…' ) }
+							formattingControls={ [] }
+						/>
+					</p>
 
-		const cardImage = ( src, alt ) => {
-			if ( ! src ) {
-				return null;
-			}
-
-			return (
-				<img
-					className="banner-placeholder"
-					src={ src }
-					alt={ ( alt ) ? alt : '' }
-				/>
-			);
-		};
-
-		return (
-			<div>
-				<div class="wp-block-editorial-modal-media">
-					<figure class="wp-block-editorial-modal-image">
-						{ cardImage( url, alt ) }
-					</figure>
-				</div>
-				<div class="wp-block-editorial-modal-callout-content">
-					<div class="modal-valign">
-						<InnerBlocks.Content />
-						<p><a href="#one" class="js-bu-block-modal-trigger-overlay button">Explore</a></p>
-					</div>
 				</div>
 			</div>
-		);
-	},
-} );
+		</div>
+	)
+}
+
+export default Callout;

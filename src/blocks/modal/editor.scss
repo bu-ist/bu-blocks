@@ -5,9 +5,21 @@
  * which makes it higher in priority.
  */
 
+[data-selected-modal="true"] .wp-block-editorial-modal-content {
+	display: block;
+}
+
 .wp-block-editorial-modal-callout,
 .wp-block-editorial-modal-content {
 	float: none;
+}
+
+.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce {
+	padding-right: 0;
+}
+
+.modal-valign > p {
+	display: inline-block;
 }
 
 .wp-block-editorial-modal-media figure {
@@ -16,8 +28,4 @@
 	img {
 		display: block;
 	}
-}
-
-[data-selected-modal="true"] .wp-block-editorial-modal-content {
-	display: block;
 }
