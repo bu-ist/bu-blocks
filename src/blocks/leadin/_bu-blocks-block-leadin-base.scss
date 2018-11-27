@@ -7,8 +7,83 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
+%image-height-small {
+	.container-image {
+		height: 320px;
+		@include breakpoint( $xs ) {
+			height: 400px;
+		}
+		@include breakpoint( $sm ) {
+			height: 480px;
+		}
+		@include breakpoint( $md ) {
+			height: 560px;
+		}
+		@include breakpoint( $lg ) {
+			height: 640px;
+		}
+	}
+}
+%image-height-medium {
+	.container-image {
+		height: 400px;
+		@include breakpoint( $xs ) {
+			height: 480px;
+		}
+		@include breakpoint( $sm ) {
+			height: 560px;
+		}
+		@include breakpoint( $md ) {
+			height: 640px;
+		}
+		@include breakpoint( $lg ) {
+			height: 720px;
+		}
+	}
+}
+%image-height-large {
+	.container-image {
+		height: 480px;
+		@include breakpoint( $xs ) {
+			height: 560px;
+		}
+		@include breakpoint( $sm ) {
+			height: 640px;
+		}
+		@include breakpoint( $md ) {
+			height: 720px;
+		}
+		@include breakpoint( $lg ) {
+			height: 800px;
+		}
+	}
+}
 .wp-block-leadin {
+	h1,
+	h2,
+	h3,
+	h4 {
+		margin:0 0 0.25em ;
+	}
+	.container-words-inner {
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+	.container-image {
+		@include transition( height 500ms ease-in-out 0s );
+		position: relative;
+		box-sizing: content-box;
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
 	&.is-style-text-to-image {
+		@extend %image-height-small;
 		.container-lockup {
 			display: -ms-flexbox;
 			display: flex;
@@ -25,20 +100,22 @@
 			order: 1;
 		}
 	}
-	&.is-style-image-to-text {}
-	&.is-style-text-over-image-boxed {}
-	&.is-style-text-over-image-tinted {}
+	&.is-style-image-to-text {
+		@extend %image-height-medium;
+	}
+	&.is-style-emphasis-on-text {
+		@extend %image-height-medium;
+	}
+	&.is-style-text-over-image-boxed {
+		@extend %image-height-large;
+	}
+	&.is-style-text-over-image-tinted {
+		@extend %image-height-large;
+	}
 	&.is-style-side-by-side {}
-	.container-image {
-		position: relative;
-		height: 50vh;
-		img {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
+	&:not(.is-style-side-by-side) {
+		.container-lockup {
+			text-align: center;
 		}
 	}
 	&.has-image-focus-middle-center {
@@ -65,8 +142,9 @@
 
 $metabar-layout-switch: $md !default;
 
-.metabar-outer {
-	@extend %row-styles;
+.metabar-outter {
+	margin-top: 2em;
+	margin-bottom: 2em;
 }
 .metabar-inner {
 	border-top: 1px solid;
@@ -82,9 +160,9 @@ $metabar-layout-switch: $md !default;
 	> * {
 		@extend %row-child-styles;
 		text-align: center;
+		padding-top: 1em;
+		padding-bottom: 1em;
 		@include breakpoint( $metabar-layout-switch ) {
-			padding-top: 1em;
-			padding-bottom: 1em;
 			border-right: 1px solid;
 			width: auto;
 		}
@@ -116,27 +194,15 @@ $metabar-layout-switch: $md !default;
 		width: 50%;
 		a {
 			text-decoration: none;
-			& > * {
-				display: inline-block;
-				vertical-align: middle;
-			}
-			&:after{
-				content: " Comments";
-			}
 		}
-		svg {
-			height: 32px;
-			font-size: 12px;
-			margin-top: -4px;
+		&:after{
+			content: " Comments";
 		}
 		@include breakpoint( $metabar-layout-switch ) {
 			width: auto;
 			-ms-flex-order: unset;
 			order: unset;
-			svg {
-				margin-top: 0;
-			}
-			a:after{
+			&:after{
 				content: none;
 			}
 		}
@@ -145,7 +211,11 @@ $metabar-layout-switch: $md !default;
 		flex-grow: 2;
 		text-align: center;
 		width: 100%;
+		border-top: 1px dotted #ccc;
+		border-bottom: 1px dotted #ccc;
 		@include breakpoint( $metabar-layout-switch ) {
+		border-top: none;
+		border-bottom: none;
 			text-align: left;
 			width: auto;
 		}
