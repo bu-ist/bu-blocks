@@ -133,6 +133,13 @@ function enqueue_block_editor_assets() {
  * @param    array $categories Default block categories.
  */
 function filter_block_categories( $categories ) {
+	$bu = array(
+		array(
+			'slug'  => 'bu',
+			'title' => __( 'BU Blocks', 'bu-blocks' ),
+		),
+	);
+
 	$bu_editorial = array(
 		array(
 			'slug'  => 'bu-editorial',
@@ -148,6 +155,7 @@ function filter_block_categories( $categories ) {
 	);
 
 	return array_merge(
+		$bu,
 		$bu_editorial,
 		$bu_editorial_presets,
 		$categories
