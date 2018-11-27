@@ -16,6 +16,9 @@ const BackgroundAttributes = {
 		type: 'number',
 		default: 100,
 	},
+	backgroundAlt: {
+		type: 'string',
+	},
 };
 
 export default BackgroundAttributes;

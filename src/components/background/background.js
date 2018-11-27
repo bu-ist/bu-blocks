@@ -29,14 +29,15 @@ function Background( {
 } ) {
 
 	const { attributes, setAttributes } = blockProps;
-	const { backgroundId, backgroundType, backgroundUrl, backgroundOpacity } = attributes;
+	const { backgroundId, backgroundType, backgroundUrl, backgroundOpacity, backgroundAlt } = attributes;
 
 	const onSelectMedia = ( media ) => {
 		if ( ! media || ! media.url ) {
 			setAttributes( {
 				backgroundId: undefined,
 				backgroundType: undefined,
-				backgroundUrl: undefined
+				backgroundUrl: undefined,
+				backgroundAlt: undefined
 			} );
 
 			return;
@@ -63,6 +64,7 @@ function Background( {
 			backgroundId: media.id,
 			backgroundType: mediaType,
 			backgroundUrl: media.url,
+			backgroundAlt: media.alt
 		} );
 	};
 
@@ -179,6 +181,7 @@ function Background( {
 		<img
 			className={ classes }
 			src={ backgroundUrl }
+			alt={ backgroundAlt }
 		/>
 	)
 
