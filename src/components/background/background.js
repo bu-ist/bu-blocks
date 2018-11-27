@@ -2,6 +2,15 @@
  * Component: background
  *
  * An absraction of the default Cover block for more general use inside blocks.
+ *
+ * Import this component and its attributes into a block with:
+ * 	`import Background, { BackgroundAttributes } from '../../components/background/background.js';`
+ *
+ * There are four props that can be passed to the component:
+ * 	allowedMediaTypes - defaults to `[ 'image', 'video' ]`.
+ * 	blockProps - properties from the block using the component.
+ * 	className - the className to apply to the background element, defaults to `bu-blocks-background`.
+ *	controlPanelTitle - the background options Inspector panel name, defaults to `Background Settings`.
  */
 
 // Import CSS.
