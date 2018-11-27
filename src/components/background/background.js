@@ -31,7 +31,7 @@ function Background( {
 } ) {
 
 	const { attributes, setAttributes } = blockProps;
-	const { backgroundId, backgroundType, backgroundUrl, dimRatio } = attributes;
+	const { backgroundId, backgroundType, backgroundUrl, backgroundOpacity } = attributes;
 
 	const onSelectMedia = ( media ) => {
 		if ( ! media || ! media.url ) {
@@ -158,9 +158,9 @@ function Background( {
 					<BaseControl>
 						<RangeControl
 							label={ __( 'Background Opacity' ) }
-							value={ dimRatio }
-							onChange={ ratio => setAttributes( { dimRatio: ratio } ) }
-							min={ 0 }
+							value={ backgroundOpacity }
+							onChange={ ratio => setAttributes( { backgroundOpacity: ratio } ) }
+							min={ 10 }
 							max={ 100 }
 							step={ 10 }
 						/>
@@ -173,8 +173,8 @@ function Background( {
 
 	const classes = [
 		className,
-		dimRatioToClass( dimRatio ),
-		...( dimRatio !== 0 ? [ 'has-background-dim' ] : [] ),
+		backgroundOpacityToClass( backgroundOpacity ),
+		...( backgroundOpacity !== 100 ? [ 'has-background-opacity' ] : [] ),
 	].join( ' ' ).trim();
 
 	const backgroundColor = (
@@ -213,10 +213,10 @@ function Background( {
 	);
 }
 
-function dimRatioToClass( ratio ) {
-	return ( ratio === 0 || ratio === 50 ) ?
+function backgroundOpacityToClass( ratio ) {
+	return ( ratio === 100 ) ?
 		null :
-		'has-background-dim-' + ( 10 * Math.round( ratio / 10 ) );
+		'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
 }
 
 export default Background;

@@ -45,6 +45,34 @@
 
 		img {
 			object-fit: cover;
+
+			&.has-background-opacity-10 {
+				opacity: .1;
+			}
+			&.has-background-opacity-20 {
+				opacity: .2;
+			}
+			&.has-background-opacity-30 {
+				opacity: .3;
+			}
+			&.has-background-opacity-40 {
+				opacity: .4;
+			}
+			&.has-background-opacity-50 {
+				opacity: .5;
+			}
+			&.has-background-opacity-60 {
+				opacity: .6;
+			}
+			&.has-background-opacity-70 {
+				opacity: .7;
+			}
+			&.has-background-opacity-80 {
+				opacity: .8;
+			}
+			&.has-background-opacity-90 {
+				opacity: .9;
+			}
 		}
 	}
 

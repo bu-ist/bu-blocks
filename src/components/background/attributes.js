@@ -12,9 +12,9 @@ const BackgroundAttributes = {
 	backgroundUrl: {
 		type: 'string',
 	},
-	dimRatio: {
+	backgroundOpacity: {
 		type: 'number',
-		default: 50,
+		default: 100,
 	},
 };
 
