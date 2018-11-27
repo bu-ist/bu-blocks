@@ -10,7 +10,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import Callout from './modal-callout.js';
-import Background from '../../components/background/background.js';
+import Background, { BackgroundAttributes } from '../../components/background/background.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -23,9 +23,6 @@ const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
-// Allowed media types for the background component.
-const allowedBackgroundMediaTypes = [ 'image', 'video' ];
 
 // Register the block.
 registerBlockType( 'editorial/modal', {
@@ -57,20 +54,7 @@ registerBlockType( 'editorial/modal', {
 			source: 'children',
 			selector: '.js-bu-block-modal-trigger-overlay'
 		},
-		backgroundType: {
-			type: 'string',
-			default: 'image',
-		},
-		backgroundMediaUrl: {
-			type: 'string',
-		},
-		backgroundMediaId: {
-			type: 'number',
-		},
-		dimRatio: {
-			type: 'number',
-			default: 50,
-		},
+		...BackgroundAttributes,
 	},
 	publicationClassName: publicationClass + '-block-modal',
 
@@ -83,14 +67,15 @@ registerBlockType( 'editorial/modal', {
 		}
 	},
 
-	edit( { attributes, setAttributes, className, clientId } ) {
+	edit( props ) {
+		const { attributes, setAttributes, className, clientId } = props;
+		const { theme } = attributes;
+		const classList = [ className, theme ].join( ' ' ).trim();
+
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
 			setAttributes( { clientId: clientId } );
 		}
-
-		const { theme } = attributes;
-		const classList = [ className, theme ].join( ' ' ).trim();
 
 		const controls = (
 			<InspectorControls>
@@ -122,11 +107,9 @@ registerBlockType( 'editorial/modal', {
 						setAttributes={ setAttributes }
 					>
 						<Background
-							inspectorPanelTitle={ __( 'Callout Background' ) }
-							allowedMediaTypes={ allowedBackgroundMediaTypes }
-							attributes={ attributes }
-							setAttributes={ setAttributes }
-							className="banner-placeholder"
+							blockProps={ props }
+							className='banner-placeholder'
+							controlPanelTitle={ __( 'Callout Background' ) }
 						/>
 					</Callout>
 					<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
@@ -142,7 +125,8 @@ registerBlockType( 'editorial/modal', {
 		);
 	},
 
-	save( { attributes, className } ) {
+	save( props ) {
+		const { attributes, className } = props;
 		const { theme, calloutHeading, calloutText, trigger } = attributes;
 		const classList = [ className, theme, 'js-bu-block-modal' ].join( ' ' ).trim();
 
@@ -152,7 +136,7 @@ registerBlockType( 'editorial/modal', {
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
 							<Background
-								attributes={ attributes }
+								blockProps={ props }
 								className="banner-placeholder"
 							/>
 						</figure>

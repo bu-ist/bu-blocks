@@ -1,26 +1,44 @@
 /**
  * Component: background
  *
- * An absraction of the default Cover block for more general use.
+ * An absraction of the default Cover block for more general use inside blocks.
  */
 
 // Import CSS.
 import './editor.scss';
 
+// Internal dependencies.
+import BackgroundAttributes from './attributes.js';
+
+// Export dependencies for easier importing in blocks.
+export {
+	BackgroundAttributes
+};
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
-const { Toolbar, IconButton, PanelBody, BaseControl, RangeControl } = wp.components;
-const { BlockControls, InspectorControls, MediaUpload, MediaPlaceholder } = wp.editor;
+const { BaseControl, IconButton, PanelBody, RangeControl, Toolbar } = wp.components;
+const { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload } = wp.editor;
 
-function Background( { inspectorPanelTitle = 'Background Settings', allowedMediaTypes, attributes, setAttributes, className, children, ...props } ) {
-	const { backgroundType, backgroundMediaUrl, backgroundMediaId, dimRatio } = attributes;
+function Background( {
+	allowedMediaTypes = [ 'image', 'video' ],
+	blockProps,
+	className = 'bu-blocks-background',
+	controlPanelTitle = 'Background Settings',
+	children,
+	...props
+} ) {
+
+	const { attributes, setAttributes } = blockProps;
+	const { backgroundId, backgroundType, backgroundUrl, dimRatio } = attributes;
 
 	const onSelectMedia = ( media ) => {
 		if ( ! media || ! media.url ) {
 			setAttributes( {
-				backgroundMediaUrl: undefined,
-				backgroundMediaId: undefined
+				backgroundId: undefined,
+				backgroundType: undefined,
+				backgroundUrl: undefined
 			} );
 
 			return;
@@ -44,29 +62,29 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 		}
 
 		setAttributes( {
+			backgroundId: media.id,
 			backgroundType: mediaType,
-			backgroundMediaUrl: media.url,
-			backgroundMediaId: media.id,
+			backgroundUrl: media.url,
 		} );
 	};
 
 	const onRemoveMedia = () => {
 		setAttributes( {
+			backgroundId: undefined,
 			backgroundType: undefined,
-			backgroundMediaUrl: undefined,
-			backgroundMediaId: undefined,
+			backgroundUrl: undefined,
 		} );
 	};
 
 	const controls = (
 		<Fragment>
-			{ !! backgroundMediaUrl && (
+			{ !! backgroundUrl && (
 				<BlockControls>
 					<Toolbar>
 						<MediaUpload
 							onSelect={ onSelectMedia }
 							allowedMediaTypes={ allowedMediaTypes }
-							value={ backgroundMediaId }
+							value={ backgroundId }
 							render={ ( { open } ) => (
 								<IconButton
 									className='components-toolbar__control'
@@ -76,56 +94,66 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 								/>
 							) }
 						/>
+						<IconButton
+							className='components-toolbar__control'
+							label={ ( 'Remove Background Media' ) }
+							icon='no'
+							onClick={ onRemoveMedia }
+						/>
 					</Toolbar>
 				</BlockControls>
 			) }
 			<InspectorControls>
-				<PanelBody title={ inspectorPanelTitle }>
-					<BaseControl>
+				<PanelBody title={ controlPanelTitle }>
 
-					{ ! backgroundMediaUrl && (
-						<MediaPlaceholder
-							icon='format-image'
-							className={ className }
-							labels={ {
-								title: __( 'Background Media' ),
-								instructions: __( 'Drag, upload, or select a file from your library.' ),
-							} }
-							onSelect={ onSelectMedia }
-							allowedTypes={ allowedMediaTypes }
-						/>
-					) }
-
-					{ !! backgroundMediaUrl && (
-						<div className='components-bu-background-media'>
-							<MediaUpload
+					{ ! backgroundUrl && (
+						<BaseControl>
+							<MediaPlaceholder
+								icon='format-image'
+								className={ className }
+								labels={ {
+									title: __( 'Background Media' ),
+									instructions: __( 'Drag, upload, or select a file from your library.' ),
+								} }
 								onSelect={ onSelectMedia }
 								allowedTypes={ allowedMediaTypes }
-								value={ backgroundMediaId }
-								render={ ( { open } ) => (
-									<IconButton
-										onClick={ open }
-										icon='edit'
-										label={ __( 'Edit Background Media' ) }
-										isDefault
-										isLarge
-									>
-										{ __( 'Edit' ) }
-									</IconButton>
-								) }
 							/>
-							<IconButton
-								onClick={ onRemoveMedia }
-								icon='no'
-								label={ ( 'Remove Background Media' ) }
-								isDefault
-								isLarge
-							>
-								{ __( 'Remove' ) }
-							</IconButton>
-						</div>
+						</BaseControl>
 					) }
-					</BaseControl>
+
+					{ !! backgroundUrl && (
+						<BaseControl
+							label={ __( 'Background Media' ) }
+						>
+							<div className='components-bu-background-media'>
+								<MediaUpload
+									onSelect={ onSelectMedia }
+									allowedTypes={ allowedMediaTypes }
+									value={ backgroundId }
+									render={ ( { open } ) => (
+										<IconButton
+											onClick={ open }
+											icon='edit'
+											label={ __( 'Edit Background Media' ) }
+											isDefault
+											isLarge
+										>
+											{ __( 'Edit' ) }
+										</IconButton>
+									) }
+								/>
+								<IconButton
+									onClick={ onRemoveMedia }
+									icon='no'
+									label={ ( 'Remove Background Media' ) }
+									isDefault
+									isLarge
+								>
+									{ __( 'Remove' ) }
+								</IconButton>
+							</div>
+						</BaseControl>
+					) }
 
 					<BaseControl>
 						<RangeControl
@@ -137,6 +165,7 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 							step={ 10 }
 						/>
 					</BaseControl>
+
 				</PanelBody>
 			</InspectorControls>
 		</Fragment>
@@ -148,32 +177,38 @@ function Background( { inspectorPanelTitle = 'Background Settings', allowedMedia
 		...( dimRatio !== 0 ? [ 'has-background-dim' ] : [] ),
 	].join( ' ' ).trim();
 
+	const backgroundColor = (
+		<div
+			className={ classes }
+			{ ...props }
+		>
+			{ children }
+		</div>
+	);
+
+	const backgroundImage = (
+		<img
+			className={ classes }
+			src={ backgroundUrl }
+		/>
+	)
+
+	const backgroundVideo = (
+		<video
+			className={ classes }
+			autoPlay
+			muted
+			loop
+			src={ backgroundUrl }
+		/>
+	);
+
 	return (
 		<Fragment>
 			{ controls }
-			{ ! backgroundMediaUrl && (
-				<div
-					className={ classes }
-					{ ...props }
-				>
-					{ children }
-				</div>
-			) }
-			{ ( backgroundMediaUrl && 'image' === backgroundType ) && (
-				<img
-					className={ classes }
-					src={ backgroundMediaUrl }
-				/>
-			) }
-			{ ( backgroundMediaUrl && 'video' === backgroundType ) && (
-				<video
-					className={ classes }
-					autoPlay
-					muted
-					loop
-					src={ backgroundMediaUrl }
-				/>
-			) }
+			{ ! backgroundUrl && ( backgroundColor ) }
+			{ ( backgroundUrl && 'image' === backgroundType ) && ( backgroundImage ) }
+			{ ( backgroundUrl && 'video' === backgroundType ) && ( backgroundVideo ) }
 		</Fragment>
 	);
 }
