@@ -25,9 +25,7 @@ function Background( {
 	allowedMediaTypes = [ 'image', 'video' ],
 	blockProps,
 	className = 'bu-blocks-background',
-	controlPanelTitle = 'Background Settings',
-	children,
-	...props
+	controlPanelTitle = 'Background Settings'
 } ) {
 
 	const { attributes, setAttributes } = blockProps;
@@ -177,15 +175,6 @@ function Background( {
 		...( backgroundOpacity !== 100 ? [ 'has-background-opacity' ] : [] ),
 	].join( ' ' ).trim();
 
-	const backgroundColor = (
-		<div
-			className={ classes }
-			{ ...props }
-		>
-			{ children }
-		</div>
-	);
-
 	const backgroundImage = (
 		<img
 			className={ classes }
@@ -206,9 +195,8 @@ function Background( {
 	return (
 		<Fragment>
 			{ controls }
-			{ ! backgroundUrl && ( backgroundColor ) }
-			{ ( backgroundUrl && 'image' === backgroundType ) && ( backgroundImage ) }
-			{ ( backgroundUrl && 'video' === backgroundType ) && ( backgroundVideo ) }
+			{ ( 'image' === backgroundType ) && ( backgroundImage ) }
+			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
 		</Fragment>
 	);
 }
