@@ -68,6 +68,44 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+[data-selected-modal="true"] .wp-block-editorial-modal-content {
+  display: block; }
+
+.wp-block-editorial-modal-callout,
+.wp-block-editorial-modal-content {
+  float: none; }
+
+.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce {
+  padding-right: 0; }
+
+.modal-valign > p {
+  display: inline-block; }
+
+.wp-block-editorial-modal-media figure {
+  margin: 0; }
+  .wp-block-editorial-modal-media figure img {
+    display: block; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.components-bu-background-media {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 100%;
+  max-width: 400px;
+  width: 100%;
+  z-index: 1; }
+  .components-bu-background-media .components-button {
+    padding-left: 6px; }
+  .components-bu-background-media .components-button:first-of-type {
+    margin-right: 4px; }
 /**
  * #.# Common SCSS
  *

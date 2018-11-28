@@ -106,12 +106,12 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-editorial-modal-callout, .wp-block-editorial-modal-content {
+.wp-block-editorial-modal-content, .wp-block-editorial-modal-callout {
   float: left;
   position: relative;
   min-height: 1px; }
 
-.wp-block-editorial-modal-callout, .wp-block-editorial-modal-content {
+.wp-block-editorial-modal-content, .wp-block-editorial-modal-callout {
   width: 100%; }
 
 .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
@@ -154,26 +154,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .bu-blocks-modal-noscroll {
   overflow: hidden; }
 
-.wp-block-editorial-modal-callout {
-  background: #ddd;
-  text-align: center;
-  position: relative;
-  margin-top: 40px;
-  margin-bottom: 60px; }
-  .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
-    width: 100%; }
-    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
-      display: block;
-      height: auto;
-      width: 100%; }
-    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
-      -o-object-fit: cover;
-         object-fit: cover; }
-  @media screen and (min-width: 500px) {
-    .wp-block-editorial-modal-callout h1,
-    .wp-block-editorial-modal-callout p {
-      color: #fff; } }
-
 .wp-block-editorial-modal-content {
   display: none;
   padding: 60px 24px 24px;
@@ -193,25 +173,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         top: 40px; } }
     .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
       color: #666; }
-
-.wp-block-editorial-modal-callout-content {
-  max-width: 90%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  padding: 20px; }
-  @media screen and (min-width: 500px) {
-    .wp-block-editorial-modal-callout-content {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-          align-items: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-      position: absolute;
-      top: 0;
-      height: 100%;
-      padding: 40px; } }
 
 .has-light-theme .wp-block-editorial-modal-content {
   background: #eee; }
@@ -242,6 +203,63 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   bottom: 0;
   left: 0;
   z-index: 10000; }
+
+.wp-block-editorial-modal-callout {
+  background: #eee;
+  text-align: center;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  height: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 60px 0; }
+  .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
+    position: absolute;
+    height: 100%; }
+    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
+      width: 100%;
+      height: 100%;
+      max-height: 100%; }
+    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
+      -o-object-fit: cover;
+         object-fit: cover;
+      height: 100%;
+      width: 100%;
+      max-height: 100%; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-10 {
+        opacity: .1; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-20 {
+        opacity: .2; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-30 {
+        opacity: .3; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-40 {
+        opacity: .4; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-50 {
+        opacity: .5; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-60 {
+        opacity: .6; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-70 {
+        opacity: .7; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-80 {
+        opacity: .8; }
+      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-90 {
+        opacity: .9; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-callout h1,
+    .wp-block-editorial-modal-callout p {
+      color: #fff; } }
+
+.wp-block-editorial-modal-callout-content {
+  z-index: 1000;
+  padding: 80px; }
+  .wp-block-editorial-modal-callout-content .button,
+  .wp-block-editorial-modal-callout-content p:last-of-type {
+    margin-bottom: 0; }
 /**
  * #.# Common SCSS
  *
