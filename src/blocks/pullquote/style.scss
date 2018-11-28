@@ -1,0 +1,40 @@
+// =================================================================
+// Pullquote Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/pullquote/bu-blocks-block-pullquote-base';
+@import 'src/blocks/pullquote/bu-blocks-block-pullquote-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Pullquote Block
+//
+// This is a Pullquote Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-pullquote.hbs
+//
+// .alignwide																	 - Wide version of pullquote
+// .alignfull																	 - full version of pullquote
+// .alignfull.has-image															 - full version of pullquote
+// .is-style-modern																 - Alternate Style (modern) of pullquote
+// .is-style-modern.alignwide													 - Modern pullquote in wide alignment
+// .is-style-modern.alignfull													 - Modern pullquote in full alignment
+// .is-style-modern.alignfull.has-image											 - Modern pullquote in full alignment
+// .is-style-pop																 - Alternate Style (pop) of pullquote
+// .is-style-pop.alignwide														 - Pop pullquote in wide alignment
+// .is-style-pop.alignfull														 - Pop pullquote in full alignment
+// .is-style-pop.alignfull.has-image											 - Pop pullquote in full alignment
+// .is-style-pop.alignfull.has-image.has-image-focus-top-left					 - image focus on top left
+// .is-style-pop.alignfull.has-image.has-image-focus-bottom-right				 - image focus on bottom right
+//
+// Styleguide Blocks.Global.Pullquote
+
+

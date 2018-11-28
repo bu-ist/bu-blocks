@@ -7,23 +7,11 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
-
-.content-area > * { // TODO: Move to global location
-	margin-left: auto;
-	margin-right: auto;
-
-	&:not( .alignwide ):not( .alignfull ) {
-		max-width: 740px;
-	}
-}
-
-.content-area > *.alignwide { // TODO: Move to global location
-	max-width: 1024px;
-}
-
 .bu-blocks-modal-noscroll {
   overflow: hidden;
 }
+
+
 
 .wp-block-editorial-modal-content {
 	display:none;
