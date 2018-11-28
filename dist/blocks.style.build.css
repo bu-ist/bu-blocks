@@ -7689,7 +7689,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-modal-content {
   display: none;
   padding: 60px 24px 24px;
-  background: #ddd;
+  background: #fff;
   position: relative; }
   @media screen and (min-width: 500px) {
     .wp-block-editorial-modal-content {
@@ -7705,39 +7705,18 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         top: 40px; } }
     .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
       color: #666; }
-
-.has-light-theme .wp-block-editorial-modal-content {
-  background: #eee; }
-
-.has-dark-theme .wp-block-editorial-modal-content {
-  background: #333; }
-
-.has-dark-theme .wp-block-editorial-modal-overlay-close,
-.has-dark-theme p {
-  color: #eee; }
-
-.has-primary-theme .wp-block-editorial-modal-content a,
-.has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
-.has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
-.has-primary-theme .wp-block-editorial-modal-content p,
-.has-secondary-theme .wp-block-editorial-modal-content a,
-.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
-.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
-.has-secondary-theme .wp-block-editorial-modal-content p {
-  color: #111; }
-
-.wp-block-editorial-modal-content.show-overlay {
-  display: block;
-  position: fixed;
-  overflow-y: scroll;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10000; }
+  .wp-block-editorial-modal-content.show-overlay {
+    display: block;
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10000; }
 
 .wp-block-editorial-modal-callout {
-  background: #eee;
+  background: #fff;
   text-align: center;
   position: relative;
   display: -ms-flexbox;
@@ -7746,7 +7725,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center;
-  height: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: 60px 0; }
@@ -7781,17 +7759,52 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         opacity: .8; }
       .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-90 {
         opacity: .9; }
-  @media screen and (min-width: 500px) {
-    .wp-block-editorial-modal-callout h1,
-    .wp-block-editorial-modal-callout p {
-      color: #fff; } }
+  .wp-block-editorial-modal-callout h1,
+  .wp-block-editorial-modal-callout p {
+    color: #000; }
 
 .wp-block-editorial-modal-callout-content {
   z-index: 1000;
-  padding: 80px; }
+  padding: 40px; }
+  @media screen and (min-width: 768px) {
+    .wp-block-editorial-modal-callout-content {
+      padding: 80px; } }
   .wp-block-editorial-modal-callout-content .button,
   .wp-block-editorial-modal-callout-content p:last-of-type {
     margin-bottom: 0; }
+
+.has-light-theme .wp-block-editorial-modal-content,
+.has-light-theme .wp-block-editorial-modal-callout {
+  background: #eee; }
+
+.has-light-theme .wp-block-editorial-modal-callout h1,
+.has-light-theme .wp-block-editorial-modal-callout p {
+  color: #000; }
+
+.has-light-theme .wp-block-editorial-modal-callout .button {
+  background: #fff; }
+
+.has-dark-theme .wp-block-editorial-modal-content,
+.has-dark-theme .wp-block-editorial-modal-callout {
+  background: #333; }
+
+.has-dark-theme .wp-block-editorial-modal-content p,
+.has-dark-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close {
+  color: #eee; }
+
+.has-dark-theme .wp-block-editorial-modal-callout h1,
+.has-dark-theme .wp-block-editorial-modal-callout p {
+  color: #fff; }
+
+.has-primary-theme .wp-block-editorial-modal-content a,
+.has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
+.has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
+.has-primary-theme .wp-block-editorial-modal-content p,
+.has-secondary-theme .wp-block-editorial-modal-content a,
+.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
+.has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
+.has-secondary-theme .wp-block-editorial-modal-content p {
+  color: #111; }
 /**
  * #.# Common SCSS
  *
