@@ -7694,6 +7694,9 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   @media screen and (min-width: 500px) {
     .wp-block-editorial-modal-content {
       padding: 90px 60px 60px; } }
+  .wp-block-editorial-modal-content > *:not(.alignwide):not(.alignfull) {
+    max-width: 740px;
+    margin: 0 auto; }
   .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close {
     position: absolute;
     top: 20px;
