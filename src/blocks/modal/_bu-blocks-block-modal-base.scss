@@ -40,59 +40,29 @@
 			color: $color-grayscale-6;
 		}
 	}
-}
 
-.has-light-theme {
-	.wp-block-editorial-modal-content {
-		background: $color-grayscale-e;
+	&.show-overlay {
+		display: block;
+		position: fixed;
+		overflow-y: scroll;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 10000;
 	}
-}
-
-.has-dark-theme {
-	.wp-block-editorial-modal-content {
-		background: $color-grayscale-3;
-	}
-
-	.wp-block-editorial-modal-overlay-close,
-	p {
-		color: $color-grayscale-e;
-	}
-}
-
-.has-primary-theme,
-.has-secondary-theme {
-	.wp-block-editorial-modal-content {
-		a,
-		.wp-block-editorial-modal-overlay-close,
-		.wp-block-editorial-modal-overlay-close::before,
-		p {
-			color: $color-grayscale-1;
-		}
-	}
-}
-
-.wp-block-editorial-modal-content.show-overlay {
-	display: block;
-	position: fixed;
-	overflow-y: scroll;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 10000;
 }
 
 // modal callout styles
 
 .wp-block-editorial-modal-callout {
 	@extend %col-full;
-	background: $color-grayscale-e;
+	background: $color-grayscale-f;
 	text-align: center;
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
 	flex-wrap: wrap;
 	margin: 60px 0;
 
