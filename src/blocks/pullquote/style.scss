@@ -1,6 +1,5 @@
 // =================================================================
 // Pullquote Block Base Styles
-// TODO: Should this be in Responsive Foundation?
 // =================================================================
 
 @import 'src/global/bu-blocks-config';
@@ -15,7 +14,7 @@
 
 // Pullquote Block
 //
-// This is a Pullquote Block, you can use this as a base line for writing up the static markup and styles for a new block.
+// This is a Pullquote Block. It has 3 Block Styles, Default, Modern, and Pop. The latter two styles can accomodate an image. The focus of the image can be set relative to 9 general regions (i.e. Top Left, Center Right, etc.)
 //
 // Status: In-Progress
 //
@@ -32,7 +31,7 @@
 // .is-style-pop.alignwide														 - Pop pullquote in wide alignment
 // .is-style-pop.alignfull														 - Pop pullquote in full alignment
 // .is-style-pop.alignfull.has-image											 - Pop pullquote in full alignment
-// .is-style-pop.alignfull.has-image.has-image-focus-top-left					 - image focus on top left
+// .is-style-pop.alignfull.has-image.has-image-focus-top-left		 			 - image focus on top left
 // .is-style-pop.alignfull.has-image.has-image-focus-bottom-right				 - image focus on bottom right
 //
 // Styleguide Blocks.Global.Pullquote
