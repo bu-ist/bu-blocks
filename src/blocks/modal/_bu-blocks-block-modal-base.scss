@@ -11,13 +11,13 @@
   overflow: hidden;
 }
 
-
+// modal content styles
 
 .wp-block-editorial-modal-content {
 	display:none;
 	@extend %col-full;
 	padding: 60px 24px 24px;
-	background: $color-grayscale-d;
+	background: $color-grayscale-f;
 	position: relative;
 
 	@include breakpoint( $xs ) {
