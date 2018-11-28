@@ -163,24 +163,36 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		@extend %leadin-image-height-medium;
 		position: relative;
 		padding-bottom: 80px;
-		.container-lockup {
-			@include breakpoint( $sm ) {
-				padding-bottom: 140px;
-			}
-			@include breakpoint( $md ) {
-				padding-bottom: 70px;
-			}
-		}
-		.container-words-outter {
 
-			@include breakpoint( $sm ) {
-				position: absolute;
-				bottom: 0;
+		&:not(.has-box) {
+			.container-lockup {
+				@include breakpoint( $xs ) {
+					padding-bottom: 140px;
+				}
+				@include breakpoint( $md ) {
+					padding-bottom: 70px;
+				}
 			}
 		}
-		&:not(.has-box) {
+		&.has-box {
+			.container-lockup {
+				@include breakpoint( $xs ) {
+					padding-bottom: 140px;
+				}
+				@include breakpoint( $sm ) {
+					padding-bottom: 70px;
+				}
+			}
+		}
 			.container-words-outter {
 				@include breakpoint( $sm ) {
+				}
+			}
+		&:not(.has-box) {
+			.container-words-outter {
+				@include breakpoint( $xs ) {
+					position: absolute;
+					bottom: 0;
 					&::before,
 					&::after  {
 						content: " ";
@@ -190,7 +202,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 				&::after  {
 					background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
 					position: absolute;
-					bottom: -140px;
+					bottom: 0;
 					width: $shadow-width;
 					height: 140px;
 					@include breakpoint( $sm ) {
@@ -210,6 +222,20 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			}
 			.container-words-inner {
 				padding-top: 2em;
+			}
+		}
+		&.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-outter {
+					position: absolute;
+					bottom: 0;
+				}
+				.container-words-inner {
+					padding-top: 2em;
+					padding-bottom: 2em;
+					padding-left: $padding * 2;
+					padding-right: $padding * 2;
+				}
 			}
 		}
 		.container-words-inner {
