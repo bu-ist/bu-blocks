@@ -24,6 +24,11 @@
 		padding: 90px 60px 60px;
 	}
 
+	> *:not( .alignwide ):not( .alignfull ) {
+		max-width: 740px;
+		margin: 0 auto;
+	}
+
 	.wp-block-editorial-modal-overlay-close {
 		@extend %icon-close;
 		position: absolute;
