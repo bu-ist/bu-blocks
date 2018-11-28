@@ -56,14 +56,20 @@ $current-map: $blocks-block-leadin-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-leadin {
-	.comments {
-		svg {
-			font-family: blocks-get( 'font-family-secondary' );
-			.icon{
-				fill: blocks-get( 'color-primary' );
-			}
-			text {
-				fill: blocks-get( 'color-page' );
+	&.is-style-emphasis-on-text {
+		.container-words-inner {
+			background-color: blocks-get( 'color-page');
+		}
+	}
+	&.is-style-text-over-image-boxed,
+	&.is-style-text-over-image-tinted {
+		&:not(.has-text-normal) {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3 {
+					color: blocks-get( 'color-page');
+				}
 			}
 		}
 	}

@@ -7,7 +7,7 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
-%image-height-small {
+%leadin-image-height-small {
 	.container-image {
 		height: 320px;
 		@include breakpoint( $xs ) {
@@ -24,7 +24,7 @@
 		}
 	}
 }
-%image-height-medium {
+%leadin-image-height-medium {
 	.container-image {
 		height: 400px;
 		@include breakpoint( $xs ) {
@@ -41,9 +41,9 @@
 		}
 	}
 }
-%image-height-large {
+%leadin-image-height-large {
 	.container-image {
-		height: 480px;
+		height: 320px;
 		@include breakpoint( $xs ) {
 			height: 560px;
 		}
@@ -58,6 +58,50 @@
 		}
 	}
 }
+%leadin-text-over-image-base {
+	@include breakpoint( $xs ) {
+		.container-lockup {
+			position: relative;
+		}
+		.container-words-outter {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+		.container-words-inner{
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+$masthead-off-set: 132px !default;
+$masthead-off-set-xs: 192px !default;
+$masthead-off-set-sm: $masthead-off-set-xs !default;
+$masthead-off-set-md: $masthead-off-set-xs !default;
+$masthead-off-set-lg: $masthead-off-set-xs !default;
+%masthead-off-set-calc {
+	.container-image {
+		img {
+				height: clac( 100% + #{$masthead-off-set} );
+			@include breakpoint( $xs ) {
+				height: clac( 100% + #{$masthead-off-set-xs} );
+			}
+			@include breakpoint( $sm ) {
+				height: clac( 100% + #{$masthead-off-set-sm} );
+			}
+			@include breakpoint( $md ) {
+				height: clac( 100% + #{$masthead-off-set-md} );
+			}
+			@include breakpoint( $lg ) {
+				height: clac( 100% + #{$masthead-off-set-lg} );
+			}
+		}
+	}
+}
 .wp-block-leadin {
 	h1,
 	h2,
@@ -68,6 +112,15 @@
 	.container-words-inner {
 		margin-top: 2em;
 		margin-bottom: 2em;
+		position: relative;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-ms-flex-align: center;
+		align-items: center;
 	}
 	.container-image {
 		@include transition( height 500ms ease-in-out 0s );
@@ -83,7 +136,7 @@
 		}
 	}
 	&.is-style-text-to-image {
-		@extend %image-height-small;
+		@extend %leadin-image-height-small;
 		.container-lockup {
 			display: -ms-flexbox;
 			display: flex;
@@ -95,22 +148,82 @@
 			order: 2;
 
 		}
-		.container-text {
+		.container-words-outter {
 			-ms-flex-order: 1;
 			order: 1;
 		}
 	}
 	&.is-style-image-to-text {
-		@extend %image-height-medium;
+		@extend %leadin-image-height-medium;
 	}
 	&.is-style-emphasis-on-text {
-		@extend %image-height-medium;
+
+		$shadow-width: 50px;
+
+		@extend %leadin-image-height-medium;
+		position: relative;
+		padding-bottom: 80px;
+		.container-lockup {
+			@include breakpoint( $sm ) {
+				padding-bottom: 140px;
+			}
+			@include breakpoint( $md ) {
+				padding-bottom: 70px;
+			}
+		}
+		.container-words-outter {
+
+			@include breakpoint( $sm ) {
+				position: absolute;
+				bottom: 0;
+			}
+		}
+		&:not(.has-box) {
+			.container-words-outter {
+				@include breakpoint( $sm ) {
+					&::before,
+					&::after  {
+						content: " ";
+					}
+				}
+				&::before,
+				&::after  {
+					background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
+					position: absolute;
+					bottom: -140px;
+					width: $shadow-width;
+					height: 140px;
+					@include breakpoint( $sm ) {
+						bottom: 0;
+					}
+					@include breakpoint( $md ) {
+						bottom: -70px;
+					}
+				}
+				&::before {
+					left: calc( 0px - #{$shadow-width} + #{$padding} );
+				}
+				&::after {
+					right: calc( 0px - #{$shadow-width} + #{$padding} );
+					@include scale( -1, 1 );
+				}
+			}
+			.container-words-inner {
+				padding-top: 2em;
+			}
+		}
+		.container-words-inner {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
 	}
 	&.is-style-text-over-image-boxed {
-		@extend %image-height-large;
+		@extend %leadin-image-height-large;
+		@extend %leadin-text-over-image-base;
 	}
 	&.is-style-text-over-image-tinted {
-		@extend %image-height-large;
+		@extend %leadin-image-height-large;
+		@extend %leadin-text-over-image-base;
 	}
 	&.is-style-side-by-side {}
 	&:not(.is-style-side-by-side) {
@@ -118,24 +231,49 @@
 			text-align: center;
 		}
 	}
-	&.has-image-focus-middle-center {
+	&.has-image-focus-left-top {
+		img {
+			object-position: 25% 25%;
+		}
+	}
+	&.has-image-focus-left-middle {
+		img {
+			object-position: 25% 50%;
+		}
+	}
+	&.has-image-focus-left-bottom {
+		img {
+			object-position: 25% 75%;
+		}
+	}
+	&.has-image-focus-center-top {
+		img {
+			object-position: 50% 25%;
+		}
+	}
+	&.has-image-focus-center-middle {
 		img {
 			object-position: 50% 50%;
 		}
 	}
-	&.has-image-focus-middle-right {
+	&.has-image-focus-center-bottom {
 		img {
 			object-position: 50% 75%;
 		}
 	}
-	&.has-image-focus-bottom-left {
+	&.has-image-focus-right-top {
 		img {
 			object-position: 75% 25%;
 		}
 	}
-	&.has-image-focus-bottom-center {
+	&.has-image-focus-right-middle {
 		img {
 			object-position: 75% 50%;
+		}
+	}
+	&.has-image-focus-right-bottom {
+		img {
+			object-position: 75% 75%;
 		}
 	}
 }
