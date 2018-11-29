@@ -56,6 +56,14 @@ $current-map: $blocks-block-leadin-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-leadin {
+	h1,
+	h2 {
+		color: blocks-get( 'font-color-heading');
+	}
+	h3,
+	h4 {
+		color: blocks-get( 'font-color-heading-small');
+	}
 	&.is-style-emphasis-on-text {
 		.container-words-inner {
 			background-color: blocks-get( 'color-page');
