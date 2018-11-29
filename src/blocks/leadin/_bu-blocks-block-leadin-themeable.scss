@@ -90,14 +90,16 @@ $scope: blocks-get( 'scope' );
 	}
 	&.is-style-side-by-side {
 		&.has-box {
-			.container-words-outter {
-				background-color: blocks-get( 'background-color-dark');
-			}
-			&:not(.has-text-normal) {
-				h1,
-				h2,
-				h3 {
-					color: blocks-get( 'color-page');
+			@include breakpoint( $xs ) {
+				.container-words-outter {
+					background-color: blocks-get( 'background-color-dark');
+				}
+				&:not(.has-text-normal) {
+					h1,
+					h2,
+					h3 {
+						color: blocks-get( 'color-page');
+					}
 				}
 			}
 		}

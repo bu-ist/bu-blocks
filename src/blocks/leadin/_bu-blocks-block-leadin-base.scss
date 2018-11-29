@@ -129,7 +129,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 %masthead-off-set-calc {
 	.container-image {
 		img {
-				height: clac( 100% + #{$masthead-off-set} );
+			height: clac( 100% + #{$masthead-off-set} );
 			@include breakpoint( $xs ) {
 				height: clac( 100% + #{$masthead-off-set-xs} );
 			}
@@ -318,6 +318,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	}
 	&.is-style-side-by-side {
 		@extend %leadin-sidebyside-vert-size;
+		text-align: center;
 		&:not(.has-wider) {
 			padding-left: $padding;
 			padding-right: $padding;
@@ -332,6 +333,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			}
 		}
 		@include breakpoint( $xs ) {
+			text-align: left;
 			.container-lockup{
 				display: flex;
 				.container-image {
@@ -363,6 +365,22 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	&:not(.is-style-side-by-side) {
 		.container-lockup {
 			text-align: center;
+		}
+	}
+	&:not(.is-style-side-by-side):not(.is-style-text-to-image):not(.is-style-image-to-text):not(.is-style-emphasis-on-text):not(.is-style-text-over-image-tinted):not(.is-style-text-over-image-boxed) {
+		@extend %row-child-styles;
+		@extend %col-sm-10;
+		@extend %col-sm-offset-left-1;
+		@extend %col-sm-offset-right-1;
+		@extend %col-md-8;
+		@extend %col-md-offset-left-2;
+		@extend %col-md-offset-right-2;
+		.container-image {
+			margin: 0;
+			img {
+				position: relative;
+				height: auto;
+			}
 		}
 	}
 	&.has-image-focus-left-top {
