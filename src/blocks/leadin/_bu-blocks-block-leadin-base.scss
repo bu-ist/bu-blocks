@@ -69,12 +69,55 @@
 			height: 100%;
 			display: flex;
 			align-items: center;
+			width: 100%;
 			padding-left: $padding;
 			padding-right: $padding;
 		}
 		.container-words-inner{
 			margin-left: auto;
 			margin-right: auto;
+		}
+		&.has-text-position-y-top {
+			.container-words-outter {
+				align-items: flex-start;
+			}
+		}
+		&.has-text-position-y-middle {
+			.container-words-outter {
+				align-items: start;
+			}
+		}
+		&.has-text-position-y-bottom {
+			.container-words-outter {
+				align-items: flex-end;
+			}
+		}
+		&.has-text-position-x-left {
+			.container-words-inner {
+				margin-left: 0;
+			}
+		}
+		&.has-text-position-x-right {
+			.container-words-inner {
+				margin-right: 0;
+			}
+		}
+	}
+}
+%leadin-sidebyside-vert-size {
+	.container-lockup {
+		height: 320px;
+		@include breakpoint( $xs ) {
+			min-height: 640px;
+		}
+		@include breakpoint( $sm ) {
+			min-height: 720px;
+		}
+		@include breakpoint( $md ) {
+			min-height: 800px;
+		}
+		@include breakpoint( $lg ) {
+			min-height: 880px;
 		}
 	}
 }
@@ -246,12 +289,77 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	&.is-style-text-over-image-boxed {
 		@extend %leadin-image-height-large;
 		@extend %leadin-text-over-image-base;
+		@include breakpoint( $xs ) {
+			.container-words-inner {
+				padding-top: 2em;
+				padding-bottom: 2em;
+				padding-left: $padding * 2;
+				padding-right: $padding * 2;
+			}
+		}
 	}
 	&.is-style-text-over-image-tinted {
 		@extend %leadin-image-height-large;
 		@extend %leadin-text-over-image-base;
+		.container-image {
+			@include breakpoint( $xs ) {
+				.tint {
+					content: "";
+					background-color: inherit;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0.5;
+				}
+			}
+		}
 	}
-	&.is-style-side-by-side {}
+	&.is-style-side-by-side {
+		@extend %leadin-sidebyside-vert-size;
+		&:not(.has-wider) {
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+		.container-words-inner {
+			padding-left: $padding * 2;
+			padding-right: $padding * 2;
+		}
+		&.has-flip {
+			.container-image{
+				order: 2;
+			}
+		}
+		@include breakpoint( $xs ) {
+			.container-lockup{
+				display: flex;
+				.container-image {
+					width: 33.333333%;
+				}
+				.container-words-outter {
+					width: 66.666666%;
+				}
+			}
+			.container-words-outter {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				
+			}
+			.container-words-inner {
+				align-items: flex-start;
+			}
+		}
+		@include breakpoint( $sm ) {
+			.container-lockup{
+				.container-image,
+				.container-words-outter {
+					width: 50%;
+				}
+			}
+		}
+	}
 	&:not(.is-style-side-by-side) {
 		.container-lockup {
 			text-align: center;

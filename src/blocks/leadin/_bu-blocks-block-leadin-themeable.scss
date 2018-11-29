@@ -73,20 +73,36 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 	}
-	&.is-style-emphasis-on-text {
-		&.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'background-color-dark');
-				}
-				&:not(.has-text-normal) {
-					h1,
-					h2,
-					h3 {
-						color: blocks-get( 'color-page');
-					}
+	&.is-style-emphasis-on-text.has-box,
+	&.is-style-text-over-image-boxed {
+		@include breakpoint( $xs ) {
+			.container-words-inner {
+				background-color: blocks-get( 'background-color-dark');
+			}
+			&:not(.has-text-normal) {
+				h1,
+				h2,
+				h3 {
+					color: blocks-get( 'color-page');
 				}
 			}
 		}
+	}
+	&.is-style-side-by-side {
+		&.has-box {
+			.container-words-outter {
+				background-color: blocks-get( 'background-color-dark');
+			}
+			&:not(.has-text-normal) {
+				h1,
+				h2,
+				h3 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+	}
+	.container-image {
+		background-color: blocks-get( 'background-color-dark');
 	}
 }
