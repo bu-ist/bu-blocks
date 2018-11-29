@@ -9,7 +9,7 @@
 //
 %leadin-image-height-small {
 	.container-image {
-		height: 320px;
+		// height: 320px;
 		@include breakpoint( $xs ) {
 			height: 400px;
 		}
@@ -26,7 +26,7 @@
 }
 %leadin-image-height-medium {
 	.container-image {
-		height: 400px;
+		// height: 400px;
 		@include breakpoint( $xs ) {
 			height: 480px;
 		}
@@ -43,7 +43,7 @@
 }
 %leadin-image-height-large {
 	.container-image {
-		height: 320px;
+		// height: 320px;
 		@include breakpoint( $xs ) {
 			height: 560px;
 		}
@@ -106,7 +106,6 @@
 }
 %leadin-sidebyside-vert-size {
 	.container-lockup {
-		height: 320px;
 		@include breakpoint( $xs ) {
 			min-height: 640px;
 		}
@@ -170,12 +169,15 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		position: relative;
 		box-sizing: content-box;
 		img {
-			position: absolute;
-			top: 0;
-			left: 0;
+			position: relative;
 			width: 100%;
-			height: 100%;
 			object-fit: cover;
+			@include breakpoint( $xs ) {
+				position: absolute;
+				height: 100%;
+				top: 0;
+				left: 0;
+			}
 		}
 	}
 	&.is-style-text-to-image {
