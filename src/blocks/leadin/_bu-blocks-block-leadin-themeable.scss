@@ -69,20 +69,20 @@ $scope: blocks-get( 'scope' );
 			background-color: blocks-get( 'color-page');
 		}
 	}
-	&.is-style-text-over-image-boxed,
-	&.is-style-text-over-image-tinted {
+	&.is-style-text-over-image {
 		&:not(.has-text-normal) {
 			@include breakpoint( $xs ) {
 				h1,
 				h2,
-				h3 {
+				h3,
+				h4 {
 					color: blocks-get( 'color-page');
 				}
 			}
 		}
 	}
 	&.is-style-emphasis-on-text.has-box,
-	&.is-style-text-over-image-boxed {
+	&.is-style-text-over-image.has-box {
 		@include breakpoint( $xs ) {
 			.container-words-inner {
 				background-color: blocks-get( 'background-color-dark');
@@ -90,7 +90,8 @@ $scope: blocks-get( 'scope' );
 			&:not(.has-text-normal) {
 				h1,
 				h2,
-				h3 {
+				h3,
+				h4 {
 					color: blocks-get( 'color-page');
 				}
 			}
@@ -105,7 +106,8 @@ $scope: blocks-get( 'scope' );
 				&:not(.has-text-normal) {
 					h1,
 					h2,
-					h3 {
+					h3,
+					h4 {
 						color: blocks-get( 'color-page');
 					}
 				}
