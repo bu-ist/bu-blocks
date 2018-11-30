@@ -11,6 +11,15 @@
   overflow: hidden;
 }
 
+.wp-block-editorial-modal {
+	&.has-media {
+		h1,
+		p {
+			color: $color-grayscale-f;
+		}
+	}
+}
+
 // modal content styles
 
 .wp-block-editorial-modal-content {
