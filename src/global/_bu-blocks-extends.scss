@@ -1,10 +1,6 @@
 %media-fitting-cover {
-	[class^="wp-block-"][class$="-media"] {
-		img,
-		video {
-			object-fit: cover;
-		}
-	}
+	object-fit: cover;
+	border-radius: 0.0005px; //chrome cover video overflow fix
 }
 %media-focus {
 	&.has-media-focus-left-top {
