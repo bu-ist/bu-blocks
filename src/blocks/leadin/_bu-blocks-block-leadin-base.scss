@@ -7,8 +7,9 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
+
 %leadin-image-height-small {
-	.container-image {
+	.wp-block-leadin-media {
 		// height: 320px;
 		@include breakpoint( $xs ) {
 			height: 400px;
@@ -25,7 +26,7 @@
 	}
 }
 %leadin-image-height-medium {
-	.container-image {
+	.wp-block-leadin-media {
 		// height: 400px;
 		@include breakpoint( $xs ) {
 			height: 480px;
@@ -42,7 +43,7 @@
 	}
 }
 %leadin-image-height-large {
-	.container-image {
+	.wp-block-leadin-media {
 		// height: 320px;
 		@include breakpoint( $xs ) {
 			height: 560px;
@@ -126,7 +127,7 @@ $masthead-off-set-sm: $masthead-off-set-xs !default;
 $masthead-off-set-md: $masthead-off-set-xs !default;
 $masthead-off-set-lg: $masthead-off-set-xs !default;
 %masthead-off-set-calc {
-	.container-image {
+	.wp-block-leadin-media {
 		img {
 			height: clac( 100% + #{$masthead-off-set} );
 			@include breakpoint( $xs ) {
@@ -145,6 +146,8 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	}
 }
 .wp-block-leadin {
+	@extend %media-fitting;
+	@extend %media-position;
 	padding-bottom: 2em;
 	h1,
 	h2,
@@ -165,14 +168,13 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		-ms-flex-align: center;
 		align-items: center;
 	}
-	.container-image {
+	.wp-block-leadin-media {
 		@include transition( height 500ms ease-in-out 0s );
 		position: relative;
 		box-sizing: content-box;
 		img {
 			position: relative;
 			width: 100%;
-			object-fit: cover;
 			@include breakpoint( $xs ) {
 				position: absolute;
 				height: 100%;
@@ -189,7 +191,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			-ms-flex-direction: column;
 			flex-direction: column;
 		}
-		.container-image {
+		.wp-block-leadin-media {
 			-ms-flex-order: 2;
 			order: 2;
 
@@ -280,9 +282,9 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		@extend %leadin-image-height-large;
 		@extend %leadin-text-over-image-base;
 		&:not(.has-box){
-			.container-image {
+			.wp-block-leadin-media {
 				@include breakpoint( $xs ) {
-					.tint {
+					&::after {
 						content: "";
 						background-color: inherit;
 						position: absolute;
@@ -318,7 +320,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			padding-right: $padding * 2;
 		}
 		&.has-flip {
-			.container-image{
+			.wp-block-leadin-media{
 				order: 2;
 			}
 		}
@@ -326,7 +328,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			text-align: left;
 			.container-lockup{
 				display: flex;
-				.container-image {
+				.wp-block-leadin-media {
 					width: 33.333333%;
 				}
 				.container-words-outter {
@@ -345,7 +347,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		}
 		@include breakpoint( $sm ) {
 			.container-lockup{
-				.container-image,
+				.wp-block-leadin-media,
 				.container-words-outter {
 					width: 50%;
 				}
@@ -358,57 +360,12 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		}
 	}
 	&:not(.is-style-side-by-side):not(.is-style-text-to-image):not(.is-style-image-to-text):not(.is-style-emphasis-on-text):not(.is-style-text-over-image) {
-		.container-image {
+		.wp-block-leadin-media {
 			margin: 0;
 			img {
 				position: relative;
 				height: auto;
 			}
-		}
-	}
-	&.has-image-focus-left-top {
-		img {
-			object-position: 25% 25%;
-		}
-	}
-	&.has-image-focus-left-middle {
-		img {
-			object-position: 25% 50%;
-		}
-	}
-	&.has-image-focus-left-bottom {
-		img {
-			object-position: 25% 75%;
-		}
-	}
-	&.has-image-focus-center-top {
-		img {
-			object-position: 50% 25%;
-		}
-	}
-	&.has-image-focus-center-middle {
-		img {
-			object-position: 50% 50%;
-		}
-	}
-	&.has-image-focus-center-bottom {
-		img {
-			object-position: 50% 75%;
-		}
-	}
-	&.has-image-focus-right-top {
-		img {
-			object-position: 75% 25%;
-		}
-	}
-	&.has-image-focus-right-middle {
-		img {
-			object-position: 75% 50%;
-		}
-	}
-	&.has-image-focus-right-bottom {
-		img {
-			object-position: 75% 75%;
 		}
 	}
 }
