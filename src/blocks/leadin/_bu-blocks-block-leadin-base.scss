@@ -209,34 +209,31 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		@extend %leadin-image-height-medium;
 		position: relative;
 
-		&:not(.has-box) {
-			.container-lockup {
-				@include breakpoint( $xs ) {
-					padding-bottom: 140px;
-				}
-				@include breakpoint( $md ) {
-					padding-bottom: 70px;
-				}
+		.container-lockup {
+			@include breakpoint( $xs ) {
+				padding-bottom: 140px;
+			}
+			@include breakpoint( $sm ) {
+				padding-bottom: 70px;
 			}
 		}
-		&.has-box {
-			.container-lockup {
-				@include breakpoint( $xs ) {
-					padding-bottom: 140px;
-				}
-				@include breakpoint( $sm ) {
-					padding-bottom: 70px;
-				}
-			}
-		}
+
 		.container-lockup {
 			position: relative;
+		}
+		.container-words-outter {
+			@include breakpoint( $xs ) {
+				position: absolute;
+				bottom: 0;
+			}
+		}
+		.container-words-inner {
+			margin-top: 0;
+			margin-bottom: 0;
 		}
 		&:not(.has-box) {
 			.container-words-outter {
 				@include breakpoint( $xs ) {
-					position: absolute;
-					bottom: 0;
 					&::before,
 					&::after  {
 						content: " ";
@@ -270,10 +267,6 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		}
 		&.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-outter {
-					position: absolute;
-					bottom: 0;
-				}
 				.container-words-inner {
 					padding-top: 2em;
 					padding-bottom: 2em;
@@ -281,10 +274,6 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 					padding-right: $padding * 2;
 				}
 			}
-		}
-		.container-words-inner {
-			margin-top: 0;
-			margin-bottom: 0;
 		}
 	}
 	&.is-style-text-over-image {
