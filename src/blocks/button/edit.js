@@ -56,8 +56,8 @@ class BUButtonEdit extends Component {
 								label='Placement'
 								selected={ icon }
 								options={ [
-									{ label: 'Before text', value: 'align-icon-right' },
-									{ label: 'After text', value: 'align-icon-left' },
+									{ label: 'Before text', value: 'align-icon-left' },
+									{ label: 'After text', value: 'align-icon-right' },
 								] }
 								onChange={ ( value ) => { setAttributes( { icon: value } ) } }
 							/>
