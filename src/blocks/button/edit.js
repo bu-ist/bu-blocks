@@ -6,7 +6,7 @@
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 const { compose } = wp.compose;
-const { Dashicon, IconButton } = wp.components;
+const { Button, Dashicon, IconButton, PanelBody, RadioControl } = wp.components;
 const { InspectorControls, PanelColorSettings, RichText, URLInput, withColors } = wp.editor;
 
 class BUButtonEdit extends Component {
@@ -27,12 +27,14 @@ class BUButtonEdit extends Component {
 		const {
 			text,
 			url,
+			icon,
 		} = attributes;
 
 		const classes = [
 			'wp-block-button',
 			className,
 			themeColor.class,
+			...( icon ? [ `icon-navigateright ${icon}` ] : [] ),
 		].join( ' ' ).trim();
 
 		return (
@@ -49,6 +51,25 @@ class BUButtonEdit extends Component {
 								},
 							] }
 						/>
+						<PanelBody title={ __( 'Icon Settings' ) }>
+							<RadioControl
+								label='Placement'
+								selected={ icon }
+								options={ [
+									{ label: 'Before text', value: 'align-icon-right' },
+									{ label: 'After text', value: 'align-icon-left' },
+								] }
+								onChange={ ( value ) => { setAttributes( { icon: value } ) } }
+							/>
+							<Button
+								onClick={ () => setAttributes( { icon: undefined } ) }
+								label={ ( 'Clear icon settings' ) }
+								isDefault
+								isSmall
+							>
+								{ __( 'Clear' ) }
+							</Button>
+						</PanelBody>
 					</InspectorControls>
 				<p>
 					<RichText

@@ -41,7 +41,23 @@ const blockAttributes = {
 	themeColor: {
 		type: 'string',
 	},
+	icon: {
+		type: 'string',
+	},
+	className: {
+		type: 'string',
+	}
 };
+
+let blockStyles = [
+	{ name: 'default', label: __( 'Default' ), isDefault: true },
+	{ name: 'outline', label: __( 'Outline' ) },
+	{ name: 'text', label: __( 'Text' ) },
+];
+
+if ( 'research' === publicationClass ) {
+	blockStyles.push( { name: 'accent', label: __( 'Accent' ) } );
+}
 
 // Register the block.
 registerBlockType( 'bu/button', {
@@ -52,6 +68,7 @@ registerBlockType( 'bu/button', {
 	category: 'bu',
 	publicationClassName: publicationClass + '-block-button',
 	attributes: blockAttributes,
+	styles: blockStyles,
 	supports: {
 		className: false,
 		customClassName: false,
@@ -64,6 +81,7 @@ registerBlockType( 'bu/button', {
 			url,
 			text,
 			themeColor,
+			icon,
 			className,
 		} = attributes;
 
@@ -72,6 +90,7 @@ registerBlockType( 'bu/button', {
 			className,
 			publicationClass + '-block-button',
 			getColorClassName( 'theme', themeColor ),
+			...( icon ? [ `icon-navigateright ${icon}` ] : [] ),
 		].join( ' ' ).trim();
 
 		return (
