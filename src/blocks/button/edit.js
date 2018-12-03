@@ -2,6 +2,9 @@
  * Edit function for the button block.
  */
 
+// Internal dependencies.
+import themePalette from '../../global/theme-palette.js';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
@@ -33,7 +36,7 @@ class BUButtonEdit extends Component {
 		const classes = [
 			'wp-block-button',
 			className,
-			themeColor.class,
+			...( themeColor.class ? [ themeColor.class.replace( '-color', '' ) ] : [] ),
 			...( icon ? [ `icon-navigateright ${icon}` ] : [] ),
 		].join( ' ' ).trim();
 
@@ -48,6 +51,7 @@ class BUButtonEdit extends Component {
 									onChange: setThemeColor,
 									label: __( 'Theme' ),
 									disableCustomColors: true,
+									colors: themePalette(),
 								},
 							] }
 						/>
