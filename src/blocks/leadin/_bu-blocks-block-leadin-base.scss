@@ -145,6 +145,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	}
 }
 .wp-block-leadin {
+	padding-bottom: 2em;
 	h1,
 	h2,
 	h3,
@@ -228,10 +229,9 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 				}
 			}
 		}
-			.container-words-outter {
-				@include breakpoint( $sm ) {
-				}
-			}
+		.container-lockup {
+			position: relative;
+		}
 		&:not(.has-box) {
 			.container-words-outter {
 				@include breakpoint( $xs ) {
