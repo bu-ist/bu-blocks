@@ -52,6 +52,10 @@ registerBlockType( 'bu/button', {
 	category: 'bu',
 	publicationClassName: publicationClass + '-block-button',
 	attributes: blockAttributes,
+	supports: {
+		className: false,
+		customClassName: false,
+	},
 
 	edit,
 
@@ -66,7 +70,7 @@ registerBlockType( 'bu/button', {
 		const classes = [
 			'wp-block-button',
 			className,
-			publicationClassName,
+			publicationClass + '-block-button',
 			getColorClassName( 'theme', themeColor ),
 		].join( ' ' ).trim();
 
