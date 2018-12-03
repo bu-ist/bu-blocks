@@ -13,9 +13,11 @@
 
 .wp-block-editorial-modal {
 	&.has-media {
-		h1,
-		p {
-			color: $color-grayscale-f;
+		.wp-block-editorial-modal-callout-content {
+			h1,
+			p {
+				color: $color-grayscale-f;
+			}
 		}
 	}
 }
