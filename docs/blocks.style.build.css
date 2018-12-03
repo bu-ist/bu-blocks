@@ -7686,8 +7686,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .bu-blocks-modal-noscroll {
   overflow: hidden; }
 
-.wp-block-editorial-modal.has-media h1,
-.wp-block-editorial-modal.has-media p {
+.wp-block-editorial-modal.has-media .wp-block-editorial-modal-callout-content h1,
+.wp-block-editorial-modal.has-media .wp-block-editorial-modal-callout-content p {
   color: #fff; }
 
 .wp-block-editorial-modal-content {
