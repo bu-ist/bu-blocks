@@ -7,7 +7,7 @@
 }
 %media-focus {
 	&.has-media-focus-left-top {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 25% 25%;
@@ -15,7 +15,7 @@
 		}
 	}
 	&.has-media-focus-left-middle {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 25% 50%;
@@ -23,7 +23,7 @@
 		}
 	}
 	&.has-media-focus-left-bottom {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 25% 75%;
@@ -31,7 +31,7 @@
 		}
 	}
 	&.has-media-focus-center-top {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 50% 25%;
@@ -39,7 +39,7 @@
 		}
 	}
 	&.has-media-focus-center-middle {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 50% 50%;
@@ -47,7 +47,7 @@
 		}
 	}
 	&.has-media-focus-center-bottom {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 50% 75%;
@@ -55,7 +55,7 @@
 		}
 	}
 	&.has-media-focus-right-top {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 75% 25%;
@@ -63,7 +63,7 @@
 		}
 	}
 	&.has-media-focus-right-middle {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 75% 50%;
@@ -71,7 +71,7 @@
 		}
 	}
 	&.has-media-focus-right-bottom {
-		[class^="wp-block-"][class$="-media"] {
+		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
 				object-position: 75% 75%;
