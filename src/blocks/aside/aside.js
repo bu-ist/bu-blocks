@@ -5,6 +5,9 @@
  * headline, paragraph, and button blocks as children.
  */
 
+// External dependencies.
+import classnames from 'classnames';
+
 // Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -44,6 +47,10 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 		const { attributes, setAttributes, className, presetTemplate } = props;
 		const { colorScheme } = attributes;
 		const allowedBlocks = [ 'core/image', 'core/heading', 'core/paragraph', 'core/button' ];
+		const classes = classnames(
+			className,
+			{ [ colorScheme ]: colorScheme }
+		);
 
 		return (
 			<Fragment>
@@ -62,7 +69,7 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<aside className={ [ className, colorScheme ].join( ' ' ).trim() }>
+				<aside className={ classes }>
 					<InnerBlocks
 						allowedBlocks={ allowedBlocks }
 						template={ presetTemplate }
@@ -74,9 +81,13 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 
 	save( { attributes, className } ) {
 		const { colorScheme } = attributes;
+		const classes = classnames(
+			className,
+			{ [ colorScheme ]: colorScheme }
+		);
 
 		return (
-			<aside className={ [ className, colorScheme ].join( ' ' ).trim() }>
+			<aside className={ classes }>
 				<InnerBlocks.Content />
 			</aside>
 		);

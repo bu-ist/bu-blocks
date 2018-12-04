@@ -4,6 +4,9 @@
  * Prompt visitors to take action with a custom button.
  */
 
+// External dependencies.
+import classnames from 'classnames';
+
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -86,13 +89,15 @@ registerBlockType( 'bu/button', {
 			className,
 		} = attributes;
 
-		const classes = [
+		const classes = classnames(
 			'wp-block-button',
 			className,
 			publicationClass + '-block-button',
-			getColorClassName( 'theme', themeColor ),
-			...( icon ? [ `icon-navigateright ${icon}` ] : [] ),
-		].join( ' ' ).trim();
+			{
+				[ getColorClassName( 'theme', themeColor ) ]: getColorClassName( 'theme', themeColor ),
+				[ `icon-navigateright ${icon}` ]:  icon,
+			}
+		);
 
 		return (
 			<p>
