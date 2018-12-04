@@ -1,6 +1,9 @@
 %media-fitting-cover {
+	-o-object-fit: cover;
 	object-fit: cover;
 	border-radius: 0.0005px; //chrome cover video overflow fix
+	width: 100%;
+	height: 100%;
 }
 %media-focus {
 	&.has-media-focus-left-top {
