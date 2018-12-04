@@ -174,8 +174,11 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		img {
 			position: relative;
 			width: 100%;
-			@extend %media-fitting-cover;
 			@include breakpoint( $xs ) {
+				-o-object-fit: cover;
+				object-fit: cover;
+				border-radius: 0.0005px; //chrome cover video overflow fix
+				height: 100%;
 				position: absolute;
 				height: 100%;
 				top: 0;
