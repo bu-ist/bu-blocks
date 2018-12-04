@@ -9,4 +9,16 @@
 //
 
 .wp-block-photoessay {
+	[class*="wp-block-"][class*="-media"] {
+		position: relative;
+		width: 50%;
+		img,
+		video {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+	}
 }
