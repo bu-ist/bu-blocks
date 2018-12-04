@@ -3,7 +3,7 @@
  */
 
 // Internal dependencies.
-import themePalette from '../../global/theme-palette.js';
+import themeOptions from '../../global/theme-options.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -51,7 +51,7 @@ class BUButtonEdit extends Component {
 									onChange: setThemeColor,
 									label: __( 'Theme' ),
 									disableCustomColors: true,
-									colors: themePalette(),
+									colors: themeOptions(),
 								},
 							] }
 						/>

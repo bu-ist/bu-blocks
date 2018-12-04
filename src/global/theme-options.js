@@ -9,7 +9,7 @@ const { select, dispatch } = wp.data;
 const { getEditorSettings } = select( 'core/editor' );
 const { updateEditorSettings } = dispatch( 'core/editor' );
 
-const themePalette = () => {
+const themeOptions = () => {
 	// Get the default colors as set by the editor or theme.
 	const defaultColors = getEditorSettings().colors;
 
@@ -20,7 +20,7 @@ const themePalette = () => {
 	// Check for publication theme colors and use those if available.
 	const themes = getEditorSettings().buPublicationThemes;
 	const publication = document.getElementById( 'bu_publication_owner' ).value;
-	const themeOptions = ( themes[ publication ] ) ? themes[ publication ] : defaultThemes;
+	const themeOptions = ( themes && themes[ publication ] ) ? themes[ publication ] : defaultThemes;
 
 	/**
 	 * Add custom color objects to the defaults if they haven't already been added.
@@ -40,4 +40,4 @@ const themePalette = () => {
 	return themeOptions;
 }
 
-export default themePalette;
+export default themeOptions;
