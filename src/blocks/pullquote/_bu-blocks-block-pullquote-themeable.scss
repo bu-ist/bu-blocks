@@ -1,0 +1,164 @@
+// =================================================================
+// Pullquote Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should only be using properties that are
+// in the global array ($blocks-defaults) so they can be overwritten by
+// the child theme
+// Examples: color, border-color, font-family
+//
+// Variant styles, such as "open", or an alternate layout should be declared here
+// as shown below IF that variant needs to modify one of the properties that
+// can be overwritten via the array. This lets the child theme overwrite that
+// as well.
+//
+// If you aren't using styles from the global array ($blocks-defaults) by
+// using blocks-get() it doesn't belong in this file as it will be printed
+// in the stylesheet multiple times (for each publication)
+//
+
+$blocks-block-pullquote-config: ();
+
+// use the above array if you need to override the global $blocks-defaults array
+// of styles ONLY for this block IN the plugin.
+// You can then override THIS array by using $blocks-block-pullquote-theme in the child theme to
+// override this array
+//
+// Remember, with great power comes great responsibility. This should not be used unless
+// you really need it. Think carefully about why you aren't modifying the global config by adding
+// a different variable.
+//
+// $blocks-block-pullquote-config: (
+// 		primary-color:red,
+// 		secondary-color: rebeccapurple,
+// );
+
+
+// Use the default Blocks configuration. You can override this globally
+// in a theme.
+
+$blocks-block-pullquote-config: map-merge( $blocks-block-pullquote-config, $blocks-config );
+
+// This allows themes to optionally set theme options for this
+// block only. You can set all or a few options - only the options
+// you set in $block-block-pullquote-theme will override the defaults.
+
+@if variable-exists( blocks-block-pullquote-theme ) {
+	$blocks-block-pullquote-config: map_merge( $blocks-block-pullquote-config, $blocks-block-pullquote-theme );
+}
+
+// A global helper variable for the block-get mixin.
+
+$current-map: $blocks-block-pullquote-config;
+
+
+$scope: blocks-get( 'scope' );
+
+.#{$scope}-block-pullquote {
+	&:not(.is-style-modern):not(.is-style-pop) {
+		blockquote {
+			&::before,
+			&::after {
+				color: blocks-get( 'color-primary');
+				font-family: blocks-get( 'font-family-secondary');
+			}
+		}
+		&.has-image {
+			color: blocks-get( 'color-page');
+			hr::before,
+			hr::after {
+				background-color: blocks-get( 'color-page');
+			}
+			blockquote::before,
+			blockquote::after {
+				color: blocks-get( 'color-page');
+			}
+		}
+		&.alignfull {
+			background-color: blocks-get( 'background-color-light');
+			&.has-image {
+				background-color: blocks-get( 'background-color-dark');
+			}
+			// &.has-tint-dark {
+			// }
+			// &.has-tint-primary {
+			// 	&.has-image {
+			// 		background-color: blocks-get( 'color-primary');
+			// 	}
+			// }
+			// &.has-tint-secondary {
+			// 	&.has-image {
+			// 		background-color: blocks-get( 'color-secondary');
+			// 	}
+			// }
+		}
+	}
+	&.is-style-modern {
+		&.alignwide {
+			.container-lockup {
+				background-color: blocks-get( 'background-color-light');
+			}
+		}
+		&.alignfull {
+			background-color: blocks-get( 'background-color-light');
+		}
+		.container-icon-inner {
+			background-color: blocks-get( 'color-primary');
+			color: blocks-get( 'color-page');
+		}
+		&.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'background-color-dark');
+			}
+		}
+		// &.has-tint-dark {
+		// }
+		// &.has-tint-primary {
+		// 	&.has-image {
+		// 		.container-icon-inner {
+		// 			background-color: blocks-get( 'color-primary');
+		// 		}
+		// 	}
+		// }
+		// &.has-tint-secondary {
+		// 	&.has-image {
+		// 		.container-icon-inner {
+		// 			background-color: blocks-get( 'color-secondary');
+		// 		}
+		// 	}
+		// }
+	}
+	&.is-style-pop {
+		background-color: blocks-get( 'background-color-light');
+		.container-icon-inner {
+			color: blocks-get( 'color-primary');
+		}
+		&.has-image {
+			color: blocks-get( 'color-page');
+			background-color: blocks-get( 'background-color-dark');
+			hr {
+				background-color: blocks-get( 'color-page');
+			}
+			.container-icon-inner {
+				color: blocks-get( 'color-page');
+			}
+		}
+		// &.has-tint-dark {
+		// 	&.has-image {
+				
+		// 	}
+		// }
+		// &.has-tint-primary {
+		// 	&.has-image {
+		// 		background-color: blocks-get( 'color-primary');
+		// 	}
+		// }
+		// &.has-tint-secondary {
+		// 	&.has-image {
+		// 		background-color: blocks-get( 'color-secondary');
+		// 	}
+		// }
+	}
+}
+
