@@ -41,20 +41,6 @@ function define_i18n_hooks() {
 }
 
 /**
- * Register all of the hooks related to the admin area functionality
- * of the plugin.
- *
- * @since    0.1.0
- */
-function define_admin_hooks() {
-
-	// Enqueue admin scripts and styles, and add admin plugin settings page.
-	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_enqueue_scripts' );
-	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_enqueue_styles' );
-	add_action( 'admin_menu', __NAMESPACE__ . '\\admin_menu' );
-}
-
-/**
  * Register all of the hooks related to the editor.
  *
  * @since    0.1.0
