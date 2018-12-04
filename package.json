@@ -4,6 +4,9 @@
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
+  "contributors": [
+    "Jeremy Felt <jfelt@bu.edu>"
+  ],
   "scripts": {
     "start": "cgb-scripts start",
     "build": "cgb-scripts build",
