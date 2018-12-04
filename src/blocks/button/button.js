@@ -72,6 +72,7 @@ registerBlockType( 'bu/button', {
 	supports: {
 		className: false,
 		customClassName: false,
+		align: [ 'left', 'center', 'right' ],
 	},
 
 	edit,
