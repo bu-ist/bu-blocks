@@ -1,0 +1,29 @@
+// =================================================================
+// Photo-Essay Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/global/bu-blocks-extends';
+@import 'src/blocks/photoessay/bu-blocks-block-photoessay-base';
+@import 'src/blocks/photoessay/bu-blocks-block-photoessay-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Lead-In Block (Codename)
+//
+// This is a Photo-Essay Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-photoessay.hbs
+//
+// .is-style-x																		 - x
+
+// Styleguide Blocks.Editorial.Photo-Essay
+
+
