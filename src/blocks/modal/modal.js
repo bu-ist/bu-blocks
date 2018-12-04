@@ -4,6 +4,9 @@
  * A block with a callout for opening a modal with supplemental or complementary information.
  */
 
+// External dependencies.
+import classnames from 'classnames';
+
 // Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -69,8 +72,14 @@ registerBlockType( 'editorial/modal', {
 
 	edit( props ) {
 		const { attributes, setAttributes, className, clientId } = props;
-		const { theme } = attributes;
-		const classList = [ className, theme ].join( ' ' ).trim();
+		const { theme, backgroundId } = attributes;
+		const classes = classnames(
+			className,
+			{
+				[ theme ]: theme,
+				'has-media': backgroundId,
+			}
+		);
 
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
@@ -101,7 +110,7 @@ registerBlockType( 'editorial/modal', {
 		return (
 			<Fragment>
 				{ controls }
-				<aside className={ classList }>
+				<aside className={ classes }>
 					<Callout
 						attributes={ attributes }
 						setAttributes={ setAttributes }
@@ -127,11 +136,18 @@ registerBlockType( 'editorial/modal', {
 
 	save( props ) {
 		const { attributes, className } = props;
-		const { theme, calloutHeading, calloutText, trigger } = attributes;
-		const classList = [ className, theme, 'js-bu-block-modal' ].join( ' ' ).trim();
+		const { theme, calloutHeading, calloutText, trigger, backgroundId } = attributes;
+		const classes = classnames(
+			className,
+			'js-bu-block-modal',
+			{
+				[ theme ]: theme,
+				'has-media': backgroundId,
+			}
+		);
 
 		return (
-			<aside className={ classList }>
+			<aside className={ classes }>
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
