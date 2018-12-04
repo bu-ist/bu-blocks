@@ -64,7 +64,12 @@ function define_editor_hooks() {
 	// Enqueue block scripts and styles for admin and front-end.
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+
+	// Add block categories.
 	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
+
+	// Set default options for block theme settings.
+	add_filter( 'block_editor_settings', __NAMESPACE__ . '\\default_theme_colors', 10, 2 );
 }
 
 /**
@@ -160,6 +165,37 @@ function filter_block_categories( $categories ) {
 		$bu_editorial_presets,
 		$categories
 	);
+}
+
+/**
+ * Sets the default `light` and `dark` color objects for use as theme options.
+ *
+ * @param array   $editor_settings Editor settings.
+ * @param WP_Post $post            The current post.
+ */
+function default_theme_colors( $editor_settings, $post ) {
+	if ( ! function_exists( 'bu_prepress_get_post_types' ) ) {
+		return $editor_settings;
+	}
+
+	if ( ! in_array( $post->post_type, bu_prepress_get_post_types(), true ) ) {
+		return $editor_settings;
+	}
+
+	$editor_settings['buDefaultThemes'] = array(
+		array(
+			'name'  => esc_html__( 'Light', 'r-editorial' ),
+			'slug'  => 'light',
+			'color' => '#ffffff',
+		),
+		array(
+			'name'  => esc_html__( 'Dark', 'r-editorial' ),
+			'slug'  => 'dark',
+			'color' => '#000000',
+		),
+	);
+
+	return $editor_settings;
 }
 
 /**
