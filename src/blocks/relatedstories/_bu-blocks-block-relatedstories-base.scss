@@ -1,5 +1,5 @@
 // =================================================================
-// Sample Styles - Configurable
+// Related Stories Styles - Configurable
 // =================================================================
 //
 //
@@ -9,13 +9,8 @@
 //
 
 .wp-block-relatedstories {
-	//your custom styles here
-}
-
-.is-style-thumbnails {
-
-}
-
-.is-style-headlines {
-
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
 }
