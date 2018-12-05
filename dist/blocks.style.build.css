@@ -5797,7 +5797,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   padding-left: 30px;
   padding-right: 30px; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .wp-block-editorial-modal-content, .wp-block-editorial-modal-callout, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .wp-block-editorial-modal-callout, .wp-block-editorial-modal-content, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
   float: left;
   position: relative;
   min-height: 1px; }
@@ -5842,7 +5842,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .col-11 {
   width: 91.66667%; }
 
-.wp-block-editorial-modal-content, .wp-block-editorial-modal-callout, .col-12 {
+.wp-block-editorial-modal-callout, .wp-block-editorial-modal-content, .col-12 {
   width: 100%; }
 
 .col-margin-0 {
@@ -6765,7 +6765,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   padding-left: 30px;
   padding-right: 30px; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .wp-block-editorial-modal-content, .wp-block-editorial-modal-callout, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .wp-block-editorial-modal-callout, .wp-block-editorial-modal-content, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
   float: left;
   position: relative;
   min-height: 1px; }
@@ -6810,7 +6810,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .col-11 {
   width: 91.66667%; }
 
-.wp-block-editorial-modal-content, .wp-block-editorial-modal-callout, .col-12 {
+.wp-block-editorial-modal-callout, .wp-block-editorial-modal-content, .col-12 {
   width: 100%; }
 
 .col-margin-0 {
@@ -7686,21 +7686,34 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .bu-blocks-modal-noscroll {
   overflow: hidden; }
 
-.wp-block-editorial-modal.has-media .wp-block-editorial-modal-callout-content h1,
-.wp-block-editorial-modal.has-media .wp-block-editorial-modal-callout-content p {
-  color: #fff; }
+.wp-block-editorial-modal-callout {
+  background: #ddd;
+  text-align: center;
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 60px; }
+  .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
+    width: 100%; }
+    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
+      display: block;
+      height: auto;
+      width: 100%; }
+    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
+      -o-object-fit: cover;
+         object-fit: cover; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-modal-callout h1,
+    .wp-block-editorial-modal-callout p {
+      color: #fff; } }
 
 .wp-block-editorial-modal-content {
   display: none;
   padding: 60px 24px 24px;
-  background: #fff;
+  background: #ddd;
   position: relative; }
   @media screen and (min-width: 500px) {
     .wp-block-editorial-modal-content {
       padding: 90px 60px 60px; } }
-  .wp-block-editorial-modal-content > *:not(.alignwide):not(.alignfull) {
-    max-width: 740px;
-    margin: 0 auto; }
   .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close {
     position: absolute;
     top: 20px;
@@ -7712,96 +7725,35 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         top: 40px; } }
     .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before {
       color: #666; }
-  .wp-block-editorial-modal-content.show-overlay {
-    display: block;
-    position: fixed;
-    overflow-y: scroll;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 10000; }
-
-.wp-block-editorial-modal-callout {
-  background: #fff;
-  text-align: center;
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin: 60px 0; }
-  .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
-    position: absolute;
-    height: 100%; }
-    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
-      width: 100%;
-      height: 100%;
-      max-height: 100%; }
-    .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
-      -o-object-fit: cover;
-         object-fit: cover;
-      height: 100%;
-      width: 100%;
-      max-height: 100%; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-10 {
-        opacity: .1; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-20 {
-        opacity: .2; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-30 {
-        opacity: .3; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-40 {
-        opacity: .4; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-50 {
-        opacity: .5; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-60 {
-        opacity: .6; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-70 {
-        opacity: .7; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-80 {
-        opacity: .8; }
-      .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img.has-background-opacity-90 {
-        opacity: .9; }
-  .wp-block-editorial-modal-callout h1,
-  .wp-block-editorial-modal-callout p {
-    color: #000; }
 
 .wp-block-editorial-modal-callout-content {
-  z-index: 1000;
-  padding: 40px; }
-  @media screen and (min-width: 768px) {
+  max-width: 90%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 20px; }
+  @media screen and (min-width: 500px) {
     .wp-block-editorial-modal-callout-content {
-      padding: 80px; } }
-  .wp-block-editorial-modal-callout-content .button,
-  .wp-block-editorial-modal-callout-content p:last-of-type {
-    margin-bottom: 0; }
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+          align-items: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      padding: 40px; } }
 
-.has-light-theme .wp-block-editorial-modal-content,
-.has-light-theme .wp-block-editorial-modal-callout {
+.has-light-theme .wp-block-editorial-modal-content {
   background: #eee; }
 
-.has-light-theme .wp-block-editorial-modal-callout h1,
-.has-light-theme .wp-block-editorial-modal-callout p {
-  color: #000; }
-
-.has-light-theme .wp-block-editorial-modal-callout .button {
-  background: #fff; }
-
-.has-dark-theme .wp-block-editorial-modal-content,
-.has-dark-theme .wp-block-editorial-modal-callout {
+.has-dark-theme .wp-block-editorial-modal-content {
   background: #333; }
 
-.has-dark-theme .wp-block-editorial-modal-content p,
-.has-dark-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close {
+.has-dark-theme .wp-block-editorial-modal-overlay-close,
+.has-dark-theme p {
   color: #eee; }
-
-.has-dark-theme .wp-block-editorial-modal-callout h1,
-.has-dark-theme .wp-block-editorial-modal-callout p {
-  color: #fff; }
 
 .has-primary-theme .wp-block-editorial-modal-content a,
 .has-primary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close,
@@ -7812,6 +7764,16 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .has-secondary-theme .wp-block-editorial-modal-content .wp-block-editorial-modal-overlay-close::before,
 .has-secondary-theme .wp-block-editorial-modal-content p {
   color: #111; }
+
+.wp-block-editorial-modal-content.show-overlay {
+  display: block;
+  position: fixed;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000; }
 /**
  * #.# Common SCSS
  *
