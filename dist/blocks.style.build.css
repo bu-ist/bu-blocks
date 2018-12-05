@@ -19910,9 +19910,9 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
-.wp-block-relatedstories ul {
+.wp-block-relatedstories .storycards {
   list-style-type: none;
   padding: 0; }
 
-.wp-block-sample {
+.wp-block-relatedstories {
   border-radius: 0; }
