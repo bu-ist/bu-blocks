@@ -18,9 +18,10 @@ import RegisterBlockPreset from '../../global/register-block-preset.js';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { PanelBody, SelectControl } = wp.components;
-const { InspectorControls, InnerBlocks } = wp.editor;
+const { getColorClassName, InnerBlocks } = wp.editor;
+
+// Internal dependencies.
+import edit from './edit.js';
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
@@ -36,54 +37,20 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 		align: [ 'left', 'right' ],
 	},
 	attributes: {
-		colorScheme: {
+		themeColor: {
 			type: 'string',
-			default: '',
 		},
 	},
 	publicationClassName: publicationClass + '-block-aside',
 
-	edit( props ) {
-		const { attributes, setAttributes, className, presetTemplate } = props;
-		const { colorScheme } = attributes;
-		const allowedBlocks = [ 'core/image', 'core/heading', 'core/paragraph', 'core/button' ];
-		const classes = classnames(
-			className,
-			{ [ colorScheme ]: colorScheme }
-		);
-
-		return (
-			<Fragment>
-				<InspectorControls>
-					<PanelBody title={ __( 'Color Settings' ) }>
-						<SelectControl
-							label={ __( 'Color Scheme' ) }
-							value={ colorScheme || '' }
-							onChange={ value => setAttributes( { colorScheme: value } ) }
-							options={ [
-								{ value: '', label: __( 'None' ) },
-								{ value: 'has-light-background', label: __( 'Light Background' ) },
-								{ value: 'has-dark-background', label: __( 'Dark Background' ) },
-								{ value: 'has-primary-background', label: __( 'Primary Background' ) },
-							] }
-						/>
-					</PanelBody>
-				</InspectorControls>
-				<aside className={ classes }>
-					<InnerBlocks
-						allowedBlocks={ allowedBlocks }
-						template={ presetTemplate }
-					/>
-				</aside>
-			</Fragment>
-		);
-	},
+	edit,
 
 	save( { attributes, className } ) {
-		const { colorScheme } = attributes;
+		const { themeColor } = attributes;
+
 		const classes = classnames(
 			className,
-			{ [ colorScheme ]: colorScheme }
+			{ [ getColorClassName( 'background', themeColor ) ]: getColorClassName( 'background', themeColor ) }
 		);
 
 		return (
