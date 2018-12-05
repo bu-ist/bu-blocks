@@ -73,7 +73,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(__webpack_exports__, \"__esModule\", { value: true });\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_sample_sample_js__ = __webpack_require__(/*! ./blocks/sample/sample.js */ 1);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_headline_headline_js__ = __webpack_require__(/*! ./blocks/headline/headline.js */ 4);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_aside_aside_js__ = __webpack_require__(/*! ./blocks/aside/aside.js */ 10);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__blocks_modal_modal_js__ = __webpack_require__(/*! ./blocks/modal/modal.js */ 14);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__blocks_introparagraph_introparagraph_js__ = __webpack_require__(/*! ./blocks/introparagraph/introparagraph.js */ 17);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__blocks_pullquote_pullquote_js__ = __webpack_require__(/*! ./blocks/pullquote/pullquote.js */ 20);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__blocks_button_button_js__ = __webpack_require__(/*! ./blocks/button/button.js */ 23);\n/**\n * Gutenberg Blocks\n *\n * All blocks related JavaScript files should be imported here.\n * You can create a new block folder in this dir and include code\n * for that block here as well.\n *\n * All blocks should be included here since this is the file that\n * Webpack is compiling as the input file.\n */\n\n//import './blocks/block/block.js';\n\n\n\n\n\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3NyYy9ibG9ja3MuanM/N2I1YiJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEd1dGVuYmVyZyBCbG9ja3NcbiAqXG4gKiBBbGwgYmxvY2tzIHJlbGF0ZWQgSmF2YVNjcmlwdCBmaWxlcyBzaG91bGQgYmUgaW1wb3J0ZWQgaGVyZS5cbiAqIFlvdSBjYW4gY3JlYXRlIGEgbmV3IGJsb2NrIGZvbGRlciBpbiB0aGlzIGRpciBhbmQgaW5jbHVkZSBjb2RlXG4gKiBmb3IgdGhhdCBibG9jayBoZXJlIGFzIHdlbGwuXG4gKlxuICogQWxsIGJsb2NrcyBzaG91bGQgYmUgaW5jbHVkZWQgaGVyZSBzaW5jZSB0aGlzIGlzIHRoZSBmaWxlIHRoYXRcbiAqIFdlYnBhY2sgaXMgY29tcGlsaW5nIGFzIHRoZSBpbnB1dCBmaWxlLlxuICovXG5cbi8vaW1wb3J0ICcuL2Jsb2Nrcy9ibG9jay9ibG9jay5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL3NhbXBsZS9zYW1wbGUuanMnO1xuaW1wb3J0ICcuL2Jsb2Nrcy9oZWFkbGluZS9oZWFkbGluZS5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL2FzaWRlL2FzaWRlLmpzJztcbmltcG9ydCAnLi9ibG9ja3MvbW9kYWwvbW9kYWwuanMnO1xuaW1wb3J0ICcuL2Jsb2Nrcy9pbnRyb3BhcmFncmFwaC9pbnRyb3BhcmFncmFwaC5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL3B1bGxxdW90ZS9wdWxscXVvdGUuanMnO1xuaW1wb3J0ICcuL2Jsb2Nrcy9idXR0b24vYnV0dG9uLmpzJztcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9ibG9ja3MuanNcbi8vIG1vZHVsZSBpZCA9IDBcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///0\n");
+eval("Object.defineProperty(__webpack_exports__, \"__esModule\", { value: true });\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_sample_sample_js__ = __webpack_require__(/*! ./blocks/sample/sample.js */ 1);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_headline_headline_js__ = __webpack_require__(/*! ./blocks/headline/headline.js */ 4);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_aside_aside_js__ = __webpack_require__(/*! ./blocks/aside/aside.js */ 10);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__blocks_modal_modal_js__ = __webpack_require__(/*! ./blocks/modal/modal.js */ 14);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__blocks_introparagraph_introparagraph_js__ = __webpack_require__(/*! ./blocks/introparagraph/introparagraph.js */ 17);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__blocks_pullquote_pullquote_js__ = __webpack_require__(/*! ./blocks/pullquote/pullquote.js */ 20);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__blocks_button_button_js__ = __webpack_require__(/*! ./blocks/button/button.js */ 23);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__blocks_storycard_storycard_js__ = __webpack_require__(/*! ./blocks/storycard/storycard.js */ 29);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__blocks_relatedstories_relatedstories_js__ = __webpack_require__(/*! ./blocks/relatedstories/relatedstories.js */ 26);\n/**\n * Gutenberg Blocks\n *\n * All blocks related JavaScript files should be imported here.\n * You can create a new block folder in this dir and include code\n * for that block here as well.\n *\n * All blocks should be included here since this is the file that\n * Webpack is compiling as the input file.\n */\n\n//import './blocks/block/block.js';\n\n\n\n\n\n\n\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3NyYy9ibG9ja3MuanM/N2I1YiJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEd1dGVuYmVyZyBCbG9ja3NcbiAqXG4gKiBBbGwgYmxvY2tzIHJlbGF0ZWQgSmF2YVNjcmlwdCBmaWxlcyBzaG91bGQgYmUgaW1wb3J0ZWQgaGVyZS5cbiAqIFlvdSBjYW4gY3JlYXRlIGEgbmV3IGJsb2NrIGZvbGRlciBpbiB0aGlzIGRpciBhbmQgaW5jbHVkZSBjb2RlXG4gKiBmb3IgdGhhdCBibG9jayBoZXJlIGFzIHdlbGwuXG4gKlxuICogQWxsIGJsb2NrcyBzaG91bGQgYmUgaW5jbHVkZWQgaGVyZSBzaW5jZSB0aGlzIGlzIHRoZSBmaWxlIHRoYXRcbiAqIFdlYnBhY2sgaXMgY29tcGlsaW5nIGFzIHRoZSBpbnB1dCBmaWxlLlxuICovXG5cbi8vaW1wb3J0ICcuL2Jsb2Nrcy9ibG9jay9ibG9jay5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL3NhbXBsZS9zYW1wbGUuanMnO1xuaW1wb3J0ICcuL2Jsb2Nrcy9oZWFkbGluZS9oZWFkbGluZS5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL2FzaWRlL2FzaWRlLmpzJztcbmltcG9ydCAnLi9ibG9ja3MvbW9kYWwvbW9kYWwuanMnO1xuaW1wb3J0ICcuL2Jsb2Nrcy9pbnRyb3BhcmFncmFwaC9pbnRyb3BhcmFncmFwaC5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL3B1bGxxdW90ZS9wdWxscXVvdGUuanMnO1xuaW1wb3J0ICcuL2Jsb2Nrcy9idXR0b24vYnV0dG9uLmpzJztcbmltcG9ydCAnLi9ibG9ja3Mvc3RvcnljYXJkL3N0b3J5Y2FyZC5qcyc7XG5pbXBvcnQgJy4vYmxvY2tzL3JlbGF0ZWRzdG9yaWVzL3JlbGF0ZWRzdG9yaWVzLmpzJztcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9ibG9ja3MuanNcbi8vIG1vZHVsZSBpZCA9IDBcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///0\n");
 
 /***/ }),
 /* 1 */
@@ -335,6 +335,68 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /***/ (function(module, exports) {
 
 eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjUuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL2J1dHRvbi9lZGl0b3Iuc2Nzcz9kZWE4Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luXG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9zcmMvYmxvY2tzL2J1dHRvbi9lZGl0b3Iuc2Nzc1xuLy8gbW9kdWxlIGlkID0gMjVcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///25\n");
+
+/***/ }),
+/* 26 */
+/*!*****************************************************!*\
+  !*** ./src/blocks/relatedstories/relatedstories.js ***!
+  \*****************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_scss__ = __webpack_require__(/*! ./style.scss */ 27);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__style_scss__);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(/*! ./editor.scss */ 28);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);\n/**\n * BLOCK: bu-relatedstories-cgb\n *\n * Registering a basic block with Gutenberg.\n * Simple block, renders and saves the same content without any interactivity.\n */\n\n//  Import CSS.\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjYuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL3JlbGF0ZWRzdG9yaWVzL3JlbGF0ZWRzdG9yaWVzLmpzPzA5NjciXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBCTE9DSzogYnUtcmVsYXRlZHN0b3JpZXMtY2diXG4gKlxuICogUmVnaXN0ZXJpbmcgYSBiYXNpYyBibG9jayB3aXRoIEd1dGVuYmVyZy5cbiAqIFNpbXBsZSBibG9jaywgcmVuZGVycyBhbmQgc2F2ZXMgdGhlIHNhbWUgY29udGVudCB3aXRob3V0IGFueSBpbnRlcmFjdGl2aXR5LlxuICovXG5cbi8vICBJbXBvcnQgQ1NTLlxuaW1wb3J0ICcuL3N0eWxlLnNjc3MnO1xuaW1wb3J0ICcuL2VkaXRvci5zY3NzJztcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9ibG9ja3MvcmVsYXRlZHN0b3JpZXMvcmVsYXRlZHN0b3JpZXMuanNcbi8vIG1vZHVsZSBpZCA9IDI2XG4vLyBtb2R1bGUgY2h1bmtzID0gMCJdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///26\n");
+
+/***/ }),
+/* 27 */
+/*!**********************************************!*\
+  !*** ./src/blocks/relatedstories/style.scss ***!
+  \**********************************************/
+/*! dynamic exports provided */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjcuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL3JlbGF0ZWRzdG9yaWVzL3N0eWxlLnNjc3M/N2RjZSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpblxuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vc3JjL2Jsb2Nrcy9yZWxhdGVkc3Rvcmllcy9zdHlsZS5zY3NzXG4vLyBtb2R1bGUgaWQgPSAyN1xuLy8gbW9kdWxlIGNodW5rcyA9IDAiXSwibWFwcGluZ3MiOiJBQUFBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///27\n");
+
+/***/ }),
+/* 28 */
+/*!***********************************************!*\
+  !*** ./src/blocks/relatedstories/editor.scss ***!
+  \***********************************************/
+/*! dynamic exports provided */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjguanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL3JlbGF0ZWRzdG9yaWVzL2VkaXRvci5zY3NzPzA1YjAiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW5cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9ibG9ja3MvcmVsYXRlZHN0b3JpZXMvZWRpdG9yLnNjc3Ncbi8vIG1vZHVsZSBpZCA9IDI4XG4vLyBtb2R1bGUgY2h1bmtzID0gMCJdLCJtYXBwaW5ncyI6IkFBQUEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///28\n");
+
+/***/ }),
+/* 29 */
+/*!*******************************************!*\
+  !*** ./src/blocks/storycard/storycard.js ***!
+  \*******************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_scss__ = __webpack_require__(/*! ./style.scss */ 30);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__style_scss__);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(/*! ./editor.scss */ 31);\n/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);\n/**\n * BLOCK: bu-sample-cgb\n *\n * Registering a basic block with Gutenberg.\n * Simple block, renders and saves the same content without any interactivity.\n */\n\n//  Import CSS.\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjkuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL3N0b3J5Y2FyZC9zdG9yeWNhcmQuanM/N2ZkZCJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEJMT0NLOiBidS1zYW1wbGUtY2diXG4gKlxuICogUmVnaXN0ZXJpbmcgYSBiYXNpYyBibG9jayB3aXRoIEd1dGVuYmVyZy5cbiAqIFNpbXBsZSBibG9jaywgcmVuZGVycyBhbmQgc2F2ZXMgdGhlIHNhbWUgY29udGVudCB3aXRob3V0IGFueSBpbnRlcmFjdGl2aXR5LlxuICovXG5cbi8vICBJbXBvcnQgQ1NTLlxuaW1wb3J0ICcuL3N0eWxlLnNjc3MnO1xuaW1wb3J0ICcuL2VkaXRvci5zY3NzJztcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9ibG9ja3Mvc3RvcnljYXJkL3N0b3J5Y2FyZC5qc1xuLy8gbW9kdWxlIGlkID0gMjlcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///29\n");
+
+/***/ }),
+/* 30 */
+/*!*****************************************!*\
+  !*** ./src/blocks/storycard/style.scss ***!
+  \*****************************************/
+/*! dynamic exports provided */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMzAuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL3N0b3J5Y2FyZC9zdHlsZS5zY3NzP2RiNGIiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW5cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9ibG9ja3Mvc3RvcnljYXJkL3N0eWxlLnNjc3Ncbi8vIG1vZHVsZSBpZCA9IDMwXG4vLyBtb2R1bGUgY2h1bmtzID0gMCJdLCJtYXBwaW5ncyI6IkFBQUEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///30\n");
+
+/***/ }),
+/* 31 */
+/*!******************************************!*\
+  !*** ./src/blocks/storycard/editor.scss ***!
+  \******************************************/
+/*! dynamic exports provided */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMzEuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvYmxvY2tzL3N0b3J5Y2FyZC9lZGl0b3Iuc2Nzcz9iZTQ2Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luXG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9zcmMvYmxvY2tzL3N0b3J5Y2FyZC9lZGl0b3Iuc2Nzc1xuLy8gbW9kdWxlIGlkID0gMzFcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///31\n");
 
 /***/ })
 /******/ ]);
