@@ -8,17 +8,74 @@
 //
 //
 
+$photo-padding: $padding/2 !default;
+$photo-padding-xl: $padding/2 !default;
+
 .wp-block-photoessay {
-	[class*="wp-block-"][class*="-media"] {
-		position: relative;
-		width: 50%;
-		img,
-		video {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
+	@extend %clearfix;
+	[class*="photo-row-"] {
+		margin: 0 -#{$photo-padding};
+		// @extend %clearfix;
+		> [class*="photo-"] {
+			position: relative;
+			float: left;
+			background: #f66;
+			margin-bottom: 1.5em;
+			> * {
+				position: absolute;
+				top: 0;
+				height: 100%;
+				padding: 0 $photo-padding;
+			}
+			&::before {
+				content: "";
+				display: inline-block;
+			}
+		}
+	}
+	img,
+	video {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+	.photo-2 {
+		&::before {
+			padding-top: 60%;
+		}
+	}
+	.photo-1 {
+		&::before {
+			padding-top: 120%;
+		}
+	}
+	.photo-row-4 {
+		.photo-2 {
+			width: 4/4 * 100%;
+		}
+		.photo-1 {
+			width: 2/4 * 100%;
+		}
+		@include breakpoint( $xs ) {
+			.photo-2 {
+				width: 2/4 * 100%;
+			}
+			.photo-1 {
+				width: 1/4 * 100%;
+			}
+		}
+	}
+}
+@include breakpoint( $xl ) {
+	.wp-block-photoessay {
+		[class*="photo-row-"] {
+			margin: 0 -#{$photo-padding-xl};
+			// @extend %clearfix;
+			> [class*="photo-"] {
+				> * {
+					padding: 0 $photo-padding-xl;
+				}
+			}
 		}
 	}
 }
