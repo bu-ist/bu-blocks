@@ -1,0 +1,235 @@
+// =================================================================
+// Intro Pullquote Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-pullquote {
+	position: relative;
+	text-align: center;
+	margin-bottom: 1.5em;
+	img {
+		display: none;
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	hr {
+		margin: 2em 0;
+	}
+	blockquote {
+		margin: 0;
+		position: relative;
+	}
+	.container-text {
+		&::after, &::before {
+			display: table;
+			clear: both;
+			content: "";
+		}
+	}
+	.quote-sizing {
+			@extend %font-size-3;
+		@include breakpoint( $xs ) {
+		}
+	}
+	&:not(.is-style-modern):not(.is-style-pop) {
+		blockquote {
+			&::before,
+			&::after {
+				box-sizing: content-box;
+				display: block;
+				font-size: 4em;
+				height: 0.5em;
+				left: 50%;
+				line-height: 1em;
+				margin-left: -0.5em;
+				overflow: hidden;
+				position:absolute;
+				text-align: center;
+				width: 1em;
+			}
+			&::before {
+				content: '“';
+				top: 0.25em;
+			}
+			&::after {
+				content: '”';
+				bottom: 0.25em;
+			}
+			hr {
+				background: none;
+				border: none;
+				height: 1px;
+				position: relative;
+				&::before,
+				&::after {
+					content: '';
+					background: #000;
+					display: block;
+					position: absolute;
+					width: calc(50% - 3em);
+					top: 0;
+					bottom: 0;
+				}
+				&::before {
+					left: 0;
+				}
+				&::after {
+					right: 0;
+				}
+			}
+		}
+		&.has-image {
+			color: #fff;
+			> img {
+				display: block;
+			}
+		}
+		.container-lockup {
+			@extend .row;
+		}
+		.container-text {
+			@extend %row-child-styles;
+			@extend .col-12;
+		}
+	}
+	&.is-style-modern,
+	&.is-style-pop {
+		.container-lockup {
+			@extend .row;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-direction: row;
+			flex-direction: row;
+		}
+		.container-icon-outer {
+			@extend %row-child-styles;
+			@extend .col-4;
+			display: -ms-flexbox;
+			display: flex;
+		}
+		.container-icon-inner {	
+			width: 100%;
+			position: relative;
+		}
+		.container-text {
+			@extend %row-child-styles;
+			@extend .col-8;
+		}
+	}
+	&.is-style-modern {
+		.container-icon-outer {
+			margin: 2em 0;
+		}
+		.container-icon-inner {
+			&::before {
+				content: '“';
+				font-size: 6em;
+				line-height: 1.5em;
+				height: 1em;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				z-index: 2;
+				margin-left: -0.25em;
+				margin-top: -0.5em;
+				@include breakpoint( $xs ) {
+					font-size: 15em;
+				}
+			}
+		}
+		&.has-image {
+			.container-icon-inner {	
+				color: #fff;
+				img {
+					display: block;
+				}
+			}
+		}
+	}
+	&.is-style-pop {
+		.container-icon-inner {
+			&::before {
+				content: '“';
+				font-size: 6em;
+				line-height: 1.5em;
+				height: 1em;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				z-index: 2;
+				margin-left: -0.25em;
+				margin-top: -0.5em;
+				@include breakpoint( $xs ) {
+					font-size: 50vw;
+					top: 0.09em;
+				}
+				@include breakpoint( $xl ) {
+					font-size: 815px;
+				}
+			}
+		}
+		&.has-image {
+			color: #fff;
+			> img {
+				display: block;
+			}
+		}
+		blockquote {
+			@extend %row-child-styles;
+		}
+	}
+	&.has-image-focus-left-top {
+		img {
+			object-position: 25% 25%;
+		}
+	}
+	&.has-image-focus-left-middle {
+		img {
+			object-position: 25% 50%;
+		}
+	}
+	&.has-image-focus-left-bottom {
+		img {
+			object-position: 25% 75%;
+		}
+	}
+	&.has-image-focus-center-top {
+		img {
+			object-position: 50% 25%;
+		}
+	}
+	&.has-image-focus-center-middle {
+		img {
+			object-position: 50% 50%;
+		}
+	}
+	&.has-image-focus-center-bottom {
+		img {
+			object-position: 50% 75%;
+		}
+	}
+	&.has-image-focus-right-top {
+		img {
+			object-position: 75% 25%;
+		}
+	}
+	&.has-image-focus-right-middle {
+		img {
+			object-position: 75% 50%;
+		}
+	}
+	&.has-image-focus-right-bottom {
+		img {
+			object-position: 75% 75%;
+		}
+	}
+}

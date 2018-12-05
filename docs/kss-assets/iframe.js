@@ -79,9 +79,15 @@
 			$iframeWindow
 				.contents()
 				.find( 'body' )
-				//.html( "<div class='iframe-wrapper' id='" + newID + "'><div class='wrapper'><main id='main' role='main' class='content'><div class='content-container'>" + markup + "</div></main></div></div>" );
 				.append( markup )
 				.find('.iframe-wrapper').attr("id", newID );
+
+
+
+
+			setTimeout(function(){
+				$iframe[0].contentWindow.setHeight();
+			}, 1000);
 
 			$(this).resizable({
 				handleSelector: ".id-kss-example-iframe-handle",
