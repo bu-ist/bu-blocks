@@ -1,5 +1,5 @@
 // =================================================================
-// Sample Styles - Configurable
+// Related Stories Styles - Configurable
 // =================================================================
 //
 //
@@ -18,7 +18,7 @@
 // in the stylesheet multiple times (for each publication)
 //
 
-$blocks-block-sample-config: ();
+$blocks-block-relatedstories-config: ();
 
 // use the above array if you need to override the global $blocks-defaults array
 // of styles ONLY for this block IN the plugin.
@@ -38,24 +38,24 @@ $blocks-block-sample-config: ();
 // Use the default Blocks configuration. You can override this globally
 // in a theme.
 
-$blocks-block-sample-config: map-merge( $blocks-block-sample-config, $blocks-config );
+$blocks-block-relatedstories-config: map-merge( $blocks-block-relatedstories-config, $blocks-config );
 
 // This allows themes to optionally set theme options for this
 // block only. You can set all or a few options - only the options
 // you set in $block-block-sample-theme will override the defaults.
 
-@if variable-exists( blocks-block-sample-theme ) {
-	$blocks-block-sample-config: map_merge( $blocks-block-sample-config, $blocks-block-sample-theme );
+@if variable-exists( blocks-block-relatedstories-theme ) {
+	$blocks-block-relatedstories-config: map_merge( $blocks-block-relatedstories-config, $blocks-block-relatedstories-theme );
 }
 
 // A global helper variable for the block-get mixin.
 
-$current-map: $blocks-block-sample-config;
+$current-map: $blocks-block-relatedstories-config;
 
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-sample {
+.#{$scope}-block-relatedstories {
 	border-radius: blocks-get( 'border-radius' );
 	font-family: blocks-get( 'font-primary');
 	p {
