@@ -1,0 +1,26 @@
+// =================================================================
+// Story Card Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/storycard/bu-blocks-block-storycard-base';
+@import 'src/blocks/storycard/bu-blocks-block-storycard-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Story Card Block
+//
+// This is a Story Card.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-storycard.hbs
+//
+// Styleguide Blocks.Editorial.Story Card
+
+
