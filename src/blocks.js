@@ -17,4 +17,5 @@ import './blocks/modal/modal.js';
 import './blocks/introparagraph/introparagraph.js';
 import './blocks/pullquote/pullquote.js';
 import './blocks/button/button.js';
+import './blocks/storycard/storycard.js';
 import './blocks/relatedstories/relatedstories.js';
