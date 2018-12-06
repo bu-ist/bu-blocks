@@ -9,9 +9,16 @@
 //
 
 .wp-block-relatedstories {
+	@extend %clearfix;
 
 	.storycards {
+		@extend %col-xs-margin-parent;
 		list-style-type: none;
 		padding: 0;
+	}
+
+	.storycard {
+		@extend %col-xs-margin-half;
+		@extend %col-md-margin-third;
 	}
 }
