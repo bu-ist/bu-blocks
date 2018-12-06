@@ -9,58 +9,34 @@
 //
 
 .wp-block-storycard {
-	display: flex;
-	flex-direction: column;
 	position: relative;
 
-	.story-image {
+	.storyimage {
 
 		img {
 			height: auto;
 			width: 100%;
-
-			@supports (object-fit: cover) {
-				object-fit: cover;
-				height: 175px;
-			}
-
-			@include breakpoint( $xs ) {
-
-				@supports (object-fit: cover) {
-					height: 250px;
-				}
-			}
-
-			@include breakpoint( $sm ) {
-
-				@supports (object-fit: cover) {
-					height: 350px;
-				}
-			}
 		}
 	}
 
-	.story-category {
-		left: 10px;
+	.storycategory {
 		position: absolute;
-		top: 12px;
+		top: 15px;
+		left: 12px;
 
 		span {
-			background: $color-grayscale-3;
+			background: $color-grayscale-0;
 			color: $color-grayscale-f;
-			font-family: $font-family-sans-serif;
-			font-size: 0.8em;
 			padding: 5px;
 			text-transform: uppercase;
 		}
 	}
 
-	.story-title {
+	.storytitle {
 		@extend %font-size-3;
 	}
 
-	.story-link {
-		color: $color-link;
+	.storylink {
 
 		&::after {
 			bottom: 0;
@@ -72,15 +48,54 @@
 		}
 	}
 
-	.story-date {
-		@extend %font-size-6;
-		text-transform: uppercase;
-		color: $color-heading-small;
+	.storydate {
+		font-size: 1em;
+		margin-bottom: 0.5em;
 	}
 
-	.story-share {
-		font-family: $font-family-sans-serif;
-		font-size: 0.7em;
+	.storyshare {
+		font-size: 0.8em;
+		margin-bottom: 0.5em;
 		text-transform: uppercase;
+	}
+
+	&.has-photo-background {
+
+		.storyimage {
+			background: $color-grayscale-0;
+			height: 100%;
+			position: absolute;
+			width: 100%;
+
+			img {
+				@include opacity( .5 );
+				@supports (object-fit: cover) {
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+		}
+
+		.storycontent {
+			padding: 75px 30px 30px;
+			position: relative;
+			width: 100%;
+			z-index: 1;
+		}
+
+		.storycategory {
+
+			span {
+				background: $color-grayscale-f;
+				color: $color-grayscale-0;
+			}
+		}
+
+		.storytitle,
+		.storydate,
+		.storyshare {
+			color: $color-grayscale-f;
+		}
+
 	}
 }

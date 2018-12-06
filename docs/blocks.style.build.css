@@ -16999,21 +16999,13 @@ a:visited {
   .col-lg-offset-12 {
     margin-left: 100%; } }
 
-.wp-block-storycard .story-title {
+.wp-block-storycard .storytitle {
   font-size: 1.24192em;
   line-height: 1.18977; }
   @media screen and (min-width: 500px) {
-    .wp-block-storycard .story-title {
+    .wp-block-storycard .storytitle {
       font-size: 1.49729em;
       line-height: 1.18977; } }
-
-.wp-block-storycard .story-date {
-  font-size: 1em;
-  line-height: 1.6; }
-  @media screen and (min-width: 500px) {
-    .wp-block-storycard .story-date {
-      font-size: 1em;
-      line-height: 1.6; } }
 
 .wrapper {
   overflow: hidden; }
@@ -17962,57 +17954,58 @@ a:visited {
   margin-bottom: 0; }
 
 .wp-block-storycard {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
   position: relative; }
-  .wp-block-storycard .story-image img {
+  .wp-block-storycard .storyimage img {
     height: auto;
     width: 100%; }
-    @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-      .wp-block-storycard .story-image img {
-        -o-object-fit: cover;
-           object-fit: cover;
-        height: 175px; } }
-    @media screen and (min-width: 500px) {
-      @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-        .wp-block-storycard .story-image img {
-          height: 250px; } } }
-    @media screen and (min-width: 768px) {
-      @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-        .wp-block-storycard .story-image img {
-          height: 350px; } } }
-  .wp-block-storycard .story-category {
-    left: 10px;
+  .wp-block-storycard .storycategory {
     position: absolute;
-    top: 12px; }
-    .wp-block-storycard .story-category span {
-      background: #333;
+    top: 15px;
+    left: 12px; }
+    .wp-block-storycard .storycategory span {
+      background: #000;
       color: #fff;
-      font-family: "Benton-Sans", "Helvetica", sans-serif;
-      font-size: 0.8em;
       padding: 5px;
       text-transform: uppercase; }
-  .wp-block-storycard .story-link {
-    color: #0f69d7; }
-    .wp-block-storycard .story-link::after {
-      bottom: 0;
-      content: '';
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0; }
-  .wp-block-storycard .story-date {
-    text-transform: uppercase;
-    color: #666; }
-  .wp-block-storycard .story-share {
-    font-family: "Benton-Sans", "Helvetica", sans-serif;
-    font-size: 0.7em;
+  .wp-block-storycard .storylink::after {
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .wp-block-storycard .storydate {
+    font-size: 1em;
+    margin-bottom: 0.5em; }
+  .wp-block-storycard .storyshare {
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
     text-transform: uppercase; }
-
-.wp-block-storycard {
-  border-radius: 0; }
+  .wp-block-storycard.has-photo-background .storyimage {
+    background: #000;
+    height: 100%;
+    position: absolute;
+    width: 100%; }
+    .wp-block-storycard.has-photo-background .storyimage img {
+      opacity: 0.5;
+      filter: alpha(opacity=50); }
+      @supports ((-o-object-fit: cover) or (object-fit: cover)) {
+        .wp-block-storycard.has-photo-background .storyimage img {
+          height: 100%;
+          -o-object-fit: cover;
+             object-fit: cover; } }
+  .wp-block-storycard.has-photo-background .storycontent {
+    padding: 75px 30px 30px;
+    position: relative;
+    width: 100%;
+    z-index: 1; }
+  .wp-block-storycard.has-photo-background .storycategory span {
+    background: #fff;
+    color: #000; }
+  .wp-block-storycard.has-photo-background .storytitle,
+  .wp-block-storycard.has-photo-background .storydate,
+  .wp-block-storycard.has-photo-background .storyshare {
+    color: #fff; }
 /**
  * #.# Common SCSS
  *
@@ -18257,7 +18250,7 @@ a:visited {
   margin-left: 100%; }
 
 @media screen and (min-width: 500px) {
-  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-relatedstories .storycard, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .col-xs-margin-12 {
+  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-relatedstories .storycard, .wp-block-relatedstories.has-two .storycard, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .col-xs-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -18342,7 +18335,7 @@ a:visited {
     width: 30.76923%; }
   .col-xs-margin-5 {
     width: 39.10256%; }
-  .wp-block-relatedstories .storycard, .col-xs-margin-6 {
+  .wp-block-relatedstories .storycard, .wp-block-relatedstories.has-two .storycard, .col-xs-margin-6 {
     width: 47.4359%; }
   .col-xs-margin-7 {
     width: 55.76923%; }
@@ -18436,7 +18429,7 @@ a:visited {
     margin-left: 100%; } }
 
 @media screen and (min-width: 768px) {
-  .col-sm-margin-0, .col-sm-margin-1, .col-sm-margin-2, .col-sm-margin-3, .col-sm-margin-4, .col-sm-margin-5, .col-sm-margin-6, .col-sm-margin-7, .col-sm-margin-8, .col-sm-margin-9, .col-sm-margin-10, .col-sm-margin-11, .col-sm-margin-12 {
+  .col-sm-margin-0, .col-sm-margin-1, .col-sm-margin-2, .col-sm-margin-3, .wp-block-relatedstories .storycard, .col-sm-margin-4, .col-sm-margin-5, .col-sm-margin-6, .col-sm-margin-7, .col-sm-margin-8, .col-sm-margin-9, .col-sm-margin-10, .col-sm-margin-11, .col-sm-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -18515,7 +18508,7 @@ a:visited {
     width: 14.10256%; }
   .col-sm-margin-3 {
     width: 22.4359%; }
-  .col-sm-margin-4 {
+  .wp-block-relatedstories .storycard, .col-sm-margin-4 {
     width: 30.76923%; }
   .col-sm-margin-5 {
     width: 39.10256%; }
@@ -18613,7 +18606,7 @@ a:visited {
     margin-left: 100%; } }
 
 @media screen and (min-width: 992px) {
-  .col-md-margin-0, .col-md-margin-1, .col-md-margin-2, .col-md-margin-3, .wp-block-relatedstories .storycard, .col-md-margin-4, .col-md-margin-5, .col-md-margin-6, .col-md-margin-7, .col-md-margin-8, .col-md-margin-9, .col-md-margin-10, .col-md-margin-11, .col-md-margin-12 {
+  .col-md-margin-0, .col-md-margin-1, .col-md-margin-2, .col-md-margin-3, .col-md-margin-4, .col-md-margin-5, .col-md-margin-6, .col-md-margin-7, .col-md-margin-8, .col-md-margin-9, .col-md-margin-10, .col-md-margin-11, .col-md-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -18692,7 +18685,7 @@ a:visited {
     width: 14.10256%; }
   .col-md-margin-3 {
     width: 22.4359%; }
-  .wp-block-relatedstories .storycard, .col-md-margin-4 {
+  .col-md-margin-4 {
     width: 30.76923%; }
   .col-md-margin-5 {
     width: 39.10256%; }
@@ -19199,7 +19192,7 @@ a:visited {
   margin-left: 100%; }
 
 @media screen and (min-width: 500px) {
-  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-relatedstories .storycard, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .col-xs-margin-12 {
+  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-relatedstories .storycard, .wp-block-relatedstories.has-two .storycard, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .col-xs-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -19284,7 +19277,7 @@ a:visited {
     width: 30.76923%; }
   .col-xs-margin-5 {
     width: 39.10256%; }
-  .wp-block-relatedstories .storycard, .col-xs-margin-6 {
+  .wp-block-relatedstories .storycard, .wp-block-relatedstories.has-two .storycard, .col-xs-margin-6 {
     width: 47.4359%; }
   .col-xs-margin-7 {
     width: 55.76923%; }
@@ -19378,7 +19371,7 @@ a:visited {
     margin-left: 100%; } }
 
 @media screen and (min-width: 768px) {
-  .col-sm-margin-0, .col-sm-margin-1, .col-sm-margin-2, .col-sm-margin-3, .col-sm-margin-4, .col-sm-margin-5, .col-sm-margin-6, .col-sm-margin-7, .col-sm-margin-8, .col-sm-margin-9, .col-sm-margin-10, .col-sm-margin-11, .col-sm-margin-12 {
+  .col-sm-margin-0, .col-sm-margin-1, .col-sm-margin-2, .col-sm-margin-3, .wp-block-relatedstories .storycard, .col-sm-margin-4, .col-sm-margin-5, .col-sm-margin-6, .col-sm-margin-7, .col-sm-margin-8, .col-sm-margin-9, .col-sm-margin-10, .col-sm-margin-11, .col-sm-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -19457,7 +19450,7 @@ a:visited {
     width: 14.10256%; }
   .col-sm-margin-3 {
     width: 22.4359%; }
-  .col-sm-margin-4 {
+  .wp-block-relatedstories .storycard, .col-sm-margin-4 {
     width: 30.76923%; }
   .col-sm-margin-5 {
     width: 39.10256%; }
@@ -19555,7 +19548,7 @@ a:visited {
     margin-left: 100%; } }
 
 @media screen and (min-width: 992px) {
-  .col-md-margin-0, .col-md-margin-1, .col-md-margin-2, .col-md-margin-3, .wp-block-relatedstories .storycard, .col-md-margin-4, .col-md-margin-5, .col-md-margin-6, .col-md-margin-7, .col-md-margin-8, .col-md-margin-9, .col-md-margin-10, .col-md-margin-11, .col-md-margin-12 {
+  .col-md-margin-0, .col-md-margin-1, .col-md-margin-2, .col-md-margin-3, .col-md-margin-4, .col-md-margin-5, .col-md-margin-6, .col-md-margin-7, .col-md-margin-8, .col-md-margin-9, .col-md-margin-10, .col-md-margin-11, .col-md-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -19634,7 +19627,7 @@ a:visited {
     width: 14.10256%; }
   .col-md-margin-3 {
     width: 22.4359%; }
-  .wp-block-relatedstories .storycard, .col-md-margin-4 {
+  .col-md-margin-4 {
     width: 30.76923%; }
   .col-md-margin-5 {
     width: 39.10256%; }
@@ -19914,9 +19907,17 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
-.wp-block-relatedstories .storycards {
-  list-style-type: none;
-  padding: 0; }
+.wp-block-relatedstories {
+  max-width: 960px;
+  margin: 0 auto; }
+  .wp-block-relatedstories .storycards {
+    list-style-type: none;
+    padding: 0; }
+  .wp-block-relatedstories .storycard {
+    margin-bottom: 30px;
+    padding: 0; }
+  .wp-block-relatedstories.has-two .storycard {
+    padding: 0; }
 
 .wp-block-relatedstories {
   border-radius: 0; }

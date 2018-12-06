@@ -56,21 +56,6 @@ $current-map: $blocks-block-storycard-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-storycard {
-	border-radius: blocks-get( 'border-radius' );
-	font-family: blocks-get( 'font-primary');
-	p {
-		color: blocks-get( 'color-primary' );
-	}
 
-	&.is-open {
-		color: blocks-get( 'color-secondary');
-	}
-
-	&.is-style-layoutBig {
-		font-family: blocks-get( 'font-secondary' );
-		p {
-			color: blocks-get( 'color-tertiary' );
-		}
-	}
 }
 

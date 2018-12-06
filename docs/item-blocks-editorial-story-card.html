@@ -265,7 +265,7 @@
 		
 						<div class="id-kss-modifier__wrapper">
 							<div class="id-kss-modifier-heading id-kss-docs-heading id-kss-style">
-								Example
+								Examples
 		
 									<span class="id-kss-source id-kss-style">
 										Source: <code>blocks/storycard/style.scss, line 16</code>
@@ -281,6 +281,9 @@
 		
 									<div class="id-kss-info-wrapper">
 										<div class="is-example-default">
+												<div class="id-kss-class-name id-kss-modifier-default-name id-kss-style">
+													Default styling
+												</div>
 									
 											<div class="id-kss-modifier-example ">
 												<div class="id-kss-example-wrapper">
@@ -295,13 +298,15 @@
 															</style>
 															<div class="iframe-wrapper " id="">
 																<article class="wp-block-storycard ">
-																<figure class="story-image">
-																	<img src="https://via.placeholder.com/300" srcset="https://via.placeholder.com/1024 1024w, https://via.placeholder.com/1600 1600w" alt="placeholder">
+																<figure class="storyimage">
+																	<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
 																</figure>
-																<div class="story-category"><span>Category</span></div>
-																<h4 class="story-title"><a href="#" class="story-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
-																<h5 class="story-date">January 15, 2018</h5>
-																<div class="story-share">Shared from <span class="story-share-logo">BU Today</span></div>
+																<div class="storycontent">
+																	<p class="storycategory"><span>Category</span></p>
+																	<h4 class="storytitle"><a href="#" class="storylink">Lorem ipsum dolor sit amet, consectetur</a></h4>
+																	<p class="storydate">January 15, 2018</p>
+																	<p class="storyshare">Shared from <span class="storysharesource">BU Today</span></p>
+																</div>
 															</article>
 															
 															</div>
@@ -315,6 +320,46 @@
 										</div>
 									</div>
 									<div class="id-kss-info-wrapper">
+									
+									
+											<div class="is-example-variant has-photo-background">
+												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+													.has-photo-background
+												</div>
+												<p class="id-kss-modifier-description id-kss-style">
+													Photo background variation
+												</p>
+												<div class="id-kss-modifier-example">
+													<div class="id-kss-example-wrapper">
+														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+														<script type="text/template" class="template-iframe">
+									
+																<style type="text/css">
+																	body {
+																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+																	}
+																</style>
+																<div class="iframe-wrapper " id="">
+																	<article class="wp-block-storycard has-photo-background">
+																	<figure class="storyimage">
+																		<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
+																	</figure>
+																	<div class="storycontent">
+																		<p class="storycategory"><span>Category</span></p>
+																		<h4 class="storytitle"><a href="#" class="storylink">Lorem ipsum dolor sit amet, consectetur</a></h4>
+																		<p class="storydate">January 15, 2018</p>
+																		<p class="storyshare">Shared from <span class="storysharesource">BU Today</span></p>
+																	</div>
+																</article>
+																
+																</div>
+														</script>
+									
+														<div class="id-kss-example-iframe-handle"></div>
+													</div>
+													<div class="id-kss-modifier-example-footer"></div>
+												</div>
+											</div>
 									</div>
 						</div>
 		
@@ -323,13 +368,15 @@
 										Markup <code>blocks/storycard/bu-blocks-block-storycard.hbs</code>
 								</summary>
 								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-image"</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://via.placeholder.com/300"</span> <span class="hljs-attr">srcset</span>=<span class="hljs-string">"https://via.placeholder.com/1024 1024w, https://via.placeholder.com/1600 1600w"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"placeholder"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storyimage"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://placekitten.com/300/300"</span> <span class="hljs-attr">srcset</span>=<span class="hljs-string">"http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"placeholder"</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-category"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-title"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-link"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">h5</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-date"</span>&gt;</span>January 15, 2018<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-share"</span>&gt;</span>Shared from <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"story-share-logo"</span>&gt;</span>BU Today<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storycontent"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storycategory"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storytitle"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storylink"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storydate"</span>&gt;</span>January 15, 2018<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storyshare"</span>&gt;</span>Shared from <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storysharesource"</span>&gt;</span>BU Today<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
 		</span></code></pre>
 							</details>

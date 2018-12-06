@@ -10,6 +10,8 @@
 
 .wp-block-relatedstories {
 	@extend %clearfix;
+	max-width: 960px;
+	margin: 0 auto;
 
 	.storycards {
 		@extend %col-xs-margin-parent;
@@ -19,6 +21,16 @@
 
 	.storycard {
 		@extend %col-xs-margin-half;
-		@extend %col-md-margin-third;
+		@extend %col-sm-margin-third;
+		margin-bottom: 30px;
+		padding: 0;
+	}
+
+	&.has-two {
+
+		.storycard {
+			@extend %col-xs-margin-half;
+			padding: 0;
+		}
 	}
 }
