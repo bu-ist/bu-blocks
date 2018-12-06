@@ -4,3 +4,8 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+
+div[data-type="bu/button"] .components-autocomplete {
+	display: inline-block;
+	position: relative;
+}

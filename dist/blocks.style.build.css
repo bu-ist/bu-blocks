@@ -14117,6 +14117,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   padding-right: 30px; }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
+<<<<<<< HEAD
   float: left;
   position: relative;
   min-height: 1px; }
@@ -18053,6 +18054,8 @@ a:visited {
   padding-right: 30px; }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
+=======
+>>>>>>> 5a412fc194fcd3feda709c57a88b3c6c0fd1c1fd
   float: left;
   position: relative;
   min-height: 1px; }
@@ -19914,5 +19917,78 @@ a:visited {
   list-style-type: none;
   padding: 0; }
 
+<<<<<<< HEAD
 .wp-block-relatedstories {
   border-radius: 0; }
+=======
+.wp-block-button {
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+  display: inline-block;
+  background: transparent;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.5em 0; }
+  .wp-block-button[class*="icon-"]::before {
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+    font-size: 0.7em;
+    color: #aaa; }
+  .wp-block-button.is-style-default, .wp-block-button.is-style-outline, .wp-block-button.is-style-squared {
+    padding: 0.5em 1em; }
+    .wp-block-button.is-style-default.align-icon-right::before, .wp-block-button.is-style-outline.align-icon-right::before, .wp-block-button.is-style-squared.align-icon-right::before {
+      float: right;
+      display: block;
+      padding-top: 7px;
+      margin-left: 0.5em;
+      margin-right: 0; }
+    .wp-block-button.is-style-default.align-icon-left::before, .wp-block-button.is-style-outline.align-icon-left::before, .wp-block-button.is-style-squared.align-icon-left::before {
+      padding-top: -2px; }
+  .wp-block-button.is-style-default {
+    background: #ddd; }
+    .wp-block-button.is-style-default:hover {
+      background: #ccc; }
+    .wp-block-button.is-style-default.has-dark-theme {
+      background: #333;
+      color: #fff !important; }
+      .wp-block-button.is-style-default.has-dark-theme:hover {
+        background: #222; }
+    .wp-block-button.is-style-default.has-light-theme {
+      background: #eee; }
+      .wp-block-button.is-style-default.has-light-theme:hover {
+        background: #ddd; }
+  .wp-block-button.is-style-outline {
+    border: 2px solid #ddd; }
+    .wp-block-button.is-style-outline:hover {
+      border-color: #ccc; }
+    .wp-block-button.is-style-outline.has-dark-theme {
+      border-color: #444; }
+      .wp-block-button.is-style-outline.has-dark-theme:hover {
+        border-color: #000; }
+    .wp-block-button.is-style-outline.has-light-theme {
+      border-color: #eee; }
+      .wp-block-button.is-style-outline.has-light-theme:hover {
+        border-color: #ddd; }
+  .wp-block-button.is-style-squared {
+    border-radius: 0; }
+  .wp-block-button.is-style-text {
+    text-decoration: underline; }
+    .wp-block-button.is-style-text:hover {
+      text-decoration: none; }
+
+.wp-block-button {
+  border-radius: 0; }
+  .has-dark-theme .wp-block-button.is-style-default {
+    background: #000; }
+  .has-light-theme .wp-block-button.is-style-default {
+    background: #fff; }
+  .wp-block-button.is-style-outline.has-dark-theme {
+    border-color: #000; }
+  .wp-block-button.is-style-outline.has-light-theme {
+    border-color: #fff; }
+>>>>>>> 5a412fc194fcd3feda709c57a88b3c6c0fd1c1fd
