@@ -312,13 +312,13 @@
 															</style>
 															<div class="iframe-wrapper " id="">
 																<article class="wp-block-storycard ">
-																<figure class="storyimage">
+																<figure class="wp-block-storycard-image">
 																	<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
 																</figure>
-																<div class="storycontent">
-																	<p class="storycategory"><span>Category</span></p>
-																	<h4 class="storytitle"><a href="#" class="storylink">Lorem ipsum dolor sit amet, consectetur</a></h4>
-																	<p class="storydate">January 15, 2018</p>
+																<div class="wp-block-storycard-content">
+																	<p class="wp-block-storycard-category"><span>Category</span></p>
+																	<h4 class="wp-block-storycard-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
+																	<p class="wp-block-storycard-date">January 15, 2018</p>
 																</div>
 															</article>
 															
@@ -354,13 +354,13 @@
 																</style>
 																<div class="iframe-wrapper " id="">
 																	<article class="wp-block-storycard has-photo-background">
-																	<figure class="storyimage">
+																	<figure class="wp-block-storycard-image">
 																		<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
 																	</figure>
-																	<div class="storycontent">
-																		<p class="storycategory"><span>Category</span></p>
-																		<h4 class="storytitle"><a href="#" class="storylink">Lorem ipsum dolor sit amet, consectetur</a></h4>
-																		<p class="storydate">January 15, 2018</p>
+																	<div class="wp-block-storycard-content">
+																		<p class="wp-block-storycard-category"><span>Category</span></p>
+																		<h4 class="wp-block-storycard-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
+																		<p class="wp-block-storycard-date">January 15, 2018</p>
 																	</div>
 																</article>
 																
@@ -380,13 +380,13 @@
 										Markup <code>blocks/storycard/bu-blocks-block-storycard.hbs</code>
 								</summary>
 								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storyimage"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard-image"</span>&gt;</span>
 				<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://placekitten.com/300/300"</span> <span class="hljs-attr">srcset</span>=<span class="hljs-string">"http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"placeholder"</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storycontent"</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storycategory"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storytitle"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storylink"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storydate"</span>&gt;</span>January 15, 2018<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard-content"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard-category"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard-title"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard-link"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storycard-date"</span>&gt;</span>January 15, 2018<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
 		</span></code></pre>

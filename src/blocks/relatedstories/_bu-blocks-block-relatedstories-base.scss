@@ -11,14 +11,12 @@
 .wp-block-relatedstories {
 	@extend %col-xs-margin-parent;
 
-	.relatedstories {
+	.wp-block-relatedstories-list {
 		@extend %col-xs-margin-half;
 		@extend %col-lg-margin-third;
 		list-style-type: none;
 		padding: 0;
-	}
 
-	.relatedstories {
 		@include breakpoint( $xs ) {
 			float: right;
 		}
@@ -26,7 +24,7 @@
 
 	&.has-align-left {
 
-		.relatedstories {
+		.wp-block-relatedstories-list {
 			@include breakpoint( $xs ) {
 				float: left;
 			}
@@ -36,14 +34,14 @@
 	&.is-style-card,
 	&.is-style-card.has-two {
 
-		.relatedstories {
+		.wp-block-relatedstories-list {
 			@extend %col-full;
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
 		}
 
-		.relatedstory {
+		.wp-block-relatedstories-list-item {
 			@extend %col-xs-margin-half;
 			padding: 0;
 		}
@@ -51,7 +49,7 @@
 
 	&.is-style-card.has-three {
 
-		.relatedstory {
+		.wp-block-relatedstories-list-item {
 			@extend %col-sm-margin-third;
 			padding: 0;
 		}

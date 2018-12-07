@@ -11,7 +11,7 @@
 .wp-block-storycard {
 	position: relative;
 
-	.storyimage {
+	.wp-block-storycard-image {
 
 		img {
 			height: auto;
@@ -19,7 +19,7 @@
 		}
 	}
 
-	.storycategory {
+	.wp-block-storycard-category {
 		position: absolute;
 		top: 15px;
 		left: 12px;
@@ -32,11 +32,11 @@
 		}
 	}
 
-	.storytitle {
+	.wp-block-storycard-title {
 		@extend %font-size-3;
 	}
 
-	.storylink {
+	.wp-block-storycard-link {
 
 		&::after {
 			bottom: 0;
@@ -48,20 +48,14 @@
 		}
 	}
 
-	.storydate {
+	.wp-block-storycard-date {
 		font-size: 1em;
 		margin-bottom: 0.5em;
 	}
 
-	.storyshare {
-		font-size: 0.8em;
-		margin-bottom: 0.5em;
-		text-transform: uppercase;
-	}
-
 	&.has-photo-background {
 
-		.storyimage {
+		.wp-block-storycard-image {
 			background: $color-grayscale-0;
 			height: 100%;
 			position: absolute;
@@ -76,14 +70,14 @@
 			}
 		}
 
-		.storycontent {
+		.wp-block-storycard-content {
 			padding: 75px 30px 30px;
 			position: relative;
 			width: 100%;
 			z-index: 1;
 		}
 
-		.storycategory {
+		.wp-block-storycard-category {
 
 			span {
 				background: $color-grayscale-f;
@@ -91,9 +85,8 @@
 			}
 		}
 
-		.storytitle,
-		.storydate,
-		.storyshare {
+		.wp-block-storycard-title,
+		.wp-block-storycard-date {
 			color: $color-grayscale-f;
 		}
 

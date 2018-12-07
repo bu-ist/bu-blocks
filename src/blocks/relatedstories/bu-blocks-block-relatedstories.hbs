@@ -7,15 +7,15 @@
 			{{#unless modifier_class }}
 
 				<aside class="wp-block-relatedstories {{modifier_class}}">
-					<ul class="relatedstories">
-							<h4 class="relatedstoriestitle">Related Stories</h4>
-							<li class="relatedstory">
+					<ul class="wp-block-relatedstories-list">
+							<h4 class="wp-block-relatedstories-title">Related Stories</h4>
+							<li class="wp-block-relatedstories-list-item">
 								{{> bu-blocks-block-storylist }}
 							</li>
-							<li class="relatedstory">
+							<li class="wp-block-relatedstories-list-item">
 								{{> bu-blocks-block-storylist }}
 							</li>
-							<li class="relatedstory">
+							<li class="wp-block-relatedstories-list-item">
 								{{> bu-blocks-block-storylist }}
 							</li>
 					</ul>
@@ -26,15 +26,15 @@
 			{{#ifContains modifier_class 'is-style-list' }}
 
 			<aside class="wp-block-relatedstories {{modifier_class}}">
-				<ul class="relatedstories">
-						<h4 class="relatedstoriestitle">Related Stories</h4>
-						<li class="relatedstory">
+				<ul class="wp-block-relatedstories-list">
+						<h4 class="wp-block-relatedstories-title">Related Stories</h4>
+						<li class="wp-block-relatedstories-list-item">
 							{{> bu-blocks-block-storylist }}
 						</li>
-						<li class="relatedstory">
+						<li class="wp-block-relatedstories-list-item">
 							{{> bu-blocks-block-storylist }}
 						</li>
-						<li class="relatedstory">
+						<li class="wp-block-relatedstories-list-item">
 							{{> bu-blocks-block-storylist }}
 						</li>
 				</ul>
@@ -47,29 +47,29 @@
 				{{#ifContains modifier_class 'has-two' }}
 
 					<aside class="wp-block-relatedstories {{modifier_class}}">
-						<ul class="relatedstories">
-								<li class="relatedstory">
+						<ul class="wp-block-relatedstories-list">
+								<li class="wp-block-relatedstories-list-item">
 									{{> bu-blocks-block-storycard }}
 								</li>
-								<li class="relatedstory">
+								<li class="wp-block-relatedstories-list-item">
 									{{> bu-blocks-block-storycard }}
 								</li>
 						</ul>
-					</aside
+					</aside>
 
 				{{/ifContains}}
 
 				{{#ifContains modifier_class 'has-three' }}
 
 					<aside class="wp-block-relatedstories {{modifier_class}}">
-						<ul class="relatedstories">
-								<li class="relatedstory">
+						<ul class="wp-block-relatedstories-list">
+								<li class="wp-block-relatedstories-list-item">
 									{{> bu-blocks-block-storycard }}
 								</li>
-								<li class="relatedstory">
+								<li class="wp-block-relatedstories-list-item">
 									{{> bu-blocks-block-storycard }}
 								</li>
-								<li class="relatedstory">
+								<li class="wp-block-relatedstories-list-item">
 									{{> bu-blocks-block-storycard }}
 								</li>
 						</ul>
