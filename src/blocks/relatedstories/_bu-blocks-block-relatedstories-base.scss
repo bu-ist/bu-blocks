@@ -9,27 +9,50 @@
 //
 
 .wp-block-relatedstories {
-	@extend %clearfix;
-	max-width: 960px;
-	margin: 0 auto;
+	@extend %col-xs-margin-parent;
 
-	.storycards {
-		@extend %col-xs-margin-parent;
+	.relatedstories {
+		@extend %col-xs-margin-half;
+		@extend %col-lg-margin-third;
 		list-style-type: none;
 		padding: 0;
 	}
 
-	.storycard {
-		@extend %col-xs-margin-half;
-		@extend %col-sm-margin-third;
-		margin-bottom: 30px;
-		padding: 0;
+	.relatedstories {
+		@include breakpoint( $xs ) {
+			float: right;
+		}
 	}
 
-	&.has-two {
+	&.has-align-left {
 
-		.storycard {
+		.relatedstories {
+			@include breakpoint( $xs ) {
+				float: left;
+			}
+		}
+	}
+
+	&.is-style-card,
+	&.is-style-card.has-two {
+
+		.relatedstories {
+			@extend %col-full;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.relatedstory {
 			@extend %col-xs-margin-half;
+			padding: 0;
+		}
+	}
+
+	&.is-style-card.has-three {
+
+		.relatedstory {
+			@extend %col-sm-margin-third;
 			padding: 0;
 		}
 	}
