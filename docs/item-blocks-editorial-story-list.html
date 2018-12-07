@@ -245,14 +245,14 @@
 
 
 		
-				<div id="kssref-blocks-global-base-block" class="id-kss-section id-kss-section--depth-3">
+				<div id="kssref-blocks-editorial-story-list" class="id-kss-section id-kss-section--depth-3">
 					<div class="id-kss-style id-kss-component-content">
 						<header class="id-kss-title-block">
 							<h2 class="id-kss-title id-kss-title--level-3 ">
 		
-								<span class="id-kss-title-section">Global</span>
+								<span class="id-kss-title-section">Editorial</span>
 		
-								<span class="id-kss-title-name">Base Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-base-block">Link</a></span>
+								<span class="id-kss-title-name">Story List Block<a class="id-kss-title__permalink" href="#kssref-blocks-editorial-story-list">Link</a></span>
 							</h2>
 								<span class="id-kss-status id-kss-status-in-progress">
 									In-Progress
@@ -263,20 +263,14 @@
 									</span>
 		
 							<!--<span class="id-kss-title__ref">
-								1.1.1
+								1.2.8
 								<span class="id-kss-title__permalink-hash">
-										#Blocks.Global.Base Block
+										#Blocks.Editorial.Story List
 								</span>
 							</span>-->
 						</header>
 							<div class="id-kss-description">
-								<p>The description for this base block. Cum sociis natoque penatibus et magnis dis
-		parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus
-		sit amet fermentum.</p>
-		<h2>A subheader</h2>
-		<p>Cras mattis consectetur purus sit amet
-		fermentum. Donec ullamcorper nulla non metus auctor fringilla. Vivamus
-		sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+								<p>This is a Story List.</p>
 		
 							</div>
 		
@@ -285,11 +279,11 @@
 		
 						<div class="id-kss-modifier__wrapper">
 							<div class="id-kss-modifier-heading id-kss-docs-heading id-kss-style">
-								Examples
+								Example
 		
 									<span class="id-kss-source id-kss-style">
-										Source: <code>blocks/block/_block-base.scss, line 1</code>
-											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/block/_block-base.scss#L1">
+										Source: <code>blocks/storylist/style.scss, line 16</code>
+											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/storylist/style.scss#L16">
 												View Source
 											</a>
 									</span>
@@ -301,9 +295,6 @@
 		
 									<div class="id-kss-info-wrapper">
 										<div class="is-example-default">
-												<div class="id-kss-class-name id-kss-modifier-default-name id-kss-style">
-													Default styling
-												</div>
 									
 											<div class="id-kss-modifier-example ">
 												<div class="id-kss-example-wrapper">
@@ -317,7 +308,12 @@
 																}
 															</style>
 															<div class="iframe-wrapper " id="">
-																<div class="wp-block-cgb-block-bu-blocks-cgb "><h2 class="font-size-maximum">base block</h2></div>
+																<article class="wp-block-storylist ">
+																<p class="storycategory"><span>Category</span></p>
+																<h4 class="storytitle"><a href="#" class="storylink">Lorem ipsum dolor sit amet, consectetur</a></h4>
+																<p class="storydate">January 15, 2018</p>
+															</article>
+															
 															</div>
 									
 													</script>
@@ -329,43 +325,19 @@
 										</div>
 									</div>
 									<div class="id-kss-info-wrapper">
-									
-									
-											<div class="is-example-variant block-base-class">
-												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.block-base-class
-												</div>
-												<p class="id-kss-modifier-description id-kss-style">
-													Box Green
-												</p>
-												<div class="id-kss-modifier-example">
-													<div class="id-kss-example-wrapper">
-														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
-														<script type="text/template" class="template-iframe">
-									
-																<style type="text/css">
-																	body {
-																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
-																	}
-																</style>
-																<div class="iframe-wrapper " id="">
-																	<div class="wp-block-cgb-block-bu-blocks-cgb block-base-class"><h2 class="font-size-maximum">base block</h2></div>
-																</div>
-														</script>
-									
-														<div class="id-kss-example-iframe-handle"></div>
-													</div>
-													<div class="id-kss-modifier-example-footer"></div>
-												</div>
-											</div>
 									</div>
 						</div>
 		
 							<details class="id-kss-markup id-kss-style" open="">
 								<summary class="id-kss-docs-heading">
-										Markup
+										Markup <code>blocks/storylist/bu-blocks-block-storylist.hbs</code>
 								</summary>
-								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-cgb-block-bu-blocks-cgb [modifier class]"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-size-maximum"</span>&gt;</span>base block<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
+								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-storylist </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storycategory"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storytitle"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storylink"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"storydate"</span>&gt;</span>January 15, 2018<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+		</span></code></pre>
 							</details>
 		
 				</div>
