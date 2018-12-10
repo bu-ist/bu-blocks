@@ -8,10 +8,10 @@
 //
 //
 
-.wp-block-relatedstories {
+.wp-block-editorial-relatedstories {
 	@extend %col-xs-margin-parent;
 
-	.wp-block-relatedstories-list {
+	.wp-block-editorial-relatedstories-list {
 		@extend %col-xs-margin-half;
 		@extend %col-lg-margin-third;
 		list-style-type: none;
@@ -24,9 +24,28 @@
 
 	&.has-align-left {
 
-		.wp-block-relatedstories-list {
+		.wp-block-editorial-relatedstories-list {
 			@include breakpoint( $xs ) {
 				float: left;
+			}
+		}
+	}
+
+	&.is-style-card {
+
+		.wp-block-component-editorial-storycard-image {
+
+			img {
+				@supports (object-fit: cover) {
+					height: 250px;
+					object-fit: cover;
+				}
+
+				@include breakpoint( $lg ) {
+					@supports (object-fit: cover) {
+						height: 300px;
+					}
+				}
 			}
 		}
 	}
@@ -34,14 +53,14 @@
 	&.is-style-card,
 	&.is-style-card.has-two {
 
-		.wp-block-relatedstories-list {
+		.wp-block-editorial-relatedstories-list {
 			@extend %col-full;
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
 		}
 
-		.wp-block-relatedstories-list-item {
+		.wp-block-editorial-relatedstories-list-item {
 			@extend %col-xs-margin-half;
 			padding: 0;
 		}
@@ -49,9 +68,32 @@
 
 	&.is-style-card.has-three {
 
-		.wp-block-relatedstories-list-item {
+		.wp-block-editorial-relatedstories-list-item {
 			@extend %col-sm-margin-third;
 			padding: 0;
+		}
+
+		.wp-block-component-editorial-storycard-image {
+
+			img {
+				@include breakpoint( $sm ) {
+					@supports (object-fit: cover) {
+						height: 165px;
+					}
+				}
+
+				@include breakpoint( $md ) {
+					@supports (object-fit: cover) {
+						height: 200px;
+					}
+				}
+
+				@include breakpoint( $lg ) {
+					@supports (object-fit: cover) {
+						height: 250px;
+					}
+				}
+			}
 		}
 	}
 }
