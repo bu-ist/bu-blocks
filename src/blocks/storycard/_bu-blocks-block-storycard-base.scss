@@ -8,10 +8,10 @@
 //
 //
 
-.wp-block-storycard {
+.wp-block-component-editorial-storycard {
 	position: relative;
 
-	.wp-block-storycard-image {
+	.wp-block-component-editorial-storycard-image {
 
 		img {
 			height: auto;
@@ -19,7 +19,7 @@
 		}
 	}
 
-	.wp-block-storycard-category {
+	.wp-block-component-editorial-storycard-category {
 		position: absolute;
 		top: 15px;
 		left: 12px;
@@ -32,11 +32,11 @@
 		}
 	}
 
-	.wp-block-storycard-title {
+	.wp-block-component-editorial-storycard-title {
 		@extend %font-size-3;
 	}
 
-	.wp-block-storycard-link {
+	.wp-block-component-editorial-storycard-link {
 
 		&::after {
 			bottom: 0;
@@ -48,14 +48,14 @@
 		}
 	}
 
-	.wp-block-storycard-date {
+	.wp-block-component-editorial-storycard-date {
 		font-size: 1em;
 		margin-bottom: 0.5em;
 	}
 
 	&.has-photo-background {
 
-		.wp-block-storycard-image {
+		.wp-block-component-editorial-storycard-image {
 			background: $color-grayscale-0;
 			height: 100%;
 			position: absolute;
@@ -70,25 +70,16 @@
 			}
 		}
 
-		.wp-block-storycard-content {
+		.wp-block-component-editorial-storycard-content {
 			padding: 75px 30px 30px;
 			position: relative;
 			width: 100%;
 			z-index: 1;
 		}
 
-		.wp-block-storycard-category {
-
-			span {
-				background: $color-grayscale-f;
-				color: $color-grayscale-0;
-			}
-		}
-
-		.wp-block-storycard-title,
-		.wp-block-storycard-date {
+		.wp-block-component-editorial-storycard-title,
+		.wp-block-component-editorial-storycard-date {
 			color: $color-grayscale-f;
 		}
-
 	}
 }
