@@ -33,9 +33,16 @@
 
 	&.is-style-card {
 
-		.wp-block-component-editorial-storycard-image {
+		.wp-block-editorial-relatedstories-article {
+			position: relative;
+		}
+
+		.wp-block-editorial-relatedstories-article-image {
 
 			img {
+				height: auto;
+				width: 100%;
+
 				@supports (object-fit: cover) {
 					height: 250px;
 					object-fit: cover;
@@ -46,6 +53,19 @@
 						height: 300px;
 					}
 				}
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-category {
+			left: 10px;
+			position: absolute;
+			top: 12px;
+
+			span {
+				background: $color-grayscale-3;
+				color: $color-grayscale-f;
+				padding: 5px;
+				text-transform: uppercase;
 			}
 		}
 	}
@@ -73,7 +93,7 @@
 			padding: 0;
 		}
 
-		.wp-block-component-editorial-storycard-image {
+		.wp-block-editorial-relatedstories-article-image {
 
 			img {
 				@include breakpoint( $sm ) {

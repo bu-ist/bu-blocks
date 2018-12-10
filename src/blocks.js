@@ -18,6 +18,4 @@ import './blocks/introparagraph/introparagraph.js';
 import './blocks/leadin/leadin.js';
 import './blocks/pullquote/pullquote.js';
 import './blocks/button/button.js';
-import './blocks/storycard/storycard.js';
-import './blocks/storylist/storylist.js';
 import './blocks/relatedstories/relatedstories.js';

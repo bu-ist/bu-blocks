@@ -8,15 +8,30 @@
 
 				<aside class="wp-block-editorial-relatedstories {{modifier_class}}">
 					<ul class="wp-block-editorial-relatedstories-list">
-							<h4 class="wp-block-editorial-relatedstories-title">Related Stories</h4>
+							<h3 class="wp-block-editorial-relatedstories-title">Related Stories</h3>
 							<li class="wp-block-editorial-relatedstories-list-item">
-								{{> bu-blocks-block-storylist }}
+								<article class="wp-block-editorial-relatedstories-article">
+									<h4 class="wp-block-editorial-relatedstories-article-title">
+										<a href="#" class="wp-block-editorial-relatedstories-article-title-link">Lorem ipsum dolor sit amet, consectetur</a>
+									</h4>
+									<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+								</article>
 							</li>
 							<li class="wp-block-editorial-relatedstories-list-item">
-								{{> bu-blocks-block-storylist }}
+								<article class="wp-block-editorial-relatedstories-article">
+									<h4 class="wp-block-editorial-relatedstories-article-title">
+										<a href="#" class="wp-block-editorial-relatedstories-article-title-link">Lorem ipsum dolor sit amet, consectetur</a>
+									</h4>
+									<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+								</article>
 							</li>
 							<li class="wp-block-editorial-relatedstories-list-item">
-								{{> bu-blocks-block-storylist }}
+								<article class="wp-block-editorial-relatedstories-article">
+									<h4 class="wp-block-editorial-relatedstories-article-title">
+										<a href="#" class="wp-block-editorial-relatedstories-article-title-link">Lorem ipsum dolor sit amet, consectetur</a>
+									</h4>
+									<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+								</article>
 							</li>
 					</ul>
 				</aside>
@@ -25,20 +40,35 @@
 
 			{{#ifContains modifier_class 'is-style-list' }}
 
-			<aside class="wp-block-editorial-relatedstories {{modifier_class}}">
-				<ul class="wp-block-editorial-relatedstories-list">
-						<h4 class="wp-block-editorial-relatedstories-title">Related Stories</h4>
-						<li class="wp-block-editorial-relatedstories-list-item">
-							{{> bu-blocks-block-storylist }}
-						</li>
-						<li class="wp-block-editorial-relatedstories-list-item">
-							{{> bu-blocks-block-storylist }}
-						</li>
-						<li class="wp-block-editorial-relatedstories-list-item">
-							{{> bu-blocks-block-storylist }}
-						</li>
-				</ul>
-			</aside>
+				<aside class="wp-block-editorial-relatedstories {{modifier_class}}">
+					<ul class="wp-block-editorial-relatedstories-list">
+							<h3 class="wp-block-editorial-relatedstories-title">Related Stories</h3>
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<h4 class="wp-block-editorial-relatedstories-article-title">
+										<a href="#" class="wp-block-editorial-relatedstories-article-title-link">Lorem ipsum dolor sit amet, consectetur</a>
+									</h4>
+									<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+								</article>
+							</li>
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<h4 class="wp-block-editorial-relatedstories-article-title">
+										<a href="#" class="wp-block-editorial-relatedstories-article-title-link">Lorem ipsum dolor sit amet, consectetur</a>
+									</h4>
+									<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+								</article>
+							</li>
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<h4 class="wp-block-editorial-relatedstories-article-title">
+										<a href="#" class="wp-block-editorial-relatedstories-article-title-link">Lorem ipsum dolor sit amet, consectetur</a>
+									</h4>
+									<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+								</article>
+							</li>
+					</ul>
+				</aside>
 
 			{{/ifContains}}
 
@@ -46,34 +76,79 @@
 
 				{{#ifContains modifier_class 'has-two' }}
 
-					<aside class="wp-block-editorial-relatedstories {{modifier_class}}">
-						<ul class="wp-block-editorial-relatedstories-list">
-								<li class="wp-block-editorial-relatedstories-list-item">
-									{{> bu-blocks-block-storycard }}
-								</li>
-								<li class="wp-block-editorial-relatedstories-list-item">
-									{{> bu-blocks-block-storycard }}
-								</li>
-						</ul>
-					</aside>
+				<aside class="wp-block-editorial-relatedstories {{modifier_class}}">
+					<ul class="wp-block-editorial-relatedstories-list">
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<figure class="wp-block-editorial-relatedstories-article-image">
+										<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
+									</figure>
+									<div class="wp-block-editorial-relatedstories-article-content">
+										<p class="wp-block-editorial-relatedstories-article-category"><span>Category</span></p>
+										<h4 class="wp-block-editorial-relatedstories-article-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
+										<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+									</div>
+								</article>
+							</li>
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<figure class="wp-block-editorial-relatedstories-article-image">
+										<img src="http://placekitten.com/600/200" srcset="http://placekitten.com/1200/400 1200w, http://placekitten.com/2400/800 2400w" alt="placeholder">
+									</figure>
+									<div class="wp-block-editorial-relatedstories-article-content">
+										<p class="wp-block-editorial-relatedstories-article-category"><span>Category</span></p>
+										<h4 class="wp-block-editorial-relatedstories-article-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur what happens when this one is longer</a></h4>
+										<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+									</div>
+								</article>
+							</li>
+					</ul>
+				</aside>
 
 				{{/ifContains}}
 
 				{{#ifContains modifier_class 'has-three' }}
 
 					<aside class="wp-block-editorial-relatedstories {{modifier_class}}">
-						<ul class="wp-block-editorial-relatedstories-list">
-								<li class="wp-block-editorial-relatedstories-list-item">
-									{{> bu-blocks-block-storycard }}
-								</li>
-								<li class="wp-block-editorial-relatedstories-list-item">
-									{{> bu-blocks-block-storycard }}
-								</li>
-								<li class="wp-block-editorial-relatedstories-list-item">
-									{{> bu-blocks-block-storycard }}
-								</li>
-						</ul>
-					</aside>
+					<ul class="wp-block-editorial-relatedstories-list">
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<figure class="wp-block-editorial-relatedstories-article-image">
+										<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
+									</figure>
+									<div class="wp-block-editorial-relatedstories-article-content">
+										<p class="wp-block-editorial-relatedstories-article-category"><span>Category</span></p>
+										<h4 class="wp-block-editorial-relatedstories-article-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
+										<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+									</div>
+								</article>
+							</li>
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<figure class="wp-block-editorial-relatedstories-article-image">
+										<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
+									</figure>
+									<div class="wp-block-editorial-relatedstories-article-content">
+										<p class="wp-block-editorial-relatedstories-article-category"><span>Category</span></p>
+										<h4 class="wp-block-editorial-relatedstories-article-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
+										<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+									</div>
+								</article>
+							</li>
+							<li class="wp-block-editorial-relatedstories-list-item">
+								<article class="wp-block-editorial-relatedstories-article">
+									<figure class="wp-block-editorial-relatedstories-article-image">
+										<img src="http://placekitten.com/300/300" srcset="http://placekitten.com/1024/1024 1024w, http://placekitten.com/1600/1600 1600w" alt="placeholder">
+									</figure>
+									<div class="wp-block-editorial-relatedstories-article-content">
+										<p class="wp-block-editorial-relatedstories-article-category"><span>Category</span></p>
+										<h4 class="wp-block-editorial-relatedstories-article-title"><a href="#" class="wp-block-storycard-link">Lorem ipsum dolor sit amet, consectetur</a></h4>
+										<p class="wp-block-editorial-relatedstories-article-date">January 15, 2018</p>
+									</div>
+								</article>
+							</li>
+					</ul>
+				</aside>
 
 				{{/ifContains}}
 
