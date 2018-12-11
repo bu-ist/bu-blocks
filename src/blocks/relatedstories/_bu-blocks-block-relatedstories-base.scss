@@ -9,29 +9,14 @@
 //
 
 .wp-block-editorial-relatedstories {
-	@extend %col-xs-margin-parent;
 
 	.wp-block-editorial-relatedstories-list {
-		@extend %col-xs-margin-half;
-		@extend %col-lg-margin-third;
 		list-style-type: none;
 		padding: 0;
-
-		@include breakpoint( $xs ) {
-			float: right;
-		}
-	}
-
-	&.has-align-left {
-
-		.wp-block-editorial-relatedstories-list {
-			@include breakpoint( $xs ) {
-				float: left;
-			}
-		}
 	}
 
 	&.is-style-card {
+		@extend %col-xs-margin-parent;
 
 		.wp-block-editorial-relatedstories-article {
 			position: relative;
@@ -53,19 +38,6 @@
 						height: 300px;
 					}
 				}
-			}
-		}
-
-		.wp-block-editorial-relatedstories-article-category {
-			left: 10px;
-			position: absolute;
-			top: 12px;
-
-			span {
-				background: $color-grayscale-3;
-				color: $color-grayscale-f;
-				padding: 5px;
-				text-transform: uppercase;
 			}
 		}
 	}
@@ -115,5 +87,18 @@
 				}
 			}
 		}
+	}
+}
+
+.wp-block-editorial-relatedstories-article-category {
+	left: 10px;
+	position: absolute;
+	top: 12px;
+
+	span {
+		//background: $color-grayscale-3;
+		color: $color-grayscale-f;
+		padding: 5px 10px;
+		text-transform: uppercase;
 	}
 }

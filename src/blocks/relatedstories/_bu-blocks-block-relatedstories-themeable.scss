@@ -57,29 +57,10 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-editorial-relatedstories {
 
-	.wp-block-editorial-relatedstories-title {
-		color: blocks-get( 'color-gray-a');
-		font-family: blocks-get( 'font-family-secondary' );
-	}
-
-	.wp-block-editorial-relatedstories-article-title {
-		font-family: blocks-get( 'font-family-primary' );
-	}
-
-	.wp-block-editorial-relatedstories-article-title-link {
-		color: block-get( 'color-gray-a' );
-	}
-
-	.wp-block-editorial-relatedstories-article-date {
-		font-family: blocks-get( 'font-family-tertiary' );
-		color: block-get( 'color-gray-b' );
-	}
-
 	.wp-block-editorial-relatedstories-article-category {
 
 		span {
 			background: blocks-get( 'color-primary' );
-			font-family: blocks-get( 'font-family-tertiary' );
 		}
 	}
 }
