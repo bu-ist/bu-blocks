@@ -51,6 +51,10 @@ registerBlockType( 'editorial/introparagraph', {
 			source: 'html',
 			selector: '.wp-block-editorial-introparagraph-content',
 		},
+		hasDropCap: {
+			type: 'string',
+			default: '',
+		},
 		dropCapStyle: {
 			type: 'string',
 			default: '',
@@ -95,26 +99,34 @@ registerBlockType( 'editorial/introparagraph', {
 
 	edit( props ) {
 		const { attributes, setAttributes, className } = props;
-		const { heading, list, content, dropCapStyle, paragraphColor } = attributes;
+		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor } = attributes;
 
-		let editClassName = className;
-		const hasDropCap = className.includes( 'is-style-dropcap' );
+		// This is either 'has-dropcap' or ''.
+		let hasDropCapClass = hasDropCap;
 
-		if ( hasDropCap && ! className.includes( 'has-dropcap' ) ) {
-			editClassName += ' has-dropcap';
-		} else if ( ! hasDropCap && className.includes( 'has-dropcap' ) ) {
-			editClassName.replace( 'has-dropcap', '' );
+		// Determine if a sepecific dropcap style has been selected.
+		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
+
+		// Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
+		if ( hasDropCapStyle && '' === hasDropCap ) {
+			setAttributes( { hasDropCap: 'has-dropcap' } );
+			setAttributes( { paragraphColor: '' } );
+			hasDropCapClass = 'has-dropcap';
+		} else if ( ! hasDropCapStyle && '' !== hasDropCap ) {
+			setAttributes( { hasDropCap: '' } );
+			setAttributes( { dropCapStyle: '' } );
+			hasDropCapClass = '';
 		}
 
 		return (
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Intro Paragraph Settings' ) }>
-						{ ! hasDropCap && (
+						{ ! hasDropCapStyle && (
 							<SelectControl
 								label={ __( 'Paragraph text color' ) }
 								value={ paragraphColor || '' }
-								onChange={ value => setAttributes( { paragraphColor: value } ) }
+								onChange={ value => setAttributes( { paragraphColor: value, dropCapStyle: '', hasDropCap: '' } ) }
 								options={ [
 									{ value: '', label: __( 'None' ) },
 									{ value: 'has-paragraph-color-primary', label: __( 'Primary' ) },
@@ -122,11 +134,11 @@ registerBlockType( 'editorial/introparagraph', {
 								] }
 							/>
 						) }
-						{ hasDropCap && (
+						{ hasDropCapStyle && (
 							<SelectControl
 								label={ __( 'Drop cap color' ) }
 								value={ dropCapStyle || '' }
-								onChange={ value => setAttributes( { dropCapStyle: value } ) }
+								onChange={ value => setAttributes( { dropCapStyle: value, paragraphColor: '', hasDropCap: 'has-dropcap' } ) }
 								options={ [
 									{ value: '', label: __( 'None' ) },
 									{ value: 'has-dropcap-color-primary', label: __( 'Primary' ) },
@@ -136,7 +148,7 @@ registerBlockType( 'editorial/introparagraph', {
 						) }
 					</PanelBody>
 				</InspectorControls>
-				<div className={ [ editClassName, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+				<div className={ [ className, hasDropCapClass, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
 					<PlainText
 						tagName='h4'
 						value={ heading }
@@ -168,10 +180,10 @@ registerBlockType( 'editorial/introparagraph', {
 	},
 
 	save( { attributes } ) {
-		const { heading, content, list, className, dropCapStyle, paragraphColor } = attributes;
+		const { heading, content, list, hasDropCap, dropCapStyle, paragraphColor } = attributes;
 
 		return (
-			<div className={ [ className, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
 				<h4>{ heading }</h4>
 				<RichText.Content
 					tagName="ul"
