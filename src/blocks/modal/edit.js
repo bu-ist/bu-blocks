@@ -100,7 +100,7 @@ class BUEditorialModalEdit extends Component {
 								/>
 								<p>
 									<RichText
-										tagName="a"
+										tagName="span"
 										className="js-bu-block-modal-trigger-overlay button"
 										onChange={ value => setAttributes( { trigger: value } ) }
 										value={ trigger }
