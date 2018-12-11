@@ -55,12 +55,37 @@ $current-map: $blocks-block-relatedstories-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-editorial-relatedstories {
+.#{$scope}-block-relatedstories {
 
-	.wp-block-editorial-relatedstories-article-category {
+	.wp-block-editorial-relatedstories-title {
 
-		span {
-			background: blocks-get( 'color-primary' );
+		&::after {
+			border-color: blocks-get( 'color-primary' );
+		}
+	}
+
+	.wp-block-editorial-relatedstories-article-title-link {
+		color: blocks-get( 'color-gray-a' );
+
+		&:hover,
+		&:focus {
+			color: blocks-get( 'color-primary-text' );
+			text-decoration: none;
+		}
+	}
+
+	.wp-block-editorial-relatedstories-article-date {
+		color: blocks-get( 'color-gray-b');
+	}
+
+	&.is-style-card {
+
+		.wp-block-editorial-relatedstories-article-category {
+
+			span {
+				background: blocks-get( 'color-primary' );
+				font-family: blocks-get( 'font-family-tertiary' );
+			}
 		}
 	}
 }
