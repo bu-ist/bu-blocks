@@ -13607,6 +13607,7 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+@charset "UTF-8";
 /**
  * #.# Common SCSS
  *
@@ -14557,6 +14558,43 @@
     margin-left: 91.66667%; }
   .col-lg-offset-12 {
     margin-left: 100%; } }
+
+.icon-navigateright::before, .icon-navigateleft::before {
+  color: unset;
+  display: inline-block;
+  font-family: "bu-default-icons";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 0.2em;
+  speak: none;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 0.5em; }
+
+.lt-ie9:hover .icon-navigateright {
+  -ms-zoom: 1; }
+
+.icon-navigateright span {
+  display: none; }
+
+.icon-navigateright::before {
+  content: "▻"; }
+
+.lt-ie9:hover .icon-navigateleft {
+  -ms-zoom: 1; }
+
+.icon-navigateleft span {
+  display: none; }
+
+.icon-navigateleft::before {
+  content: "◅"; }
 
 .wrapper {
   overflow: hidden; }
