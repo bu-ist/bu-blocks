@@ -58,6 +58,8 @@ registerBlockType( 'editorial/modal', {
 		...BackgroundAttributes,
 	},
 	publicationClassName: publicationClass + '-block-modal',
+	backgroundClass: 'banner-placeholder',
+	backgroundOptionsTitle: 'Callout Background',
 
 	// Add the `selected-modal` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {
@@ -87,10 +89,7 @@ registerBlockType( 'editorial/modal', {
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
-							<Background
-								blockProps={ props }
-								className="banner-placeholder"
-							/>
+							{ Background( props, 'banner-placeholder' ) }
 						</figure>
 					</div>
 					<div className="wp-block-editorial-modal-callout-content">

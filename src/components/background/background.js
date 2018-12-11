@@ -7,11 +7,14 @@
  * 	`import Background, { BackgroundAttributes } from '../../components/background/background.js';`
  *
  * There are four props that can be passed to the component:
- * 	allowedMediaTypes - defaults to `[ 'image', 'video' ]`.
  * 	blockProps - properties from the block using the component.
  * 	className - the className to apply to the background element, defaults to `bu-blocks-background`.
  *	controlPanelTitle - the background options Inspector panel name, defaults to `Background Settings`.
+ * 	allowedMediaTypes - defaults to `[ 'image', 'video' ]`.
  */
+
+ // External dependencies.
+import classnames from 'classnames';
 
 // Import CSS.
 import './editor.scss';
@@ -30,15 +33,25 @@ const { Fragment } = wp.element;
 const { BaseControl, IconButton, PanelBody, RangeControl, Toolbar } = wp.components;
 const { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload } = wp.editor;
 
-function Background( {
-	allowedMediaTypes = [ 'image', 'video' ],
+const Background = (
 	blockProps,
 	className = 'bu-blocks-background',
-	controlPanelTitle = 'Background Settings'
-} ) {
+	controlPanelTitle = 'Background Settings',
+	allowedMediaTypes = [ 'image', 'video' ],
+) => {
 
-	const { attributes, setAttributes } = blockProps;
-	const { backgroundId, backgroundType, backgroundUrl, backgroundOpacity, backgroundAlt } = attributes;
+	const {
+		attributes,
+		setAttributes,
+	} = blockProps;
+
+	const {
+		backgroundId,
+		backgroundType,
+		backgroundUrl,
+		backgroundOpacity,
+		backgroundAlt,
+	} = attributes;
 
 	const onSelectMedia = ( media ) => {
 		if ( ! media || ! media.url ) {
@@ -180,11 +193,19 @@ function Background( {
 		</Fragment>
 	)
 
-	const classes = [
+	const backgroundOpacityToClass = ( ratio ) => {
+		return ( ratio === 100 ) ?
+			null :
+			'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
+	}
+
+	const classes = classnames(
 		className,
-		backgroundOpacityToClass( backgroundOpacity ),
-		...( backgroundOpacity !== 100 ? [ 'has-background-opacity' ] : [] ),
-	].join( ' ' ).trim();
+		{
+			[ 'has-background-opacity' ]: backgroundOpacity !== 100,
+			[ backgroundOpacityToClass( backgroundOpacity ) ]: backgroundOpacityToClass( backgroundOpacity ),
+		}
+	);
 
 	const backgroundImage = (
 		<img
@@ -211,12 +232,6 @@ function Background( {
 			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
 		</Fragment>
 	);
-}
-
-function backgroundOpacityToClass( ratio ) {
-	return ( ratio === 100 ) ?
-		null :
-		'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
 }
 
 export default Background;

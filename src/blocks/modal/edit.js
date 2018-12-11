@@ -56,7 +56,7 @@ class BUEditorialModalEdit extends Component {
 			<Fragment>
 				<InspectorControls>
 					<PanelColorSettings
-						title={ __( 'Color Settings' ) }
+						title={ __( 'Theme Settings' ) }
 						colorSettings={ [
 							{
 								value: themeColor.color,
@@ -69,17 +69,10 @@ class BUEditorialModalEdit extends Component {
 					/>
 				</InspectorControls>
 				<aside className={ classes }>
-
 					<div className="wp-block-editorial-modal-callout">
 						<div className="wp-block-editorial-modal-media">
 							<figure className="wp-block-editorial-modal-image">
-
-								<Background
-									blockProps={ this.props }
-									className='banner-placeholder'
-									controlPanelTitle={ __( 'Callout Background' ) }
-								/>
-
+								{ Background( this.props, 'banner-placeholder', 'Callout Background' ) }
 							</figure>
 						</div>
 						<div className="wp-block-editorial-modal-callout-content">
@@ -111,7 +104,6 @@ class BUEditorialModalEdit extends Component {
 							</div>
 						</div>
 					</div>
-
 					<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
 						<div className="overlay overlay-scale">
 							<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
@@ -120,7 +112,6 @@ class BUEditorialModalEdit extends Component {
 							</article>
 						</div>
 					</div>
-
 				</aside>
 			</Fragment>
 		);
