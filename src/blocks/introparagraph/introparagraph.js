@@ -97,34 +97,46 @@ registerBlockType( 'editorial/introparagraph', {
 		const { attributes, setAttributes, className } = props;
 		const { heading, list, content, dropCapStyle, paragraphColor } = attributes;
 
+		let editClassName = className;
+		const hasDropCap = className.includes( 'is-style-dropcap' );
+
+		if ( hasDropCap && ! className.includes( 'has-dropcap' ) ) {
+			editClassName += ' has-dropcap';
+		} else if ( ! hasDropCap && className.includes( 'has-dropcap' ) ) {
+			editClassName.replace( 'has-dropcap', '' );
+		}
+
 		return (
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Intro Paragraph Settings' ) }>
-						<SelectControl
-							label={ __( 'Paragraph text color' ) }
-							value={ paragraphColor || '' }
-							onChange={ value => setAttributes( { paragraphColor: value } ) }
-							options={ [
-								{ value: '', label: __( 'None' ) },
-								{ value: 'has-paragraph-color-primary', label: __( 'Primary color' ) },
-								{ value: 'has-paragraph-color-secondary', label: __( 'Secondary color' ) }
-							] }
-						/>
-						<SelectControl
-							label={ __( 'Drop cap Style' ) }
-							value={ dropCapStyle || '' }
-							onChange={ value => setAttributes( { dropCapStyle: value } ) }
-							options={ [
-								{ value: '', label: __( 'None' ) },
-								{ value: 'has-dropcap', label: __( 'Standard dropcap' ) },
-								{ value: 'has-dropcap has-dropcap-color-primary', label: __( 'Primary color' ) },
-								{ value: 'has-dropcap has-dropcap-color-secondary', label: __( 'Secondary color' ) },
-							] }
-						/>
+						{ ! hasDropCap && (
+							<SelectControl
+								label={ __( 'Paragraph text color' ) }
+								value={ paragraphColor || '' }
+								onChange={ value => setAttributes( { paragraphColor: value } ) }
+								options={ [
+									{ value: '', label: __( 'None' ) },
+									{ value: 'has-paragraph-color-primary', label: __( 'Primary' ) },
+									{ value: 'has-paragraph-color-secondary', label: __( 'Secondary' ) }
+								] }
+							/>
+						) }
+						{ hasDropCap && (
+							<SelectControl
+								label={ __( 'Drop cap color' ) }
+								value={ dropCapStyle || '' }
+								onChange={ value => setAttributes( { dropCapStyle: value } ) }
+								options={ [
+									{ value: '', label: __( 'None' ) },
+									{ value: 'has-dropcap-color-primary', label: __( 'Primary' ) },
+									{ value: 'has-dropcap-color-secondary', label: __( 'Secondary' ) },
+								] }
+							/>
+						) }
 					</PanelBody>
 				</InspectorControls>
-				<div className={ [ className, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+				<div className={ [ editClassName, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
 					<PlainText
 						tagName='h4'
 						value={ heading }
