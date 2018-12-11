@@ -91,16 +91,16 @@ class BUEditorialModalEdit extends Component {
 									placeholder={ __( 'Enter text…' ) }
 									formattingControls={ [ 'bold', 'italic', 'link' ] }
 								/>
-								<p>
+								<div className="wp-block-editorial-modal-trigger-wrapper">
 									<RichText
-										tagName="span"
+										tagName="p"
 										className="js-bu-block-modal-trigger-overlay button"
 										onChange={ value => setAttributes( { trigger: value } ) }
 										value={ trigger }
 										placeholder={ __( 'Enter trigger label…' ) }
 										formattingControls={ [] }
 									/>
-								</p>
+								</div>
 							</div>
 						</div>
 					</div>
