@@ -227,6 +227,9 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			position: relative;
 		}
 		.container-words-outter {
+			width: 100%;
+			padding-left: $padding;
+			padding-right: $padding;
 			@include breakpoint( $xs ) {
 				position: absolute;
 				bottom: 0;

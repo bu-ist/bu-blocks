@@ -4,6 +4,9 @@
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
+  "contributors": [
+    "Jeremy Felt <jfelt@bu.edu>"
+  ],
   "scripts": {
     "start": "cgb-scripts start",
     "build": "cgb-scripts build",
@@ -22,6 +25,6 @@
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "~1.0.0",
     "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#develop",
-    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#feature/reduce-dependencies-sass-imports"
+    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#feature/reduce-dependencies"
   }
 }
