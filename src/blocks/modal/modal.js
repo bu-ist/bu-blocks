@@ -12,15 +12,14 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Callout from './modal-callout.js';
+import edit from './edit.js';
 import Background, { BackgroundAttributes } from '../../components/background/background.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { PanelBody, SelectControl } = wp.components;
-const { InspectorControls, InnerBlocks } = wp.editor;
+const { getColorClassName } = wp.editor;
+const { InnerBlocks } = wp.editor;
 const { select } = wp.data;
 const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 
@@ -38,9 +37,8 @@ registerBlockType( 'editorial/modal', {
 		clientId: {
 			type: 'number',
 		},
-		theme: {
+		themeColor: {
 			type: 'string',
-			default: '',
 		},
 		calloutHeading: {
 			type: 'array',
@@ -70,78 +68,16 @@ registerBlockType( 'editorial/modal', {
 		}
 	},
 
-	edit( props ) {
-		const { attributes, setAttributes, className, clientId } = props;
-		const { theme, backgroundId } = attributes;
-		const classes = classnames(
-			className,
-			{
-				[ theme ]: theme,
-				'has-media': backgroundId,
-			}
-		);
-
-		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
-		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
-			setAttributes( { clientId: clientId } );
-		}
-
-		const controls = (
-			<InspectorControls>
-				<PanelBody title={ __( 'Display Settings' ) }>
-					<SelectControl
-						label={ __( 'Theme' ) }
-						value={ theme || '' }
-						onChange={ value => setAttributes( { theme: value } ) }
-						options={ [
-							{ value: '', label: __( 'Default' ) },
-							{ value: 'has-light-theme', label: __( 'Light' ) },
-							{ value: 'has-dark-theme', label: __( 'Dark' ) },
-							{ value: 'has-primary-theme', label: __( 'Primary' ) },
-							{ value: 'has-secondary-theme', label: __( 'Secondary' ) },
-							{ value: 'has-tertiary-theme', label: __( 'Tertiary' ) },
-							{ value: 'has-quaternary-theme', label: __( 'Quaternary' ) },
-						] }
-					/>
-				</PanelBody>
-			</InspectorControls>
-		);
-
-		return (
-			<Fragment>
-				{ controls }
-				<aside className={ classes }>
-					<Callout
-						attributes={ attributes }
-						setAttributes={ setAttributes }
-					>
-						<Background
-							blockProps={ props }
-							className='banner-placeholder'
-							controlPanelTitle={ __( 'Callout Background' ) }
-						/>
-					</Callout>
-					<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
-						<div className="overlay overlay-scale">
-							<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
-							<article>
-								<InnerBlocks />
-							</article>
-						</div>
-					</div>
-				</aside>
-			</Fragment>
-		);
-	},
+	edit,
 
 	save( props ) {
 		const { attributes, className } = props;
-		const { theme, calloutHeading, calloutText, trigger, backgroundId } = attributes;
+		const { themeColor, calloutHeading, calloutText, trigger, backgroundId } = attributes;
 		const classes = classnames(
 			className,
 			'js-bu-block-modal',
 			{
-				[ theme ]: theme,
+				[ getColorClassName( 'theme', themeColor ) ]: getColorClassName( 'theme', themeColor ),
 				'has-media': backgroundId,
 			}
 		);
