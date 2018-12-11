@@ -139,6 +139,7 @@ registerBlockType( 'editorial/introparagraph', {
 						wrapperClassName="wp-block-editorial-introparagraph-toc"
 						className='{ className }'
 						placeholder={ __( 'Write list…' ) }
+						formattingControls={ [ 'link' ] }
 					/>
 					<RichText
 						multiline="p"
