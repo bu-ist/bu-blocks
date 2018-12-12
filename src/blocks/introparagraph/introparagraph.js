@@ -46,10 +46,15 @@ registerBlockType( 'editorial/introparagraph', {
 			source: 'html',
 			selector: '.wp-block-editorial-introparagraph-toc'
 		},
-		content: {
+		paragraphOne: {
 			type: 'string',
 			source: 'html',
-			selector: '.wp-block-editorial-introparagraph-content',
+			selector: '.wp-block-editorial-introparagraph-content p:first-of-type',
+		},
+		paragraphTwo: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-introparagraph-content p:nth-of-type(2)',
 		},
 		hasDropCap: {
 			type: 'string',
@@ -99,7 +104,7 @@ registerBlockType( 'editorial/introparagraph', {
 
 	edit( props ) {
 		const { attributes, setAttributes, className } = props;
-		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor } = attributes;
+		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor } = attributes;
 
 		// This is either 'has-dropcap' or ''.
 		let hasDropCapClass = hasDropCap;
@@ -165,22 +170,44 @@ registerBlockType( 'editorial/introparagraph', {
 						placeholder={ __( 'Write list…' ) }
 						formattingControls={ [ 'link' ] }
 					/>
-					<RichText
-						multiline="p"
-						tagName="div"
-						wrapperClassName='wp-block-editorial-introparagraph-content'
-						value={ content }
-						onChange={ contentValues => setAttributes( { content: contentValues } ) }
-						placeholder={ __( 'Write paragraphs…' ) }
-						formattingControls={ [ 'bold', 'italic' ] }
-					/>
+					<div className="wp-block-editorial-introparagraph-content">
+						<svg>
+							<pattern
+								id="dropcap-texture"
+								viewBox="0 0 1024 1024"
+								patternUnits="userSpaceOnUse"
+								width="100%" height="100%"
+								x="0%" y="0%">
+								<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+							</pattern>
+							<text text-anchor="start"
+								x="0"
+								y="50%"
+								dy=".404em"
+								class="dropcap-filltext">P</text>
+						</svg>
+						<RichText
+							tagName="p"
+							value= { paragraphOne }
+							onChange={ content => setAttributes( { paragraphOne: content } ) }
+							placeholder={ __( 'Write paragraph…' ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+						/>
+						<RichText
+							tagName="p"
+							value= { paragraphTwo }
+							onChange={ content => setAttributes( { paragraphTwo: content } ) }
+							placeholder={ __( 'Write paragraph…' ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+						/>
+					</div>
 				</div>
 			</Fragment>
 		);
 	},
 
 	save( { attributes } ) {
-		const { heading, content, list, hasDropCap, dropCapStyle, paragraphColor } = attributes;
+		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor } = attributes;
 
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
@@ -191,11 +218,31 @@ registerBlockType( 'editorial/introparagraph', {
 					value={ list }
 					multiline="li"
 				/>
-				<RichText.Content
-					tagName='div'
-					className='wp-block-editorial-introparagraph-content'
-					value={ content }
-				/>
+				<div className="wp-block-editorial-introparagraph-content">
+					<svg>
+					<pattern
+						id="dropcap-texture"
+						viewBox="0 0 1024 1024"
+						patternUnits="userSpaceOnUse"
+						width="100%" height="100%"
+						x="0%" y="0%">
+						<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+					</pattern>
+						<text text-anchor="start"
+							x="0"
+							y="50%"
+							dy=".404em"
+							class="dropcap-filltext">P</text>
+					</svg>
+					<RichText.Content
+						tagName="p"
+						value= { paragraphOne }
+					/>
+					<RichText.Content
+						tagName="p"
+						value= { paragraphTwo }
+					/>
+				</div>
 			</div>
 		);
 	},
