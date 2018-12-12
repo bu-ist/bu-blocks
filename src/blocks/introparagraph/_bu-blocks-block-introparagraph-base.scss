@@ -19,6 +19,7 @@ $dropcap-size:		4em;
 	}
 
 	&.is-style-large {
+		.editor-rich-text:first-of-type p,
 		> p:first-of-type {
 			font-size: 1.25em;
 		}

@@ -9697,6 +9697,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-introparagraph svg {
   display: none; }
 
+.wp-block-editorial-introparagraph.is-style-large .editor-rich-text:first-of-type p,
 .wp-block-editorial-introparagraph.is-style-large > p:first-of-type {
   font-size: 1.25em; }
 
