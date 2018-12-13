@@ -130,6 +130,9 @@ registerBlockType( 'editorial/introparagraph', {
 		// Determine if the drop cap SVG should be included in content.
 		let isImageDropCap = className.includes( 'is-style-dropcap-image' );
 
+		// Pull the first character from paragraph one for use in the drop cap SVG.
+		let dropCapCharacter = paragraphOne.charAt( 0 );
+
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -192,7 +195,7 @@ registerBlockType( 'editorial/introparagraph', {
 									x="0"
 									y="50%"
 									dy=".404em"
-									class="dropcap-filltext">P</text>
+									class="dropcap-filltext">{ dropCapCharacter }</text>
 							</svg>
 						) }
 						<RichText
@@ -224,6 +227,9 @@ registerBlockType( 'editorial/introparagraph', {
 			isImageDropCap = className.includes( 'is-style-dropcap-image' );
 		}
 
+		// Pull the first character from paragraph one for use in the drop cap SVG.
+		let dropCapCharacter = paragraphOne.charAt( 0 );
+
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
 				<h4>{ heading }</h4>
@@ -248,7 +254,7 @@ registerBlockType( 'editorial/introparagraph', {
 								x="0"
 								y="50%"
 								dy=".404em"
-								class="dropcap-filltext">P</text>
+								class="dropcap-filltext">{ dropCapCharacter }</text>
 						</svg>
 					) }
 					<RichText.Content
