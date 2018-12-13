@@ -67,6 +67,10 @@ registerBlockType( 'editorial/introparagraph', {
 		paragraphColor: {
 			type: 'string',
 			default: '',
+		},
+		className: {
+			type: 'string',
+			default: '',
 		}
 	},
 	styles: [
@@ -123,6 +127,9 @@ registerBlockType( 'editorial/introparagraph', {
 			hasDropCapClass = '';
 		}
 
+		// Determine if the drop cap SVG should be included in content.
+		let isImageDropCap = className.includes( 'is-style-dropcap-image' );
+
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -171,21 +178,23 @@ registerBlockType( 'editorial/introparagraph', {
 						formattingControls={ [ 'link' ] }
 					/>
 					<div className="wp-block-editorial-introparagraph-content">
-						<svg>
-							<pattern
-								id="dropcap-texture"
-								viewBox="0 0 1024 1024"
-								patternUnits="userSpaceOnUse"
-								width="100%" height="100%"
-								x="0%" y="0%">
-								<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
-							</pattern>
-							<text text-anchor="start"
-								x="0"
-								y="50%"
-								dy=".404em"
-								class="dropcap-filltext">P</text>
-						</svg>
+						{ isImageDropCap && (
+							<svg>
+								<pattern
+									id="dropcap-texture"
+									viewBox="0 0 1024 1024"
+									patternUnits="userSpaceOnUse"
+									width="100%" height="100%"
+									x="0%" y="0%">
+									<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+								</pattern>
+								<text text-anchor="start"
+									x="0"
+									y="50%"
+									dy=".404em"
+									class="dropcap-filltext">P</text>
+							</svg>
+						) }
 						<RichText
 							tagName="p"
 							value= { paragraphOne }
@@ -207,7 +216,13 @@ registerBlockType( 'editorial/introparagraph', {
 	},
 
 	save( { attributes } ) {
-		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor } = attributes;
+		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor, className } = attributes;
+
+		let isImageDropCap = false;
+		if ( "undefined" !== typeof className ) {
+			// Determine if the drop cap SVG should be included in content.
+			isImageDropCap = className.includes( 'is-style-dropcap-image' );
+		}
 
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
@@ -219,21 +234,23 @@ registerBlockType( 'editorial/introparagraph', {
 					multiline="li"
 				/>
 				<div className="wp-block-editorial-introparagraph-content">
-					<svg>
-					<pattern
-						id="dropcap-texture"
-						viewBox="0 0 1024 1024"
-						patternUnits="userSpaceOnUse"
-						width="100%" height="100%"
-						x="0%" y="0%">
-						<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
-					</pattern>
-						<text text-anchor="start"
-							x="0"
-							y="50%"
-							dy=".404em"
-							class="dropcap-filltext">P</text>
-					</svg>
+					{ isImageDropCap && (
+						<svg>
+							<pattern
+								id="dropcap-texture"
+								viewBox="0 0 1024 1024"
+								patternUnits="userSpaceOnUse"
+								width="100%" height="100%"
+								x="0%" y="0%">
+								<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+							</pattern>
+							<text text-anchor="start"
+								x="0"
+								y="50%"
+								dy=".404em"
+								class="dropcap-filltext">P</text>
+						</svg>
+					) }
 					<RichText.Content
 						tagName="p"
 						value= { paragraphOne }
