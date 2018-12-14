@@ -156,11 +156,13 @@ registerBlockType( 'bu/leadin', {
 								className="head"
 								value={ head }
 							/>
-							<RichText.Content
-								tagName="h4"
-								className="deck"
-								value={ deck }
-							/>
+							{ ! RichText.isEmpty( deck ) && (
+								<RichText.Content
+									tagName="h4"
+									className="deck"
+									value={ deck }
+								/>
+							) }
 						</div>
 					</div>
 				</div>

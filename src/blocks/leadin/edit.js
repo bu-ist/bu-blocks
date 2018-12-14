@@ -28,6 +28,7 @@ class BULeadinEdit extends Component {
 			setThemeColor,
 			setAttributes,
 			className,
+			isSelected,
 		} = this.props;
 
 		const {
@@ -155,20 +156,22 @@ class BULeadinEdit extends Component {
 								<RichText
 									tagName="h1"
 									className="head"
-									placeholder={ __( 'Add headline…' ) }
+									placeholder={ __( 'Add headline' ) }
 									value={ head }
 									onChange={ value => setAttributes( { head: value } ) }
 									formattingControls={ [ 'bold', 'italic' ] }
 									keepPlaceholderOnFocus
 								/>
-								<RichText
-									tagName="h4"
-									className="deck"
-									placeholder={ __( 'Add subheader…' ) }
-									value={ deck }
-									onChange={ value => setAttributes( { deck: value } ) }
-									formattingControls={ [ 'bold', 'italic' ] }
-								/>
+								{ ( ! RichText.isEmpty( deck ) || isSelected ) && (
+									<RichText
+										tagName="h4"
+										className="deck"
+										placeholder={ __( 'Add subheader (optional)' ) }
+										value={ deck }
+										onChange={ value => setAttributes( { deck: value } ) }
+										formattingControls={ [ 'bold', 'italic' ] }
+									/>
+								) }
 							</div>
 						</div>
 					</div>
