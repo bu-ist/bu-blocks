@@ -9,9 +9,16 @@ import './style.scss';
 import './editor.scss';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
+const {
+	__,
+} = wp.i18n;
+const {
+	createBlock,
+	registerBlockType,
+} = wp.blocks;
+const {
+	Fragment,
+} = wp.element;
 const {
 	PanelBody,
 	SelectControl,
@@ -21,6 +28,9 @@ const {
 	PlainText,
 	InspectorControls,
 } = wp.editor;
+const {
+	removep,
+} = wp.autop;
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
@@ -102,7 +112,7 @@ registerBlockType( 'editorial/introparagraph', {
 	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
 	edit( props ) {
-		const { attributes, setAttributes, className } = props;
+		const { attributes, setAttributes, className, insertBlocksAfter } = props;
 		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor } = attributes;
 
 		// This is either 'has-dropcap' or ''.
@@ -202,6 +212,17 @@ registerBlockType( 'editorial/introparagraph', {
 							onChange={ content => setAttributes( { content: content } ) }
 							placeholder={ __( 'Write paragraph…' ) }
 							formattingControls={ [ 'bold', 'italic' ] }
+							unstableOnSplit={
+								insertBlocksAfter ?
+									( before, after, ...blocks ) => {
+										setAttributes( { content: before } );
+										insertBlocksAfter( [
+											...blocks,
+											createBlock( 'core/paragraph', { content: after } ),
+										] );
+									} :
+									undefined
+							}
 						/>
 					</div>
 				</div>
@@ -223,6 +244,9 @@ registerBlockType( 'editorial/introparagraph', {
 		if ( 'undefined' !== typeof content ) {
 			dropCapCharacter = content.charAt( 0 );
 		};
+
+		// Strip the previously auto-generated paragraph tags to avoid duplicates.
+		const newContent = removep( content );
 
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
@@ -253,7 +277,7 @@ registerBlockType( 'editorial/introparagraph', {
 					) }
 					<RichText.Content
 						tagName="p"
-						value= { content }
+						value= { newContent }
 					/>
 				</div>
 			</div>
