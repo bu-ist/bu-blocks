@@ -102,7 +102,6 @@ registerBlockType( 'bu/leadin', {
 	attributes: blockAttributes,
 	styles: blockStyles,
 	supports: blockSupports,
-	publicationClassName: publicationClass + '-block-leadin',
 
 	edit,
 
@@ -129,6 +128,7 @@ registerBlockType( 'bu/leadin', {
 
 		const classes = classnames(
 			'wp-block-leadin',
+			publicationClass + '-block-leadin',
 			className,
 			{
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),

@@ -16,6 +16,9 @@ const { compose } = wp.compose;
 const { CheckboxControl, SelectControl, PanelBody } = wp.components;
 const { InspectorControls, PanelColorSettings, RichText, withColors } = wp.editor;
 
+// The current publication owner.
+const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+
 class BULeadinEdit extends Component {
 	constructor() {
 		super( ...arguments );
@@ -49,6 +52,7 @@ class BULeadinEdit extends Component {
 
 		const classes = classnames(
 			'wp-block-leadin',
+			publicationClass + '-block-leadin',
 			className,
 			{
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
