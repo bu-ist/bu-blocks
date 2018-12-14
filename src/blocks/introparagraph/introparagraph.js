@@ -28,9 +28,6 @@ const {
 	PlainText,
 	InspectorControls,
 } = wp.editor;
-const {
-	removep,
-} = wp.autop;
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
