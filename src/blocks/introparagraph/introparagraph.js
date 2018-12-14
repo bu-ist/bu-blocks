@@ -46,15 +46,10 @@ registerBlockType( 'editorial/introparagraph', {
 			source: 'html',
 			selector: '.wp-block-editorial-introparagraph-toc'
 		},
-		paragraphOne: {
+		content: {
 			type: 'string',
 			source: 'html',
-			selector: '.wp-block-editorial-introparagraph-content p:first-of-type',
-		},
-		paragraphTwo: {
-			type: 'string',
-			source: 'html',
-			selector: '.wp-block-editorial-introparagraph-content p:nth-of-type(2)',
+			selector: '.wp-block-editorial-introparagraph-content',
 		},
 		hasDropCap: {
 			type: 'string',
@@ -108,7 +103,7 @@ registerBlockType( 'editorial/introparagraph', {
 
 	edit( props ) {
 		const { attributes, setAttributes, className } = props;
-		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor } = attributes;
+		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor } = attributes;
 
 		// This is either 'has-dropcap' or ''.
 		let hasDropCapClass = hasDropCap;
@@ -130,10 +125,10 @@ registerBlockType( 'editorial/introparagraph', {
 		// Determine if the drop cap SVG should be included in content.
 		let isImageDropCap = className.includes( 'is-style-dropcap-image' );
 
-		// Pull the first character from paragraph one for use in the drop cap SVG.
+		// Pull the first character from the article content use in the drop cap SVG.
 		let dropCapCharacter = '';
-		if ( 'undefined' !== typeof paragraphOne ) {
-			dropCapCharacter = paragraphOne.charAt( 0 );
+		if ( 'undefined' !== typeof content ) {
+			dropCapCharacter = content.charAt( 0 );
 		};
 
 		return (
@@ -203,15 +198,8 @@ registerBlockType( 'editorial/introparagraph', {
 						) }
 						<RichText
 							tagName="p"
-							value= { paragraphOne }
-							onChange={ content => setAttributes( { paragraphOne: content } ) }
-							placeholder={ __( 'Write paragraph…' ) }
-							formattingControls={ [ 'bold', 'italic' ] }
-						/>
-						<RichText
-							tagName="p"
-							value= { paragraphTwo }
-							onChange={ content => setAttributes( { paragraphTwo: content } ) }
+							value= { content }
+							onChange={ content => setAttributes( { content: content } ) }
 							placeholder={ __( 'Write paragraph…' ) }
 							formattingControls={ [ 'bold', 'italic' ] }
 						/>
@@ -222,7 +210,7 @@ registerBlockType( 'editorial/introparagraph', {
 	},
 
 	save( { attributes } ) {
-		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor, className } = attributes;
+		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor, className } = attributes;
 
 		let isImageDropCap = false;
 		if ( 'undefined' !== typeof className ) {
@@ -230,10 +218,10 @@ registerBlockType( 'editorial/introparagraph', {
 			isImageDropCap = className.includes( 'is-style-dropcap-image' );
 		}
 
-		// Pull the first character from paragraph one for use in the drop cap SVG.
+		// Pull the first character from the article content use in the drop cap SVG.
 		let dropCapCharacter = '';
-		if ( 'undefined' !== typeof paragraphOne ) {
-			dropCapCharacter = paragraphOne.charAt( 0 );
+		if ( 'undefined' !== typeof content ) {
+			dropCapCharacter = content.charAt( 0 );
 		};
 
 		return (
@@ -265,11 +253,7 @@ registerBlockType( 'editorial/introparagraph', {
 					) }
 					<RichText.Content
 						tagName="p"
-						value= { paragraphOne }
-					/>
-					<RichText.Content
-						tagName="p"
-						value= { paragraphTwo }
+						value= { content }
 					/>
 				</div>
 			</div>
