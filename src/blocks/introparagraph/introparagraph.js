@@ -131,7 +131,10 @@ registerBlockType( 'editorial/introparagraph', {
 		let isImageDropCap = className.includes( 'is-style-dropcap-image' );
 
 		// Pull the first character from paragraph one for use in the drop cap SVG.
-		let dropCapCharacter = paragraphOne.charAt( 0 );
+		let dropCapCharacter = '';
+		if ( 'undefined' !== typeof paragraphOne ) {
+			dropCapCharacter = paragraphOne.charAt( 0 );
+		};
 
 		return (
 			<Fragment>
@@ -222,13 +225,16 @@ registerBlockType( 'editorial/introparagraph', {
 		const { heading, list, paragraphOne, paragraphTwo, hasDropCap, dropCapStyle, paragraphColor, className } = attributes;
 
 		let isImageDropCap = false;
-		if ( "undefined" !== typeof className ) {
+		if ( 'undefined' !== typeof className ) {
 			// Determine if the drop cap SVG should be included in content.
 			isImageDropCap = className.includes( 'is-style-dropcap-image' );
 		}
 
 		// Pull the first character from paragraph one for use in the drop cap SVG.
-		let dropCapCharacter = paragraphOne.charAt( 0 );
+		let dropCapCharacter = '';
+		if ( 'undefined' !== typeof paragraphOne ) {
+			dropCapCharacter = paragraphOne.charAt( 0 );
+		};
 
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
