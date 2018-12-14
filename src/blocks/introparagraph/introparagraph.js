@@ -59,7 +59,7 @@ registerBlockType( 'editorial/introparagraph', {
 		content: {
 			type: 'string',
 			source: 'html',
-			selector: '.wp-block-editorial-introparagraph-content',
+			selector: '.wp-block-editorial-introparagraph-content p',
 		},
 		hasDropCap: {
 			type: 'string',
@@ -245,9 +245,6 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapCharacter = content.charAt( 0 );
 		};
 
-		// Strip the previously auto-generated paragraph tags to avoid duplicates.
-		const newContent = removep( content );
-
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
 				<h4>{ heading }</h4>
@@ -277,7 +274,7 @@ registerBlockType( 'editorial/introparagraph', {
 					) }
 					<RichText.Content
 						tagName="p"
-						value= { newContent }
+						value= { content }
 					/>
 				</div>
 			</div>
