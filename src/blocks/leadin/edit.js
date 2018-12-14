@@ -64,25 +64,58 @@ class BULeadinEdit extends Component {
 
 		return (
 			<Fragment>
+				<div className={ classes }>
+					<div class="container-lockup">
+						<div class="wp-block-leadin-media">
+							{ Background( this.props, undefined, 'Media' ) }
+						</div>
+						<div class="container-words-outter">
+							<div class="container-words-inner">
+								<span href="http://www.bu.edu/" class="wp-prepress-tag"></span>
+								<RichText
+									tagName="h1"
+									className="head"
+									placeholder={ __( 'Add headline' ) }
+									value={ head }
+									onChange={ value => setAttributes( { head: value } ) }
+									formattingControls={ [ 'bold', 'italic' ] }
+									keepPlaceholderOnFocus
+								/>
+								{ ( ! RichText.isEmpty( deck ) || isSelected ) && (
+									<RichText
+										tagName="h4"
+										className="deck"
+										placeholder={ __( 'Add subheader (optional)' ) }
+										value={ deck }
+										onChange={ value => setAttributes( { deck: value } ) }
+										formattingControls={ [ 'bold', 'italic' ] }
+									/>
+								) }
+							</div>
+						</div>
+					</div>
+				</div>
 				<InspectorControls>
-					<PanelBody title={ __( 'Image Options' ) }>
-						<SelectControl
-							label={ __( 'Image Focal Point' ) }
-							value={ imageFocus }
-							onChange={ value => setAttributes( { imageFocus: value } ) }
-							options={ [
-								{ value: 'left-top', label: __( 'Left Top' ) },
-								{ value: 'left-middle', label: __( 'Left Center' ) },
-								{ value: 'left-bottom', label: __( 'Left Bottom' ) },
-								{ value: 'center-top', label: __( 'Center Top' ) },
-								{ value: 'center-middle', label: __( 'Center' ) },
-								{ value: 'center-bottom', label: __( 'Center Bottom' ) },
-								{ value: 'right-top', label: __( 'Right Top' ) },
-								{ value: 'right-middle', label: __( 'Right Center' ) },
-								{ value: 'right-bottom', label: __( 'Right Bottom' ) },
-							] }
-						/>
-					</PanelBody>
+					{ ( backgroundId ) && (
+						<PanelBody title={ __( 'Media Positioning' ) } initialOpen={ false }>
+							<SelectControl
+								label={ __( 'Media Focal Point' ) }
+								value={ imageFocus }
+								onChange={ value => setAttributes( { imageFocus: value } ) }
+								options={ [
+									{ value: 'left-top', label: __( 'Left Top' ) },
+									{ value: 'left-middle', label: __( 'Left Center' ) },
+									{ value: 'left-bottom', label: __( 'Left Bottom' ) },
+									{ value: 'center-top', label: __( 'Center Top' ) },
+									{ value: 'center-middle', label: __( 'Center' ) },
+									{ value: 'center-bottom', label: __( 'Center Bottom' ) },
+									{ value: 'right-top', label: __( 'Right Top' ) },
+									{ value: 'right-middle', label: __( 'Right Center' ) },
+									{ value: 'right-bottom', label: __( 'Right Bottom' ) },
+								] }
+							/>
+						</PanelBody>
+					) }
 					{ ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ) && (
 						<PanelBody title={ __( 'Layout Options' ) }>
 							{ isStyleTextOverImage && (
@@ -134,6 +167,7 @@ class BULeadinEdit extends Component {
 					) }
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
+						initialOpen={ false }
 						colorSettings={ [
 							{
 								value: themeColor.color,
@@ -145,37 +179,6 @@ class BULeadinEdit extends Component {
 						] }
 					/>
 				</InspectorControls>
-				<div className={ classes }>
-					<div class="container-lockup">
-						<div class="wp-block-leadin-media">
-							{ Background( this.props, undefined, 'Leadin Image' ) }
-						</div>
-						<div class="container-words-outter">
-							<div class="container-words-inner">
-								<span href="http://www.bu.edu/" class="wp-prepress-tag"></span>
-								<RichText
-									tagName="h1"
-									className="head"
-									placeholder={ __( 'Add headline' ) }
-									value={ head }
-									onChange={ value => setAttributes( { head: value } ) }
-									formattingControls={ [ 'bold', 'italic' ] }
-									keepPlaceholderOnFocus
-								/>
-								{ ( ! RichText.isEmpty( deck ) || isSelected ) && (
-									<RichText
-										tagName="h4"
-										className="deck"
-										placeholder={ __( 'Add subheader (optional)' ) }
-										value={ deck }
-										onChange={ value => setAttributes( { deck: value } ) }
-										formattingControls={ [ 'bold', 'italic' ] }
-									/>
-								) }
-							</div>
-						</div>
-					</div>
-				</div>
 			</Fragment>
 		);
 	}
