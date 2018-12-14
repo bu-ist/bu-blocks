@@ -7,6 +7,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
+import Background from '../../components/background/background.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -30,7 +31,7 @@ class BULeadinEdit extends Component {
 		} = this.props;
 
 		const {
-			media,
+			backgroundId,
 			head,
 			deck,
 			imageFocus,
@@ -52,6 +53,7 @@ class BULeadinEdit extends Component {
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
+				'has-media': backgroundId,
 				[ `has-image-focus-${imageFocus}` ]: imageFocus,
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
@@ -145,7 +147,7 @@ class BULeadinEdit extends Component {
 				<div className={ classes }>
 					<div class="container-lockup">
 						<div class="wp-block-leadin-media">
-							<img src="https://www.bu.edu/bostonia/files/2018/10/resize-18-1763-TASTE-004.jpg" />
+							{ Background( this.props, undefined, 'Leadin Image' ) }
 						</div>
 						<div class="container-words-outter">
 							<div class="container-words-inner">

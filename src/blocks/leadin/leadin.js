@@ -13,12 +13,14 @@ import './editor.scss';
 
 // Internal dependencies.
 import edit from './edit.js';
+import Background, { BackgroundAttributes } from '../../components/background/background.js';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Path, SVG } = wp.components;
 const { RichText, getColorClassName } = wp.editor;
+
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
 
@@ -60,6 +62,7 @@ const blockAttributes = {
 	themeColor: {
 		type: 'string',
 	},
+	...BackgroundAttributes,
 };
 
 // Block styles.
@@ -103,9 +106,11 @@ registerBlockType( 'bu/leadin', {
 
 	edit,
 
-	save( { attributes } ) {
+	save( props ) {
+		const { attributes } = props;
+
 		const {
-			media,
+			backgroundId,
 			head,
 			deck,
 			imageFocus,
@@ -129,6 +134,7 @@ registerBlockType( 'bu/leadin', {
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
+				'has-media': backgroundId,
 				[ `has-image-focus-${imageFocus}` ]: imageFocus,
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
@@ -140,7 +146,7 @@ registerBlockType( 'bu/leadin', {
 			<div className={ classes }>
 				<div class="container-lockup">
 					<div class="wp-block-leadin-media">
-						 <img src="https://www.bu.edu/bostonia/files/2018/10/resize-18-1763-TASTE-004.jpg" />
+						{ Background( props ) }
 					</div>
 					<div class="container-words-outter">
 						<div class="container-words-inner">
