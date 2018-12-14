@@ -176,7 +176,7 @@ registerBlockType( 'editorial/introparagraph', {
 						tagName='h4'
 						value={ heading }
 						onChange={ heading => setAttributes( { heading } ) }
-						placeholder={ __( 'Add a heading' ) }
+						placeholder={ __( 'Enter Teaser Headline (optional)' ) }
 					/>
 					<RichText
 						multiline="li"
@@ -185,7 +185,7 @@ registerBlockType( 'editorial/introparagraph', {
 						value={ list }
 						wrapperClassName="wp-block-editorial-introparagraph-toc"
 						className='{ className }'
-						placeholder={ __( 'Write list…' ) }
+						placeholder={ __( 'Enter Teaser Intro List (optional)' ) }
 						formattingControls={ [ 'link' ] }
 					/>
 					<div className="wp-block-editorial-introparagraph-content">
