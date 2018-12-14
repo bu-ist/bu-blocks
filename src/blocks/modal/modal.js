@@ -58,8 +58,6 @@ registerBlockType( 'editorial/modal', {
 		...BackgroundAttributes,
 	},
 	publicationClassName: publicationClass + '-block-modal',
-	backgroundClass: 'banner-placeholder',
-	backgroundOptionsTitle: 'Callout Background',
 
 	// Add the `selected-modal` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {
