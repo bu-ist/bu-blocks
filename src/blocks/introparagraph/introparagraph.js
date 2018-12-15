@@ -181,7 +181,6 @@ registerBlockType( 'editorial/introparagraph', {
 						onChange={ ( listValues ) => setAttributes( { list: listValues } ) }
 						value={ list }
 						wrapperClassName="wp-block-editorial-introparagraph-toc"
-						className='{ className }'
 						placeholder={ __( 'Enter Teaser Intro List (optional)' ) }
 						formattingControls={ [ 'link' ] }
 					/>
@@ -242,38 +241,49 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapCharacter = content.charAt( 0 );
 		};
 
+		let saveList = true;
+		if ( 'undefined' === typeof list || '<li></li>' === list || RichText.isEmpty( list ) ) {
+			saveList = false;
+		}
+
 		return (
 			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
-				<h4>{ heading }</h4>
-				<RichText.Content
-					tagName="ul"
-					className="wp-block-editorial-introparagraph-toc"
-					value={ list }
-					multiline="li"
-				/>
-				<div className="wp-block-editorial-introparagraph-content">
-					{ isImageDropCap && (
-						<svg>
-							<pattern
-								id="dropcap-texture"
-								viewBox="0 0 1024 1024"
-								patternUnits="userSpaceOnUse"
-								width="100%" height="100%"
-								x="0%" y="0%">
-								<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
-							</pattern>
-							<text text-anchor="start"
-								x="0"
-								y="50%"
-								dy=".404em"
-								class="dropcap-filltext">{ dropCapCharacter }</text>
-						</svg>
-					) }
+				{ ! RichText.isEmpty( heading ) && (
+					<RichText.Content tagName="h4" value={ heading } />
+				) }
+				{ saveList && (
 					<RichText.Content
-						tagName="p"
-						value= { content }
+						tagName="ul"
+						className="wp-block-editorial-introparagraph-toc"
+						value={ list }
+						multiline="li"
 					/>
-				</div>
+				) }
+				{ ! RichText.isEmpty( content ) && (
+					<div className="wp-block-editorial-introparagraph-content">
+						{ isImageDropCap && (
+							<svg>
+								<pattern
+									id="dropcap-texture"
+									viewBox="0 0 1024 1024"
+									patternUnits="userSpaceOnUse"
+									width="100%" height="100%"
+									x="0%" y="0%">
+									<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+								</pattern>
+								<text text-anchor="start"
+									x="0"
+									y="50%"
+									dy=".404em"
+									class="dropcap-filltext">{ dropCapCharacter }</text>
+							</svg>
+						) }
+						<RichText.Content
+							tagName="p"
+							value= { content }
+						/>
+					</div>
+				) }
 			</div>
 		);
 	},
