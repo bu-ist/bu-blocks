@@ -42,10 +42,12 @@ const blockAttributes = {
 		default: 'center-middle'
 	},
 	textPositionX: {
-		type: 'string'
+		type: 'string',
+		default: 'x-center',
 	},
 	textPositionY: {
-		type: 'string'
+		type: 'string',
+		default: '',
 	},
 	wide: {
 		type: 'bool'

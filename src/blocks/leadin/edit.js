@@ -141,7 +141,7 @@ class BULeadinEdit extends Component {
 									onChange={ value => setAttributes( { textPositionY: value } ) }
 									options={ [
 										{ value: 'y-top', label: __( 'Top' ) },
-										{ value: 'y-middle', label: __( 'Center' ) },
+										{ value: '', label: __( 'Center' ) },
 										{ value: 'y-bottom', label: __( 'Bottom' ) }
 									] }
 								/>
