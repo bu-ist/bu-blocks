@@ -9697,7 +9697,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-introparagraph svg {
   display: none; }
 
-.wp-block-editorial-introparagraph.is-style-large .editor-rich-text:first-of-type p,
+.wp-block-editorial-introparagraph.is-style-large .wp-block-editorial-introparagraph-content .editor-rich-text,
 .wp-block-editorial-introparagraph.is-style-large > p:first-of-type {
   font-size: 1.25em; }
 
@@ -9707,7 +9707,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   -webkit-column-gap: 2em;
           column-gap: 2em; }
 
-.wp-block-editorial-introparagraph.has-dropcap:not(:focus-within) .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.has-dropcap:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.has-dropcap:not(:focus-within) > p:first-of-type:first-letter,
 .wp-block-editorial-introparagraph.has-dropcap:not(:focus-within) svg text {
   font-weight: 700;
@@ -9717,12 +9717,12 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   line-height: 1em;
   margin: 0 0.25em .125em 0; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within) .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within) > p:first-of-type:first-letter {
   color: white;
   padding: 0.125em 0.25em; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-outlined:not(:focus-within) .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-outlined:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-outlined:not(:focus-within) > p:first-of-type:first-letter {
   border-width: 2px;
   border-style: solid;
@@ -9743,13 +9743,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .dropcap-filltext {
   fill: url(#dropcap-texture); }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) > p:first-of-type:first-letter {
   color: transparent; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .has-dropcap-color-primary .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .has-dropcap-color-primary .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .has-dropcap-color-primary > p:first-of-type:first-letter,
-.wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .has-dropcap-color-secondary .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .has-dropcap-color-secondary .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-image:not(:focus-within) .has-dropcap-color-secondary > p:first-of-type:first-letter {
   color: transparent; }
 
@@ -9757,19 +9757,19 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   font-style: italic;
   font-size: 0.9em; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-dimensional:not(:focus-within) .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-dimensional:not(:focus-within) > p:first-of-type:first-letter {
   text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px, 8px 8px, 9px 9px, 10px 10px; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within) .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within) > p:first-of-type:first-letter {
   color: #fff; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within).has-dropcap-color-primary .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within).has-dropcap-color-primary .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within).has-dropcap-color-primary > p:first-of-type:first-letter {
   color: #fff; }
 
-.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within).has-dropcap-color-secondary .editor-rich-text:first-of-type p:first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within).has-dropcap-color-secondary .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 .wp-block-editorial-introparagraph.is-style-dropcap-boxed:not(:focus-within).has-dropcap-color-secondary > p:first-of-type:first-letter {
   color: #fff; }
 /**
