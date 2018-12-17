@@ -315,6 +315,40 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.wp-block-global-buniverse-wrapper {
+  position: relative; }
+  .wp-block-global-buniverse-wrapper::before {
+    content: "";
+    display: block;
+    width: 1px;
+    padding-top: 56.25%;
+    position: relative; }
+  .wp-block-global-buniverse-wrapper iframe {
+    top: 0;
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important; }
+
+.has-aspectratio-16by9 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 56.25%; }
+
+.has-aspectratio-4by3 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 75%; }
+
+.has-aspectratio-1by1 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 100%; }
+
+.has-aspectratio-3by4 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 133.33333%; }
+
+.has-aspectratio-9by16 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 177.77778%; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 a:active,
 a:visited {
   color: inherit; }
