@@ -242,7 +242,7 @@
 							</span>-->
 						</header>
 							<div class="id-kss-description">
-								<p>This is a Related Stories Block.</p>
+								<p>This is a Related Stories block that automatically pulls in related stories, using the YARPP plugin. We'd also like the option to manually curate (select) stories instead of using the default YARPP suggestions when needed. There are two layout options, a list style and a card style. The list style can pull in a minimum of 2 and a max of 5 stories, and be positioned on the left or right side of the article. The card style can pull in a minimum of 2 and a max of 3 stories, and takes up the full width of the article.</p>
 		
 							</div>
 		
@@ -290,7 +290,7 @@
 																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor. Cras lacus orci, scelerisque non dictum ac, molestie a urna. Nunc ultricies in tortor interdum dictum. Fusce ut mi aliquam, efficitur libero ac, ultricies est. Etiam pellentesque sapien ex, at porttitor urna pulvinar ac. Donec aliquam, dui eget porta rutrum, libero sapien faucibus nibh, ut blandit massa massa eget eros. Curabitur erat nunc, dapibus eget convallis non, tristique ac enim.</p>
 															
 															
-																			<aside class="wp-block-editorial-relatedstories is-style-list alignright alignwide">
+																			<aside class="wp-block-editorial-relatedstories is-style-list alignright">
 																				<ul class="wp-block-editorial-relatedstories-list">
 																						<h3 class="wp-block-editorial-relatedstories-title">Related</h3>
 																						<li class="wp-block-editorial-relatedstories-list-item">
@@ -341,9 +341,9 @@
 									<div class="id-kss-info-wrapper">
 									
 									
-											<div class="is-example-variant is-style-list alignright alignwide">
+											<div class="is-example-variant is-style-list alignright">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.is-style-list.alignright.alignwide
+													.is-style-list.alignright
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
 													List style stories, align right
@@ -367,7 +367,7 @@
 																
 																
 																
-																				<aside class="wp-block-editorial-relatedstories is-style-list alignright alignwide">
+																				<aside class="wp-block-editorial-relatedstories is-style-list alignright">
 																					<ul class="wp-block-editorial-relatedstories-list">
 																							<h3 class="wp-block-editorial-relatedstories-title">Related</h3>
 																							<li class="wp-block-editorial-relatedstories-list-item">
@@ -414,9 +414,9 @@
 											</div>
 									
 									
-											<div class="is-example-variant is-style-list alignleft alignwide">
+											<div class="is-example-variant is-style-list alignleft">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.is-style-list.alignleft.alignwide
+													.is-style-list.alignleft
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
 													List style stories, align left
@@ -440,7 +440,7 @@
 																
 																
 																
-																				<aside class="wp-block-editorial-relatedstories is-style-list alignleft alignwide">
+																				<aside class="wp-block-editorial-relatedstories is-style-list alignleft">
 																					<ul class="wp-block-editorial-relatedstories-list">
 																							<h3 class="wp-block-editorial-relatedstories-title">Related</h3>
 																							<li class="wp-block-editorial-relatedstories-list-item">
@@ -487,9 +487,9 @@
 											</div>
 									
 									
-											<div class="is-example-variant is-style-card has-two alignwide">
+											<div class="is-example-variant is-style-card has-two">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.is-style-card.has-two.alignwide
+													.is-style-card.has-two
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
 													Card style stories, with two stories
@@ -515,7 +515,7 @@
 																
 																
 																
-																				<aside class="wp-block-editorial-relatedstories is-style-card has-two alignwide">
+																				<aside class="wp-block-editorial-relatedstories is-style-card has-two">
 																					<ul class="wp-block-editorial-relatedstories-list">
 																							<li class="wp-block-editorial-relatedstories-list-item">
 																								<article class="wp-block-editorial-relatedstories-article">
@@ -562,9 +562,9 @@
 											</div>
 									
 									
-											<div class="is-example-variant is-style-card has-three alignwide">
+											<div class="is-example-variant is-style-card has-three">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.is-style-card.has-three.alignwide
+													.is-style-card.has-three
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
 													Card style stories, with three stories
@@ -591,7 +591,7 @@
 																
 																
 																
-																					<aside class="wp-block-editorial-relatedstories is-style-card has-three alignwide">
+																					<aside class="wp-block-editorial-relatedstories is-style-card has-three">
 																					<ul class="wp-block-editorial-relatedstories-list">
 																							<li class="wp-block-editorial-relatedstories-list-item">
 																								<article class="wp-block-editorial-relatedstories-article">
@@ -662,7 +662,7 @@
 		
 					</span><span class="hljs-template-tag">{{#<span class="hljs-name"><span class="hljs-builtin-name">unless</span></span> modifier_class }}</span><span class="xml">
 		
-						<span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-relatedstories is-style-list alignright alignwide"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-relatedstories is-style-list alignright"</span>&gt;</span>
 							<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-relatedstories-list"</span>&gt;</span>
 									<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-relatedstories-title"</span>&gt;</span>Related<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
 									<span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-editorial-relatedstories-list-item"</span>&gt;</span>
