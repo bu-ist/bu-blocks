@@ -252,14 +252,14 @@ registerBlockType( 'editorial/introparagraph', {
 				</InspectorControls>
 				<div className={ [ className, hasDropCapClass, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
 					<PlainText
-						tagName='h4'
+						tagname='h4'
 						value={ heading }
 						onChange={ heading => setAttributes( { heading } ) }
 						placeholder={ __( 'Enter Teaser Headline (optional)' ) }
 					/>
 					<RichText
 						multiline="li"
-						tagName="ul"
+						tagname="ul"
 						onChange={ ( listValues ) => setAttributes( { list: listValues } ) }
 						value={ list }
 						wrapperClassName="wp-block-editorial-introparagraph-toc"
@@ -285,7 +285,7 @@ registerBlockType( 'editorial/introparagraph', {
 							</svg>
 						) }
 						<RichText
-							tagName="p"
+							tagname="p"
 							value= { content }
 							onChange={ content => setAttributes( { content: content } ) }
 							placeholder={ __( 'Write paragraph…' ) }
