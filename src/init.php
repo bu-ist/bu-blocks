@@ -41,20 +41,6 @@ function define_i18n_hooks() {
 }
 
 /**
- * Register all of the hooks related to the admin area functionality
- * of the plugin.
- *
- * @since    0.1.0
- */
-function define_admin_hooks() {
-
-	// Enqueue admin scripts and styles, and add admin plugin settings page.
-	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_enqueue_scripts' );
-	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_enqueue_styles' );
-	add_action( 'admin_menu', __NAMESPACE__ . '\\admin_menu' );
-}
-
-/**
  * Register all of the hooks related to the editor.
  *
  * @since    0.1.0
@@ -64,6 +50,12 @@ function define_editor_hooks() {
 	// Enqueue block scripts and styles for admin and front-end.
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+
+	// Add block categories.
+	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
+
+	// Set default options for block theme settings.
+	add_filter( 'block_editor_settings', __NAMESPACE__ . '\\default_theme_colors', 10, 2 );
 }
 
 /**
@@ -124,6 +116,73 @@ function enqueue_block_editor_assets() {
 	);
 }
 
+/**
+ * Filter the list of default editor block categories.
+ *
+ * @since    0.1.0
+ *
+ * @param    array $categories Default block categories.
+ */
+function filter_block_categories( $categories ) {
+	$bu = array(
+		array(
+			'slug'  => 'bu',
+			'title' => __( 'BU Blocks', 'bu-blocks' ),
+		),
+	);
+
+	$bu_editorial = array(
+		array(
+			'slug'  => 'bu-editorial',
+			'title' => __( 'Editorial Blocks', 'bu-blocks' ),
+		),
+	);
+
+	$bu_editorial_presets = array(
+		array(
+			'slug'  => 'bu-editorial-presets',
+			'title' => __( 'Preset Editorial Blocks', 'bu-blocks' ),
+		),
+	);
+
+	return array_merge(
+		$bu,
+		$bu_editorial,
+		$bu_editorial_presets,
+		$categories
+	);
+}
+
+/**
+ * Sets the default `light` and `dark` color objects for use as theme options.
+ *
+ * @param array   $editor_settings Editor settings.
+ * @param WP_Post $post            The current post.
+ */
+function default_theme_colors( $editor_settings, $post ) {
+	if ( ! function_exists( 'bu_prepress_get_post_types' ) ) {
+		return $editor_settings;
+	}
+
+	if ( ! in_array( $post->post_type, bu_prepress_get_post_types(), true ) ) {
+		return $editor_settings;
+	}
+
+	$editor_settings['buDefaultThemes'] = array(
+		array(
+			'name'  => esc_html__( 'Light', 'r-editorial' ),
+			'slug'  => 'light',
+			'color' => '#ffffff',
+		),
+		array(
+			'name'  => esc_html__( 'Dark', 'r-editorial' ),
+			'slug'  => 'dark',
+			'color' => '#000000',
+		),
+	);
+
+	return $editor_settings;
+}
 
 /**
  * Recursively load all PHP files within the /src/ directory.

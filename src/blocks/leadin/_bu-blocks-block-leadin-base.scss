@@ -1,0 +1,377 @@
+// =================================================================
+// Hero Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+%leadin-image-height-small {
+	.wp-block-leadin-media {
+		// height: 320px;
+		@include breakpoint( $xs ) {
+			height: 400px;
+		}
+		@include breakpoint( $sm ) {
+			height: 480px;
+		}
+		@include breakpoint( $md ) {
+			height: 560px;
+		}
+		@include breakpoint( $lg ) {
+			height: 640px;
+		}
+	}
+}
+%leadin-image-height-medium {
+	.wp-block-leadin-media {
+		// height: 400px;
+		@include breakpoint( $xs ) {
+			height: 480px;
+		}
+		@include breakpoint( $sm ) {
+			height: 560px;
+		}
+		@include breakpoint( $md ) {
+			height: 640px;
+		}
+		@include breakpoint( $lg ) {
+			height: 720px;
+		}
+	}
+}
+%leadin-image-height-large {
+	.wp-block-leadin-media {
+		// height: 320px;
+		@include breakpoint( $xs ) {
+			height: 560px;
+		}
+		@include breakpoint( $sm ) {
+			height: 640px;
+		}
+		@include breakpoint( $md ) {
+			height: 720px;
+		}
+		@include breakpoint( $lg ) {
+			height: 800px;
+		}
+	}
+}
+%leadin-text-over-image-base {
+	@include breakpoint( $xs ) {
+		.container-lockup {
+			position: relative;
+		}
+		.container-words-outter {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+		.container-words-inner{
+			margin-left: auto;
+			margin-right: auto;
+		}
+		&.has-text-position-y-top {
+			.container-words-outter {
+				align-items: flex-start;
+			}
+		}
+		&.has-text-position-y-middle {
+			.container-words-outter {
+				align-items: start;
+			}
+		}
+		&.has-text-position-y-bottom {
+			.container-words-outter {
+				align-items: flex-end;
+			}
+		}
+		&.has-text-position-x-left {
+			.container-words-inner {
+				margin-left: 0;
+			}
+		}
+		&.has-text-position-x-right {
+			.container-words-inner {
+				margin-right: 0;
+			}
+		}
+	}
+}
+%leadin-sidebyside-vert-size {
+	.container-lockup {
+		@include breakpoint( $xs ) {
+			min-height: 640px;
+		}
+		@include breakpoint( $sm ) {
+			min-height: 720px;
+		}
+		@include breakpoint( $md ) {
+			min-height: 800px;
+		}
+		@include breakpoint( $lg ) {
+			min-height: 880px;
+		}
+	}
+}
+$masthead-off-set: 132px !default;
+$masthead-off-set-xs: 192px !default;
+$masthead-off-set-sm: $masthead-off-set-xs !default;
+$masthead-off-set-md: $masthead-off-set-xs !default;
+$masthead-off-set-lg: $masthead-off-set-xs !default;
+%masthead-off-set-calc {
+	.wp-block-leadin-media {
+		img {
+			height: clac( 100% + #{$masthead-off-set} );
+			@include breakpoint( $xs ) {
+				height: clac( 100% + #{$masthead-off-set-xs} );
+			}
+			@include breakpoint( $sm ) {
+				height: clac( 100% + #{$masthead-off-set-sm} );
+			}
+			@include breakpoint( $md ) {
+				height: clac( 100% + #{$masthead-off-set-md} );
+			}
+			@include breakpoint( $lg ) {
+				height: clac( 100% + #{$masthead-off-set-lg} );
+			}
+		}
+	}
+}
+.wp-block-leadin {
+	@extend %media-focus;
+	padding-bottom: 2em;
+	h1,
+	h2,
+	h3,
+	h4 {
+		margin:0 0 0.25em ;
+	}
+	.container-words-inner {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		position: relative;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+	.wp-block-leadin-media {
+		@include transition( height 500ms ease-in-out 0s );
+		position: relative;
+		box-sizing: content-box;
+		img {
+			position: relative;
+			width: 100%;
+			@include breakpoint( $xs ) {
+				-o-object-fit: cover;
+				object-fit: cover;
+				border-radius: 0.0005px; //chrome cover video overflow fix
+				height: 100%;
+				position: absolute;
+				height: 100%;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+	&.is-style-text-to-image {
+		@extend %leadin-image-height-small;
+		.container-lockup {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-direction: column;
+			flex-direction: column;
+		}
+		.wp-block-leadin-media {
+			-ms-flex-order: 2;
+			order: 2;
+
+		}
+		.container-words-outter {
+			-ms-flex-order: 1;
+			order: 1;
+		}
+	}
+	&.is-style-image-to-text {
+		@extend %leadin-image-height-medium;
+	}
+	&.is-style-emphasis-on-text {
+
+		$shadow-width: 50px;
+
+		@extend %leadin-image-height-medium;
+		position: relative;
+
+		.container-lockup {
+			@include breakpoint( $xs ) {
+				padding-bottom: 140px;
+			}
+			@include breakpoint( $sm ) {
+				padding-bottom: 70px;
+			}
+		}
+
+		.container-lockup {
+			position: relative;
+		}
+		.container-words-outter {
+			width: 100%;
+			padding-left: $padding;
+			padding-right: $padding;
+			@include breakpoint( $xs ) {
+				position: absolute;
+				bottom: 0;
+			}
+		}
+		.container-words-inner {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		&:not(.has-box) {
+			.container-words-outter {
+				@include breakpoint( $xs ) {
+					&::before,
+					&::after  {
+						content: " ";
+					}
+				}
+				&::before,
+				&::after  {
+					background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
+					position: absolute;
+					bottom: 0;
+					width: $shadow-width;
+					height: 140px;
+					@include breakpoint( $sm ) {
+						bottom: 0;
+					}
+					@include breakpoint( $md ) {
+						bottom: -70px;
+					}
+				}
+				&::before {
+					left: calc( 0px - #{$shadow-width} );
+				}
+				&::after {
+					right: calc( 0px - #{$shadow-width} );
+					@include scale( -1, 1 );
+				}
+			}
+			.container-words-inner {
+				padding-top: 2em;
+			}
+		}
+		&.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					padding-top: 2em;
+					padding-bottom: 2em;
+					padding-left: $padding * 2;
+					padding-right: $padding * 2;
+				}
+			}
+		}
+	}
+	&.is-style-text-over-image {
+		@extend %leadin-image-height-large;
+		@extend %leadin-text-over-image-base;
+		&:not(.has-box){
+			.wp-block-leadin-media {
+				@include breakpoint( $xs ) {
+					&::after {
+						content: "";
+						background-color: inherit;
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						opacity: 0.5;
+					}
+				}
+			}
+		}
+		&.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					padding-top: 2em;
+					padding-bottom: 2em;
+					padding-left: $padding * 2;
+					padding-right: $padding * 2;
+				}
+			}
+		}
+	}
+	&.is-style-side-by-side {
+		@extend %leadin-sidebyside-vert-size;
+		text-align: center;
+		&:not(.has-wider) {
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+		.container-words-inner {
+			padding-left: $padding * 2;
+			padding-right: $padding * 2;
+		}
+		&.has-flip {
+			.wp-block-leadin-media{
+				order: 2;
+			}
+		}
+		@include breakpoint( $xs ) {
+			text-align: left;
+			.container-lockup{
+				display: flex;
+				.wp-block-leadin-media {
+					width: 33.333333%;
+				}
+				.container-words-outter {
+					width: 66.666666%;
+				}
+			}
+			.container-words-outter {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				
+			}
+			.container-words-inner {
+				align-items: flex-start;
+			}
+		}
+		@include breakpoint( $sm ) {
+			.container-lockup{
+				.wp-block-leadin-media,
+				.container-words-outter {
+					width: 50%;
+				}
+			}
+		}
+	}
+	&:not(.is-style-side-by-side) {
+		.container-lockup {
+			text-align: center;
+		}
+	}
+	&:not(.is-style-side-by-side):not(.is-style-text-to-image):not(.is-style-image-to-text):not(.is-style-emphasis-on-text):not(.is-style-text-over-image) {
+		.wp-block-leadin-media {
+			margin: 0;
+			img {
+				position: relative;
+				height: auto;
+			}
+		}
+	}
+}

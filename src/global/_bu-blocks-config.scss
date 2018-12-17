@@ -15,8 +15,8 @@ $blocks-config: ();
 $blocks-defaults: (
 	scope: 							wp,
 	
-	color-body: 					null,
-	color-page: 					null,
+	color-body: 					$color-grayscale-f,
+	color-page: 					$color-grayscale-f,
 
 
 	color-gray-a: 					null,
@@ -37,6 +37,8 @@ $blocks-defaults: (
 	color-quinary: 					null,
 	color-quinary-text: 			null,
 
+	color-tint:						null,
+
 	font-family-primary: 			null,
 	font-family-secondary: 		 	null,
 	font-family-tertiary: 			null,
@@ -47,6 +49,14 @@ $blocks-defaults: (
 	font-color-link: 				null,
 	font-color-link-active: 		null,
 	font-color-link-visited: 		null,
+
+	font-color-theme-dark:			$color-grayscale-f,
+
+	background-color-light: 		$color-grayscale-f,
+	background-color-dark:			$color-grayscale-0,
+	background-color-default:		$color-grayscale-f,
+
+	border-radius:					0,
 );
 
 // Merge defaults with the final map.
