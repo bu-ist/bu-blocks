@@ -73,38 +73,38 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 	&.has-dropcap:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter,
 		svg text {
 			font-family: blocks-get( 'font-family-secondary');
 		}
 	}
 	&.has-dropcap-color-primary:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			color: blocks-get( 'color-primary-text');
 		}
 	}
 	&.has-dropcap-color-secondary:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			color: blocks-get( 'color-secondary-text');
 		}
 	}
 	&.is-style-dropcap-dimensional:not( :focus-within ) {
 		&.has-dropcap-color-primary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: blocks-get( 'color-primary');
 			}
 		}
 		&.has-dropcap-color-secondary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: blocks-get( 'color-secondary');
 			}
 		}
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			text-shadow:	1px 1px blocks-get( 'color-gray-e'),
 							2px 2px blocks-get( 'color-gray-e'),
@@ -119,20 +119,20 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 	&.is-style-dropcap-boxed:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			color: blocks-get( 'color-page');
 			background-color: blocks-get( 'font-color-heading');
 		}
 		&.has-dropcap-color-primary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: blocks-get( 'color-page');
 				background-color: blocks-get( 'color-primary');
 			}
 		}
 		&.has-dropcap-color-secondary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: blocks-get( 'color-page');
 				background-color: blocks-get( 'color-secondary');
@@ -141,13 +141,13 @@ $scope: blocks-get( 'scope' );
 	}
 	&.is-style-dropcap-image:not( :focus-within ) {
 		.has-dropcap-color-primary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: blocks-get( 'color-primary');
 			}
 		}
 		.has-dropcap-color-secondary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: blocks-get( 'color-secondary');
 			}

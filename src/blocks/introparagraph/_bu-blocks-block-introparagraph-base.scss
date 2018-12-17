@@ -19,7 +19,7 @@ $dropcap-size:		4em;
 	}
 
 	&.is-style-large {
-		.editor-rich-text:first-of-type p,
+		.wp-block-editorial-introparagraph-content .editor-rich-text,
 		> p:first-of-type {
 			font-size: 1.25em;
 		}
@@ -31,7 +31,7 @@ $dropcap-size:		4em;
 		}
 	}
 	&.has-dropcap:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter,
 		svg text {
 			font-weight: 700;
@@ -43,14 +43,14 @@ $dropcap-size:		4em;
 		}
 	}
 	&.is-style-dropcap-boxed:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			color: white;
 			padding: 0.125em 0.25em;
 		}
 	}
 	&.is-style-dropcap-outlined:not( :focus-within ) {
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			border-width: 2px;
 			border-style: solid;
@@ -73,13 +73,13 @@ $dropcap-size:		4em;
 		.dropcap-filltext {
 			fill: url(#dropcap-texture);
 		}
-		.editor-rich-text:first-of-type p:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		> p:first-of-type:first-letter {
 			color: transparent;
 		}
 		.has-dropcap-color-primary,
 		.has-dropcap-color-secondary {
-			.editor-rich-text:first-of-type p:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			> p:first-of-type:first-letter {
 				color: transparent;
 			}
