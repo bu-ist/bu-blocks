@@ -20,13 +20,18 @@ const {
 	Fragment,
 } = wp.element;
 const {
+	IconButton,
 	PanelBody,
 	SelectControl,
+	Toolbar,
 } = wp.components;
 const {
 	RichText,
 	PlainText,
 	InspectorControls,
+	MediaPlaceholder,
+	MediaUpload,
+	MediaUploadCheck,
 } = wp.editor;
 
 // The current publication owner.
@@ -73,7 +78,14 @@ registerBlockType( 'editorial/introparagraph', {
 		className: {
 			type: 'string',
 			default: '',
-		}
+		},
+		dropCapImageURL: {
+			type: 'string',
+			default: '',
+		},
+		dropCapImageId: {
+			type: 'number',
+		},
 	},
 	styles: [
 		{
@@ -109,8 +121,23 @@ registerBlockType( 'editorial/introparagraph', {
 	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
 	edit( props ) {
-		const { attributes, setAttributes, className, insertBlocksAfter } = props;
-		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor } = attributes;
+		const {
+			attributes,
+			className,
+			insertBlocksAfter,
+			setAttributes,
+		} = props;
+
+		const {
+			heading,
+			content,
+			list,
+			hasDropCap,
+			dropCapStyle,
+			dropCapImageURL,
+			dropCapImageId,
+			paragraphColor,
+		} = attributes;
 
 		// This is either 'has-dropcap' or ''.
 		let hasDropCapClass = hasDropCap;
@@ -138,6 +165,20 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapCharacter = content.charAt( 0 );
 		};
 
+		// When an image is selected, set the URL and ID attributes on the block.
+		const onSelectImage = ( media ) => {
+			if ( ! media || ! media.url ) {
+				setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
+				return;
+			}
+			setAttributes( { dropCapImageURL: media.url, dropCapImageId: media.id } );
+		};
+
+		// When an image is removed, reset the URL and ID attributes on the block.
+		const onRemoveImage = () => {
+			setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
+		};
+
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -154,7 +195,7 @@ registerBlockType( 'editorial/introparagraph', {
 								] }
 							/>
 						) }
-						{ hasDropCapStyle && (
+						{ hasDropCapStyle && ! isImageDropCap && (
 							<SelectControl
 								label={ __( 'Drop cap color' ) }
 								value={ dropCapStyle || '' }
@@ -164,6 +205,47 @@ registerBlockType( 'editorial/introparagraph', {
 									{ value: 'has-dropcap-color-primary', label: __( 'Primary' ) },
 									{ value: 'has-dropcap-color-secondary', label: __( 'Secondary' ) },
 								] }
+							/>
+						) }
+						{ isImageDropCap && '' !== dropCapImageURL ? (
+							<MediaUploadCheck>
+								<Toolbar>
+									<MediaUpload
+										onSelect={ onSelectImage }
+										value={ dropCapImageId }
+										render={ ( { open } ) => (
+											<div>
+												<IconButton
+													className="components-toolbar__control"
+													label="Edit image"
+													icon="edit"
+													onClick={ open }
+												/>
+												<IconButton
+													icon="no-alt"
+													onClick={ onRemoveImage }
+													className="blocks-gallery-image__remove"
+													label="Remove image"
+												/>
+											</div>
+										) }
+									/>
+								</Toolbar>
+								<img src={ dropCapImageURL } />
+							</MediaUploadCheck>
+						) : (
+							""
+						) }
+						{ isImageDropCap && (
+							<MediaPlaceholder
+								key="drop-cap-image"
+								icon="format-image"
+								label="Drop Cap Image"
+								labels={ {
+									title: 'Drop Cap Image',
+									name: 'images',
+								} }
+								onSelect={ onSelectImage }
 							/>
 						) }
 					</PanelBody>
@@ -193,13 +275,13 @@ registerBlockType( 'editorial/introparagraph', {
 									patternUnits="userSpaceOnUse"
 									width="100%" height="100%"
 									x="0%" y="0%">
-									<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+									<image href={ dropCapImageURL } width="1024" height="1024"/>
 								</pattern>
-								<text text-anchor="start"
+								<text textAnchor="start"
 									x="0"
 									y="50%"
 									dy=".404em"
-									class="dropcap-filltext">{ dropCapCharacter }</text>
+									className="dropcap-filltext">{ dropCapCharacter }</text>
 							</svg>
 						) }
 						<RichText
@@ -227,7 +309,16 @@ registerBlockType( 'editorial/introparagraph', {
 	},
 
 	save( { attributes } ) {
-		const { heading, list, content, hasDropCap, dropCapStyle, paragraphColor, className } = attributes;
+		const {
+			heading,
+			list,
+			content,
+			hasDropCap,
+			dropCapStyle,
+			dropCapImageURL,
+			paragraphColor,
+			className,
+		} = attributes;
 
 		let isImageDropCap = false;
 		if ( 'undefined' !== typeof className ) {
@@ -269,13 +360,13 @@ registerBlockType( 'editorial/introparagraph', {
 									patternUnits="userSpaceOnUse"
 									width="100%" height="100%"
 									x="0%" y="0%">
-									<image href="https://www.bu.edu/webteam/projects/testpattern.png" width="1024" height="1024"/>
+									<image href={ dropCapImageURL } width="1024" height="1024"/>
 								</pattern>
-								<text text-anchor="start"
+								<text textAnchor="start"
 									x="0"
 									y="50%"
 									dy=".404em"
-									class="dropcap-filltext">{ dropCapCharacter }</text>
+									className="dropcap-filltext">{ dropCapCharacter }</text>
 							</svg>
 						) }
 						<RichText.Content
