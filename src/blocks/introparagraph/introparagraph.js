@@ -332,6 +332,7 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapCharacter = content.charAt( 0 );
 		};
 
+		// Determine if the list is empty and should be excluded from the saved block.
 		let saveList = true;
 		if ( 'undefined' === typeof list || '<li></li>' === list || RichText.isEmpty( list ) ) {
 			saveList = false;
