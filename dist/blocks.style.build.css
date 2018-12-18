@@ -5773,7 +5773,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.container::after, .row::after {
+.container::after, .row::after, .wp-block-editorial-modal::after {
   display: table;
   clear: both;
   content: ""; }
@@ -7732,7 +7732,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     z-index: 10000; }
 
 .wp-block-editorial-modal-callout {
-  background: #fff;
+  background: #eee;
   text-align: center;
   position: relative;
   display: -ms-flexbox;
@@ -7741,6 +7741,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center;
+  height: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: 60px 0; }
