@@ -73,12 +73,13 @@
 
 .wp-block-editorial-modal-callout {
 	@extend %col-full;
-	background: $color-grayscale-f;
+	background: $color-grayscale-e;
 	text-align: center;
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
 	flex-wrap: wrap;
 	margin: 60px 0;
 
