@@ -64,6 +64,9 @@ const blockAttributes = {
 	themeColor: {
 		type: 'string',
 	},
+	primaryTerm: {
+		type: 'string',
+	},
 	...BackgroundAttributes,
 };
 
@@ -122,6 +125,7 @@ registerBlockType( 'bu/leadin', {
 			flip,
 			className,
 			themeColor,
+			primaryTerm,
 		} = attributes;
 
 		const isStyleEmphasisOnText = className && className.includes( 'is-style-emphasis-on-text' );
@@ -152,7 +156,9 @@ registerBlockType( 'bu/leadin', {
 					</div>
 					<div class="container-words-outter">
 						<div class="container-words-inner">
-							<span href="http://www.bu.edu/" class="wp-prepress-tag"></span>
+							{ primaryTerm && (
+								<span href="http://www.bu.edu/" class="wp-prepress-tag">{ primaryTerm }</span>
+							) }
 							<RichText.Content
 								tagName="h1"
 								className="head"

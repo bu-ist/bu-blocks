@@ -44,6 +44,7 @@ class BULeadinEdit extends Component {
 			wide,
 			box,
 			flip,
+			primaryTerm,
 		} = attributes;
 
 		const isStyleEmphasisOnText = className.includes( 'is-style-emphasis-on-text' );
@@ -66,6 +67,15 @@ class BULeadinEdit extends Component {
 			}
 		);
 
+		const primaryTermInput = document.getElementById( '_r_editorial_primary_term_select' );
+
+		// Not all themes have primary term support.
+		if ( primaryTermInput ) {
+			primaryTermInput.addEventListener( "change", function() {
+				setAttributes( { primaryTerm: primaryTermInput.value } );
+			} );
+		}
+
 		return (
 			<Fragment>
 				<div className={ classes }>
@@ -75,7 +85,9 @@ class BULeadinEdit extends Component {
 						</div>
 						<div class="container-words-outter">
 							<div class="container-words-inner">
-								<span href="http://www.bu.edu/" class="wp-prepress-tag"></span>
+								{ primaryTerm && (
+									<span href="http://www.bu.edu/" class="wp-prepress-tag">{ primaryTerm }</span>
+								) }
 								<RichText
 									tagName="h1"
 									className="head"
