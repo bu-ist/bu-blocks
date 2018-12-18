@@ -7,51 +7,37 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
-
 .bu-blocks-modal-noscroll {
   overflow: hidden;
 }
 
-.wp-block-editorial-modal-callout {
-	@extend %col-full;
-	background: $color-grayscale-d;
-	text-align: center;
-	position: relative;
-	margin-top: 40px;
-	margin-bottom: 60px;
-
-
-	.wp-block-editorial-modal-media {
-		width: 100%;
-
-		.wp-block-editorial-modal-image {
-			display: block;
-			height: auto;
-			width: 100%;
-		}
-
-		img {
-			object-fit: cover;
-		}
-	}
-
-	h1,
-	p {
-		@include breakpoint( $xs ) {
-			color: $color-grayscale-f;
+.wp-block-editorial-modal {
+	&.has-media {
+		.wp-block-editorial-modal-callout-content {
+			h1,
+			p {
+				color: $color-grayscale-f;
+			}
 		}
 	}
 }
+
+// modal content styles
 
 .wp-block-editorial-modal-content {
 	display:none;
 	@extend %col-full;
 	padding: 60px 24px 24px;
-	background: $color-grayscale-d;
+	background: $color-grayscale-f;
 	position: relative;
 
 	@include breakpoint( $xs ) {
 		padding: 90px 60px 60px;
+	}
+
+	> *:not( .alignwide ):not( .alignfull ) {
+		max-width: 740px;
+		margin: 0 auto;
 	}
 
 	.wp-block-editorial-modal-overlay-close {
@@ -70,40 +56,146 @@
 			color: $color-grayscale-6;
 		}
 	}
-}
 
-.wp-block-editorial-modal-callout-content {
-	max-width: 90%;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	padding: 20px;
-
-	@include breakpoint( $xs ) {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: absolute;
+	&.show-overlay {
+		display: block;
+		position: fixed;
+		overflow-y: scroll;
 		top: 0;
-		height: 100%;
-		padding: 40px;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 10000;
 	}
 }
 
+// modal callout styles
+
+.wp-block-editorial-modal-callout {
+	@extend %col-full;
+	background: $color-grayscale-f;
+	text-align: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 60px 0;
+
+
+	.wp-block-editorial-modal-media {
+		position: absolute;
+		height: 100%;
+
+		.wp-block-editorial-modal-image {
+			width: 100%;
+			height: 100%;
+			max-height: 100%;
+		}
+
+		img {
+			object-fit: cover;
+			height: 100%;
+			width: 100%;
+			max-height: 100%;
+
+			&.has-background-opacity-10 {
+				opacity: .1;
+			}
+
+			&.has-background-opacity-20 {
+				opacity: .2;
+			}
+
+			&.has-background-opacity-30 {
+				opacity: .3;
+			}
+
+			&.has-background-opacity-40 {
+				opacity: .4;
+			}
+
+			&.has-background-opacity-50 {
+				opacity: .5;
+			}
+
+			&.has-background-opacity-60 {
+				opacity: .6;
+			}
+
+			&.has-background-opacity-70 {
+				opacity: .7;
+			}
+
+			&.has-background-opacity-80 {
+				opacity: .8;
+			}
+
+			&.has-background-opacity-90 {
+				opacity: .9;
+			}
+		}
+	}
+
+	h1,
+	p {
+		color: $color-grayscale-0;
+	}
+}
+
+
+.wp-block-editorial-modal-callout-content {
+	z-index: 1000;
+	padding: 40px;
+
+	@include breakpoint( $sm ) {
+		padding: 80px;
+	}
+
+	.button,
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+// themes
+
 .has-light-theme {
-	.wp-block-editorial-modal-content {
+	.wp-block-editorial-modal-content,
+	.wp-block-editorial-modal-callout {
 		background: $color-grayscale-e;
+	}
+
+	.wp-block-editorial-modal-callout {
+		h1,
+		p {
+			color: $color-grayscale-0;
+		}
+
+		.button {
+			background: $color-grayscale-f;
+		}
 	}
 }
 
 .has-dark-theme {
-	.wp-block-editorial-modal-content {
+	.wp-block-editorial-modal-content,
+	.wp-block-editorial-modal-callout {
 		background: $color-grayscale-3;
 	}
 
-	.wp-block-editorial-modal-overlay-close,
-	p {
-		color: $color-grayscale-e;
+	.wp-block-editorial-modal-content {
+		p,
+		.wp-block-editorial-modal-overlay-close {
+			color: $color-grayscale-e;
+		}
+	}
+
+	.wp-block-editorial-modal-callout {
+		h1,
+		p {
+			color: $color-grayscale-f;
+		}
 	}
 }
 
@@ -117,16 +209,5 @@
 			color: $color-grayscale-1;
 		}
 	}
-}
-
-.wp-block-editorial-modal-content.show-overlay {
-	display: block;
-	position: fixed;
-	overflow-y: scroll;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 10000;
 }
 

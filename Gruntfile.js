@@ -110,7 +110,7 @@ module.exports = function( grunt ) {
 				js: [
 				  "bu-blocks-frontend.js",
 				],
-				extend: 'node_modules/id-kss-builder/extend',
+				extend: 'extend-kss',
 				gitURL: 'https://github.com/bu-ist/bu-blocks/',
 				gitURLCSSDEV: 'https://github.com/bu-ist/bu-blocks/tree/develop/src',
 				exampleStylesheetURL: 'https://www.bu.edu/wp-content/themes/responsive-framework-2-x/style.min.css'
