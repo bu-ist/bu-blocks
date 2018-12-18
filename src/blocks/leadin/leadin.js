@@ -97,6 +97,7 @@ const blockStyles = [
 const blockSupports = {
 	className: false,
 	customClassName: false,
+	multiple: false,
 };
 
 registerBlockType( 'bu/leadin', {
