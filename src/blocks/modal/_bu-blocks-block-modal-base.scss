@@ -1,5 +1,5 @@
 // =================================================================
-// Sample Styles - Configurable
+// Modal Styles - Configurable
 // =================================================================
 //
 //
@@ -12,6 +12,8 @@
 }
 
 .wp-block-editorial-modal {
+	@extend %clearfix;
+
 	&.has-media {
 		.wp-block-editorial-modal-callout-content {
 			h1,
