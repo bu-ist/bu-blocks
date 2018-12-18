@@ -57,7 +57,7 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-modal {
 	.wp-block-editorial-modal-content {
-	background: blocks-get( 'background-color-default' );
+		background: blocks-get( 'background-color-default' );
 
 		a,
 		.wp-block-editorial-modal-overlay-close,
@@ -66,8 +66,13 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
+	.wp-block-editorial-modal-callout {
+		background: blocks-get( 'background-color-default' );
+	}
+
 	&.has-dark-theme {
-		.wp-block-editorial-modal-content {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'background-color-dark' );
 
 			p {
@@ -77,31 +82,36 @@ $scope: blocks-get( 'scope' );
 	}
 
 	&.has-light-theme {
-		.wp-block-editorial-modal-content {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'background-color-light' );
 		}
 	}
 
 	&.has-primary-theme {
-		.wp-block-editorial-modal-content {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'color-primary' );
 		}
 	}
 
 	&.has-secondary-theme {
-		.wp-block-editorial-modal-content {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'color-secondary' );
 		}
 	}
 
 	&.has-tertiary-theme {
-		.wp-block-editorial-modal-content {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'color-tertiary' );
 		}
 	}
 
 	&.has-quaternary-theme {
-		.wp-block-editorial-modal-content {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'color-quaternary' );
 		}
 	}
