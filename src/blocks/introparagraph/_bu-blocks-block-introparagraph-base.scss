@@ -19,7 +19,8 @@ $dropcap-size:		4em;
 	}
 
 	&.is-style-large {
-		p:first-of-type {
+		.wp-block-editorial-introparagraph-content .editor-rich-text,
+		> p:first-of-type {
 			font-size: 1.25em;
 		}
 	}
@@ -29,8 +30,9 @@ $dropcap-size:		4em;
 			column-gap: 2em;
 		}
 	}
-	&.has-dropcap {
-		p:first-of-type:first-letter,
+	&.has-dropcap:not( :focus-within ) {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		> p:first-of-type:first-letter,
 		svg text {
 			font-weight: 700;
 			display: inline-block;
@@ -40,20 +42,22 @@ $dropcap-size:		4em;
 			margin: 0 0.25em .125em 0;
 		}
 	}
-	&.is-style-dropcap-boxed {
-		p:first-of-type:first-letter {
+	&.is-style-dropcap-boxed:not( :focus-within ) {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		> p:first-of-type:first-letter {
 			color: white;
 			padding: 0.125em 0.25em;
 		}
 	}
-	&.is-style-dropcap-outlined {
-		p:first-of-type:first-letter {
+	&.is-style-dropcap-outlined:not( :focus-within ) {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		> p:first-of-type:first-letter {
 			border-width: 2px;
 			border-style: solid;
 			padding: 0.125em 0.25em;
 		}
 	}
-	&.is-style-dropcap-image {
+	&.is-style-dropcap-image:not( :focus-within ) {
 		.wp-block-editorial-introparagraph-content {
 			position: relative;
 		}
@@ -69,12 +73,14 @@ $dropcap-size:		4em;
 		.dropcap-filltext {
 			fill: url(#dropcap-texture);
 		}
-		p:first-of-type:first-letter {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		> p:first-of-type:first-letter {
 			color: transparent;
 		}
 		.has-dropcap-color-primary,
 		.has-dropcap-color-secondary {
-			p:first-of-type:first-letter {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			> p:first-of-type:first-letter {
 				color: transparent;
 			}
 		}

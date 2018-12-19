@@ -7,7 +7,9 @@
 				<div class="wp-block-editorial-modal-callout">
 					<div class="wp-block-editorial-modal-media">
 						<figure class="wp-block-editorial-modal-image">
-							<img src="http://www.bu.edu/research/wp-assets/articles/soil-fungi/images/videobg1.jpg" class="banner-placeholder">
+						{{#ifContains modifier_class 'has-media' }}
+							<img src="https://placekitten.com/1000/500" class="has-background-opacity-70">
+						{{/ifContains}}
 						</figure>
 					</div>
 					<div class="wp-block-editorial-modal-callout-content">
