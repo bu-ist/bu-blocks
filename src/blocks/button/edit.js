@@ -2,6 +2,9 @@
  * Edit function for the button block.
  */
 
+// External dependencies.
+import classnames from 'classnames';
+
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
 
@@ -25,6 +28,7 @@ class BUButtonEdit extends Component {
 			setAttributes,
 			isSelected,
 			className,
+			publicationClassName,
 		} = this.props;
 
 		const {
@@ -33,12 +37,15 @@ class BUButtonEdit extends Component {
 			icon,
 		} = attributes;
 
-		const classes = [
+		const classes = classnames(
 			'wp-block-button',
 			className,
-			...( themeColor.class ? [ themeColor.class.replace( '-color', '' ) ] : [] ),
-			...( icon ? [ `icon-navigateright ${icon}` ] : [] ),
-		].join( ' ' ).trim();
+			publicationClassName,
+			{
+				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+				[ `icon-navigateright ${icon}` ]:  icon,
+			}
+		);
 
 		return (
 			<Fragment>
