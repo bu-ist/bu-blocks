@@ -83,6 +83,20 @@
 							  
 							  	<a
 							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
+							  		href="item-blocks-global-buniverse.html">
+							  				<span class="id-kss-status id-kss-status-ready">
+							  					Ready
+							  				</span>
+							  			<span class="id-kss-nav-name">
+							  				BUniverse
+							  			</span>
+							  		</a>
+							  </li>
+							  
+							  <li class="id-kss-nav-menu-item">
+							  
+							  	<a
+							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
 							  		href="item-blocks-global-pullquote.html">
 							  				<span class="id-kss-status id-kss-status-in-progress">
 							  					In-Progress
@@ -190,34 +204,6 @@
 							  		</a>
 							  </li>
 							  
-							  <li class="id-kss-nav-menu-item">
-							  
-							  	<a
-							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
-							  		href="item-blocks-editorial-photo-essay.html">
-							  				<span class="id-kss-status id-kss-status-in-progress">
-							  					In-Progress
-							  				</span>
-							  			<span class="id-kss-nav-name">
-							  				Photo-Essay
-							  			</span>
-							  		</a>
-							  </li>
-							  
-							  <li class="id-kss-nav-menu-item">
-							  
-							  	<a
-							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
-							  		href="item-blocks-editorial-related-stories.html">
-							  				<span class="id-kss-status id-kss-status-ready">
-							  					Ready
-							  				</span>
-							  			<span class="id-kss-nav-name">
-							  				Related Stories
-							  			</span>
-							  		</a>
-							  </li>
-							  
 						</ul>
 				</li>
 				
@@ -231,17 +217,17 @@
 
 
 		
-				<div id="kssref-blocks-global-base-block" class="id-kss-section id-kss-section--depth-3">
+				<div id="kssref-blocks-global-buniverse" class="id-kss-section id-kss-section--depth-3">
 					<div class="id-kss-style id-kss-component-content">
 						<header class="id-kss-title-block">
 							<h2 class="id-kss-title id-kss-title--level-3 ">
 		
 								<span class="id-kss-title-section">Global</span>
 		
-								<span class="id-kss-title-name">Base Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-base-block">Link</a></span>
+								<span class="id-kss-title-name">BUniverse Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-buniverse">Link</a></span>
 							</h2>
-								<span class="id-kss-status id-kss-status-in-progress">
-									In-Progress
+								<span class="id-kss-status id-kss-status-ready">
+									Ready
 								</span>
 		
 									<span class="id-kss-open-github-issue">
@@ -249,20 +235,14 @@
 									</span>
 		
 							<!--<span class="id-kss-title__ref">
-								1.1.1
+								1.1.2
 								<span class="id-kss-title__permalink-hash">
-										#Blocks.Global.Base Block
+										#Blocks.Global.BUniverse
 								</span>
 							</span>-->
 						</header>
 							<div class="id-kss-description">
-								<p>The description for this base block. Cum sociis natoque penatibus et magnis dis
-		parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus
-		sit amet fermentum.</p>
-		<h2>A subheader</h2>
-		<p>Cras mattis consectetur purus sit amet
-		fermentum. Donec ullamcorper nulla non metus auctor fringilla. Vivamus
-		sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+								<p>This is a BUniverse Block, It has the buniverse text itself in additon to optional spans containing preemptive text, and post-text for follow up. Also a unique ID is added tot he h tag.</p>
 		
 							</div>
 		
@@ -274,8 +254,8 @@
 								Examples
 		
 									<span class="id-kss-source id-kss-style">
-										Source: <code>blocks/block/_block-base.scss, line 1</code>
-											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/block/_block-base.scss#L1">
+										Source: <code>blocks/buniverse/style.scss, line 16</code>
+											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/buniverse/style.scss#L16">
 												View Source
 											</a>
 									</span>
@@ -303,7 +283,12 @@
 																}
 															</style>
 															<div class="iframe-wrapper " id="">
-																<div class="wp-block-cgb-block-bu-blocks-cgb "><h2 class="font-size-maximum">base block</h2></div>
+																<figure class="wp-block-global-buniverse ">
+																<div class="wp-block-global-buniverse-wrapper">
+																	<iframe src="//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&controls=1&showinfo=0&rel=0&autoplay=1&mute=1&start=148" frameborder="0"></iframe>
+																</div>
+																<figcaption></figcaption>
+															</figure>
 															</div>
 									
 													</script>
@@ -317,12 +302,12 @@
 									<div class="id-kss-info-wrapper">
 									
 									
-											<div class="is-example-variant block-base-class">
+											<div class="is-example-variant has-aspectratio-16by9">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.block-base-class
+													.has-aspectratio-16by9
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
-													Box Green
+													16:9 aspect ratio
 												</p>
 												<div class="id-kss-modifier-example">
 													<div class="id-kss-example-wrapper">
@@ -335,7 +320,148 @@
 																	}
 																</style>
 																<div class="iframe-wrapper " id="">
-																	<div class="wp-block-cgb-block-bu-blocks-cgb block-base-class"><h2 class="font-size-maximum">base block</h2></div>
+																	<figure class="wp-block-global-buniverse has-aspectratio-16by9">
+																	<div class="wp-block-global-buniverse-wrapper">
+																		<iframe src="//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&controls=1&showinfo=0&rel=0&autoplay=1&mute=1&start=148" frameborder="0"></iframe>
+																	</div>
+																	<figcaption></figcaption>
+																</figure>
+																</div>
+														</script>
+									
+														<div class="id-kss-example-iframe-handle"></div>
+													</div>
+													<div class="id-kss-modifier-example-footer"></div>
+												</div>
+											</div>
+									
+									
+											<div class="is-example-variant has-aspectratio-4by3">
+												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+													.has-aspectratio-4by3
+												</div>
+												<p class="id-kss-modifier-description id-kss-style">
+													4:3 aspect ratio
+												</p>
+												<div class="id-kss-modifier-example">
+													<div class="id-kss-example-wrapper">
+														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+														<script type="text/template" class="template-iframe">
+									
+																<style type="text/css">
+																	body {
+																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+																	}
+																</style>
+																<div class="iframe-wrapper " id="">
+																	<figure class="wp-block-global-buniverse has-aspectratio-4by3">
+																	<div class="wp-block-global-buniverse-wrapper">
+																		<iframe src="//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&controls=1&showinfo=0&rel=0&autoplay=1&mute=1&start=148" frameborder="0"></iframe>
+																	</div>
+																	<figcaption></figcaption>
+																</figure>
+																</div>
+														</script>
+									
+														<div class="id-kss-example-iframe-handle"></div>
+													</div>
+													<div class="id-kss-modifier-example-footer"></div>
+												</div>
+											</div>
+									
+									
+											<div class="is-example-variant has-aspectratio-1by1">
+												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+													.has-aspectratio-1by1
+												</div>
+												<p class="id-kss-modifier-description id-kss-style">
+													1:1 aspect ratio
+												</p>
+												<div class="id-kss-modifier-example">
+													<div class="id-kss-example-wrapper">
+														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+														<script type="text/template" class="template-iframe">
+									
+																<style type="text/css">
+																	body {
+																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+																	}
+																</style>
+																<div class="iframe-wrapper " id="">
+																	<figure class="wp-block-global-buniverse has-aspectratio-1by1">
+																	<div class="wp-block-global-buniverse-wrapper">
+																		<iframe src="//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&controls=1&showinfo=0&rel=0&autoplay=1&mute=1&start=148" frameborder="0"></iframe>
+																	</div>
+																	<figcaption></figcaption>
+																</figure>
+																</div>
+														</script>
+									
+														<div class="id-kss-example-iframe-handle"></div>
+													</div>
+													<div class="id-kss-modifier-example-footer"></div>
+												</div>
+											</div>
+									
+									
+											<div class="is-example-variant has-aspectratio-3by4">
+												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+													.has-aspectratio-3by4
+												</div>
+												<p class="id-kss-modifier-description id-kss-style">
+													3:4 aspect ratio
+												</p>
+												<div class="id-kss-modifier-example">
+													<div class="id-kss-example-wrapper">
+														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+														<script type="text/template" class="template-iframe">
+									
+																<style type="text/css">
+																	body {
+																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+																	}
+																</style>
+																<div class="iframe-wrapper " id="">
+																	<figure class="wp-block-global-buniverse has-aspectratio-3by4">
+																	<div class="wp-block-global-buniverse-wrapper">
+																		<iframe src="//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&controls=1&showinfo=0&rel=0&autoplay=1&mute=1&start=148" frameborder="0"></iframe>
+																	</div>
+																	<figcaption></figcaption>
+																</figure>
+																</div>
+														</script>
+									
+														<div class="id-kss-example-iframe-handle"></div>
+													</div>
+													<div class="id-kss-modifier-example-footer"></div>
+												</div>
+											</div>
+									
+									
+											<div class="is-example-variant has-aspectratio-9by16">
+												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+													.has-aspectratio-9by16
+												</div>
+												<p class="id-kss-modifier-description id-kss-style">
+													9:16 aspect ratio
+												</p>
+												<div class="id-kss-modifier-example">
+													<div class="id-kss-example-wrapper">
+														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+														<script type="text/template" class="template-iframe">
+									
+																<style type="text/css">
+																	body {
+																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+																	}
+																</style>
+																<div class="iframe-wrapper " id="">
+																	<figure class="wp-block-global-buniverse has-aspectratio-9by16">
+																	<div class="wp-block-global-buniverse-wrapper">
+																		<iframe src="//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&controls=1&showinfo=0&rel=0&autoplay=1&mute=1&start=148" frameborder="0"></iframe>
+																	</div>
+																	<figcaption></figcaption>
+																</figure>
 																</div>
 														</script>
 									
@@ -349,9 +475,14 @@
 		
 							<details class="id-kss-markup id-kss-style" open="">
 								<summary class="id-kss-docs-heading">
-										Markup
+										Markup <code>blocks/buniverse/bu-blocks-block-buniverse.hbs</code>
 								</summary>
-								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-cgb-block-bu-blocks-cgb [modifier class]"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-size-maximum"</span>&gt;</span>base block<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
+								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-global-buniverse </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-global-buniverse-wrapper"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//www.bu.edu/buniverse/interface/embed/embed.html?v=CSe7S24N&amp;controls=1&amp;showinfo=0&amp;rel=0&amp;autoplay=1&amp;mute=1&amp;start=148"</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span></span></code></pre>
 							</details>
 		
 				</div>
