@@ -71,6 +71,10 @@ class BULeadinEdit extends Component {
 
 		// Not all themes have primary term support.
 		if ( primaryTermInput ) {
+			if ( primaryTermInput.value ) {
+				setAttributes( { primaryTerm: primaryTermInput.value } );
+			}
+
 			primaryTermInput.addEventListener( "change", function() {
 				setAttributes( { primaryTerm: primaryTermInput.value } );
 			} );
