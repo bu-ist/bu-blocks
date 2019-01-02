@@ -67,7 +67,7 @@ class BULeadinEdit extends Component {
 			}
 		);
 
-		const primaryTermInput = document.getElementById( '_bu_prepess_primary_term_select' );
+		const primaryTermInput = document.getElementById( '_bu_prepress_primary_term_select' );
 
 		// Not all themes have primary term support.
 		if ( primaryTermInput ) {
