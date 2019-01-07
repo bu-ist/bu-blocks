@@ -4,9 +4,12 @@
  * Register a photo essay block with Gutenberg.
  */
 
-//  Import CSS.
+// Import CSS.
 import './style.scss';
 import './editor.scss';
+
+// Internal dependencies.
+import './photoessay-image';
 
 // WordPress dependencies.
 const {
@@ -60,7 +63,7 @@ registerBlockType( 'editorial/photoessay', {
 			let template = [];
 
 			photoTypes.forEach( () => {
-				template.push( [ 'core/image' ] );
+				template.push( [ 'editorial/photoessay-image' ] );
 			} );
 
 			return template;
@@ -106,7 +109,7 @@ registerBlockType( 'editorial/photoessay', {
 						<InnerBlocks
 							template={ getPhotoEssayTemplate( layout ) }
 							templateLock={ 'all' }
-							allowedBlocks={ [ 'core/image' ] }
+							allowedBlocks={ [ 'editorial/photoessay-image' ] }
 						/>
 					</div>
 				</div>
