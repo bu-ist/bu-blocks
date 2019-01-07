@@ -58,33 +58,49 @@ registerBlockType( 'editorial/photoessay', {
 	edit( { attributes, setAttributes, clientId } ) {
 		const { layout } = attributes;
 
+		/**
+		 * Returns the configuration for a given layout option.
+		 *
+		 * It wouldn't hurt to memoize this.
+		 *
+		 * @param {string} layout Currently selected layout option.
+		 *
+		 * @return {Object[]} Columns layout configuration.
+		 */
 		const getPhotoEssayTemplate = ( layout ) => {
+			// Split the option value and retrieve the parts with layout information.
 			const photoTypes = layout.split( '-' ).splice( 3 );
+
+			// Intialize the tempate for the given layout.
 			let template = [];
 
+			// Set up each image block for this layout,
+			// accounting for images that may already be in place.
 			photoTypes.forEach( ( type, i ) => {
+				// Check for an existing image block.
 				const imageBlock = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks[ i ];
-				let attributes = { columnClass: `photo-${type}` };
 
+				// Initialize attribues for the image block.
+				let attributes = {};
+
+				// Migrate attributes if the image block is already set.
 				if ( imageBlock ) {
 					const imageAttributes = Object.entries( imageBlock.attributes );
-					delete imageAttributes.columnClass;
 
 					for ( const [ attribute, value ] of imageAttributes ) {
 						attributes[ attribute ] = value;
 					}
 				}
 
+				// Set (or reset) the image block `columnClass` attribute.
+				attributes.columnClass = `photo-${type}`;
+
+				// Add the image block to the template.
 				template.push( [ [ 'editorial/photoessay-image' ], attributes ] );
 			} );
 
+			// Return the configured template for the given layout.
 			return template;
-		};
-
-		const onChangeLayout = ( value ) => {
-			setAttributes( {
-				layout: value,
-			} );
 		};
 
 		return(
@@ -112,7 +128,7 @@ registerBlockType( 'editorial/photoessay', {
 							{ label: 'thirds-1-1-1', value: 'photo-row-thirds-1-1-1' },
 							{ label: 'thirds-2-1', value: 'photo-row-thirds-2-1' },
 						] }
-						onChange={ onChangeLayout }
+						onChange={ value => setAttributes( { layout: value } ) }
 					/>
 					</PanelBody>
 				</InspectorControls>
