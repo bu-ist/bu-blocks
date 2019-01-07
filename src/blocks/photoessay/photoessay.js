@@ -55,15 +55,27 @@ registerBlockType( 'editorial/photoessay', {
 		align: [ 'wide', 'full' ],
 	},
 
-	edit( { attributes, setAttributes } ) {
+	edit( { attributes, setAttributes, clientId } ) {
 		const { layout } = attributes;
 
 		const getPhotoEssayTemplate = ( layout ) => {
 			const photoTypes = layout.split( '-' ).splice( 3 );
 			let template = [];
 
-			photoTypes.forEach( ( type ) => {
-				template.push( [ [ 'editorial/photoessay-image' ], { columnClass: `photo-${type}` } ] );
+			photoTypes.forEach( ( type, i ) => {
+				const imageBlock = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks[ i ];
+				let attributes = { columnClass: `photo-${type}` };
+
+				if ( imageBlock ) {
+					const imageAttributes = Object.entries( imageBlock.attributes );
+					delete imageAttributes.columnClass;
+
+					for ( const [ attribute, value ] of imageAttributes ) {
+						attributes[ attribute ] = value;
+					}
+				}
+
+				template.push( [ [ 'editorial/photoessay-image' ], attributes ] );
 			} );
 
 			return template;
