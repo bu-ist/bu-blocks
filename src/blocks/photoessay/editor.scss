@@ -5,4 +5,105 @@
  * which makes it higher in priority.
  */
 
+input[value^="photo-row-"] + label {
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: inline-block;
+	height: 100px;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	width: 219px;
+}
 
+input[value="photo-row-fourths-1-1-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-1-1-1.png' );
+}
+
+input[value="photo-row-fourths-1-1-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-1-2.png' );
+}
+
+input[value="photo-row-fourths-1-2-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-2-1.png' );
+}
+
+input[value="photo-row-fourths-1-3"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-3.png' );
+}
+
+input[value="photo-row-fourths-2-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-2-1-1.png' );
+}
+
+input[value="photo-row-fourths-3-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-3-1.png' );
+}
+
+input[value="photo-row-fourths-4"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-4.png' );
+}
+
+input[value="photo-row-short-2-2-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-2.png' );
+}
+
+input[value="photo-row-short-2-2-4"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-4.png' );
+}
+
+input[value="photo-row-short-2-4-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-4-2.png' );
+}
+
+input[value="photo-row-short-4-2-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-4-2-2.png' );
+}
+
+input[value="photo-row-square-1-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-1-s.png' );
+}
+
+input[value="photo-row-square-2-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-2-s.png' );
+}
+
+input[value="photo-row-square-3-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-3-s.png' );
+}
+
+input[value="photo-row-square-s-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-1.png' );
+}
+
+input[value="photo-row-square-s-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-2.png' );
+}
+
+input[value="photo-row-square-s-3"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-3.png' );
+}
+
+input[value="photo-row-square-s-s-s-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-s-s-s.png' );
+}
+
+input[value="photo-row-square-s-s-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-s-s.png' );
+}
+
+input[value="photo-row-thirds-1-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-1-1-1.png' );
+}
+
+input[value="photo-row-thirds-1-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-1-2.png' );
+}
+
+input[value="photo-row-thirds-2-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-2-1.png' );
+}
+
+input[value="photo-row-thirds-3"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-3.png' );
+}

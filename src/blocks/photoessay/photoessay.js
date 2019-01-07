@@ -109,24 +109,37 @@ registerBlockType( 'editorial/photoessay', {
 					<PanelBody title={ __( 'Photo Essay Row Settings' ) }>
 					<RadioControl
 						label={ __( 'Layout' ) }
-						help={ __( '' ) }
 						selected={ layout }
 						options={ [
-							{ label: 'square-s-s-s-s', value: 'photo-row-square-s-s-s-s' },
-							{ label: 'square-s-s-s', value: 'photo-row-square-s-s-s' },
-							{ label: 'square-s-1', value: 'photo-row-square-s-1' },
-							{ label: 'square-s-2', value: 'photo-row-square-s-2' },
-							{ label: 'square-s-3', value: 'photo-row-square-s-3' },
-							{ label: 'short-2-2-2-2', value: 'photo-row-short-2-2-2-2' },
-							{ label: 'short-4-2-2', value: 'photo-row-short-4-2-2' },
-							{ label: 'short-2-4-2', value: 'photo-row-short-2-4-2' },
-							{ label: 'fourths-2-1-1', value: 'photo-row-fourths-2-1-1' },
-							{ label: 'fourths-1-2-1', value: 'photo-row-fourths-1-2-1' },
-							{ label: 'fourths-2-2', value: 'photo-row-fourths-2-2' },
-							{ label: 'fourths-3-1', value: 'photo-row-fourths-3-1' },
-							{ label: 'fourths-4', value: 'photo-row-fourths-4' },
-							{ label: 'thirds-1-1-1', value: 'photo-row-thirds-1-1-1' },
-							{ label: 'thirds-2-1', value: 'photo-row-thirds-2-1' },
+							//landscape, wide, ultra-wide, and square
+							// Single column layouts.
+							{ label: 'Single wide image', value: 'photo-row-thirds-3' },
+							{ label: 'Single ultra-wide image', value: 'photo-row-fourths-4' },
+							// Two column layouts.
+							{ label: 'Two landscape images', value: 'photo-row-fourths-2-2' },
+							{ label: 'One square, one portrait image', value: 'photo-row-square-s-1' },
+							{ label: 'One square, one landscape image', value: 'photo-row-square-s-2' },
+							{ label: 'One square, one wide image', value: 'photo-row-square-s-3' },
+							{ label: 'One portrait, one square image', value: 'photo-row-square-1-s' },
+							{ label: 'One landscape, one square image', value: 'photo-row-square-2-s' },
+							{ label: 'One wide, one square image', value: 'photo-row-square-3-s' },
+							{ label: 'One landscape, one portrait image', value: 'photo-row-thirds-2-1' },
+							{ label: 'One wide, one portrait image', value: 'photo-row-fourths-3-1' },
+							{ label: 'One portrait, one landscape image', value: 'photo-row-thirds-1-2' },
+							{ label: 'One portrait, one wide image', value: 'photo-row-fourths-1-3' },
+							// Three column layouts.
+							{ label: 'Three portrait images', value: 'photo-row-thirds-1-1-1' },
+							{ label: 'Three square images', value: 'photo-row-square-s-s-s' },
+							{ label: 'One landscape, two portrait images', value: 'photo-row-fourths-2-1-1' },
+							{ label: 'One portrait, one landscape, one portrait image', value: 'photo-row-fourths-1-2-1' },
+							{ label: 'Two portrait, one landscape image', value: 'photo-row-fourths-1-1-2' },
+							{ label: 'One ultra-wide, two landscape image', value: 'photo-row-short-4-2-2' },
+							{ label: 'One landscape, one ultra-wide, one landscape image', value: 'photo-row-short-2-4-2' },
+							{ label: 'Two landscape, one ultra-wide image', value: 'photo-row-short-2-2-4' },
+							// Four column layouts.
+							{ label: 'Four portrait images', value: 'photo-row-fourths-1-1-1-1' },
+							{ label: 'Four square images', value: 'photo-row-square-s-s-s-s' },
+							{ label: 'Four wide images', value: 'photo-row-short-2-2-2-2' },
 						] }
 						onChange={ value => setAttributes( { layout: value } ) }
 					/>
