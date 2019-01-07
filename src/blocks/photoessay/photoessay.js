@@ -62,8 +62,8 @@ registerBlockType( 'editorial/photoessay', {
 			const photoTypes = layout.split( '-' ).splice( 3 );
 			let template = [];
 
-			photoTypes.forEach( () => {
-				template.push( [ 'editorial/photoessay-image' ] );
+			photoTypes.forEach( ( type ) => {
+				template.push( [ [ 'editorial/photoessay-image' ], { columnClass: `photo-${type}` } ] );
 			} );
 
 			return template;

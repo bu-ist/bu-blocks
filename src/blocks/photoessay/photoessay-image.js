@@ -62,6 +62,9 @@ registerBlockType( 'editorial/photoessay-image', {
 			source: 'html',
 			selector: 'figcaption',
 		},
+		columnClass: {
+			type: 'string',
+		},
 	},
 	supports: {
 		className: false,
@@ -78,6 +81,7 @@ registerBlockType( 'editorial/photoessay-image', {
 			url,
 			alt,
 			caption,
+			columnClass,
 		} = attributes;
 
 		// Set attributes when an image is selected.
@@ -107,7 +111,7 @@ registerBlockType( 'editorial/photoessay-image', {
 		};
 
 		return (
-			<div>
+			<div className={ columnClass }>
 				<div className="wp-block-photoessay-media">
 					<figure className="wp-block-leadin-image">
 						<MediaUploadCheck>
@@ -180,10 +184,11 @@ registerBlockType( 'editorial/photoessay-image', {
 			alt,
 			caption,
 			id,
+			columnClass,
 		} = attributes;
 
 		return (
-			<div>
+			<div className={ columnClass }>
 				<div className="wp-block-photoessay-media">
 					<figure className="wp-block-leadin-image">
 						<img
