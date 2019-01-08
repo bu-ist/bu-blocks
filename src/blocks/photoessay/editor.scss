@@ -18,12 +18,30 @@
 	}
 }
 
+.wp-block-photoessay-media-wrapper {
+	&::before {
+		content: "";
+		display: inline-block;
+	}
+
+	.wp-block-photoessay-media {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		width: 100%;
+
+		figure {
+			margin: 0;
+
+			img {
+				height: 100%;
+			}
+		}
+	}
+}
+
 .wp-block-photoessay-media {
-	//height: 100%;
-	padding: 0 15px;
-	//position: absolute;
-	//top: 0;
-	//width: 100%;
+	padding: 0;
 }
 
 // Layout options styles.
