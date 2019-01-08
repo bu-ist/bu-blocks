@@ -14,15 +14,32 @@
 }
 
 .wp-block-editorial-listicle-figure {
-	padding-bottom: $padding-large;
+	padding-bottom: $padding-small;
+
+	@include breakpoint( $sm ) {
+		padding-bottom: $padding-large;
+	}
 
 	img {
+		height: auto;
 		width: 100%;
-		object-fit: cover;
 
-		@include breakpoint( $xs ) {
-			height: 300px;
+		@supports ( object-fit: cover ) {
+
+			@include breakpoint( $xs ) {
+				height: 350px;
+				object-fit: cover;
+			}
+
+			@include breakpoint( $sm ) {
+				height: 500px;
+			}
+
+			@include breakpoint( $md ) {
+				height: 645px;
+			}
 		}
+
 	}
 
 	.wp-caption-text {
@@ -31,8 +48,9 @@
 }
 
 .wp-block-editorial-listicle-header {
+	padding-bottom: $padding-small;
 
-	.has-sidebar & {
+	@include breakpoint( $sm ) {
 		padding-bottom: $padding-large;
 	}
 
@@ -45,12 +63,14 @@
 }
 
 .wp-block-editorial-listicle-header-number {
-	@extend %font-size-1;
+	font-size: 4em;
+	line-height: 1;
 	margin-bottom: 20px;
 
 	@include breakpoint( 400px ) {
+		font-size: 6em;
 		margin: 0 20px 0 0;
-		width: 15%;
+		width: 20%;
 	}
 }
 
@@ -63,6 +83,7 @@
 }
 
 .wp-block-editorial-listicle-section {
+	margin-top: 0;
 	padding-bottom: $padding;
 
 	.has-sidebar & {
