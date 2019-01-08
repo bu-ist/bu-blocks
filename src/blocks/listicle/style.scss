@@ -1,0 +1,28 @@
+// =================================================================
+// Listicle Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/listicle/bu-blocks-block-listicle-base';
+@import 'src/blocks/listicle/bu-blocks-block-listicle-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Listicle Block
+//
+// This is a Listicle Block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-listicle.hbs
+//
+// .block-listicle-variant1 - Example of a Layout Variation
+//
+// Styleguide Blocks.Editorial.Listicle
+
+
