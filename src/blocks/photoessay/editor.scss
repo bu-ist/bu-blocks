@@ -5,6 +5,28 @@
  * which makes it higher in priority.
  */
 
+.wp-block-photoessay .editor-block-list__layout {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	> div {
+		float: left;
+		margin: 0 0 30px;
+		position: relative;
+	}
+}
+
+.wp-block-photoessay-media {
+	//height: 100%;
+	padding: 0 15px;
+	//position: absolute;
+	//top: 0;
+	//width: 100%;
+}
+
+// Layout options styles.
 input[value^="photo-row-"] + label {
 	background-repeat: no-repeat;
 	background-size: contain;
