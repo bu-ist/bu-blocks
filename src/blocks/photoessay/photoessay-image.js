@@ -127,7 +127,7 @@ registerBlockType( 'editorial/photoessay-image', {
 		};
 
 		return (
-			<div className="wp-block-photoessay-media-wrapper">
+			<div className={ ( url ) ? 'wp-block-photoessay-media-wrapper' : '' }>
 				<div className="wp-block-photoessay-media">
 					<MediaUploadCheck>
 						{ ! url && (
