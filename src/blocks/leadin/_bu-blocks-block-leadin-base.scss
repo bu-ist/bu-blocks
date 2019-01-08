@@ -241,12 +241,6 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		}
 		&:not(.has-box) {
 			.container-words-outter {
-				@include breakpoint( $xs ) {
-					&::before,
-					&::after  {
-						content: " ";
-					}
-				}
 				&::before,
 				&::after  {
 					background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
