@@ -16,6 +16,7 @@ const {
 	__,
 } = wp.i18n;
 const {
+	createBlock,
 	registerBlockType,
 } = wp.blocks;
 const {
@@ -32,6 +33,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 const {
+	dispatch,
 	select,
 } = wp.data;
 
@@ -59,98 +61,93 @@ registerBlockType( 'editorial/photoessay', {
 		const { layout } = attributes;
 
 		/**
-		 * Returns the configuration for a given layout option.
+		 * Updates the layout attribute and handles any necessary block updates,
+		 * insertions, or removals.
 		 *
-		 * It wouldn't hurt to memoize this.
-		 *
-		 * @param {string} layout Currently selected layout option.
-		 *
-		 * @return {Object[]} Columns layout configuration.
+		 * @param {string} newLayout Currently selected layout option.
 		 */
-		const getPhotoEssayTemplate = ( layout ) => {
-			// Split the option value and retrieve the parts with layout information.
-			const photoTypes = layout.split( '-' ).splice( 3 );
+		const onChangeLayout = ( newLayout ) => {
+			setAttributes( { layout: newLayout } );
 
-			// Intialize the tempate for the given layout.
-			let template = [];
+			// Get the image block classes from the information contained in the layout option.
+			const blockClasses = newLayout.split( '-' ).splice( 3 );
 
-			// Set up each image block for this layout,
-			// accounting for images that may already be in place.
-			photoTypes.forEach( ( type, i ) => {
-				// Check for an existing image block.
-				const imageBlock = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks[ i ];
+			// Get any existing image blocks.
+			const currentBlocks = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks;
 
-				// Initialize attribues for the image block.
-				let attributes = {};
+			// Update or insert new blocks accordingly.
+			blockClasses.forEach( ( blockClass, i ) => {
+				const existingBlock = currentBlocks[ i ];
+				const newColumnClass = { columnClass: `photo-${blockClass}` };
 
-				// Migrate attributes if the image block is already set.
-				if ( imageBlock ) {
-					const imageAttributes = Object.entries( imageBlock.attributes );
+				if ( existingBlock ) {
+					// Update the `columnClass` attribute of the existing block at this index.
+					dispatch( 'core/editor' ).updateBlockAttributes( existingBlock.clientId, newColumnClass );
+				} else {
+					// Otherwise, create and insert a new block.
+					const newBlock = createBlock( 'editorial/photoessay-image', newColumnClass );
 
-					for ( const [ attribute, value ] of imageAttributes ) {
-						attributes[ attribute ] = value;
-					}
+					dispatch( 'core/editor' ).insertBlock( newBlock, i, clientId );
 				}
-
-				// Set (or reset) the image block `columnClass` attribute.
-				attributes.columnClass = `photo-${type}`;
-
-				// Add the image block to the template.
-				template.push( [ [ 'editorial/photoessay-image' ], attributes ] );
 			} );
 
-			// Return the configured template for the given layout.
-			return template;
+			// Remove blocks if the new layout has fewer images than the previous.
+			currentBlocks.forEach( ( block, i ) => {
+				if ( blockClasses[ i ] ) {
+					return;
+				}
+
+				dispatch( 'core/editor' ).removeBlock( block.clientId, false );
+			} );
 		};
 
 		return(
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Photo Essay Row Settings' ) }>
-					<RadioControl
-						label={ __( 'Layout' ) }
-						selected={ layout }
-						options={ [
-							//landscape, wide, ultra-wide, and square
-							// Single column layouts.
-							{ label: 'Single wide image', value: 'photo-row-thirds-3' },
-							{ label: 'Single ultra-wide image', value: 'photo-row-fourths-4' },
-							// Two column layouts.
-							{ label: 'Two landscape images', value: 'photo-row-fourths-2-2' },
-							{ label: 'One square, one portrait image', value: 'photo-row-square-s-1' },
-							{ label: 'One square, one landscape image', value: 'photo-row-square-s-2' },
-							{ label: 'One square, one wide image', value: 'photo-row-square-s-3' },
-							{ label: 'One portrait, one square image', value: 'photo-row-square-1-s' },
-							{ label: 'One landscape, one square image', value: 'photo-row-square-2-s' },
-							{ label: 'One wide, one square image', value: 'photo-row-square-3-s' },
-							{ label: 'One landscape, one portrait image', value: 'photo-row-thirds-2-1' },
-							{ label: 'One wide, one portrait image', value: 'photo-row-fourths-3-1' },
-							{ label: 'One portrait, one landscape image', value: 'photo-row-thirds-1-2' },
-							{ label: 'One portrait, one wide image', value: 'photo-row-fourths-1-3' },
-							// Three column layouts.
-							{ label: 'Three portrait images', value: 'photo-row-thirds-1-1-1' },
-							{ label: 'Three square images', value: 'photo-row-square-s-s-s' },
-							{ label: 'One landscape, two portrait images', value: 'photo-row-fourths-2-1-1' },
-							{ label: 'One portrait, one landscape, one portrait image', value: 'photo-row-fourths-1-2-1' },
-							{ label: 'Two portrait, one landscape image', value: 'photo-row-fourths-1-1-2' },
-							{ label: 'One ultra-wide, two landscape image', value: 'photo-row-short-4-2-2' },
-							{ label: 'One landscape, one ultra-wide, one landscape image', value: 'photo-row-short-2-4-2' },
-							{ label: 'Two landscape, one ultra-wide image', value: 'photo-row-short-2-2-4' },
-							// Four column layouts.
-							{ label: 'Four portrait images', value: 'photo-row-fourths-1-1-1-1' },
-							{ label: 'Four square images', value: 'photo-row-square-s-s-s-s' },
-							{ label: 'Four wide images', value: 'photo-row-short-2-2-2-2' },
-						] }
-						onChange={ value => setAttributes( { layout: value } ) }
-					/>
+						<RadioControl
+							label={ __( 'Layout' ) }
+							selected={ layout }
+							options={ [
+								// Single column layouts.
+								{ label: 'Single wide image', value: 'photo-row-thirds-3' },
+								{ label: 'Single ultra-wide image', value: 'photo-row-fourths-4' },
+								// Two column layouts.
+								{ label: 'Two landscape images', value: 'photo-row-fourths-2-2' },
+								{ label: 'One square, one portrait image', value: 'photo-row-square-s-1' },
+								{ label: 'One square, one landscape image', value: 'photo-row-square-s-2' },
+								{ label: 'One square, one wide image', value: 'photo-row-square-s-3' },
+								{ label: 'One portrait, one square image', value: 'photo-row-square-1-s' },
+								{ label: 'One landscape, one square image', value: 'photo-row-square-2-s' },
+								{ label: 'One wide, one square image', value: 'photo-row-square-3-s' },
+								{ label: 'One landscape, one portrait image', value: 'photo-row-thirds-2-1' },
+								{ label: 'One wide, one portrait image', value: 'photo-row-fourths-3-1' },
+								{ label: 'One portrait, one landscape image', value: 'photo-row-thirds-1-2' },
+								{ label: 'One portrait, one wide image', value: 'photo-row-fourths-1-3' },
+								// Three column layouts.
+								{ label: 'Three portrait images', value: 'photo-row-thirds-1-1-1' },
+								{ label: 'Three square images', value: 'photo-row-square-s-s-s' },
+								{ label: 'One landscape, two portrait images', value: 'photo-row-fourths-2-1-1' },
+								{ label: 'One portrait, one landscape, one portrait image', value: 'photo-row-fourths-1-2-1' },
+								{ label: 'Two portrait, one landscape image', value: 'photo-row-fourths-1-1-2' },
+								{ label: 'One ultra-wide, two landscape image', value: 'photo-row-short-4-2-2' },
+								{ label: 'One landscape, one ultra-wide, one landscape image', value: 'photo-row-short-2-4-2' },
+								{ label: 'Two landscape, one ultra-wide image', value: 'photo-row-short-2-2-4' },
+								// Four column layouts.
+								{ label: 'Four portrait images', value: 'photo-row-fourths-1-1-1-1' },
+								{ label: 'Four square images', value: 'photo-row-square-s-s-s-s' },
+								{ label: 'Four wide images', value: 'photo-row-short-2-2-2-2' },
+							] }
+							onChange={ onChangeLayout }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="wp-block-photoessay">
 					<div className={ layout }>
 						<InnerBlocks
-							template={ getPhotoEssayTemplate( layout ) }
-							templateLock={ 'all' }
+							templateLock="all"
 							allowedBlocks={ [ 'editorial/photoessay-image' ] }
+							templateInsertUpdatesSelection={ false }
 						/>
 					</div>
 				</div>
