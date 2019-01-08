@@ -127,8 +127,8 @@ registerBlockType( 'editorial/photoessay-image', {
 		};
 
 		return (
-			<div className="wp-block-photoessay-media">
-				<figure>
+			<div className="wp-block-photoessay-media-wrapper">
+				<div className="wp-block-photoessay-media">
 					<MediaUploadCheck>
 						{ ! url && (
 							<MediaPlaceholder
@@ -173,13 +173,15 @@ registerBlockType( 'editorial/photoessay-image', {
 						) }
 					</MediaUploadCheck>
 					{ url && (
-						<img
-							src={ url }
-							alt={ alt }
-							className={ id ? `wp-image-${ id }` : null }
-						/>
+						<figure>
+							<img
+								src={ url }
+								alt={ alt }
+								className={ id ? `wp-image-${ id }` : null }
+							/>
+						</figure>
 					) }
-				</figure>
+				</div>
 			</div>
 		);
 	},
