@@ -91,7 +91,7 @@ registerBlockType( 'editorial/photoessay', {
 				}
 			} );
 
-			// Remove blocks if the new layout has fewer images than the previous.
+			// Remove excess blocks if the new layout has fewer images than the previous.
 			currentBlocks.forEach( ( block, i ) => {
 				if ( blockClasses[ i ] ) {
 					return;
@@ -100,6 +100,11 @@ registerBlockType( 'editorial/photoessay', {
 				dispatch( 'core/editor' ).removeBlock( block.clientId, false );
 			} );
 		};
+
+		// Set a default layout when the block is first inserted.
+		if ( layout === '' ) {
+			onChangeLayout( 'photo-row-thirds-3' );
+		}
 
 		return(
 			<Fragment>
