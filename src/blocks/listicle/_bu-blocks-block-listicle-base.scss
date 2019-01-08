@@ -10,10 +10,20 @@
 
 .wp-block-editorial-listicle {
 	@extend %container-styles;
+	max-width: 975px;
 }
 
 .wp-block-editorial-listicle-figure {
 	padding-bottom: $padding-large;
+
+	img {
+		width: 100%;
+		object-fit: cover;
+
+		@include breakpoint( $xs ) {
+			height: 300px;
+		}
+	}
 
 	.wp-caption-text {
 		text-align: right;
@@ -21,36 +31,72 @@
 }
 
 .wp-block-editorial-listicle-header {
-	@extend %row-styles;
-	display: flex;
-	padding-bottom: $padding-large;
+
+	.has-sidebar & {
+		padding-bottom: $padding-large;
+	}
+
+	.has-number & {
+
+		@include breakpoint( 400px ) {
+			display: flex;
+		}
+	}
 }
 
 .wp-block-editorial-listicle-header-number {
 	@extend %font-size-1;
-	@extend %row-child-styles;
+	margin-bottom: 20px;
+
+	@include breakpoint( 400px ) {
+		margin: 0 20px 0 0;
+		width: 15%;
+	}
 }
 
-.wp-block-editorial-listicle-header-content {
-	@extend %row-child-styles;
+.wp-block-editorial-listicle-header-content-dek {
+	font-weight: 300;
+
+	strong {
+		font-weight: 600;
+	}
 }
 
 .wp-block-editorial-listicle-section {
-	@extend %row-styles;
 	padding-bottom: $padding;
+
+	.has-sidebar & {
+		@extend %row-styles;
+	}
 }
 
 .wp-block-editorial-listicle-section-content {
-	@extend %col-full;
-	@extend %col-sm-two-third;
-	@extend %row-child-styles;
+
+	.has-sidebar & {
+		@extend %col-sm-two-third;
+		padding: 0 15px;
+
+		@include breakpoint( $sm ) {
+			padding: 0 30px;
+		}
+	}
 }
 
 .wp-block-editorial-listicle-section-aside {
 	@extend %col-full;
 	@extend %col-sm-third;
-	@extend %row-child-styles;
+	padding: 0 15px;
+
+	@include breakpoint( $sm ) {
+		padding: 0 30px;
+	}
 }
 
-.wp-block-editorial-listicle-footer {
+.wp-block-editorial-listicle-footer-list {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.wp-block-editorial-listicle-footer-list-item {
+	margin-bottom: 8px;
 }
