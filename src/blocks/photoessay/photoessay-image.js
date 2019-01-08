@@ -62,7 +62,6 @@ addFilter(
 
 // Register the block.
 registerBlockType( 'editorial/photoessay-image', {
-
 	title: __( 'Photo Essay Image' ),
 	description: __( 'An individual image block for use in photo essay rows.' ),
 	icon: 'format-image',
@@ -103,13 +102,11 @@ registerBlockType( 'editorial/photoessay-image', {
 	},
 
 	edit( { attributes, setAttributes, isSelected } ) {
-
 		const {
 			id,
 			url,
 			alt,
 			caption,
-			columnClass,
 		} = attributes;
 
 		// Set attributes when an image is selected.
@@ -140,7 +137,7 @@ registerBlockType( 'editorial/photoessay-image', {
 
 		return (
 			<div className="wp-block-photoessay-media">
-				<figure className="wp-block-leadin-image">
+				<figure>
 					<MediaUploadCheck>
 						{ ! url && (
 							<MediaPlaceholder
@@ -191,7 +188,7 @@ registerBlockType( 'editorial/photoessay-image', {
 							className={ id ? `wp-image-${ id }` : null }
 						/>
 					) }
-					{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
+					{ isSelected && (
 						<RichText
 							tagName="figcaption"
 							placeholder={ __( 'Write caption…' ) }
@@ -218,7 +215,7 @@ registerBlockType( 'editorial/photoessay-image', {
 		return (
 			<div className={ columnClass }>
 				<div className="wp-block-photoessay-media">
-					<figure className="wp-block-leadin-image">
+					<figure>
 						<img
 							src={ url }
 							alt={ alt }
