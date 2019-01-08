@@ -26,11 +26,39 @@ const {
 	Fragment,
 } = wp.element;
 const {
+	BlockControls,
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
 } = wp.editor;
+const {
+	addFilter
+} = wp.hooks;
+const {
+	createHigherOrderComponent
+} = wp.compose;
+
+// Add the layout class to the block wrapper component.
+const addColumnClassName = createHigherOrderComponent( ( BlockListBlock ) => {
+	return ( props ) => {
+		const { attributes } = props;
+
+		if ( attributes.columnClass ) {
+			return <BlockListBlock { ...props } className={ attributes.columnClass } />;
+		} else {
+			return <BlockListBlock { ...props } />
+		}
+	};
+},
+'addColumnClassName' );
+
+// Filter the block wrapper component with the `addColumnClassName` function.
+addFilter(
+	'editor.BlockListBlock',
+	'bu-blocks/column-class-name',
+	addColumnClassName
+);
 
 // Register the block.
 registerBlockType( 'editorial/photoessay-image', {
@@ -111,69 +139,69 @@ registerBlockType( 'editorial/photoessay-image', {
 		};
 
 		return (
-			<div className={ columnClass }>
-				<div className="wp-block-photoessay-media">
-					<figure className="wp-block-leadin-image">
-						<MediaUploadCheck>
-							{ ! url && (
-								<MediaPlaceholder
-									icon="format-image"
-									label="Image"
-									labels={ {
-										title: 'Image',
-										name: 'images',
-									} }
-									onSelect={ onSelectImage }
-									allowedTypes={ [ 'image' ] }
-								/>
-							) }
-							{ url && (
-								<Fragment>
-									{ isSelected && (
-									<Toolbar>
-										<MediaUpload
-											onSelect={ onSelectImage }
-											value={ id }
-											allowedTypes={ [ 'image' ] }
-											render={ ( { open } ) => (
-												<div>
-													<IconButton
-														className="components-toolbar__control"
-														label="Edit image"
-														icon="edit"
-														onClick={ open }
-													/>
-													<IconButton
-														icon="no-alt"
-														onClick={ onRemoveImage }
-														className="blocks-gallery-image__remove"
-														label="Remove image"
-													/>
-												</div>
-											) }
-										/>
-									</Toolbar>
-									) }
-									<img
-										src={ url }
-										alt={ alt }
-										className={ id ? `wp-image-${ id }` : null }
-									/>
-								</Fragment>
-							) }
-						</MediaUploadCheck>
-						{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
-							<RichText
-								tagName="figcaption"
-								placeholder={ __( 'Write caption…' ) }
-								value={ caption }
-								onChange={ ( value ) => setAttributes( { caption: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'link' ] }
-								inlineToolbar
+			<div className="wp-block-photoessay-media">
+				<figure className="wp-block-leadin-image">
+					<MediaUploadCheck>
+						{ ! url && (
+							<MediaPlaceholder
+								icon="format-image"
+								label="Image"
+								labels={ {
+									title: 'Image',
+									name: 'images',
+								} }
+								onSelect={ onSelectImage }
+								allowedTypes={ [ 'image' ] }
 							/>
 						) }
-					</figure>
-				</div>
+						{ url && (
+							<BlockControls>
+								{ isSelected && (
+								<Toolbar>
+									<MediaUpload
+										onSelect={ onSelectImage }
+										value={ id }
+										allowedTypes={ [ 'image' ] }
+										render={ ( { open } ) => (
+											<div>
+												<IconButton
+													className="components-toolbar__control"
+													label="Edit image"
+													icon="edit"
+													onClick={ open }
+												/>
+												<IconButton
+													icon="no-alt"
+													onClick={ onRemoveImage }
+													className="blocks-gallery-image__remove"
+													label="Remove image"
+												/>
+											</div>
+										) }
+									/>
+								</Toolbar>
+								) }
+							</BlockControls>
+						) }
+					</MediaUploadCheck>
+					{ url && (
+						<img
+							src={ url }
+							alt={ alt }
+							className={ id ? `wp-image-${ id }` : null }
+						/>
+					) }
+					{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
+						<RichText
+							tagName="figcaption"
+							placeholder={ __( 'Write caption…' ) }
+							value={ caption }
+							onChange={ ( value ) => setAttributes( { caption: value } ) }
+							formattingControls={ [ 'bold', 'italic', 'link' ] }
+							inlineToolbar
+						/>
+					) }
+				</figure>
 			</div>
 		);
 	},
