@@ -30,7 +30,6 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
-	RichText,
 } = wp.editor;
 const {
 	addFilter
@@ -84,11 +83,6 @@ registerBlockType( 'editorial/photoessay-image', {
 			attribute: 'alt',
 			default: '',
 		},
-		caption: {
-			type: 'string',
-			source: 'html',
-			selector: 'figcaption',
-		},
 		columnClass: {
 			type: 'string',
 		},
@@ -106,7 +100,6 @@ registerBlockType( 'editorial/photoessay-image', {
 			id,
 			url,
 			alt,
-			caption,
 		} = attributes;
 
 		// Set attributes when an image is selected.
@@ -121,7 +114,6 @@ registerBlockType( 'editorial/photoessay-image', {
 				id: media.id,
 				url: media.url,
 				alt: media.alt,
-				caption: media.caption,
 			} );
 		};
 
@@ -131,7 +123,6 @@ registerBlockType( 'editorial/photoessay-image', {
 				id: undefined,
 				url: undefined,
 				alt: undefined,
-				caption: undefined,
 			} );
 		};
 
@@ -188,16 +179,6 @@ registerBlockType( 'editorial/photoessay-image', {
 							className={ id ? `wp-image-${ id }` : null }
 						/>
 					) }
-					{ isSelected && (
-						<RichText
-							tagName="figcaption"
-							placeholder={ __( 'Write caption…' ) }
-							value={ caption }
-							onChange={ ( value ) => setAttributes( { caption: value } ) }
-							formattingControls={ [ 'bold', 'italic', 'link' ] }
-							inlineToolbar
-						/>
-					) }
 				</figure>
 			</div>
 		);
@@ -205,10 +186,9 @@ registerBlockType( 'editorial/photoessay-image', {
 
 	save( { attributes } ) {
 		const {
+			id,
 			url,
 			alt,
-			caption,
-			id,
 			columnClass,
 		} = attributes;
 
@@ -221,7 +201,6 @@ registerBlockType( 'editorial/photoessay-image', {
 							alt={ alt }
 							className={ id ? `wp-image-${ id }` : null }
 						/>
-						{ ! RichText.isEmpty( caption ) && <RichText.Content tagName="figcaption" value={ caption } /> }
 					</figure>
 				</div>
 			</div>
