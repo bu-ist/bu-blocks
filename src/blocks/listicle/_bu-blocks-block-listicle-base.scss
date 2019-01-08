@@ -7,3 +7,50 @@
 // not able to be overwritten by the variables in the global sass array
 //
 //
+
+.wp-block-editorial-listicle {
+	@extend %container-styles;
+}
+
+.wp-block-editorial-listicle-figure {
+	padding-bottom: $padding-large;
+
+	.wp-caption-text {
+		text-align: right;
+	}
+}
+
+.wp-block-editorial-listicle-header {
+	@extend %row-styles;
+	display: flex;
+	padding-bottom: $padding-large;
+}
+
+.wp-block-editorial-listicle-header-number {
+	@extend %font-size-1;
+	@extend %row-child-styles;
+}
+
+.wp-block-editorial-listicle-header-content {
+	@extend %row-child-styles;
+}
+
+.wp-block-editorial-listicle-section {
+	@extend %row-styles;
+	padding-bottom: $padding;
+}
+
+.wp-block-editorial-listicle-section-content {
+	@extend %col-full;
+	@extend %col-sm-two-third;
+	@extend %row-child-styles;
+}
+
+.wp-block-editorial-listicle-section-aside {
+	@extend %col-full;
+	@extend %col-sm-third;
+	@extend %row-child-styles;
+}
+
+.wp-block-editorial-listicle-footer {
+}

@@ -22121,7 +22121,7 @@ a:visited {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.container::after, .row::after {
+.container::after, .wp-block-editorial-listicle::after, .row::after, .wp-block-editorial-listicle-header::after, .wp-block-editorial-listicle-section::after {
   display: table;
   clear: both;
   content: ""; }
@@ -22129,32 +22129,32 @@ a:visited {
 .wrapper {
   overflow: hidden; }
 
-.container {
+.container, .wp-block-editorial-listicle {
   margin: 0 auto;
   padding: 15px;
   width: 100%; }
   @media screen and (min-width: 768px) {
-    .container {
+    .container, .wp-block-editorial-listicle {
       max-width: 750px;
       padding: 60px 30px; } }
   @media screen and (min-width: 992px) {
-    .container {
+    .container, .wp-block-editorial-listicle {
       max-width: 970px; } }
   @media screen and (min-width: 1200px) {
-    .container {
+    .container, .wp-block-editorial-listicle {
       max-width: 1170px; } }
 
-.row {
+.row, .wp-block-editorial-listicle-header, .wp-block-editorial-listicle-section {
   margin: 0 -15px; }
   @media screen and (min-width: 768px) {
-    .row {
+    .row, .wp-block-editorial-listicle-header, .wp-block-editorial-listicle-section {
       margin: 0 -30px; } }
 
-.row [class*="col-"] {
+.row [class*="col-"], .wp-block-editorial-listicle-header-number, .wp-block-editorial-listicle-header-content, .wp-block-editorial-listicle-section-content, .wp-block-editorial-listicle-section-aside {
   padding-left: 30px;
   padding-right: 30px; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .wp-block-editorial-listicle-section-content, .wp-block-editorial-listicle-section-aside, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
   float: left;
   position: relative;
   min-height: 1px; }
@@ -22199,7 +22199,7 @@ a:visited {
 .col-11 {
   width: 91.66667%; }
 
-.col-12 {
+.wp-block-editorial-listicle-section-content, .wp-block-editorial-listicle-section-aside, .col-12 {
   width: 100%; }
 
 .col-margin-0 {
@@ -22562,7 +22562,7 @@ a:visited {
     position: relative;
     min-height: 1px;
     width: 25%; }
-  .col-sm-4 {
+  .wp-block-editorial-listicle-section-aside, .col-sm-4 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -22582,7 +22582,7 @@ a:visited {
     position: relative;
     min-height: 1px;
     width: 58.33333%; }
-  .col-sm-8 {
+  .wp-block-editorial-listicle-section-content, .col-sm-8 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -23066,35 +23066,43 @@ a:visited {
   .col-lg-offset-12 {
     margin-left: 100%; } }
 
+.wp-block-editorial-listicle-header-number {
+  font-size: 2em;
+  line-height: 1.15085; }
+  @media screen and (min-width: 500px) {
+    .wp-block-editorial-listicle-header-number {
+      font-size: 3.05556em;
+      line-height: 1.15085; } }
+
 .wrapper {
   overflow: hidden; }
 
-.container {
+.container, .wp-block-editorial-listicle {
   margin: 0 auto;
   padding: 15px;
   width: 100%; }
   @media screen and (min-width: 768px) {
-    .container {
+    .container, .wp-block-editorial-listicle {
       max-width: 750px;
       padding: 60px 30px; } }
   @media screen and (min-width: 992px) {
-    .container {
+    .container, .wp-block-editorial-listicle {
       max-width: 970px; } }
   @media screen and (min-width: 1200px) {
-    .container {
+    .container, .wp-block-editorial-listicle {
       max-width: 1170px; } }
 
-.row {
+.row, .wp-block-editorial-listicle-header, .wp-block-editorial-listicle-section {
   margin: 0 -15px; }
   @media screen and (min-width: 768px) {
-    .row {
+    .row, .wp-block-editorial-listicle-header, .wp-block-editorial-listicle-section {
       margin: 0 -30px; } }
 
-.row [class*="col-"] {
+.row [class*="col-"], .wp-block-editorial-listicle-header-number, .wp-block-editorial-listicle-header-content, .wp-block-editorial-listicle-section-content, .wp-block-editorial-listicle-section-aside {
   padding-left: 30px;
   padding-right: 30px; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .wp-block-editorial-listicle-section-content, .wp-block-editorial-listicle-section-aside, .col-12, .col-margin-0, .col-push-0, .col-pull-0, .col-offset-0, .col-margin-1, .col-push-1, .col-pull-1, .col-offset-1, .col-margin-2, .col-push-2, .col-pull-2, .col-offset-2, .col-margin-3, .col-push-3, .col-pull-3, .col-offset-3, .col-margin-4, .col-push-4, .col-pull-4, .col-offset-4, .col-margin-5, .col-push-5, .col-pull-5, .col-offset-5, .col-margin-6, .col-push-6, .col-pull-6, .col-offset-6, .col-margin-7, .col-push-7, .col-pull-7, .col-offset-7, .col-margin-8, .col-push-8, .col-pull-8, .col-offset-8, .col-margin-9, .col-push-9, .col-pull-9, .col-offset-9, .col-margin-10, .col-push-10, .col-pull-10, .col-offset-10, .col-margin-11, .col-push-11, .col-pull-11, .col-offset-11, .col-margin-12, .col-push-12, .col-pull-12, .col-offset-12 {
   float: left;
   position: relative;
   min-height: 1px; }
@@ -23139,7 +23147,7 @@ a:visited {
 .col-11 {
   width: 91.66667%; }
 
-.col-12 {
+.wp-block-editorial-listicle-section-content, .wp-block-editorial-listicle-section-aside, .col-12 {
   width: 100%; }
 
 .col-margin-0 {
@@ -23502,7 +23510,7 @@ a:visited {
     position: relative;
     min-height: 1px;
     width: 25%; }
-  .col-sm-4 {
+  .wp-block-editorial-listicle-section-aside, .col-sm-4 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -23522,7 +23530,7 @@ a:visited {
     position: relative;
     min-height: 1px;
     width: 58.33333%; }
-  .col-sm-8 {
+  .wp-block-editorial-listicle-section-content, .col-sm-8 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -24011,3 +24019,16 @@ a:visited {
 
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
+
+.wp-block-editorial-listicle-figure {
+  padding-bottom: 60px; }
+  .wp-block-editorial-listicle-figure .wp-caption-text {
+    text-align: right; }
+
+.wp-block-editorial-listicle-header {
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 60px; }
+
+.wp-block-editorial-listicle-section {
+  padding-bottom: 30px; }
