@@ -1,5 +1,5 @@
 // =================================================================
-// Sample Styles - Configurable
+// Modal Styles - Configurable
 // =================================================================
 //
 //
@@ -12,6 +12,8 @@
 }
 
 .wp-block-editorial-modal {
+	@extend %clearfix;
+
 	&.has-media {
 		.wp-block-editorial-modal-callout-content {
 			h1,
@@ -73,7 +75,7 @@
 
 .wp-block-editorial-modal-callout {
 	@extend %col-full;
-	background: $color-grayscale-f;
+	background: $color-grayscale-e;
 	text-align: center;
 	position: relative;
 	display: flex;
