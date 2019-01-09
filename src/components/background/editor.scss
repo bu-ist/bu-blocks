@@ -1,0 +1,17 @@
+.components-bu-background-media {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	height: 100%;
+	max-width: 400px;
+	width: 100%;
+	z-index: 1;
+
+	.components-button {
+		padding-left: 6px;
+	}
+
+	.components-button:first-of-type {
+		margin-right: 4px;
+	}
+}

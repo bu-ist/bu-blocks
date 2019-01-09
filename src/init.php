@@ -86,6 +86,16 @@ function enqueue_block_assets() {
 		array( 'wp-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
 	);
+
+	if ( ! is_admin() ) {
+		wp_enqueue_script(
+			'bu-blocks-frontend-js', // Handle.
+			plugins_url( '/dist/bu-blocks-frontend.js', dirname( __FILE__ ) ), // Bu-blocks-frontend.js: Frontend scripts. Built with Webpack.
+			array(), // Dependencies.
+			filemtime( plugin_dir_path( __DIR__ ) . '/dist/bu-blocks-frontend.js' ), // Version: filemtime — Gets file modification time.
+			true // Enqueue the script in the footer.
+		);
+	}
 }
 
 /**
