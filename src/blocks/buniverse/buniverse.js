@@ -27,6 +27,7 @@ const {
 	RadioControl,
 	SVG,
 	TextControl,
+	ToggleControl,
 } = wp.components;
 const {
 	InspectorControls,
@@ -48,6 +49,22 @@ registerBlockType( 'bu/buniverse', {
 		aspectRatio: {
 			type: 'string',
 		},
+		controls: {
+			type: 'number',
+			default: 0,
+		},
+		showInfo: {
+			type: 'number',
+			default: 0,
+		},
+		related: {
+			type: 'number',
+			default: 0,
+		},
+		autoplay: {
+			type: 'number',
+			default: 0,
+		},
 	},
 	supports: {
 		align: true,
@@ -58,13 +75,20 @@ registerBlockType( 'bu/buniverse', {
 		const {
 			id,
 			aspectRatio,
+			controls,
+			showInfo,
+			related,
+			autoplay,
 		} = attributes;
 
+		// Build out the block class list, including the default and aspect ratio.
 		const classes = classnames(
 			'wp-block-global-buniverse',
 			{ [ aspectRatio ]: aspectRatio },
 		);
 
+		// Build out the basic url, intentionally leaving off the extra parameters
+		// because they cause the iframe to reload every time they're changed.
 		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}`;
 
 		return(
@@ -83,6 +107,26 @@ registerBlockType( 'bu/buniverse', {
 								{ label: '9:16', value: 'has-aspectratio-9by16' },
 							] }
 							onChange={ option => setAttributes( { aspectRatio: option } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Player Controls' ) }
+							checked={ controls === 1 }
+							onChange={ () => setAttributes( { controls: ( controls === 0 ) ? 1 : 0 } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show YouTube Header Bar' ) }
+							checked={ showInfo === 1 }
+							onChange={ () => setAttributes( { showInfo: ( showInfo === 0 ) ? 1 : 0 } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Related Videos' ) }
+							checked={ related === 1 }
+							onChange={ () => setAttributes( { related: ( related === 0 ) ? 1 : 0 } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Auto Start (muted)' ) }
+							checked={ autoplay === 1 }
+							onChange={ () => setAttributes( { autoplay: ( autoplay === 0 ) ? 1 : 0 } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -112,21 +156,28 @@ registerBlockType( 'bu/buniverse', {
 		const {
 			id,
 			aspectRatio,
+			controls,
+			showInfo,
+			related,
+			autoplay,
 		} = attributes;
 
+		// Build out the block class list, including the default and aspect ratio.
 		const classes = classnames(
 			'wp-block-global-buniverse',
 			{ [ aspectRatio ]: aspectRatio },
 		);
 
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}`;
+		// Build out the full url.
+		// Note: Use of the `autoplay` attribute value for the `muted` parameter is intentional.
+		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&controls=${controls}&showinfo=${showInfo}&rel=${related}&autoplay=${autoplay}&mute=${autoplay}`;
 
 		return(
 			<figure className={ classes }>
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
-							src={ url }
+							src={ encodeURI( url ) }
 							frameborder="0"
 						></iframe>
 					) }
