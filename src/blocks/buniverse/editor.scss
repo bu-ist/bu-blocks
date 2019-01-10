@@ -131,6 +131,10 @@
 // Remove default margin on figure.
 .wp-block-global-buniverse {
 	margin: 0;
+
+	iframe {
+		pointer-events: none;
+	}
 }
 
 // Align option fixes.
