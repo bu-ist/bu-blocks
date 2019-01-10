@@ -112,6 +112,7 @@ registerBlockType( 'editorial/photoessay', {
 					<PanelBody title={ __( 'Photo Essay Row Settings' ) }>
 						<RadioControl
 							label={ __( 'Layout' ) }
+							className="bu-photoessay-layout-options"
 							selected={ layout }
 							options={ [
 								// Single column layouts.

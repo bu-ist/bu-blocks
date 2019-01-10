@@ -45,15 +45,31 @@
 }
 
 // Layout options styles.
-input[value^="photo-row-"] + label {
-	background-repeat: no-repeat;
-	background-size: contain;
-	display: inline-block;
-	height: 100px;
-	overflow: hidden;
-	text-indent: 100%;
-	white-space: nowrap;
-	width: 219px;
+.bu-photoessay-layout-options {
+	input {
+		display: none;
+
+		+ label {
+			background: center no-repeat;
+			background-size: contain;
+			border: 1px solid transparent;
+			display: block;
+			height: 70px;
+			margin: 0 auto;
+			overflow: hidden;
+			text-indent: 100%;
+			white-space: nowrap;
+			width: 150px;
+
+			&:hover {
+				border-color: #e2e4e7;
+			}
+		}
+
+		&:checked + label {
+			border-color: #1e8cbe;
+		}
+	}
 }
 
 input[value="photo-row-fourths-1-1-1-1"] + label {
