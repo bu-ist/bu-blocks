@@ -24640,18 +24640,15 @@ a:visited {
   @media (min-width: 768px) {
     .wp-block-editorial-listicle-header {
       padding-bottom: 60px; } }
-  @media (min-width: 400px) {
-    .has-number .wp-block-editorial-listicle-header {
-      -ms-flex-align: center;
-          align-items: center;
-      display: -ms-flexbox;
-      display: flex; } }
+  .has-number .wp-block-editorial-listicle-header {
+    display: -ms-flexbox;
+    display: flex; }
 
 .wp-block-editorial-listicle-header-number {
   font-size: 4em;
   font-weight: 300;
   line-height: 1;
-  margin-bottom: 20px; }
+  margin: 0 25px 20px 0; }
   @media (min-width: 400px) {
     .wp-block-editorial-listicle-header-number {
       font-size: 6.5em;

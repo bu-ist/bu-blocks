@@ -55,11 +55,7 @@
 	}
 
 	.has-number & {
-
-		@include breakpoint( 400px ) {
-			align-items: center;
-			display: flex;
-		}
+		display: flex;
 	}
 }
 
@@ -67,7 +63,7 @@
 	font-size: 4em;
 	font-weight: 300;
 	line-height: 1;
-	margin-bottom: 20px;
+	margin: 0 25px 20px 0;
 
 	@include breakpoint( 400px ) {
 		font-size: 6.5em;
