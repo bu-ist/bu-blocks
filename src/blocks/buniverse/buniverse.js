@@ -65,6 +65,15 @@ registerBlockType( 'bu/buniverse', {
 			type: 'number',
 			default: 0,
 		},
+		start: {
+			type: 'number',
+		},
+		minutes: {
+			type: 'number',
+		},
+		seconds: {
+			type: 'number',
+		},
 	},
 	supports: {
 		align: true,
@@ -79,7 +88,44 @@ registerBlockType( 'bu/buniverse', {
 			showInfo,
 			related,
 			autoplay,
+			minutes,
+			seconds,
 		} = attributes;
+
+		/**
+		 * Sets the value for the `minutes` attribute and
+		 * calculates a new value to set for the `start` attribute.
+		 *
+		 * Note: no calculations are done to account for values
+		 * greater than 60 entered into the `seconds` input, so
+		 * as to avoid subverting expectations in cases where a
+		 * user might deliberately do so.
+		 *
+		 * @param {string} value The value entered into the input.
+		 */
+		const onChangeMinutes = ( value ) => {
+			const newValue = Number( value );
+			const newStart = newValue * 60 + ( ( seconds ) ? seconds : 0 );
+
+			setAttributes( { minutes: newValue } );
+			setAttributes( { start: newStart } );
+		};
+
+		/**
+		 * Sets the value for the `seconds` attribute and
+		 * calculates a new value to set for the `start` attribute.
+		 *
+		 * Note: See the above note about calculating `seconds` values.
+		 *
+		 * @param {string} value The value entered into the input.
+		 */
+		const onChangeSeconds = ( value ) => {
+			const newValue = Number( value );
+			const newStart = newValue + ( ( minutes ) ? minutes * 60 : 0 );
+
+			setAttributes( { seconds: newValue } );
+			setAttributes( { start: newStart } );
+		};
 
 		// Build out the block class list, including the default and aspect ratio.
 		const classes = classnames(
@@ -128,6 +174,17 @@ registerBlockType( 'bu/buniverse', {
 							checked={ autoplay === 1 }
 							onChange={ () => setAttributes( { autoplay: ( autoplay === 0 ) ? 1 : 0 } ) }
 						/>
+						<TextControl
+							label={ __( 'Start At' ) }
+							type="number"
+							value={ minutes }
+							onChange={ onChangeMinutes }
+						/>
+						<TextControl
+							type="number"
+							value={ seconds }
+							onChange={ onChangeSeconds }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				{ ( ! id || isSelected ) && (
@@ -160,6 +217,7 @@ registerBlockType( 'bu/buniverse', {
 			showInfo,
 			related,
 			autoplay,
+			start,
 		} = attributes;
 
 		// Build out the block class list, including the default and aspect ratio.
@@ -168,9 +226,11 @@ registerBlockType( 'bu/buniverse', {
 			{ [ aspectRatio ]: aspectRatio },
 		);
 
+		const startParam = ( start ) ? `&start=${start}` : '';
+
 		// Build out the full url.
 		// Note: Use of the `autoplay` attribute value for the `muted` parameter is intentional.
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&controls=${controls}&showinfo=${showInfo}&rel=${related}&autoplay=${autoplay}&mute=${autoplay}`;
+		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&controls=${controls}&showinfo=${showInfo}&rel=${related}&autoplay=${autoplay}&mute=${autoplay}${startParam}`;
 
 		return(
 			<figure className={ classes }>
