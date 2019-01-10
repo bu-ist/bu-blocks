@@ -142,6 +142,7 @@ registerBlockType( 'bu/buniverse', {
 				<InspectorControls>
 					<PanelBody title={ __( 'Video Settings' ) }>
 						<RadioControl
+							className="buniverse-aspect-ratio-options"
 							label={ __( 'Aspect Ratio' ) }
 							selected={ aspectRatio }
 							help={ __( '16:9 is typically used on widescreen video. 4:3 is often used for older fullscreen video. 1:1 is square. 9:16 and 3:4 are used for vertical video.' ) }
@@ -154,37 +155,41 @@ registerBlockType( 'bu/buniverse', {
 							] }
 							onChange={ option => setAttributes( { aspectRatio: option } ) }
 						/>
-						<ToggleControl
-							label={ __( 'Show Player Controls' ) }
-							checked={ controls === 1 }
-							onChange={ () => setAttributes( { controls: ( controls === 0 ) ? 1 : 0 } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Show YouTube Header Bar' ) }
-							checked={ showInfo === 1 }
-							onChange={ () => setAttributes( { showInfo: ( showInfo === 0 ) ? 1 : 0 } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Show Related Videos' ) }
-							checked={ related === 1 }
-							onChange={ () => setAttributes( { related: ( related === 0 ) ? 1 : 0 } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Auto Start (muted)' ) }
-							checked={ autoplay === 1 }
-							onChange={ () => setAttributes( { autoplay: ( autoplay === 0 ) ? 1 : 0 } ) }
-						/>
-						<TextControl
-							label={ __( 'Start At' ) }
-							type="number"
-							value={ minutes }
-							onChange={ onChangeMinutes }
-						/>
-						<TextControl
-							type="number"
-							value={ seconds }
-							onChange={ onChangeSeconds }
-						/>
+						<div className="buniverse-parameter-toggles">
+							<ToggleControl
+								label={ __( 'Show Player Controls' ) }
+								checked={ controls === 1 }
+								onChange={ () => setAttributes( { controls: ( controls === 0 ) ? 1 : 0 } ) }
+							/>
+							<ToggleControl
+								label={ __( 'Show YouTube Header Bar' ) }
+								checked={ showInfo === 1 }
+								onChange={ () => setAttributes( { showInfo: ( showInfo === 0 ) ? 1 : 0 } ) }
+							/>
+							<ToggleControl
+								label={ __( 'Show Related Videos' ) }
+								checked={ related === 1 }
+								onChange={ () => setAttributes( { related: ( related === 0 ) ? 1 : 0 } ) }
+							/>
+							<ToggleControl
+								label={ __( 'Auto Start (muted)' ) }
+								checked={ autoplay === 1 }
+								onChange={ () => setAttributes( { autoplay: ( autoplay === 0 ) ? 1 : 0 } ) }
+							/>
+						</div>
+						<div className="buniverse-start-time">
+							<TextControl
+								label={ __( 'Start At' ) }
+								type="number"
+								value={ minutes }
+								onChange={ onChangeMinutes }
+							/>:
+							<TextControl
+								type="number"
+								value={ seconds }
+								onChange={ onChangeSeconds }
+							/>
+						</div>
 					</PanelBody>
 				</InspectorControls>
 				{ ( ! id || isSelected ) && (
@@ -198,9 +203,9 @@ registerBlockType( 'bu/buniverse', {
 					<div className="wp-block-global-buniverse-wrapper">
 						{ id && (
 							<iframe
-							src={ url }
-							frameborder="0"
-						></iframe>
+								src={ url }
+								frameborder="0"
+							></iframe>
 						) }
 					</div>
 					<figcaption></figcaption>
