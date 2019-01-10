@@ -192,15 +192,27 @@ registerBlockType( 'bu/buniverse', {
 						</div>
 					</PanelBody>
 				</InspectorControls>
-				{ ( ! id || isSelected ) && (
+				{ ( id && isSelected ) && (
 					<TextControl
-						placeholder={ __( 'Enter BUniverse video ID here…' ) }
+						label={ __( 'Video ID:' ) }
+						className="buniverse-set-video-id"
 						value={ id }
 						onChange={ ( value ) => setAttributes( { id: value } ) }
 					/>
 				) }
 				<figure className={ classes }>
 					<div className="wp-block-global-buniverse-wrapper">
+						{ ! id && (
+							<div className="wp-block-global-buinverse-placeholder">
+								<div className="buniverse-logo"></div>
+								<TextControl
+									placeholder={ __( 'Enter BUniverse video ID here…' ) }
+									value={ id }
+									onChange={ ( value ) => setAttributes( { id: value } ) }
+								/>
+								<div className="buniverse-video-id-screenshot"></div>
+							</div>
+						) }
 						{ id && (
 							<iframe
 								src={ url }
