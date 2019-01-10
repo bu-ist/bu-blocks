@@ -59,11 +59,41 @@ $scope: blocks-get( 'scope' );
 
 	.wp-block-editorial-listicle-header-number {
 		color: blocks-get( 'color-primary-text' );
+		font-family: blocks-get( 'font-family-secondary' );
 	}
 
 	.wp-block-editorial-listicle-header-content-hed,
 	.wp-block-editorial-listicle-header-content-dek {
 		font-family: blocks-get( 'font-family-secondary' );
+	}
+
+	.wp-block-editorial-listicle-header-content-hed {
+		color: blocks-get( 'color-primary-text' );
+	}
+
+	.wp-block-editorial-listicle-header-content-dek {
+		color: blocks-get( 'color-gray-b' );
+	}
+
+	.wp-block-editorial-listicle-footer-title {
+		font-family: blocks-get( 'font-family-tertiary' )
+	}
+
+	.wp-block-editorial-listicle-section-content,
+	.wp-block-editorial-listicle-section-aside,
+	.wp-block-editorial-listicle-section-aside,
+	.wp-block-editorial-listicle-footer-list-item {
+
+		a {
+			color: blocks-get( 'color-tertiary' );
+		}
+	}
+
+	&.has-number {
+
+		.wp-block-editorial-listicle-header-content-hed {
+			color: blocks-get( 'font-color-heading' );
+		}
 	}
 }
 
