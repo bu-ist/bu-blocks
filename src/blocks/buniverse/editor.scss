@@ -127,3 +127,22 @@
 		width: 100px;
 	}
 }
+
+// Remove default margin on figure.
+.wp-block-global-buniverse {
+	margin: 0;
+}
+
+// Align option fixes.
+.editor-block-list__block[aria-label="Block: BUniverse Video"] {
+	&[data-align="center"] {
+		text-align: unset;
+	}
+
+	&[data-align="left"],
+	&[data-align="right"] {
+		.editor-block-list__block-edit {
+			width: 50%;
+		}
+	}
+}
