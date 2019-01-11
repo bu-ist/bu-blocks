@@ -11,13 +11,14 @@
 .wp-block-editorial-listicle {
 	@extend %container-styles;
 	max-width: 975px;
+	margin-bottom: 70px;
 }
 
 .wp-block-editorial-listicle-figure {
 	padding-bottom: $padding-small;
 
 	@include breakpoint( $sm ) {
-		padding-bottom: $padding-large;
+		padding-bottom: 40px;
 	}
 
 	img {
@@ -51,10 +52,11 @@
 	padding-bottom: $padding-small;
 
 	@include breakpoint( $sm ) {
-		padding-bottom: $padding-large;
+		padding-bottom: 40px;
 	}
 
 	.has-number & {
+		align-items: flex-end;
 		display: flex;
 	}
 }
@@ -104,6 +106,33 @@
 
 	@include breakpoint( $sm ) {
 		padding: 0 0 0 60px;
+	}
+
+	.icon-action {
+		@include icon( action, before );
+		color: $color-grayscale-0 !important;
+
+		&:before {
+			@include border-radius( 50% );
+			background-color: $color-grayscale-0;
+			color: $color-grayscale-f;
+			height: 40px;
+			line-height: 38px;
+			text-align: center;
+			width: 40px;
+		}
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	[target="_blank"] {
+		@include icon( redirect, after );
+
+		&::after {
+			font-size: 0.8em;
+		}
 	}
 }
 

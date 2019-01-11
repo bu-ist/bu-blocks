@@ -24610,13 +24610,14 @@ a:visited {
   margin-bottom: 0; }
 
 .wp-block-editorial-listicle {
-  max-width: 975px; }
+  max-width: 975px;
+  margin-bottom: 70px; }
 
 .wp-block-editorial-listicle-figure {
   padding-bottom: 15px; }
   @media (min-width: 768px) {
     .wp-block-editorial-listicle-figure {
-      padding-bottom: 60px; } }
+      padding-bottom: 40px; } }
   .wp-block-editorial-listicle-figure img {
     height: auto;
     width: 100%; }
@@ -24639,8 +24640,10 @@ a:visited {
   padding-bottom: 15px; }
   @media (min-width: 768px) {
     .wp-block-editorial-listicle-header {
-      padding-bottom: 60px; } }
+      padding-bottom: 40px; } }
   .has-number .wp-block-editorial-listicle-header {
+    -ms-flex-align: end;
+        align-items: flex-end;
     display: -ms-flexbox;
     display: flex; }
 
@@ -24669,6 +24672,66 @@ a:visited {
   @media (min-width: 768px) {
     .wp-block-editorial-listicle-section-aside {
       padding: 0 0 0 60px; } }
+  .wp-block-editorial-listicle-section-aside .icon-action {
+    color: #000 !important; }
+    .lt-ie9:hover .wp-block-editorial-listicle-section-aside .icon-action {
+      -ms-zoom: 1; }
+    .wp-block-editorial-listicle-section-aside .icon-action span {
+      display: none; }
+    .wp-block-editorial-listicle-section-aside .icon-action::before {
+      color: unset;
+      display: inline-block;
+      font-family: "bu-default-icons";
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      line-height: 1;
+      padding-bottom: 0.2em;
+      speak: none;
+      text-decoration: none;
+      text-rendering: optimizeLegibility;
+      text-transform: none;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin-right: 0.5em;
+      content: ""; }
+    .wp-block-editorial-listicle-section-aside .icon-action:before {
+      border-radius: 50%;
+      background-color: #000;
+      color: #fff;
+      height: 40px;
+      line-height: 38px;
+      text-align: center;
+      width: 40px; }
+    .wp-block-editorial-listicle-section-aside .icon-action:hover {
+      text-decoration: underline; }
+  .lt-ie9:hover .wp-block-editorial-listicle-section-aside [target="_blank"] {
+    -ms-zoom: 1; }
+  .wp-block-editorial-listicle-section-aside [target="_blank"] span {
+    display: none; }
+  .wp-block-editorial-listicle-section-aside [target="_blank"]::after {
+    color: unset;
+    display: inline-block;
+    font-family: "bu-default-icons";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-bottom: 0.2em;
+    speak: none;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-left: 0.5em;
+    content: "↪"; }
+  .wp-block-editorial-listicle-section-aside [target="_blank"]::after {
+    font-size: 0.8em; }
 
 .wp-block-editorial-listicle-footer-title {
   text-transform: uppercase; }
