@@ -65,7 +65,7 @@
 	font-size: 4em;
 	font-weight: 300;
 	line-height: 1;
-	margin: 0 25px 20px 0;
+	margin: 0 25px 0 0;
 
 	@include breakpoint( 400px ) {
 		font-size: 6.5em;
@@ -75,12 +75,12 @@
 
 .wp-block-editorial-listicle-header-content-hed {
 	@extend %font-size-2;
-	margin-bottom: 0;
+	margin: 0;
 }
 
 .wp-block-editorial-listicle-header-content-dek {
 	@extend %font-size-3;
-	margin-top: 0;
+	margin: 0;
 }
 
 .wp-block-editorial-listicle-section {
@@ -143,7 +143,7 @@
 
 .wp-block-editorial-listicle-footer-list {
 	list-style-type: none;
-	padding-left: 0;
+	padding-left: 0 !important;
 }
 
 .wp-block-editorial-listicle-footer-list-item {
