@@ -51,7 +51,7 @@ registerBlockType( 'bu/buniverse', {
 		},
 		controls: {
 			type: 'number',
-			default: 0,
+			default: 1,
 		},
 		showInfo: {
 			type: 'number',
@@ -157,8 +157,8 @@ registerBlockType( 'bu/buniverse', {
 						/>
 						<div className="buniverse-parameter-toggles">
 							<ToggleControl
-								label={ __( 'Show Player Controls' ) }
-								checked={ controls === 1 }
+								label={ __( 'Hide Player Controls' ) }
+								checked={ controls === 0 }
 								onChange={ () => setAttributes( { controls: ( controls === 0 ) ? 1 : 0 } ) }
 							/>
 							<ToggleControl
