@@ -64,7 +64,7 @@
 		.container-lockup {
 			position: relative;
 		}
-		.container-words-outter {
+		.container-words-outer {
 			position: absolute;
 			top: 0;
 			height: 100%;
@@ -79,17 +79,17 @@
 			margin-right: auto;
 		}
 		&.has-text-position-y-top {
-			.container-words-outter {
+			.container-words-outer {
 				align-items: flex-start;
 			}
 		}
 		&.has-text-position-y-middle {
-			.container-words-outter {
+			.container-words-outer {
 				align-items: start;
 			}
 		}
 		&.has-text-position-y-bottom {
-			.container-words-outter {
+			.container-words-outer {
 				align-items: flex-end;
 			}
 		}
@@ -226,7 +226,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		.container-lockup {
 			position: relative;
 		}
-		.container-words-outter {
+		.container-words-outer {
 			width: 100%;
 			padding-left: $padding;
 			padding-right: $padding;
@@ -240,7 +240,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			margin-bottom: 0;
 		}
 		&:not(.has-box) {
-			.container-words-outter {
+			.container-words-outer {
 				@include breakpoint( $xs ) {
 					&::before,
 					&::after  {
@@ -337,15 +337,15 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 				.wp-block-leadin-media {
 					width: 33.333333%;
 				}
-				.container-words-outter {
+				.container-words-outer {
 					width: 66.666666%;
 				}
 			}
-			.container-words-outter {
+			.container-words-outer {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				
+
 			}
 			.container-words-inner {
 				align-items: flex-start;
@@ -354,7 +354,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		@include breakpoint( $sm ) {
 			.container-lockup{
 				.wp-block-leadin-media,
-				.container-words-outter {
+				.container-words-outer {
 					width: 50%;
 				}
 			}

@@ -87,7 +87,7 @@ class BULeadinEdit extends Component {
 						<div class="wp-block-leadin-media">
 							{ Background( this.props, undefined, 'Media' ) }
 						</div>
-						<div class="container-words-outter">
+						<div class="container-words-outer">
 							<div class="container-words-inner">
 								{ primaryTerm && (
 									<span href="http://www.bu.edu/" class="wp-prepress-tag">{ primaryTerm }</span>
