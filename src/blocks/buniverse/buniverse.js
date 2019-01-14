@@ -53,14 +53,6 @@ registerBlockType( 'bu/buniverse', {
 			type: 'number',
 			default: 1,
 		},
-		showInfo: {
-			type: 'number',
-			default: 0,
-		},
-		related: {
-			type: 'number',
-			default: 0,
-		},
 		autoplay: {
 			type: 'number',
 			default: 0,
@@ -85,8 +77,6 @@ registerBlockType( 'bu/buniverse', {
 			id,
 			aspectRatio,
 			controls,
-			showInfo,
-			related,
 			autoplay,
 			minutes,
 			seconds,
@@ -162,16 +152,6 @@ registerBlockType( 'bu/buniverse', {
 								onChange={ () => setAttributes( { controls: ( controls === 0 ) ? 1 : 0 } ) }
 							/>
 							<ToggleControl
-								label={ __( 'Show YouTube Header Bar' ) }
-								checked={ showInfo === 1 }
-								onChange={ () => setAttributes( { showInfo: ( showInfo === 0 ) ? 1 : 0 } ) }
-							/>
-							<ToggleControl
-								label={ __( 'Show Related Videos' ) }
-								checked={ related === 1 }
-								onChange={ () => setAttributes( { related: ( related === 0 ) ? 1 : 0 } ) }
-							/>
-							<ToggleControl
 								label={ __( 'Auto Start (muted)' ) }
 								checked={ autoplay === 1 }
 								onChange={ () => setAttributes( { autoplay: ( autoplay === 0 ) ? 1 : 0 } ) }
@@ -231,8 +211,6 @@ registerBlockType( 'bu/buniverse', {
 			id,
 			aspectRatio,
 			controls,
-			showInfo,
-			related,
 			autoplay,
 			start,
 		} = attributes;
@@ -247,7 +225,7 @@ registerBlockType( 'bu/buniverse', {
 
 		// Build out the full url.
 		// Note: Use of the `autoplay` attribute value for the `muted` parameter is intentional.
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&controls=${controls}&showinfo=${showInfo}&rel=${related}&autoplay=${autoplay}&mute=${autoplay}${startParam}`;
+		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&controls=${controls}&autoplay=${autoplay}&mute=${autoplay}${startParam}`;
 
 		return(
 			<figure className={ classes }>
