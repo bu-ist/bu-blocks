@@ -59,16 +59,24 @@ $scope: blocks-get( 'scope' );
 
 	.wp-block-editorial-listicle-header-number {
 		color: blocks-get( 'color-primary-text' );
-		font-family: blocks-get( 'font-family-secondary' );
-	}
-
-	.wp-block-editorial-listicle-header-content-hed,
-	.wp-block-editorial-listicle-header-content-dek {
-		font-family: blocks-get( 'font-family-secondary' );
 	}
 
 	.wp-block-editorial-listicle-header-content-hed {
-		color: blocks-get( 'color-primary-text' );
+		color: blocks-get( 'color-gray-a' );
+
+		strong {
+			color: blocks-get( 'color-primary-text' );
+		}
+	}
+
+	&.has-number {
+
+		.wp-block-editorial-listicle-header-content-hed {
+
+			strong {
+				color: blocks-get( 'color-gray-a' );
+			}
+		}
 	}
 
 	.wp-block-editorial-listicle-header-content-dek {
@@ -88,12 +96,4 @@ $scope: blocks-get( 'scope' );
 			color: blocks-get( 'color-tertiary' );
 		}
 	}
-
-	&.has-number {
-
-		.wp-block-editorial-listicle-header-content-hed {
-			color: blocks-get( 'font-color-heading' );
-		}
-	}
 }
-

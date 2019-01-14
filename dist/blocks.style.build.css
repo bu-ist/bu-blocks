@@ -24642,26 +24642,22 @@ a:visited {
     .wp-block-editorial-listicle-header {
       padding-bottom: 40px; } }
   .has-number .wp-block-editorial-listicle-header {
-    -ms-flex-align: end;
-        align-items: flex-end;
     display: -ms-flexbox;
     display: flex; }
 
 .wp-block-editorial-listicle-header-number {
   font-size: 4em;
-  font-weight: 300;
   line-height: 1;
   margin: 0 25px 0 0; }
-  @media (min-width: 400px) {
+  @media (min-width: 500px) {
     .wp-block-editorial-listicle-header-number {
-      font-size: 6.5em;
-      margin: 0 50px 0 0; } }
+      font-size: 6.5em; } }
 
 .wp-block-editorial-listicle-header-content-hed {
   margin: 0; }
 
 .wp-block-editorial-listicle-header-content-dek {
-  margin: 0; }
+  margin: 5px 0 0; }
 
 .wp-block-editorial-listicle-section {
   margin-top: 0;
