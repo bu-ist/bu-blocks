@@ -21,7 +21,7 @@
 .wp-block-editorial-listicle-figure {
 	padding-bottom: $padding-small;
 
-	@include breakpoint( $sm ) {
+	@include breakpoint( $xs ) {
 		padding-bottom: 40px;
 	}
 
@@ -55,7 +55,7 @@
 .wp-block-editorial-listicle-header {
 	padding-bottom: $padding-small;
 
-	@include breakpoint( $sm ) {
+	@include breakpoint( $xs ) {
 		padding-bottom: 40px;
 	}
 
