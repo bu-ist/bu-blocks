@@ -12,8 +12,8 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import edit from './edit.js';
-import Background, { BackgroundAttributes } from '../../components/background/background.js';
+import edit from './edit';
+import Background, { BackgroundAttributes } from '../../components/background/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
