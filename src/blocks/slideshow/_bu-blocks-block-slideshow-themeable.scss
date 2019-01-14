@@ -56,4 +56,21 @@ $current-map: $blocks-block-slideshow-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-slideshow {
+	.bu-blocks-slideshow-caption-track {
+		color: blocks-get( 'font-color-aside');
+	}
+	.bu-blocks-slideshow-controls-previous,
+	.bu-blocks-slideshow-controls-next,
+	.bu-blocks-slideshow-caption-expander {
+		color: blocks-get( 'color-primary');
+		&:hover {
+			color: blocks-get( 'color-primary-darkest');
+		}
+		&:active {
+			color: blocks-get( 'color-primary-darker');
+		}
+	}
+	.bu-blocks-slideshow-caption-expander {
+		font-family: blocks-get( 'font-family-secondary');
+	}
 }

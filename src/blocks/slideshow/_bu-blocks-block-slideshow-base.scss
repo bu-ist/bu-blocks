@@ -158,13 +158,19 @@
 }
 .bu-blocks-slideshow-caption-container {
 	float: right;
-	width: calc(90% - #{$padding} / 2);
+	width: calc(85% - #{$padding} / 2);
 	overflow-x: hidden;
 	margin-left: $padding / 2;
+	@include breakpoint( $xs ) {
+		width: calc(90% - #{$padding} / 2);
+	}
 }
 .bu-blocks-slideshow-controls {
 	float: left;
-	width: 10%;
+	width: 15%;
+	@include breakpoint( $xs ) {
+		width: 10%;
+	}
 }
 .bu-blocks-slideshow-controls-previous,
 .bu-blocks-slideshow-controls-next {
@@ -193,6 +199,7 @@
 }
 .bu-blocks-slideshow-caption-expander {
 	display: inline-block;
+	font-size: 0.75em;
 }
 
 
