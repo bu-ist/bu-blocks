@@ -24611,7 +24611,10 @@ a:visited {
 
 .wp-block-editorial-listicle {
   max-width: 975px;
-  margin-bottom: 70px; }
+  margin-bottom: 35px; }
+  @media (min-width: 768px) {
+    .wp-block-editorial-listicle {
+      margin-bottom: 70px; } }
 
 .wp-block-editorial-listicle-figure {
   padding-bottom: 15px; }

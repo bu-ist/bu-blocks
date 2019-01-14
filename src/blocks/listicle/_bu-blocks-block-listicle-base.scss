@@ -11,7 +11,11 @@
 .wp-block-editorial-listicle {
 	@extend %container-styles;
 	max-width: 975px;
-	margin-bottom: 70px;
+	margin-bottom: 35px;
+
+	@include breakpoint( $sm ) {
+		margin-bottom: 70px;
+	}
 }
 
 .wp-block-editorial-listicle-figure {
