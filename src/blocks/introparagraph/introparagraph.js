@@ -32,7 +32,12 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
+	PanelColorSettings,
+	withColors,
 } = wp.editor;
+
+// Import common handling of available color options.
+import themeOptions from '../../global/theme-options.js';
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
@@ -67,7 +72,7 @@ registerBlockType( 'editorial/introparagraph', {
 			type: 'string',
 			default: '',
 		},
-		dropCapStyle: {
+		dropCapColor: {
 			type: 'string',
 			default: '',
 		},
@@ -120,12 +125,16 @@ registerBlockType( 'editorial/introparagraph', {
 	],
 	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
-	edit( props ) {
+	edit: withColors( 'paragraphColor', 'dropCapColor' )( ( props ) => {
 		const {
 			attributes,
 			className,
 			insertBlocksAfter,
 			setAttributes,
+			paragraphColor,
+			setParagraphColor,
+			dropCapColor,
+			setDropCapColor,
 		} = props;
 
 		const {
@@ -133,10 +142,8 @@ registerBlockType( 'editorial/introparagraph', {
 			content,
 			list,
 			hasDropCap,
-			dropCapStyle,
 			dropCapImageURL,
 			dropCapImageId,
-			paragraphColor,
 		} = attributes;
 
 		// This is either 'has-dropcap' or ''.
@@ -152,7 +159,7 @@ registerBlockType( 'editorial/introparagraph', {
 			hasDropCapClass = 'has-dropcap';
 		} else if ( ! hasDropCapStyle && '' !== hasDropCap ) {
 			setAttributes( { hasDropCap: '' } );
-			setAttributes( { dropCapStyle: '' } );
+			setAttributes( { dropCapColor: '' } );
 			hasDropCapClass = '';
 		}
 
@@ -182,31 +189,35 @@ registerBlockType( 'editorial/introparagraph', {
 		return (
 			<Fragment>
 				<InspectorControls>
+					{ ! hasDropCapStyle && (
+						<PanelColorSettings
+						title={ __( 'Paragraph color' ) }
+						colorSettings={ [
+							{
+								value: paragraphColor.color,
+								onChange: setParagraphColor,
+								label: __( 'Paragraph' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+						] }
+					/>
+					) }
+					{ hasDropCapStyle && ! isImageDropCap && (
+						<PanelColorSettings
+						title={ __( 'Drop cap color' ) }
+						colorSettings={ [
+							{
+								value: dropCapColor.color,
+								onChange: setDropCapColor,
+								label: __( 'Drop cap' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+						] }
+					/>
+					) }
 					<PanelBody title={ __( 'Intro Paragraph Settings' ) }>
-						{ ! hasDropCapStyle && (
-							<SelectControl
-								label={ __( 'Paragraph text color' ) }
-								value={ paragraphColor || '' }
-								onChange={ value => setAttributes( { paragraphColor: value, dropCapStyle: '', hasDropCap: '' } ) }
-								options={ [
-									{ value: '', label: __( 'None' ) },
-									{ value: 'has-paragraph-color-primary', label: __( 'Primary' ) },
-									{ value: 'has-paragraph-color-secondary', label: __( 'Secondary' ) }
-								] }
-							/>
-						) }
-						{ hasDropCapStyle && ! isImageDropCap && (
-							<SelectControl
-								label={ __( 'Drop cap color' ) }
-								value={ dropCapStyle || '' }
-								onChange={ value => setAttributes( { dropCapStyle: value, paragraphColor: '', hasDropCap: 'has-dropcap' } ) }
-								options={ [
-									{ value: '', label: __( 'None' ) },
-									{ value: 'has-dropcap-color-primary', label: __( 'Primary' ) },
-									{ value: 'has-dropcap-color-secondary', label: __( 'Secondary' ) },
-								] }
-							/>
-						) }
 						{ isImageDropCap && '' !== dropCapImageURL ? (
 							<MediaUploadCheck>
 								<Toolbar>
@@ -250,7 +261,7 @@ registerBlockType( 'editorial/introparagraph', {
 						) }
 					</PanelBody>
 				</InspectorControls>
-				<div className={ [ className, hasDropCapClass, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+				<div className={ [ className, hasDropCapClass, dropCapColor, paragraphColor ].join( ' ' ).trim() }>
 					<PlainText
 						tagname='h4'
 						value={ heading }
@@ -306,7 +317,7 @@ registerBlockType( 'editorial/introparagraph', {
 				</div>
 			</Fragment>
 		);
-	},
+	} ),
 
 	save( { attributes } ) {
 		const {
@@ -314,7 +325,7 @@ registerBlockType( 'editorial/introparagraph', {
 			list,
 			content,
 			hasDropCap,
-			dropCapStyle,
+			dropCapColor,
 			dropCapImageURL,
 			paragraphColor,
 			className,
@@ -339,7 +350,7 @@ registerBlockType( 'editorial/introparagraph', {
 		}
 
 		return (
-			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+			<div className={ [ hasDropCap, dropCapColor, paragraphColor ].join( ' ' ).trim() }>
 				{ ! RichText.isEmpty( heading ) && (
 					<RichText.Content tagName="h4" value={ heading } />
 				) }
