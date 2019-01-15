@@ -218,49 +218,51 @@ registerBlockType( 'editorial/introparagraph', {
 						] }
 					/>
 					) }
-					<PanelBody title={ __( 'Intro Paragraph Settings' ) }>
-						{ isImageDropCap && '' !== dropCapImageURL ? (
-							<MediaUploadCheck>
-								<Toolbar>
-									<MediaUpload
-										onSelect={ onSelectImage }
-										value={ dropCapImageId }
-										render={ ( { open } ) => (
-											<div>
-												<IconButton
-													className="components-toolbar__control"
-													label="Edit image"
-													icon="edit"
-													onClick={ open }
-												/>
-												<IconButton
-													icon="no-alt"
-													onClick={ onRemoveImage }
-													className="blocks-gallery-image__remove"
-													label="Remove image"
-												/>
-											</div>
-										) }
-									/>
-								</Toolbar>
-								<img src={ dropCapImageURL } />
-							</MediaUploadCheck>
-						) : (
-							""
-						) }
-						{ isImageDropCap && (
-							<MediaPlaceholder
-								key="drop-cap-image"
-								icon="format-image"
-								label="Drop Cap Image"
-								labels={ {
-									title: 'Drop Cap Image',
-									name: 'images',
-								} }
-								onSelect={ onSelectImage }
-							/>
-						) }
-					</PanelBody>
+					{ isImageDropCap && (
+						<PanelBody title={ __( 'Drop cap image settings' ) }>
+							{ isImageDropCap && '' !== dropCapImageURL ? (
+								<MediaUploadCheck>
+									<Toolbar>
+										<MediaUpload
+											onSelect={ onSelectImage }
+											value={ dropCapImageId }
+											render={ ( { open } ) => (
+												<div>
+													<IconButton
+														className="components-toolbar__control"
+														label="Edit image"
+														icon="edit"
+														onClick={ open }
+													/>
+													<IconButton
+														icon="no-alt"
+														onClick={ onRemoveImage }
+														className="blocks-gallery-image__remove"
+														label="Remove image"
+													/>
+												</div>
+											) }
+										/>
+									</Toolbar>
+									<img src={ dropCapImageURL } />
+								</MediaUploadCheck>
+							) : (
+								""
+							) }
+							{ isImageDropCap && (
+								<MediaPlaceholder
+									key="drop-cap-image"
+									icon="format-image"
+									label="Drop Cap Image"
+									labels={ {
+										title: 'Drop Cap Image',
+										name: 'images',
+									} }
+									onSelect={ onSelectImage }
+								/>
+							) }
+						</PanelBody>
+					) }
 				</InspectorControls>
 				<div className={ classes }>
 					<PlainText
