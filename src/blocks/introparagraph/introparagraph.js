@@ -70,10 +70,6 @@ registerBlockType( 'editorial/introparagraph', {
 			source: 'html',
 			selector: '.wp-block-editorial-introparagraph-content p',
 		},
-		hasDropCap: {
-			type: 'string',
-			default: '',
-		},
 		dropCapColor: {
 			type: 'string',
 			default: '',
@@ -144,7 +140,6 @@ registerBlockType( 'editorial/introparagraph', {
 			heading,
 			content,
 			list,
-			hasDropCap,
 			dropCapImageURL,
 			dropCapImageId,
 		} = attributes;
@@ -153,11 +148,9 @@ registerBlockType( 'editorial/introparagraph', {
 		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
 
 		// Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
-		if ( hasDropCapStyle && '' === hasDropCap ) {
-			setAttributes( { hasDropCap: 'has-dropcap' } );
+		if ( hasDropCapStyle ) {
 			setAttributes( { paragraphColor: '' } );
-		} else if ( ! hasDropCapStyle && '' !== hasDropCap ) {
-			setAttributes( { hasDropCap: '' } );
+		} else if ( ! hasDropCapStyle ) {
 			setAttributes( { dropCapColor: '' } );
 		}
 
@@ -188,9 +181,9 @@ registerBlockType( 'editorial/introparagraph', {
 			className,
 			publicationClassName,
 			{
-				'has-dropcap': hasDropCap,
-				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCap && dropCapColor && dropCapColor.slug,
-				[`has-paragraph-color-${paragraphColor.slug}`]: ! hasDropCap && paragraphColor && paragraphColor.slug,
+				'has-dropcap': hasDropCapStyle,
+				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCapStyle && dropCapColor && dropCapColor.slug,
+				[`has-paragraph-color-${paragraphColor.slug}`]: ! hasDropCapStyle && paragraphColor && paragraphColor.slug,
 			},
 		);
 
@@ -332,7 +325,6 @@ registerBlockType( 'editorial/introparagraph', {
 			heading,
 			list,
 			content,
-			hasDropCap,
 			dropCapColor,
 			dropCapImageURL,
 			paragraphColor,
@@ -358,13 +350,16 @@ registerBlockType( 'editorial/introparagraph', {
 			saveList = false;
 		}
 
+		// Determine if a sepecific dropcap style has been selected.
+		let hasDropCapStyle = className && className.includes( 'is-style-dropcap' );
+
 		const classes = classnames(
 			className,
 			publicationClassName,
 			{
-				'has-dropcap': hasDropCap,
-				[`has-dropcap-color-${dropCapColor}`]: hasDropCap && dropCapColor,
-				[`has-paragraph-color-${paragraphColor}`]: ! hasDropCap && paragraphColor,
+				'has-dropcap': hasDropCapStyle,
+				[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,
+				[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
 			},
 		);
 
