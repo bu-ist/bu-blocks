@@ -22,7 +22,6 @@ const {
 const {
 	IconButton,
 	PanelBody,
-	SelectControl,
 	Toolbar,
 } = wp.components;
 const {
