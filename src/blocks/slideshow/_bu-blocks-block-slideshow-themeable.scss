@@ -73,4 +73,11 @@ $scope: blocks-get( 'scope' );
 	.bu-blocks-slideshow-caption-expander {
 		font-family: blocks-get( 'font-family-secondary');
 	}
+	.bu-blocks-slideshow-caption-container-collapsed {
+		.bu-blocks-slideshow-caption-track {
+			background: linear-gradient(to bottom, blocks-get( 'font-color-aside') 0%, transparent 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
 }
