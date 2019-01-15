@@ -36,6 +36,9 @@ const {
 	withColors,
 } = wp.editor;
 
+// Import a library used to manage multiple class names.
+import classnames from 'classnames';
+
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options.js';
 
@@ -135,6 +138,7 @@ registerBlockType( 'editorial/introparagraph', {
 			setParagraphColor,
 			dropCapColor,
 			setDropCapColor,
+			publicationClassName,
 		} = props;
 
 		const {
@@ -146,9 +150,6 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapImageId,
 		} = attributes;
 
-		// This is either 'has-dropcap' or ''.
-		let hasDropCapClass = hasDropCap;
-
 		// Determine if a sepecific dropcap style has been selected.
 		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
 
@@ -156,11 +157,9 @@ registerBlockType( 'editorial/introparagraph', {
 		if ( hasDropCapStyle && '' === hasDropCap ) {
 			setAttributes( { hasDropCap: 'has-dropcap' } );
 			setAttributes( { paragraphColor: '' } );
-			hasDropCapClass = 'has-dropcap';
 		} else if ( ! hasDropCapStyle && '' !== hasDropCap ) {
 			setAttributes( { hasDropCap: '' } );
 			setAttributes( { dropCapColor: '' } );
-			hasDropCapClass = '';
 		}
 
 		// Determine if the drop cap SVG should be included in content.
@@ -185,6 +184,16 @@ registerBlockType( 'editorial/introparagraph', {
 		const onRemoveImage = () => {
 			setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
 		};
+
+		const classes = classnames(
+			className,
+			publicationClassName,
+			{
+				'has-dropcap': hasDropCap,
+				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCap && dropCapColor && dropCapColor.slug,
+				[`has-paragraph-color-${paragraphColor.slug}`]: ! hasDropCap && paragraphColor && paragraphColor.slug,
+			},
+		);
 
 		return (
 			<Fragment>
@@ -261,7 +270,7 @@ registerBlockType( 'editorial/introparagraph', {
 						) }
 					</PanelBody>
 				</InspectorControls>
-				<div className={ [ className, hasDropCapClass, dropCapColor, paragraphColor ].join( ' ' ).trim() }>
+				<div className={ classes }>
 					<PlainText
 						tagname='h4'
 						value={ heading }
@@ -329,6 +338,7 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapImageURL,
 			paragraphColor,
 			className,
+			publicationClassName,
 		} = attributes;
 
 		let isImageDropCap = false;
@@ -349,8 +359,18 @@ registerBlockType( 'editorial/introparagraph', {
 			saveList = false;
 		}
 
+		const classes = classnames(
+			className,
+			publicationClassName,
+			{
+				'has-dropcap': hasDropCap,
+				[`has-dropcap-color-${dropCapColor}`]: hasDropCap && dropCapColor,
+				[`has-paragraph-color-${paragraphColor}`]: ! hasDropCap && paragraphColor,
+			},
+		);
+
 		return (
-			<div className={ [ hasDropCap, dropCapColor, paragraphColor ].join( ' ' ).trim() }>
+			<div className={ classes }>
 				{ ! RichText.isEmpty( heading ) && (
 					<RichText.Content tagName="h4" value={ heading } />
 				) }
