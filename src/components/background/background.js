@@ -303,7 +303,7 @@ const Background = (
 			return (
 				<Fragment>
 					<iframe
-						src={ `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&title=0`}
+						src={ `https://player.vimeo.com/video/${videoId}?background=1`}
 						frameborder="0"
 					></iframe>
 				</Fragment>
