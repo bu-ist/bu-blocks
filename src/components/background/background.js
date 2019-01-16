@@ -5,12 +5,6 @@
  *
  * Import this component and its attributes into a block with:
  * 	`import Background, { BackgroundAttributes } from '../../components/background/background.js';`
- *
- * There are four props that can be passed to the component:
- * 	blockProps - properties from the block using the component.
- * 	className - the className to apply to the background element, defaults to `bu-blocks-background`.
- *	controlPanelTitle - the background options Inspector panel name, defaults to `Background Settings`.
-* 	allowedMediaTypes - defaults to `[ 'image', 'video' ]`.
 */
 
 // External dependencies.
@@ -28,13 +22,25 @@ const { Fragment } = wp.element;
 const { BaseControl, IconButton, PanelBody, RangeControl, Toolbar } = wp.components;
 const { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload } = wp.editor;
 
-// Return a classname based on the value of the 'Background Opacity' setting.
+/**
+ * Return a classname based on the value of the 'Background Opacity' setting.
+ *
+ * @param {number} ratio The value of the 'Background Opacity' setting.
+*/
 const BackgroundOpacityToClass = ( ratio ) => {
 	return ( ratio === 100 ) ?
 		null :
 		'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
 }
 
+/**
+ * The background component.
+ *
+ * @param {object} blockProps        Properties from the block using the component.
+ * @param {string} className         ClassName to apply to the background element. Default: `bu-blocks-background`.
+ * @param {string} controlPanelTitle The background options Inspector panel name. Default: `Background Settings`.
+ * @param {array}  allowedMediaTypes Allowed media types for the background. Default: `[ 'image', 'video' ]`.
+ */
 const Background = (
 	blockProps,
 	className = 'bu-blocks-background',
@@ -42,11 +48,13 @@ const Background = (
 	allowedMediaTypes = [ 'image', 'video' ],
 ) => {
 
+	// Get the properties of the block using this component.
 	const {
 		attributes,
 		setAttributes,
 	} = blockProps;
 
+	// Get the attributes for handling the background data.
 	const {
 		backgroundId,
 		backgroundType,
@@ -55,26 +63,34 @@ const Background = (
 		backgroundAlt,
 	} = attributes;
 
+	// Reset attributes to undefined.
+	const onRemoveMedia = () => {
+		setAttributes( {
+			backgroundId: undefined,
+			backgroundType: undefined,
+			backgroundUrl: undefined,
+			backgroundAlt: undefined,
+		} );
+	};
+
+	// Set attributes based on the selected or uploaded media.
 	const onSelectMedia = ( media ) => {
 		if ( ! media || ! media.url ) {
-			setAttributes( {
-				backgroundId: undefined,
-				backgroundType: undefined,
-				backgroundUrl: undefined,
-				backgroundAlt: undefined
-			} );
+			onRemoveMedia();
 
 			return;
 		}
 
 		let mediaType;
 
-		// For media selections originated from a file upload.
 		if ( media.media_type ) {
-			// Only images and videos are accepted so if the media_type is not an image we can assume it is a video.
-			// (Videos contain the media type of 'file' in the object returned from the rest api.)
+			// Determine the media type from selections originating from a file upload.
+			// Only images and videos are accepted. If the media_type is not an image,
+			// we can assume it is a video (which contains the media type of 'file').
 			mediaType = ( 'image' === media.media_type ) ? 'image' : 'video';
-		} else { // For media selections originated from existing files in the media library.
+		} else {
+			// Determine the media type from selections originating from existing files
+			// in the media library.
 			if (
 				media.type !== 'image' &&
 				media.type !== 'video'
@@ -92,14 +108,7 @@ const Background = (
 		} );
 	};
 
-	const onRemoveMedia = () => {
-		setAttributes( {
-			backgroundId: undefined,
-			backgroundType: undefined,
-			backgroundUrl: undefined,
-		} );
-	};
-
+	// Defines the controls for the background options.
 	const controls = (
 		<Fragment>
 			{ !! backgroundUrl && (
@@ -195,12 +204,7 @@ const Background = (
 		</Fragment>
 	)
 
-	const backgroundOpacityToClass = ( ratio ) => {
-		return ( ratio === 100 ) ?
-			null :
-			'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
-	}
-
+	// Build the classes to apply to the background element.
 	const classes = classnames(
 		className,
 		{
@@ -209,6 +213,7 @@ const Background = (
 		}
 	);
 
+	// Return an image element for use as the background.
 	const backgroundImage = (
 		<img
 			className={ classes }
@@ -217,6 +222,7 @@ const Background = (
 		/>
 	)
 
+	// Return a video element for use as the background.
 	const backgroundVideo = (
 		<video
 			className={ classes }
@@ -227,6 +233,7 @@ const Background = (
 		/>
 	);
 
+	// Return the interace for the background component.
 	return (
 		<Fragment>
 			{ controls }
@@ -242,4 +249,5 @@ export {
 	BackgroundOpacityToClass,
 };
 
+// Export the background interface.
 export default Background;
