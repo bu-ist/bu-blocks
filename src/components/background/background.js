@@ -10,10 +10,10 @@
  * 	blockProps - properties from the block using the component.
  * 	className - the className to apply to the background element, defaults to `bu-blocks-background`.
  *	controlPanelTitle - the background options Inspector panel name, defaults to `Background Settings`.
- * 	allowedMediaTypes - defaults to `[ 'image', 'video' ]`.
- */
+* 	allowedMediaTypes - defaults to `[ 'image', 'video' ]`.
+*/
 
- // External dependencies.
+// External dependencies.
 import classnames from 'classnames';
 
 // Import CSS.
@@ -22,16 +22,18 @@ import './editor.scss';
 // Internal dependencies.
 import BackgroundAttributes from './attributes.js';
 
-// Export dependencies for easier importing in blocks.
-export {
-	BackgroundAttributes
-};
-
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { BaseControl, IconButton, PanelBody, RangeControl, Toolbar } = wp.components;
 const { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload } = wp.editor;
+
+// Return a classname based on the value of the 'Background Opacity' setting.
+const BackgroundOpacityToClass = ( ratio ) => {
+	return ( ratio === 100 ) ?
+		null :
+		'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
+}
 
 const Background = (
 	blockProps,
@@ -203,7 +205,7 @@ const Background = (
 		className,
 		{
 			[ 'has-background-opacity' ]: backgroundOpacity !== 100,
-			[ backgroundOpacityToClass( backgroundOpacity ) ]: backgroundOpacityToClass( backgroundOpacity ),
+			[ BackgroundOpacityToClass( backgroundOpacity ) ]: BackgroundOpacityToClass( backgroundOpacity ),
 		}
 	);
 
@@ -233,5 +235,11 @@ const Background = (
 		</Fragment>
 	);
 }
+
+// Export dependencies for easy importing in blocks.
+export {
+	BackgroundAttributes,
+	BackgroundOpacityToClass,
+};
 
 export default Background;
