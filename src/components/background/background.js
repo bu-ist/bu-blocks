@@ -35,6 +35,7 @@ const {
 	InspectorControls,
 	MediaPlaceholder,
 	MediaUpload,
+	MediaUploadCheck,
 } = wp.editor;
 
 /**
@@ -129,25 +130,27 @@ const Background = (
 			{ !! backgroundUrl && (
 				<BlockControls>
 					<Toolbar>
-						<MediaUpload
-							onSelect={ onSelectMedia }
-							allowedMediaTypes={ allowedMediaTypes }
-							value={ backgroundId }
-							render={ ( { open } ) => (
-								<IconButton
-									className='components-toolbar__control'
-									label={ __( 'Edit Background Media' ) }
-									icon='edit'
-									onClick={ open }
-								/>
-							) }
-						/>
-						<IconButton
-							className='components-toolbar__control'
-							label={ ( 'Remove Background Media' ) }
-							icon='no'
-							onClick={ onRemoveMedia }
-						/>
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ onSelectMedia }
+								allowedMediaTypes={ allowedMediaTypes }
+								value={ backgroundId }
+								render={ ( { open } ) => (
+									<IconButton
+										className='components-toolbar__control'
+										label={ __( 'Edit Background Media' ) }
+										icon='edit'
+										onClick={ open }
+									/>
+								) }
+							/>
+							<IconButton
+								className='components-toolbar__control'
+								label={ ( 'Remove Background Media' ) }
+								icon='no'
+								onClick={ onRemoveMedia }
+							/>
+						</MediaUploadCheck>
 					</Toolbar>
 				</BlockControls>
 			) }
@@ -156,16 +159,18 @@ const Background = (
 
 					{ ! backgroundUrl && (
 						<BaseControl>
-							<MediaPlaceholder
-								icon='format-image'
-								className={ className }
-								labels={ {
-									title: __( 'Background Media' ),
-									instructions: __( 'Drag, upload, or select a file from your library.' ),
-								} }
-								onSelect={ onSelectMedia }
-								allowedTypes={ allowedMediaTypes }
-							/>
+							<MediaUploadCheck>
+								<MediaPlaceholder
+									icon='format-image'
+									className={ className }
+									labels={ {
+										title: __( 'Background Media' ),
+										instructions: __( 'Drag, upload, or select a file from your library.' ),
+									} }
+									onSelect={ onSelectMedia }
+									allowedTypes={ allowedMediaTypes }
+								/>
+							</MediaUploadCheck>
 						</BaseControl>
 					) }
 
@@ -174,22 +179,24 @@ const Background = (
 							label={ __( 'Background Media' ) }
 						>
 							<div className='components-bu-background-media'>
-								<MediaUpload
-									onSelect={ onSelectMedia }
-									allowedTypes={ allowedMediaTypes }
-									value={ backgroundId }
-									render={ ( { open } ) => (
-										<IconButton
-											onClick={ open }
-											icon='edit'
-											label={ __( 'Edit Background Media' ) }
-											isDefault
-											isLarge
-										>
-											{ __( 'Edit' ) }
-										</IconButton>
-									) }
-								/>
+								<MediaUploadCheck>
+									<MediaUpload
+										onSelect={ onSelectMedia }
+										allowedTypes={ allowedMediaTypes }
+										value={ backgroundId }
+										render={ ( { open } ) => (
+											<IconButton
+												onClick={ open }
+												icon='edit'
+												label={ __( 'Edit Background Media' ) }
+												isDefault
+												isLarge
+											>
+												{ __( 'Edit' ) }
+											</IconButton>
+										) }
+									/>
+								</MediaUploadCheck>
 								<IconButton
 									onClick={ onRemoveMedia }
 									icon='no'
