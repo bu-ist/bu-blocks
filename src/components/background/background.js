@@ -17,10 +17,25 @@ import './editor.scss';
 import BackgroundAttributes from './attributes.js';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { Fragment } = wp.element;
-const { BaseControl, IconButton, PanelBody, RangeControl, Toolbar } = wp.components;
-const { BlockControls, InspectorControls, MediaPlaceholder, MediaUpload } = wp.editor;
+const {
+	__,
+} = wp.i18n;
+const {
+	Fragment,
+} = wp.element;
+const {
+	BaseControl,
+	IconButton,
+	PanelBody,
+	RangeControl,
+	Toolbar,
+} = wp.components;
+const {
+	BlockControls,
+	InspectorControls,
+	MediaPlaceholder,
+	MediaUpload,
+} = wp.editor;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
