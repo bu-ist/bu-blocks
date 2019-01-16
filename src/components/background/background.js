@@ -37,6 +37,11 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 } = wp.editor;
+const {
+	getAuthority,
+	getPath,
+	getQueryString,
+} = wp.url;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
@@ -124,6 +129,24 @@ const Background = (
 		} );
 	};
 
+	// Set attributes based on a selected URL.
+	const onSelectURL = ( newURL ) => {
+		const allowedAuthorities = [ 'vimeo.com', 'www.youtube.com', 'youtu.be' ];
+		const authority = getAuthority( newURL );
+
+		// Stop here if the selected URL isn't from one of the allowed domains.
+		if ( newURL === backgroundUrl || ! allowedAuthorities.includes( authority ) ) {
+			return;
+		}
+
+		setAttributes( {
+			backgroundId: undefined,
+			backgroundType: 'url',
+			backgroundUrl: newURL,
+			backgroundAlt: undefined,
+		} );
+	}
+
 	// Defines the controls for the background options.
 	const controls = (
 		<Fragment>
@@ -168,6 +191,7 @@ const Background = (
 										instructions: __( 'Drag, upload, or select a file from your library.' ),
 									} }
 									onSelect={ onSelectMedia }
+									onSelectURL={ onSelectURL }
 									allowedTypes={ allowedMediaTypes }
 								/>
 							</MediaUploadCheck>
@@ -196,16 +220,16 @@ const Background = (
 											</IconButton>
 										) }
 									/>
+									<IconButton
+										onClick={ onRemoveMedia }
+										icon='no'
+										label={ ( 'Remove Background Media' ) }
+										isDefault
+										isLarge
+									>
+										{ __( 'Remove' ) }
+									</IconButton>
 								</MediaUploadCheck>
-								<IconButton
-									onClick={ onRemoveMedia }
-									icon='no'
-									label={ ( 'Remove Background Media' ) }
-									isDefault
-									isLarge
-								>
-									{ __( 'Remove' ) }
-								</IconButton>
 							</div>
 						</BaseControl>
 					) }
@@ -255,12 +279,45 @@ const Background = (
 		/>
 	);
 
+	// Return an iframe.
+	const backgroundIframe = () => {
+		const authority = getAuthority( backgroundUrl );
+
+		if ( authority === 'www.youtube.com' || authority === 'youtu.be' ) {
+			const videoId = ( authority === 'youtu.be' ) ?
+				getPath( backgroundUrl ) :
+				getQueryString( backgroundUrl ).split( '?' )[0].substr(2);
+
+			return (
+				<iframe
+					src={ `https://www.youtube.com/embed/${videoId}?controls=0&autoplay=1&mute=1&origin=http://bu.edu&version=3&loop=1&playlist=${videoId}` }
+					frameborder="0"
+					allow="autoplay"
+				></iframe>
+			)
+		}
+
+		if ( authority === 'vimeo.com' ) {
+			const videoId = getPath( backgroundUrl );
+
+			return (
+				<Fragment>
+					<iframe
+						src={ `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&title=0`}
+						frameborder="0"
+					></iframe>
+				</Fragment>
+			);
+		}
+	}
+
 	// Return the interace for the background component.
 	return (
 		<Fragment>
 			{ controls }
 			{ ( 'image' === backgroundType ) && ( backgroundImage ) }
 			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
+			{ ( 'url' === backgroundType ) && backgroundIframe() }
 		</Fragment>
 	);
 }
