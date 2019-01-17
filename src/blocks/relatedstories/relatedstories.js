@@ -136,10 +136,10 @@ registerBlockType( 'editorial/relatedstories', {
 			yarppPosts: [],
 			yarppError: false,
 			doingFetch: false,
-			doingPublicationFetch: false,
-			postPublications: [],
-			doingCategoryFetch: false,
-			postCategories: [],
+
+			relatedPosts: [],
+			doingRelatedPostsFetch: false,
+			relatedError: false,
 		} ),
 		withSelect( ( select, props ) => {
 			const {
@@ -147,10 +147,9 @@ registerBlockType( 'editorial/relatedstories', {
 				yarppPosts,
 				yarppError,
 				doingFetch,
-				doingPublicationFetch,
-				postPublications,
-				doingCategoryFetch,
-				postCategories,
+				relatedPosts,
+				doingRelatedPostsFetch,
+				relatedError,
 			} = props;
 
 			const {
@@ -179,11 +178,17 @@ registerBlockType( 'editorial/relatedstories', {
 
 					if ( postID && ! doingFetch ) {
 						setState( { doingFetch: true } );
-						apiFetch( { path: addQueryArgs( '/bu-yarpp/v1/related', { post_id: postID } ) } ).then( posts => {
+
+						let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', { post: { slug: 'post' } } );
+
+						apiFetch( { path: addQueryArgs( '/bu-blocks/v1/yarpprelated', { post_id: postID, post_type: Object.values( postTypes ) } ) } ).then( posts => {
 							setState( {
 								yarppPosts: posts,
 								doingFetch: false,
-								yarppError: posts.length === 0 ? true : false
+								yarppError: posts.length === 0 ? true : false,
+								doingRelatedPostsFetch: false,
+								relatedPosts: [],
+								relatedError: false,
 							} );
 						} ).catch( error => {
 							if ( error.code === 'yarpp_dispabled' ) {
@@ -204,112 +209,47 @@ registerBlockType( 'editorial/relatedstories', {
 				}
 			}
 
-			const {
-				getEntityRecords,
-				getMedia,
-			} = select( 'core' );
-
-			let returnPosts = [];
-
 			// If a known number of posts has been provided, retrieve those posts.
-			if ( query.include.length > 0 ) {
-				// Filter the default post type used when retrieving posts.
-				let postType = applyFilters( 'buBlocks.relatedStories.postType', 'post' );
+			if ( query.include.length > 0 && relatedPosts.length === 0 && ! relatedError && ! doingRelatedPostsFetch ) {
 
-				returnPosts = getEntityRecords( 'postType', postType, query );
-			}
+				// Filter the default post type used when retrieving.
+				let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', { post: { slug: 'post' } } );
 
-			// If getEntityRecords has returned `undefined`, set back to an empty array.
-			if ( ! returnPosts ) {
-				returnPosts = [];
-			}
+				// Prevent immediate duplicate requests.
+				setState( { doingRelatedPostsFetch: true } );
 
-			let returnMedia = [];
-			let returnPublications = postPublications.slice( 0 ); // Clone the existing data.
-			let returnCategories = postCategories.slice( 0 );
-
-			if ( isCardStyle ) {
-				// Loop through each of the posts and, if featured media is available, capture
-				// the URL to use for displaying the image in the block.
-				for ( const [ _ , post ] of returnPosts.entries() ) {
-					if ( 0 !== post.featured_media ) {
-						let media = getMedia( post.featured_media );
-
-						returnMedia[ post.id ] = {
-							media_url: media ? media.media_details.sizes.responsive_profile.source_url : '',
-						};
-					}
-				}
-
-				// Loop through each of the posts and capture publication information so that we know
-				// which category to attempt a lookup for.
-				for ( const [ _, post ] of returnPosts.entries() ) {
-					if ( 'undefined' === typeof returnPublications[ post.id ] && ! doingPublicationFetch ) {
-
-						setState( {
-							doingPublicationFetch: true,
-						} );
-						apiFetch( { path: addQueryArgs( '/wp/v2/bu-publication', { post: post.id } ) } ).then( publication => {
-							if ( publication.length > 0 ) {
-								returnPublications[ post.id ] = publication[0].slug;
-							} else {
-								returnPublications[ post.id ] = false;
+				apiFetch(
+					{
+						path: addQueryArgs(
+							'/bu-blocks/v1/collection',
+							{
+								include: query.include,
+								post_type: Object.values( postTypes ),
 							}
-
-							setState( {
-								postPublications: returnPublications,
-								doingPublicationFetch: false,
-							} );
-						} );
-
-						// Break early so that only one post is processed at a time to avoid
-						// overloading the browser with requests.
-						break;
+						),
 					}
-				}
-
-				// Loop through each of the posts and capture category information based on
-				// the post's publication.
-				for ( const [ _, post ] of returnPosts.entries() ) {
-					if ( 'undefined' === typeof returnCategories[ post.id ]
-						&& 'undefined' !== typeof returnPublications[ post.id ]
-						&& ! doingCategoryFetch ) {
-
+				).then( posts => {
+					setState( {
+						relatedPosts: posts,
+						doingRelatedPostsFetch: false,
+						relatedError: posts.length === 0 ? true : false
+					} );
+				} ).catch( error => {
+					if ( error.code === 'collection_failed' ) {
+						// @todo Display a notice
 						setState( {
-							doingCategoryFetch: true,
-						} );
-
-						let taxSlug = returnPublications[ post.id ] + '-article-category';
-
-						apiFetch( { path: addQueryArgs( '/wp/v2/' + taxSlug, { post: post.id } ) } ).then( category => {
-
-							if ( category.length > 0 ) {
-								returnCategories[ post.id ] = category[0].name;
-							} else {
-								returnCategories[ post.id ] = false;
-							}
-
-							setState( {
-								postCategories: returnCategories,
-								doingCategoryFetch: false,
-							} );
+							relatedError: true,
+							doingRelatedPostsFetch: false,
 						} );
 					}
-
-					// Break early so that only one post is processed at a time to avoid
-					// overloading the browser with requests.
-					break;
-				}
+				} );
 			}
 
 			return {
-				posts: returnPosts,               // Full post objects to display in the block.
-				media: returnMedia,               // Image URLs, if available, to display in the block.
-				publications: returnPublications, // A list of publications attached to post IDs.
-				categories: returnCategories,     // A list of categories attached to post IDs.
+				posts: relatedPosts, // Full post objects to display in the block.
 			};
 		} ),
-	] )( ( { posts, media, publications, categories, attributes, ...props } ) => {
+	] )( ( { posts, attributes, ...props } ) => {
 		const {
 			className,
 			setAttributes,
@@ -336,17 +276,17 @@ registerBlockType( 'editorial/relatedstories', {
 			return (
 				<li className="wp-block-editorial-relatedstories-list-item">
 					<article className="wp-block-editorial-relatedstories-article">
-						{ className.includes( 'is-style-card' ) && media && media[ post.id ] && (
+						{ className.includes( 'is-style-card' ) && post.media_url && (
 							<figure className="wp-block-editorial-relatedstories-article-image">
-								<img src={ media[ post.id ].media_url } alt="placeholder" />
+								<img src={ post.media_url } alt="placeholder" />
 							</figure>
 						) }
 						<div className="wp-block-editorial-relatedstories-article-content">
-							{ className.includes( 'is-style-card' ) && categories[ post.id ] && (
-								<p className="wp-block-editorial-relatedstories-article-category"><span>{ categories[ post.id ] }</span></p>
+							{ className.includes( 'is-style-card' ) && post.primary_term && (
+								<p className="wp-block-editorial-relatedstories-article-category"><span>{ post.primary_term }</span></p>
 							) }
 							<h4 className="wp-block-editorial-relatedstories-article-title">
-								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ post.title.rendered }</a>
+								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ post.title }</a>
 							</h4>
 							<p className="wp-block-editorial-relatedstories-article-date">{ format( __experimentalGetSettings().formats.date, post.date_gmt ) }</p>
 						</div>
@@ -374,6 +314,13 @@ registerBlockType( 'editorial/relatedstories', {
 					includePosts: includePosts.filter( ( _, i ) => i !== index )
 				} );
 			}
+
+			// Clear any error or existing fetch for selected posts.
+			setState( {
+				relatedError: false,
+				doingRelatedPostsFetch: false,
+				relatedPosts: [],
+			} );
 		};
 
 		/**
@@ -383,7 +330,7 @@ registerBlockType( 'editorial/relatedstories', {
 		 */
 		const displaySelectedPost = ( post ) => {
 			return (
-				<li data-post-id={ post.id }>{ post.title.rendered } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
+				<li data-post-id={ post.id }>{ post.title } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
 			);
 		};
 
@@ -403,6 +350,13 @@ registerBlockType( 'editorial/relatedstories', {
 
 				// Clear the URL input field to allow for another search.
 				setAttributes( { URLInputEntry: '' } );
+
+				// Clear any error or existing fetch for selected posts.
+				setState( {
+					relatedError: false,
+					doingRelatedPostsFetch: false,
+					relatedPosts: [],
+				} );
 			}
 		};
 
@@ -416,6 +370,12 @@ registerBlockType( 'editorial/relatedstories', {
 			if ( relatedManual ) {
 				setState( { yarppError: false, doingFetch: false } );
 			}
+
+			setState( {
+				relatedError: false,
+				doingRelatedPostsFetch: false,
+				relatedPosts: [],
+			} );
 		};
 
 		return (
