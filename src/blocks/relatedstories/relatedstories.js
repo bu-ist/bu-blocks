@@ -141,6 +141,8 @@ registerBlockType( 'editorial/relatedstories', {
 			relatedPosts: [],
 			relatedPostsError: false,
 			doingRelatedPostsFetch: false,
+
+			errorMessage : false,
 		} ),
 		withSelect( ( select, props ) => {
 			const {
@@ -151,6 +153,7 @@ registerBlockType( 'editorial/relatedstories', {
 				relatedPosts,
 				relatedPostsError,
 				doingRelatedPostsFetch,
+				errorMessage,
 			} = props;
 
 			const {
@@ -193,11 +196,12 @@ registerBlockType( 'editorial/relatedstories', {
 								doingRelatedPostsFetch: false,
 							} );
 						} ).catch( error => {
-							if ( error.code === 'yarpp_dispabled' ) {
+							if ( error.code === 'yarpp_disabled' ) {
 								// @todo Display a notice
 								setState( {
 									yarppPostsError: true,
 									doingYarppPostsFetch: false,
+									errorMessage: error.message,
 								} );
 							}
 						} );
@@ -237,21 +241,21 @@ registerBlockType( 'editorial/relatedstories', {
 						doingRelatedPostsFetch: false,
 					} );
 				} ).catch( error => {
-					if ( error.code === 'collection_failed' ) {
-						// @todo Display a notice
-						setState( {
-							relatedPostsError: true,
-							doingRelatedPostsFetch: false,
-						} );
-					}
+					// There is no expected error here, but we can log it.
+					setState( {
+						relatedPostsError: true,
+						doingRelatedPostsFetch: false,
+						errorMessage: error.code,
+					} );
 				} );
 			}
 
 			return {
-				posts: relatedPosts, // Full post objects to display in the block.
+				posts: relatedPosts,        // Full post objects to display in the block.
+				errorMessage: errorMessage, // A string to display in the block if an API request failed.
 			};
 		} ),
-	] )( ( { posts, attributes, ...props } ) => {
+	] )( ( { posts, errorMessage, attributes, ...props } ) => {
 		const {
 			className,
 			setAttributes,
@@ -433,7 +437,7 @@ registerBlockType( 'editorial/relatedstories', {
 							{ posts && posts.map( post => displayListItem( className, post ) ) }
 						</ul>
 					) : (
-						<p>Select related posts in this block's settings.</p>
+						<p>{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
 					) }
 				</aside>
 			</Fragment>
