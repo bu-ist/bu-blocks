@@ -183,7 +183,7 @@ registerBlockType( 'editorial/relatedstories', {
 					if ( postID && ! doingYarppPostsFetch ) {
 						setState( { doingYarppPostsFetch: true } );
 
-						let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', { post: { slug: 'post' } } );
+						let postTypes = applyFilters( 'buBlocks.relatedStories.yarppPostTypes', { post: { slug: 'post' } } );
 
 						apiFetch( { path: addQueryArgs( '/bu-blocks/v1/yarpprelated', { post_id: postID, post_type: Object.values( postTypes ) } ) } ).then( posts => {
 							setState( {
