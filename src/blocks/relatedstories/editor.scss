@@ -5,4 +5,10 @@
  * which makes it higher in priority.
  */
 
-
+// Add a clearfix so that the wrapping container added by Gutenberg
+// knows what to contain.
+aside.wp-block-editorial-relatedstories:after {
+	content: "";
+	display: table;
+	clear: both;
+}
