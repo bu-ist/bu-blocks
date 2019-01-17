@@ -1,6 +1,7 @@
 <?php
 /**
- * Adds a REST API endpoint for the YARPP plugin.
+ * Adds a REST API endpoint for the YARPP plugin that returns
+ * related posts for a given post ID.
  *
  * @link       www.bu.edu/interactive-design/
  * @since      0.1.0
@@ -9,7 +10,7 @@
  * @subpackage BU_Blocks/src/includes
  */
 
-namespace BU\Plugins\BU_Blocks\YARPPEndpoint;
+namespace BU\Plugins\BU_Blocks\YARPPRelatedEndpoint;
 
 add_action( 'rest_api_init', __NAMESPACE__ . '\register_route' );
 
