@@ -293,6 +293,7 @@ const Background = (
 					src={ `https://www.youtube.com/embed/${videoId}?controls=0&autoplay=1&mute=1&origin=http://bu.edu&version=3&loop=1&playlist=${videoId}` }
 					frameborder="0"
 					allow="autoplay"
+					className={ classes }
 				></iframe>
 			)
 		}
@@ -304,6 +305,7 @@ const Background = (
 				<iframe
 					src={ `https://player.vimeo.com/video/${videoId}?background=1`}
 					frameborder="0"
+					className={ classes }
 				></iframe>
 			);
 		}
