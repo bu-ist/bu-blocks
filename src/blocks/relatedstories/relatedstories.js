@@ -134,22 +134,24 @@ registerBlockType( 'editorial/relatedstories', {
 		withState( {
 			// Track dynamically provided YARPP post IDs as a state.
 			yarppPosts: [],
-			yarppError: false,
-			doingFetch: false,
+			yarppPostsError: false,
+			doingYarppPostsFetch: false,
 
 			relatedPosts: [],
+			relatedPostsError: false,
 			doingRelatedPostsFetch: false,
-			relatedError: false,
 		} ),
 		withSelect( ( select, props ) => {
 			const {
 				setState,
+
 				yarppPosts,
-				yarppError,
-				doingFetch,
+				yarppPostsError,
+				doingYarppPostsFetch,
+
 				relatedPosts,
+				relatedPostsError,
 				doingRelatedPostsFetch,
-				relatedError,
 			} = props;
 
 			const {
@@ -173,29 +175,30 @@ registerBlockType( 'editorial/relatedstories', {
 				// If the YARPP posts state has not yet been set, and an
 				// existing YARPP API error has not been cleared, retrieve
 				// a list of related post IDs.
-				if ( yarppPosts.length === 0 && ! yarppError ) {
+				if ( yarppPosts.length === 0 && ! yarppPostsError ) {
 					let postID = select( 'core/editor' ).getCurrentPostId();
 
-					if ( postID && ! doingFetch ) {
-						setState( { doingFetch: true } );
+					if ( postID && ! doingYarppPostsFetch ) {
+						setState( { doingYarppPostsFetch: true } );
 
 						let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', { post: { slug: 'post' } } );
 
 						apiFetch( { path: addQueryArgs( '/bu-blocks/v1/yarpprelated', { post_id: postID, post_type: Object.values( postTypes ) } ) } ).then( posts => {
 							setState( {
 								yarppPosts: posts,
-								doingFetch: false,
-								yarppError: posts.length === 0 ? true : false,
-								doingRelatedPostsFetch: false,
+								yarppPostsError: posts.length === 0 ? true : false,
+								doingYarppPostsFetch: false,
+
 								relatedPosts: [],
-								relatedError: false,
+								relatedPostsError: false,
+								doingRelatedPostsFetch: false,
 							} );
 						} ).catch( error => {
 							if ( error.code === 'yarpp_dispabled' ) {
 								// @todo Display a notice
 								setState( {
-									yarppError: true,
-									doingFetch: false,
+									yarppPostsError: true,
+									doingYarppPostsFetch: false,
 								} );
 							}
 						} );
@@ -210,7 +213,7 @@ registerBlockType( 'editorial/relatedstories', {
 			}
 
 			// If a known number of posts has been provided, retrieve those posts.
-			if ( query.include.length > 0 && relatedPosts.length === 0 && ! relatedError && ! doingRelatedPostsFetch ) {
+			if ( query.include.length > 0 && relatedPosts.length === 0 && ! relatedPostsError && ! doingRelatedPostsFetch ) {
 
 				// Filter the default post type used when retrieving.
 				let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', { post: { slug: 'post' } } );
@@ -231,14 +234,14 @@ registerBlockType( 'editorial/relatedstories', {
 				).then( posts => {
 					setState( {
 						relatedPosts: posts,
+						relatedPostsError: posts.length === 0 ? true : false,
 						doingRelatedPostsFetch: false,
-						relatedError: posts.length === 0 ? true : false
 					} );
 				} ).catch( error => {
 					if ( error.code === 'collection_failed' ) {
 						// @todo Display a notice
 						setState( {
-							relatedError: true,
+							relatedPostsError: true,
 							doingRelatedPostsFetch: false,
 						} );
 					}
@@ -317,9 +320,9 @@ registerBlockType( 'editorial/relatedstories', {
 
 			// Clear any error or existing fetch for selected posts.
 			setState( {
-				relatedError: false,
-				doingRelatedPostsFetch: false,
 				relatedPosts: [],
+				relatedPostsError: false,
+				doingRelatedPostsFetch: false,
 			} );
 		};
 
@@ -353,9 +356,9 @@ registerBlockType( 'editorial/relatedstories', {
 
 				// Clear any error or existing fetch for selected posts.
 				setState( {
-					relatedError: false,
-					doingRelatedPostsFetch: false,
 					relatedPosts: [],
+					relatedPostsError: false,
+					doingRelatedPostsFetch: false,
 				} );
 			}
 		};
@@ -368,13 +371,13 @@ registerBlockType( 'editorial/relatedstories', {
 
 			// Allow the manual toggle to retrigger a failed related posts request to YARPP.
 			if ( relatedManual ) {
-				setState( { yarppError: false, doingFetch: false } );
+				setState( { yarppPostsError: false, doingYarppPostsFetch: false } );
 			}
 
 			setState( {
-				relatedError: false,
-				doingRelatedPostsFetch: false,
 				relatedPosts: [],
+				relatedPostsError: false,
+				doingRelatedPostsFetch: false,
 			} );
 		};
 
