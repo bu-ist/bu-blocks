@@ -194,6 +194,7 @@ const Background = (
 									onSelectURL={ onSelectURL }
 									allowedTypes={ allowedMediaTypes }
 								/>
+								<p className="description components-bu-background-url-note">YouTube and Vimeo URLs are supported at this time.</p>
 							</MediaUploadCheck>
 						</BaseControl>
 					) }
