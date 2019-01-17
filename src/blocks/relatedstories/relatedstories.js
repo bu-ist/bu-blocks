@@ -165,7 +165,7 @@ registerBlockType( 'editorial/relatedstories', {
 			let perPage = isCardStyle && cardCount ? cardCount : 3;
 
 			if ( relatedManual ) {
-				// Setup the query arguments to run against the core REST API for bu-articles.
+				// Setup the query arguments to run against the core REST API.
 				query = {
 					per_page: perPage,
 					include: includePosts,
@@ -197,7 +197,7 @@ registerBlockType( 'editorial/relatedstories', {
 					}
 				}
 
-				// Setup the query arguments to run against the core REST API for bu-articles.
+				// Setup the query arguments to run against the core REST API.
 				query = {
 					per_page: perPage,
 					include: yarppPosts,
