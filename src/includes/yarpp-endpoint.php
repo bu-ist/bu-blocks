@@ -33,12 +33,18 @@ function register_route() {
  * is enabled.
  *
  * @param \WP_Request $request The incoming REST API request object.
- * @return array A list of post IDs.
+ * @return array|\WP_Error A list of post IDs. An error object if YARPP is not activated.
  */
 function rest_response( $request ) {
 	if ( function_exists( 'yarpp_get_related' ) ) {
-		$post_id = $request->get_param( 'post_id' );
-		$posts   = yarpp_get_related( array(), $post_id );
+		$post_id   = $request->get_param( 'post_id' );
+		$post_type = $request->get_param( 'post_type' );
+
+		if ( $post_type && 'all' !== $post_type ) {
+			$args['post_type'] = wp_list_pluck( $post_type, 'slug' );
+		}
+
+		$posts   = yarpp_get_related( $args, $post_id );
 		$posts   = wp_list_pluck( $posts, 'ID' );
 	} else {
 		return new \WP_Error( 'yarpp_disabled', 'The YARPP plugin is not available', array( 'status' => 501 ) );
