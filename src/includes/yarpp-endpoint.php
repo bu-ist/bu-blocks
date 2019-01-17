@@ -19,8 +19,8 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\register_route' );
  */
 function register_route() {
 	register_rest_route(
-		'bu-yarpp/v1',
-		'related',
+		'bu-blocks/v1',
+		'yarpprelated',
 		array(
 			'methods'  => 'GET',
 			'callback' => __NAMESPACE__ . '\rest_response',
