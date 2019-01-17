@@ -5,4 +5,13 @@
  * which makes it higher in priority.
  */
 
+.wp-block-bu-pullquote {
+	border-bottom: none;
+	border-top: none;
+	padding: 0;
+	position: relative;
 
+	.block-editor__container & img {
+		height: 100%;
+	}
+}
