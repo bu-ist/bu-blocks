@@ -213,6 +213,7 @@ registerBlockType( 'editorial/relatedstories', {
 
 			// If a known number of posts has been provided, retrieve those posts.
 			if ( query.include.length > 0 ) {
+				// Filter the default post type used when retrieving posts.
 				let postType = applyFilters( 'buBlocks.relatedStories.postType', 'post' );
 
 				returnPosts = getEntityRecords( 'postType', postType, query );
