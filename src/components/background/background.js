@@ -301,12 +301,10 @@ const Background = (
 			const videoId = getPath( backgroundUrl );
 
 			return (
-				<Fragment>
-					<iframe
-						src={ `https://player.vimeo.com/video/${videoId}?background=1`}
-						frameborder="0"
-					></iframe>
-				</Fragment>
+				<iframe
+					src={ `https://player.vimeo.com/video/${videoId}?background=1`}
+					frameborder="0"
+				></iframe>
 			);
 		}
 	}
@@ -317,7 +315,13 @@ const Background = (
 			{ controls }
 			{ ( 'image' === backgroundType ) && ( backgroundImage ) }
 			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
-			{ ( 'url' === backgroundType ) && backgroundIframe() }
+			{ ( 'url' === backgroundType ) && (
+				<div className="wp-block-background-video">
+					<div className="wp-block-background-video-iframe">
+						{ backgroundIframe() }
+					</div>
+				</div>
+			) }
 		</Fragment>
 	);
 }
