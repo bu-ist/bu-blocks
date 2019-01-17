@@ -137,6 +137,7 @@ registerBlockType( 'editorial/relatedstories', {
 			yarppPostsError: false,
 			doingYarppPostsFetch: false,
 
+			// Track the retrieval of related post IDs (manual or automatic) as a state.
 			relatedPosts: [],
 			relatedPostsError: false,
 			doingRelatedPostsFetch: false,
@@ -144,11 +145,9 @@ registerBlockType( 'editorial/relatedstories', {
 		withSelect( ( select, props ) => {
 			const {
 				setState,
-
 				yarppPosts,
 				yarppPostsError,
 				doingYarppPostsFetch,
-
 				relatedPosts,
 				relatedPostsError,
 				doingRelatedPostsFetch,
