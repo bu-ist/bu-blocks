@@ -221,11 +221,11 @@ registerBlockType( 'bu/buniverse', {
 			{ [ aspectRatio ]: aspectRatio },
 		);
 
-		const startParam = ( start ) ? `&start=${start}` : '';
-
 		// Build out the full url.
-		// Note: Use of the `autoplay` attribute value for the `muted` parameter is intentional.
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&controls=${controls}&autoplay=${autoplay}&mute=${autoplay}${startParam}`;
+		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}`;
+		url += ( controls !== 1 ) ? '&controls=0' : '';
+		url += ( autoplay === 1 ) ? '&autoplay=1&mute=1&origin=http://bu.edu' : '';
+		url += ( start ) ? `&start=${start}` : '';
 
 		return(
 			<figure className={ classes }>
@@ -234,6 +234,7 @@ registerBlockType( 'bu/buniverse', {
 						<iframe
 							src={ encodeURI( url ) }
 							frameborder="0"
+							allow="autoplay"
 						></iframe>
 					) }
 				</div>
