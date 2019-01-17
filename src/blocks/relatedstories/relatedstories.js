@@ -47,6 +47,9 @@ const {
 const {
 	apiFetch,
 } = wp;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // Register the block.
 registerBlockType( 'editorial/relatedstories', {
@@ -200,7 +203,9 @@ registerBlockType( 'editorial/relatedstories', {
 
 			// If a known number of posts has been provided, retrieve those posts.
 			if ( query.include.length > 0 ) {
-				returnPosts = getEntityRecords( 'postType', 'bu-article', query );
+				let postType = applyFilters( 'buBlocks.relatedStories.postType', 'post' );
+
+				returnPosts = getEntityRecords( 'postType', postType, query );
 			}
 
 			// If getEntityRecords has returned `undefined`, set back to an empty array.
