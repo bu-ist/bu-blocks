@@ -11,7 +11,7 @@
  * @subpackage BU_Blocks/src/includes
  */
 
-namespace BU\Plugins\BU_Blocks\CollectionEndpoint;
+namespace BU\Plugins\BU_Blocks\RelatedStories\CollectionEndpoint;
 
 add_action( 'rest_api_init', __NAMESPACE__ . '\register_route' );
 
