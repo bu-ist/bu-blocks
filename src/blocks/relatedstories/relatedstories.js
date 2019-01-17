@@ -298,6 +298,16 @@ registerBlockType( 'editorial/relatedstories', {
 			);
 		};
 
+		// Reset the related posts collection to its defaults to allow for
+		// a fresh lookup after a change.
+		const resetRelatedState = () => {
+			setState( {
+				relatedPosts: [],
+				relatedPostsError: false,
+				doingRelatedPostsFetch: false,
+			} );
+		};
+
 		/**
 		 * Remove a previously selected post from the list of manual posts.
 		 *
@@ -319,11 +329,7 @@ registerBlockType( 'editorial/relatedstories', {
 			}
 
 			// Clear any error or existing fetch for selected posts.
-			setState( {
-				relatedPosts: [],
-				relatedPostsError: false,
-				doingRelatedPostsFetch: false,
-			} );
+			resetRelatedState();
 		};
 
 		/**
@@ -355,11 +361,7 @@ registerBlockType( 'editorial/relatedstories', {
 				setAttributes( { URLInputEntry: '' } );
 
 				// Clear any error or existing fetch for selected posts.
-				setState( {
-					relatedPosts: [],
-					relatedPostsError: false,
-					doingRelatedPostsFetch: false,
-				} );
+				resetRelatedState();
 			}
 		};
 
@@ -371,14 +373,14 @@ registerBlockType( 'editorial/relatedstories', {
 
 			// Allow the manual toggle to retrigger a failed related posts request to YARPP.
 			if ( relatedManual ) {
-				setState( { yarppPostsError: false, doingYarppPostsFetch: false } );
+				setState( {
+					yarppPosts: [],
+					yarppPostsError: false,
+					doingYarppPostsFetch: false,
+				} );
 			}
 
-			setState( {
-				relatedPosts: [],
-				relatedPostsError: false,
-				doingRelatedPostsFetch: false,
-			} );
+			resetRelatedState();
 		};
 
 		return (
