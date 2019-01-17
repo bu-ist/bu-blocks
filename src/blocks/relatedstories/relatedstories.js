@@ -13,40 +13,50 @@ import './editor.scss';
 const {
 	__,
 } = wp.i18n;
+
 const {
 	registerBlockType,
 } = wp.blocks;
+
 const {
 	withState,
 	compose,
 } = wp.compose;
+
 const {
 	withSelect,
 } = wp.data;
+
 const {
 	Fragment,
 } = wp.element;
+
 const {
 	PanelBody,
 	RangeControl,
 	ToggleControl,
 } = wp.components;
+
 const {
 	InspectorControls,
 	BlockAlignmentToolbar,
 	BlockControls,
 	URLInput,
 } = wp.editor;
+
 const {
 	addQueryArgs,
 } = wp.url;
+
 const {
 	format,
 	__experimentalGetSettings, // Used to retrieve date format, watch for deprecation.
 } = wp.date;
+
 const {
 	apiFetch,
 } = wp;
+
 const {
 	applyFilters,
 } = wp.hooks;
