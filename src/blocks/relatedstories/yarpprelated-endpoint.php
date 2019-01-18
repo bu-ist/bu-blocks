@@ -45,8 +45,8 @@ function rest_response( $request ) {
 			$args['post_type'] = wp_list_pluck( $post_type, 'slug' );
 		}
 
-		$posts   = yarpp_get_related( $args, $post_id );
-		$posts   = wp_list_pluck( $posts, 'ID' );
+		$posts = \BU\Plugins\BU_Blocks\Blocks\RelatedStories\get_block_posts( false, array(), $args );
+		$posts = wp_list_pluck( $posts, 'ID' );
 	} else {
 		return new \WP_Error( 'yarpp_disabled', 'The YARPP plugin is not available', array( 'status' => 501 ) );
 	}
