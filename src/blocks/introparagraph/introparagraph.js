@@ -39,7 +39,7 @@ const {
 import classnames from 'classnames';
 
 // Import common handling of available color options.
-import themeOptions from '../../global/theme-options.js';
+import themeOptions from '../../global/theme-options';
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
