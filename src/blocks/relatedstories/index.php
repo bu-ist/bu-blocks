@@ -55,18 +55,30 @@ function get_block_classes( $attributes ) {
  * @param array $posts  A list of post IDs to lookup, if provided.
  * @return array A list of found articles.
  */
-function get_block_posts( $manual, $posts = array() ) {
+function get_block_posts( $manual, $posts = array(), $args = array() ) {
 	// If related posts have been manually selected, we do a direct query
 	// with those post IDs. Otherwise, use YARPP.
 	if ( $manual ) {
+		$manual_defaults = array(
+			'post_type' => '',
+		);
+		$manual_args = wp_parse_args( $args, $manual_defaults );
+
 		$posts = get_posts(
 			array(
 				'post__in'  => $posts,
-				'post_type' => 'bu-article',
+				'post_type' => $manual_args['post_type'],
+				'orderby'   => 'post__in',
 			)
 		);
 	} elseif ( function_exists( 'yarpp_get_related' ) ) {
-		$posts = \yarpp_get_related( array(), get_the_ID() );
+		if ( isset( $args['post_type'] ) ) {
+			$yarpp_args['post_type'] = $args['post_type'];
+		}
+
+		$post_id = isset( $args['post_id'] ) ? $args['post_id'] : get_the_ID();
+
+		$posts = \yarpp_get_related( $yarpp_args, $post_id );
 	} else {
 		$posts = array(); // There are no related posts to retrieve.
 	}
@@ -99,7 +111,7 @@ function render_block( $attributes ) {
 	$attributes = apply_filters( 'bu_prepress_related_stories_block_attributes', $attributes );
 
 	// Retrieve the list of posts used to render this block.
-	$posts = get_block_posts( $attributes['relatedManual'], $attributes['includePosts'] );
+	$posts = get_block_posts( $attributes['relatedManual'], $attributes['includePosts'], array( 'post_type' => array( 'post', 'bu-article' ) ) );
 
 	// Render nothing if no posts are available.
 	if ( empty( $posts ) ) {
