@@ -69,7 +69,7 @@ function rest_response( $request ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			$post    = array(
+			$post = array(
 				'id'           => get_the_ID(),
 				'title'        => get_the_title(),
 				'date_gmt'     => get_the_date( '' ),
