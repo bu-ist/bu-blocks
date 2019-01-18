@@ -207,7 +207,6 @@ registerBlockType( 'editorial/relatedstories', {
 							} );
 						} ).catch( error => {
 							if ( error.code === 'yarpp_disabled' ) {
-								// @todo Display a notice
 								setState( {
 									yarppPostsError: true,
 									doingYarppPostsFetch: false,
