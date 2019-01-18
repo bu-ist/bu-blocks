@@ -44,6 +44,13 @@ function get_block_classes( $attributes ) {
 		$classes .= ' has-three';
 	}
 
+	/**
+	 * Filter the classes used in server side rendering of related stories.
+	 *
+	 * @param string A string of class names to assign to the related stories block.
+	 */
+	$classes = apply_filters( 'bu_blocks_related_stories_class_names', $classes );
+
 	return $classes;
 }
 
