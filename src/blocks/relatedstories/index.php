@@ -61,6 +61,7 @@ function get_block_posts( $manual, $posts = array(), $args = array() ) {
 	if ( $manual ) {
 		$manual_defaults = array(
 			'post_type' => '',
+			'per_page'  => 3,
 		);
 		$manual_args = wp_parse_args( $args, $manual_defaults );
 
@@ -72,6 +73,13 @@ function get_block_posts( $manual, $posts = array(), $args = array() ) {
 			)
 		);
 	} elseif ( function_exists( 'yarpp_get_related' ) ) {
+		$yarpp_args = array( 'limit' => 3 );
+
+		if ( isset( $args['per_page'] ) ) {
+			$yarpp_args['limit'] = $args['per_page'];
+		}
+
+		// Only pass the post_type arg if it is set. If not, YARPP will use all post types.
 		if ( isset( $args['post_type'] ) ) {
 			$yarpp_args['post_type'] = $args['post_type'];
 		}
@@ -97,6 +105,7 @@ function render_block( $attributes ) {
 	$defaults   = array(
 		'align'          => '',
 		'className'      => '',
+		'cardCount'      => 2,
 		'cardCountClass' => '',
 		'includePosts'   => array(),
 		'relatedManual'  => false,
@@ -116,16 +125,28 @@ function render_block( $attributes ) {
 	 */
 	$post_types = apply_filters( 'bu_blocks_related_stories_post_types', array( 'post' ), $attributes['relatedManual'] );
 
+	// Retrieve the classes to attach to the block wrapper.
+	$classes = get_block_classes( $attributes );
+
+	if ( strpos( $classes, 'is-style-card' ) ) {
+		$per_page = $attributes['cardCount'];
+	} else {
+		$per_page = 3;
+	}
+
 	// Retrieve the list of posts used to render this block.
-	$posts = get_block_posts( $attributes['relatedManual'], $attributes['includePosts'], array( 'post_type' => $post_types ) );
+	$posts = get_block_posts(
+		$attributes['relatedManual'],
+		$attributes['includePosts'],
+		array(
+			'post_type' => $post_types,
+			'per_page'  => $per_page,
+		) );
 
 	// Render nothing if no posts are available.
 	if ( empty( $posts ) ) {
 		return '';
 	}
-
-	// Retrieve the classes to attach to the block wrapper.
-	$classes = get_block_classes( $attributes );
 
 	ob_start();
 	?>
