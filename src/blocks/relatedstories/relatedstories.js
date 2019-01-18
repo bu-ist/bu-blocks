@@ -25,6 +25,7 @@ const {
 
 const {
 	withSelect,
+	select,
 } = wp.data;
 
 const {
@@ -296,6 +297,8 @@ registerBlockType( 'editorial/relatedstories', {
 			displayPosts = posts;
 		}
 
+		let currentPost = select( 'core/editor' ).getCurrentPost();
+
 		const displayListItem = ( className, post ) => {
 			return (
 				<li className="wp-block-editorial-relatedstories-list-item">
@@ -313,6 +316,7 @@ registerBlockType( 'editorial/relatedstories', {
 								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ post.title }</a>
 							</h4>
 							<p className="wp-block-editorial-relatedstories-article-date">{ format( __experimentalGetSettings().formats.date, post.date_gmt ) }</p>
+							{ applyFilters( 'buBlocks.relatedStories.displayListItem', '', post, currentPost ) }
 						</div>
 					</article>
 				</li>
