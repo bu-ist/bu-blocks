@@ -44,6 +44,36 @@ import themeOptions from '../../global/theme-options';
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
 
+/**
+ * Render the SVG used for a drop cap when the drop cap has an
+ * image assigned to it.
+ *
+ * This is used in the block editor and stored in post content
+ * as part of the block markup.
+ *
+ * @param {string} character The character to display in the drop cap.
+ * @param {string} imageURL  The background image for the drop cap character.
+ */
+const renderDropCapSVG = ( character, imageURL ) => {
+	return (
+		<svg>
+			<pattern
+				id="dropcap-texture"
+				viewBox="0 0 1024 1024"
+				patternUnits="userSpaceOnUse"
+				width="100%" height="100%"
+				x="0%" y="0%">
+				<image href={ imageURL } width="1024" height="1024"/>
+			</pattern>
+			<text textAnchor="start"
+				x="0"
+				y="50%"
+				dy=".404em"
+				className="dropcap-filltext">{ character }</text>
+		</svg>
+	);
+};
+
 // Register the block.
 registerBlockType( 'editorial/introparagraph', {
 
@@ -281,23 +311,7 @@ registerBlockType( 'editorial/introparagraph', {
 						formattingControls={ [ 'link' ] }
 					/>
 					<div className="wp-block-editorial-introparagraph-content">
-						{ isImageDropCap && (
-							<svg>
-								<pattern
-									id="dropcap-texture"
-									viewBox="0 0 1024 1024"
-									patternUnits="userSpaceOnUse"
-									width="100%" height="100%"
-									x="0%" y="0%">
-									<image href={ dropCapImageURL } width="1024" height="1024"/>
-								</pattern>
-								<text textAnchor="start"
-									x="0"
-									y="50%"
-									dy=".404em"
-									className="dropcap-filltext">{ dropCapCharacter }</text>
-							</svg>
-						) }
+						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 						<RichText
 							tagname="p"
 							value= { content }
@@ -380,23 +394,7 @@ registerBlockType( 'editorial/introparagraph', {
 				) }
 				{ ! RichText.isEmpty( content ) && (
 					<div className="wp-block-editorial-introparagraph-content">
-						{ isImageDropCap && (
-							<svg>
-								<pattern
-									id="dropcap-texture"
-									viewBox="0 0 1024 1024"
-									patternUnits="userSpaceOnUse"
-									width="100%" height="100%"
-									x="0%" y="0%">
-									<image href={ dropCapImageURL } width="1024" height="1024"/>
-								</pattern>
-								<text textAnchor="start"
-									x="0"
-									y="50%"
-									dy=".404em"
-									className="dropcap-filltext">{ dropCapCharacter }</text>
-							</svg>
-						) }
+						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 						<RichText.Content
 							tagName="p"
 							value= { content }
