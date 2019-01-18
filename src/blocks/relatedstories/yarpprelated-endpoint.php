@@ -41,6 +41,14 @@ function rest_response( $request ) {
 		$post_id   = $request->get_param( 'post_id' );
 		$post_type = $request->get_param( 'post_type' );
 
+		if ( ! $post_id || 0 === absint( $post_id ) ) {
+			return array();
+		}
+
+		$args = array(
+			'post_id' => $post_id,
+		);
+
 		if ( $post_type && 'all' !== $post_type ) {
 			$args['post_type'] = wp_list_pluck( $post_type, 'slug' );
 		}

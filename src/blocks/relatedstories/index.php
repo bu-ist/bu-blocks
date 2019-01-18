@@ -110,8 +110,14 @@ function render_block( $attributes ) {
 	 */
 	$attributes = apply_filters( 'bu_prepress_related_stories_block_attributes', $attributes );
 
+	/**
+	 * @param array $post_types A list of post types to pass to YARPP.
+	 * @param bool  $manual     Whether the request is manual (true) or YARPP (false).
+	 */
+	$post_types = apply_filters( 'bu_blocks_related_stories_post_types', array( 'post' ), $attributes['relatedManual'] );
+
 	// Retrieve the list of posts used to render this block.
-	$posts = get_block_posts( $attributes['relatedManual'], $attributes['includePosts'], array( 'post_type' => array( 'post', 'bu-article' ) ) );
+	$posts = get_block_posts( $attributes['relatedManual'], $attributes['includePosts'], array( 'post_type' => $post_types ) );
 
 	// Render nothing if no posts are available.
 	if ( empty( $posts ) ) {
