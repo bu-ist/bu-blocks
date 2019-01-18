@@ -207,6 +207,87 @@ registerBlockType( 'editorial/introparagraph', {
 			setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
 		};
 
+		// Render the settings panel used to assign color to a paragraph.
+		const renderParagraphSettings = () => {
+			return (
+				<PanelColorSettings
+					title={ __( 'Paragraph color' ) }
+					colorSettings={ [
+						{
+							value: paragraphColor.color,
+							onChange: setParagraphColor,
+							label: __( 'Paragraph' ),
+							disableCustomColors: true,
+							colors: themeOptions(),
+						},
+					] }
+				/>
+			);
+		};
+
+		// Render the settings panel used to assign color to a drop cap character.
+		const renderDropCapColorSettings = () => {
+			return (
+				<PanelColorSettings
+					title={ __( 'Drop cap color' ) }
+					colorSettings={ [
+						{
+							value: dropCapColor.color,
+							onChange: setDropCapColor,
+							label: __( 'Drop cap' ),
+							disableCustomColors: true,
+							colors: themeOptions(),
+						},
+					] }
+				/>
+			);
+		};
+
+		// Render the settings panel used to assign an image to a drop cap character.
+		const renderDropCapImageSettings = () => {
+			return (
+				<PanelBody title={ __( 'Drop cap image settings' ) }>
+					{ '' !== dropCapImageURL && (
+						<MediaUploadCheck>
+							<Toolbar>
+								<MediaUpload
+									onSelect={ onSelectImage }
+									value={ dropCapImageId }
+									render={ ( { open } ) => (
+										<div>
+											<IconButton
+												className="components-toolbar__control"
+												label="Edit image"
+												icon="edit"
+												onClick={ open }
+											/>
+											<IconButton
+												icon="no-alt"
+												onClick={ onRemoveImage }
+												className="blocks-gallery-image__remove"
+												label="Remove image"
+											/>
+										</div>
+									) }
+								/>
+							</Toolbar>
+							<img src={ dropCapImageURL } />
+						</MediaUploadCheck>
+					) }
+					<MediaPlaceholder
+						key="drop-cap-image"
+						icon="format-image"
+						label="Drop Cap Image"
+						labels={ {
+							title: 'Drop Cap Image',
+							name: 'images',
+						} }
+						onSelect={ onSelectImage }
+					/>
+				</PanelBody>
+			);
+		};
+
 		const classes = classnames(
 			className,
 			publicationClassName,
@@ -220,79 +301,9 @@ registerBlockType( 'editorial/introparagraph', {
 		return (
 			<Fragment>
 				<InspectorControls>
-					{ ! hasDropCapStyle && (
-						<PanelColorSettings
-						title={ __( 'Paragraph color' ) }
-						colorSettings={ [
-							{
-								value: paragraphColor.color,
-								onChange: setParagraphColor,
-								label: __( 'Paragraph' ),
-								disableCustomColors: true,
-								colors: themeOptions(),
-							},
-						] }
-					/>
-					) }
-					{ hasDropCapStyle && ! isImageDropCap && (
-						<PanelColorSettings
-						title={ __( 'Drop cap color' ) }
-						colorSettings={ [
-							{
-								value: dropCapColor.color,
-								onChange: setDropCapColor,
-								label: __( 'Drop cap' ),
-								disableCustomColors: true,
-								colors: themeOptions(),
-							},
-						] }
-					/>
-					) }
-					{ isImageDropCap && (
-						<PanelBody title={ __( 'Drop cap image settings' ) }>
-							{ isImageDropCap && '' !== dropCapImageURL ? (
-								<MediaUploadCheck>
-									<Toolbar>
-										<MediaUpload
-											onSelect={ onSelectImage }
-											value={ dropCapImageId }
-											render={ ( { open } ) => (
-												<div>
-													<IconButton
-														className="components-toolbar__control"
-														label="Edit image"
-														icon="edit"
-														onClick={ open }
-													/>
-													<IconButton
-														icon="no-alt"
-														onClick={ onRemoveImage }
-														className="blocks-gallery-image__remove"
-														label="Remove image"
-													/>
-												</div>
-											) }
-										/>
-									</Toolbar>
-									<img src={ dropCapImageURL } />
-								</MediaUploadCheck>
-							) : (
-								""
-							) }
-							{ isImageDropCap && (
-								<MediaPlaceholder
-									key="drop-cap-image"
-									icon="format-image"
-									label="Drop Cap Image"
-									labels={ {
-										title: 'Drop Cap Image',
-										name: 'images',
-									} }
-									onSelect={ onSelectImage }
-								/>
-							) }
-						</PanelBody>
-					) }
+					{ ! hasDropCapStyle && renderParagraphSettings() }
+					{ hasDropCapStyle && ! isImageDropCap && renderDropCapColorSettings() }
+					{ hasDropCapStyle && isImageDropCap && renderDropCapImageSettings() }
 				</InspectorControls>
 				<div className={ classes }>
 					<PlainText
