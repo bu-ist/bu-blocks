@@ -62,6 +62,11 @@ const {
 	applyFilters,
 } = wp.hooks;
 
+import classnames from 'classnames';
+
+// Capture the edited article's publication.
+const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+
 // Register the block.
 registerBlockType( 'editorial/relatedstories', {
 
@@ -130,6 +135,9 @@ registerBlockType( 'editorial/relatedstories', {
 
 		return { 'data-align': 'none' };
 	},
+
+	// Assign a publication class name.
+	publicationClassName: publicationClass + '-block-related-stories',
 
 	edit: compose( [
 		withState( {
@@ -268,6 +276,7 @@ registerBlockType( 'editorial/relatedstories', {
 	] )( ( { posts, errorMessage, attributes, ...props } ) => {
 		const {
 			className,
+			publicationClassName,
 			setAttributes,
 			setState,
 		} = props;
@@ -279,14 +288,6 @@ registerBlockType( 'editorial/relatedstories', {
 			URLInputEntry,
 			includePosts,
 		} = attributes;
-
-		let cardCountClass = '';
-
-		if ( className.includes( 'is-style-card' ) && cardCount === 2 ) {
-			cardCountClass = 'has-two';
-		} else if ( className.includes( 'is-style-card' ) ) {
-			cardCountClass = ' has-three';
-		}
 
 		let displayPosts;
 
@@ -408,6 +409,20 @@ registerBlockType( 'editorial/relatedstories', {
 			resetRelatedState();
 		};
 
+		let cardCountClass = '';
+
+		if ( className.includes( 'is-style-card' ) && cardCount === 2 ) {
+			cardCountClass = 'has-two';
+		} else if ( className.includes( 'is-style-card' ) ) {
+			cardCountClass = ' has-three';
+		}
+
+		const classes = classnames(
+			className,
+			publicationClassName,
+			cardCountClass,
+		);
+
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -456,7 +471,7 @@ registerBlockType( 'editorial/relatedstories', {
 						/>
 					</BlockControls>
 				) }
-				<aside className={ [ 'wp-block-editorial-relatedstories', className, cardCountClass ].join( ' ' ).trim() }>
+				<aside className={ classes }>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
 							{ displayPosts && displayPosts.map( post => displayListItem( className, post ) ) }
