@@ -129,14 +129,33 @@ function render_block( $attributes ) {
 								</figure>
 								<?php
 							}
+
+							?>
+							<div class="wp-block-editorial-relatedstories-article-content">
+							<?php
+						}
+
+						$category = apply_filters( 'bu_blocks_related_stories_article_category', false, $post );
+
+						if ( $category ) {
+							?>
+							<p class="wp-block-editorial-relatedstories-article-category"><span><?php echo esc_html( $category ); ?></span></p>
+							<?php
 						}
 
 						?>
-						<div class="wp-block-editorial-relatedstories-article-content">
-							<p class="wp-block-editorial-relatedstories-article-category"><span>Category</span></p>
 							<h4 class="wp-block-editorial-relatedstories-article-title"><a href="<?php the_permalink( $post ); ?>" class="wp-block-editorial-relatedstories-article-title-link"><?php echo esc_html( get_the_title( $post ) ); ?></a></h4>
 							<p class="wp-block-editorial-relatedstories-article-date"><?php echo esc_html( get_the_date( '', $post ) ); ?></p>
-						</div>
+						<?php
+
+						do_action( 'bu_blocks_related_stories_close_article', $post, get_the_ID() );
+
+						if ( strpos( $classes, 'is-style-card' ) ) {
+							?>
+							</div>
+							<?php
+						}
+						?>
 					</article>
 				</li>
 				<?php
