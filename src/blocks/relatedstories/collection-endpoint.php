@@ -74,7 +74,7 @@ function rest_response( $request ) {
 				'date_gmt'     => get_the_date( '' ),
 				'link'         => get_the_permalink(),
 				'media_url'    => has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'responsive_profile' ) : false,
-				'primary_term' => '', // TBD
+				'primary_term' => apply_filters( 'bu_blocks_related_stories_article_category', '', get_post() ),
 			);
 			$posts[] = $post; // Add the post to the collection.
 		}
