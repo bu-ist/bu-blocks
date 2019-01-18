@@ -123,7 +123,7 @@ registerBlockType( 'editorial/introparagraph', {
 	],
 	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
-	edit: withColors( 'paragraphColor', 'dropCapColor' )( ( props ) => {
+	edit: withColors( 'paragraphColor', 'dropCapColor' )( props => {
 		const {
 			attributes,
 			className,
