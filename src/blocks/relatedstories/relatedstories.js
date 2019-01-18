@@ -398,7 +398,10 @@ registerBlockType( 'editorial/relatedstories', {
 		return (
 			<Fragment>
 				<InspectorControls>
-					<PanelBody title={ __( 'Settings' ) }>
+					<PanelBody
+						title={ __( 'Settings' ) }
+						className="panelbody-related-stories"
+					>
 						{ className.includes( 'is-style-card' ) && (
 							<RangeControl
 								label={ __( 'Cards' ) }
@@ -424,7 +427,7 @@ registerBlockType( 'editorial/relatedstories', {
 						{ relatedManual && posts && posts.length > 0 && (
 							<Fragment>
 								<h3>Manually selected posts:</h3>
-								<ul>
+								<ul className="panelbody-related-stories-list">
 									{ posts.map( post => displaySelectedPost( post ) ) }
 								</ul>
 							</Fragment>
@@ -446,7 +449,7 @@ registerBlockType( 'editorial/relatedstories', {
 							{ posts && posts.map( post => displayListItem( className, post ) ) }
 						</ul>
 					) : (
-						<p>{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
+						<p class="wp-block-editorial-relatedstories-error">{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
 					) }
 				</aside>
 			</Fragment>

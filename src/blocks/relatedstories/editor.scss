@@ -12,3 +12,25 @@ aside.wp-block-editorial-relatedstories:after {
 	display: table;
 	clear: both;
 }
+
+figure.wp-block-editorial-relatedstories-article-image {
+	margin: 0;
+}
+
+.wp-block-editorial-relatedstories-error {
+	text-align: center;
+}
+
+.panelbody-related-stories .editor-url-input input {
+	max-width: 95%;
+}
+
+.panelbody-related-stories .editor-url-input ~ h3 {
+	margin: 1em 0;
+	padding-left: .25em;
+}
+
+.panelbody-related-stories-list {
+    list-style-type: circle;
+    padding-left: 1.5em;
+}
