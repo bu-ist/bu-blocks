@@ -287,6 +287,15 @@ registerBlockType( 'editorial/relatedstories', {
 			cardCountClass = ' has-three';
 		}
 
+		let displayPosts;
+
+		// If only 2 cards are being displayed, ensure the displayed posts in the block are limited to 2.
+		if ( posts.length > 2 && className.includes( 'is-style-card' ) && cardCount === 2 ) {
+			displayPosts = posts.slice( 0, 2 );
+		} else {
+			displayPosts = posts;
+		}
+
 		const displayListItem = ( className, post ) => {
 			return (
 				<li className="wp-block-editorial-relatedstories-list-item">
@@ -444,9 +453,9 @@ registerBlockType( 'editorial/relatedstories', {
 					</BlockControls>
 				) }
 				<aside className={ [ 'wp-block-editorial-relatedstories', className, cardCountClass ].join( ' ' ).trim() }>
-					{ posts && posts.length > 0 ? (
+					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
-							{ posts && posts.map( post => displayListItem( className, post ) ) }
+							{ displayPosts && displayPosts.map( post => displayListItem( className, post ) ) }
 						</ul>
 					) : (
 						<p class="wp-block-editorial-relatedstories-error">{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
