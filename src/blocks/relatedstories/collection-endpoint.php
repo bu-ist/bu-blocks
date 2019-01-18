@@ -77,7 +77,14 @@ function rest_response( $request ) {
 				'media_url'    => has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'responsive_profile' ) : false,
 				'primary_term' => apply_filters( 'bu_blocks_related_stories_article_category', '', get_post() ),
 			);
-			$posts[] = $post; // Add the post to the collection.
+
+			/**
+			 * Filters the information attached to a post when included in a related
+			 * stories collection.
+			 *
+			 * @param array $post An array of information about post.
+			 */
+			$posts[] = apply_filters( 'bu_blocks_related_stories_collection_post', $post );
 		}
 	}
 	wp_reset_query();
