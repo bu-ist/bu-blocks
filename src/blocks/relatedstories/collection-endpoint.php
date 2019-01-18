@@ -58,6 +58,7 @@ function rest_response( $request ) {
 		'post__in'  => $post_ids,
 		'orderby'   => 'post__in',
 	);
+
 	$query = new \WP_Query();
 	$query->query( $query_args );
 
@@ -65,10 +66,10 @@ function rest_response( $request ) {
 	$posts = array();
 
 	if ( $query->have_posts() ) {
-		while( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			$post = array(
+			$post    = array(
 				'id'           => get_the_ID(),
 				'title'        => get_the_title(),
 				'date_gmt'     => get_the_date( '' ),

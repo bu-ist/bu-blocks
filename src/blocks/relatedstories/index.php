@@ -53,6 +53,7 @@ function get_block_classes( $attributes ) {
  *
  * @param bool  $manual True if articles are manually selected. False if not.
  * @param array $posts  A list of post IDs to lookup, if provided.
+ * @param array $args   A list of additional arguments for block retrieval.
  * @return array A list of found articles.
  */
 function get_block_posts( $manual, $posts = array(), $args = array() ) {
@@ -63,7 +64,7 @@ function get_block_posts( $manual, $posts = array(), $args = array() ) {
 			'post_type' => '',
 			'per_page'  => 3,
 		);
-		$manual_args = wp_parse_args( $args, $manual_defaults );
+		$manual_args     = wp_parse_args( $args, $manual_defaults );
 
 		$posts = get_posts(
 			array(
@@ -120,6 +121,8 @@ function render_block( $attributes ) {
 	$attributes = apply_filters( 'bu_prepress_related_stories_block_attributes', $attributes );
 
 	/**
+	 * Filters the post types used when displaying related stories.
+	 *
 	 * @param array $post_types A list of post types to pass to YARPP.
 	 * @param bool  $manual     Whether the request is manual (true) or YARPP (false).
 	 */
@@ -141,7 +144,8 @@ function render_block( $attributes ) {
 		array(
 			'post_type' => $post_types,
 			'per_page'  => $per_page,
-		) );
+		)
+	);
 
 	// Render nothing if no posts are available.
 	if ( empty( $posts ) ) {
