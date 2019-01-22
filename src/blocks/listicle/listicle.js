@@ -1,10 +1,272 @@
 /**
- * BLOCK: bu-sample-cgb
+ * BLOCK: editorial/listicle
  *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
+ * Register a listicle block with Gutenberg.
  */
 
-//  Import CSS.
+// External dependencies.
+import classnames from 'classnames';
+
+// Import CSS.
 import './style.scss';
 import './editor.scss';
+
+// WordPress dependencies.
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+} = wp.element;
+const {
+	Path,
+	SVG
+} = wp.components;
+const {
+	InnerBlocks,
+	RichText,
+	PlainText,
+} = wp.editor;
+
+// The current publication owner.
+const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+
+// Register the block.
+registerBlockType( 'editorial/listicle', {
+	title: __( 'Listicle' ),
+	description: __( 'An individual item for an article that uses a list as its thematic structure.' ),
+	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	category: 'bu-editorial',
+	attributes: {
+		hed: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-listicle-header-content-hed',
+		},
+		dek: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-listicle-header-content-dek',
+		},
+		content: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-listicle-section-content',
+		},
+		aside: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-listicle-section-aside',
+		},
+		number: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-listicle-header-number',
+		},
+		related: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-listicle-footer-list',
+		},
+		credit: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-caption-text',
+		}
+	},
+	publicationClassName: publicationClass + '-block-listicle',
+
+	edit( { attributes, setAttributes, className, isSelected } ) {
+		// Get the block attributes.
+		const {
+			hed,
+			dek,
+			content,
+			aside,
+			number,
+			related,
+			credit,
+		} = attributes;
+
+		// Check if the block has aside content (extra condition due to use of multiline).
+		const hasAsideContent = ( ! RichText.isEmpty( aside ) && aside !== '<p></p>' );
+
+		// Build out the class list for the block.
+		const classes = classnames(
+			className,
+			{
+				'has-number': number,
+				'has-sidebar': hasAsideContent,
+			}
+		);
+
+		// Return the block editing interface.
+		return(
+			<section className={ classes }>
+				<article className="wp-block-editorial-listicle-article">
+					<figure className="wp-block-editorial-listicle-figure">
+						<InnerBlocks
+							allowedBlocks={ [ 'core/image', 'core/video', 'core-embed/vimeo', 'core-embed/youtube' ] }
+						/>
+						<figcaption className="wp-caption-text">
+							<PlainText
+								value={ credit }
+								onChange={ credit => setAttributes( { credit } ) }
+								placeholder={ __( 'Add Photo or Video Credit...' ) }
+							/>
+						</figcaption>
+					</figure>
+					<header className="wp-block-editorial-listicle-header">
+						{ ( number || isSelected ) && (
+							<h2 className="wp-block-editorial-listicle-header-number">
+								<PlainText
+									placeholder={ __( 'Add Item Number (Optional)…' ) }
+									value={ number }
+									onChange={ number => setAttributes( { number } ) }
+								/>
+							</h2>
+						) }
+						<div className="wp-block-editorial-listicle-header-content">
+							<RichText
+								tagName="h3"
+								className="wp-block-editorial-listicle-header-content-hed"
+								placeholder={ __( 'Add Title…' ) }
+								value={ hed }
+								onChange={ value => setAttributes( { hed: value } ) }
+								formattingControls={ [ 'bold', 'italic' ] }
+							/>
+							<RichText
+								tagName="h4"
+								className="wp-block-editorial-listicle-header-content-dek"
+								placeholder={ __( 'Add Subtitle…' ) }
+								value={ dek }
+								onChange={ value => setAttributes( { dek: value } ) }
+								formattingControls={ [ 'bold', 'italic' ] }
+							/>
+						</div>
+					</header>
+					<section className="wp-block-editorial-listicle-section">
+						<RichText
+							tagName="div"
+							className="wp-block-editorial-listicle-section-content"
+							multiline="p"
+							placeholder={ __( 'Add Content…' ) }
+							value={ content }
+							onChange={ value => setAttributes( { content: value } ) }
+							formattingControls={ [ 'bold', 'italic', 'link' ] }
+						/>
+						{ ( hasAsideContent || isSelected ) && (
+							<RichText
+								tagName="aside"
+								className="wp-block-editorial-listicle-section-aside"
+								multiline="p"
+								placeholder={ __( 'Add Sidebar (Optional)…' ) }
+								value={ aside }
+								onChange={ value => setAttributes( { aside: value } ) }
+								formattingControls={ [ 'bold', 'italic', 'link' ] }
+							/>
+						) }
+					</section>
+					<footer className="wp-block-editorial-listicle-footer">
+						<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
+						<RichText
+							tagName="ul"
+							multiline="li"
+							className="wp-block-editorial-listicle-footer-list"
+							placeholder={ __( 'Enter Related Stories List…' ) }
+							value={ related }
+							onChange={ ( value ) => setAttributes( { related: value } ) }
+							formattingControls={ [ 'link' ] }
+						/>
+					</footer>
+				</article>
+			</section>
+		);
+	},
+
+	save( { attributes } ) {
+		// Get the block attributes.
+		const {
+			hed,
+			dek,
+			content,
+			aside,
+			number,
+			related,
+			credit,
+		} = attributes;
+
+		// Build out the additional classes to apply to the block.
+		const classes = classnames(
+			{
+				'has-number': ! RichText.isEmpty( number ),
+				'has-sidebar': ! RichText.isEmpty( aside ),
+			}
+		);
+
+		// Determine if the related links list is empty.
+		let relatedLinks = true;
+
+		if ( 'undefined' === typeof related || '<li></li>' === related || RichText.isEmpty( related ) ) {
+			relatedLinks = false;
+		}
+
+		// Return the block rendering for the front end.
+		return(
+			<section className={ classes }>
+				<article className="wp-block-editorial-listicle-article">
+					<figure className="wp-block-editorial-listicle-figure">
+						<InnerBlocks.Content />
+						<figcaption className="wp-caption-text">{ credit }</figcaption>
+					</figure>
+					<header className="wp-block-editorial-listicle-header">
+						{ number && (
+							<h2 className="wp-block-editorial-listicle-header-number">{ number }</h2>
+						) }
+						<div className="wp-block-editorial-listicle-header-content">
+							<RichText.Content
+								tagName="h3"
+								className="wp-block-editorial-listicle-header-content-hed"
+								value={ hed }
+							/>
+							<RichText.Content
+								tagName="h4"
+								className="wp-block-editorial-listicle-header-content-dek"
+								value={ dek }
+							/>
+						</div>
+					</header>
+					<section className="wp-block-editorial-listicle-section">
+						<RichText.Content
+							tagName="div"
+							className="wp-block-editorial-listicle-section-content"
+							value={ content }
+							multiline="p"
+						/>
+						{ ! RichText.isEmpty( aside ) && (
+							<RichText.Content
+								tagName="aside"
+								className="wp-block-editorial-listicle-section-aside"
+								value={ aside }
+								multiline="p"
+							/>
+						) }
+					</section>
+					{ relatedLinks && (
+						<footer className="wp-block-editorial-listicle-footer">
+							<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
+							<RichText.Content
+								tagName="ul"
+								className="wp-block-editorial-listicle-footer-list"
+								value={ related }
+								multiline="li"
+							/>
+						</footer>
+					) }
+				</article>
+			</section>
+		);
+	},
+} );
