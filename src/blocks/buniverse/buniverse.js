@@ -224,7 +224,7 @@ registerBlockType( 'bu/buniverse', {
 		// Build out the full url.
 		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}`;
 		url += ( controls !== 1 ) ? '&controls=0' : '';
-		url += ( autoplay === 1 ) ? '&autoplay=1&mute=1&origin=http://bu.edu' : '';
+		url += ( autoplay === 1 ) ? '&autoplay=true' : '';
 		url += ( start ) ? `&start=${start}` : '';
 
 		return(
