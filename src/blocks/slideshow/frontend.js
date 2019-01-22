@@ -1,30 +1,32 @@
 bu_blocks.slideshow = (function() {
-	const slideshowBlocks = [];
-	const $body = document.getElementsByTagName('body')[0];
+	var slideshowBlocks = [];
+	var $body = document.getElementsByTagName('body')[0];
 
-	findElements = function() {
+	//findElements = function() {
+	function findElements() {
 		//find all the blocks
-		const elements = document.getElementsByClassName('js-bu-blocks-slideshow');
+		var elements = document.getElementsByClassName('js-bu-blocks-slideshow');
 
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
-			for (let m of elements) {
-				const block = {};
+			for( i = 0; i < elements.length; i++ ) {
+
+				var block = {};
 
 				//get back btn
-				block.backBtn = m.getElementsByClassName('js-bu-blocks-slideshow-back-btn')[0];
+				block.backBtn = elements[i].getElementsByClassName('js-bu-blocks-slideshow-back-btn')[0];
 				//get forward btn
-				block.forwardBtn = m.getElementsByClassName('js-bu-blocks-slideshow-forward-btn')[0];
+				block.forwardBtn = elements[i].getElementsByClassName('js-bu-blocks-slideshow-forward-btn')[0];
 
 				//get caption btn
-				block.captionBtn = m.getElementsByClassName('js-bu-blocks-slideshow-caption-btn')[0];
+				block.captionBtn = elements[i].getElementsByClassName('js-bu-blocks-slideshow-caption-btn')[0];
 
 				//get media track
-				block.mediatrack = m.getElementsByClassName('js-bu-blocks-slideshow-media-track');
+				block.mediatrack = elements[i].getElementsByClassName('js-bu-blocks-slideshow-media-track')[0];
 
 				//get caption track
-				block.captiontrack = m.getElementsByClassName('js-bu-blocks-slideshow-caption-track')[0];
+				block.captiontrack = elements[i].getElementsByClassName('js-bu-blocks-slideshow-caption-track')[0];
 
 				//for each one found store as object in the array
 				slideshowBlocks.push(block);
@@ -35,17 +37,16 @@ bu_blocks.slideshow = (function() {
 
 	setupHandlers = function() {
 		if (slideshowBlocks.length > 0) {
-			console.log(slideshowBlocks);
-			for (let block of slideshowBlocks) {
-				block.backBtn.addEventListener("click", function(e){
+			for ( i = 0; i < slideshowBlocks.length; i++ ) {
+				slideshowBlocks[i].backBtn.addEventListener("click", function(e){
 					e.preventDefault();
 					alert("back clicked");
 				});
-				block.forwardBtn.addEventListener("click", function(e){
+				slideshowBlocks[i].forwardBtn.addEventListener("click", function(e){
 					e.preventDefault();
 					alert("forward clicked");
 				});
-				block.captionBtn.addEventListener("click", function(e) {
+				slideshowBlocks[i].captionBtn.addEventListener("click", function(e) {
 					e.preventDefault();
 					alert("caption clicked");
 				});
@@ -68,13 +69,8 @@ bu_blocks.slideshow = (function() {
 	});
 
 	return {
-		// getmodalBlocks: function() {
-		// 	return modalBlocks;
-		// },
-		// toggleModal: function( overlay ) {
-		// 	if( overlay ) {
-		// 		toggleModal( overlay );
-		// 	}
-		// }
+		getslideshowBlocks: function() {
+			return slideshowBlocks;
+		}
 	};
 })();
