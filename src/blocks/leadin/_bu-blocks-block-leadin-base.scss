@@ -272,6 +272,10 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			.container-words-inner {
 				padding-top: 2em;
 			}
+			.container-words-inner {
+				padding-left: $padding;
+				padding-right: $padding;
+			}
 		}
 		&.has-box {
 			@include breakpoint( $xs ) {
