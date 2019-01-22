@@ -27,29 +27,33 @@ function get_block_classes( $attributes ) {
 		)
 	);
 	$classes = trim( $classes );
+	$classes = explode( ' ', $classes );
 
 	// Provide alignment class information.
 	$aligns = array(
 		'left',
 		'right',
 	);
-	if ( in_array( $attributes['align'], $aligns, true ) && ! strpos( $classes, 'is-style-card' ) ) {
-		$classes .= ' align' . $attributes['align'];
+	if ( in_array( $attributes['align'], $aligns, true ) && ! in_array( 'is-style-card', $classes, true ) ) {
+		$classes[] = 'align' . $attributes['align'];
 	}
 
 	// Append card count as a class name.
-	if ( strpos( $classes, 'is-style-card' ) && 2 === $attributes['cardCount'] ) {
-		$classes .= ' has-two';
-	} elseif ( strpos( $classes, 'is-style-card' ) && 3 === $attributes['cardCount'] ) {
-		$classes .= ' has-three';
+	if ( in_array( 'is-style-card', $classes, true ) && 2 === $attributes['cardCount'] ) {
+		$classes[] = 'has-two';
+	} elseif ( in_array( 'is-style-card', $classes, true ) && 3 === $attributes['cardCount'] ) {
+		$classes[] = 'has-three';
 	}
 
 	/**
 	 * Filter the classes used in server side rendering of related stories.
 	 *
-	 * @param string A string of class names to assign to the related stories block.
+	 * @param array A list of class names to assign to the related stories block.
 	 */
 	$classes = apply_filters( 'bu_blocks_related_stories_class_names', $classes );
+
+	// Turn classes into a space delimited string before returning.
+	$classes = implode( ' ', $classes );
 
 	return $classes;
 }
