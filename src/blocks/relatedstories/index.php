@@ -59,6 +59,57 @@ function get_block_classes( $attributes ) {
 }
 
 /**
+ * Retrieve a list of posts from a given set of post IDs.
+ *
+ * @param array $post_ids A list of post IDs to include.
+ * @param array $args     Arguments
+ * @return void
+ */
+function get_block_posts_manual( $post_ids, $args ) {
+	$defaults = array(
+		'post_type' => '',
+		'per_page'  => 3,
+	);
+	$args     = wp_parse_args( $args, $defaults );
+
+	$posts = get_posts(
+		array(
+			'post__in'    => $post_ids,
+			'post_type'   => $args['post_type'],
+			'orderby'     => 'post__in',
+			'numberposts' => $args['per_page'],
+		)
+	);
+
+	return $posts;
+}
+
+/**
+ * Retrieve a list of related posts from YARPP.
+ *
+ * @param array $args A list of arguments to pass to YARPP.
+ * @return array The related posts.
+ */
+function get_block_posts_yarpp( $args ) {
+	$yarpp_args = array( 'limit' => 3 );
+
+	if ( isset( $args['per_page'] ) ) {
+		$yarpp_args['limit'] = $args['per_page'];
+	}
+
+	// Only pass the post_type arg if it is set. If not, YARPP will use all post types.
+	if ( isset( $args['post_type'] ) ) {
+		$yarpp_args['post_type'] = $args['post_type'];
+	}
+
+	$post_id = isset( $args['post_id'] ) ? $args['post_id'] : get_the_ID();
+
+	$posts = \yarpp_get_related( $yarpp_args, $post_id );
+
+	return $posts;
+}
+
+/**
  * Retrieve a list of manually curated articles or a list of
  * dynamically provided articles via YARPP.
  *
@@ -71,34 +122,9 @@ function get_block_posts( $manual, $posts = array(), $args = array() ) {
 	// If related posts have been manually selected, we do a direct query
 	// with those post IDs. Otherwise, use YARPP.
 	if ( $manual ) {
-		$manual_defaults = array(
-			'post_type' => '',
-			'per_page'  => 3,
-		);
-		$manual_args     = wp_parse_args( $args, $manual_defaults );
-
-		$posts = get_posts(
-			array(
-				'post__in'  => $posts,
-				'post_type' => $manual_args['post_type'],
-				'orderby'   => 'post__in',
-			)
-		);
+		$posts = get_block_posts_manual( $posts, $args );
 	} elseif ( function_exists( 'yarpp_get_related' ) ) {
-		$yarpp_args = array( 'limit' => 3 );
-
-		if ( isset( $args['per_page'] ) ) {
-			$yarpp_args['limit'] = $args['per_page'];
-		}
-
-		// Only pass the post_type arg if it is set. If not, YARPP will use all post types.
-		if ( isset( $args['post_type'] ) ) {
-			$yarpp_args['post_type'] = $args['post_type'];
-		}
-
-		$post_id = isset( $args['post_id'] ) ? $args['post_id'] : get_the_ID();
-
-		$posts = \yarpp_get_related( $yarpp_args, $post_id );
+		$posts = get_block_posts_yarpp( $args );
 	} else {
 		$posts = array(); // There are no related posts to retrieve.
 	}
