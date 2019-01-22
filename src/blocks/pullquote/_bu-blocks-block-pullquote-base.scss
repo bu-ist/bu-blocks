@@ -12,8 +12,14 @@
 	position: relative;
 	text-align: center;
 	margin-bottom: 1.5em;
+	figure {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 	img {
-		display: none;
 		object-fit: cover;
 		position: absolute;
 		top: 0;
