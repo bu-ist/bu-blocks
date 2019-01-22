@@ -102,6 +102,17 @@ registerBlockType( 'editorial/listicle', {
 			}
 		);
 
+		/**
+		 * Get a value to use for the inline width of the number input.
+		 *
+		 * Returns either 100% if the field is empty, or `{n}ch`,
+		 * where `{n}` is the number of characters in the input.
+		 *
+		 */
+		const getNumberInputWidth = () => {
+			return ( number ) ? number.length + 'ch' : '100%';
+		};
+
 		// Return the block editing interface.
 		return(
 			<section className={ classes }>
@@ -125,6 +136,9 @@ registerBlockType( 'editorial/listicle', {
 									placeholder={ __( 'Add Item Number (Optional)…' ) }
 									value={ number }
 									onChange={ number => setAttributes( { number } ) }
+									style={ {
+										width: getNumberInputWidth(),
+									} }
 								/>
 							</h2>
 						) }
