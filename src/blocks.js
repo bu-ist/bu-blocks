@@ -21,3 +21,4 @@ import './blocks/pullquote/pullquote.js';
 import './blocks/photoessay/photoessay.js';
 import './blocks/button/button.js';
 import './blocks/relatedstories/relatedstories.js';
+import './blocks/listicle/listicle.js';
