@@ -12017,7 +12017,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 @media (min-width: 500px) {
   .wp-block-leadin.is-style-text-over-image .container-lockup {
     position: relative; }
-  .wp-block-leadin.is-style-text-over-image .container-words-outter {
+  .wp-block-leadin.is-style-text-over-image .container-words-outer {
     position: absolute;
     top: 0;
     height: 100%;
@@ -12031,13 +12031,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   .wp-block-leadin.is-style-text-over-image .container-words-inner {
     margin-left: auto;
     margin-right: auto; }
-  .has-text-position-y-top.wp-block-leadin.is-style-text-over-image .container-words-outter {
+  .has-text-position-y-top.wp-block-leadin.is-style-text-over-image .container-words-outer {
     -ms-flex-align: start;
         align-items: flex-start; }
-  .has-text-position-y-middle.wp-block-leadin.is-style-text-over-image .container-words-outter {
+  .has-text-position-y-middle.wp-block-leadin.is-style-text-over-image .container-words-outer {
     -ms-flex-align: start;
         align-items: start; }
-  .has-text-position-y-bottom.wp-block-leadin.is-style-text-over-image .container-words-outter {
+  .has-text-position-y-bottom.wp-block-leadin.is-style-text-over-image .container-words-outer {
     -ms-flex-align: end;
         align-items: flex-end; }
   .has-text-position-x-left.wp-block-leadin.is-style-text-over-image .container-words-inner {
@@ -12121,18 +12121,21 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         padding-bottom: 70px; } }
     .wp-block-leadin.is-style-emphasis-on-text .container-lockup {
       position: relative; }
-    .wp-block-leadin.is-style-emphasis-on-text .container-words-outter {
+    .wp-block-leadin.is-style-emphasis-on-text .container-words-outer {
       width: 100%;
       padding-left: 30px;
       padding-right: 30px; }
       @media (min-width: 500px) {
-        .wp-block-leadin.is-style-emphasis-on-text .container-words-outter {
+        .wp-block-leadin.is-style-emphasis-on-text .container-words-outer {
           position: absolute;
           bottom: 0; } }
     .wp-block-leadin.is-style-emphasis-on-text .container-words-inner {
       margin-top: 0;
       margin-bottom: 0; }
-    .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::after {
+    @media (min-width: 500px) {
+      .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
+        content: " "; } }
+    .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
       background: -webkit-linear-gradient(20deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.125) 100%);
       background: -o-linear-gradient(20deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.125) 100%);
       background: linear-gradient(70deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.125) 100%);
@@ -12141,14 +12144,14 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       width: 50px;
       height: 140px; }
       @media (min-width: 768px) {
-        .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::after {
+        .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
           bottom: 0; } }
       @media (min-width: 992px) {
-        .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::after {
+        .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
           bottom: -70px; } }
-    .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::before {
+    .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before {
       left: calc( 0px - 50px); }
-    .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outter::after {
+    .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
       right: calc( 0px - 50px);
       -webkit-transform: scale(-1, 1);
       -ms-transform: scale(-1, 1);
@@ -12199,9 +12202,9 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
           display: flex; }
           .wp-block-leadin.is-style-side-by-side .container-lockup .wp-block-leadin-media {
             width: 33.333333%; }
-          .wp-block-leadin.is-style-side-by-side .container-lockup .container-words-outter {
+          .wp-block-leadin.is-style-side-by-side .container-lockup .container-words-outer {
             width: 66.666666%; }
-        .wp-block-leadin.is-style-side-by-side .container-words-outter {
+        .wp-block-leadin.is-style-side-by-side .container-words-outer {
           display: -ms-flexbox;
           display: flex;
           -ms-flex-direction: column;
@@ -12213,7 +12216,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
               align-items: flex-start; } }
     @media (min-width: 768px) {
       .wp-block-leadin.is-style-side-by-side .container-lockup .wp-block-leadin-media,
-      .wp-block-leadin.is-style-side-by-side .container-lockup .container-words-outter {
+      .wp-block-leadin.is-style-side-by-side .container-lockup .container-words-outer {
         width: 50%; } }
   .wp-block-leadin:not(.is-style-side-by-side) .container-lockup {
     text-align: center; }
@@ -12246,7 +12249,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     color: #fff; } }
 
 @media (min-width: 500px) {
-  .wp-block-leadin.is-style-side-by-side.has-box .container-words-outter {
+  .wp-block-leadin.is-style-side-by-side.has-box .container-words-outer {
     background-color: #000; }
   .wp-block-leadin.is-style-side-by-side.has-box:not(.has-text-normal) h1,
   .wp-block-leadin.is-style-side-by-side.has-box:not(.has-text-normal) h2,
