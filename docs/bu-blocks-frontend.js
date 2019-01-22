@@ -1,9 +1,9 @@
 const bu_blocks = {};
 ;;bu_blocks.modal = (function() {
-	const modalBlocks = [];
-	const $body = document.getElementsByTagName('body')[0];
-	const eventOpen = new Event('bu-blocks-modal-open');
-	const eventClose = new Event('bu-blocks-modal-close');
+	var modalBlocks = [];
+	var $body = document.getElementsByTagName('body')[0];
+	var eventOpen = new Event('bu-blocks-modal-open');
+	var eventClose = new Event('bu-blocks-modal-close');
 
 	lockScroll = function() {
 		$body.classList.add('bu-blocks-modal-noscroll');
@@ -28,42 +28,46 @@ const bu_blocks = {};
 		}
 	};
 
-	findElements = function() {
+	//findElements = function() {
+	function findElements() {
+		console.log('finding modal blocks');
 		//find all the blocks
-		const elements = document.getElementsByClassName('js-bu-block-modal');
-
+		var elements = document.getElementsByClassName('js-bu-block-modal');
+		//console.log(elements);
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
-			for (let m of elements) {
-				const block = {};
+			for ( i = 0; i < modalBlocks.length; i++ ) {
+				var block = {};
 
 				//get first returned overlay element
-				block.overlay = m.getElementsByClassName('js-bu-block-modal-overlay')[0];
+				block.overlay = modalBlocks[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
 				//get all matched trigger btns
-				block.button = m.getElementsByClassName('js-bu-block-modal-trigger-overlay');
+				block.button = modalBlocks[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
 				//get first returned overlay element
-				block.close = m.getElementsByClassName('js-bu-block-modal-overlay-close')[0];
+				block.close = modalBlocks[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
 
 				//for each one found store as object in the array
 				modalBlocks.push(block);
+				console.log(block);
 			}
 		}
 	};
 
 	setupHandlers = function() {
 		if (modalBlocks.length > 0) {
-			for (let block of modalBlocks) {
+			console.log(modalBlocks);
+			for ( i = 0; i < modalBlocks.length; i++ ) {
 				//some modals may have more than one trigger btn
 				//so loop through all matched to setup events
-				for (let btn of block.button) {
+				for ( b = 0; b < modalBlocks[i].length; b++ ) {
 					//for each btn we find, add an event handler
-					btn.addEventListener("click", function(e) {
+					modalBlocks[i][b].addEventListener("click", function(e) {
 						e.preventDefault();
 						toggleModal(block.overlay);
 					});
 				}
-				block.close.addEventListener("click", function(e) {
+				modalBlocks[i].close.addEventListener("click", function(e) {
 					e.preventDefault();
 					toggleModal(block.overlay);
 				});
@@ -96,7 +100,7 @@ const bu_blocks = {};
 		}
 	};
 })();;bu_blocks.photoessay = (function() {
-	
+
 
 
 function myFunction() {
@@ -107,37 +111,37 @@ function myFunction() {
     // demoDiv.innerHTML = "offsetLeft: " + testDiv.offsetLeft + "<br>offsetTop: " + testDiv.offsetTop;
 }
 	return {
-		getmodalBlocks: function() {
-			console.log("foo");
-		},
+
 	};
 })();;bu_blocks.slideshow = (function() {
-	const slideshowBlocks = [];
-	const $body = document.getElementsByTagName('body')[0];
+	var slideshowBlocks = [];
+	var $body = document.getElementsByTagName('body')[0];
 
-	findElements = function() {
+	//findElements = function() {
+	function findElements() {
 		//find all the blocks
-		const elements = document.getElementsByClassName('js-bu-blocks-slideshow');
+		var elements = document.getElementsByClassName('js-bu-blocks-slideshow');
 
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
-			for (let m of elements) {
-				const block = {};
+			for( i = 0; i < elements.length; i++ ) {
+
+				var block = {};
 
 				//get back btn
-				block.backBtn = m.getElementsByClassName('js-bu-blocks-slideshow-back-btn')[0];
+				block.backBtn = elements[i].getElementsByClassName('js-bu-blocks-slideshow-back-btn')[0];
 				//get forward btn
-				block.forwardBtn = m.getElementsByClassName('js-bu-blocks-slideshow-forward-btn')[0];
+				block.forwardBtn = elements[i].getElementsByClassName('js-bu-blocks-slideshow-forward-btn')[0];
 
 				//get caption btn
-				block.captionBtn = m.getElementsByClassName('js-bu-blocks-slideshow-caption-btn')[0];
+				block.captionBtn = elements[i].getElementsByClassName('js-bu-blocks-slideshow-caption-btn')[0];
 
 				//get media track
-				block.mediatrack = m.getElementsByClassName('js-bu-blocks-slideshow-media-track');
+				block.mediatrack = elements[i].getElementsByClassName('js-bu-blocks-slideshow-media-track')[0];
 
 				//get caption track
-				block.captiontrack = m.getElementsByClassName('js-bu-blocks-slideshow-caption-track')[0];
+				block.captiontrack = elements[i].getElementsByClassName('js-bu-blocks-slideshow-caption-track')[0];
 
 				//for each one found store as object in the array
 				slideshowBlocks.push(block);
@@ -148,17 +152,16 @@ function myFunction() {
 
 	setupHandlers = function() {
 		if (slideshowBlocks.length > 0) {
-			console.log(slideshowBlocks);
-			for (let block of slideshowBlocks) {
-				block.backBtn.addEventListener("click", function(e){
+			for ( i = 0; i < slideshowBlocks.length; i++ ) {
+				slideshowBlocks[i].backBtn.addEventListener("click", function(e){
 					e.preventDefault();
 					alert("back clicked");
 				});
-				block.forwardBtn.addEventListener("click", function(e){
+				slideshowBlocks[i].forwardBtn.addEventListener("click", function(e){
 					e.preventDefault();
 					alert("forward clicked");
 				});
-				block.captionBtn.addEventListener("click", function(e) {
+				slideshowBlocks[i].captionBtn.addEventListener("click", function(e) {
 					e.preventDefault();
 					alert("caption clicked");
 				});
@@ -181,13 +184,8 @@ function myFunction() {
 	});
 
 	return {
-		// getmodalBlocks: function() {
-		// 	return modalBlocks;
-		// },
-		// toggleModal: function( overlay ) {
-		// 	if( overlay ) {
-		// 		toggleModal( overlay );
-		// 	}
-		// }
+		getslideshowBlocks: function() {
+			return slideshowBlocks;
+		}
 	};
 })();
