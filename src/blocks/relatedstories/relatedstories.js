@@ -192,7 +192,7 @@ registerBlockType( 'editorial/relatedstories', {
 					if ( postID && ! doingYarppPostsFetch ) {
 						setState( { doingYarppPostsFetch: true } );
 
-						let postTypes = applyFilters( 'buBlocks.relatedStories.yarppPostTypes', { post: { slug: 'post' } } );
+						let postTypes = applyFilters( 'buBlocks.relatedStories.yarppPostTypes', [ 'post' ] );
 
 						apiFetch(
 							{
@@ -200,7 +200,7 @@ registerBlockType( 'editorial/relatedstories', {
 									'/bu-blocks/v1/yarpprelated',
 									{
 										post_id: postID,
-										post_type: Object.values( postTypes )
+										post_type: postTypes,
 									}
 								)
 							}
@@ -237,7 +237,7 @@ registerBlockType( 'editorial/relatedstories', {
 			if ( query.include.length > 0 && relatedPosts.length === 0 && ! relatedPostsError && ! doingRelatedPostsFetch ) {
 
 				// Filter the default post type used when retrieving.
-				let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', { post: { slug: 'post' } } );
+				let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', [ 'post' ] );
 
 				// Prevent immediate duplicate requests.
 				setState( { doingRelatedPostsFetch: true } );
@@ -248,7 +248,7 @@ registerBlockType( 'editorial/relatedstories', {
 							'/bu-blocks/v1/collection',
 							{
 								include: query.include,
-								post_type: Object.values( postTypes ),
+								post_type: postTypes,
 							}
 						),
 					}

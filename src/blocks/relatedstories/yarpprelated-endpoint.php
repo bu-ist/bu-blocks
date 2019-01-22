@@ -50,7 +50,7 @@ function rest_response( $request ) {
 		);
 
 		if ( $post_type && 'all' !== $post_type ) {
-			$args['post_type'] = wp_list_pluck( $post_type, 'slug' );
+			$args['post_type'] = (array) $post_type;
 		}
 
 		$posts = \BU\Plugins\BU_Blocks\Blocks\RelatedStories\get_block_posts( false, array(), $args );

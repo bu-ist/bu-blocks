@@ -54,7 +54,7 @@ function rest_response( $request ) {
 
 	$query_args = array(
 		'per_page'  => $per_page,
-		'post_type' => wp_list_pluck( $post_types, 'slug' ),
+		'post_type' => (array) $post_types,
 		'post__in'  => $post_ids,
 		'orderby'   => 'post__in',
 	);
