@@ -216,7 +216,9 @@ registerBlockType( 'bu/pullquote', {
 		return (
 			<div className={ getClasses( className, backgroundId, imageFocus ) }>
 				{ isStyleDefault( className ) && (
-					Background( props )
+					<figure>
+						{ Background( props ) }
+					</figure>
 				) }
 				<blockquote>
 					<div className="container-lockup">
@@ -230,7 +232,7 @@ registerBlockType( 'bu/pullquote', {
 						<div className="container-text">
 							<hr />
 								<RichText.Content
-									tagName="span"
+									tagName="div"
 									className="quote-sizing"
 									value={ quote }
 								/>
