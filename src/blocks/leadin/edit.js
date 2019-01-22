@@ -194,7 +194,7 @@ class BULeadinEdit extends Component {
 						<div class="container-words-outer">
 							<div class="container-words-inner">
 								{ primaryTerm && (
-									<span href="http://www.bu.edu/" class="wp-prepress-tag">{ primaryTerm }</span>
+									<span class="wp-prepress-tag">{ primaryTerm }</span>
 								) }
 								<RichText
 									tagName="h1"
