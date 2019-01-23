@@ -5,15 +5,15 @@ const bu_blocks = {};
 	var eventOpen = new Event('bu-blocks-modal-open');
 	var eventClose = new Event('bu-blocks-modal-close');
 
-	lockScroll = function() {
+	var lockScroll = function() {
 		$body.classList.add('bu-blocks-modal-noscroll');
 	};
 
-	unlockScroll = function() {
+	var unlockScroll = function() {
 		$body.classList.remove('bu-blocks-modal-noscroll');
 	}
 
-	toggleModal = function(overlay) {
+	var toggleModal = function(overlay) {
 		// Using an if statement to check the class
 		if (overlay.classList.contains('show-overlay')) {
 			overlay.classList.remove('show-overlay');
@@ -28,54 +28,55 @@ const bu_blocks = {};
 		}
 	};
 
-	//findElements = function() {
-	function findElements() {
-		console.log('finding modal blocks');
+	var findElements = function() {
 		//find all the blocks
 		var elements = document.getElementsByClassName('js-bu-block-modal');
-		//console.log(elements);
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
-			for ( i = 0; i < modalBlocks.length; i++ ) {
+			for ( var i = 0; i < elements.length; i++ ) {
+
 				var block = {};
 
 				//get first returned overlay element
-				block.overlay = modalBlocks[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
+				block.overlay = elements[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
 				//get all matched trigger btns
-				block.button = modalBlocks[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
+				block.button = elements[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
 				//get first returned overlay element
-				block.close = modalBlocks[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
+				block.close = elements[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
 
 				//for each one found store as object in the array
 				modalBlocks.push(block);
-				console.log(block);
 			}
 		}
 	};
 
-	setupHandlers = function() {
+	var setupHandlers = function() {
 		if (modalBlocks.length > 0) {
-			console.log(modalBlocks);
-			for ( i = 0; i < modalBlocks.length; i++ ) {
+
+			for ( var i = 0; i < modalBlocks.length; i++ ) {
+				//store for loop instance as variable so event handlers
+				//can reference element when event fires
+				var thisModal = modalBlocks[i];
+
 				//some modals may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( b = 0; b < modalBlocks[i].length; b++ ) {
+				for ( var b = 0; b < thisModal.button.length; b++ ) {
 					//for each btn we find, add an event handler
-					modalBlocks[i][b].addEventListener("click", function(e) {
+					thisModal.button[b].addEventListener( "click", function(e) {
 						e.preventDefault();
-						toggleModal(block.overlay);
+						toggleModal( thisModal.overlay );
 					});
 				}
-				modalBlocks[i].close.addEventListener("click", function(e) {
+				thisModal.close.addEventListener( "click", function(e) {
 					e.preventDefault();
-					toggleModal(block.overlay);
+					toggleModal( thisModal.overlay );
 				});
 			}
 		}
 	};
 
-	modalInit = function() {
+	var modalInit = function() {
 		//find the elements
 		findElements();
 
@@ -117,8 +118,7 @@ function myFunction() {
 	var slideshowBlocks = [];
 	var $body = document.getElementsByTagName('body')[0];
 
-	//findElements = function() {
-	function findElements() {
+	var findElements = function() {
 		//find all the blocks
 		var elements = document.getElementsByClassName('js-bu-blocks-slideshow');
 
@@ -140,28 +140,37 @@ function myFunction() {
 				//get media track
 				block.mediatrack = elements[i].getElementsByClassName('js-bu-blocks-slideshow-media-track')[0];
 
+				//get media items
+				block.mediatrackitems = elements[i].getElementsByClassName('js-bu-blocks-slideshow-media-track-item');
+
 				//get caption track
 				block.captiontrack = elements[i].getElementsByClassName('js-bu-blocks-slideshow-caption-track')[0];
+
+				//get caption items
+				block.captiontrackitems = elements[i].getElementsByClassName('js-bu-blocks-slideshow-caption-item');
 
 				//for each one found store as object in the array
 				slideshowBlocks.push(block);
 			}
+			//console.log(slideshowBlocks);
 		}
 	};
 
 
-	setupHandlers = function() {
+	var setupHandlers = function() {
 		if (slideshowBlocks.length > 0) {
 			for ( i = 0; i < slideshowBlocks.length; i++ ) {
-				slideshowBlocks[i].backBtn.addEventListener("click", function(e){
+				var block = slideshowBlocks[i];
+
+				block.backBtn.addEventListener("click", function(e){
 					e.preventDefault();
-					alert("back clicked");
+					prevItem( block );
 				});
-				slideshowBlocks[i].forwardBtn.addEventListener("click", function(e){
+				block.forwardBtn.addEventListener("click", function(e){
 					e.preventDefault();
-					alert("forward clicked");
+					nextItem( block );
 				});
-				slideshowBlocks[i].captionBtn.addEventListener("click", function(e) {
+				block.captionBtn.addEventListener("click", function(e) {
 					e.preventDefault();
 					alert("caption clicked");
 				});
@@ -169,12 +178,79 @@ function myFunction() {
 		}
 	};
 
-	slideshowInit = function() {
+
+	var setupMediaTrack = function() {
+		for ( i = 0; i < slideshowBlocks.length; i++ ) {
+			var block = slideshowBlocks[i];
+			if ( block.mediatrack && block.mediatrackitems ) {
+				//set currentItem variable
+				block.currentItem = 0;
+
+				//store number of items
+				block.itemslength = block.mediatrackitems.length;
+
+
+				//set default width
+				block.mediatrack.style.width = 'calc(' + block.itemslength + ' * 100%)';
+				//set start position to first image
+				block.mediatrack.style.left = '0%';
+
+				//for each image calculate the width
+				for ( var i = 0; i < block.mediatrackitems.length; i++ ) {
+					block.mediatrackitems[i].style.width = 'calc(1/' + block.itemslength + ' * 100% - 2px)';
+				}
+
+			}
+
+
+			//setup the caption track starting widths and postion
+			if( block.captiontrack && block.captiontrackitems ) {
+				//set default width
+				block.captiontrack.style.width = 'calc(' + block.itemslength + ' * 100%)';
+				//set start position to first caption
+				block.captiontrack.style.left = '0%';
+
+				//for each caption calculate the width
+				for ( var i = 0; i < block.captiontrackitems.length; i++ ) {
+					block.captiontrackitems[i].style.width = 'calc(1/' + block.itemslength + ' * 100%)';
+				}
+			}
+		}
+
+	};
+
+
+	var nextItem = function( block ) {
+		if( block.currentItem === block.itemslength - 1 ) {
+			//can't go next anymore
+		} else {
+			block.currentItem = block.currentItem + 1;
+			block.mediatrack.style.left = block.currentItem * -100 + '%';
+			block.captiontrack.style.left = block.currentItem * -100 + '%';
+		}
+	};
+
+	var prevItem = function( block ) {
+		if( block.currentItem === 0 ) {
+			//do nothing can't go back more
+		} else {
+			block.currentItem = block.currentItem - 1;
+			block.mediatrack.style.left = block.currentItem * -100 + '%';
+			block.captiontrack.style.left = block.currentItem * -100 + '%';
+		}
+	};
+
+
+
+
+	var slideshowInit = function() {
 		//find the elements
 		findElements();
 
 		//setup handlers
 		setupHandlers();
+
+		setupMediaTrack();
 	};
 
 	//start on dom ready (ie8+)
