@@ -11,6 +11,9 @@ import classnames from 'classnames';
 import './style.scss';
 import './editor.scss';
 
+// Internal dependencies.
+import Background, { BackgroundAttributes } from '../../components/background/background.js';
+
 // WordPress dependencies.
 const {
 	__,
@@ -25,7 +28,6 @@ const {
 	SVG
 } = wp.components;
 const {
-	InnerBlocks,
 	RichText,
 	PlainText,
 } = wp.editor;
@@ -74,11 +76,20 @@ registerBlockType( 'editorial/listicle', {
 			type: 'string',
 			source: 'html',
 			selector: '.wp-caption-text',
-		}
+		},
+		...BackgroundAttributes,
 	},
 	publicationClassName: publicationClass + '-block-listicle',
 
-	edit( { attributes, setAttributes, className, isSelected } ) {
+	edit( props) {
+		// Get the block properties we need.
+		const {
+			attributes,
+			setAttributes,
+			className,
+			isSelected,
+		} = props;
+
 		// Get the block attributes.
 		const {
 			hed,
@@ -118,14 +129,18 @@ registerBlockType( 'editorial/listicle', {
 			<section className={ classes }>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
-						<InnerBlocks
-							allowedBlocks={ [ 'core/image', 'core/video', 'core-embed/vimeo', 'core-embed/youtube' ] }
+						<Background
+							autoplayVideo={ false }
+							blockProps={ props }
+							inlinePlaceholder={ true }
+							options={ [] }
+							placeholderText={ __( 'Add Media' ) }
 						/>
 						<figcaption className="wp-caption-text">
 							<PlainText
 								value={ credit }
 								onChange={ credit => setAttributes( { credit } ) }
-								placeholder={ __( 'Add Photo or Video Credit...' ) }
+								placeholder={ __( 'Add Photo or Video Credit…' ) }
 							/>
 						</figcaption>
 					</figure>
@@ -200,7 +215,12 @@ registerBlockType( 'editorial/listicle', {
 		);
 	},
 
-	save( { attributes } ) {
+	save( props ) {
+		// Get the block properties we need.
+		const {
+			attributes
+		} = props;
+
 		// Get the block attributes.
 		const {
 			hed,
@@ -232,7 +252,9 @@ registerBlockType( 'editorial/listicle', {
 			<section className={ classes }>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
-						<InnerBlocks.Content />
+						<Background
+							blockProps={ props }
+						/>
 						<figcaption className="wp-caption-text">{ credit }</figcaption>
 					</figure>
 					<header className="wp-block-editorial-listicle-header">
