@@ -4,15 +4,15 @@ bu_blocks.modal = (function() {
 	var eventOpen = new Event('bu-blocks-modal-open');
 	var eventClose = new Event('bu-blocks-modal-close');
 
-	lockScroll = function() {
+	var lockScroll = function() {
 		$body.classList.add('bu-blocks-modal-noscroll');
 	};
 
-	unlockScroll = function() {
+	var unlockScroll = function() {
 		$body.classList.remove('bu-blocks-modal-noscroll');
 	}
 
-	toggleModal = function(overlay) {
+	var toggleModal = function(overlay) {
 		// Using an if statement to check the class
 		if (overlay.classList.contains('show-overlay')) {
 			overlay.classList.remove('show-overlay');
@@ -27,54 +27,55 @@ bu_blocks.modal = (function() {
 		}
 	};
 
-	//findElements = function() {
-	function findElements() {
-		console.log('finding modal blocks');
+	var findElements = function() {
 		//find all the blocks
 		var elements = document.getElementsByClassName('js-bu-block-modal');
-		//console.log(elements);
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
-			for ( i = 0; i < modalBlocks.length; i++ ) {
+			for ( var i = 0; i < elements.length; i++ ) {
+
 				var block = {};
 
 				//get first returned overlay element
-				block.overlay = modalBlocks[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
+				block.overlay = elements[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
 				//get all matched trigger btns
-				block.button = modalBlocks[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
+				block.button = elements[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
 				//get first returned overlay element
-				block.close = modalBlocks[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
+				block.close = elements[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
 
 				//for each one found store as object in the array
 				modalBlocks.push(block);
-				console.log(block);
 			}
 		}
 	};
 
-	setupHandlers = function() {
+	var setupHandlers = function() {
 		if (modalBlocks.length > 0) {
-			console.log(modalBlocks);
-			for ( i = 0; i < modalBlocks.length; i++ ) {
+
+			for ( var i = 0; i < modalBlocks.length; i++ ) {
+				//store for loop instance as variable so event handlers
+				//can reference element when event fires
+				var thisModal = modalBlocks[i];
+
 				//some modals may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( b = 0; b < modalBlocks[i].length; b++ ) {
+				for ( var b = 0; b < thisModal.button.length; b++ ) {
 					//for each btn we find, add an event handler
-					modalBlocks[i][b].addEventListener("click", function(e) {
+					thisModal.button[b].addEventListener( "click", function(e) {
 						e.preventDefault();
-						toggleModal(block.overlay);
+						toggleModal( thisModal.overlay );
 					});
 				}
-				modalBlocks[i].close.addEventListener("click", function(e) {
+				thisModal.close.addEventListener( "click", function(e) {
 					e.preventDefault();
-					toggleModal(block.overlay);
+					toggleModal( thisModal.overlay );
 				});
 			}
 		}
 	};
 
-	modalInit = function() {
+	var modalInit = function() {
 		//find the elements
 		findElements();
 
