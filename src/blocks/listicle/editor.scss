@@ -21,3 +21,10 @@
 		min-height: 1.8em;
 	}
 }
+
+.wp-block-editorial-listicle {
+	&:not(.has-sidebar) .wp-block-editorial-listicle-section-aside {
+		padding-left: 0;
+		width: 100%;
+	}
+}
