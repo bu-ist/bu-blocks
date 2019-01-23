@@ -14,7 +14,6 @@
 	min-height: 1.2em;
 
 	&:empty {
-		font-size: .15em;
 		font-weight: 400;
 		line-height: 1.8;
 		max-height: 1.8em;
@@ -28,11 +27,7 @@
 		width: 100%;
 	}
 
-	.editor-inner-blocks {
-		.wp-block + .block-list-appender,
-		.editor-rich-text,
-		.editor-block-toolbar > div:nth-of-type(2) {
-			display: none;
-		}
+	&:not(.has-number) .wp-block-editorial-listicle-header-number {
+		font-size: 16px;
 	}
 }
