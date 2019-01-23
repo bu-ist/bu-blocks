@@ -27,4 +27,12 @@
 		padding-left: 0;
 		width: 100%;
 	}
+
+	.editor-inner-blocks {
+		.wp-block + .block-list-appender,
+		.editor-rich-text,
+		.editor-block-toolbar > div:nth-of-type(2) {
+			display: none;
+		}
+	}
 }
