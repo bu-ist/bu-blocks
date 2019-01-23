@@ -22,6 +22,7 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
+	Component,
 } = wp.element;
 const {
 	Path,
@@ -81,138 +82,176 @@ registerBlockType( 'editorial/listicle', {
 	},
 	publicationClassName: publicationClass + '-block-listicle',
 
-	edit( props) {
-		// Get the block properties we need.
-		const {
-			attributes,
-			setAttributes,
-			className,
-			isSelected,
-		} = props;
-
-		// Get the block attributes.
-		const {
-			hed,
-			dek,
-			content,
-			aside,
-			number,
-			related,
-			credit,
-		} = attributes;
-
-		// Check if the block has aside content (extra condition due to use of multiline).
-		const hasAsideContent = ( ! RichText.isEmpty( aside ) && aside !== '<p></p>' );
-
-		// Build out the class list for the block.
-		const classes = classnames(
-			className,
-			{
-				'has-number': number,
-				'has-sidebar': hasAsideContent,
-			}
-		);
+	edit: class extends Component {
+		constructor() {
+			super( ...arguments );
+		}
 
 		/**
-		 * Get a value to use for the inline width of the number input.
+		 * Update credit attribute with the caption of the selected image.
 		 *
-		 * Returns either 100% if the field is empty, or `{n}ch`,
-		 * where `{n}` is the number of characters in the input.
-		 *
+		 * @param {object} prevProps The property values before the change.
 		 */
-		const getNumberInputWidth = () => {
-			return ( number ) ? number.length + 'ch' : '100%';
+		componentDidUpdate( prevProps ) {
+			// Get the block properties we need.
+			const {
+				attributes,
+				setAttributes,
+			} = this.props;
+
+			// Get the block attributes we need.
+			const {
+				credit,
+				backgroundCaption,
+			} = attributes;
+
+			// Stop here if the `backgroundCaption` attribute hasn't changed.
+			if ( backgroundCaption === prevProps.attributes.backgroundCaption ) {
+				return;
+			}
+
+			// Stop here if the `credit` attribute is already set.
+			if ( !! credit || ! backgroundCaption ) {
+				return;
+			}
+
+			// Update the `credit` attribute using the caption from the selected image.
+			setAttributes( { credit: backgroundCaption } );
 		};
 
-		// Return the block editing interface.
-		return(
-			<section className={ classes }>
-				<article className="wp-block-editorial-listicle-article">
-					<figure className="wp-block-editorial-listicle-figure">
-						<Background
-							autoplayVideo={ false }
-							blockProps={ props }
-							inlinePlaceholder={ true }
-							options={ [] }
-							placeholderText={ __( 'Add Media' ) }
-						/>
-						<figcaption className="wp-caption-text">
-							<PlainText
-								value={ credit }
-								onChange={ credit => setAttributes( { credit } ) }
-								placeholder={ __( 'Add Photo or Video Credit…' ) }
+		render() {
+			// Get the block properties.
+			const {
+				attributes,
+				setAttributes,
+				className,
+				isSelected,
+			} = this.props;
+
+			// Get the block attributes.
+			const {
+				hed,
+				dek,
+				content,
+				aside,
+				number,
+				related,
+				credit,
+			} = attributes;
+
+			// Check if the block has aside content (extra condition due to use of multiline).
+			const hasAsideContent = ( ! RichText.isEmpty( aside ) && aside !== '<p></p>' );
+
+			// Build out the class list for the block.
+			const classes = classnames(
+				className,
+				{
+					'has-number': number,
+					'has-sidebar': hasAsideContent,
+				}
+			);
+
+			/**
+			 * Get a value to use for the inline width of the number input.
+			 *
+			 * Returns either 100% if the field is empty, or `{n}ch`,
+			 * where `{n}` is the number of characters in the input.
+			 *
+			 */
+			const getNumberInputWidth = () => {
+				return ( number ) ? number.length + 'ch' : '100%';
+			};
+
+			// Return the block editing interface.
+			return (
+				<section className={ classes }>
+					<article className="wp-block-editorial-listicle-article">
+						<figure className="wp-block-editorial-listicle-figure">
+							<Background
+								autoplayVideo={ false }
+								blockProps={ this.props }
+								inlinePlaceholder={ true }
+								options={ [] }
+								placeholderText={ __( 'Add Media' ) }
 							/>
-						</figcaption>
-					</figure>
-					<header className="wp-block-editorial-listicle-header">
-						{ ( number || isSelected ) && (
-							<h2 className="wp-block-editorial-listicle-header-number">
+							<figcaption className="wp-caption-text">
 								<PlainText
-									placeholder={ __( 'Add Item Number (Optional)…' ) }
-									value={ number }
-									onChange={ number => setAttributes( { number } ) }
-									style={ {
-										width: getNumberInputWidth(),
-									} }
+									value={ credit }
+									onChange={ credit => setAttributes( { credit } ) }
+									placeholder={ __( 'Add Photo or Video Credit…' ) }
 								/>
-							</h2>
-						) }
-						<div className="wp-block-editorial-listicle-header-content">
+							</figcaption>
+						</figure>
+						<header className="wp-block-editorial-listicle-header">
+							{ ( number || isSelected ) && (
+								<h2 className="wp-block-editorial-listicle-header-number">
+									<PlainText
+										placeholder={ __( 'Add Item Number (Optional)…' ) }
+										value={ number }
+										onChange={ number => setAttributes( { number } ) }
+										style={ {
+											width: getNumberInputWidth(),
+										} }
+									/>
+								</h2>
+							) }
+							<div className="wp-block-editorial-listicle-header-content">
+								<RichText
+									tagName="h3"
+									className="wp-block-editorial-listicle-header-content-hed"
+									placeholder={ __( 'Add Title…' ) }
+									value={ hed }
+									onChange={ value => setAttributes( { hed: value } ) }
+									formattingControls={ [ 'bold', 'italic' ] }
+								/>
+								<RichText
+									tagName="h4"
+									className="wp-block-editorial-listicle-header-content-dek"
+									placeholder={ __( 'Add Subtitle…' ) }
+									value={ dek }
+									onChange={ value => setAttributes( { dek: value } ) }
+									formattingControls={ [ 'bold', 'italic' ] }
+								/>
+							</div>
+						</header>
+						<section className="wp-block-editorial-listicle-section">
 							<RichText
-								tagName="h3"
-								className="wp-block-editorial-listicle-header-content-hed"
-								placeholder={ __( 'Add Title…' ) }
-								value={ hed }
-								onChange={ value => setAttributes( { hed: value } ) }
-								formattingControls={ [ 'bold', 'italic' ] }
-							/>
-							<RichText
-								tagName="h4"
-								className="wp-block-editorial-listicle-header-content-dek"
-								placeholder={ __( 'Add Subtitle…' ) }
-								value={ dek }
-								onChange={ value => setAttributes( { dek: value } ) }
-								formattingControls={ [ 'bold', 'italic' ] }
-							/>
-						</div>
-					</header>
-					<section className="wp-block-editorial-listicle-section">
-						<RichText
-							tagName="div"
-							className="wp-block-editorial-listicle-section-content"
-							multiline="p"
-							placeholder={ __( 'Add Content…' ) }
-							value={ content }
-							onChange={ value => setAttributes( { content: value } ) }
-							formattingControls={ [ 'bold', 'italic', 'link' ] }
-						/>
-						{ ( hasAsideContent || isSelected ) && (
-							<RichText
-								tagName="aside"
-								className="wp-block-editorial-listicle-section-aside"
+								tagName="div"
+								className="wp-block-editorial-listicle-section-content"
 								multiline="p"
-								placeholder={ __( 'Add Sidebar (Optional)…' ) }
-								value={ aside }
-								onChange={ value => setAttributes( { aside: value } ) }
+								placeholder={ __( 'Add Content…' ) }
+								value={ content }
+								onChange={ value => setAttributes( { content: value } ) }
 								formattingControls={ [ 'bold', 'italic', 'link' ] }
 							/>
-						) }
-					</section>
-					<footer className="wp-block-editorial-listicle-footer">
-						<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
-						<RichText
-							tagName="ul"
-							multiline="li"
-							className="wp-block-editorial-listicle-footer-list"
-							placeholder={ __( 'Enter Related Stories List…' ) }
-							value={ related }
-							onChange={ ( value ) => setAttributes( { related: value } ) }
-							formattingControls={ [ 'link' ] }
-						/>
-					</footer>
-				</article>
-			</section>
-		);
+							{ ( hasAsideContent || isSelected ) && (
+								<RichText
+									tagName="aside"
+									className="wp-block-editorial-listicle-section-aside"
+									multiline="p"
+									placeholder={ __( 'Add Sidebar (Optional)…' ) }
+									value={ aside }
+									onChange={ value => setAttributes( { aside: value } ) }
+									formattingControls={ [ 'bold', 'italic', 'link' ] }
+								/>
+							) }
+						</section>
+						<footer className="wp-block-editorial-listicle-footer">
+							<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
+							<RichText
+								tagName="ul"
+								multiline="li"
+								className="wp-block-editorial-listicle-footer-list"
+								placeholder={ __( 'Enter Related Stories List…' ) }
+								value={ related }
+								onChange={ ( value ) => setAttributes( { related: value } ) }
+								formattingControls={ [ 'link' ] }
+							/>
+						</footer>
+					</article>
+				</section>
+			);
+		};
 	},
 
 	save( props ) {
@@ -248,7 +287,7 @@ registerBlockType( 'editorial/listicle', {
 		}
 
 		// Return the block rendering for the front end.
-		return(
+		return (
 			<section className={ classes }>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
