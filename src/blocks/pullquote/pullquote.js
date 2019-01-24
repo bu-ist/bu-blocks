@@ -158,14 +158,18 @@ registerBlockType( 'bu/pullquote', {
 				</InspectorControls>
 				<div className={ getClasses( className, backgroundId, imageFocus ) }>
 					{ isStyleDefault( className ) && (
-						Background( props )
+						<Background
+							blockProps={ props }
+						/>
 					) }
 					<blockquote>
 						<div className="container-lockup">
 							<div className="container-icon-outer">
 								<div className="container-icon-inner">
 									{ className.includes( 'is-style-modern' ) && (
-										Background( props )
+										<Background
+											blockProps={ props }
+										/>
 									) }
 								</div>
 							</div>
@@ -217,7 +221,9 @@ registerBlockType( 'bu/pullquote', {
 			<div className={ getClasses( className, backgroundId, imageFocus ) }>
 				{ isStyleDefault( className ) && (
 					<figure>
-						{ Background( props ) }
+						<Background
+							blockProps={ props }
+						/>
 					</figure>
 				) }
 				<blockquote>
@@ -225,7 +231,9 @@ registerBlockType( 'bu/pullquote', {
 						<div className="container-icon-outer">
 							<div className="container-icon-inner">
 								{ className.includes( 'is-style-modern' ) && (
-									Background( props )
+									<Background
+										blockProps={ props }
+									/>
 								) }
 							</div>
 						</div>
