@@ -12,7 +12,8 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background/background.js';
+import Background, { BackgroundAttributes } from '../../components/background/background';
+import ShareTools, { ShareToolsAttributes } from '../../components/share-tools/share-tools';
 
 // WordPress dependencies.
 const {
@@ -92,6 +93,7 @@ registerBlockType( 'editorial/listicle', {
 			selector: '.wp-caption-text',
 		},
 		...BackgroundAttributes,
+		...ShareToolsAttributes,
 	},
 	publicationClassName: publicationClass + '-block-listicle',
 
@@ -248,6 +250,9 @@ registerBlockType( 'editorial/listicle', {
 									formattingControls={ [ 'bold', 'italic', 'link' ] }
 								/>
 							) }
+							<ShareTools
+								blockProps={ this.props }
+							/>
 						</section>
 						{ ( hasRelatedLinks( related ) || isSelected ) && (
 							<footer className="wp-block-editorial-listicle-footer">
@@ -336,6 +341,9 @@ registerBlockType( 'editorial/listicle', {
 								multiline="p"
 							/>
 						) }
+						<ShareTools
+							blockProps={ props }
+						/>
 					</section>
 					{ hasRelatedLinks( related ) && (
 						<footer className="wp-block-editorial-listicle-footer">
