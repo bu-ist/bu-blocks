@@ -6,8 +6,8 @@
 import classnames from 'classnames';
 
 // Internal dependencies.
-import themeOptions from '../../global/theme-options.js';
-import Background from '../../components/background/background.js';
+import themeOptions from '../../global/theme-options';
+import Background from '../../components/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -72,7 +72,11 @@ class BUEditorialModalEdit extends Component {
 					<div className="wp-block-editorial-modal-callout">
 						<div className="wp-block-editorial-modal-media">
 							<figure className="wp-block-editorial-modal-image">
-								{ Background( this.props, 'banner-placeholder', 'Callout Background' ) }
+								<Background
+									blockProps={ this.props }
+									className="banner-placeholder"
+									controlPanelTitle={ __( 'Add Media' ) }
+								/>
 							</figure>
 						</div>
 						<div className="wp-block-editorial-modal-callout-content">

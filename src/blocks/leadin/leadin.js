@@ -13,7 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import edit from './edit';
-import Background, { BackgroundAttributes } from '../../components/background/background';
+import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -153,7 +153,9 @@ registerBlockType( 'bu/leadin', {
 			<div className={ classes }>
 				<div class="container-lockup">
 					<div class="wp-block-leadin-media">
-						{ Background( props ) }
+						<Background
+							blockProps={ props }
+						/>
 					</div>
 					<div class="container-words-outer">
 						<div class="container-words-inner">
