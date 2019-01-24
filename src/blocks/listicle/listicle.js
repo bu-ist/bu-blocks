@@ -219,7 +219,7 @@ registerBlockType( 'editorial/listicle', {
 								tagName="div"
 								className="wp-block-editorial-listicle-section-content"
 								multiline="p"
-								placeholder={ __( 'Add Content…' ) }
+								placeholder={ __( 'Add Content… lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in dictum felis. Nullam gravida dui nunc, vitae tristique ex pellentesque at. Suspendisse id porttitor metus. Nullam et ipsum hendrerit urna mattis porttitor at in leo.' ) }
 								value={ content }
 								onChange={ value => setAttributes( { content: value } ) }
 								formattingControls={ [ 'bold', 'italic', 'link' ] }
