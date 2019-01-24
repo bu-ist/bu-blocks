@@ -60,7 +60,7 @@ const BackgroundOpacityToClass = ( ratio ) => {
  * @param {array} props The properties passed to the component.
  */
 function Background( props ) {
-	// Desctructure properties of this component with defaults.
+	// Destructure properties of this component with defaults.
 	const {
 		allowedMediaTypes = [ 'image', 'video' ],
 		autoplayVideo = true,
