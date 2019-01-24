@@ -22,7 +22,6 @@ const {
 const {
 	IconButton,
 	PanelBody,
-	SelectControl,
 	Toolbar,
 } = wp.components;
 const {
@@ -32,10 +31,48 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
+	PanelColorSettings,
+	withColors,
 } = wp.editor;
+
+// Import a library used to manage multiple class names.
+import classnames from 'classnames';
+
+// Import common handling of available color options.
+import themeOptions from '../../global/theme-options';
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+
+/**
+ * Render the SVG used for a drop cap when the drop cap has an
+ * image assigned to it.
+ *
+ * This is used in the block editor and stored in post content
+ * as part of the block markup.
+ *
+ * @param {string} character The character to display in the drop cap.
+ * @param {string} imageURL  The background image for the drop cap character.
+ */
+const renderDropCapSVG = ( character, imageURL ) => {
+	return (
+		<svg>
+			<pattern
+				id="dropcap-texture"
+				viewBox="0 0 1024 1024"
+				patternUnits="userSpaceOnUse"
+				width="100%" height="100%"
+				x="0%" y="0%">
+				<image href={ imageURL } width="1024" height="1024"/>
+			</pattern>
+			<text textAnchor="start"
+				x="0"
+				y="50%"
+				dy=".404em"
+				className="dropcap-filltext">{ character }</text>
+		</svg>
+	);
+};
 
 // Register the block.
 registerBlockType( 'editorial/introparagraph', {
@@ -63,11 +100,7 @@ registerBlockType( 'editorial/introparagraph', {
 			source: 'html',
 			selector: '.wp-block-editorial-introparagraph-content p',
 		},
-		hasDropCap: {
-			type: 'string',
-			default: '',
-		},
-		dropCapStyle: {
+		dropCapColor: {
 			type: 'string',
 			default: '',
 		},
@@ -120,40 +153,35 @@ registerBlockType( 'editorial/introparagraph', {
 	],
 	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
-	edit( props ) {
+	edit: withColors( 'paragraphColor', 'dropCapColor' )( props => {
 		const {
 			attributes,
 			className,
 			insertBlocksAfter,
 			setAttributes,
+			paragraphColor,
+			setParagraphColor,
+			dropCapColor,
+			setDropCapColor,
+			publicationClassName,
 		} = props;
 
 		const {
 			heading,
 			content,
 			list,
-			hasDropCap,
-			dropCapStyle,
 			dropCapImageURL,
 			dropCapImageId,
-			paragraphColor,
 		} = attributes;
-
-		// This is either 'has-dropcap' or ''.
-		let hasDropCapClass = hasDropCap;
 
 		// Determine if a sepecific dropcap style has been selected.
 		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
 
 		// Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
-		if ( hasDropCapStyle && '' === hasDropCap ) {
-			setAttributes( { hasDropCap: 'has-dropcap' } );
+		if ( hasDropCapStyle ) {
 			setAttributes( { paragraphColor: '' } );
-			hasDropCapClass = 'has-dropcap';
-		} else if ( ! hasDropCapStyle && '' !== hasDropCap ) {
-			setAttributes( { hasDropCap: '' } );
-			setAttributes( { dropCapStyle: '' } );
-			hasDropCapClass = '';
+		} else if ( ! hasDropCapStyle ) {
+			setAttributes( { dropCapColor: '' } );
 		}
 
 		// Determine if the drop cap SVG should be included in content.
@@ -179,78 +207,105 @@ registerBlockType( 'editorial/introparagraph', {
 			setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
 		};
 
+		// Render the settings panel used to assign color to a paragraph.
+		const renderParagraphSettings = () => {
+			return (
+				<PanelColorSettings
+					title={ __( 'Paragraph color' ) }
+					colorSettings={ [
+						{
+							value: paragraphColor.color,
+							onChange: setParagraphColor,
+							label: __( 'Paragraph' ),
+							disableCustomColors: true,
+							colors: themeOptions(),
+						},
+					] }
+				/>
+			);
+		};
+
+		// Render the settings panel used to assign color to a drop cap character.
+		const renderDropCapColorSettings = () => {
+			return (
+				<PanelColorSettings
+					title={ __( 'Drop cap color' ) }
+					colorSettings={ [
+						{
+							value: dropCapColor.color,
+							onChange: setDropCapColor,
+							label: __( 'Drop cap' ),
+							disableCustomColors: true,
+							colors: themeOptions(),
+						},
+					] }
+				/>
+			);
+		};
+
+		// Render the settings panel used to assign an image to a drop cap character.
+		const renderDropCapImageSettings = () => {
+			return (
+				<PanelBody title={ __( 'Drop cap image settings' ) }>
+					{ '' !== dropCapImageURL && (
+						<MediaUploadCheck>
+							<Toolbar>
+								<MediaUpload
+									onSelect={ onSelectImage }
+									value={ dropCapImageId }
+									render={ ( { open } ) => (
+										<div>
+											<IconButton
+												className="components-toolbar__control"
+												label="Edit image"
+												icon="edit"
+												onClick={ open }
+											/>
+											<IconButton
+												icon="no-alt"
+												onClick={ onRemoveImage }
+												className="blocks-gallery-image__remove"
+												label="Remove image"
+											/>
+										</div>
+									) }
+								/>
+							</Toolbar>
+							<img src={ dropCapImageURL } />
+						</MediaUploadCheck>
+					) }
+					<MediaPlaceholder
+						key="drop-cap-image"
+						icon="format-image"
+						label="Drop Cap Image"
+						labels={ {
+							title: 'Drop Cap Image',
+							name: 'images',
+						} }
+						onSelect={ onSelectImage }
+					/>
+				</PanelBody>
+			);
+		};
+
+		const classes = classnames(
+			className,
+			publicationClassName,
+			{
+				'has-dropcap': hasDropCapStyle,
+				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCapStyle && dropCapColor && dropCapColor.slug,
+				[`has-paragraph-color-${paragraphColor.slug}`]: ! hasDropCapStyle && paragraphColor && paragraphColor.slug,
+			},
+		);
+
 		return (
 			<Fragment>
 				<InspectorControls>
-					<PanelBody title={ __( 'Intro Paragraph Settings' ) }>
-						{ ! hasDropCapStyle && (
-							<SelectControl
-								label={ __( 'Paragraph text color' ) }
-								value={ paragraphColor || '' }
-								onChange={ value => setAttributes( { paragraphColor: value, dropCapStyle: '', hasDropCap: '' } ) }
-								options={ [
-									{ value: '', label: __( 'None' ) },
-									{ value: 'has-paragraph-color-primary', label: __( 'Primary' ) },
-									{ value: 'has-paragraph-color-secondary', label: __( 'Secondary' ) }
-								] }
-							/>
-						) }
-						{ hasDropCapStyle && ! isImageDropCap && (
-							<SelectControl
-								label={ __( 'Drop cap color' ) }
-								value={ dropCapStyle || '' }
-								onChange={ value => setAttributes( { dropCapStyle: value, paragraphColor: '', hasDropCap: 'has-dropcap' } ) }
-								options={ [
-									{ value: '', label: __( 'None' ) },
-									{ value: 'has-dropcap-color-primary', label: __( 'Primary' ) },
-									{ value: 'has-dropcap-color-secondary', label: __( 'Secondary' ) },
-								] }
-							/>
-						) }
-						{ isImageDropCap && '' !== dropCapImageURL ? (
-							<MediaUploadCheck>
-								<Toolbar>
-									<MediaUpload
-										onSelect={ onSelectImage }
-										value={ dropCapImageId }
-										render={ ( { open } ) => (
-											<div>
-												<IconButton
-													className="components-toolbar__control"
-													label="Edit image"
-													icon="edit"
-													onClick={ open }
-												/>
-												<IconButton
-													icon="no-alt"
-													onClick={ onRemoveImage }
-													className="blocks-gallery-image__remove"
-													label="Remove image"
-												/>
-											</div>
-										) }
-									/>
-								</Toolbar>
-								<img src={ dropCapImageURL } />
-							</MediaUploadCheck>
-						) : (
-							""
-						) }
-						{ isImageDropCap && (
-							<MediaPlaceholder
-								key="drop-cap-image"
-								icon="format-image"
-								label="Drop Cap Image"
-								labels={ {
-									title: 'Drop Cap Image',
-									name: 'images',
-								} }
-								onSelect={ onSelectImage }
-							/>
-						) }
-					</PanelBody>
+					{ ! hasDropCapStyle && renderParagraphSettings() }
+					{ hasDropCapStyle && ! isImageDropCap && renderDropCapColorSettings() }
+					{ hasDropCapStyle && isImageDropCap && renderDropCapImageSettings() }
 				</InspectorControls>
-				<div className={ [ className, hasDropCapClass, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+				<div className={ classes }>
 					<PlainText
 						tagname='h4'
 						value={ heading }
@@ -267,23 +322,7 @@ registerBlockType( 'editorial/introparagraph', {
 						formattingControls={ [ 'link' ] }
 					/>
 					<div className="wp-block-editorial-introparagraph-content">
-						{ isImageDropCap && (
-							<svg>
-								<pattern
-									id="dropcap-texture"
-									viewBox="0 0 1024 1024"
-									patternUnits="userSpaceOnUse"
-									width="100%" height="100%"
-									x="0%" y="0%">
-									<image href={ dropCapImageURL } width="1024" height="1024"/>
-								</pattern>
-								<text textAnchor="start"
-									x="0"
-									y="50%"
-									dy=".404em"
-									className="dropcap-filltext">{ dropCapCharacter }</text>
-							</svg>
-						) }
+						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 						<RichText
 							tagname="p"
 							value= { content }
@@ -306,18 +345,18 @@ registerBlockType( 'editorial/introparagraph', {
 				</div>
 			</Fragment>
 		);
-	},
+	} ),
 
 	save( { attributes } ) {
 		const {
 			heading,
 			list,
 			content,
-			hasDropCap,
-			dropCapStyle,
+			dropCapColor,
 			dropCapImageURL,
 			paragraphColor,
 			className,
+			publicationClassName,
 		} = attributes;
 
 		let isImageDropCap = false;
@@ -338,8 +377,21 @@ registerBlockType( 'editorial/introparagraph', {
 			saveList = false;
 		}
 
+		// Determine if a sepecific dropcap style has been selected.
+		let hasDropCapStyle = className && className.includes( 'is-style-dropcap' );
+
+		const classes = classnames(
+			className,
+			publicationClassName,
+			{
+				'has-dropcap': hasDropCapStyle,
+				[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,
+				[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
+			},
+		);
+
 		return (
-			<div className={ [ hasDropCap, dropCapStyle, paragraphColor ].join( ' ' ).trim() }>
+			<div className={ classes }>
 				{ ! RichText.isEmpty( heading ) && (
 					<RichText.Content tagName="h4" value={ heading } />
 				) }
@@ -353,23 +405,7 @@ registerBlockType( 'editorial/introparagraph', {
 				) }
 				{ ! RichText.isEmpty( content ) && (
 					<div className="wp-block-editorial-introparagraph-content">
-						{ isImageDropCap && (
-							<svg>
-								<pattern
-									id="dropcap-texture"
-									viewBox="0 0 1024 1024"
-									patternUnits="userSpaceOnUse"
-									width="100%" height="100%"
-									x="0%" y="0%">
-									<image href={ dropCapImageURL } width="1024" height="1024"/>
-								</pattern>
-								<text textAnchor="start"
-									x="0"
-									y="50%"
-									dy=".404em"
-									className="dropcap-filltext">{ dropCapCharacter }</text>
-							</svg>
-						) }
+						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 						<RichText.Content
 							tagName="p"
 							value= { content }
