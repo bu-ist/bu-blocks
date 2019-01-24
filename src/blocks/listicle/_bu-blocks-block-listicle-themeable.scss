@@ -1,5 +1,5 @@
 // =================================================================
-// Photo Essay Styles - Configurable
+// Listicle Styles - Configurable
 // =================================================================
 //
 //
@@ -18,18 +18,18 @@
 // in the stylesheet multiple times (for each publication)
 //
 
-$blocks-block-photoessay-config: ();
+$blocks-block-listicle-config: ();
 
 // use the above array if you need to override the global $blocks-defaults array
 // of styles ONLY for this block IN the plugin.
-// You can then override THIS array by using $blocks-block-photoessay-theme in the child theme to
+// You can then override THIS array by using $blocks-block-listicle-theme in the child theme to
 // override this array
 //
 // Remember, with great power comes great responsibility. This should not be used unless
 // you really need it. Think carefully about why you aren't modifying the global config by adding
 // a different variable.
 //
-// $blocks-block-photoessay-config: (
+// $blocks-block-listicle-config: (
 // 		primary-color:red,
 // 		secondary-color: rebeccapurple,
 // );
@@ -38,25 +38,62 @@ $blocks-block-photoessay-config: ();
 // Use the default Blocks configuration. You can override this globally
 // in a theme.
 
-$blocks-block-photoessay-config: map-merge( $blocks-block-photoessay-config, $blocks-config );
+$blocks-block-listicle-config: map-merge( $blocks-block-listicle-config, $blocks-config );
 
 // This allows themes to optionally set theme options for this
 // block only. You can set all or a few options - only the options
-// you set in $block-block-photoessay-theme will override the defaults.
+// you set in $block-block-listicle-theme will override the defaults.
 
-@if variable-exists( blocks-block-photoessay-theme ) {
-	$blocks-block-photoessay-config: map_merge( $blocks-block-photoessay-config, $blocks-block-photoessay-theme );
+@if variable-exists( blocks-block-listicle-theme ) {
+	$blocks-block-listicle-config: map_merge( $blocks-block-listicle-config, $blocks-block-listicle-theme );
 }
 
 // A global helper variable for the block-get mixin.
 
-$current-map: $blocks-block-photoessay-config;
+$current-map: $blocks-block-listicle-config;
 
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-photoessay {
-	// .wp-block-photoessay-media {
-	// 	background-color: blocks-get( 'background-color-dark');
-	// }
+.#{$scope}-block-listicle {
+
+	.wp-block-editorial-listicle-header-number {
+		color: blocks-get( 'color-primary-text' );
+	}
+
+	.wp-block-editorial-listicle-header-content-hed {
+		color: blocks-get( 'color-gray-a' );
+
+		strong {
+			color: blocks-get( 'color-primary-text' );
+		}
+	}
+
+	&.has-number {
+
+		.wp-block-editorial-listicle-header-content-hed {
+
+			strong {
+				color: blocks-get( 'color-gray-a' );
+			}
+		}
+	}
+
+	.wp-block-editorial-listicle-header-content-dek {
+		color: blocks-get( 'color-gray-b' );
+	}
+
+	.wp-block-editorial-listicle-footer-title {
+		font-family: blocks-get( 'font-family-tertiary' )
+	}
+
+	.wp-block-editorial-listicle-section-content,
+	.wp-block-editorial-listicle-section-aside,
+	.wp-block-editorial-listicle-section-aside,
+	.wp-block-editorial-listicle-footer-list-item {
+
+		a {
+			color: blocks-get( 'color-tertiary' );
+		}
+	}
 }
