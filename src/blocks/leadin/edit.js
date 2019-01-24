@@ -7,7 +7,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
-import Background from '../../components/background/background';
+import Background from '../../components/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;

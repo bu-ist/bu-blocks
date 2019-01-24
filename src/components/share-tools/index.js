@@ -4,7 +4,7 @@
  * An absraction of the default Cover block for more general use inside blocks.
  *
  * Import this component and its attributes into a block with:
- * 	`import ShareTools, { ShareToolsAttributes } from '../../components/share-tools/share-tools';`
+ * 	`import ShareTools, { ShareToolsAttributes } from '../../components/share-tools';`
  */
 
 // WordPress dependencies.

@@ -12,8 +12,8 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background/background';
-import ShareTools, { ShareToolsAttributes } from '../../components/share-tools/share-tools';
+import Background, { BackgroundAttributes } from '../../components/background';
+import ShareTools, { ShareToolsAttributes } from '../../components/share-tools';
 
 // WordPress dependencies.
 const {

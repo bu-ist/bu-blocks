@@ -13,7 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import edit from './edit';
-import Background, { BackgroundAttributes } from '../../components/background/background';
+import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
