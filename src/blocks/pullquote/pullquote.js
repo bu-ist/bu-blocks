@@ -12,7 +12,7 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background/background';
+import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
 const {
