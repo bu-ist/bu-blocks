@@ -58,7 +58,7 @@ function ShareTools( props ) {
 			<InspectorControls>
 				<PanelBody title={ __( 'Sharing Options' ) }>
 					<ToggleControl
-						label="Disable Share Tools"
+						label={ __( 'Disable Share Tools' ) }
 						checked={ shareToolsDisabled }
 						onChange={ () => setAttributes( { shareToolsDisabled: !shareToolsDisabled } ) }
 					/>
@@ -66,7 +66,7 @@ function ShareTools( props ) {
 			</InspectorControls>
 			{ ! shareToolsDisabled && (
 				<p>
-					<a href="#" className="icon-action">Share this</a>
+					<a href="#" className="icon-action">{ __( 'Share this' ) }</a>
 				</p>
 			) }
 		</Fragment>
