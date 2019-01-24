@@ -87,7 +87,10 @@ registerBlockType( 'editorial/modal', {
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
-							{ Background( props, 'banner-placeholder' ) }
+							<Background
+								blockProps={ props }
+								className="banner-placeholder"
+							/>
 						</figure>
 					</div>
 					<div className="wp-block-editorial-modal-callout-content">
