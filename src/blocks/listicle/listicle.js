@@ -239,20 +239,22 @@ registerBlockType( 'editorial/listicle', {
 								onChange={ value => setAttributes( { content: value } ) }
 								formattingControls={ [ 'bold', 'italic', 'link' ] }
 							/>
-							{ ( hasAsideContent || isSelected ) && (
-								<RichText
-									tagName="aside"
-									className="wp-block-editorial-listicle-section-aside"
-									multiline="p"
-									placeholder={ __( 'Add Sidebar (Optional)…' ) }
-									value={ aside }
-									onChange={ value => setAttributes( { aside: value } ) }
-									formattingControls={ [ 'bold', 'italic', 'link' ] }
+							<div className="wp-block-editorial-listicle-section-meta">
+								{ ( hasAsideContent || isSelected ) && (
+									<RichText
+										tagName="aside"
+										className="wp-block-editorial-listicle-section-aside"
+										multiline="p"
+										placeholder={ __( 'Add Sidebar (Optional)…' ) }
+										value={ aside }
+										onChange={ value => setAttributes( { aside: value } ) }
+										formattingControls={ [ 'bold', 'italic', 'link' ] }
+									/>
+								) }
+								<ShareTools
+									blockProps={ this.props }
 								/>
-							) }
-							<ShareTools
-								blockProps={ this.props }
-							/>
+							</div>
 						</section>
 						{ ( hasRelatedLinks( related ) || isSelected ) && (
 							<footer className="wp-block-editorial-listicle-footer">
@@ -333,17 +335,19 @@ registerBlockType( 'editorial/listicle', {
 							value={ content }
 							multiline="p"
 						/>
-						{ ! RichText.isEmpty( aside ) && (
-							<RichText.Content
-								tagName="aside"
-								className="wp-block-editorial-listicle-section-aside"
-								value={ aside }
-								multiline="p"
+						<div className="wp-block-editorial-listicle-section-meta">
+							{ ! RichText.isEmpty( aside ) && (
+								<RichText.Content
+									tagName="aside"
+									className="wp-block-editorial-listicle-section-aside"
+									value={ aside }
+									multiline="p"
+								/>
+							) }
+							<ShareTools
+								blockProps={ props }
 							/>
-						) }
-						<ShareTools
-							blockProps={ props }
-						/>
+						</div>
 					</section>
 					{ hasRelatedLinks( related ) && (
 						<footer className="wp-block-editorial-listicle-footer">
