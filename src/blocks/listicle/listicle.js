@@ -36,6 +36,19 @@ const {
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
 
+/**
+ * Determine if the related links list is empty.
+ *
+ * @param {string} related The value of the `related` attribute.
+ */
+const hasRelatedLinks = ( related ) => {
+	if ( 'undefined' === typeof related || '<li></li>' === related || RichText.isEmpty( related ) ) {
+		return false;
+	}
+
+	return true;
+}
+
 // Register the block.
 registerBlockType( 'editorial/listicle', {
 	title: __( 'Listicle' ),
@@ -236,18 +249,20 @@ registerBlockType( 'editorial/listicle', {
 								/>
 							) }
 						</section>
-						<footer className="wp-block-editorial-listicle-footer">
-							<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
-							<RichText
-								tagName="ul"
-								multiline="li"
-								className="wp-block-editorial-listicle-footer-list"
-								placeholder={ __( 'Enter Related Stories List…' ) }
-								value={ related }
-								onChange={ ( value ) => setAttributes( { related: value } ) }
-								formattingControls={ [ 'link' ] }
-							/>
-						</footer>
+						{ ( hasRelatedLinks( related ) || isSelected ) && (
+							<footer className="wp-block-editorial-listicle-footer">
+								<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
+								<RichText
+									tagName="ul"
+									multiline="li"
+									className="wp-block-editorial-listicle-footer-list"
+									placeholder={ __( 'Enter Related Stories List…' ) }
+									value={ related }
+									onChange={ ( value ) => setAttributes( { related: value } ) }
+									formattingControls={ [ 'link' ] }
+								/>
+							</footer>
+						) }
 					</article>
 				</section>
 			);
@@ -278,13 +293,6 @@ registerBlockType( 'editorial/listicle', {
 				'has-sidebar': ! RichText.isEmpty( aside ),
 			}
 		);
-
-		// Determine if the related links list is empty.
-		let relatedLinks = true;
-
-		if ( 'undefined' === typeof related || '<li></li>' === related || RichText.isEmpty( related ) ) {
-			relatedLinks = false;
-		}
 
 		// Return the block rendering for the front end.
 		return (
@@ -329,7 +337,7 @@ registerBlockType( 'editorial/listicle', {
 							/>
 						) }
 					</section>
-					{ relatedLinks && (
+					{ hasRelatedLinks( related ) && (
 						<footer className="wp-block-editorial-listicle-footer">
 							<h3 className="wp-block-editorial-listicle-footer-title">Related Stories</h3>
 							<RichText.Content
