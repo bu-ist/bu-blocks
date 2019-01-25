@@ -62,6 +62,7 @@ bu_blocks.slideshow = (function() {
 				}
 			}
 			block.captionContainer.collapsed = true;
+			sizingCaption( block );
 		}
 	};
 
@@ -202,15 +203,26 @@ bu_blocks.slideshow = (function() {
 
 	var sizingCaption = function( block ) {
 		// look for active caption and grab height
-		if (block.captionContainer.collapsed == false) {
-			for (var i = 0; i < block.captiontrackitems.length; i++) {
+		for (var i = 0; i < block.captiontrackitems.length; i++) {
+			if (block.captionContainer.collapsed == false) {
 				if (block.captiontrackitems[i].active === true) {
 					block.captiontrack.style.maxHeight = block.captiontrackitems[i].offsetHeight + 'px';
 				}
 			}
-		}
-		else {
-			block.captiontrack.style.maxHeight = '3em';
+			else {
+				block.captiontrack.style.maxHeight = '1.6em';
+				if (block.captiontrackitems[i].active === true) {
+					//remove colapse class if text is 1 line
+					if (block.captiontrackitems[i].offsetHeight < block.captiontrack.offsetHeight ) {
+						block.captionContainer.classList.remove("bu-blocks-slideshow-caption-container-collapsed");
+						block.captionBtn.style.display = 'none';
+					}
+					else {
+						block.captionContainer.classList.add("bu-blocks-slideshow-caption-container-collapsed");
+						block.captionBtn.style.display = 'block';
+					}
+				}
+			}
 		}
 	};
 
