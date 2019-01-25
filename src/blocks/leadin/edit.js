@@ -7,7 +7,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
-import Background from '../../components/background/background';
+import Background from '../../components/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -189,7 +189,10 @@ class BULeadinEdit extends Component {
 				<div className={ classes }>
 					<div class="container-lockup">
 						<div class="wp-block-leadin-media">
-							{ Background( this.props, undefined, 'Media' ) }
+							<Background
+								blockProps={ this.props }
+								controlPanelTitle={ __( 'Media' ) }
+							/>
 						</div>
 						<div class="container-words-outer">
 							<div class="container-words-inner">
