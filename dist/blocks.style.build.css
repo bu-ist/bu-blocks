@@ -5875,11 +5875,19 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   .wp-block-editorial-aside.has-primary-background h2 {
     color: #fff; }
 
+.wp-block-aside p {
+  color: #444; }
+
 .wp-block-aside.has-light-background {
   background: #fff; }
 
 .wp-block-aside.has-dark-background {
   background: #000; }
+  .wp-block-aside.has-dark-background p {
+    color: #666; }
+
+.wp-block-aside.has-primary-background p {
+  color: #666; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -14491,7 +14499,16 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   display: flex;
   -ms-flex-align: start;
       align-items: start;
-  position: relative; }
+  position: relative;
+  -webkit-transition-property: max-height;
+  -o-transition-property: max-height;
+  transition-property: max-height;
+  -webkit-transition-duration: 250ms;
+       -o-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: ease-in-out;
+       -o-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out; }
   .bu-blocks-slideshow-caption-track p {
     margin: 0; }
 
@@ -14523,20 +14540,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     margin: 0; }
 
 .bu-blocks-slideshow-caption-container-collapsed .bu-blocks-slideshow-caption-track {
-  max-height: 3em;
-  -webkit-transition-property: max-height;
-  -o-transition-property: max-height;
-  transition-property: max-height;
-  -webkit-transition-duration: 1000ms;
-       -o-transition-duration: 1000ms;
-          transition-duration: 1000ms;
-  -webkit-transition-timing-function: ease-in-out;
-       -o-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0)));
-  background: -webkit-linear-gradient(top, black 0%, rgba(0, 0, 0, 0) 100%);
-  background: -o-linear-gradient(top, black 0%, rgba(0, 0, 0, 0) 100%);
-  background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0) 100%);
+  max-height: 1.6em;
+  background: -webkit-gradient(linear, left top, left bottom, from(#444), to(transparent));
+  background: -webkit-linear-gradient(top, #444 0%, transparent 100%);
+  background: -o-linear-gradient(top, #444 0%, transparent 100%);
+  background: linear-gradient(to bottom, #444 0%, transparent 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }
 
@@ -14559,6 +14567,17 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 
 .has-aspectratio-9by16 .bu-blocks-slideshow-media:after {
   padding-top: 177.77778%; }
+
+.wp-block-slideshow .bu-blocks-slideshow-caption-track {
+  color: #444; }
+
+.wp-block-slideshow .bu-blocks-slideshow-caption-container-collapsed .bu-blocks-slideshow-caption-track {
+  background: -webkit-gradient(linear, left top, left bottom, from(#444), to(transparent));
+  background: -webkit-linear-gradient(top, #444 0%, transparent 100%);
+  background: -o-linear-gradient(top, #444 0%, transparent 100%);
+  background: linear-gradient(to bottom, #444 0%, transparent 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
