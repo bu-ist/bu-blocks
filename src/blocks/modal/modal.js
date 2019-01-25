@@ -13,7 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import edit from './edit.js';
-import Background, { BackgroundAttributes } from '../../components/background/background.js';
+import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -87,7 +87,10 @@ registerBlockType( 'editorial/modal', {
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
-							{ Background( props, 'banner-placeholder' ) }
+							<Background
+								blockProps={ props }
+								className="banner-placeholder"
+							/>
 						</figure>
 					</div>
 					<div className="wp-block-editorial-modal-callout-content">

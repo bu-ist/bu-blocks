@@ -19,6 +19,9 @@ const BackgroundAttributes = {
 	backgroundAlt: {
 		type: 'string',
 	},
+	backgroundCaption: {
+		type: 'string',
+	},
 };
 
 export default BackgroundAttributes;
