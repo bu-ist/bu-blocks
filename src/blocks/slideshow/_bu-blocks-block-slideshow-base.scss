@@ -152,6 +152,9 @@
 	display: flex;
 	align-items: start;
 	position: relative;
+	transition-property: max-height;
+	transition-duration: 250ms;
+	transition-timing-function: ease-in-out;
 	p {
 		margin: 0;
 	}
@@ -187,10 +190,7 @@
 }
 .bu-blocks-slideshow-caption-container-collapsed {
 	.bu-blocks-slideshow-caption-track {
-		max-height: 3em;
-		transition-property: max-height;
-		transition-duration: 1000ms;
-		transition-timing-function: ease-in-out;
+		max-height: 1.6em;
 
 		background: linear-gradient(to bottom, #444 0%, transparent 100%);
 		-webkit-background-clip: text;

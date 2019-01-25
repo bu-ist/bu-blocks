@@ -1,5 +1,5 @@
 bu_blocks.photoessay = (function() {
-	
+
 
 
 function myFunction() {
@@ -10,8 +10,6 @@ function myFunction() {
     // demoDiv.innerHTML = "offsetLeft: " + testDiv.offsetLeft + "<br>offsetTop: " + testDiv.offsetTop;
 }
 	return {
-		getmodalBlocks: function() {
-			console.log("foo");
-		},
+
 	};
 })();
