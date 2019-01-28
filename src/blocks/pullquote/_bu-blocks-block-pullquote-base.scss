@@ -8,6 +8,10 @@
 //
 //
 
+#main .wp-block-pullquote {
+	position: relative;
+};
+
 .wp-block-pullquote {
 	position: relative;
 	text-align: center;
@@ -122,7 +126,7 @@
 			display: -ms-flexbox;
 			display: flex;
 		}
-		.container-icon-inner {	
+		.container-icon-inner {
 			width: 100%;
 			position: relative;
 		}
@@ -153,7 +157,7 @@
 			}
 		}
 		&.has-image {
-			.container-icon-inner {	
+			.container-icon-inner {
 				color: #fff;
 				img {
 					display: block;

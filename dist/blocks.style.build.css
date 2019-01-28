@@ -16303,12 +16303,20 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1), .wp-block-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup .row:nth-last-of-type(1), .wp-block-pullquote.is-style-modern .container-lockup .row:nth-last-of-type(1), .wp-block-pullquote.is-style-pop .container-lockup .row:nth-last-of-type(1), .row .wp-block-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup:nth-last-of-type(1), .wp-block-pullquote:not(.is-style-modern):not(.is-style-pop) .row .container-lockup:nth-last-of-type(1), .wp-block-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup .container-lockup:nth-last-of-type(1), .row .wp-block-pullquote.is-style-modern .container-lockup:nth-last-of-type(1), .wp-block-pullquote.is-style-modern .row .container-lockup:nth-last-of-type(1), .wp-block-pullquote.is-style-modern .container-lockup .container-lockup:nth-last-of-type(1), .row .wp-block-pullquote.is-style-pop .container-lockup:nth-last-of-type(1), .wp-block-pullquote.is-style-pop .row .container-lockup:nth-last-of-type(1), .wp-block-pullquote.is-style-pop .container-lockup .container-lockup:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+#main .wp-block-pullquote {
+  position: relative; }
+
 .wp-block-pullquote {
   position: relative;
   text-align: center;
   margin-bottom: 1.5em; }
+  .wp-block-pullquote figure {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
   .wp-block-pullquote img {
-    display: none;
     -o-object-fit: cover;
        object-fit: cover;
     position: absolute;
