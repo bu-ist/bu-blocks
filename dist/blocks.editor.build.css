@@ -17530,6 +17530,13 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+.wp-block-bu-pullquote {
+  border-bottom: none;
+  border-top: none;
+  padding: 0;
+  position: relative; }
+  .block-editor__container .wp-block-bu-pullquote img {
+    height: 100%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
