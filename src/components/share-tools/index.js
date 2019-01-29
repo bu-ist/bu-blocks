@@ -31,7 +31,7 @@ const ShareToolsAttributes = {
 };
 
 /**
- * The background component.
+ * The Share Tools component.
  *
  * @param {array} props The properties passed to the component.
  */
