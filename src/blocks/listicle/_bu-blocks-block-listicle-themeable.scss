@@ -101,8 +101,13 @@ $scope: blocks-get( 'scope' );
 
 		.icon-action {
 			font-family: blocks-get( 'font-family-tertiary' );
+			font-size: 0.9em;
 			text-decoration: none;
 			text-transform: uppercase;
+
+			&::before {
+				font-size: 1.1em;
+			}
 
 			&:hover {
 				text-decoration: underline;

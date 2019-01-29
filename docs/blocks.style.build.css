@@ -24775,7 +24775,10 @@ a:visited {
     text-decoration: none; }
 
 .wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action {
+  font-size: 0.9em;
   text-decoration: none;
   text-transform: uppercase; }
+  .wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action::before {
+    font-size: 1.1em; }
   .wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action:hover {
     text-decoration: underline; }
