@@ -24763,16 +24763,14 @@ a:visited {
 .wp-block-editorial-listicle-footer-list {
   list-style-type: none;
   padding-left: 0 !important; }
-
-.wp-block-editorial-listicle-footer-list-item {
-  margin-bottom: 8px; }
-
-.wp-block-editorial-listicle-footer-list-item-link {
-  font-family: "Benton-Sans", "Helvetica", sans-serif;
-  font-size: 0.9em;
-  text-decoration: underline; }
-  .wp-block-editorial-listicle-footer-list-item-link:hover, .wp-block-editorial-listicle-footer-list-item-link:focus {
-    text-decoration: none; }
+  .wp-block-editorial-listicle-footer-list li {
+    margin-bottom: 8px; }
+  .wp-block-editorial-listicle-footer-list a {
+    font-family: "Benton-Sans", "Helvetica", sans-serif;
+    font-size: 0.9em;
+    text-decoration: underline; }
+    .wp-block-editorial-listicle-footer-list a:hover, .wp-block-editorial-listicle-footer-list a:focus {
+      text-decoration: none; }
 
 .wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action {
   font-size: 0.9em;

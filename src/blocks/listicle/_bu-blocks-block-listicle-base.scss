@@ -148,19 +148,19 @@
 .wp-block-editorial-listicle-footer-list {
 	list-style-type: none;
 	padding-left: 0 !important;
-}
 
-.wp-block-editorial-listicle-footer-list-item {
-	margin-bottom: 8px;
-}
+	li {
+		margin-bottom: 8px;
+	}
 
-.wp-block-editorial-listicle-footer-list-item-link {
-	font-family: $font-family-sans-serif;
-	font-size: 0.9em;
-	text-decoration: underline;
+	a {
+		font-family: $font-family-sans-serif;
+		font-size: 0.9em;
+		text-decoration: underline;
 
-	&:hover,
-	&:focus {
-		text-decoration: none;
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
 	}
 }
