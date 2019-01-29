@@ -59,6 +59,7 @@ $scope: blocks-get( 'scope' );
 
 	.wp-block-editorial-listicle-header-number {
 		color: blocks-get( 'color-primary-text' );
+		margin-bottom: 0;
 	}
 
 	.wp-block-editorial-listicle-header-content-hed {

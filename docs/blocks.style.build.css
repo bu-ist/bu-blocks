@@ -24772,6 +24772,9 @@ a:visited {
     .wp-block-editorial-listicle-footer-list a:hover, .wp-block-editorial-listicle-footer-list a:focus {
       text-decoration: none; }
 
+.wp-block-listicle .wp-block-editorial-listicle-header-number {
+  margin-bottom: 0; }
+
 .wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action {
   font-size: 0.9em;
   text-decoration: none;
