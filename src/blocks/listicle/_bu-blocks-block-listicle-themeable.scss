@@ -96,4 +96,17 @@ $scope: blocks-get( 'scope' );
 			color: blocks-get( 'color-tertiary' );
 		}
 	}
+
+	.wp-block-editorial-listicle-section-meta {
+
+		.icon-action {
+			font-family: blocks-get( 'font-family-tertiary' );
+			text-decoration: none;
+			text-transform: uppercase;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }

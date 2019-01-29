@@ -24773,3 +24773,9 @@ a:visited {
   text-decoration: underline; }
   .wp-block-editorial-listicle-footer-list-item-link:hover, .wp-block-editorial-listicle-footer-list-item-link:focus {
     text-decoration: none; }
+
+.wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action {
+  text-decoration: none;
+  text-transform: uppercase; }
+  .wp-block-listicle .wp-block-editorial-listicle-section-meta .icon-action:hover {
+    text-decoration: underline; }
