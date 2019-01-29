@@ -241,15 +241,15 @@ registerBlockType( 'editorial/listicle', {
 							/>
 							<div className="wp-block-editorial-listicle-section-meta">
 								{ ( hasAsideContent || isSelected ) && (
-									<RichText
-										tagName="aside"
-										className="wp-block-editorial-listicle-section-aside"
-										multiline="p"
+									<aside className="wp-block-editorial-listicle-section-aside">
+										<RichText
+										tagName="p"
 										placeholder={ __( 'Add Sidebar (Optional)…' ) }
 										value={ aside }
 										onChange={ value => setAttributes( { aside: value } ) }
 										formattingControls={ [ 'bold', 'italic', 'link' ] }
-									/>
+										/>
+									</aside>
 								) }
 								<ShareTools
 									blockProps={ this.props }
@@ -337,12 +337,12 @@ registerBlockType( 'editorial/listicle', {
 						/>
 						<div className="wp-block-editorial-listicle-section-meta">
 							{ ! RichText.isEmpty( aside ) && (
-								<RichText.Content
-									tagName="aside"
-									className="wp-block-editorial-listicle-section-aside"
+								<aside className="wp-block-editorial-listicle-section-aside">
+									<RichText.Content
+									tagName="p"
 									value={ aside }
-									multiline="p"
-								/>
+									/>
+								</aside>
 							) }
 							<ShareTools
 								blockProps={ props }
