@@ -100,10 +100,13 @@ class ChoosePost extends Component {
 		};
 	}
 
-	updateSuggestions( value ) {
-		// Show the suggestions after typing at least 2 characters
-		// and also for URLs
-		if ( value.length < 2 || /^https?:/.test( value ) ) {
+	updateSuggestions( value, postTypes ) {
+		// Set up the post type(s) to limit the search to.
+		const defaultTypes = [ 'bu-article', 'bu-closeup', 'bu-collection', 'bu-edition' ];
+		const subTypes = ( postTypes !== undefined ) ? postTypes : defaultTypes;
+
+		// Show the suggestions after typing at least 3 characters
+		if ( value.length < 3 ) {
 			this.setState( {
 				showSuggestions: false,
 				selectedSuggestion: null,
@@ -124,6 +127,7 @@ class ChoosePost extends Component {
 				search: value,
 				per_page: 20,
 				type: 'post',
+				subtype: subTypes,
 			} ),
 		} );
 
@@ -163,7 +167,7 @@ class ChoosePost extends Component {
 	onChange( event ) {
 		const inputValue = event.target.value;
 		this.props.onChange( inputValue );
-		this.updateSuggestions( inputValue );
+		this.updateSuggestions( inputValue, this.props.postTypes );
 	}
 
 	onKeyDown( event ) {
