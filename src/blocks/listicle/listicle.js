@@ -75,7 +75,7 @@ registerBlockType( 'editorial/listicle', {
 		aside: {
 			type: 'string',
 			source: 'html',
-			selector: '.wp-block-editorial-listicle-section-aside',
+			selector: '.wp-block-editorial-listicle-section-aside p',
 		},
 		number: {
 			type: 'string',
@@ -155,7 +155,7 @@ registerBlockType( 'editorial/listicle', {
 			} = attributes;
 
 			// Check if the block has aside content (extra condition due to use of multiline).
-			const hasAsideContent = ( ! RichText.isEmpty( aside ) && aside !== '<p></p>' );
+			const hasAsideContent = ( ! RichText.isEmpty( aside ) && aside !== '<br>' );
 
 			// Build out the class list for the block.
 			const classes = classnames(
