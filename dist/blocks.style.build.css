@@ -24659,6 +24659,21 @@ a:visited {
   .wp-block-editorial-listicle-figure .wp-caption-text {
     text-align: right; }
 
+.wp-block-editorial-listicle .wp-block-background-video-iframe {
+  margin-bottom: 14px;
+  padding-bottom: 56.2%;
+  padding-top: 45px;
+  position: relative; }
+  .wp-block-editorial-listicle .wp-block-background-video-iframe div,
+  .wp-block-editorial-listicle .wp-block-background-video-iframe embed,
+  .wp-block-editorial-listicle .wp-block-background-video-iframe object,
+  .wp-block-editorial-listicle .wp-block-background-video-iframe iframe {
+    height: 100% !important;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100% !important; }
+
 .wp-block-editorial-listicle-header {
   padding-bottom: 15px; }
   @media (min-width: 500px) {
