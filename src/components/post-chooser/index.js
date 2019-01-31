@@ -1,12 +1,13 @@
 /**
  * Component: Choose Post
- *
- * Import this component and its attributes into a block with:
- * 	`import ChoosePost, { ChoosePostAttributes } from '../../components/choose-post';`
  */
 
 // External dependencies.
 import classnames from 'classnames';
+
+// Internal dependencies.
+import PostChooserAttributes from './attributes';
+import PostChooserControls from './controls';
 
 // WordPress dependencies.
 const {
@@ -44,7 +45,7 @@ const {
 
 const stopEventPropagation = ( event ) => event.stopPropagation();
 
-class ChoosePost extends Component {
+class PostChooser extends Component {
 	constructor( { autocompleteRef } ) {
 		super( ...arguments );
 
@@ -268,6 +269,7 @@ class ChoosePost extends Component {
 			value = '',
 			autoFocus = true,
 			instanceId,
+			placeholder = __( 'Type to search for a story' ),
 		} = this.props;
 
 		const {
@@ -288,7 +290,7 @@ class ChoosePost extends Component {
 					value={ value }
 					onChange={ this.onChange }
 					onInput={ stopEventPropagation }
-					placeholder={ __( 'Paste URL or type to search' ) }
+					placeholder={ placeholder }
 					onKeyDown={ this.onKeyDown }
 					role="combobox"
 					aria-expanded={ showSuggestions }
@@ -333,4 +335,10 @@ class ChoosePost extends Component {
 	}
 }
 
-export default withSpokenMessages( withInstanceId( ChoosePost ) );
+// Export dependencies for easy importing in blocks.
+export {
+	PostChooserAttributes,
+	PostChooserControls,
+};
+
+export default withSpokenMessages( withInstanceId( PostChooser ) );
