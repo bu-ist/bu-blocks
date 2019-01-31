@@ -37,7 +37,6 @@ function register_route() {
  * @return array A list of post IDs.
  */
 function rest_response( $request ) {
-	$per_page   = $request->get_param( 'per_page' );
 	$post_ids   = $request->get_param( 'include' );
 	$post_types = $request->get_param( 'post_type' );
 
@@ -52,7 +51,6 @@ function rest_response( $request ) {
 	}
 
 	$query_args = array(
-		'per_page'  => $per_page,
 		'post_type' => (array) $post_types,
 		'post__in'  => $post_ids,
 		'orderby'   => 'post__in',
