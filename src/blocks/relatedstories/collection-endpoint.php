@@ -52,7 +52,7 @@ function rest_response( $request ) {
 
 	$query_args = array(
 		'post_type' => (array) $post_types,
-		'post__in'  => $post_ids,
+		'post__in'  => (array) $post_ids,
 		'orderby'   => 'post__in',
 	);
 
