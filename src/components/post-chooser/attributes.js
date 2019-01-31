@@ -3,12 +3,21 @@
  */
 
 const PostChooserAttributes = {
-	postChooserPost: {
-		type: 'string',
+	postChooserPostID: {
+		type: 'number',
 	},
 	postChooserPostImages: {
 		type: 'string',
-	}
+	},
+	postChooserPostImageID: {
+		type: 'number',
+	},
+	postChooserPostImageURL: {
+		type: 'string',
+	},
+	postChooserPostImageAlt: {
+		type: 'string',
+	},
 };
 
 export default PostChooserAttributes;
