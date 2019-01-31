@@ -31,8 +31,7 @@ function register_route() {
 }
 
 /**
- * Provide a list of related posts from YARPP if the plugin
- * is enabled.
+ * Provide post information for a collection of post IDs.
  *
  * @param \WP_Request $request The incoming REST API request object.
  * @return array A list of post IDs.
