@@ -14,9 +14,15 @@ const PostChooserAttributes = {
 	},
 	postChooserPostImageURL: {
 		type: 'string',
+		source: 'attribute',
+		selector: 'img',
+		attribute: 'src',
 	},
 	postChooserPostImageAlt: {
 		type: 'string',
+		source: 'attribute',
+		selector: 'img',
+		attribute: 'alt',
 	},
 };
 

@@ -52,7 +52,7 @@ function define_editor_hooks() {
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 
 	// Add block categories.
-	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
+	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories', 10, 2 );
 
 	// Set default options for block theme settings.
 	add_filter( 'block_editor_settings', __NAMESPACE__ . '\\default_theme_colors', 10, 2 );
@@ -131,9 +131,10 @@ function enqueue_block_editor_assets() {
  *
  * @since    0.1.0
  *
- * @param    array $categories Default block categories.
+ * @param    array   $categories Default block categories.
+ * @param    WP_Post $post       Post being loaded.
  */
-function filter_block_categories( $categories ) {
+function filter_block_categories( $categories, $post ) {
 	$bu = array(
 		array(
 			'slug'  => 'bu',
@@ -155,10 +156,18 @@ function filter_block_categories( $categories ) {
 		),
 	);
 
+	$bu_edition = array(
+		array(
+			'slug'  => 'bu-edition',
+			'title' => __( 'Edition Blocks', 'bu-blocks' ),
+		),
+	);
+
 	return array_merge(
 		$bu,
 		$bu_editorial,
 		$bu_editorial_presets,
+		$bu_edition,
 		$categories
 	);
 }
