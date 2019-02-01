@@ -8,7 +8,6 @@ const {
 } = wp.i18n;
 const {
 	Component,
-	Fragment,
 } = wp.element;
 const {
 	PanelBody,
@@ -21,7 +20,7 @@ const {
 	apiFetch,
 } = wp;
 const {
-	addQueryArgs
+	addQueryArgs,
 } = wp.url;
 
 class PostChooserControls extends Component {
@@ -149,7 +148,10 @@ class PostChooserControls extends Component {
 		return (
 			<InspectorControls>
 				{ postChooserPostID && (
-					<PanelBody title={ __( 'Post Options' ) }>
+					<PanelBody
+						title={ __( 'Post Options' ) }
+						className="bu-post-chooser-options"
+					>
 						<p>Choose another story</p>
 						{ this.props.children }
 						{ this.imageOptions() }

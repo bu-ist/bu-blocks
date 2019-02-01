@@ -5,6 +5,9 @@
 // External dependencies.
 import classnames from 'classnames';
 
+// Import CSS.
+import './editor.scss';
+
 // Internal dependencies.
 import PostChooserAttributes from './attributes';
 import PostChooserControls from './controls';

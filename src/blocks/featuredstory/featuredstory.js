@@ -284,6 +284,8 @@ registerBlockType( 'edition/featured-story', {
 			primaryTerm,
 			commentCount,
 			date,
+			postChooserPostImageURL,
+			postChooserPostImageAlt,
 			className = '', // Assign default in case the unpacked value is `undefined`.
 		} = attributes;
 

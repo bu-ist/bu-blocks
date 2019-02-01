@@ -1,0 +1,8 @@
+.bu-post-chooser-options {
+	// Prevent overflow on the URL input in the inspector panel.
+	@media (min-width: 600px) {
+		.editor-url-input input[type="text"] {
+			width: 100%;
+		}
+	}
+}
