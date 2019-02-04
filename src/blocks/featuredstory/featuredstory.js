@@ -69,33 +69,18 @@ registerBlockType( 'edition/featured-story', {
 		},
 		hed: {
 			type: 'string',
-			source: 'html',
-			selector: '.hed'
 		},
 		dek: {
 			type: 'string',
-			source: 'html',
-			selector: '.dek'
 		},
 		primaryTerm: {
 			type: 'string',
-			source: 'html',
-			selector: '.primary-term',
 		},
 		commentCount: {
 			type: 'string',
-			source: 'html',
-			selector: '.comment-count',
 		},
 		date: {
 			type: 'string',
-			source: 'html',
-			selector: '.date',
-		},
-		specialTag: {
-			type: 'string',
-			source: 'html',
-			selector: '.special-tag',
 		},
 		className: {
 			type: 'string',
@@ -230,7 +215,7 @@ registerBlockType( 'edition/featured-story', {
 				) }
 				{ postChooserPostID && (
 					<Fragment>
-						<div class="wp-block-edition-featured-story-image">
+						<div className="wp-block-edition-featured-story-image">
 							{ postChooserPostImageURL && (
 								<figure>
 									<img
@@ -242,7 +227,7 @@ registerBlockType( 'edition/featured-story', {
 						</div>
 						<div class="wp-block-edition-featured-story-content">
 							{ primaryTerm && (
-								<span class="wp-prepress-tag">{ primaryTerm }</span>
+								<span className="wp-prepress-tag">{ primaryTerm }</span>
 							) }
 							{ ( ! RichText.isEmpty( dek ) || isSelected ) && (
 								<RichText
@@ -263,10 +248,10 @@ registerBlockType( 'edition/featured-story', {
 								formattingControls={ [ 'bold', 'italic' ] }
 							/>
 							{ commentCount && (
-								<span class="comment-count">{ commentCount }</span>
+								<span className="comment-count">{ commentCount }</span>
 							) }
 							{ date && (
-								<span class="date">{ date }</span>
+								<span className="date">{ date }</span>
 							) }
 						</div>
 					</Fragment>
@@ -285,59 +270,8 @@ registerBlockType( 'edition/featured-story', {
 		);
 	},
 
-	save( props ) {
-		const {
-			attributes,
-		} = props;
-
-		const {
-			hed,
-			dek,
-			primaryTerm,
-			commentCount,
-			date,
-			postChooserPostURL,
-			postChooserPostImageURL,
-			postChooserPostImageAlt,
-			className = '', // Assign default in case the unpacked value is `undefined`.
-		} = attributes;
-
-		return (
-			<div className={ getClasses( className ) }>
-				<div class="wp-block-edition-featured-story-media">
-					{ postChooserPostImageURL && (
-						<img
-							src={ postChooserPostImageURL }
-							alt={ postChooserPostImageAlt }
-						/>
-					) }
-				</div>
-				<div class="wp-block-edition-featured-story-content">
-					{ primaryTerm && (
-						<span class="primary-term">{ primaryTerm }</span>
-					) }
-					{ ! RichText.isEmpty( dek ) && (
-						<RichText.Content
-							tagName="h4"
-							className="dek"
-							value={ dek }
-						/>
-					) }
-					<a href={ postChooserPostURL }>
-						<RichText.Content
-							tagName="h1"
-							className="hed"
-							value={ hed }
-						/>
-					</a>
-					{ commentCount && (
-						<span class="comment-count">{ commentCount }</span>
-					) }
-					{ date && (
-						<span class="date">{ date }</span>
-					) }
-				</div>
-			</div>
-		);
+	save() {
+		// Rendering handled in PHP.
+		return null;
 	},
 } );
