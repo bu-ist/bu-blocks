@@ -226,7 +226,6 @@ registerBlockType( 'edition/featured-story', {
 					<PostChooser
 						value={ PostChooserEntry }
 						onChange={ handleSelectPost }
-						postTypes={ [ 'bu-article' ] }
 					/>
 				) }
 				{ postChooserPostID && (
@@ -278,7 +277,8 @@ registerBlockType( 'edition/featured-story', {
 					<PostChooser
 						value={ PostChooserEntry }
 						onChange={ handleSelectPost }
-						postTypes={ [ 'bu-article' ] }
+						autoFocus={ false }
+						placeholder={ _( 'Choose another post' ) }
 					/>
 				</PostChooserControls>
 			</div>
