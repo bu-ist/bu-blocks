@@ -184,8 +184,8 @@ registerBlockType( 'edition/featured-story', {
 				if ( leadin ) {
 					// Set relevant attributes with data from the leadin block attributes.
 					setAttributes( {
-						postChooserPostImageID: leadin.attributes.backgroundId,
-						postChooserPostImageURL: leadin.attributes.backgroundURL,
+						postChooserPostImageID: Number( leadin.attributes.backgroundId ),
+						postChooserPostImageURL: leadin.attributes.backgroundUrl,
 						postChooserPostImageAlt: leadin.attributes.backgroundAlt,
 						hed: leadin.attributes.head,
 						dek: leadin.attributes.deck,
@@ -200,7 +200,7 @@ registerBlockType( 'edition/featured-story', {
 						const postThumbnail = post._embedded['wp:featuredmedia']['0'];
 
 						setAttributes( {
-							postChooserPostImageID: postThumbnail.id,
+							postChooserPostImageID: Number( postThumbnail.id ),
 							postChooserPostImageURL: postThumbnail.source_url,
 							postChooserPostImageAlt: postThumbnail.alt_text,
 						} );
@@ -278,7 +278,7 @@ registerBlockType( 'edition/featured-story', {
 						value={ PostChooserEntry }
 						onChange={ handleSelectPost }
 						autoFocus={ false }
-						placeholder={ _( 'Choose another post' ) }
+						placeholder={ _( 'Type to search' ) }
 					/>
 				</PostChooserControls>
 			</div>

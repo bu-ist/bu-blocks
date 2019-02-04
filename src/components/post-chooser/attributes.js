@@ -10,7 +10,7 @@ const PostChooserAttributes = {
 		type: 'string',
 	},
 	postChooserPostImages: {
-		type: 'string',
+		type: 'array',
 	},
 	postChooserPostImageID: {
 		type: 'number',

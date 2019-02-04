@@ -10,11 +10,14 @@ const {
 	Component,
 } = wp.element;
 const {
+	Button,
 	PanelBody,
 	RadioControl,
 } = wp.components;
 const {
 	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
 } = wp.editor;
 const {
 	apiFetch,
@@ -36,19 +39,21 @@ class PostChooserControls extends Component {
 	componentDidUpdate( prevProps ) {
 		// Get the properties of the block this component is being used in.
 		const {
-			attributes,
+			attributes: {
+				postChooserPostID,
+			},
 			setAttributes,
 		} = this.props.blockProps;
 
 		// Stop here if the `postChooserPostID` attribute has not changed.
-		if ( attributes.postChooserPostID === prevProps.blockProps.attributes.postChooserPostID ) {
+		if ( postChooserPostID === prevProps.blockProps.attributes.postChooserPostID ) {
 			return;
 		}
 
 		// Make a request for the media attached to the selected post.
 		const request = apiFetch( {
 			path: addQueryArgs( '/wp/v2/media', {
-				parent: attributes.postChooserPostID,
+				parent: postChooserPostID,
 				_fields: [ 'id', 'alt_text', 'guid', 'media_details' ],
 			} ),
 		} );
@@ -139,10 +144,35 @@ class PostChooserControls extends Component {
 		);
 	};
 
+	/**
+	 * Set relevant attributes when a new image is uploaded.
+	 *
+	 * @param {string} image The uploaded image.
+	 */
+	onSelectImage = ( image ) => {
+		// Stop here if no image image was selected.
+		if ( ! image || ! image.url ) {
+			return;
+		}
+
+		this.props.blockProps.setAttributes( {
+			postChooserPostImageID: Number( image.id ),
+			postChooserPostImageURL: image.url,
+			postChooserPostImageAlt: image.alt,
+		} );
+	};
+
+	// Render the controls for the
 	render() {
+		// Grab the selected post ID from the block attributes.
 		const {
 			postChooserPostID,
 		} = this.props.blockProps.attributes;
+
+		// Define the parent post to attach uploaded images to.
+		const additionalData = {
+			post: postChooserPostID,
+		};
 
 		// Return the inspector panel controls for the selected post.
 		return (
@@ -155,6 +185,21 @@ class PostChooserControls extends Component {
 						<p>Choose another story</p>
 						{ this.props.children }
 						{ this.imageOptions() }
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ this.onSelectImage }
+								allowedTypes={ [ 'image' ] }
+								additionalData={ additionalData }
+								render={ ( { open } ) => (
+									<Button
+										onClick={ open }
+										className="bu-post-chooser-image-upload"
+									>
+										{ __( 'Upload another image' ) }
+									</Button>
+								) }
+							/>
+						</MediaUploadCheck>
 					</PanelBody>
 				) }
 			</InspectorControls>

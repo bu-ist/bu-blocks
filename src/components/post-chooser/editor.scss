@@ -6,3 +6,23 @@
 		}
 	}
 }
+
+.bu-post-chooser-image-options {
+	padding-top: 1em;
+}
+
+.bu-post-chooser-image-upload {
+	background-color: #edeff0;
+	border: 1px dashed #a2aab2;
+	box-shadow: 0 0 0 0 #00a0d2;
+	display: block;
+	line-height: 20px;
+	padding: 8px 0;
+	text-align: center;
+	transition: all .1s ease-out;
+	width: 100%;
+
+	&:hover {
+		background-color: #f8f9f9;
+	}
+}
