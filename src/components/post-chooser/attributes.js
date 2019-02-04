@@ -6,6 +6,9 @@ const PostChooserAttributes = {
 	postChooserPostID: {
 		type: 'number',
 	},
+	postChooserPostURL: {
+		type: 'string',
+	},
 	postChooserPostImages: {
 		type: 'string',
 	},

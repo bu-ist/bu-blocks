@@ -1,5 +1,5 @@
 /**
- * Component: Choose Post
+ * Component: Post Chooser
  */
 
 // External dependencies.

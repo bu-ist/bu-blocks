@@ -145,10 +145,11 @@ registerBlockType( 'edition/featured-story', {
 			if ( 'undefined' === typeof post ) {
 				setAttributes( { PostChooserEntry: url } );
 			} else {
-				// Update the `postChooserPostID` attribute with the ID from the selected post,
-				// and clear the URL input field to allow selecting a different post.
+				// Update post chooser attributes with data from the selected post,
+				// clear the URL input field to allow selecting a different post.
 				setAttributes( {
 					postChooserPostID: post.id,
+					postChooserPostURL: post.url,
 					PostChooserEntry: '',
 				} );
 
@@ -182,29 +183,40 @@ registerBlockType( 'edition/featured-story', {
 
 				if ( leadin ) {
 					// Set relevant attributes with data from the leadin block attributes.
-					const {
-						backgroundId,
-						backgroundURL,
-						backgroundAlt,
-						head,
-						deck,
-						primaryTerm,
-					} = leadin.attributes;
-
 					setAttributes( {
-						postChooserPostImageID: backgroundId,
-						postChooserPostImageURL: backgroundURL,
-						postChooserPostImageAlt: backgroundAlt,
-						hed: head,
-						dek: deck,
-						primaryTerm: primaryTerm,
-						commentCount: post._embedded.replies.length,
-						date: post.date, // Some parsing needed here.
+						postChooserPostImageID: leadin.attributes.backgroundId,
+						postChooserPostImageURL: leadin.attributes.backgroundURL,
+						postChooserPostImageAlt: leadin.attributes.backgroundAlt,
+						hed: leadin.attributes.head,
+						dek: leadin.attributes.deck,
+						primaryTerm: leadin.attributes.primaryTerm,
 					} );
 				} else {
 					// Set the `hed` attribute using the post title if no leadin block was found.
-					setAttributes( { hed: post.title } );
+					setAttributes( { hed: post.title.rendered } );
+
+					// Set image-related attributes using the featured image if one was found.
+					if ( post._embedded['wp:featuredmedia'] ) {
+						const postThumbnail = post._embedded['wp:featuredmedia']['0'];
+
+						setAttributes( {
+							postChooserPostImageID: postThumbnail.id,
+							postChooserPostImageURL: postThumbnail.source_url,
+							postChooserPostImageAlt: postThumbnail.alt_text,
+						} );
+					}
 				}
+
+				// Parse the date.
+				const postDate = new Date( post.date );
+				const options = { year: 'numeric', month: 'long', day: 'numeric' };
+				const date = new Intl.DateTimeFormat( 'en-US', options ).format( postDate );
+
+				// Set `commentCount` and `date` attributes.
+				setAttributes( {
+					commentCount: ( post._embedded.replies ) ? post._embedded.replies.length : undefined,
+					date: date,
+				} );
 			} );
 		};
 
@@ -284,6 +296,7 @@ registerBlockType( 'edition/featured-story', {
 			primaryTerm,
 			commentCount,
 			date,
+			postChooserPostURL,
 			postChooserPostImageURL,
 			postChooserPostImageAlt,
 			className = '', // Assign default in case the unpacked value is `undefined`.
@@ -310,11 +323,13 @@ registerBlockType( 'edition/featured-story', {
 							value={ dek }
 						/>
 					) }
-					<RichText.Content
-						tagName="h1"
-						className="hed"
-						value={ hed }
-					/>
+					<a href={ postChooserPostURL }>
+						<RichText.Content
+							tagName="h1"
+							className="hed"
+							value={ hed }
+						/>
+					</a>
 					{ commentCount && (
 						<span class="comment-count">{ commentCount }</span>
 					) }
