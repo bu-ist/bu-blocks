@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side rendering of the `edition/featuredstory` block.
+ * Server-side rendering of the `edition/featured-story` block.
  *
  * @package BU_Blocks
  */

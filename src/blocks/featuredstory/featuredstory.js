@@ -135,35 +135,13 @@ registerBlockType( 'edition/featured-story', {
 				setAttributes( {
 					postChooserPostID: post.id,
 					postChooserPostURL: post.url,
+					commentCount: post.comment_count,
+					date: post.date_gmt,
 					PostChooserEntry: '',
 				} );
 
-				// Set additional attributes with data parsed from the leadin block
-				// of the selected post.
-				setLeadinAttributes( post.id, post.subtype );
-			}
-		};
-
-		/**
-		 * Make a secondary request for the selected post to set additional attributes.
-		 *
-		 * If we provide our own endpoint, we can eliminate this secondary request.
-		 *
-		 * @param {string} postId   ID of the post to request.
-		 * @param {string} postType The type of post to request.
-		 */
-		const setLeadinAttributes = ( postId, postType ) => {
-			const request = apiFetch( {
-				path: addQueryArgs( `/wp/v2/${postType}/${postId}`, {
-					context: 'edit', // Edit context provides access to the raw post content.
-					_fields: [ 'date', 'title', 'content' ],
-					_embed: true,
-				} ),
-			} );
-
-			request.then( post => {
 				// Attempt to find a leadin block in the selected post.
-				const blocks = parse( post.content.raw );
+				const blocks = parse( post.content );
 				const leadin = blocks.find( x => x.name === 'bu/leadin' );
 
 				if ( leadin ) {
@@ -178,31 +156,18 @@ registerBlockType( 'edition/featured-story', {
 					} );
 				} else {
 					// Set the `hed` attribute using the post title if no leadin block was found.
-					setAttributes( { hed: post.title.rendered } );
+					setAttributes( { hed: post.title } );
 
 					// Set image-related attributes using the featured image if one was found.
-					if ( post._embedded['wp:featuredmedia'] ) {
-						const postThumbnail = post._embedded['wp:featuredmedia']['0'];
-
+					if ( post.featured_image ) {
 						setAttributes( {
-							postChooserPostImageID: Number( postThumbnail.id ),
-							postChooserPostImageURL: postThumbnail.source_url,
-							postChooserPostImageAlt: postThumbnail.alt_text,
+							postChooserPostImageID: Number( post.featured_image.id ),
+							postChooserPostImageURL: post.featured_image.url,
+							postChooserPostImageAlt: post.featured_image.alt,
 						} );
 					}
 				}
-
-				// Parse the date.
-				const postDate = new Date( post.date );
-				const options = { year: 'numeric', month: 'long', day: 'numeric' };
-				const date = new Intl.DateTimeFormat( 'en-US', options ).format( postDate );
-
-				// Set `commentCount` and `date` attributes.
-				setAttributes( {
-					commentCount: ( post._embedded.replies ) ? post._embedded.replies.length : undefined,
-					date: date,
-				} );
-			} );
+			}
 		};
 
 		return (

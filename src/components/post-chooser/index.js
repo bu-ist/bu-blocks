@@ -107,7 +107,7 @@ class PostChooser extends Component {
 	updateSuggestions( value, postTypes ) {
 		// Set up the post type(s) to limit the search to.
 		const defaultTypes = [ 'bu-article', 'bu-closeup', 'bu-collection', 'bu-edition' ];
-		const subTypes = ( postTypes !== undefined ) ? postTypes : defaultTypes;
+		const types = ( postTypes !== undefined ) ? postTypes : defaultTypes;
 
 		// Show the suggestions after typing at least 3 characters
 		if ( value.length < 3 ) {
@@ -127,11 +127,9 @@ class PostChooser extends Component {
 		} );
 
 		const request = apiFetch( {
-			path: addQueryArgs( '/wp/v2/search', {
+			path: addQueryArgs( '/bu-blocks/v1/search', {
 				search: value,
-				per_page: 20,
-				type: 'post',
-				subtype: subTypes,
+				post_type: types,
 			} ),
 		} );
 
