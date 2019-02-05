@@ -52,7 +52,7 @@ function define_editor_hooks() {
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 
 	// Add block categories.
-	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories', 10 );
+	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
 
 	// Set default options for block theme settings.
 	add_filter( 'block_editor_settings', __NAMESPACE__ . '\\default_theme_colors', 10, 2 );
