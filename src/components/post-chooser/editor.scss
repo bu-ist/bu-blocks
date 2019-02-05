@@ -9,6 +9,29 @@
 
 .bu-post-chooser-image-options {
 	padding-top: 1em;
+
+	.components-radio-control__option {
+		display: inline-block;
+	}
+
+	input {
+		display: none;
+
+		+ label {
+			border: 1px solid transparent;
+			display: block;
+			height: 70px;
+			width: 70px;
+
+			&:hover {
+				border-color: #e2e4e7;
+			}
+		}
+
+		&:checked + label {
+			border-color: #1e8cbe;
+		}
+	}
 }
 
 .bu-post-chooser-image-upload {

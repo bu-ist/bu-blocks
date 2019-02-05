@@ -81,7 +81,7 @@ class PostChooserControls extends Component {
 		const options = postChooserPostImages.map( image => {
 			let option = {};
 
-			option[ 'label' ] = image.id;
+			option[ 'label' ] = <img src={ image.thumb } alt={ image.alt } />;
 			option[ 'value' ] = image.id;
 
 			return option;
