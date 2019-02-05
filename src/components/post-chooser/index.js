@@ -1,5 +1,7 @@
 /**
  * Component: Post Chooser
+ *
+ * Copied from Gutenberg's URLInput component with some slight modifications.
  */
 
 // External dependencies.
@@ -56,7 +58,6 @@ class PostChooser extends Component {
 		this.onKeyDown = this.onKeyDown.bind( this );
 		this.autocompleteRef = autocompleteRef || createRef();
 		this.inputRef = createRef();
-		//this.updateSuggestions = throttle( this.updateSuggestions.bind( this ), 200 );
 		this.updateSuggestions = this.updateSuggestions.bind( this );
 
 		this.suggestionNodes = [];
@@ -67,22 +68,6 @@ class PostChooser extends Component {
 			selectedSuggestion: null,
 		};
 	}
-
-	/*componentDidUpdate() {
-		const { showSuggestions, selectedSuggestion } = this.state;
-		// only have to worry about scrolling selected suggestion into view
-		// when already expanded
-		if ( showSuggestions && selectedSuggestion !== null && ! this.scrollingIntoView ) {
-			this.scrollingIntoView = true;
-			scrollIntoView( this.suggestionNodes[ selectedSuggestion ], this.autocompleteRef.current, {
-				onlyScrollIfNeeded: true,
-			} );
-
-			setTimeout( () => {
-				this.scrollingIntoView = false;
-			}, 100 );
-		}
-	}*/
 
 	componentWillUnmount() {
 		delete this.suggestionsRequest;
@@ -126,6 +111,7 @@ class PostChooser extends Component {
 			loading: true,
 		} );
 
+		// Make the request to our custom search endpoint.
 		const request = apiFetch( {
 			path: addQueryArgs( '/bu-blocks/v1/search', {
 				search: value,
