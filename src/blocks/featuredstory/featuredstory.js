@@ -167,6 +167,22 @@ registerBlockType( 'edition/featured-story', {
 						} );
 					}
 				}
+
+				// Set the `postChooserPostImages` attribute with data from attached images.
+				if ( post.attached_media ) {
+					let postImages = [];
+
+					post.attached_media.forEach( ( image, i ) => {
+						postImages[ i ] = {
+							id: image.id,
+							alt: image.alt,
+							thumb: image.thumbnail,
+							full: image.url,
+						};
+					} );
+
+					setAttributes( { postChooserPostImages: postImages } );
+				}
 			}
 		};
 

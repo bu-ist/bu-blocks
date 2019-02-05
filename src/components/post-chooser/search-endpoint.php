@@ -67,12 +67,31 @@ function rest_response( $request ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
+			// Get featured image data for the post.
 			$featured_image = ( ! has_post_thumbnail() ) ? false : array(
 				'id'  => get_post_thumbnail_id(),
 				'url' => get_the_post_thumbnail_url( null, 'responsive_profile' ),
 				'alt' => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ),
 			);
 
+			// Get any other images attached to the post.
+			$attachments     = [];
+			$attached_images = get_attached_media( 'image' );
+
+			if ( $attached_images ) {
+				foreach ( $attached_images as $id => $data ) {
+					$image = array(
+						'id'        => $id,
+						'url'       => $data->guid,
+						'alt'       => get_post_meta( $id, '_wp_attachment_image_alt', true ),
+						'thumbnail' => wp_get_attachment_thumb_url( $id ),
+					);
+
+					$attachments[] = $image;
+				}
+			}
+
+			// Build out the array of post data to return.
 			$post = array(
 				'id'             => get_the_ID(),
 				'title'          => get_the_title(),
@@ -82,6 +101,7 @@ function rest_response( $request ) {
 				'comment_count'  => wp_count_comments( get_the_ID() )->approved,
 				'content'        => get_the_content(),
 				'featured_image' => $featured_image,
+				'attached_media' => $attachments,
 			);
 
 			$posts[] = $post;

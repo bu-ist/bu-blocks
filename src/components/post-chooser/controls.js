@@ -32,51 +32,6 @@ class PostChooserControls extends Component {
 	}
 
 	/**
-	 * Grab any attached images when a post is selected.
-	 *
-	 * @param {object} prevProps The property values before the change.
-	 */
-	componentDidUpdate( prevProps ) {
-		// Get the properties of the block this component is being used in.
-		const {
-			attributes: {
-				postChooserPostID,
-			},
-			setAttributes,
-		} = this.props.blockProps;
-
-		// Stop here if the `postChooserPostID` attribute has not changed.
-		if ( postChooserPostID === prevProps.blockProps.attributes.postChooserPostID ) {
-			return;
-		}
-
-		// Make a request for the media attached to the selected post.
-		const request = apiFetch( {
-			path: addQueryArgs( '/wp/v2/media', {
-				parent: postChooserPostID,
-				_fields: [ 'id', 'alt_text', 'guid', 'media_details' ],
-			} ),
-		} );
-
-		let postImages = [];
-
-		// Add attached images to the array initialized above.
-		request.then( images => {
-			images.forEach( ( image, i ) => {
-				postImages[ i ] = {
-					id: image.id,
-					alt: image.alt_text,
-					thumb: image.media_details.sizes.thumbnail.source_url,
-					full: image.guid.rendered,
-				};
-			} );
-		} );
-
-		// Update the `postChooserPostImages` attribute with the array.
-		setAttributes( { postChooserPostImages: postImages } );
-	}
-
-	/**
 	 * Set relevant attributes when an image option is selected.
 	 *
 	 * @param {string} newImage Currently selected image option.
