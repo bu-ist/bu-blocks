@@ -15589,6 +15589,113 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+.buniverse-aspect-ratio-options .components-base-control__field {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 1.5em; }
+  .buniverse-aspect-ratio-options .components-base-control__field .components-base-control__label {
+    padding-bottom: 1em;
+    width: 100%; }
+  .buniverse-aspect-ratio-options .components-base-control__field input {
+    display: none; }
+  .buniverse-aspect-ratio-options .components-base-control__field .components-radio-control__option label {
+    background-color: #fff;
+    border: 1px solid #e2e4e7;
+    padding: 8px 10px; }
+  .buniverse-aspect-ratio-options .components-base-control__field .components-radio-control__option input:checked + label {
+    color: #fff;
+    background-color: #1e8cbe;
+    border-color: #1e8cbe; }
+  .buniverse-aspect-ratio-options .components-base-control__field > div:first-of-type label {
+    border-radius: 5px 0 0 5px; }
+  .buniverse-aspect-ratio-options .components-base-control__field > div:last-of-type label {
+    border-radius: 0 5px 5px 0; }
+  .buniverse-aspect-ratio-options .components-base-control__field > div:not(:last-of-type) label {
+    border-right: 0; }
+
+.buniverse-parameter-toggles .components-base-control__field {
+  -ms-flex-pack: justify;
+      justify-content: space-between; }
+
+.buniverse-parameter-toggles .components-toggle-control .components-base-control__field .components-form-toggle {
+  margin-right: 0;
+  -ms-flex-order: 1;
+      order: 1; }
+
+.buniverse-start-time {
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex; }
+  .buniverse-start-time > div:first-of-type {
+    -ms-flex: 1 0 auto;
+        flex: 1 0 auto; }
+    .buniverse-start-time > div:first-of-type .components-base-control__field {
+      -ms-flex-align: center;
+          align-items: center;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+    .buniverse-start-time > div:first-of-type input {
+      width: 6ch; }
+  .buniverse-start-time > div:last-of-type {
+    width: 6ch; }
+
+.edit-post-settings-sidebar__panel-block .components-panel__body .buniverse-start-time .components-base-control,
+.buniverse-start-time .components-base-control .components-base-control__field {
+  margin-bottom: 0; }
+
+.wp-block-global-buinverse-placeholder {
+  -ms-flex-align: center;
+      align-items: center;
+  background: #f3f3f3;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  height: 100%;
+  -ms-flex-pack: center;
+      justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+  .wp-block-global-buinverse-placeholder .buniverse-logo {
+    background: center no-repeat url("./../images/buniverse/buniverse-logo.png");
+    background-size: 100%;
+    display: block;
+    height: 20px;
+    width: 100px; }
+  .wp-block-global-buinverse-placeholder .components-base-control {
+    margin: 20px 0;
+    width: 210px; }
+  .wp-block-global-buinverse-placeholder .buniverse-video-id-screenshot {
+    background: center no-repeat url("./../images/buniverse/video-id-screenshot.png");
+    background-size: 100%;
+    display: block;
+    height: 140px;
+    width: 400px; }
+
+.buniverse-set-video-id .components-base-control__label,
+.buniverse-set-video-id .components-text-control__input {
+  display: inline-block; }
+
+.buniverse-set-video-id .components-text-control__input {
+  margin-left: 1ch;
+  width: 100px; }
+
+.wp-block-global-buniverse {
+  margin: 0; }
+  .wp-block-global-buniverse iframe {
+    pointer-events: none; }
+
+.editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="center"] {
+  text-align: unset; }
+
+.editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="left"] .editor-block-list__block-edit, .editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="right"] .editor-block-list__block-edit {
+  width: 50%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -23476,6 +23583,27 @@ div[data-type="bu/button"] .components-autocomplete {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+aside.wp-block-editorial-relatedstories:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+figure.wp-block-editorial-relatedstories-article-image {
+  margin: 0; }
+
+.wp-block-editorial-relatedstories-error {
+  text-align: center; }
+
+.panelbody-related-stories .editor-url-input input {
+  max-width: 95%; }
+
+.panelbody-related-stories .editor-url-input ~ h3 {
+  margin: 1em 0;
+  padding-left: .25em; }
+
+.panelbody-related-stories-list {
+  list-style-type: circle;
+  padding-left: 1.5em; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
