@@ -28,13 +28,13 @@ const publicationClass = document.getElementById( 'bu_publication_owner' ).value
 const blockAttributes = {
 	media: {},
 	head: {
-		type: 'array',
-		source: 'children',
+		type: 'string',
+		source: 'html',
 		selector: '.head'
 	},
 	deck: {
-		type: 'array',
-		source: 'children',
+		type: 'string',
+		source: 'html',
 		selector: '.deck'
 	},
 	imageFocus: {
