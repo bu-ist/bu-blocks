@@ -59,6 +59,7 @@ $scope: blocks-get( 'scope' );
 
 	.wp-block-editorial-listicle-header-number {
 		color: blocks-get( 'color-primary-text' );
+		margin-bottom: 0;
 	}
 
 	.wp-block-editorial-listicle-header-content-hed {
@@ -90,10 +91,28 @@ $scope: blocks-get( 'scope' );
 	.wp-block-editorial-listicle-section-content,
 	.wp-block-editorial-listicle-section-aside,
 	.wp-block-editorial-listicle-section-aside,
-	.wp-block-editorial-listicle-footer-list-item {
+	.wp-block-editorial-listicle-footer-list {
 
 		a {
 			color: blocks-get( 'color-tertiary' );
+		}
+	}
+
+	.wp-block-editorial-listicle-section-meta {
+
+		.icon-action {
+			font-family: blocks-get( 'font-family-tertiary' );
+			font-size: 0.9em;
+			text-decoration: none;
+			text-transform: uppercase;
+
+			&::before {
+				font-size: 1.1em;
+			}
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }
