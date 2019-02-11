@@ -16,6 +16,7 @@ import './blocks/aside/aside.js';
 import './blocks/modal/modal.js';
 import './blocks/introparagraph/introparagraph.js';
 import './blocks/leadin/leadin.js';
+import './blocks/slideshow/slideshow.js';
 import './blocks/buniverse/buniverse.js';
 import './blocks/pullquote/pullquote.js';
 import './blocks/photoessay/photoessay.js';
