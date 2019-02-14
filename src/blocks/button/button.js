@@ -58,7 +58,7 @@ let blockStyles = [
 	{ name: 'text', label: __( 'Text' ) },
 ];
 
-if ( 'research' === publicationClass ) {
+if ( 'brink' === publicationClass ) {
 	blockStyles.push( { name: 'accent', label: __( 'Accent' ) } );
 }
 
