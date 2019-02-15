@@ -12140,9 +12140,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     .wp-block-leadin.is-style-emphasis-on-text .container-words-inner {
       margin-top: 0;
       margin-bottom: 0; }
-    @media (min-width: 500px) {
-      .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
-        content: " "; } }
     .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::before, .wp-block-leadin.is-style-emphasis-on-text:not(.has-box) .container-words-outer::after {
       background: -webkit-linear-gradient(20deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.125) 100%);
       background: -o-linear-gradient(20deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.125) 100%);
@@ -12176,15 +12173,24 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         padding-left: 60px;
         padding-right: 60px; } }
   @media (min-width: 500px) {
-    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media::after {
-      content: "";
-      background-color: inherit;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.5; } }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-10 {
+      opacity: 0.1; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-20 {
+      opacity: 0.2; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-30 {
+      opacity: 0.3; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-40 {
+      opacity: 0.4; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-50 {
+      opacity: 0.5; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-60 {
+      opacity: 0.6; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-70 {
+      opacity: 0.7; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-80 {
+      opacity: 0.8; }
+    .wp-block-leadin.is-style-text-over-image:not(.has-box) .wp-block-leadin-media .has-background-opacity-90 {
+      opacity: 0.9; } }
   @media (min-width: 500px) {
     .wp-block-leadin.is-style-text-over-image.has-box .container-words-inner {
       padding-top: 2em;
