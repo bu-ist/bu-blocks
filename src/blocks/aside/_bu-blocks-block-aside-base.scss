@@ -51,7 +51,11 @@
 
 	&.has-dark-background,
 	&.has-light-background,
-	&.has-primary-background {
+	&.has-primary-background,
+	&.has-secondary-background,
+	&.has-tertiary-background,
+	&.has-quaternary-background,
+	&.has-quinary-background {
 		border: none;
 	}
 
