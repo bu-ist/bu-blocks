@@ -196,6 +196,33 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 	}
+
+	&.has-quinary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-quinary' );
+
+			&:hover {
+				background: blocks-get( 'color-quinary' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-quaternary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-quinary' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-quinary' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quinary' );
+			}
+		}
+	}
 }
 
 .is-style-outline,
