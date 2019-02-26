@@ -15,37 +15,39 @@ const { compose } = wp.compose;
 const { Button, Dashicon, IconButton, PanelBody, RadioControl } = wp.components;
 const { InspectorControls, PanelColorSettings, RichText, URLInput, withColors } = wp.editor;
 
+// Get the current publication owner.
+const publication = document.getElementById( 'bu_publication_owner' ).value;
+
 class BUButtonEdit extends Component {
-	constructor() {
-		super( ...arguments );
-	}
+    constructor() {
+        super( ...arguments );
+    }
 
-	render() {
-		const {
-			attributes,
-			themeColor,
-			setThemeColor,
-			setAttributes,
-			isSelected,
-			className,
-			publicationClassName,
-		} = this.props;
+    render() {
+        const {
+            attributes,
+            themeColor,
+            setThemeColor,
+            setAttributes,
+            isSelected,
+            className,
+        } = this.props;
 
-		const {
-			text,
-			url,
-			icon,
-		} = attributes;
+        const {
+            text,
+            url,
+            icon,
+        } = attributes;
 
-		const classes = classnames(
-			'wp-block-button',
-			className,
-			publicationClassName,
-			{
-				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
-				[ `icon-navigateright ${icon}` ]:  icon,
-			}
-		);
+        const classes = classnames(
+            'wp-block-button',
+            `${publication}-block-button`,
+            className,
+            {
+                [ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+                [ `icon-navigateright ${icon}` ]:  icon,
+            }
+        );
 
 		return (
 			<Fragment>
