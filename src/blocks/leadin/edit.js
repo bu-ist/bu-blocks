@@ -15,6 +15,9 @@ const { Component, Fragment } = wp.element;
 const { compose } = wp.compose;
 const { CheckboxControl, SelectControl, PanelBody } = wp.components;
 const { InspectorControls, PanelColorSettings, RichText, withColors } = wp.editor;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
@@ -222,6 +225,9 @@ class BULeadinEdit extends Component {
 						</div>
 					</div>
 				</div>
+
+				{ applyFilters( 'buBlocks.leadin.metaBar', '' ) }
+
 				<InspectorControls>
 					{ mediaPositioningControls() }
 					{ layoutControls() }

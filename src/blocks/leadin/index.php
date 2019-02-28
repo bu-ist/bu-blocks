@@ -104,6 +104,9 @@ function render_block( $attributes ) {
 
 		</div>
 	</div>
+
+	<?php do_action( 'bu_blocks_leadin_meta_bar' ); ?>
+
 	<?php
 	$html = ob_get_clean();
 
