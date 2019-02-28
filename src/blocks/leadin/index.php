@@ -25,7 +25,7 @@ function get_block_classes( $attributes ) {
 	// Build array of classes from the provide attributes.
 	$classes = array(
 		'wp-block-leadin',
-		bu_prepress_get_publication_class( '--block-leadin' ),
+		bu_prepress_get_publication_class( '-block-leadin' ),
 		$attributes['className'],
 		( $attributes['backgroundUrl'] ) ? 'has-media' : '',
 		( $attributes['wide'] && $style_side_by_side ) ? 'has-wider' : '',
