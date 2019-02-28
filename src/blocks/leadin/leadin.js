@@ -16,30 +16,35 @@ import edit from './edit';
 import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Path, SVG } = wp.components;
-const { RichText, getColorClassName } = wp.editor;
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+	Path,
+	SVG,
+} = wp.components;
+const {
+	getColorClassName,
+	RichText,
+} = wp.editor;
 
 // The current publication owner.
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
 
 // Block attributes.
 const blockAttributes = {
-	media: {},
 	head: {
 		type: 'string',
-		source: 'html',
-		selector: '.head'
 	},
 	deck: {
 		type: 'string',
-		source: 'html',
-		selector: '.deck'
 	},
 	imageFocus: {
 		type: 'string',
-		default: 'center-middle'
+		default: 'center-middle',
 	},
 	textPositionX: {
 		type: 'string',
@@ -50,13 +55,13 @@ const blockAttributes = {
 		default: '',
 	},
 	wide: {
-		type: 'bool'
+		type: 'boolean'
 	},
 	box: {
-		type: 'bool'
+		type: 'boolean'
 	},
 	flip: {
-		type: 'bool'
+		type: 'boolean'
 	},
 	className: {
 		type: 'string',
@@ -111,73 +116,8 @@ registerBlockType( 'bu/leadin', {
 
 	edit,
 
-	save( props ) {
-		const { attributes } = props;
-
-		const {
-			backgroundId,
-			head,
-			deck,
-			imageFocus,
-			textPositionX,
-			textPositionY,
-			wide,
-			box,
-			flip,
-			className,
-			themeColor,
-			primaryTerm,
-		} = attributes;
-
-		const isStyleEmphasisOnText = className && className.includes( 'is-style-emphasis-on-text' );
-		const isStyleTextOverImage = className && className.includes( 'is-style-text-over-image' );
-		const isStyleSideBySide = className && className.includes( 'is-style-side-by-side' );
-
-		const classes = classnames(
-			'wp-block-leadin',
-			publicationClass + '-block-leadin',
-			className,
-			{
-				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
-				'has-wider': wide && isStyleSideBySide,
-				'has-flip': flip && isStyleSideBySide,
-				'has-media': backgroundId,
-				[ `has-image-focus-${imageFocus}` ]: imageFocus,
-				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
-				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
-				[ getColorClassName( 'theme', themeColor ) ]: getColorClassName( 'theme', themeColor ),
-			}
-		);
-
-		return(
-			<div className={ classes }>
-				<div class="container-lockup">
-					<div class="wp-block-leadin-media">
-						<Background
-							blockProps={ props }
-						/>
-					</div>
-					<div class="container-words-outer">
-						<div class="container-words-inner">
-							{ primaryTerm && (
-								<span class="wp-prepress-tag">{ primaryTerm }</span>
-							) }
-							<RichText.Content
-								tagName="h1"
-								className="head"
-								value={ head }
-							/>
-							{ ! RichText.isEmpty( deck ) && (
-								<RichText.Content
-									tagName="h4"
-									className="deck"
-									value={ deck }
-								/>
-							) }
-						</div>
-					</div>
-				</div>
-			</div>
-		);
+	save() {
+		// Rendering handled in PHP.
+		return null;
 	},
 } );
