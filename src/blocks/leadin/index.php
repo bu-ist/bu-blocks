@@ -83,7 +83,7 @@ function render_block( $attributes ) {
 		<div class="container-lockup">
 
 			<div class="wp-block-leadin-media">
-
+				<?php do_action( 'bu_blocks_background', $attributes ); ?>
 			</div>
 
 			<div class="container-words-outer">
