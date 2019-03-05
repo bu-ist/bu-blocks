@@ -57,7 +57,7 @@ registerBlockType( 'editorial/modal', {
 		},
 		...BackgroundAttributes,
 	},
-	publicationClassName: publicationClass + '-block-modal',
+	publicationClassName: publicationClass + '-block-editorial-modal',
 
 	// Add the `selected-modal` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {

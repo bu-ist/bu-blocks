@@ -41,7 +41,7 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 			type: 'string',
 		},
 	},
-	publicationClassName: publicationClass + '-block-aside',
+	publicationClassName: publicationClass + '-block-editorial-aside',
 
 	edit,
 

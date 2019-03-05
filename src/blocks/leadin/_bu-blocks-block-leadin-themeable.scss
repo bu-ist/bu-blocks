@@ -55,7 +55,7 @@ $current-map: $blocks-block-leadin-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-leadin {
+.#{$scope}-block-editorial-leadin {
 	h1,
 	h2 {
 		color: blocks-get( 'font-color-heading');

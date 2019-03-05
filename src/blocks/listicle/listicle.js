@@ -95,7 +95,7 @@ registerBlockType( 'editorial/listicle', {
 		...BackgroundAttributes,
 		...ShareToolsAttributes,
 	},
-	publicationClassName: publicationClass + '-block-listicle',
+	publicationClassName: publicationClass + '-block-editorial-listicle',
 
 	edit: class extends Component {
 		constructor() {

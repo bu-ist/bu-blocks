@@ -49,7 +49,7 @@ const getClasses = ( className, backgroundId, imageFocus ) => {
 
 	return (
 		classnames(
-			'wp-block-pullquote',
+			'wp-block-editorial-pullquote',
 			className,
 			{
 				'has-image': ( backgroundId && ! isStylePop ),
@@ -103,7 +103,7 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
-	publicationClassName: publicationClass + '-block-pullquote',
+	publicationClassName: publicationClass + '-block-editorial-pullquote',
 
 	edit( props ) {
 		// Get the block properties.

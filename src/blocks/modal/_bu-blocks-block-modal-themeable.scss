@@ -55,7 +55,7 @@ $current-map: $blocks-block-modal-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-modal {
+.#{$scope}-block-editorial-modal {
 	.wp-block-editorial-modal-content {
 		background: blocks-get( 'background-color-default' );
 
