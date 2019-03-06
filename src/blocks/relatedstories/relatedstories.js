@@ -137,7 +137,7 @@ registerBlockType( 'editorial/relatedstories', {
 	},
 
 	// Assign a publication class name.
-	publicationClassName: publicationClass + '-block-related-stories',
+	publicationClassName: publicationClass + '-block-editorial-related-stories',
 
 	edit: compose( [
 		withState( {

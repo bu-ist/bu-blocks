@@ -55,7 +55,7 @@ $current-map: $blocks-block-slideshow-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-slideshow {
+.#{$scope}-block-editorial-slideshow {
 	.bu-blocks-slideshow-caption-track {
 		color: blocks-get( 'font-color-aside');
 	}

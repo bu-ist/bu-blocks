@@ -55,7 +55,7 @@ $current-map: $blocks-block-pullquote-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-pullquote {
+.#{$scope}-block-editorial-pullquote {
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			&::before,

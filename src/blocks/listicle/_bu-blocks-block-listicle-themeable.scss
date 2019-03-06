@@ -55,7 +55,7 @@ $current-map: $blocks-block-listicle-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-listicle {
+.#{$scope}-block-editorial-listicle {
 
 	.wp-block-editorial-listicle-header-number {
 		color: blocks-get( 'color-primary-text' );

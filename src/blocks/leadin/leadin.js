@@ -152,8 +152,8 @@ registerBlockType( 'bu/leadin', {
 		const isStyleSideBySide = className.includes( 'is-style-side-by-side' );
 
 		const classes = classnames(
-			'wp-block-leadin',
-			publicationClass + '-block-leadin',
+			'wp-block-editorial-leadin',
+			publicationClass + '-block-editorial-leadin',
 			className,
 			{
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),

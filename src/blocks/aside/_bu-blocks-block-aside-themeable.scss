@@ -55,7 +55,7 @@ $current-map: $blocks-block-aside-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-aside {
+.#{$scope}-block-editorial-aside {
 	font-family: blocks-get( 'font-family-primary');
 
 	p {
