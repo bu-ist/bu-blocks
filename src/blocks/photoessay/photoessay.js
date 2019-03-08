@@ -148,7 +148,7 @@ registerBlockType( 'editorial/photoessay', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<div className="wp-block-photoessay">
+				<div className="wp-block-editorial-photoessay">
 					<div className={ layout }>
 						<InnerBlocks
 							templateLock="all"
