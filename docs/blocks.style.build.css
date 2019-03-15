@@ -5862,7 +5862,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     @media (min-width: 768px) {
       .wp-block-editorial-aside.alignright {
         margin: 0 -10px 20px 30px; } }
-  .wp-block-editorial-aside.has-dark-background, .wp-block-editorial-aside.has-light-background, .wp-block-editorial-aside.has-primary-background {
+  .wp-block-editorial-aside.has-dark-background, .wp-block-editorial-aside.has-light-background, .wp-block-editorial-aside.has-primary-background, .wp-block-editorial-aside.has-secondary-background, .wp-block-editorial-aside.has-tertiary-background, .wp-block-editorial-aside.has-quaternary-background, .wp-block-editorial-aside.has-quinary-background {
     border: none; }
   .wp-block-editorial-aside.has-dark-background {
     background: #444; }
@@ -5883,7 +5883,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 
 .wp-block-editorial-aside.has-dark-background {
   background: #000; }
-  .wp-block-editorial-aside.has-dark-background p {
+  .wp-block-editorial-aside.has-dark-background p,
+  .wp-block-editorial-aside.has-dark-background h1,
+  .wp-block-editorial-aside.has-dark-background h2,
+  .wp-block-editorial-aside.has-dark-background h3,
+  .wp-block-editorial-aside.has-dark-background h4,
+  .wp-block-editorial-aside.has-dark-background h5,
+  .wp-block-editorial-aside.has-dark-background h6 {
     color: #666; }
 
 .wp-block-editorial-aside.has-primary-background p {
@@ -22798,16 +22804,20 @@ a:visited {
     .wp-block-button.is-style-text:hover {
       text-decoration: none; }
 
-.wp-block-button {
+.publication-wp .wp-block-button {
   border-radius: 0; }
-  .has-dark-theme .wp-block-button.is-style-default {
-    background: #000; }
-  .has-light-theme .wp-block-button.is-style-default {
-    background: #fff; }
-  .wp-block-button.is-style-outline.has-dark-theme {
-    border-color: #000; }
-  .wp-block-button.is-style-outline.has-light-theme {
-    border-color: #fff; }
+
+.has-dark-theme .publication-wp .wp-block-button.is-style-default {
+  background: #000; }
+
+.has-light-theme .publication-wp .wp-block-button.is-style-default {
+  background: #fff; }
+
+.publication-wp .wp-block-button.is-style-outline.has-dark-theme {
+  border-color: #000; }
+
+.publication-wp .wp-block-button.is-style-outline.has-light-theme {
+  border-color: #fff; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
