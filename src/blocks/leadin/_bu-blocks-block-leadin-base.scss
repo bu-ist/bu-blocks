@@ -148,12 +148,18 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 .wp-block-editorial-leadin {
 	@extend %media-focus;
 	padding-bottom: 2em;
+
 	h1,
 	h2,
 	h3,
 	h4 {
 		margin:0 0 0.25em ;
 	}
+
+	p {
+		display: none;
+	}
+
 	.container-words-inner {
 		margin-top: 2em;
 		margin-bottom: 2em;
@@ -167,13 +173,16 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		-ms-flex-align: center;
 		align-items: center;
 	}
+
 	.wp-block-leadin-media {
 		@include transition( height 500ms ease-in-out 0s );
 		position: relative;
 		box-sizing: content-box;
+
 		img {
 			position: relative;
 			width: 100%;
+
 			@include breakpoint( $xs ) {
 				-o-object-fit: cover;
 				object-fit: cover;
@@ -188,29 +197,32 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	}
 	&.is-style-text-to-image {
 		@extend %leadin-image-height-small;
+
 		.container-lockup {
 			display: -ms-flexbox;
 			display: flex;
 			-ms-flex-direction: column;
 			flex-direction: column;
 		}
+
 		.wp-block-leadin-media {
 			-ms-flex-order: 2;
 			order: 2;
 
 		}
+
 		.container-words-outter {
 			-ms-flex-order: 1;
 			order: 1;
 		}
 	}
+
 	&.is-style-image-to-text {
 		@extend %leadin-image-height-medium;
 	}
+
 	&.is-style-emphasis-on-text {
-
 		$shadow-width: 50px;
-
 		@extend %leadin-image-height-medium;
 		position: relative;
 
@@ -218,6 +230,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			@include breakpoint( $xs ) {
 				padding-bottom: 140px;
 			}
+
 			@include breakpoint( $sm ) {
 				padding-bottom: 70px;
 			}
@@ -230,6 +243,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			width: 100%;
 			padding-left: $padding;
 			padding-right: $padding;
+
 			@include breakpoint( $xs ) {
 				position: absolute;
 				bottom: 0;
@@ -247,6 +261,7 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 						// content: " ";
 					}
 				}
+
 				&::before,
 				&::after  {
 					background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
@@ -254,29 +269,36 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 					bottom: 0;
 					width: $shadow-width;
 					height: 140px;
+
 					@include breakpoint( $sm ) {
 						bottom: 0;
 					}
+
 					@include breakpoint( $md ) {
 						bottom: -70px;
 					}
 				}
+
 				&::before {
 					left: calc( 0px - #{$shadow-width} );
 				}
+
 				&::after {
 					right: calc( 0px - #{$shadow-width} );
 					@include scale( -1, 1 );
 				}
 			}
+
 			.container-words-inner {
 				padding-top: 2em;
 			}
+
 			.container-words-inner {
 				padding-left: $padding;
 				padding-right: $padding;
 			}
 		}
+
 		&.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-inner {
@@ -291,28 +313,19 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 	&.is-style-text-over-image {
 		@extend %leadin-image-height-large;
 		@extend %leadin-text-over-image-base;
+
 		&:not(.has-box){
 			.wp-block-leadin-media {
 				@include breakpoint( $xs ) {
-					// &::after {
-					// 	content: "";
-					// 	background-color: inherit;
-					// 	position: absolute;
-					// 	top: 0;
-					// 	left: 0;
-					// 	width: 100%;
-					// 	height: 100%;
-					// 	opacity: 0.5;
-					// }
 					@for $i from 1 through 9 {
 						.has-background-opacity-#{$i}#{'0'} {
 							opacity: #{'0.'}#{$i};
 						}
-						// .grid-#{$i} { @include grid-base($i); @extend .grid-block; }
 					}
 				}
 			}
 		}
+
 		&.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-inner {
@@ -324,43 +337,54 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			}
 		}
 	}
+
 	&.is-style-side-by-side {
 		@extend %leadin-sidebyside-vert-size;
 		text-align: center;
+
 		&:not(.has-wider) {
 			padding-left: $padding;
 			padding-right: $padding;
 		}
+
 		.container-words-inner {
 			padding-left: $padding * 2;
 			padding-right: $padding * 2;
 		}
+
 		&.has-flip {
 			.wp-block-leadin-media{
 				order: 2;
 			}
 		}
+
 		@include breakpoint( $xs ) {
 			text-align: left;
+
 			.container-lockup{
 				display: flex;
+
 				.wp-block-leadin-media {
 					width: 33.333333%;
 				}
+
 				.container-words-outer {
 					width: 66.666666%;
 				}
 			}
+
 			.container-words-outer {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 
 			}
+
 			.container-words-inner {
 				align-items: flex-start;
 			}
 		}
+
 		@include breakpoint( $sm ) {
 			.container-lockup{
 				.wp-block-leadin-media,
@@ -370,11 +394,13 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 			}
 		}
 	}
+
 	&:not(.is-style-side-by-side) {
 		.container-lockup {
 			text-align: center;
 		}
 	}
+
 	&:not(.is-style-side-by-side):not(.is-style-text-to-image):not(.is-style-image-to-text):not(.is-style-emphasis-on-text):not(.is-style-text-over-image) {
 		.wp-block-leadin-media {
 			margin: 0;
