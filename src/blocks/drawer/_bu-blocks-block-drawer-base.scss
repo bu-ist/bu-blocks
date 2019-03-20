@@ -1,0 +1,150 @@
+// =================================================================
+// Drawer Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-editorial-drawer-closed {
+	@extend %col-full;
+	clear: both;
+	margin: 10px 0 40px;
+	padding: 30px;
+	text-align: center;
+
+	&::before,
+	&::after {
+		border-bottom: 4px solid $color-grayscale-e;
+		content: '';
+		display: block;
+		margin: 0 auto;
+		padding: 20px 0;
+		width: 6%;
+	}
+
+	&::before {
+		border-bottom: 0;
+		border-top: 4px solid $color-grayscale-e;
+	}
+
+	figure {
+		@include border-radius( 50% );
+		height: 150px;
+		margin: 0 auto 0.7em auto;
+		overflow: hidden;
+		width: 150px;
+
+		img {
+			object-fit: cover;
+			height: 100%;
+		}
+	}
+
+	p {
+		color: $color-grayscale-6;
+		line-height: 1.5;
+		margin: 0 0 1em 0;
+		font-size: 16px;
+	}
+
+	h2 {
+		font-size: 1.4em;
+	}
+
+	&.is-style-aside {
+		@extend %col-sm-quarter;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	&.is-style-small {
+		@extend %col-sm-third;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	&.is-style-full {
+		&::before,
+		&::after {
+			width: 100%;
+		}
+	}
+
+	&.alignleft {
+		float: left;
+
+		@include breakpoint( $sm ) {
+			margin: 0 30px 20px -40px;
+		}
+	}
+
+	&.alignright {
+		float: right;
+
+		@include breakpoint( $sm ) {
+			margin: 0 -10px 20px 30px;
+		}
+	}
+}
+
+.wp-block-editorial-drawer-open {
+	@extend %clearfix;
+	@extend %col-full;
+	clear: both;
+	display: block;
+	margin: 10px 0 40px;
+	padding: 40px;
+
+	&::before,
+	&::after {
+		border-bottom: 4px solid $color-grayscale-e;
+		content: '';
+		display: block;
+		margin: 0 auto;
+		padding: 20px 0;
+		width: 100%;
+	}
+
+	&::before {
+		border-bottom: 0;
+		border-top: 4px solid $color-grayscale-e;
+	}
+
+	.wp-block-editorial-drawer-wrapper {
+		@extend %col-margin-parent;
+	}
+
+	.wp-block-editorial-drawer-media,
+	.wp-block-editorial-drawer-media + .wp-block-editorial-drawer-text {
+		@extend %col-md-margin-half;
+	}
+
+	.wp-block-editorial-drawer-media {
+		text-align: right;
+	}
+
+	&.has-dark-background {
+		background: $color-grayscale-4;
+
+		h2 {
+			color: $color-grayscale-f;
+		}
+
+		p {
+			color: $color-grayscale-f0;
+		}
+	}
+
+	&.has-light-background {
+		background: $color-grayscale-e;
+	}
+}

@@ -1,0 +1,32 @@
+// =================================================================
+// Drawer Block Base Styles
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/drawer/bu-blocks-block-drawer-base';
+@import 'src/blocks/drawer/bu-blocks-block-drawer-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Drawer Block
+//
+// A block that works a bit like BU Collapsible to open and close a drawer of content. When the closed state (or aside) is clicked, drawer opens in place with a sliding animation, and closed state/aside disappears.
+// The drawer block can contain nested blocks within it. In the first example below, it contains a video and text block.
+//
+// Status: In Progress
+//
+// Markup: bu-blocks-block-drawer.hbs
+//
+// .is-style-aside - Example of an aside layout
+// .is-style-small - Example of a small-width layout
+// .is-style-full - Example of a small-width layout
+// .has-light-background - Example of a light background
+// .has-dark-background - Example of a dark background
+//
+// Styleguide Blocks.Editorial.Drawer
+
+
