@@ -13,6 +13,7 @@
 import './blocks/sample/sample.js';
 import './blocks/headline/headline.js';
 import './blocks/aside/aside.js';
+import './blocks/drawer/drawer.js';
 import './blocks/modal/modal.js';
 import './blocks/introparagraph/introparagraph.js';
 import './blocks/leadin/leadin.js';
