@@ -30,16 +30,18 @@
 		border-top: 4px solid $color-grayscale-e;
 	}
 
-	figure {
-		@include border-radius( 50% );
-		height: 150px;
-		margin: 0 auto 0.7em auto;
-		overflow: hidden;
-		width: 150px;
+	&.is-style-round {
+		figure {
+			@include border-radius( 50% );
+			height: 150px;
+			margin: 0 auto 0.7em auto;
+			overflow: hidden;
+			width: 150px;
 
-		img {
-			object-fit: cover;
-			height: 100%;
+			img {
+				object-fit: cover;
+				height: 100%;
+			}
 		}
 	}
 
@@ -54,17 +56,35 @@
 		font-size: 1.4em;
 	}
 
-	&.is-style-aside {
+	&.is-size-narrow {
 		@extend %col-sm-quarter;
-
-		&::before,
-		&::after {
-			display: none;
-		}
 	}
 
-	&.is-style-small {
+	&.is-size-small {
 		@extend %col-sm-third;
+	}
+
+	&.is-size-medium {
+		@extend %col-sm-half;
+	}
+
+	&.is-size-wide {
+		@extend %col-sm-two-third;
+	}
+
+	&.is-size-narrow,
+	&.is-size-small,
+	&.is-size-medium,
+	&.is-size-wide {
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	&.alignleft,
+	&.alignright {
+		@extend %col-sm-third; // TO DO: temporary
 
 		&::before,
 		&::after {
@@ -72,7 +92,7 @@
 		}
 	}
 
-	&.is-style-full {
+	&.alignfull {
 		&::before,
 		&::after {
 			width: 100%;
