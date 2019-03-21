@@ -1,18 +1,18 @@
-bu_blocks.drawer = (function() {
+bu_blocks.drawer = ( function() {
 	var drawerBlocks = []; //stores all of our found blocks
-	var $body = document.getElementsByTagName('body')[0]; //target body tag
-	var eventOpen = new Event('bu-blocks-drawer-open');
-	var eventClose = new Event('bu-blocks-drawer-close');
+	var $body = document.getElementsByTagName( 'body' )[0]; //target body tag
+	var eventOpen = new Event( 'bu-blocks-drawer-open' );
+	var eventClose = new Event( 'bu-blocks-drawer-close' );
 
-	var toggleDrawer = function(drawer) {
+	var toggleDrawer = function( drawer ) {
 		console.log( drawer );
 		// Using an if statement to check the class
-		if ( drawer.classList.contains('show-drawer') ) {
-			drawer.classList.remove('show-drawer');
+		if ( drawer.classList.contains( 'show-drawer' ) ) {
+			drawer.classList.remove( 'show-drawer' );
 			//dispatch the event on the drawer dom element
 			drawer.dispatchEvent( eventClose );
 		} else {
-			drawer.classList.add('show-drawer');
+			drawer.classList.add( 'show-drawer' );
 			//dispatch the event on the drawer dom element
 			drawer.dispatchEvent( eventOpen );
 		}
@@ -20,29 +20,29 @@ bu_blocks.drawer = (function() {
 
 	var findElements = function() {
 		//find all the blocks
-		var elements = document.getElementsByClassName('js-bu-block-drawer');
+		var elements = document.getElementsByClassName( 'js-bu-block-drawer' );
 		//if found
-		if (elements.length > 0) {
+		if ( elements.length > 0 ) {
 			//for each found block do stuff
 			for ( var i = 0; i < elements.length; i++ ) {
 
 				var block = {};
 
 				//get first returned drawer content element
-				block.drawer = elements[i].getElementsByClassName('js-bu-block-drawer-content')[0];
+				block.drawer = elements[i].getElementsByClassName( 'js-bu-block-drawer-content' )[0];
 				//get all matched trigger btns
-				block.button = elements[i].getElementsByClassName('js-bu-block-drawer-open');
+				block.button = elements[i].getElementsByClassName( 'js-bu-block-drawer-open' );
 				//get first returned overlay element
-				block.close = elements[i].getElementsByClassName('js-bu-block-drawer-close')[0];
+				block.close = elements[i].getElementsByClassName( 'js-bu-block-drawer-close' )[0];
 
 				//for each one found store as object in the array
-				drawerBlocks.push(block);
+				drawerBlocks.push( block );
 			}
 		}
 	};
 
 	var setupHandlers = function() {
-		if (drawerBlocks.length > 0) {
+		if ( drawerBlocks.length > 0 ) {
 
 			for ( var i = 0; i < drawerBlocks.length; i++ ) {
 				//store for loop instance as variable so event handlers
@@ -75,7 +75,7 @@ bu_blocks.drawer = (function() {
 	};
 
 	//start on dom ready (ie8+)
-	document.addEventListener("DOMContentLoaded", function() {
+	document.addEventListener( "DOMContentLoaded", function() {
   		drawerInit();
 
 	});
