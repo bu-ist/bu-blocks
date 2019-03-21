@@ -1,35 +1,26 @@
-bu_blocks.modal = (function() {
-	var modalBlocks = [];
-	var $body = document.getElementsByTagName('body')[0];
-	var eventOpen = new Event('bu-blocks-modal-open');
-	var eventClose = new Event('bu-blocks-modal-close');
+bu_blocks.drawer = (function() {
+	var drawerBlocks = []; //stores all of our found blocks
+	var $body = document.getElementsByTagName('body')[0]; //target body tag
+	//var eventOpen = new Event('bu-blocks-modal-open');
+	//var eventClose = new Event('bu-blocks-modal-close');
 
-	var lockScroll = function() {
-		$body.classList.add('bu-blocks-modal-noscroll');
-	};
-
-	var unlockScroll = function() {
-		$body.classList.remove('bu-blocks-modal-noscroll');
-	}
-
-	var toggleModal = function(overlay) {
+	var toggleDrawer = function(drawer) {
+		console.log( drawer );
 		// Using an if statement to check the class
-		if (overlay.classList.contains('show-overlay')) {
-			overlay.classList.remove('show-overlay');
+		if ( drawer.classList.contains('show-drawer') ) {
+			drawer.classList.remove('show-drawer');
 			//dispatch the event on the overlay dom element
-			overlay.dispatchEvent( eventClose );
-			unlockScroll();
+			//overlay.dispatchEvent( eventClose );
 		} else {
-			overlay.classList.add('show-overlay');
+			drawer.classList.add('show-drawer');
 			//dispatch the event on the overlay dom element
-			overlay.dispatchEvent( eventOpen );
-			lockScroll();
+			//overlay.dispatchEvent( eventOpen );
 		}
 	};
 
 	var findElements = function() {
 		//find all the blocks
-		var elements = document.getElementsByClassName('js-bu-block-modal');
+		var elements = document.getElementsByClassName('js-bu-block-drawer');
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
@@ -37,45 +28,45 @@ bu_blocks.modal = (function() {
 
 				var block = {};
 
-				//get first returned overlay element
-				block.overlay = elements[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
+				//get first returned drawer content element
+				block.drawer = elements[i].getElementsByClassName('js-bu-block-drawer-content')[0];
 				//get all matched trigger btns
-				block.button = elements[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
+				block.button = elements[i].getElementsByClassName('js-bu-block-drawer-open');
 				//get first returned overlay element
-				block.close = elements[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
+				block.close = elements[i].getElementsByClassName('js-bu-block-drawer-close')[0];
 
 				//for each one found store as object in the array
-				modalBlocks.push(block);
+				drawerBlocks.push(block);
 			}
 		}
 	};
 
 	var setupHandlers = function() {
-		if (modalBlocks.length > 0) {
+		if (drawerBlocks.length > 0) {
 
-			for ( var i = 0; i < modalBlocks.length; i++ ) {
+			for ( var i = 0; i < drawerBlocks.length; i++ ) {
 				//store for loop instance as variable so event handlers
 				//can reference element when event fires
-				var thisModal = modalBlocks[i];
+				var thisDrawer = drawerBlocks[i];
 
-				//some modals may have more than one trigger btn
+				//some drawer blocks may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( var b = 0; b < thisModal.button.length; b++ ) {
+				for ( var b = 0; b < thisDrawer.button.length; b++ ) {
 					//for each btn we find, add an event handler
-					thisModal.button[b].addEventListener( "click", function(e) {
+					thisDrawer.button[b].addEventListener( "click", function(e) {
 						e.preventDefault();
-						toggleModal( thisModal.overlay );
+						toggleDrawer( thisDrawer.drawer );
 					});
 				}
-				thisModal.close.addEventListener( "click", function(e) {
+				thisDrawer.close.addEventListener( "click", function(e) {
 					e.preventDefault();
-					toggleModal( thisModal.overlay );
+					toggleDrawer( thisDrawer.drawer );
 				});
 			}
 		}
 	};
 
-	var modalInit = function() {
+	var drawerInit = function() {
 		//find the elements
 		findElements();
 
@@ -85,15 +76,15 @@ bu_blocks.modal = (function() {
 
 	//start on dom ready (ie8+)
 	document.addEventListener("DOMContentLoaded", function() {
-  		modalInit();
+  		drawerInit();
 
 	});
 
 	return {
-		getmodalBlocks: function() {
-			return modalBlocks;
+		getdrawerBlocks: function() {
+			return drawerBlocks;
 		},
-		toggleModal: function( overlay ) {
+		toggleDrawer: function( overlay ) {
 			if( overlay ) {
 				toggleModal( overlay );
 			}
