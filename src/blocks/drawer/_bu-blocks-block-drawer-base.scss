@@ -162,9 +162,24 @@
 		p {
 			color: $color-grayscale-f0;
 		}
+
+		&::before,
+		&::after {
+			border-color: $color-grayscale-6;
+		}
 	}
 
 	&.has-light-background {
 		background: $color-grayscale-e;
+
+		&::before,
+		&::after {
+			border-color: $color-grayscale-f;
+		}
+	}
+
+	&.alignleft,
+	&.alignright {
+		max-width: 100%;
 	}
 }
