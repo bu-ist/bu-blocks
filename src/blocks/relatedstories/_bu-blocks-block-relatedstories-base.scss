@@ -10,6 +10,18 @@
 
 .wp-block-editorial-relatedstories {
 
+	.wp-block-editorial-relatedstories-title {
+		margin-bottom: 30px;
+
+		&::after {
+			border-top: 3px solid $color-grayscale-b;
+			content:'';
+			display: block;
+			margin-top: 20px;
+			width: 70px;
+		}
+	}
+
 	.wp-block-editorial-relatedstories-list {
 		list-style-type: none;
 		padding: 0;
@@ -21,17 +33,6 @@
 
 		&:hover {
 			text-decoration: underline;
-		}
-	}
-
-	&.alignright,
-	&.alignleft {
-		@include breakpoint( $xs ) {
-			max-width: 50%;
-		}
-
-		@include breakpoint( $sm ) {
-			max-width: 30%;
 		}
 	}
 
@@ -49,14 +50,29 @@
 		}
 	}
 
-	&.is-style-list {
+	.wp-block-editorial-relatedstories-article-date {
+		font-family: $font-family-sans-serif;
+		font-size: 0.8em;
+		margin-bottom: 10px;
+		text-transform: uppercase;
+	}
 
-		.wp-block-editorial-relatedstories-article-category {
-			margin-bottom: -0.7em;
+	&.alignright,
+	&.alignleft {
+		@include breakpoint( $xs ) {
+			max-width: 50%;
 		}
 
-		.wp-block-editorial-relatedstories-article-title-link {
-			font-weight: 400;
+		@include breakpoint( $sm ) {
+			max-width: 30%;
+		}
+
+		.wp-block-editorial-relatedstories-list-item {
+			margin-bottom: 20px;
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+			margin-top: 10px;
 		}
 	}
 
@@ -96,7 +112,11 @@
 		.wp-block-editorial-relatedstories-article-category {
 			left: 10px;
 			position: absolute;
-			top: 15px;
+			top: 10px;
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+			margin-top: 10px;
 		}
 
 		.wp-block-editorial-relatedstories-article-title-link {
@@ -159,22 +179,4 @@
 			}
 		}
 	}
-}
-
-.wp-block-editorial-relatedstories-title {
-	margin-bottom: 30px;
-
-	&::after {
-		border-top: 3px solid $color-grayscale-b;
-		content:'';
-		display: block;
-		margin-top: 20px;
-		width: 70px;
-	}
-}
-
-.wp-block-editorial-relatedstories-article-date {
-	font-family: $font-family-sans-serif;
-	font-size: 0.8em;
-	text-transform: uppercase;
 }
