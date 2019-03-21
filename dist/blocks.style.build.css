@@ -7892,7 +7892,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 
 .wp-block-editorial-drawer-content {
   clear: both;
-  display: block;
+  display: none;
   margin: 10px 0 40px;
   padding: 40px; }
   .wp-block-editorial-drawer-content::before, .wp-block-editorial-drawer-content::after {
@@ -7921,6 +7921,9 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       border-color: #fff; }
   .wp-block-editorial-drawer-content.alignleft, .wp-block-editorial-drawer-content.alignright {
     max-width: 100%; }
+
+.wp-block-editorial-drawer .wp-block-editorial-drawer-content.show-drawer {
+  display: block; }
 
 .wp-block-editorial-drawer p {
   color: #444; }
