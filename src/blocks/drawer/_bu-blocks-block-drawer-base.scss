@@ -8,6 +8,10 @@
 //
 //
 
+.wp-block-editorial-drawer {
+
+}
+
 .wp-block-editorial-drawer-teaser {
 	@extend %col-full;
 	clear: both;
@@ -120,7 +124,7 @@
 	@extend %clearfix;
 	@extend %col-full;
 	clear: both;
-	display: block;
+	display: none;
 	margin: 10px 0 40px;
 	padding: 40px;
 
@@ -182,4 +186,15 @@
 	&.alignright {
 		max-width: 100%;
 	}
+}
+
+
+.wp-block-editorial-drawer {
+
+	.wp-block-editorial-drawer-content {
+		&.show-drawer {
+			display: block;
+		}
+	}
+
 }
