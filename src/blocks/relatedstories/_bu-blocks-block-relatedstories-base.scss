@@ -27,6 +27,10 @@
 		padding: 0;
 	}
 
+	.wp-block-editorial-relatedstories-list-item {
+		margin-bottom: 20px;
+	}
+
 	.wp-block-editorial-relatedstories-article-title-link {
 		color: $color-link;
 		text-decoration: none;
@@ -67,10 +71,6 @@
 			max-width: 30%;
 		}
 
-		.wp-block-editorial-relatedstories-list-item {
-			margin-bottom: 20px;
-		}
-
 		.wp-block-editorial-relatedstories-article-title {
 			margin-top: 10px;
 		}
@@ -78,6 +78,10 @@
 
 	&.is-style-card {
 		@extend %col-xs-margin-parent;
+
+		.wp-block-editorial-relatedstories-list-item:first-of-type {
+			margin-left: 0;
+		}
 
 		.wp-block-editorial-relatedstories-article {
 			@include transform( perspective( 1px ) translateZ( 0 ));
