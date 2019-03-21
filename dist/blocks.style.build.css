@@ -23063,7 +23063,7 @@ a:visited {
   margin-left: 100%; }
 
 @media (min-width: 500px) {
-  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-list-item, .wp-block-editorial-relatedstories.is-style-card.has-two .wp-block-editorial-relatedstories-list-item, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .col-xs-margin-12 {
+  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-list-item, .wp-block-editorial-relatedstories.is-style-card.has-two .wp-block-editorial-relatedstories-list-item, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-list-item, .col-xs-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -23160,7 +23160,7 @@ a:visited {
     width: 80.76923%; }
   .col-xs-margin-11 {
     width: 89.10256%; }
-  .col-xs-margin-12 {
+  .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-list-item, .col-xs-margin-12 {
     width: 97.4359%; }
   .col-xs-push-0 {
     left: initial; }
@@ -24042,7 +24042,7 @@ a:visited {
   margin-left: 100%; }
 
 @media (min-width: 500px) {
-  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-list-item, .wp-block-editorial-relatedstories.is-style-card.has-two .wp-block-editorial-relatedstories-list-item, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .col-xs-margin-12 {
+  .col-xs-margin-0, .col-xs-margin-1, .col-xs-margin-2, .col-xs-margin-3, .col-xs-margin-4, .col-xs-margin-5, .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-list-item, .wp-block-editorial-relatedstories.is-style-card.has-two .wp-block-editorial-relatedstories-list-item, .col-xs-margin-6, .col-xs-margin-7, .col-xs-margin-8, .col-xs-margin-9, .col-xs-margin-10, .col-xs-margin-11, .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-list-item, .col-xs-margin-12 {
     float: left;
     margin-bottom: 2.5641%;
     margin-left: 2.5641%;
@@ -24139,7 +24139,7 @@ a:visited {
     width: 80.76923%; }
   .col-xs-margin-11 {
     width: 89.10256%; }
-  .col-xs-margin-12 {
+  .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-list-item, .col-xs-margin-12 {
     width: 97.4359%; }
   .col-xs-push-0 {
     left: initial; }

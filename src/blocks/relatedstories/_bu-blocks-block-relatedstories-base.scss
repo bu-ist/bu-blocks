@@ -131,6 +131,7 @@
 	&.is-style-card.has-three {
 
 		.wp-block-editorial-relatedstories-list-item {
+			@extend %col-xs-margin-full;
 			@extend %col-sm-margin-third;
 			padding: 0;
 		}
