@@ -24775,6 +24775,20 @@ a:visited {
   .wp-block-editorial-relatedstories.alignright, .wp-block-editorial-relatedstories.alignleft {
     max-width: 30%; } }
 
+.wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-category {
+  margin-bottom: 0; }
+  .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-category span {
+    border-radius: 2px;
+    background: #333;
+    color: #fff;
+    font-family: "Benton-Sans", "Helvetica", sans-serif;
+    font-size: 13px;
+    padding: 5px 5px 3px;
+    text-transform: uppercase; }
+
+.wp-block-editorial-relatedstories.is-style-list .wp-block-editorial-relatedstories-article-category {
+  margin-bottom: -0.7em; }
+
 .wp-block-editorial-relatedstories.is-style-list .wp-block-editorial-relatedstories-article-title-link {
   font-weight: 400; }
 
@@ -24806,6 +24820,11 @@ a:visited {
     @supports ((-o-object-fit: cover) or (object-fit: cover)) {
       .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-image img {
         height: 300px; } } }
+
+.wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-category {
+  left: 10px;
+  position: absolute;
+  top: 15px; }
 
 .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-title-link::after {
   bottom: 0;
@@ -24850,22 +24869,9 @@ a:visited {
     margin-top: 20px;
     width: 70px; }
 
-.wp-block-editorial-relatedstories-article-category {
-  left: 10px;
-  position: absolute;
-  top: 15px; }
-  .wp-block-editorial-relatedstories-article-category span {
-    background: #333;
-    color: #fff;
-    font-family: "Benton-Sans", "Helvetica", sans-serif;
-    font-size: 0.85em;
-    letter-spacing: 1px;
-    padding: 6px 8px 3px 10px;
-    text-transform: uppercase; }
-
 .wp-block-editorial-relatedstories-article-date {
   font-family: "Benton-Sans", "Helvetica", sans-serif;
-  font-size: 0.75em;
+  font-size: 0.8em;
   text-transform: uppercase; }
 
 .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-title-link:hover, .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-title-link:focus {

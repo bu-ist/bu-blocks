@@ -76,16 +76,16 @@ $scope: blocks-get( 'scope' );
 
 	.wp-block-editorial-relatedstories-article-date {
 		color: blocks-get( 'color-gray-b');
+		font-family: blocks-get( 'font-family-tertiary' );
 	}
 
-	&.is-style-card {
 
-		.wp-block-editorial-relatedstories-article-category {
+	.wp-block-editorial-relatedstories-article-category {
 
-			span {
-				background: blocks-get( 'color-primary' );
-				font-family: blocks-get( 'font-family-tertiary' );
-			}
+		span {
+			background: blocks-get( 'color-primary' );
+			color: blocks-get( 'color-gray-a' );
+			font-family: blocks-get( 'font-family-tertiary' );
 		}
 	}
 }
