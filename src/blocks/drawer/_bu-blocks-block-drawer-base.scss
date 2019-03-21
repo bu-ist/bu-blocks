@@ -8,7 +8,7 @@
 //
 //
 
-.wp-block-editorial-drawer-closed {
+.wp-block-editorial-drawer-teaser {
 	@extend %col-full;
 	clear: both;
 	margin: 10px 0 40px;
@@ -96,7 +96,7 @@
 	}
 }
 
-.wp-block-editorial-drawer-open {
+.wp-block-editorial-drawer-content {
 	@extend %clearfix;
 	@extend %col-full;
 	clear: both;
