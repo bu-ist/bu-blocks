@@ -82,10 +82,12 @@ $scope: blocks-get( 'scope' );
 	}
 
 	&.has-primary-background {
-		background: blocks-get( 'color-primary' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-primary' );
 
-		p {
-			color: blocks-get( 'font-color-aside-lighter' );
+			p {
+				color: blocks-get( 'font-color-aside-lighter' );
+			}
 		}
 	}
 
