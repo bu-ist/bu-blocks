@@ -24807,9 +24807,6 @@ a:visited {
 .wp-block-editorial-relatedstories.alignright .wp-block-editorial-relatedstories-article-title, .wp-block-editorial-relatedstories.alignleft .wp-block-editorial-relatedstories-article-title {
   margin-top: 10px; }
 
-.wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-list-item:first-of-type {
-  margin-left: 0; }
-
 .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article {
   -webkit-transform: perspective(1px) translateZ(0);
   -ms-transform: perspective(1px) translateZ(0);

@@ -79,10 +79,6 @@
 	&.is-style-card {
 		@extend %col-xs-margin-parent;
 
-		.wp-block-editorial-relatedstories-list-item:first-of-type {
-			margin-left: 0;
-		}
-
 		.wp-block-editorial-relatedstories-article {
 			@include transform( perspective( 1px ) translateZ( 0 ));
 			@include transition( transform 0.3s ease 0s );
