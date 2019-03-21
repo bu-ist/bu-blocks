@@ -1,20 +1,20 @@
 bu_blocks.drawer = (function() {
 	var drawerBlocks = []; //stores all of our found blocks
 	var $body = document.getElementsByTagName('body')[0]; //target body tag
-	//var eventOpen = new Event('bu-blocks-modal-open');
-	//var eventClose = new Event('bu-blocks-modal-close');
+	var eventOpen = new Event('bu-blocks-drawer-open');
+	var eventClose = new Event('bu-blocks-drawer-close');
 
 	var toggleDrawer = function(drawer) {
 		console.log( drawer );
 		// Using an if statement to check the class
 		if ( drawer.classList.contains('show-drawer') ) {
 			drawer.classList.remove('show-drawer');
-			//dispatch the event on the overlay dom element
-			//overlay.dispatchEvent( eventClose );
+			//dispatch the event on the drawer dom element
+			drawer.dispatchEvent( eventClose );
 		} else {
 			drawer.classList.add('show-drawer');
-			//dispatch the event on the overlay dom element
-			//overlay.dispatchEvent( eventOpen );
+			//dispatch the event on the drawer dom element
+			drawer.dispatchEvent( eventOpen );
 		}
 	};
 
