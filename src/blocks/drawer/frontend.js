@@ -84,9 +84,9 @@ bu_blocks.drawer = (function() {
 		getdrawerBlocks: function() {
 			return drawerBlocks;
 		},
-		toggleDrawer: function( overlay ) {
-			if( overlay ) {
-				toggleModal( overlay );
+		toggleDrawer: function( drawer ) {
+			if( drawer ) {
+				toggleDrawer( drawer );
 			}
 		}
 	};
