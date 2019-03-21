@@ -190,11 +190,17 @@
 
 
 .wp-block-editorial-drawer {
-
-	.wp-block-editorial-drawer-content {
-		&.show-drawer {
+	&.show-drawer {
+		.wp-block-editorial-drawer-content {
 			display: block;
+			opacity: 1;
 		}
 	}
 
+	&.show-drawer.has-hide-teaser {
+		.wp-block-editorial-drawer-teaser {
+			display: none;
+			opacity: 0;
+		}
+	}
 }
