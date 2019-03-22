@@ -47,45 +47,30 @@
 		border-top: 4px solid $color-grayscale-e;
 	}
 
-	&.is-style-round {
-		figure {
-			@include border-radius( 50% );
-			height: 150px;
-			margin: 0 auto 0.7em auto;
-			overflow: hidden;
-			width: 150px;
-
-			img {
-				object-fit: cover;
-				height: 100%;
-			}
-		}
-	}
-
 	p {
 		color: $color-grayscale-6;
 		line-height: 1.5;
 		margin: 0 0 1em 0;
-		font-size: 16px;
+		font-size: 17px;
 	}
 
 	h2 {
 		font-size: 1.4em;
 	}
 
-	&.is-size-narrow {
+	.is-size-narrow & {
 		@extend %col-sm-quarter;
 	}
 
-	&.is-size-small {
+	.is-size-small & {
 		@extend %col-sm-third;
 	}
 
-	&.is-size-medium {
+	.is-size-medium & {
 		@extend %col-sm-half;
 	}
 
-	&.is-size-wide {
+	.is-size-wide & {
 		@extend %col-sm-two-third;
 	}
 
