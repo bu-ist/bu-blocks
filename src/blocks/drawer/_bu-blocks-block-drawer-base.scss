@@ -116,7 +116,6 @@
 	@extend %col-full;
 	clear: both;
 	margin: 10px 0 40px;
-	padding: 30px;
 	text-align: center;
 
 	&::before,
@@ -156,7 +155,6 @@
 	display: none;
 	margin: 10px 0 40px;
 	opacity: 0;
-	padding: 40px;
 	position: relative;
 
 	&::before,
