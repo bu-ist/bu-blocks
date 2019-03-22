@@ -23,6 +23,97 @@
 			}
 		}
 	}
+
+	&.is-size-narrow .wp-block-editorial-drawer-teaser {
+		@extend %col-sm-quarter;
+	}
+
+	&.is-size-small .wp-block-editorial-drawer-teaser {
+		@extend %col-sm-third;
+	}
+
+	&.is-size-medium .wp-block-editorial-drawer-teaser {
+		@extend %col-sm-half;
+	}
+
+	&.is-size-wide .wp-block-editorial-drawer-teaser {
+		@extend %col-sm-two-third;
+	}
+
+	&.is-size-narrow,
+	&.is-size-small,
+	&.is-size-medium,
+	&.is-size-wide {
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+
+
+	/*
+	Alignment options
+	 */
+
+	&.alignleft,
+	&.alignright {
+		//reset defaults so align left and
+		//right are not applying to the <aside> parent
+		//this causes theh parent div to still be full width,
+		//but have height of basically zero
+		float: none;
+		max-width: none;
+	}
+
+	&.alignleft .wp-block-editorial-drawer-teaser,
+	&.alignright .wp-block-editorial-drawer-teaser {
+
+		// make the teaser narrower size when
+		// align left and right is set
+
+		@extend %col-sm-third; // TO DO: temporary
+
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	&.alignfull {
+		&::before,
+		&::after {
+			width: 100%;
+		}
+	}
+
+	&.alignleft .wp-block-editorial-drawer-teaser {
+		// float the teaser left, but not the <aside>
+		float: left;
+
+		@include breakpoint( $sm ) {
+			margin: 0 30px 20px -40px;
+		}
+	}
+
+	&.alignright .wp-block-editorial-drawer-teaser {
+		// float the teaser right, but not the <aside>
+		float: right;
+
+		@include breakpoint( $sm ) {
+			margin: 0 -10px 20px 30px;
+		}
+	}
+}
+
+
+.wp-block-editorial-drawer {
+	&.alignright.has-drawer-open,
+	&.alignleft.has-drawer-open {
+		.wp-block-editorial-drawer-teaser {
+
+		}
+	}
 }
 
 .wp-block-editorial-drawer-teaser {
@@ -58,64 +149,7 @@
 		font-size: 1.4em;
 	}
 
-	.is-size-narrow & {
-		@extend %col-sm-quarter;
-	}
 
-	.is-size-small & {
-		@extend %col-sm-third;
-	}
-
-	.is-size-medium & {
-		@extend %col-sm-half;
-	}
-
-	.is-size-wide & {
-		@extend %col-sm-two-third;
-	}
-
-	&.is-size-narrow,
-	&.is-size-small,
-	&.is-size-medium,
-	&.is-size-wide {
-		&::before,
-		&::after {
-			display: none;
-		}
-	}
-
-	&.alignleft,
-	&.alignright {
-		@extend %col-sm-third; // TO DO: temporary
-
-		&::before,
-		&::after {
-			display: none;
-		}
-	}
-
-	&.alignfull {
-		&::before,
-		&::after {
-			width: 100%;
-		}
-	}
-
-	&.alignleft {
-		float: left;
-
-		@include breakpoint( $sm ) {
-			margin: 0 30px 20px -40px;
-		}
-	}
-
-	&.alignright {
-		float: right;
-
-		@include breakpoint( $sm ) {
-			margin: 0 -10px 20px 30px;
-		}
-	}
 }
 
 .wp-block-editorial-drawer-content {
