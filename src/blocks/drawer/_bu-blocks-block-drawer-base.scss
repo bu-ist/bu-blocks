@@ -9,7 +9,20 @@
 //
 
 .wp-block-editorial-drawer {
+	&.is-style-round .wp-block-editorial-drawer-teaser {
+		figure {
+			@include border-radius( 50% );
+			height: 150px;
+			margin: 0 auto 0.7em auto;
+			overflow: hidden;
+			width: 150px;
 
+			img {
+				object-fit: cover;
+				height: 100%;
+			}
+		}
+	}
 }
 
 .wp-block-editorial-drawer-teaser {
