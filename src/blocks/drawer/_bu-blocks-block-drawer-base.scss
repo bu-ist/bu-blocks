@@ -119,12 +119,15 @@
 }
 
 .wp-block-editorial-drawer-content {
+	@include transition( all 0.5s ease-in-out );
 	@extend %clearfix;
 	@extend %col-full;
 	clear: both;
 	display: none;
 	margin: 10px 0 40px;
+	opacity: 0;
 	padding: 40px;
+	position: relative;
 
 	&::before,
 	&::after {
