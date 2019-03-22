@@ -6341,12 +6341,12 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 16.66667%; }
-  .wp-block-editorial-drawer-teaser.is-size-narrow, .col-sm-3 {
+  .is-size-narrow .wp-block-editorial-drawer-teaser, .col-sm-3 {
     float: left;
     position: relative;
     min-height: 1px;
     width: 25%; }
-  .wp-block-editorial-drawer-teaser.is-size-small, .wp-block-editorial-drawer-teaser.alignleft, .wp-block-editorial-drawer-teaser.alignright, .col-sm-4 {
+  .is-size-small .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer-teaser.alignleft, .wp-block-editorial-drawer-teaser.alignright, .col-sm-4 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -6356,7 +6356,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 41.66667%; }
-  .wp-block-editorial-drawer-teaser.is-size-medium, .col-sm-6 {
+  .is-size-medium .wp-block-editorial-drawer-teaser, .col-sm-6 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -6366,7 +6366,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 58.33333%; }
-  .wp-block-editorial-drawer-teaser.is-size-wide, .col-sm-8 {
+  .is-size-wide .wp-block-editorial-drawer-teaser, .col-sm-8 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -7324,12 +7324,12 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 16.66667%; }
-  .wp-block-editorial-drawer-teaser.is-size-narrow, .col-sm-3 {
+  .is-size-narrow .wp-block-editorial-drawer-teaser, .col-sm-3 {
     float: left;
     position: relative;
     min-height: 1px;
     width: 25%; }
-  .wp-block-editorial-drawer-teaser.is-size-small, .wp-block-editorial-drawer-teaser.alignleft, .wp-block-editorial-drawer-teaser.alignright, .col-sm-4 {
+  .is-size-small .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer-teaser.alignleft, .wp-block-editorial-drawer-teaser.alignright, .col-sm-4 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -7339,7 +7339,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 41.66667%; }
-  .wp-block-editorial-drawer-teaser.is-size-medium, .col-sm-6 {
+  .is-size-medium .wp-block-editorial-drawer-teaser, .col-sm-6 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -7349,7 +7349,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     position: relative;
     min-height: 1px;
     width: 58.33333%; }
-  .wp-block-editorial-drawer-teaser.is-size-wide, .col-sm-8 {
+  .is-size-wide .wp-block-editorial-drawer-teaser, .col-sm-8 {
     float: left;
     position: relative;
     min-height: 1px;
@@ -7841,6 +7841,17 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+.wp-block-editorial-drawer.is-style-round .wp-block-editorial-drawer-teaser figure {
+  border-radius: 50%;
+  height: 150px;
+  margin: 0 auto 0.7em auto;
+  overflow: hidden;
+  width: 150px; }
+  .wp-block-editorial-drawer.is-style-round .wp-block-editorial-drawer-teaser figure img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 100%; }
+
 .wp-block-editorial-drawer-teaser {
   clear: both;
   margin: 10px 0 40px;
@@ -7856,21 +7867,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   .wp-block-editorial-drawer-teaser::before {
     border-bottom: 0;
     border-top: 4px solid #eee; }
-  .wp-block-editorial-drawer-teaser.is-style-round figure {
-    border-radius: 50%;
-    height: 150px;
-    margin: 0 auto 0.7em auto;
-    overflow: hidden;
-    width: 150px; }
-    .wp-block-editorial-drawer-teaser.is-style-round figure img {
-      -o-object-fit: cover;
-         object-fit: cover;
-      height: 100%; }
   .wp-block-editorial-drawer-teaser p {
     color: #666;
     line-height: 1.5;
     margin: 0 0 1em 0;
-    font-size: 16px; }
+    font-size: 17px; }
   .wp-block-editorial-drawer-teaser h2 {
     font-size: 1.4em; }
   .wp-block-editorial-drawer-teaser.is-size-narrow::before, .wp-block-editorial-drawer-teaser.is-size-narrow::after, .wp-block-editorial-drawer-teaser.is-size-small::before, .wp-block-editorial-drawer-teaser.is-size-small::after, .wp-block-editorial-drawer-teaser.is-size-medium::before, .wp-block-editorial-drawer-teaser.is-size-medium::after, .wp-block-editorial-drawer-teaser.is-size-wide::before, .wp-block-editorial-drawer-teaser.is-size-wide::after {
@@ -7891,10 +7892,15 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
         margin: 0 -10px 20px 30px; } }
 
 .wp-block-editorial-drawer-content {
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   clear: both;
   display: none;
   margin: 10px 0 40px;
-  padding: 40px; }
+  opacity: 0;
+  padding: 40px;
+  position: relative; }
   .wp-block-editorial-drawer-content::before, .wp-block-editorial-drawer-content::after {
     border-bottom: 4px solid #eee;
     content: '';
@@ -7922,8 +7928,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   .wp-block-editorial-drawer-content.alignleft, .wp-block-editorial-drawer-content.alignright {
     max-width: 100%; }
 
-.wp-block-editorial-drawer .wp-block-editorial-drawer-content.show-drawer {
-  display: block; }
+.wp-block-editorial-drawer.show-drawer .wp-block-editorial-drawer-content {
+  display: block;
+  opacity: 1; }
+
+.wp-block-editorial-drawer.show-drawer.has-hide-teaser .wp-block-editorial-drawer-teaser {
+  display: none;
+  opacity: 0; }
 
 .wp-block-editorial-drawer p {
   color: #444; }
@@ -7942,7 +7953,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   .wp-block-editorial-drawer.has-dark-background h6 {
     color: #666; }
 
-.wp-block-editorial-drawer.has-primary-background p {
+.wp-block-editorial-drawer.has-primary-background .wp-block-editorial-drawer-content p {
   color: #666; }
 @charset "UTF-8";
 /**

@@ -30,7 +30,7 @@ const bu_blocks = {};
 				var block = {};
 
 				//get first returned drawer content element
-				block.drawer = elements[i].getElementsByClassName( 'js-bu-block-drawer-content' )[0];
+				block.drawer = elements[i];
 				//get all matched trigger btns
 				block.button = elements[i].getElementsByClassName( 'js-bu-block-drawer-open' );
 				//get first returned overlay element
