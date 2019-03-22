@@ -50,18 +50,14 @@
 		}
 	}
 
-
-
-	/*
-	Alignment options
-	 */
+	// Alignment options
 
 	&.alignleft,
 	&.alignright {
-		//reset defaults so align left and
-		//right are not applying to the <aside> parent
-		//this causes theh parent div to still be full width,
-		//but have height of basically zero
+		// reset defaults so align left and
+		// right are not applying to the <aside> parent
+		// this causes theh parent div to still be full width,
+		// but have height of basically zero
 		float: none;
 		max-width: none;
 	}
