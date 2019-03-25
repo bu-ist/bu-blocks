@@ -160,6 +160,10 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		display: none;
 	}
 
+	.container-lockup {
+		@extend %clearfix;
+	}
+
 	.container-words-inner {
 		margin-top: 2em;
 		margin-bottom: 2em;
