@@ -149,8 +149,16 @@
 	display: none;
 	margin: 10px 0 40px;
 	opacity: 0;
-	padding: 60px;
+	padding: 30px;
 	position: relative;
+
+	@include breakpoint( $xs ) {
+		padding: 40px;
+	}
+
+	@include breakpoint( $sm ) {
+		padding: 60px;
+	}
 
 	.wp-block-editorial-drawer-wrapper {
 		@extend %clearfix;
