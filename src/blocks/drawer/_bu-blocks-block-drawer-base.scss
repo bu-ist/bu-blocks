@@ -159,26 +159,27 @@
 	display: none;
 	margin: 10px 0 40px;
 	opacity: 0;
+	padding: 60px;
 	position: relative;
 
-	&::before,
-	&::after {
-		border-bottom: 4px solid $color-grayscale-e;
-		content: '';
-		display: block;
-		margin: 0 auto;
-		padding: 20px 0;
-		width: 100%;
-	}
-
-	&::before {
-		border-bottom: 0;
-		border-top: 4px solid $color-grayscale-e;
-	}
-
 	.wp-block-editorial-drawer-wrapper {
+		@extend %clearfix;
 		@extend %col-margin-parent;
-		padding: 40px;
+
+		&::before,
+		&::after {
+			border-bottom: 4px solid $color-grayscale-e;
+			content: '';
+			display: block;
+			margin: 0 auto;
+			padding: 20px 0;
+			width: 100%;
+		}
+
+		&::before {
+			border-bottom: 0;
+			border-top: 4px solid $color-grayscale-e;
+		}
 	}
 
 	.wp-block-editorial-drawer-media,
