@@ -24,16 +24,16 @@ function get_block_classes( $attributes ) {
 
 	// Build array of classes from the provide attributes.
 	$classes = array(
-		'wp-block-leadin',
-		bu_prepress_get_publication_class( '-block-leadin' ),
+		'wp-block-editorial-leadin',
+		bu_prepress_get_publication_class( '-block-editorial-leadin' ),
 		$attributes['className'],
 		( $attributes['backgroundUrl'] ) ? 'has-media' : '',
-		( $attributes['wide'] && $style_side_by_side ) ? 'has-wider' : '',
-		( $attributes['flip'] && $style_side_by_side ) ? 'has-flip' : '',
-		( $attributes['box'] && ( $style_emphasize_text || $style_text_over_image || $style_side_by_side ) ) ? 'has-box' : '',
-		( $attributes['imageFocus'] ) ? 'has-image-focus-' . $attributes['imageFocus'] : '',
-		( $attributes['textPositionX'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionX'] : '',
-		( $attributes['textPositionY'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionY'] : '',
+		( $attributes['wide'] ) ? 'has-wider' : '',
+		( $attributes['flip'] ) ? 'has-flip' : '',
+		( $attributes['box'] ) ? 'has-box' : '',
+		( $attributes['imageFocus'] ) ? 'has-media-focus-' . $attributes['imageFocus'] : '',
+		( $attributes['textPositionX'] ) ? 'has-text-position-' . $attributes['textPositionX'] : '',
+		( $attributes['textPositionY'] ) ? 'has-text-position-' . $attributes['textPositionY'] : '',
 		( $attributes['themeColor'] ) ? 'has-' . $attributes['themeColor'] . '-theme' : '',
 	);
 
