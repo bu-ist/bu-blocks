@@ -182,11 +182,17 @@
 
 	.wp-block-editorial-drawer-media,
 	.wp-block-editorial-drawer-media + .wp-block-editorial-drawer-text {
-		@extend %col-md-margin-half;
+		@extend %col-sm-margin-half;
 	}
 
 	.wp-block-editorial-drawer-media {
-		text-align: right;
+		margin: 0 auto;
+		padding-bottom: 20px;
+		text-align: center;
+
+		@include breakpoint( $md ) {
+			padding: 0;
+		}
 	}
 
 	&.has-dark-background {
