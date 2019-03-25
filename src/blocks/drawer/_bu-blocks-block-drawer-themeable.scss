@@ -71,20 +71,24 @@ $scope: blocks-get( 'scope' );
 	}
 
 	&.has-light-background {
-		background: blocks-get( 'background-color-light' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'background-color-light' );
+		}
 	}
 
 	&.has-dark-background {
-		background: blocks-get( 'background-color-dark' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'background-color-dark' );
 
-		p,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			color: blocks-get( 'font-color-aside-lighter' );
+			p,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: blocks-get( 'font-color-aside-lighter' );
+			}
 		}
 	}
 
