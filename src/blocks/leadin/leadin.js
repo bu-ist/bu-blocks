@@ -160,7 +160,7 @@ registerBlockType( 'bu/leadin', {
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
 				'has-media': backgroundId,
-				[ `has-image-focus-${imageFocus}` ]: imageFocus,
+				[ `has-media-focus-${imageFocus}` ]: imageFocus,
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
 				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
