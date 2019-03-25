@@ -106,16 +106,6 @@
 	}
 }
 
-
-.wp-block-editorial-drawer {
-	&.alignright.has-drawer-open,
-	&.alignleft.has-drawer-open {
-		.wp-block-editorial-drawer-teaser {
-
-		}
-	}
-}
-
 .wp-block-editorial-drawer-teaser {
 	@extend %col-full;
 	clear: both;
