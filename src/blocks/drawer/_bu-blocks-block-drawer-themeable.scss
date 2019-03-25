@@ -100,22 +100,65 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'font-color-aside-lighter' );
 			}
 		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-primary' );
+			}
+		}
 	}
 
 	&.has-secondary-background {
-		background: blocks-get( 'color-secondary' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-secondary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-secondary' );
+			}
+		}
 	}
 
 	&.has-tertiary-background {
-		background: blocks-get( 'color-tertiary' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-tertiary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-tertiary' );
+			}
+		}
 	}
 
 	&.has-quaternary-background {
-		background: blocks-get( 'color-quaternary' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-quaternary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quaternary' );
+			}
+		}
 	}
 
 	&.has-quinary-background {
-		background: blocks-get( 'color-quinary' );
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-quinary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quinary' );
+			}
+		}
 	}
 }
 
