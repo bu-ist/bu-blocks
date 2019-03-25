@@ -25,7 +25,7 @@
     "grunt-kss": "^5.0.1",
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "~1.0.0",
-    "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#dakota/adjust-jquery-themescript-timing",
+    "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#develop",
     "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#develop"
   }
 }
