@@ -300,17 +300,17 @@
 
 
 		
-				<div id="kssref-blocks-global-sample" class="id-kss-section id-kss-section--depth-3">
+				<div id="kssref-blocks-edition-instagram-photo" class="id-kss-section id-kss-section--depth-3">
 					<div class="id-kss-style id-kss-component-content">
 						<header class="id-kss-title-block">
 							<h2 class="id-kss-title id-kss-title--level-3 ">
 		
-								<span class="id-kss-title-section">Global</span>
+								<span class="id-kss-title-section">Edition</span>
 		
-								<span class="id-kss-title-name">Sample Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-sample">Link</a></span>
+								<span class="id-kss-title-name">Instagram Photo Block<a class="id-kss-title__permalink" href="#kssref-blocks-edition-instagram-photo">Link</a></span>
 							</h2>
 								<span class="id-kss-status id-kss-status-in-progress">
-									In-Progress
+									In Progress
 								</span>
 		
 									<span class="id-kss-open-github-issue">
@@ -318,14 +318,14 @@
 									</span>
 		
 							<!--<span class="id-kss-title__ref">
-								1.1.4
+								1.2.1
 								<span class="id-kss-title__permalink-hash">
-										#Blocks.Global.Sample
+										#Blocks.Edition.Instagram Photo
 								</span>
 							</span>-->
 						</header>
 							<div class="id-kss-description">
-								<p>This is a Sample Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>
+								<p>A block that displays square photos from Instagram. Block supports either 1 image &amp; caption, or a mini gallery with multiple photos and a Title for the overall gallery.</p>
 		
 							</div>
 		
@@ -337,8 +337,8 @@
 								Examples
 		
 									<span class="id-kss-source id-kss-style">
-										Source: <code>blocks/sample/style.scss, line 16</code>
-											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/sample/style.scss#L16">
+										Source: <code>blocks/instagram-photo/style.scss, line 15</code>
+											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/instagram-photo/style.scss#L15">
 												View Source
 											</a>
 									</span>
@@ -366,10 +366,23 @@
 																}
 															</style>
 															<div class="iframe-wrapper " id="">
-																
-															<div class="wp-block-sample ">
-																<p>This is Sample markup of a simple div</p>
-															</div>
+																<aside class="wp-block-instagram-photo ">
+																<div class="wp-block-instagram-photo-media">
+																	<figure class="wp-block-instagram-photo-image">
+																		<img src="https://placekitten.com/600/600">
+																	</figure>
+																</div>
+																<div class="wp-block-instagram-photo-content">
+																	<div class="wp-block-instagram-photo-caption">
+																			<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+															
+															
+															
+																	</div>
+																</div>
+															</aside>
+															
+															
 															</div>
 									
 													</script>
@@ -383,12 +396,12 @@
 									<div class="id-kss-info-wrapper">
 									
 									
-											<div class="is-example-variant block-sample-variant1">
+											<div class="is-example-variant is-style-border">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.block-sample-variant1
+													.is-style-border
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
-													Example of a Layout Variation
+													Border box style
 												</p>
 												<div class="id-kss-modifier-example">
 													<div class="id-kss-example-wrapper">
@@ -401,10 +414,23 @@
 																	}
 																</style>
 																<div class="iframe-wrapper " id="">
-																	
-																<div class="wp-block-sample block-sample-variant1">
-																	<p>This is Sample markup of a simple div</p>
-																</div>
+																	<aside class="wp-block-instagram-photo is-style-border">
+																	<div class="wp-block-instagram-photo-media">
+																		<figure class="wp-block-instagram-photo-image">
+																			<img src="https://placekitten.com/600/600">
+																		</figure>
+																	</div>
+																	<div class="wp-block-instagram-photo-content">
+																		<div class="wp-block-instagram-photo-caption">
+																
+																
+																				<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																
+																		</div>
+																	</div>
+																</aside>
+																
+																
 																</div>
 														</script>
 									
@@ -415,12 +441,12 @@
 											</div>
 									
 									
-											<div class="is-example-variant is-style-layoutBig">
+											<div class="is-example-variant is-style-shadow">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.is-style-layoutBig
+													.is-style-shadow
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
-													layout big
+													Drop-shadow box style
 												</p>
 												<div class="id-kss-modifier-example">
 													<div class="id-kss-example-wrapper">
@@ -433,10 +459,76 @@
 																	}
 																</style>
 																<div class="iframe-wrapper " id="">
-																	
-																<div class="wp-block-sample is-style-layoutBig">
-																	<p>This is Sample markup of a simple div</p>
+																	<aside class="wp-block-instagram-photo is-style-shadow">
+																	<div class="wp-block-instagram-photo-media">
+																		<figure class="wp-block-instagram-photo-image">
+																			<img src="https://placekitten.com/600/600">
+																		</figure>
+																	</div>
+																	<div class="wp-block-instagram-photo-content">
+																		<div class="wp-block-instagram-photo-caption">
+																
+																				<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+																
+																
+																		</div>
+																	</div>
+																</aside>
+																
+																
 																</div>
+														</script>
+									
+														<div class="id-kss-example-iframe-handle"></div>
+													</div>
+													<div class="id-kss-modifier-example-footer"></div>
+												</div>
+											</div>
+									
+									
+											<div class="is-example-variant is-layout-gallery">
+												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
+													.is-layout-gallery
+												</div>
+												<p class="id-kss-modifier-description id-kss-style">
+													Gallery layout
+												</p>
+												<div class="id-kss-modifier-example">
+													<div class="id-kss-example-wrapper">
+														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
+														<script type="text/template" class="template-iframe">
+									
+																<style type="text/css">
+																	body {
+																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
+																	}
+																</style>
+																<div class="iframe-wrapper " id="">
+																	<aside class="wp-block-instagram-photo is-layout-gallery">
+																	<div class="wp-block-instagram-photo-media">
+																		<figure class="wp-block-instagram-photo-image">
+																			<img src="https://placekitten.com/600/600">
+																		</figure>
+																	</div>
+																	<div class="wp-block-instagram-photo-content">
+																		<div class="wp-block-instagram-photo-caption">
+																
+																
+																
+																					<div class="wp-block-instagram-photo-gallery-title">
+																						<h3>Students Instagram Winter Wonder</h3>
+																					</div>
+																		</div>
+																			<div class="wp-block-instagram-photo-gallery-navigation">
+																				<ul class="wp-block-instagram-photo-gallery-nav">
+																					<li><a href="#" class="wp-block-instagram-photo-gallery-arrow"><span class="icon-navigateleft"></span></a></li>
+																					<li><a href="#" class="wp-block-instagram-photo-gallery-arrow"><span class="icon-navigateright"></span></a></li>
+																				</ul>
+																			</div>
+																	</div>
+																</aside>
+																
+																
 																</div>
 														</script>
 									
@@ -450,12 +542,46 @@
 		
 							<details class="id-kss-markup id-kss-style" open="">
 								<summary class="id-kss-docs-heading">
-										Markup <code>blocks/sample/bu-blocks-block-sample.hbs</code>
+										Markup <code>blocks/instagram-photo/bu-blocks-block-instagram-photo.hbs</code>
 								</summary>
-								<pre class="hljs"><code class="language-handlebars"><span class="xml">
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-sample </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is Sample markup of a simple div<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
+								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-media"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-image"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://placekitten.com/600/600"</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-content"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-caption"</span>&gt;</span>
+					</span><span class="hljs-template-tag">{{#<span class="hljs-name"><span class="hljs-builtin-name">unless</span></span> modifier_class }}</span><span class="xml">
+						<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Lorem ipsum dolor<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+					</span><span class="hljs-template-tag">{{/<span class="hljs-name"><span class="hljs-builtin-name">unless</span></span>}}</span><span class="xml">
+		
+					</span><span class="hljs-template-tag">{{#<span class="hljs-name">ifContains</span> modifier_class 'is-style-shadow' }}</span><span class="xml">
+						<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Lorem ipsum dolor<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+					</span><span class="hljs-template-tag">{{/<span class="hljs-name">ifContains</span>}}</span><span class="xml">
+		
+					</span><span class="hljs-template-tag">{{#<span class="hljs-name">ifContains</span> modifier_class 'is-style-border' }}</span><span class="xml">
+						<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Lorem ipsum dolor<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+					</span><span class="hljs-template-tag">{{/<span class="hljs-name">ifContains</span>}}</span><span class="xml">
+		
+						</span><span class="hljs-template-tag">{{#<span class="hljs-name">ifContains</span> modifier_class 'is-layout-gallery' }}</span><span class="xml">
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-gallery-title"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Students Instagram Winter Wonder<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						</span><span class="hljs-template-tag">{{/<span class="hljs-name">ifContains</span>}}</span><span class="xml">
+				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				</span><span class="hljs-template-tag">{{#<span class="hljs-name">ifContains</span> modifier_class 'is-layout-gallery' }}</span><span class="xml">
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-gallery-navigation"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-gallery-nav"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-gallery-arrow"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"icon-navigateleft"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-instagram-photo-gallery-arrow"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"icon-navigateright"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				</span><span class="hljs-template-tag">{{/<span class="hljs-name">ifContains</span>}}</span><span class="xml">
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+		
+		</span></code></pre>
 							</details>
 		
 				</div>
