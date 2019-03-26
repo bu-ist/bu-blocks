@@ -1,0 +1,29 @@
+// =================================================================
+// Instagram Photo Block Base Styles
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/instagram-photo/bu-blocks-block-instagram-photo-base';
+@import 'src/blocks/instagram-photo/bu-blocks-block-instagram-photo-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Instagram Photo Block
+//
+// A block that displays square photos from Instagram. Block supports either 1 image & caption, or a mini gallery with multiple photos and a Title for the overall gallery.
+//
+// Status: In Progress
+//
+// Markup: bu-blocks-block-instagram-photo.hbs
+//
+// .is-style-border - Border box style
+// .is-style-shadow - Drop-shadow box style
+// .is-layout-gallery - Gallery layout
+//
+// Styleguide Blocks.Edition.Instagram Photo
+
+

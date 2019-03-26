@@ -1,0 +1,32 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+[data-selected-modal="true"] .wp-block-editorial-modal-content {
+	display: block;
+}
+
+.wp-block-editorial-modal-callout,
+.wp-block-editorial-modal-content {
+	float: none;
+}
+
+.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce {
+	padding-right: 0;
+}
+
+.wp-block-editorial-modal-trigger-wrapper {
+	display: inline-block;
+	margin-top: 1.2em;
+}
+
+.wp-block-editorial-modal-media figure {
+	margin: 0;
+
+	img {
+		display: block;
+	}
+}

@@ -1,0 +1,37 @@
+<aside class="wp-block-instagram-photo {{modifier_class}}">
+	<div class="wp-block-instagram-photo-media">
+		<figure class="wp-block-instagram-photo-image">
+			<img src="https://placekitten.com/600/600">
+		</figure>
+	</div>
+	<div class="wp-block-instagram-photo-content">
+		<div class="wp-block-instagram-photo-caption">
+			{{#unless modifier_class }}
+				<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+			{{/unless}}
+
+			{{#ifContains modifier_class 'is-style-shadow' }}
+				<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+			{{/ifContains}}
+
+			{{#ifContains modifier_class 'is-style-border' }}
+				<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Maecenas massa augue, sodales nec convallis in, viverra in tortor.</p>
+			{{/ifContains}}
+
+				{{#ifContains modifier_class 'is-layout-gallery' }}
+					<div class="wp-block-instagram-photo-gallery-title">
+						<h3>Students Instagram Winter Wonder</h3>
+					</div>
+				{{/ifContains}}
+		</div>
+		{{#ifContains modifier_class 'is-layout-gallery' }}
+			<div class="wp-block-instagram-photo-gallery-navigation">
+				<ul class="wp-block-instagram-photo-gallery-nav">
+					<li><a href="#" class="wp-block-instagram-photo-gallery-arrow"><span class="icon-navigateleft"></span></a></li>
+					<li><a href="#" class="wp-block-instagram-photo-gallery-arrow"><span class="icon-navigateright"></span></a></li>
+				</ul>
+			</div>
+		{{/ifContains}}
+	</div>
+</aside>
+
