@@ -1,5 +1,5 @@
 // =================================================================
-// Lead-In Styles - Configurable
+// Featured Tweet Styles - Configurable
 // =================================================================
 //
 //
@@ -18,18 +18,18 @@
 // in the stylesheet multiple times (for each publication)
 //
 
-$blocks-block-leadin-config: ();
+$blocks-block-featured-tweet-config: ();
 
 // use the above array if you need to override the global $blocks-defaults array
 // of styles ONLY for this block IN the plugin.
-// You can then override THIS array by using $blocks-block-leadin-theme in the child theme to
+// You can then override THIS array by using $blocks-block-featured-tweet-theme in the child theme to
 // override this array
 //
 // Remember, with great power comes great responsibility. This should not be used unless
 // you really need it. Think carefully about why you aren't modifying the global config by adding
 // a different variable.
 //
-// $blocks-block-leadin-config: (
+// $blocks-block-featured-tweet-config: (
 // 		primary-color:red,
 // 		secondary-color: rebeccapurple,
 // );
@@ -38,362 +38,23 @@ $blocks-block-leadin-config: ();
 // Use the default Blocks configuration. You can override this globally
 // in a theme.
 
-$blocks-block-leadin-config: map-merge( $blocks-block-leadin-config, $blocks-config );
+$blocks-block-featured-tweet-config: map-merge( $blocks-block-featured-tweet-config, $blocks-config );
 
 // This allows themes to optionally set theme options for this
 // block only. You can set all or a few options - only the options
-// you set in $block-block-leadin-theme will override the defaults.
+// you set in $block-block-featured-tweet-theme will override the defaults.
 
-@if variable-exists( blocks-block-leadin-theme ) {
-	$blocks-block-leadin-config: map_merge( $blocks-block-leadin-config, $blocks-block-leadin-theme );
+@if variable-exists( blocks-block-featured-tweet-theme ) {
+	$blocks-block-featured-tweet-config: map_merge( $blocks-block-featured-tweet-config, $blocks-block-featured-tweet-theme );
 }
 
 // A global helper variable for the block-get mixin.
 
-$current-map: $blocks-block-leadin-config;
+$current-map: $blocks-block-featured-tweet-config;
 
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-editorial-leadin {
-	h1,
-	h2 {
-		color: blocks-get( 'font-color-heading');
-	}
-	h3,
-	h4 {
-		color: blocks-get( 'font-color-heading-small');
-	}
-	&.is-style-emphasis-on-text {
-		.container-words-inner {
-			background-color: blocks-get( 'color-page');
-		}
-	}
-	&.is-style-text-over-image {
-		&:not(.has-text-normal) {
-			@include breakpoint( $xs ) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-	}
-	&.is-style-emphasis-on-text.has-box,
-	&.is-style-text-over-image.has-box {
-		@include breakpoint( $xs ) {
-			.container-words-inner {
-				background-color: blocks-get( 'background-color-dark');
-			}
-			&:not(.has-text-normal) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-	}
-	&.is-style-side-by-side {
-		&.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-outer {
-					background-color: blocks-get( 'background-color-dark');
-				}
-				&:not(.has-text-normal) {
-					h1,
-					h2,
-					h3,
-					h4 {
-						color: blocks-get( 'color-page');
-					}
-				}
-			}
-		}
-	}
-	.wp-block-leadin-media {
-		background-color: blocks-get( 'background-color-dark');
-	}
-// THEME COLORS /////////////////////////////////////////////////
+.#{$scope}-block-featured-tweet {
 
-// LIGHT /////////////////
-	&.has-light-theme {
-		&.is-style-text-over-image {
-			@include breakpoint( $xs ) {
-				h1,
-				h2 {
-					color: blocks-get( 'font-color-heading');
-				}
-				h3,
-				h4 {
-					color: blocks-get( 'font-color-heading-small');
-				}
-			}
-		}
-		&.is-style-emphasis-on-text.has-box,
-		&.is-style-text-over-image.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'background-color-light');
-				}
-				h1,
-				h2 {
-					color: blocks-get( 'font-color-heading');
-				}
-				h3,
-				h4 {
-					color: blocks-get( 'font-color-heading-small');
-				}
-			}
-		}
-		&.is-style-side-by-side {
-			&.has-box {
-				@include breakpoint( $xs ) {
-					.container-words-outter {
-						background-color: blocks-get( 'background-color-light');
-					}
-					h1,
-					h2 {
-						color: blocks-get( 'font-color-heading');
-					}
-					h3,
-					h4 {
-						color: blocks-get( 'font-color-heading-small');
-					}
-				}
-			}
-		}
-		.wp-block-leadin-media {
-			background-color: blocks-get( 'background-color-light');
-		}
-	}
-// DARK /////////////////
-	&.has-dark-theme {
-		&.is-style-text-over-image {
-			@include breakpoint( $xs ) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-emphasis-on-text.has-box,
-		&.is-style-text-over-image.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'background-color-dark');
-				}
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-side-by-side {
-			&.has-box {
-				@include breakpoint( $xs ) {
-					.container-words-outter {
-						background-color: blocks-get( 'background-color-dark');
-					}
-					h1,
-					h2,
-					h3,
-					h4 {
-						color: blocks-get( 'color-page');
-					}
-				}
-			}
-		}
-		.wp-block-leadin-media {
-			background-color: blocks-get( 'background-color-dark');
-		}
-	}
-// Primary /////////////////
-	&.has-primary-theme {
-		&.is-style-text-over-image {
-			@include breakpoint( $xs ) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-emphasis-on-text.has-box,
-		&.is-style-text-over-image.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'color-primary');
-				}
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-side-by-side {
-			&.has-box {
-				@include breakpoint( $xs ) {
-					.container-words-outter {
-						background-color: blocks-get( 'color-primary');
-					}
-					h1,
-					h2,
-					h3,
-					h4 {
-						color: blocks-get( 'color-page');
-					}
-				}
-			}
-		}
-		.wp-block-leadin-media {
-			background-color: blocks-get( 'color-primary');
-		}
-	}
-// Secondary /////////////////
-	&.has-secondary-theme {
-		&.is-style-text-over-image {
-			@include breakpoint( $xs ) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-emphasis-on-text.has-box,
-		&.is-style-text-over-image.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'color-secondary');
-				}
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-side-by-side {
-			&.has-box {
-				@include breakpoint( $xs ) {
-					.container-words-outter {
-						background-color: blocks-get( 'color-secondary');
-					}
-					h1,
-					h2,
-					h3,
-					h4 {
-						color: blocks-get( 'color-page');
-					}
-				}
-			}
-		}
-		.wp-block-leadin-media {
-			background-color: blocks-get( 'color-secondary');
-		}
-	}
-// Tertiary /////////////////
-	&.has-tertiary-theme {
-		&.is-style-text-over-image {
-			@include breakpoint( $xs ) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-emphasis-on-text.has-box,
-		&.is-style-text-over-image.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'color-tertiary');
-				}
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-side-by-side {
-			&.has-box {
-				@include breakpoint( $xs ) {
-					.container-words-outter {
-						background-color: blocks-get( 'color-tertiary');
-					}
-					h1,
-					h2,
-					h3,
-					h4 {
-						color: blocks-get( 'color-page');
-					}
-				}
-			}
-		}
-		.wp-block-leadin-media {
-			background-color: blocks-get( 'color-tertiary');
-		}
-	}
-// Quaternary /////////////////
-	&.has-quaternary-theme {
-		&.is-style-text-over-image {
-			@include breakpoint( $xs ) {
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-emphasis-on-text.has-box,
-		&.is-style-text-over-image.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
-					background-color: blocks-get( 'color-quaternary');
-				}
-				h1,
-				h2,
-				h3,
-				h4 {
-					color: blocks-get( 'color-page');
-				}
-			}
-		}
-		&.is-style-side-by-side {
-			&.has-box {
-				@include breakpoint( $xs ) {
-					.container-words-outter {
-						background-color: blocks-get( 'color-quaternary');
-					}
-					h1,
-					h2,
-					h3,
-					h4 {
-						color: blocks-get( 'color-page');
-					}
-				}
-			}
-		}
-		.wp-block-leadin-media {
-			background-color: blocks-get( 'color-quaternary');
-		}
-	}
-////////////////////////////////////////////////////////////////////
 }
