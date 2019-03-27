@@ -55,9 +55,15 @@ $current-map: $blocks-block-instagram-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-editorial-instagram-photo {
+.#{$scope}-block-instagram-photo {
 	.wp-block-instagram-photo-caption {
 		color: blocks-get( 'color-gray-a' );
+	}
+
+	.wp-block-instagram-photo-gallery-nav,
+	.nav-next-icon,
+	.nav-prev-icon {
+		border-color: blocks-get( 'color-gray-e' );
 	}
 }
 
