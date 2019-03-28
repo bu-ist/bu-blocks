@@ -28940,7 +28940,7 @@ a:visited {
   border: 1px solid #ddd;
   padding: 60px 30px;
   margin-bottom: 60px;
-  position: relative;
+  position: relative !important;
   text-align: center; }
   @media (min-width: 500px) {
     .wp-block-featured-tweet {
@@ -28980,13 +28980,15 @@ a:visited {
   content: ""; }
 
 .wp-block-featured-tweet-text-wrapper::after {
+  border-radius: 50%;
   font-size: 60px;
   position: absolute;
-  bottom: -30px;
+  bottom: -20px;
   left: 0;
   right: 0;
   background: #fff;
   width: 60px;
+  height: 60px;
   margin: 0 auto;
   color: #00a5f8; }
 
