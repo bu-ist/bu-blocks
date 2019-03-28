@@ -180,21 +180,6 @@
 		}
 	}
 
-	.wp-block-editorial-drawer-media,
-	.wp-block-editorial-drawer-media + .wp-block-editorial-drawer-text { // TO DO: remove; temporary for style guide
-		@extend %col-sm-margin-half;
-	}
-
-	.wp-block-editorial-drawer-media {
-		margin: 0 auto;
-		padding-bottom: 20px;
-		text-align: center;
-
-		@include breakpoint( $md ) {
-			padding: 0;
-		}
-	}
-
 	&.has-dark-background {
 		background: $color-grayscale-4;
 
