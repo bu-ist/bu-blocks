@@ -181,7 +181,7 @@
 	}
 
 	.wp-block-editorial-drawer-media,
-	.wp-block-editorial-drawer-media + .wp-block-editorial-drawer-text {
+	.wp-block-editorial-drawer-media + .wp-block-editorial-drawer-text { // TO DO: remove; temporary for style guide
 		@extend %col-sm-margin-half;
 	}
 
