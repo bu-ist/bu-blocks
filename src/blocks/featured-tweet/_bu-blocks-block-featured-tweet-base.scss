@@ -17,7 +17,7 @@ $color-bu-red: #d80000;
 	border: 1px solid $color-grayscale-d;
 	padding: 60px 30px;
 	margin-bottom: 60px;
-	position: relative;
+	position: relative !important;
 	text-align: center;
 
 	@include breakpoint( $xs ) {
