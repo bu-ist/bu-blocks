@@ -156,10 +156,6 @@ $masthead-off-set-lg: $masthead-off-set-xs !default;
 		margin:0 0 0.25em ;
 	}
 
-	p {
-		display: none;
-	}
-
 	.container-lockup {
 		@extend %clearfix;
 	}
