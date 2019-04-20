@@ -60,6 +60,7 @@ function render_block( $attributes ) {
 		'backgroundType'    => '',
 		'backgroundUrl'     => '',
 		'box'               => false,
+		'caption'           => '',
 		'className'         => '',
 		'deck'              => '',
 		'flip'              => false,
@@ -103,6 +104,9 @@ function render_block( $attributes ) {
 			</div>
 
 		</div>
+		<?php if ( $attributes['caption'] ) : ?>
+			<p class="wp-block-editorial-leadin-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></h4>
+		<?php endif; ?>
 	</div>
 
 	<?php do_action( 'bu_blocks_leadin_meta_bar' ); ?>
@@ -137,6 +141,7 @@ function register_block() {
 					'type'    => 'boolean',
 					'default' => false,
 				),
+				'caption'           => $shared_args,
 				'className'         => $shared_args,
 				'deck'              => $shared_args,
 				'flip'              => array(

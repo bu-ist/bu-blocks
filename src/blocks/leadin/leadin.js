@@ -53,6 +53,9 @@ const blockAttributes = {
 	deck: {
 		type: 'string',
 	},
+	caption: {
+		type: 'string',
+	},
 	imageFocus: {
 		type: 'string',
 		default: 'center-middle',
@@ -132,6 +135,7 @@ registerBlockType( 'bu/leadin', {
 				backgroundId,
 				head,
 				deck,
+				caption,
 				imageFocus,
 				textPositionX,
 				textPositionY,
@@ -319,6 +323,17 @@ registerBlockType( 'bu/leadin', {
 							</div>
 						</div>
 					</div>
+					{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
+						<RichText
+							tagName="p"
+							className="wp-block-editorial-leadin-caption"
+							placeholder={ __( 'Add a caption and/or media credit...' ) }
+							value={ caption }
+							onChange={ value => setAttributes( { caption: value } ) }
+							formattingControls={ [ 'bold', 'italic', 'link' ] }
+							keepPlaceholderOnFocus
+						/>
+					) }
 				</div>
 
 				{ applyFilters( 'buBlocks.leadin.metaBar', '' ) }
