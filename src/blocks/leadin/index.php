@@ -141,6 +141,7 @@ function register_block() {
 					'type'    => 'boolean',
 					'default' => false,
 				),
+				'caption'           => $shared_args,
 				'className'         => $shared_args,
 				'deck'              => $shared_args,
 				'flip'              => array(
