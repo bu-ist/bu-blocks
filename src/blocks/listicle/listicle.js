@@ -189,7 +189,7 @@ registerBlockType( 'editorial/listicle', {
 								options={ [] }
 								placeholderText={ __( 'Add Media' ) }
 							/>
-							<figcaption className="wp-caption-text">
+							<figcaption className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption">
 								<PlainText
 									value={ credit }
 									onChange={ credit => setAttributes( { credit } ) }
@@ -309,7 +309,7 @@ registerBlockType( 'editorial/listicle', {
 						<Background
 							blockProps={ props }
 						/>
-						<figcaption className="wp-caption-text">{ credit }</figcaption>
+						<figcaption className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption">{ credit }</figcaption>
 					</figure>
 					<header className="wp-block-editorial-listicle-header">
 						{ number && (
