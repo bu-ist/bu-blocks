@@ -28946,6 +28946,8 @@ a:visited {
   @media (min-width: 768px) {
     .wp-block-editorial-listicle {
       margin-bottom: 70px; } }
+  .wp-block-editorial-listicle .wp-blocks-components-share-tools {
+    display: none; }
 
 .wp-block-editorial-listicle-figure {
   padding-bottom: 15px; }

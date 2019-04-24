@@ -16,6 +16,10 @@
 	@include breakpoint( $sm ) {
 		margin-bottom: 70px;
 	}
+
+	.wp-blocks-components-share-tools {
+		display: none;
+	}
 }
 
 .wp-block-editorial-listicle-figure {
