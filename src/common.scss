@@ -30,15 +30,6 @@ $print-icon-classes:                       false;
 // Global and Base Styles
 // =================================================================
 
-//masthead variables
-$masthead-height-base: 100px !default;
-$masthead-height-xs: 150px !default;
-$masthead-margin-bottom: $margin !default;
-$masthead-description-height: 28px !default;
-
-$masthead-offset-base: $masthead-height-base + $masthead-margin-bottom + $masthead-description-height;
-$masthead-offset-xs: $masthead-height-xs + $masthead-margin-bottom + $masthead-description-height;
-
 // =================================================================
 // Blocks
 // =================================================================

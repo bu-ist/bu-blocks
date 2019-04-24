@@ -393,22 +393,3 @@
 		}
 	}
 }
-
-
-//Masthead Overlay Styling
-
-.overlay-masthead {
-	.is-style-image-to-text,
-	.is-style-emphasis-on-text,
-	.is-style-text-over-image {
-		.wp-block-leadin-media img {
-			top: -$masthead-offset-base;
-			height: calc(100% + #{$masthead-offset-base} );
-
-			@include breakpoint( $xs ) {
-				top: -$masthead-offset-xs;
-				height: calc(100% + #{$masthead-offset-xs} );
-			}
-		}
-	}
-}
