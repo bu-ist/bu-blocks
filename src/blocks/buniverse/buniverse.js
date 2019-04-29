@@ -31,6 +31,7 @@ const {
 } = wp.components;
 const {
 	InspectorControls,
+	RichText,
 } = wp.editor;
 
 // The current publication owner.
@@ -47,6 +48,9 @@ registerBlockType( 'bu/buniverse', {
 			type: 'string',
 		},
 		aspectRatio: {
+			type: 'string',
+		},
+		caption: {
 			type: 'string',
 		},
 		controls: {
@@ -76,6 +80,7 @@ registerBlockType( 'bu/buniverse', {
 		const {
 			id,
 			aspectRatio,
+			caption,
 			controls,
 			autoplay,
 			minutes,
@@ -200,7 +205,20 @@ registerBlockType( 'bu/buniverse', {
 							></iframe>
 						) }
 					</div>
-					<figcaption></figcaption>
+
+					{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
+						<figcaption>
+							<RichText
+								tagName="p"
+								className="wp-block-global-buniverse-caption wp-prepress-component-caption"
+								placeholder={ __( 'Add a caption and/or media credit...' ) }
+								value={ caption }
+								onChange={ value => setAttributes( { caption: value } ) }
+								formattingControls={ [ 'bold', 'italic', 'link' ] }
+								keepPlaceholderOnFocus
+							/>
+						</figcaption>
+					) }
 				</figure>
 			</Fragment>
 		);
@@ -210,6 +228,7 @@ registerBlockType( 'bu/buniverse', {
 		const {
 			id,
 			aspectRatio,
+			caption,
 			controls,
 			autoplay,
 			start,
@@ -238,7 +257,14 @@ registerBlockType( 'bu/buniverse', {
 						></iframe>
 					) }
 				</div>
-				<figcaption></figcaption>
+					{ caption && (
+						<figcaption>
+							<p class="wp-block-global-buniverse-caption wp-prepress-component-caption">
+								{ caption }
+							</p>
+						</figcaption>
+					)}
+
 			</figure>
 		);
 	},

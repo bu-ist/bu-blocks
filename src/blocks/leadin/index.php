@@ -105,7 +105,7 @@ function render_block( $attributes ) {
 
 		</div>
 		<?php if ( $attributes['caption'] ) : ?>
-			<p class="wp-block-editorial-leadin-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></h4>
+			<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></h4>
 		<?php endif; ?>
 	</div>
 

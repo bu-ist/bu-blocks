@@ -326,7 +326,7 @@ registerBlockType( 'bu/leadin', {
 					{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
 						<RichText
 							tagName="p"
-							className="wp-block-editorial-leadin-caption"
+							className="wp-block-editorial-leadin-caption wp-prepress-component-caption"
 							placeholder={ __( 'Add a caption and/or media credit...' ) }
 							value={ caption }
 							onChange={ value => setAttributes( { caption: value } ) }
