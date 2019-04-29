@@ -4,6 +4,23 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+.block-editor__container {
+	.wp-block-editorial-photoessay [class*="photo-row-"] {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.wp-block-editorial-photoessay {
+	.editor-block-list__block .editor-block-list__layout {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.wp-block {
+		float: left;
+		max-width: none;
+	}
+}
 
 .wp-block-photoessay .editor-block-list__layout {
 	margin-left: 0;

@@ -14179,20 +14179,23 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     transition: height 500ms ease-in-out 0s;
     position: relative;
     -webkit-box-sizing: content-box;
-            box-sizing: content-box; }
+            box-sizing: content-box;
+    display: block; }
+    .wp-block-editorial-leadin .wp-block-leadin-media::after {
+      content: '';
+      display: block;
+      padding-top: 75%; }
     .wp-block-editorial-leadin .wp-block-leadin-media img {
-      position: relative;
+      display: block;
+      -o-object-fit: cover;
+      object-fit: cover;
+      border-radius: 0.0005px;
+      height: 100%;
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
       width: 100%; }
-      @media (min-width: 500px) {
-        .wp-block-editorial-leadin .wp-block-leadin-media img {
-          -o-object-fit: cover;
-          object-fit: cover;
-          border-radius: 0.0005px;
-          height: 100%;
-          position: absolute;
-          height: 100%;
-          top: 0;
-          left: 0; } }
   .wp-block-editorial-leadin.is-style-text-to-image .container-lockup {
     display: -ms-flexbox;
     display: flex;
