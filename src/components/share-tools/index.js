@@ -65,7 +65,7 @@ function ShareTools( props ) {
 				</PanelBody>
 			</InspectorControls>
 			{ ! shareToolsDisabled && (
-				<p>
+				<p className="wp-blocks-components-share-tools">
 					<a href="#" className="icon-action">{ __( 'Share this' ) }</a>
 				</p>
 			) }
