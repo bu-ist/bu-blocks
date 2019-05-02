@@ -88,7 +88,7 @@ function display_background( $attributes ) {
 				<iframe
 					src="<?php echo esc_url( $src ); ?>"
 					frameborder="0"
-					allow="autoplay"
+					allow="autoplay; fullscreen"
 					<?php if ( $classes ) : ?>
 						class="<?php echo esc_attr( $classes ); ?>"
 					<?php endif; ?>
