@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Defines the plugin version.
-define( 'BU_BLOCKS_VERSION', '0.1.1' );
+define( 'BU_BLOCKS_VERSION', '0.1.2' );
 
 /**
  * Displays admin notice and prevents activation.
@@ -35,12 +35,12 @@ function gutenberg_notice() {
 	?>
 		<div class="notice notice-error is-dismissible">
 			<p>
-				<?php esc_html_e( 'BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks' ); ?>
+				<?php esc_html_e( 'BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks', 'r-editorial' ); ?>
 			</p>
 			<p>
-				<?php esc_html_e( 'Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks' ); ?>
+				<?php esc_html_e( 'Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks', 'r-editorial' ); ?>
 			</p>
-			<p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e( 'Get Gutenberg', 'bu-blocks' ); ?></a></p>
+			<p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e( 'Get Gutenberg', 'bu-blocks', 'r-editorial' ); ?></a></p>
 		</div>
 	<?php
 	deactivate_plugins( plugin_basename( __FILE__ ) );
