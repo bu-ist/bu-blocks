@@ -177,6 +177,21 @@
 			width: 100%;
 		}
 	}
+
+	&.is-style-text-to-image,
+	&.is-style-image-to-text,
+	&.is-style-emphasis-on-text,
+	&.is-style-text-over-image,
+	&.is-style-side-by-side {
+		.wp-block-leadin-media {
+			&::after {
+				@include breakpoint( $xs ) {
+					display: none;
+				}
+			}
+		}
+	}
+
 	&.is-style-text-to-image {
 		@extend %leadin-image-height-small;
 
@@ -190,7 +205,6 @@
 		.wp-block-leadin-media {
 			-ms-flex-order: 2;
 			order: 2;
-
 		}
 
 		.container-words-outter {
