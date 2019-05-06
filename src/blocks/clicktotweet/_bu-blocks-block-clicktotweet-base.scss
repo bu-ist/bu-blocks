@@ -1,0 +1,27 @@
+// =================================================================
+// Click to Tweet Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-clicktotweet {
+	//your custom styles here
+	span {
+		color: red;
+	}
+}
+
+.block-clicktotweet-variant1 {
+	//example of variant1 specific markup
+	text-align: right;
+}
+
+.is-style-layoutBig {
+	p {
+		font-size:2em;
+	}
+}
