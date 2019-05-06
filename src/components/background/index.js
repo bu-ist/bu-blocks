@@ -320,7 +320,7 @@ function Background( props ) {
 				<iframe
 					src={ url }
 					frameborder="0"
-					allow="autoplay"
+					allow="autoplay; fullscreen"
 					className={ classes }
 				></iframe>
 			)
@@ -337,6 +337,7 @@ function Background( props ) {
 				<iframe
 					src={ url }
 					frameborder="0"
+					allow="autoplay; fullscreen"
 					className={ classes }
 				></iframe>
 			);
@@ -353,6 +354,7 @@ function Background( props ) {
 				<iframe
 					src={ url }
 					frameborder="0"
+					allow="autoplay; fullscreen"
 					className={ classes }
 				></iframe>
 			);

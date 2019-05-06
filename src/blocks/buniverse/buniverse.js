@@ -202,6 +202,7 @@ registerBlockType( 'bu/buniverse', {
 							<iframe
 								src={ url }
 								frameborder="0"
+								allow="autoplay; fullscreen"
 							></iframe>
 						) }
 					</div>
@@ -253,7 +254,7 @@ registerBlockType( 'bu/buniverse', {
 						<iframe
 							src={ encodeURI( url ) }
 							frameborder="0"
-							allow="autoplay"
+							allow="autoplay; fullscreen"
 						></iframe>
 					) }
 				</div>
