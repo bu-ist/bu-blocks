@@ -31051,14 +31051,46 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
-.wp-block-clicktotweet span {
-  color: red; }
-
-.block-clicktotweet-variant1 {
-  text-align: right; }
-
-.is-style-layoutBig p {
-  font-size: 2em; }
+.wp-block-clicktotweet {
+  clear: both; }
+  .wp-block-clicktotweet:hover {
+    background: lightblue; }
+  .wp-block-clicktotweet::after {
+    content: "Tweet this \F611";
+    font-family: "bu-default-icons", "Benton-Sans", "Helvetica", sans-serif;
+    background: lightblue;
+    display: inline-block;
+    text-align: right;
+    float: right; }
+  .wp-block-clicktotweet.has-format-highlight:hover {
+    background: transparent; }
+  .wp-block-clicktotweet.has-format-highlight::after {
+    display: none; }
+  .wp-block-clicktotweet.has-format-highlight .wp-block-clicktotweet-highlight {
+    background: lightblue; }
+    .lt-ie9:hover .wp-block-clicktotweet.has-format-highlight .wp-block-clicktotweet-highlight {
+      -ms-zoom: 1; }
+    .wp-block-clicktotweet.has-format-highlight .wp-block-clicktotweet-highlight span {
+      display: none; }
+    .wp-block-clicktotweet.has-format-highlight .wp-block-clicktotweet-highlight::after {
+      color: unset;
+      display: inline-block;
+      font-family: "bu-default-icons";
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      line-height: 1;
+      padding-bottom: 0.2em;
+      speak: none;
+      text-decoration: none;
+      text-rendering: optimizeLegibility;
+      text-transform: none;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin-left: 0.5em;
+      content: ""; }
 
 .wp-block-clicktotweet {
   border-radius: 0; }

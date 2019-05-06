@@ -9,19 +9,34 @@
 //
 
 .wp-block-clicktotweet {
-	//your custom styles here
-	span {
-		color: red;
+	clear: both;
+
+	&:hover {
+		background: lightblue;
 	}
-}
 
-.block-clicktotweet-variant1 {
-	//example of variant1 specific markup
-	text-align: right;
-}
+	&::after {
+		content: "Tweet this \F611";
+		font-family: $font-family-icons, $font-family-sans-serif;
+		background: lightblue;
+		display: inline-block;
+		text-align: right;
+		float: right;
+	}
 
-.is-style-layoutBig {
-	p {
-		font-size:2em;
+	&.has-format-highlight {
+		&:hover {
+			background: transparent;
+		}
+
+		&::after {
+			display: none;
+		}
+
+		//your custom styles here
+		.wp-block-clicktotweet-highlight {
+			@include icon( 'twitter', 'after' );
+			background: lightblue;
+		}
 	}
 }
