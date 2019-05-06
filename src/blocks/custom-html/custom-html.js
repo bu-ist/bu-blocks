@@ -44,20 +44,20 @@ registerBlockType( 'editorial/custom-html', {
 
 	edit( { className, setAttributes, attributes } ) {
 
-        function updateBlockValue( customHTML ) {
-            setAttributes( { customHTML } );
-        }
+		function updateBlockValue( customHTML ) {
+			setAttributes( { customHTML } );
+		}
 
-        return (
-            <div className={ className }>
-                <PlainText
-                    label="Custom HTML (Not validated)"
-                    value={ attributes.customHTML }
-                    onChange={ updateBlockValue }
-                />
-            </div>
-        );
-    },
+		return (
+			<div className={ className }>
+				<PlainText
+					label="Custom HTML (Not validated)"
+					value={ attributes.customHTML }
+					onChange={ updateBlockValue }
+				/>
+			</div>
+		);
+	},
 
 	// The front-end HTML for this block is handled in PHP, but
 	// the save function is required.
