@@ -5,7 +5,8 @@
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
   "contributors": [
-    "Jeremy Felt <jfelt@bu.edu>"
+    "Jeremy Felt <jfelt@bu.edu>",
+    "Ashley Kolodziej <kolodz10@bu.edu>"
   ],
   "scripts": {
     "start": "cgb-scripts start",
