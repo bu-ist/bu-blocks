@@ -31150,15 +31150,14 @@ a:visited {
     display: none; }
 
 .wp-block-clicktotweet .block-clicktotweet-content:hover {
-  background-color: #eee;
-  -webkit-box-shadow: 0px 0px 0px 10px #eee;
-          box-shadow: 0px 0px 0px 10px #eee; }
+  background-color: #f5f6fa;
+  -webkit-box-shadow: 0px 0px 0px 10px #f5f6fa;
+          box-shadow: 0px 0px 0px 10px #f5f6fa; }
 
-.has-format-highlight .block-clicktotweet-highlight {
-  background: #eee; }
+.wp-block-clicktotweet.has-format-highlight .block-clicktotweet-highlight {
+  background: #f5f6fa; }
 
-.block-clicktotweet-action {
-  background: #eee;
-  font-family: "Benton-Sans", "Helvetica", sans-serif; }
-  .block-clicktotweet-action::before {
-    border-color: transparent #eee transparent transparent; }
+.wp-block-clicktotweet .block-clicktotweet-action {
+  background-color: #f5f6fa; }
+  .wp-block-clicktotweet .block-clicktotweet-action::before {
+    border-color: transparent #f5f6fa transparent transparent; }

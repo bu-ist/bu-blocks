@@ -55,26 +55,28 @@ $current-map: $blocks-block-clicktotweet-config;
 
 $scope: blocks-get( 'scope' );
 
-$_clicktotweet-bg: blocks-get( 'color-gray-e' );
+$_tweet-bg: blocks-get( 'color-gray-f' );
 
 .#{$scope}-block-clicktotweet {
 	.block-clicktotweet-content:hover {
-		background-color: $_clicktotweet-bg;
-		box-shadow: 0px 0px 0px 10px $_clicktotweet-bg;
+		background-color: $_tweet-bg;
+		box-shadow: 0px 0px 0px 10px $_tweet-bg;
 	}
-}
 
-.block-clicktotweet-highlight {
-	.has-format-highlight & {
-		background: $_clicktotweet-bg;
+	&.has-format-highlight {
+		.block-clicktotweet-highlight {
+			background: $_tweet-bg;
+			color: blocks-get( 'color-quaternary-text' );
+		}
 	}
-}
 
-.block-clicktotweet-action {
-	background: $_clicktotweet-bg;
-	font-family: blocks-get( 'font-family-tertiary' );
+	.block-clicktotweet-action {
+		background-color: $_tweet-bg;
+		color: blocks-get( 'color-quaternary-text' );
+		font-family: blocks-get( 'font-family-secondary' );
 
-	&::before {
-		border-color: transparent $_clicktotweet-bg transparent transparent;
+		&::before {
+			border-color: transparent $_tweet-bg transparent transparent;
+		}
 	}
 }
