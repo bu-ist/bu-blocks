@@ -5,6 +5,9 @@
  * or escaped in any way on output.
  */
 
+//  Import CSS.
+import './editor.scss';
+
 // WordPress dependencies.
 const {
 	__,
@@ -15,8 +18,26 @@ const {
 } = wp.blocks;
 
 const {
+	withState,
+	compose,
+} = wp.compose;
+
+const {
+	withSelect,
+	select,
+} = wp.data;
+
+const {
 	PlainText,
 } = wp.editor;
+
+const {
+	addQueryArgs,
+} = wp.url;
+
+const {
+	apiFetch,
+} = wp;
 
 // Register the block.
 registerBlockType( 'editorial/custom-html', {
@@ -30,38 +51,156 @@ registerBlockType( 'editorial/custom-html', {
 	category: 'bu-editorial',
 
 	attributes: {
-		customHTML: {
+
+		// This block ID is used when storing individual block content as post meta.
+		customBlockID: {
 			type: 'string',
-			source: 'meta',
-			meta: 'bu_custom_html_meta',
+			default: '',
 		},
 	},
 
-	supports: {
-		multiple: false, // Meta is stored in a single key, so only support one per article.
-		reusable: false, // This block should not be used as a reusable block.
-	},
+	edit: compose( [
+		withState( {
+			customHTML: '',
+			hasLoaded: false,
+			doingHTMLFetch: false,
+			errorMessage: false,
+		} ),
+		withSelect( ( select, props ) => {
+			const {
+				setState,
+				customHTML,
+				hasLoaded,
+				doingHTMLFetch,
+				errorMessage,
+			} = props;
 
-	edit( { className, setAttributes, attributes } ) {
+			const {
+				customBlockID,
+			} = props.attributes;
 
-		function updateBlockValue( customHTML ) {
-			setAttributes( { customHTML } );
+			// Do an initial load of the block's stored data from meta.
+			if ( '' !== customBlockID && ! doingHTMLFetch && ! hasLoaded ) {
+				setState( {
+					doingHTMLFetch: true, // Prevent concurrent API calls for the same data.
+				} );
+
+				apiFetch(
+					{
+						path: addQueryArgs(
+							'/bu-blocks/v1/customhtml',
+							{
+								post_id: select( 'core/editor' ).getCurrentPostId(),
+								custom_block_id: customBlockID,
+							}
+						)
+					}
+				).then( html => {
+					setState( {
+						customHTML: html,
+						doingHTMLFetch: false,
+						hasLoaded: true,
+					} );
+				} ).catch( error => {
+					setState( {
+						doingHTMLFetch: false,
+						errorMessage: error.message,
+						hasLoaded: true,
+					} );
+				} );
+			}
+
+			return {
+				hasLoaded: hasLoaded,       // Whether the initial load is complete.
+				customHTML: customHTML,     // HTML to display in the block.
+				errorMessage: errorMessage, // A string to display in the block if an API request failed.
+			};
+		} ),
+	] )( ( { hasLoaded, customHTML, errorMessage, attributes, ...props } ) => {
+		const {
+			className,
+			setState,
+			setAttributes,
+		} = props;
+
+		const {
+			customBlockID,
+		} = attributes;
+
+		// Update the block's content state whenever content in this block
+		// is changed.
+		const updateBlockValue = updatedHTML => {
+
+			// HTML is passed around as a state rather than an attribute
+			// because it is stored in meta rather than in content.
+			setState( {
+				customHTML: updatedHTML,
+			} );
+		};
+
+		// Set a timestamp based block ID if it does not yet exist. It is okay
+		// for multiple posts to share similar block IDs, but not okay for multiple
+		// blocks on the same post. Using `Date().getTime()` here provides a unique
+		// enough identifier at a low cost.
+		if ( '' === customBlockID ) {
+			setAttributes( { customBlockID: new Date().getTime() } );
 		}
 
+		// Selectors technically can't start with a number, so prepend a string to
+		// build the ID attribute of the wrapping container.
+		let containerID = 'block-' + customBlockID;
+
 		return (
-			<div className={ className }>
-				<PlainText
-					label="Custom HTML (Not validated)"
-					value={ attributes.customHTML }
-					onChange={ updateBlockValue }
-				/>
+			<div id={ containerID } className={ className } >
+				{ ! hasLoaded && (
+					<span>Looking for existing content...</span>
+				) }
+				{ hasLoaded && (
+					<PlainText
+						label="Enter custom HTML"
+						value={ customHTML }
+						onChange={ updateBlockValue }
+					></PlainText>
+				) }
 			</div>
 		);
-	},
+	} ),
 
 	// The front-end HTML for this block is handled in PHP, but
 	// the save function is required.
-	save() {
+	save( { attributes } ) {
+		const {
+			customBlockID,
+		} = attributes;
+
+		let postID = select( 'core/editor' ).getCurrentPostId();
+
+		// This may be true on the first load of some posts.
+		if ( null === postID ) {
+			return;
+		}
+
+		let post = {
+			post_id: postID,
+			custom_block_id: customBlockID,
+			html: document.querySelector( '#block-' + customBlockID + ' textarea' ).value,
+		}
+
+		// Save the data for this block using a custom endpoint.
+		if ( '' !== customBlockID ) {
+			apiFetch(
+				{
+					path: '/bu-blocks/v1/customhtml',
+					method: 'POST',
+					data: post,
+				}
+			).then( html => {
+				// Success!
+			} ).catch( error => {
+				// How to handle this error?
+			} );
+		}
+
 		return null;
 	},
 } );

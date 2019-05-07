@@ -9,6 +9,7 @@ namespace BU\Plugins\BU_Blocks\Blocks\CustomHTML;
 
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
 add_action( 'init', __NAMESPACE__ . '\\register_meta' );
+add_action( 'rest_api_init', __NAMESPACE__ . '\register_route' );
 
 /**
  * Registers the bu_custom_html_meta box used to store custom HTML associated
@@ -46,9 +47,51 @@ function register_block() {
  *
  * @return string Returns the post content with latest posts added.
  */
-function render_block() {
-	$html = get_post_meta( get_the_ID(), 'bu_custom_html_meta', true );
+function render_block( $attributes ) {
+	$html = get_post_meta( get_the_ID(), '_bu_custom_html_block_' . sanitize_key( $attributes['customBlockID'] ), true );
 
 	// @todo - run through kses of some kind?
+	return $html;
+}
+
+/**
+ * Register the REST API route used to retrieve and store custom HTML meta
+ * block information.
+ */
+function register_route() {
+	register_rest_route(
+		'bu-blocks/v1',
+		'customhtml',
+		array(
+			'methods'  => \WP_REST_Server::ALLMETHODS,
+			'callback' => __NAMESPACE__ . '\rest_response',
+		)
+	);
+}
+
+/**
+ * Handle the response for GET and POST requests to the custom HTML endpoint.
+ *
+ * @param \WP_Rest_Request $request The incoming REST API request object.
+ * @return string HTML markup associated with a block.
+ */
+function rest_response( $request ) {
+	$method = $request->get_method();
+
+	if ( 'GET' === $method ) {
+		$post_id  = absint( $request->get_param( 'post_id' ) );
+		$block_id = sanitize_key( $request->get_param( 'custom_block_id' ) );
+
+		$html = get_post_meta( $post_id, '_bu_custom_html_block_' . $block_id, true );
+	} else if ( 'POST' === $method ) {
+		$post_id  = absint( $request->get_param( 'post_id' ) );
+		$block_id = sanitize_key( $request->get_param( 'custom_block_id' ) );
+		$html     = $request->get_param( 'html' );
+
+		update_post_meta( $post_id, '_bu_custom_html_block_' . $block_id, $html );
+	} else {
+		return new \WP_Error( 'invalid_method', 'The requested method is not supported', array( 'status' => 405 ) );
+	}
+
 	return $html;
 }
