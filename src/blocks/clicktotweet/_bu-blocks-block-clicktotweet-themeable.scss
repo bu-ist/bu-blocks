@@ -55,22 +55,26 @@ $current-map: $blocks-block-clicktotweet-config;
 
 $scope: blocks-get( 'scope' );
 
+$_clicktotweet-bg: blocks-get( 'color-gray-e' );
+
 .#{$scope}-block-clicktotweet {
-	border-radius: blocks-get( 'border-radius' );
-	font-family: blocks-get( 'font-primary');
-	p {
-		color: blocks-get( 'color-primary' );
-	}
-
-	&.is-open {
-		color: blocks-get( 'color-secondary');
-	}
-
-	&.is-style-layoutBig {
-		font-family: blocks-get( 'font-secondary' );
-		p {
-			color: blocks-get( 'color-tertiary' );
-		}
+	.block-clicktotweet-content:hover {
+		background-color: $_clicktotweet-bg;
+		box-shadow: 0px 0px 0px 10px $_clicktotweet-bg;
 	}
 }
 
+.block-clicktotweet-highlight {
+	.has-format-highlight & {
+		background: $_clicktotweet-bg;
+	}
+}
+
+.block-clicktotweet-action {
+	background: $_clicktotweet-bg;
+	font-family: blocks-get( 'font-family-tertiary' );
+
+	&::before {
+		border-color: transparent $_clicktotweet-bg transparent transparent;
+	}
+}

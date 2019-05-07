@@ -13,43 +13,42 @@ $blocks-config: ();
 // If set to null that property won't be output until overridden in child theme or block override
 
 $blocks-defaults: (
-	scope: 							wp,
-	
-	color-body: 					$color-grayscale-f,
-	color-page: 					$color-grayscale-f,
+	scope: 							   wp,
 
+	color-body: 				   	$color-grayscale-f,
+	color-page: 					   $color-grayscale-f,
 
-	color-gray-a: 					null,
-	color-gray-b: 					null,
-	color-gray-c: 					null,
-	color-gray-d: 					null,
-	color-gray-e: 					null,
-	color-gray-f: 					null,
+	color-gray-a: 				   	null,
+	color-gray-b: 				   	null,
+	color-gray-c: 		   			null,
+	color-gray-d: 					   null,
+	color-gray-e: 					   $color-grayscale-e,
+	color-gray-f: 					   null,
 
 	color-primary: 					null,
-	color-primary-text: 			null,
-	color-secondary: 				null,
+	color-primary-text: 			   null,
+	color-secondary: 				   null,
 	color-secondary-text: 			null,
-	color-tertiary: 				null,
+	color-tertiary: 				   null,
 	color-tertiary-text: 			null,
 	color-quaternary: 				null,
 	color-quaternary-text: 			null,
 	color-quinary: 					null,
-	color-quinary-text: 			null,
+	color-quinary-text: 			   null,
 
-	color-tint:						null,
+	color-tint:						   null,
 
 	font-family-primary: 			null,
 	font-family-secondary: 		 	null,
-	font-family-tertiary: 			null,
+	font-family-tertiary: 			$font-family-sans-serif,
 
-	font-color-base: 				null,
-	font-color-heading: 			null,
+	font-color-base: 				   null,
+	font-color-heading: 			   null,
 	font-color-heading-small: 		null,
-	font-color-link: 				null,
+	font-color-link: 				   null,
 	font-color-link-active: 		null,
 	font-color-link-visited: 		null,
-	font-color-aside:				$color-grayscale-4,
+	font-color-aside:				   $color-grayscale-4,
 	font-color-aside-lighter:		$color-grayscale-6,
 
 	font-color-theme-dark:			$color-grayscale-f,
@@ -58,7 +57,7 @@ $blocks-defaults: (
 	background-color-dark:			$color-grayscale-0,
 	background-color-default:		$color-grayscale-f,
 
-	border-radius:					0,
+	border-radius:					   0,
 );
 
 // Merge defaults with the final map.

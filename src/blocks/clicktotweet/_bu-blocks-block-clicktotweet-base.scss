@@ -9,34 +9,58 @@
 //
 
 .wp-block-clicktotweet {
-	clear: both;
-
-	&:hover {
-		background: lightblue;
-	}
-
-	&::after {
-		content: "Tweet this \F611";
-		font-family: $font-family-icons, $font-family-sans-serif;
-		background: lightblue;
-		display: inline-block;
-		text-align: right;
-		float: right;
-	}
-
 	&.has-format-highlight {
 		&:hover {
 			background: transparent;
+			box-shadow: none;
 		}
+	}
+}
 
-		&::after {
-			display: none;
-		}
+.block-clicktotweet-content {
+	.wp-block-clicktotweet.has-format-highlight &:hover {
+		background-color: transparent;
+		box-shadow: none;
+	}
 
-		//your custom styles here
-		.wp-block-clicktotweet-highlight {
-			@include icon( 'twitter', 'after' );
-			background: lightblue;
-		}
+	.wp-block-clicktotweet:not( .has-format-highlight ) & {
+		margin-bottom: 0;
+	}
+}
+
+.block-clicktotweet-highlight {
+	.has-format-highlight & {
+		@include icon( 'twitter', 'after' );
+		padding: 0 ( $padding-small / 2 );
+	}
+}
+
+.block-clicktotweet-action {
+	@include icon( 'twitter', 'after' );
+	display: flex;
+	font-size: 14px;
+	font-weight: 700;
+	margin-left: auto;
+	margin-right: -10px;
+	margin-top: 10px;
+	padding: ( $padding-small / 2 ) $padding-small;
+	text-align: right;
+	text-transform: lowercase;
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 10px 10px 0;
+		position: absolute;
+		left: -10px;
+		top: 0;
+	}
+
+	.has-format-highlight & {
+		display: none;
 	}
 }
