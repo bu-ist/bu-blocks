@@ -31062,12 +31062,16 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
-.wp-block-clicktotweet.has-format-highlight:hover {
-  background: transparent;
-  -webkit-box-shadow: none;
-          box-shadow: none; }
+.wp-block-clicktotweet:hover {
+  cursor: pointer; }
 
-.wp-block-clicktotweet.has-format-highlight .block-clicktotweet-content:hover {
+.wp-block-clicktotweet.has-format-highlight:hover {
+  cursor: initial; }
+
+.no-js .wp-block-clicktotweet:hover {
+  background: transparent; }
+
+.wp-block-clicktotweet.has-format-highlight:hover .block-clicktotweet-content {
   background-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none; }
@@ -31100,6 +31104,14 @@ a:visited {
     white-space: nowrap;
     margin-left: 0.5em;
     content: ""; }
+  .has-format-highlight .block-clicktotweet-highlight:hover {
+    cursor: pointer; }
+
+.no-js .block-clicktotweet-highlight {
+  padding: 0;
+  background: transparent; }
+  .no-js .block-clicktotweet-highlight::after {
+    display: none; }
 
 .block-clicktotweet-action {
   display: -ms-flexbox;
@@ -31148,8 +31160,10 @@ a:visited {
     top: 0; }
   .has-format-highlight .block-clicktotweet-action {
     display: none; }
+  .no-js .block-clicktotweet-action {
+    display: none; }
 
-.wp-block-clicktotweet .block-clicktotweet-content:hover {
+.wp-block-clicktotweet:hover .block-clicktotweet-content {
   background-color: #f5f6fa;
   -webkit-box-shadow: 0px 0px 0px 10px #f5f6fa;
           box-shadow: 0px 0px 0px 10px #f5f6fa; }

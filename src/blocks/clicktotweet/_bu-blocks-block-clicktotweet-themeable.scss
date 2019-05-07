@@ -58,7 +58,7 @@ $scope: blocks-get( 'scope' );
 $_tweet-bg: blocks-get( 'color-gray-f' );
 
 .#{$scope}-block-clicktotweet {
-	.block-clicktotweet-content:hover {
+	&:hover .block-clicktotweet-content {
 		background-color: $_tweet-bg;
 		box-shadow: 0px 0px 0px 10px $_tweet-bg;
 	}

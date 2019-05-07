@@ -9,16 +9,23 @@
 //
 
 .wp-block-clicktotweet {
+	&:hover {
+		cursor: pointer;
+	}
+
 	&.has-format-highlight {
 		&:hover {
-			background: transparent;
-			box-shadow: none;
+			cursor: initial;
 		}
+	}
+
+	.no-js &:hover {
+		background: transparent;
 	}
 }
 
 .block-clicktotweet-content {
-	.wp-block-clicktotweet.has-format-highlight &:hover {
+	.wp-block-clicktotweet.has-format-highlight:hover & {
 		background-color: transparent;
 		box-shadow: none;
 	}
@@ -32,6 +39,19 @@
 	.has-format-highlight & {
 		@include icon( 'twitter', 'after' );
 		padding: 0 ( $padding-small / 2 );
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.no-js & {
+		padding: 0;
+		background: transparent;
+
+		&::after {
+			display: none;
+		}
 	}
 }
 
@@ -61,6 +81,10 @@
 	}
 
 	.has-format-highlight & {
+		display: none;
+	}
+
+	.no-js & {
 		display: none;
 	}
 }
