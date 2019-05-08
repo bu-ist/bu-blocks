@@ -10005,7 +10005,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     color: #000; }
 
 .wp-block-editorial-modal-callout-content {
-  z-index: 1000;
   padding: 40px; }
   @media (min-width: 768px) {
     .wp-block-editorial-modal-callout-content {
