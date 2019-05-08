@@ -25,3 +25,4 @@ import './blocks/button/button.js';
 import './blocks/relatedstories/relatedstories.js';
 import './blocks/listicle/listicle.js';
 import './blocks/clicktotweet/clicktotweet.js';
+import './blocks/custom-html/custom-html.js';
