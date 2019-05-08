@@ -97,6 +97,20 @@
 							  
 							  	<a
 							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
+							  		href="item-blocks-global-clicktotweet.html">
+							  				<span class="id-kss-status id-kss-status-in-progress">
+							  					In-Progress
+							  				</span>
+							  			<span class="id-kss-nav-name">
+							  				clicktotweet
+							  			</span>
+							  		</a>
+							  </li>
+							  
+							  <li class="id-kss-nav-menu-item">
+							  
+							  	<a
+							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
 							  		href="item-blocks-global-pullquote.html">
 							  				<span class="id-kss-status id-kss-status-in-progress">
 							  					In-Progress
@@ -158,20 +172,6 @@
 							  				</span>
 							  			<span class="id-kss-nav-name">
 							  				Aside
-							  			</span>
-							  		</a>
-							  </li>
-							  
-							  <li class="id-kss-nav-menu-item">
-							  
-							  	<a
-							  		class="id-kss-nav-menu-link id-kss-nav-menu-child "
-							  		href="item-blocks-editorial-click-to-tweet.html">
-							  				<span class="id-kss-status id-kss-status-in-progress">
-							  					In-Progress
-							  				</span>
-							  			<span class="id-kss-nav-name">
-							  				Click to Tweet
 							  			</span>
 							  		</a>
 							  </li>
@@ -301,14 +301,14 @@
 
 
 		
-				<div id="kssref-blocks-global-sample" class="id-kss-section id-kss-section--depth-3">
+				<div id="kssref-blocks-global-clicktotweet" class="id-kss-section id-kss-section--depth-3">
 					<div class="id-kss-style id-kss-component-content">
 						<header class="id-kss-title-block">
 							<h2 class="id-kss-title id-kss-title--level-3 ">
 		
 								<span class="id-kss-title-section">Global</span>
 		
-								<span class="id-kss-title-name">Sample Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-sample">Link</a></span>
+								<span class="id-kss-title-name">Click to Tweet Block<a class="id-kss-title__permalink" href="#kssref-blocks-global-clicktotweet">Link</a></span>
 							</h2>
 								<span class="id-kss-status id-kss-status-in-progress">
 									In-Progress
@@ -319,14 +319,14 @@
 									</span>
 		
 							<!--<span class="id-kss-title__ref">
-								1.1.4
+								1.1.3
 								<span class="id-kss-title__permalink-hash">
-										#Blocks.Global.Sample
+										#Blocks.Global.clicktotweet
 								</span>
 							</span>-->
 						</header>
 							<div class="id-kss-description">
-								<p>This is a Sample Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>
+								<p>This is a Click to Tweet Block.</p>
 		
 							</div>
 		
@@ -338,8 +338,8 @@
 								Examples
 		
 									<span class="id-kss-source id-kss-style">
-										Source: <code>blocks/sample/style.scss, line 16</code>
-											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/sample/style.scss#L16">
+										Source: <code>blocks/clicktotweet/style.scss, line 16</code>
+											<a href="https://github.com/bu-ist/bu-blocks/tree/develop/srcblocks/clicktotweet/style.scss#L16">
 												View Source
 											</a>
 									</span>
@@ -367,8 +367,7 @@
 																}
 															</style>
 															<div class="iframe-wrapper " id="">
-																
-															<div class="wp-block-sample ">
+																<div class="wp-block-clicktotweet ">
 																<p>This is Sample markup of a simple div</p>
 															</div>
 															</div>
@@ -384,9 +383,9 @@
 									<div class="id-kss-info-wrapper">
 									
 									
-											<div class="is-example-variant block-sample-variant1">
+											<div class="is-example-variant block-clicktotweet-variant1">
 												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.block-sample-variant1
+													.block-clicktotweet-variant1
 												</div>
 												<p class="id-kss-modifier-description id-kss-style">
 													Example of a Layout Variation
@@ -402,8 +401,7 @@
 																	}
 																</style>
 																<div class="iframe-wrapper " id="">
-																	
-																<div class="wp-block-sample block-sample-variant1">
+																	<div class="wp-block-clicktotweet block-clicktotweet-variant1">
 																	<p>This is Sample markup of a simple div</p>
 																</div>
 																</div>
@@ -434,8 +432,7 @@
 																	}
 																</style>
 																<div class="iframe-wrapper " id="">
-																	
-																<div class="wp-block-sample is-style-layoutBig">
+																	<div class="wp-block-clicktotweet is-style-layoutBig">
 																	<p>This is Sample markup of a simple div</p>
 																</div>
 																</div>
@@ -451,10 +448,9 @@
 		
 							<details class="id-kss-markup id-kss-style" open="">
 								<summary class="id-kss-docs-heading">
-										Markup <code>blocks/sample/bu-blocks-block-sample.hbs</code>
+										Markup <code>blocks/clicktotweet/bu-blocks-block-clicktotweet.hbs</code>
 								</summary>
-								<pre class="hljs"><code class="language-handlebars"><span class="xml">
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-sample </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
+								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-clicktotweet </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
 			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is Sample markup of a simple div<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
 							</details>
