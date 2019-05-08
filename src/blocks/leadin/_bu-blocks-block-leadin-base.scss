@@ -158,6 +158,17 @@
 		box-sizing: content-box;
 		display: block;
 
+		&::before {
+			background-color: inherit;
+			bottom: 0;
+			content: '';
+			display: block;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+
 		&::after {
 			content: '';
 			display: block;
