@@ -82,7 +82,8 @@
 		top: 0;
 	}
 
-	.has-format-highlight & {
+	.has-format-highlight &,
+	.wp-block-clicktotweet-highlight & {
 		display: none;
 	}
 

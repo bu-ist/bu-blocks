@@ -31148,7 +31148,8 @@ a:visited {
     position: absolute;
     left: -10px;
     top: 0; }
-  .has-format-highlight .wp-block-clicktotweet-action {
+  .has-format-highlight .wp-block-clicktotweet-action,
+  .wp-block-clicktotweet-highlight .wp-block-clicktotweet-action {
     display: none; }
   .no-js .wp-block-clicktotweet-action {
     display: none; }
