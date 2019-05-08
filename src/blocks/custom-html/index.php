@@ -8,24 +8,7 @@
 namespace BU\Plugins\BU_Blocks\Blocks\CustomHTML;
 
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
-add_action( 'init', __NAMESPACE__ . '\\register_meta' );
 add_action( 'rest_api_init', __NAMESPACE__ . '\register_route' );
-
-/**
- * Registers the bu_custom_html_meta box used to store custom HTML associated
- * with an article.
- *
- * @return void
- */
-function register_meta() {
-    \register_meta( 'post', 'bu_custom_html_meta', array(
-		'object_subtype' => 'bu-article',
-        'show_in_rest' => true,
-        'single'       => true,
-        'type'         => 'string',
-    ) );
-}
-
 
 /**
  * Registers the `editorial/custom-html` block on the server.
