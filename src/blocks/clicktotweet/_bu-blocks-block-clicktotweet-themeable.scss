@@ -58,19 +58,19 @@ $scope: blocks-get( 'scope' );
 $_tweet-bg: blocks-get( 'color-gray-f' );
 
 .#{$scope}-block-clicktotweet {
-	&:hover .block-clicktotweet-content {
+	&:hover .wp-block-clicktotweet-content {
 		background-color: $_tweet-bg;
 		box-shadow: 0px 0px 0px 10px $_tweet-bg;
 	}
 
 	&.has-format-highlight {
-		.block-clicktotweet-highlight {
+		.wp-block-clicktotweet-highlight {
 			background: $_tweet-bg;
 			color: blocks-get( 'color-quaternary-text' );
 		}
 	}
 
-	.block-clicktotweet-action {
+	.wp-block-clicktotweet-action {
 		background-color: $_tweet-bg;
 		color: blocks-get( 'color-quaternary-text' );
 		font-family: blocks-get( 'font-family-secondary' );

@@ -24,7 +24,9 @@
 	}
 }
 
-.block-clicktotweet-content {
+.wp-block-clicktotweet-content {
+	display: block;
+
 	.wp-block-clicktotweet.has-format-highlight:hover & {
 		background-color: transparent;
 		box-shadow: none;
@@ -35,7 +37,7 @@
 	}
 }
 
-.block-clicktotweet-highlight {
+.wp-block-clicktotweet-highlight {
 	.has-format-highlight & {
 		@include icon( 'twitter', 'after' );
 		padding: 0 ( $padding-small / 2 );
@@ -55,7 +57,7 @@
 	}
 }
 
-.block-clicktotweet-action {
+.wp-block-clicktotweet-action {
 	@include icon( 'twitter', 'after' );
 	display: flex;
 	font-size: 14px;
