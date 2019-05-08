@@ -24,3 +24,4 @@ import './blocks/photoessay/photoessay.js';
 import './blocks/button/button.js';
 import './blocks/relatedstories/relatedstories.js';
 import './blocks/listicle/listicle.js';
+import './blocks/custom-html/custom-html.js';
