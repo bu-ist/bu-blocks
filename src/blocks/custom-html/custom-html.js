@@ -143,7 +143,7 @@ registerBlockType( 'editorial/custom-html', {
 		// blocks on the same post. Using `Date().getTime()` here provides a unique
 		// enough identifier at a low cost.
 		if ( '' === customBlockID ) {
-			setAttributes( { customBlockID: new Date().getTime() } );
+			setAttributes( { customBlockID: 'manual-' + new Date().getTime() } );
 		}
 
 		// Selectors technically can't start with a number, so prepend a string to
