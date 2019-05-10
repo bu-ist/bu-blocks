@@ -70,7 +70,9 @@ module.exports = function( grunt ) {
 			},
 			kss: {
 				files: [
-					'src/**/*.hbs'
+					'src/**/*.hbs',
+					'src/**/**/*.hbs',
+					'src/**/**/*.scss'
 				],
 				tasks: [ 'styles' ],
 				options: {

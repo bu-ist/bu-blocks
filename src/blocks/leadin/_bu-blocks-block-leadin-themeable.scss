@@ -152,7 +152,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
-					.container-words-outter {
+					.container-words-outer {
 						background-color: blocks-get( 'background-color-light');
 					}
 					h1,
@@ -196,10 +196,11 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
-					.container-words-outter {
+					.container-words-outer {
 						background-color: blocks-get( 'background-color-dark');
 					}
 					h1,
@@ -211,6 +212,7 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		.wp-block-leadin-media {
 			background-color: blocks-get( 'background-color-dark');
 		}
@@ -227,6 +229,7 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
@@ -241,10 +244,11 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
-					.container-words-outter {
+					.container-words-outer {
 						background-color: blocks-get( 'color-primary');
 					}
 					h1,
@@ -256,6 +260,7 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		.wp-block-leadin-media {
 			background-color: blocks-get( 'color-primary');
 		}
@@ -289,7 +294,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
-					.container-words-outter {
+					.container-words-outer {
 						background-color: blocks-get( 'color-secondary');
 					}
 					h1,
@@ -334,7 +339,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
-					.container-words-outter {
+					.container-words-outer {
 						background-color: blocks-get( 'color-tertiary');
 					}
 					h1,
@@ -379,7 +384,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
-					.container-words-outter {
+					.container-words-outer {
 						background-color: blocks-get( 'color-quaternary');
 					}
 					h1,

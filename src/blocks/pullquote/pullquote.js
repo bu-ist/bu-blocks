@@ -131,7 +131,7 @@ registerBlockType( 'bu/pullquote', {
 			return (
 				<PanelBody title={ __( 'Media Positioning' ) } initialOpen={ false }>
 					<SelectControl
-						label={ __( 'Media Focal Point' ) }
+						label={ __( 'Crop Media to:' ) }
 						value={ imageFocus }
 						onChange={ value => setAttributes( { imageFocus: value } ) }
 						options={ [
