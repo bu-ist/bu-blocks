@@ -114,12 +114,14 @@ registerBlockType( 'editorial/drawer', {
 		// Get the properties and attributes we'll need.
 		const {
 			attributes: {
+				backgroundId,
 				button,
 				hed,
 				lede,
 			},
 			className,
 			clientId,
+			isSelected,
 			setAttributes,
 			setThemeColor,
 			themeColor,
@@ -133,16 +135,18 @@ registerBlockType( 'editorial/drawer', {
 		return (
 			<aside className={ getClasses( className, themeColor.slug ) }>
 				<div className="wp-block-editorial-drawer-teaser">
-					<figure>
-						<Background
-							allowedMediaTypes={ [ 'image' ] }
-							blockProps={ props }
-							controlPanelTitle={ __( 'Image' ) }
-							inlinePlaceholder={ true }
-							options={ [] }
-							placeholderText={ __( 'Add Image' ) }
-						/>
-					</figure>
+					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
+						<figure>
+							<Background
+								allowedMediaTypes={ [ 'image' ] }
+								blockProps={ props }
+								controlPanelTitle={ __( 'Image' ) }
+								inlinePlaceholder={ true }
+								options={ [] }
+								placeholderText={ __( 'Add Image' ) }
+							/>
+						</figure>
+					}
 					<RichText
 						formattingControls={ [] }
 						onChange={ value => setAttributes( { hed: value } ) }
