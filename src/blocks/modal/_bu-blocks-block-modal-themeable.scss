@@ -130,5 +130,12 @@ $scope: blocks-get( 'scope' );
 			background: blocks-get( 'color-quaternary' );
 		}
 	}
+
+	&.has-quinary-theme {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
+			background: blocks-get( 'color-quinary' );
+		}
+	}
 }
 
