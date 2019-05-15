@@ -62,7 +62,7 @@ $scope: blocks-get( 'scope' );
 	}
 	h3,
 	h4 {
-		color: blocks-get( 'font-color-heading-small');
+		color: blocks-get( 'color-primary-text');
 	}
 	&.is-style-emphasis-on-text {
 		.container-words-inner {
@@ -129,7 +129,7 @@ $scope: blocks-get( 'scope' );
 				}
 				h3,
 				h4 {
-					color: blocks-get( 'font-color-heading-small');
+					color: blocks-get( 'color-primary-text');
 				}
 			}
 		}
@@ -145,7 +145,7 @@ $scope: blocks-get( 'scope' );
 				}
 				h3,
 				h4 {
-					color: blocks-get( 'font-color-heading-small');
+					color: blocks-get( 'color-primary-text');
 				}
 			}
 		}
@@ -161,7 +161,7 @@ $scope: blocks-get( 'scope' );
 					}
 					h3,
 					h4 {
-						color: blocks-get( 'font-color-heading-small');
+						color: blocks-get( 'color-primary-text');
 					}
 				}
 			}
