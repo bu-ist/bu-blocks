@@ -18,9 +18,9 @@ add_action( 'init', __NAMESPACE__ . '\\register_block' );
  * @return string A space separated string of class names.
  */
 function get_block_classes( $attributes ) {
-	$style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' );
-	$style_text_over_image = strpos( $attributes['className'], 'is-style-text-over-image' );
-	$style_side_by_side    = strpos( $attributes['className'], 'is-style-side-by-side' );
+	$style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
+	$style_text_over_image = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
+	$style_side_by_side    = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
 
 	// Build array of classes from the provide attributes.
 	$classes = array(
@@ -28,12 +28,12 @@ function get_block_classes( $attributes ) {
 		bu_prepress_get_publication_class( '-block-editorial-leadin' ),
 		$attributes['className'],
 		( $attributes['backgroundUrl'] ) ? 'has-media' : '',
-		( $attributes['wide'] ) ? 'has-wider' : '',
-		( $attributes['flip'] ) ? 'has-flip' : '',
-		( $attributes['box'] ) ? 'has-box' : '',
+		( $attributes['wide'] && $style_side_by_side ) ? 'has-wider' : '',
+		( $attributes['flip'] && $style_side_by_side ) ? 'has-flip' : '',
+		( $attributes['box'] && ( $style_emphasize_text || $style_text_over_image || $style_side_by_side ) ) ? 'has-box' : '',
 		( $attributes['imageFocus'] ) ? 'has-media-focus-' . $attributes['imageFocus'] : '',
-		( $attributes['textPositionX'] ) ? 'has-text-position-' . $attributes['textPositionX'] : '',
-		( $attributes['textPositionY'] ) ? 'has-text-position-' . $attributes['textPositionY'] : '',
+		( $attributes['textPositionX'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionX'] : '',
+		( $attributes['textPositionY'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionY'] : '',
 		( $attributes['themeColor'] ) ? 'has-' . $attributes['themeColor'] . '-theme' : '',
 	);
 
