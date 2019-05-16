@@ -30,6 +30,7 @@
 
 	&.alignleft,
 	&.alignright {
+		@extend %col-full;
 		@extend %col-xs-half;
 		@extend %col-sm-third;
 		max-width: 100%;
@@ -37,7 +38,6 @@
 	}
 
 	&.alignleft {
-
 		margin: 20px auto;
 
 		@include breakpoint( $sm ) {
@@ -47,7 +47,6 @@
 	}
 
 	&.alignright {
-
 		margin: 20px auto;
 
 		@include breakpoint( $sm ) {
