@@ -86,6 +86,10 @@ const blockAttributes = {
 	primaryTerm: {
 		type: 'string',
 	},
+	metabar: {
+		type: 'boolean',
+		default: true,
+	},
 	...BackgroundAttributes,
 };
 
@@ -143,6 +147,7 @@ registerBlockType( 'bu/leadin', {
 				box,
 				flip,
 				primaryTerm,
+				metabar,
 			},
 			themeColor,
 			setThemeColor,
@@ -336,7 +341,7 @@ registerBlockType( 'bu/leadin', {
 					) }
 				</div>
 
-				{ applyFilters( 'buBlocks.leadin.metaBar', '' ) }
+				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar ) }
 
 				<InspectorControls>
 					{ mediaPositioningControls() }

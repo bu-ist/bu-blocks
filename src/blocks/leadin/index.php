@@ -66,6 +66,7 @@ function render_block( $attributes ) {
 		'flip'              => false,
 		'head'              => '',
 		'imageFocus'        => 'center-middle',
+		'metabar'           => true,
 		'primaryTerm'       => '',
 		'textPositionX'     => 'x-center',
 		'textPositionY'     => '',
@@ -109,7 +110,7 @@ function render_block( $attributes ) {
 		<?php endif; ?>
 	</div>
 
-	<?php do_action( 'bu_blocks_leadin_meta_bar' ); ?>
+	<?php do_action( 'bu_blocks_leadin_meta_bar', $attributes['metabar'] ); ?>
 
 	<?php
 	$html = ob_get_clean();
@@ -152,6 +153,10 @@ function register_block() {
 				'imageFocus'        => array(
 					'type'    => 'string',
 					'default' => 'center-middle',
+				),
+				'metabar'           => array(
+					'type'    => 'boolean',
+					'default' => true,
 				),
 				'primaryTerm'       => $shared_args,
 				'textPositionX'     => array(
