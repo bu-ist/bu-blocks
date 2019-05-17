@@ -421,6 +421,11 @@
 	&:not(.is-style-side-by-side):not(.is-style-text-to-image):not(.is-style-image-to-text):not(.is-style-emphasis-on-text):not(.is-style-text-over-image) {
 		.wp-block-leadin-media {
 			margin: 0;
+
+			&::after {
+				display: none;
+			}
+
 			img {
 				position: relative;
 				height: auto;
@@ -429,6 +434,12 @@
 	}
 }
 
+.wp-block-editorial-leadin-caption {
+	font-family: blocks-get( 'font-family-secondary');
+	font-size: 0.75em;
+	line-height: 3em;
+	text-align: center;
+}
 
 
 .wp-block-editorial-leadin.has-video-as-loop {
