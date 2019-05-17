@@ -188,7 +188,7 @@ registerBlockType( 'bu/leadin', {
 		const boxClasses = classnames(
 			'container-words-inner',
 			{
-				[ `has-opacity-${boxOpacity}` ]: boxOpacity !== 100 && box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
+				[ `has-opacity-${boxOpacity}` ]: boxOpacity !== 100 && box && ( isStyleEmphasisOnText || isStyleTextOverImage ),
 			}
 		);
 
@@ -302,7 +302,7 @@ registerBlockType( 'bu/leadin', {
 						checked={ box }
 						onChange={ () => setAttributes( { box: !box } ) }
 					/>
-					{ box &&
+					{ box && ( isStyleEmphasisOnText || isStyleTextOverImage ) &&
 						<RangeControl
 							label={ __( 'Box Opacity' ) }
 							value={ boxOpacity }

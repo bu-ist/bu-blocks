@@ -13,14 +13,14 @@ add_action( 'init', __NAMESPACE__ . '\\register_block' );
  * Build a list of class names for the leadin block based
  * on the provided attributes.
  *
- * @param array $attributes A list of block attributes.
+ * @param array $attributes            A list of block attributes.
+ * @param bool  $style_emphasize_text  Whether the emphasize text style is applied to the block.
+ * @param bool  $style_text_over_image Whether the text over image style is applied to the block.
+ * @param bool  $style_side_by_side    Whether the side by side style is applied to the block.
  *
  * @return string A space separated string of class names.
  */
-function get_block_classes( $attributes ) {
-	$style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
-	$style_text_over_image = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
-	$style_side_by_side    = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
+function get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side ) {
 
 	// Build array of classes from the provide attributes.
 	$classes = array(
@@ -77,11 +77,16 @@ function render_block( $attributes ) {
 
 	$attributes = wp_parse_args( $attributes, $defaults );
 
+	// Determine which style is applied to the block.
+	$style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
+	$style_text_over_image = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
+	$style_side_by_side    = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
+
 	// Retrieve the classes to attach to the block.
-	$classes = get_block_classes( $attributes );
+	$classes = get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side );
 
 	$box_classes = 'container-words-inner';
-	if ( $attributes['box'] && 100 !== $attributes['boxOpacity'] ) {
+	if ( $attributes['box'] && 100 !== $attributes['boxOpacity'] && ( $style_emphasize_text || $style_text_over_image ) ) {
 		$box_classes .= ' has-opacity-' . absint( $attributes['boxOpacity'] );
 	}
 
