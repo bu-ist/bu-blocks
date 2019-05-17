@@ -29,6 +29,7 @@ const {
 	CheckboxControl,
 	PanelBody,
 	Path,
+	RangeControl,
 	SelectControl,
 	SVG,
 } = wp.components;
@@ -90,6 +91,10 @@ const blockAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	boxOpacity: {
+		type: 'number',
+		default: 100,
+	},
 	...BackgroundAttributes,
 };
 
@@ -148,6 +153,7 @@ registerBlockType( 'bu/leadin', {
 				flip,
 				primaryTerm,
 				metabar,
+				boxOpacity,
 			},
 			themeColor,
 			setThemeColor,
@@ -173,6 +179,13 @@ registerBlockType( 'bu/leadin', {
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
 				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+			}
+		);
+
+		const boxClasses = classnames(
+			'container-words-inner',
+			{
+				[ `has-opacity-${boxOpacity}` ]: boxOpacity !== 100 && box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
 			}
 		);
 
@@ -286,6 +299,16 @@ registerBlockType( 'bu/leadin', {
 						checked={ box }
 						onChange={ ( box ) => { setAttributes( { box } ) } }
 					/>
+					{ box &&
+						<RangeControl
+							label={ __( 'Box Opacity' ) }
+							value={ boxOpacity }
+							onChange={ value => setAttributes( { boxOpacity: value } ) }
+							min={ 10 }
+							max={ 100 }
+							step={ 10 }
+						/>
+					}
 				</PanelBody>
 			);
 		};
@@ -302,7 +325,7 @@ registerBlockType( 'bu/leadin', {
 							/>
 						</div>
 						<div class="container-words-outer">
-							<div class="container-words-inner">
+							<div class={ boxClasses }>
 								{ primaryTerm && (
 									<span class="wp-prepress-tag">{ primaryTerm }</span>
 								) }

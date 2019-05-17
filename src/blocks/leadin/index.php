@@ -60,6 +60,7 @@ function render_block( $attributes ) {
 		'backgroundType'    => '',
 		'backgroundUrl'     => '',
 		'box'               => false,
+		'boxOpacity'        => 100,
 		'caption'           => '',
 		'className'         => '',
 		'deck'              => '',
@@ -79,6 +80,11 @@ function render_block( $attributes ) {
 	// Retrieve the classes to attach to the block.
 	$classes = get_block_classes( $attributes );
 
+	$box_classes = 'container-words-inner';
+	if ( $attributes['box'] && 100 !== $attributes['boxOpacity'] ) {
+		$box_classes .= ' has-opacity-' . absint( $attributes['boxOpacity'] );
+	}
+
 	ob_start();
 	?>
 	<div class="<?php echo esc_attr( $classes ); ?>">
@@ -89,7 +95,7 @@ function render_block( $attributes ) {
 			</div>
 
 			<div class="container-words-outer">
-				<div class="container-words-inner">
+				<div class="<?php echo esc_attr( $box_classes ); ?>">
 
 					<?php if ( $attributes['primaryTerm'] ) : ?>
 						<span class="wp-prepress-tag"><?php echo esc_html( $attributes['primaryTerm'] ); ?></span>
@@ -141,6 +147,10 @@ function register_block() {
 				'box'               => array(
 					'type'    => 'boolean',
 					'default' => false,
+				),
+				'boxOpacity'        => array(
+					'type'    => 'number',
+					'default' => 100,
 				),
 				'caption'           => $shared_args,
 				'className'         => $shared_args,
