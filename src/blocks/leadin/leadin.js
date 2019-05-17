@@ -317,17 +317,17 @@ registerBlockType( 'bu/leadin', {
 		return (
 			<Fragment>
 				<div className={ classes }>
-					<div class="container-lockup">
-						<div class="wp-block-leadin-media">
+					<div className="container-lockup">
+						<div className="wp-block-leadin-media">
 							<Background
 								blockProps={ props }
 								controlPanelTitle={ __( 'Media' ) }
 							/>
 						</div>
-						<div class="container-words-outer">
-							<div class={ boxClasses }>
+						<div className="container-words-outer">
+							<div className={ boxClasses }>
 								{ primaryTerm && (
-									<span class="wp-prepress-tag">{ primaryTerm }</span>
+									<span className="wp-prepress-tag">{ primaryTerm }</span>
 								) }
 								<RichText
 									tagName="h1"
