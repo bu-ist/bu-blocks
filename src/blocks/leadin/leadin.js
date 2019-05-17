@@ -26,12 +26,12 @@ const {
 	Fragment
 } = wp.element;
 const {
-	CheckboxControl,
 	PanelBody,
 	Path,
 	RangeControl,
 	SelectControl,
 	SVG,
+	ToggleControl,
 } = wp.components;
 const {
 	InspectorControls,
@@ -70,13 +70,16 @@ const blockAttributes = {
 		default: '',
 	},
 	wide: {
-		type: 'boolean'
+		type: 'boolean',
+		default: false,
 	},
 	box: {
-		type: 'boolean'
+		type: 'boolean',
+		default: false,
 	},
 	flip: {
-		type: 'boolean'
+		type: 'boolean',
+		default: false,
 	},
 	className: {
 		type: 'string',
@@ -270,15 +273,15 @@ registerBlockType( 'bu/leadin', {
 
 			return (
 				<Fragment>
-					<CheckboxControl
+					<ToggleControl
 						label={ __( 'Flip Order' ) }
 						checked={ flip }
-						onChange={ ( flip ) => { setAttributes( { flip } ) } }
+						onChange={ () => setAttributes( { flip: !flip } ) }
 					/>
-					<CheckboxControl
+					<ToggleControl
 						label={ __( 'Wide Layout' ) }
 						checked={ wide }
-						onChange={ ( wide ) => { setAttributes( { wide } ) } }
+						onChange={ () => setAttributes( { wide: !wide } ) }
 					/>
 				</Fragment>
 			);
@@ -294,10 +297,10 @@ registerBlockType( 'bu/leadin', {
 				<PanelBody title={ __( 'Layout Options' ) }>
 					{ sideBySideLayoutControls() }
 					{ textPositioningControls() }
-					<CheckboxControl
+					<ToggleControl
 						label={ __( 'Boxed Text' ) }
 						checked={ box }
-						onChange={ ( box ) => { setAttributes( { box } ) } }
+						onChange={ () => setAttributes( { box: !box } ) }
 					/>
 					{ box &&
 						<RangeControl
