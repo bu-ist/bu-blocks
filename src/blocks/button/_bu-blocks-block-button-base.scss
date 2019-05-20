@@ -34,7 +34,8 @@ a:visited { // TO DO: move to global location
 
 	&.is-style-default,
 	&.is-style-outline,
-	&.is-style-squared {
+	&.is-style-squared,
+	&.is-style-text {
 		padding: 0.5em 1em;
 
 		&.align-icon-right {

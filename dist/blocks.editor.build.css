@@ -9765,6 +9765,9 @@
   margin: 0; }
   .wp-block-editorial-modal-media figure img {
     display: block; }
+
+.wp-block-editorial-modal h1 {
+  line-height: 1.2; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
