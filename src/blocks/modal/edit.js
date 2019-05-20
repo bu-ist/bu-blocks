@@ -8,6 +8,7 @@ import classnames from 'classnames';
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
 import Background from '../../components/background';
+import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -112,7 +113,9 @@ class BUEditorialModalEdit extends Component {
 						<div className="overlay overlay-scale">
 							<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
 							<article>
-								<InnerBlocks />
+								<InnerBlocks
+									allowedBlocks={ allowedBlocks() }
+								/>
 							</article>
 						</div>
 					</div>

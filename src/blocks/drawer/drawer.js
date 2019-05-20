@@ -13,7 +13,8 @@ import './editor.scss';
 
 // Internal dependencies.
 import Background, { BackgroundAttributes } from '../../components/background';
-import themeOptions from '../../global/theme-options.js';
+import themeOptions from '../../global/theme-options';
+import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
 const {
@@ -204,11 +205,7 @@ registerBlockType( 'editorial/drawer', {
 				<section className="wp-block-editorial-drawer-content js-bu-block-drawer-content">
 					<div className="wp-block-editorial-drawer-wrapper">
 						<InnerBlocks
-							allowedBlocks={ [
-								'core/image',
-								'core/heading',
-								'core/paragraph',
-							] }
+							allowedBlocks={ allowedBlocks() }
 						/>
 						<div className="wp-block-editorial-drawer-close">
 							<button className="wp-block-editorial-drawer-close-button js-bu-block-drawer-close">Close</button>
