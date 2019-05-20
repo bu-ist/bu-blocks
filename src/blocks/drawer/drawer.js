@@ -50,15 +50,17 @@ const publication = document.getElementById( 'bu_publication_owner' );
  * Returns the class list for the block based on the current settings.
  *
  * @param {string}  className  Default classes assigned to the block.
+ * @param {boolean} round      Whether to display round images.
  * @param {boolean} hideTeaser Whether to display the teaser.
  * @param {string}  themeColor The assigned background color.
  */
-const getClasses = ( className, hideTeaser, themeColor ) => {
+const getClasses = ( className, hideTeaser, round, themeColor ) => {
 	return (
 		classnames(
 			'js-bu-block-drawer',
 			{
 				'has-hide-teaser': hideTeaser,
+				'is-style-round': round,
 				[ className ]: className,
 				[ `has-${themeColor}-background` ]: themeColor,
 			}
@@ -101,6 +103,10 @@ registerBlockType( 'editorial/drawer', {
 			source: 'html',
 			selector: 'p'
 		},
+		round: {
+			type: 'boolean',
+			default: false,
+		},
 		themeColor: {
 			type: 'string',
 			default: '',
@@ -130,6 +136,7 @@ registerBlockType( 'editorial/drawer', {
 				hed,
 				hideTeaser,
 				lede,
+				round,
 			},
 			className,
 			clientId,
@@ -145,7 +152,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 
 		return (
-			<aside className={ getClasses( className, hideTeaser, themeColor.slug ) }>
+			<aside className={ getClasses( className, hideTeaser, round, themeColor.slug ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
@@ -215,12 +222,19 @@ registerBlockType( 'editorial/drawer', {
 							},
 						] }
 					/>
-					<PanelBody title={ __( 'Teaser Display' ) } >
+					<PanelBody title={ __( 'Display Options' ) } >
 						<ToggleControl
-							label={ __( 'Hide Teaser' ) }
+							label={ __( 'Hide teaser when drawer is open' ) }
 							checked={ hideTeaser }
 							onChange={ () => setAttributes( { hideTeaser: !hideTeaser } ) }
 						/>
+						{ backgroundId &&
+							<ToggleControl
+								label={ __( 'Round photos' ) }
+								checked={ round }
+								onChange={ () => setAttributes( { round: !round } ) }
+							/>
+						}
 					</PanelBody>
 				</InspectorControls>
 			</aside>
@@ -237,12 +251,13 @@ registerBlockType( 'editorial/drawer', {
 				hed,
 				hideTeaser,
 				lede,
+				round,
 				themeColor,
 			},
 		} = props;
 
 		return (
-			<aside className={ getClasses( className, hideTeaser, themeColor ) }>
+			<aside className={ getClasses( className, hideTeaser, round, themeColor ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
