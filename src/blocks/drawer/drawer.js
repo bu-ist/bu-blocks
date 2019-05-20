@@ -25,6 +25,7 @@ const {
 const {
 	PanelBody,
 	Path,
+	RadioControl,
 	SVG,
 	ToggleControl,
 } = wp.components;
@@ -54,7 +55,7 @@ const publication = document.getElementById( 'bu_publication_owner' );
  * @param {boolean} hideTeaser Whether to display the teaser.
  * @param {string}  themeColor The assigned background color.
  */
-const getClasses = ( className, hideTeaser, round, themeColor ) => {
+const getClasses = ( className, hideTeaser, round, size, themeColor ) => {
 	return (
 		classnames(
 			'js-bu-block-drawer',
@@ -63,6 +64,7 @@ const getClasses = ( className, hideTeaser, round, themeColor ) => {
 				'is-style-round': round,
 				[ className ]: className,
 				[ `has-${themeColor}-background` ]: themeColor,
+				[ size ]: size && size !== '',
 			}
 		)
 	);
@@ -107,6 +109,10 @@ registerBlockType( 'editorial/drawer', {
 			type: 'boolean',
 			default: false,
 		},
+		size: {
+			type: 'string',
+			default: '',
+		},
 		themeColor: {
 			type: 'string',
 			default: '',
@@ -137,6 +143,7 @@ registerBlockType( 'editorial/drawer', {
 				hideTeaser,
 				lede,
 				round,
+				size,
 			},
 			className,
 			clientId,
@@ -152,7 +159,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 
 		return (
-			<aside className={ getClasses( className, hideTeaser, round, themeColor.slug ) }>
+			<aside className={ getClasses( className, hideTeaser, round, size, themeColor.slug ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
@@ -235,6 +242,33 @@ registerBlockType( 'editorial/drawer', {
 								onChange={ () => setAttributes( { round: !round } ) }
 							/>
 						}
+						<RadioControl
+							label={ __( 'Size' ) }
+							selected={ size }
+							options={ [
+								{
+									label: 'Default',
+									value: '',
+								},
+								{
+									label: 'Narrow',
+									value: 'is-size-narrow'
+								},
+								{
+									label: 'Small',
+									value: 'is-size-small',
+								},
+								{
+									label: 'Medium',
+									value: 'is-size-medium',
+								},
+								{
+									label: 'Wide',
+									value: 'is-size-wide',
+								},
+							] }
+							onChange={ option => setAttributes( { size: option } ) }
+						/>
 					</PanelBody>
 				</InspectorControls>
 			</aside>
@@ -252,12 +286,13 @@ registerBlockType( 'editorial/drawer', {
 				hideTeaser,
 				lede,
 				round,
+				size,
 				themeColor,
 			},
 		} = props;
 
 		return (
-			<aside className={ getClasses( className, hideTeaser, round, themeColor ) }>
+			<aside className={ getClasses( className, hideTeaser, round, size, themeColor ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
