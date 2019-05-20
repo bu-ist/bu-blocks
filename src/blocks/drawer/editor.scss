@@ -12,15 +12,18 @@
 	opacity: 1;
 }
 
-.wp-block-editorial-drawer-teaser {
-	float: none;
-}
+.wp-block-editorial-drawer {
+	.wp-block-editorial-drawer-teaser,
+	.wp-block-editorial-drawer-content {
+		float: none;
+	}
 
-.wp-block-editorial-drawer-open-wrapper {
-	display: inline-block;
-	margin-top: 1.2em;
+	.wp-block-editorial-drawer-open-wrapper {
+		display: inline-block;
+		margin-top: 1.2em;
 
-	p[role="textbox"]:not(:only-child) {
-		height: 28px;
+		p[role="textbox"]:not(:only-child) {
+			height: 28px;
+		}
 	}
 }

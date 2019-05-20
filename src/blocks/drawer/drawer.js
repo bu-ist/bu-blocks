@@ -107,6 +107,9 @@ registerBlockType( 'editorial/drawer', {
 		},
 		...BackgroundAttributes,
 	},
+	supports: {
+		align: [ 'left', 'right', 'full' ],
+	},
 	publicationClassName: ( publication.value ) ? `${publication.value}-block-editorial-drawer` : '',
 
 	// Add the `selected-drawer` data attribute when this block or its descendants are selected.
