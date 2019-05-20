@@ -12022,8 +12022,10 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 
 .wp-block-editorial-introparagraph.is-style-split .wp-block-editorial-introparagraph-content {
   -webkit-column-count: 2;
+     -moz-column-count: 2;
           column-count: 2;
   -webkit-column-gap: 2em;
+     -moz-column-gap: 2em;
           column-gap: 2em; }
 
 .wp-block-editorial-introparagraph.has-dropcap:not(:focus-within) .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,

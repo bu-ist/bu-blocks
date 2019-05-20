@@ -3880,6 +3880,8 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+.edit-post-visual-editor h2.wp-block-editorial-headline.is-style-emphasis-weight {
+  font-weight: 100; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
