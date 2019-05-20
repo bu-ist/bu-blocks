@@ -23,8 +23,10 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
+	PanelBody,
 	Path,
 	SVG,
+	ToggleControl,
 } = wp.components;
 const {
 	RichText,
@@ -47,14 +49,16 @@ const publication = document.getElementById( 'bu_publication_owner' );
 /**
  * Returns the class list for the block based on the current settings.
  *
- * @param {string} className Default classes assigned to the block.
- * @param {string} className The Assigned background color.
+ * @param {string}  className  Default classes assigned to the block.
+ * @param {boolean} hideTeaser Whether to display the teaser.
+ * @param {string}  themeColor The assigned background color.
  */
-const getClasses = ( className, themeColor ) => {
+const getClasses = ( className, hideTeaser, themeColor ) => {
 	return (
 		classnames(
 			'js-bu-block-drawer',
 			{
+				'has-hide-teaser': hideTeaser,
 				[ className ]: className,
 				[ `has-${themeColor}-background` ]: themeColor,
 			}
@@ -87,6 +91,10 @@ registerBlockType( 'editorial/drawer', {
 			source: 'html',
 			selector: 'h2'
 		},
+		hideTeaser: {
+			type: 'boolean',
+			default: false,
+		},
 		lede: {
 			type: 'string',
 			default: '',
@@ -117,6 +125,7 @@ registerBlockType( 'editorial/drawer', {
 				backgroundId,
 				button,
 				hed,
+				hideTeaser,
 				lede,
 			},
 			className,
@@ -133,7 +142,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 
 		return (
-			<aside className={ getClasses( className, themeColor.slug ) }>
+			<aside className={ getClasses( className, hideTeaser, themeColor.slug ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
@@ -200,6 +209,13 @@ registerBlockType( 'editorial/drawer', {
 							},
 						] }
 					/>
+					<PanelBody title={ __( 'Teaser Display' ) } >
+						<ToggleControl
+							label={ __( 'Hide Teaser' ) }
+							checked={ hideTeaser }
+							onChange={ () => setAttributes( { hideTeaser: !hideTeaser } ) }
+						/>
+					</PanelBody>
 				</InspectorControls>
 			</aside>
 		);
@@ -213,13 +229,14 @@ registerBlockType( 'editorial/drawer', {
 				button,
 				className,
 				hed,
+				hideTeaser,
 				lede,
 				themeColor,
 			},
 		} = props;
 
 		return (
-			<aside className={ getClasses( className, themeColor ) }>
+			<aside className={ getClasses( className, hideTeaser, themeColor ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
