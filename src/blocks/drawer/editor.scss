@@ -19,4 +19,8 @@
 .wp-block-editorial-drawer-open-wrapper {
 	display: inline-block;
 	margin-top: 1.2em;
+
+	p[role="textbox"]:not(:only-child) {
+		height: 28px;
+	}
 }

@@ -158,6 +158,7 @@ registerBlockType( 'editorial/drawer', {
 					}
 					<RichText
 						formattingControls={ [] }
+						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { hed: value } ) }
 						placeholder={ __( 'Enter heading…' ) }
 						tagName="h2"
@@ -165,6 +166,7 @@ registerBlockType( 'editorial/drawer', {
 					/>
 					<RichText
 						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { lede: value } ) }
 						placeholder={ __( 'Enter text…' ) }
 						tagName="p"
@@ -173,6 +175,7 @@ registerBlockType( 'editorial/drawer', {
 					<div className="wp-block-editorial-drawer-open-wrapper">
 						<RichText
 							formattingControls={ [] }
+							keepPlaceholderOnFocus={ true }
 							className="button js-bu-block-drawer-open"
 							onChange={ value => setAttributes( { button: value } ) }
 							placeholder={ __( 'Enter button label…' ) }
