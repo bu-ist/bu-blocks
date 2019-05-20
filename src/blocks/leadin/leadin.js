@@ -26,11 +26,12 @@ const {
 	Fragment
 } = wp.element;
 const {
-	CheckboxControl,
 	PanelBody,
 	Path,
+	RangeControl,
 	SelectControl,
 	SVG,
+	ToggleControl,
 } = wp.components;
 const {
 	InspectorControls,
@@ -69,13 +70,16 @@ const blockAttributes = {
 		default: '',
 	},
 	wide: {
-		type: 'boolean'
+		type: 'boolean',
+		default: false,
 	},
 	box: {
-		type: 'boolean'
+		type: 'boolean',
+		default: false,
 	},
 	flip: {
-		type: 'boolean'
+		type: 'boolean',
+		default: false,
 	},
 	className: {
 		type: 'string',
@@ -85,6 +89,14 @@ const blockAttributes = {
 	},
 	primaryTerm: {
 		type: 'string',
+	},
+	metabar: {
+		type: 'boolean',
+		default: true,
+	},
+	boxOpacity: {
+		type: 'number',
+		default: 100,
 	},
 	...BackgroundAttributes,
 };
@@ -143,6 +155,8 @@ registerBlockType( 'bu/leadin', {
 				box,
 				flip,
 				primaryTerm,
+				metabar,
+				boxOpacity,
 			},
 			themeColor,
 			setThemeColor,
@@ -168,6 +182,13 @@ registerBlockType( 'bu/leadin', {
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
 				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+			}
+		);
+
+		const boxClasses = classnames(
+			'container-words-inner',
+			{
+				[ `has-opacity-${boxOpacity}` ]: boxOpacity !== 100 && box && ( isStyleEmphasisOnText || isStyleTextOverImage ),
 			}
 		);
 
@@ -252,15 +273,15 @@ registerBlockType( 'bu/leadin', {
 
 			return (
 				<Fragment>
-					<CheckboxControl
+					<ToggleControl
 						label={ __( 'Flip Order' ) }
 						checked={ flip }
-						onChange={ ( flip ) => { setAttributes( { flip } ) } }
+						onChange={ () => setAttributes( { flip: !flip } ) }
 					/>
-					<CheckboxControl
+					<ToggleControl
 						label={ __( 'Wide Layout' ) }
 						checked={ wide }
-						onChange={ ( wide ) => { setAttributes( { wide } ) } }
+						onChange={ () => setAttributes( { wide: !wide } ) }
 					/>
 				</Fragment>
 			);
@@ -276,11 +297,21 @@ registerBlockType( 'bu/leadin', {
 				<PanelBody title={ __( 'Layout Options' ) }>
 					{ sideBySideLayoutControls() }
 					{ textPositioningControls() }
-					<CheckboxControl
+					<ToggleControl
 						label={ __( 'Boxed Text' ) }
 						checked={ box }
-						onChange={ ( box ) => { setAttributes( { box } ) } }
+						onChange={ () => setAttributes( { box: !box } ) }
 					/>
+					{ box && ( isStyleEmphasisOnText || isStyleTextOverImage ) &&
+						<RangeControl
+							label={ __( 'Box Opacity' ) }
+							value={ boxOpacity }
+							onChange={ value => setAttributes( { boxOpacity: value } ) }
+							min={ 10 }
+							max={ 100 }
+							step={ 10 }
+						/>
+					}
 				</PanelBody>
 			);
 		};
@@ -289,17 +320,17 @@ registerBlockType( 'bu/leadin', {
 		return (
 			<Fragment>
 				<div className={ classes }>
-					<div class="container-lockup">
-						<div class="wp-block-leadin-media">
+					<div className="container-lockup">
+						<div className="wp-block-leadin-media">
 							<Background
 								blockProps={ props }
 								controlPanelTitle={ __( 'Media' ) }
 							/>
 						</div>
-						<div class="container-words-outer">
-							<div class="container-words-inner">
+						<div className="container-words-outer">
+							<div className={ boxClasses }>
 								{ primaryTerm && (
-									<span class="wp-prepress-tag">{ primaryTerm }</span>
+									<span className="wp-prepress-tag">{ primaryTerm }</span>
 								) }
 								<RichText
 									tagName="h1"
@@ -336,7 +367,7 @@ registerBlockType( 'bu/leadin', {
 					) }
 				</div>
 
-				{ applyFilters( 'buBlocks.leadin.metaBar', '' ) }
+				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar ) }
 
 				<InspectorControls>
 					{ mediaPositioningControls() }
