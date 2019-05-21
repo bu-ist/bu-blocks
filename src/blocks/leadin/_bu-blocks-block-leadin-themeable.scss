@@ -424,4 +424,8 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 ////////////////////////////////////////////////////////////////////
+	
+	.wp-block-editorial-leadin-caption {
+		font-family: blocks-get( 'font-family-primary');
+	}
 }
