@@ -10,6 +10,14 @@
 //
 
 .wp-block-global-buniverse {
+	&.alignleft,
+	&.alignright {
+		width: 100%;
+
+		@include breakpoint( $sm ) {
+			width: 50%;
+		}
+	}
 }
 .wp-block-global-buniverse-wrapper {
 	position: relative;
