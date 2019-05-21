@@ -18672,6 +18672,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     padding-top: 56.25%;
     position: relative; }
   .wp-block-global-buniverse-wrapper iframe {
+    left: 0;
     top: 0;
     position: absolute;
     width: 100% !important;
