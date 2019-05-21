@@ -64,8 +64,31 @@ $scope: blocks-get( 'scope' );
 	h4 {
 		color: blocks-get( 'color-primary-text');
 	}
+
+	.container-words-inner {
+		z-index: 1;
+		&:before {
+			content: '';
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: -1;
+		}
+		&.has-opacity-10:before { opacity: .1; }
+		&.has-opacity-20:before { opacity: .2; }
+		&.has-opacity-30:before { opacity: .3; }
+		&.has-opacity-40:before { opacity: .4; }
+		&.has-opacity-50:before { opacity: .5; }
+		&.has-opacity-60:before { opacity: .6; }
+		&.has-opacity-70:before { opacity: .7; }
+		&.has-opacity-80:before { opacity: .8; }
+		&.has-opacity-90:before { opacity: .9; }
+	}
+
 	&.is-style-emphasis-on-text {
-		.container-words-inner {
+		.container-words-inner:before {
 			background-color: blocks-get( 'color-page');
 		}
 	}
@@ -84,7 +107,7 @@ $scope: blocks-get( 'scope' );
 	&.is-style-emphasis-on-text.has-box,
 	&.is-style-text-over-image.has-box {
 		@include breakpoint( $xs ) {
-			.container-words-inner {
+			.container-words-inner:before {
 				background-color: blocks-get( 'background-color-dark');
 			}
 			&:not(.has-text-normal) {
@@ -136,7 +159,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner {
+				.container-words-inner:before {
 					background-color: blocks-get( 'background-color-light');
 				}
 				h1,
@@ -185,7 +208,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner {
+				.container-words-inner:before {
 					background-color: blocks-get( 'background-color-dark');
 				}
 				h1,
@@ -233,7 +256,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner {
+				.container-words-inner:before {
 					background-color: blocks-get( 'color-primary');
 				}
 				h1,
@@ -280,7 +303,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner {
+				.container-words-inner:before {
 					background-color: blocks-get( 'color-secondary');
 				}
 				h1,
@@ -325,7 +348,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner {
+				.container-words-inner:before {
 					background-color: blocks-get( 'color-tertiary');
 				}
 				h1,
@@ -370,7 +393,7 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner {
+				.container-words-inner:before {
 					background-color: blocks-get( 'color-quaternary');
 				}
 				h1,
@@ -401,4 +424,8 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 ////////////////////////////////////////////////////////////////////
+	
+	.wp-block-editorial-leadin-caption {
+		font-family: blocks-get( 'font-family-primary');
+	}
 }

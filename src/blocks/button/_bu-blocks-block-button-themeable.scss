@@ -198,6 +198,33 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 	}
+
+	.wp-block-button.has-quinary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-quinary' );
+
+			&:hover {
+				background: blocks-get( 'color-quinary-darker' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-quinary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-quinary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-quinary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quinary-darker' );
+			}
+		}
+	}
 }
 
 .is-style-outline,
