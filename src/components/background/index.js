@@ -278,8 +278,9 @@ function Background( props ) {
 	const classes = classnames(
 		className,
 		{
-			[ 'has-background-opacity' ]: backgroundOpacity !== 100,
+			'has-background-opacity': backgroundOpacity !== 100,
 			[ BackgroundOpacityToClass( backgroundOpacity ) ]: BackgroundOpacityToClass( backgroundOpacity ),
+			[ `wp-image-${backgroundId}` ]: backgroundId && 'image' === backgroundType,
 		}
 	);
 

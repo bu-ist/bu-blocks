@@ -15,22 +15,15 @@ add_action( 'bu_blocks_background', __NAMESPACE__ . '\\display_background' );
  * @param array $attributes The block attributes.
  */
 function display_background( $attributes ) {
+	$id      = $attributes['backgroundId'];
 	$url     = $attributes['backgroundUrl'];
 	$type    = $attributes['backgroundType'];
 	$opacity = $attributes['backgroundOpacity'];
 	$classes = ( 100 !== $opacity ) ? "has-background-opacity has-background-opacity-$opacity" : '';
 
 	// Build out an image for the background.
-	if ( 'image' === $type ) :
-		?>
-			<img
-				src="<?php echo esc_url( $url ); ?>"
-				alt="<?php echo esc_attr( $attributes['backgroundAlt'] ); ?>"
-				<?php if ( $classes ) : ?>
-					class="<?php echo esc_attr( $classes ); ?>"
-				<?php endif; ?>
-			/>
-		<?php
+	if ( 'image' === $type && $id ) :
+		echo wp_get_attachment_image( $id, 'full', false, array( 'class' => $classes ) );
 	endif;
 
 	// Build out a video for the background.
