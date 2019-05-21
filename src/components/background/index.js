@@ -369,8 +369,10 @@ function Background( props ) {
 			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
 			{ ( 'url' === backgroundType ) && (
 				<div className="wp-block-background-video">
-					<div className="wp-block-background-video-iframe">
-						{ backgroundIframe() }
+					<div className="wp-block-background-video-ratio">
+						<div className="wp-block-background-video-iframe">
+							{ backgroundIframe() }
+						</div>
 					</div>
 				</div>
 			) }
