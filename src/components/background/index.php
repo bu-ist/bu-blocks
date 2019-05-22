@@ -5,7 +5,7 @@
  * @package BU_Blocks
  */
 
-namespace BU\Plugins\BU_Blocks\Components\ArticleShare;
+namespace BU\Plugins\BU_Blocks\Components\Background;
 
 add_action( 'bu_blocks_background', __NAMESPACE__ . '\\display_background' );
 
