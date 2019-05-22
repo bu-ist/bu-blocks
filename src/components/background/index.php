@@ -7,23 +7,25 @@
 
 namespace BU\Plugins\BU_Blocks\Components\Background;
 
-add_action( 'bu_blocks_background', __NAMESPACE__ . '\\display_background' );
+add_action( 'bu_blocks_background', __NAMESPACE__ . '\\display_background', 10, 2 );
 
 /**
  * Display the background component based on the provided attributes.
  *
  * @param array $attributes The block attributes.
+ * @param array $image_size Image size as determined by the block.
  */
-function display_background( $attributes ) {
+function display_background( $attributes, $image_size = false ) {
 	$id      = $attributes['backgroundId'];
 	$url     = $attributes['backgroundUrl'];
 	$type    = $attributes['backgroundType'];
 	$opacity = $attributes['backgroundOpacity'];
 	$classes = ( 100 !== $opacity ) ? "has-background-opacity has-background-opacity-$opacity" : '';
+	$size    = ( $image_size ) ? $image_size : 'full';
 
 	// Build out an image for the background.
 	if ( 'image' === $type && $id ) :
-		echo wp_get_attachment_image( $id, 'full', false, array( 'class' => $classes ) );
+		echo wp_get_attachment_image( $id, $size, false, array( 'class' => $classes ) );
 	endif;
 
 	// Build out a video for the background.
