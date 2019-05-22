@@ -51,12 +51,13 @@ const publication = document.getElementById( 'bu_publication_owner' );
 /**
  * Returns the class list for the block based on the current settings.
  *
+ * @param {number}  background Whether the block has background media assigned.
  * @param {string}  className  Default classes assigned to the block.
  * @param {boolean} round      Whether to display round images.
  * @param {boolean} hideTeaser Whether to display the teaser.
  * @param {string}  themeColor The assigned background color.
  */
-const getClasses = ( className, hideTeaser, round, size, themeColor ) => {
+const getClasses = ( background, className, hideTeaser, round, size, themeColor ) => {
 	return (
 		classnames(
 			'js-bu-block-drawer',
@@ -66,6 +67,7 @@ const getClasses = ( className, hideTeaser, round, size, themeColor ) => {
 				[ className ]: className,
 				[ `has-${themeColor}-background` ]: themeColor,
 				[ size ]: size && size !== '',
+				'has-image': background,
 			}
 		)
 	);
@@ -160,7 +162,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 
 		return (
-			<aside className={ getClasses( className, hideTeaser, round, size, themeColor.slug ) }>
+			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
@@ -289,7 +291,7 @@ registerBlockType( 'editorial/drawer', {
 		} = props;
 
 		return (
-			<aside className={ getClasses( className, hideTeaser, round, size, themeColor ) }>
+			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor ) }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
