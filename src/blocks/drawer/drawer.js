@@ -67,7 +67,7 @@ const getClasses = ( background, className, hideTeaser, round, size, themeColor 
 				[ className ]: className,
 				[ `has-${themeColor}-background` ]: themeColor,
 				[ size ]: size && size !== '',
-				'has-image': background,
+				'has-media': background,
 			}
 		)
 	);
