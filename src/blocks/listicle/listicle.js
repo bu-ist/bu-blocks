@@ -164,7 +164,7 @@ registerBlockType( 'editorial/listicle', {
 				{
 					'has-number': number,
 					'has-sidebar': hasAsideContent,
-					'has-image': BackgroundId,
+					'has-media': BackgroundId,
 				}
 			);
 
@@ -301,7 +301,7 @@ registerBlockType( 'editorial/listicle', {
 			{
 				'has-number': ! RichText.isEmpty( number ),
 				'has-sidebar': ! RichText.isEmpty( aside ),
-				'has-image': BackgroundId,
+				'has-media': BackgroundId,
 			}
 		);
 
