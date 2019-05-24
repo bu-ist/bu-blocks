@@ -192,19 +192,6 @@ registerBlockType( 'bu/leadin', {
 			}
 		);
 
-		const primaryTermInput = document.getElementById( '_bu_prepress_primary_term_select' );
-
-		// Check that the primary term input exists, as the feature may not be supported.
-		if ( primaryTermInput ) {
-			if ( primaryTermInput.value ) {
-				setAttributes( { primaryTerm: primaryTermInput.value } );
-			}
-
-			primaryTermInput.addEventListener( "change", function() {
-				setAttributes( { primaryTerm: primaryTermInput.value } );
-			} );
-		}
-
 		// Return the background media positioning controls if a background is set.
 		const mediaPositioningControls = () => {
 			if ( ! backgroundId ) {
@@ -329,9 +316,7 @@ registerBlockType( 'bu/leadin', {
 						</div>
 						<div className="container-words-outer">
 							<div className={ boxClasses }>
-								{ primaryTerm && (
-									<span className="wp-prepress-tag">{ primaryTerm }</span>
-								) }
+								{ applyFilters( 'buPrepress.PrimaryTerm', '', props ) }
 								<RichText
 									tagName="h1"
 									className="head"
