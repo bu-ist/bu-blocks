@@ -7,6 +7,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
+import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -26,8 +27,6 @@ class BUAsideEdit extends Component {
 			setThemeColor,
 			presetTemplate,
 		} = this.props;
-
-		const allowedBlocks = [ 'core/image', 'core/heading', 'core/paragraph', 'core/button' ];
 
 		const classes = classnames(
 			className,
@@ -52,7 +51,7 @@ class BUAsideEdit extends Component {
 				</InspectorControls>
 				<aside className={ classes }>
 					<InnerBlocks
-						allowedBlocks={ allowedBlocks }
+						allowedBlocks={ allowedBlocks() }
 						template={ presetTemplate }
 					/>
 				</aside>

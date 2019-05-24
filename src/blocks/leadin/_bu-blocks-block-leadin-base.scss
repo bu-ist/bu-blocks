@@ -170,7 +170,6 @@
 		}
 
 		&::after {
-			content: '';
 			display: block;
 			padding-top: 3 / 4 * 100%;
 		}
@@ -206,6 +205,8 @@
 	&.is-style-side-by-side {
 		.wp-block-leadin-media {
 			&::after {
+				content: '';
+
 				@include breakpoint( $xs ) {
 					display: none;
 				}

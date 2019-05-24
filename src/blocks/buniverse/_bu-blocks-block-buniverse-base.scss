@@ -10,6 +10,14 @@
 //
 
 .wp-block-global-buniverse {
+	&.alignleft,
+	&.alignright {
+		width: 100%;
+
+		@include breakpoint( $sm ) {
+			width: 50%;
+		}
+	}
 }
 .wp-block-global-buniverse-wrapper {
 	position: relative;
@@ -21,6 +29,7 @@
 		position: relative;
 	}
 	iframe {
+		left: 0;
 		top: 0;
 		position: absolute;
 		width: 100% !important;
