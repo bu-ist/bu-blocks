@@ -86,6 +86,21 @@ $scope: blocks-get( 'scope' );
 		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'background-color-light' );
 		}
+
+		.wp-block-editorial-modal-callout-content {
+			h1,
+			.button {
+				color: blocks-get( 'color-gray-a' );
+			}
+
+			p {
+				color: blocks-get( 'color-gray-b' );
+			}
+
+			.button {
+				border-color: blocks-get( 'color-gray-a' );
+			}
+		}
 	}
 
 	&.has-primary-theme {
@@ -113,6 +128,13 @@ $scope: blocks-get( 'scope' );
 		.wp-block-editorial-modal-content,
 		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'color-quaternary' );
+		}
+	}
+
+	&.has-quinary-theme {
+		.wp-block-editorial-modal-content,
+		.wp-block-editorial-modal-callout {
+			background: blocks-get( 'color-quinary' );
 		}
 	}
 }

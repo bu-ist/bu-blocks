@@ -84,15 +84,17 @@ function display_background( $attributes ) {
 
 		?>
 		<div class="wp-block-background-video">
-			<div class="wp-block-background-video-iframe">
-				<iframe
-					src="<?php echo esc_url( $src ); ?>"
-					frameborder="0"
-					allow="autoplay; fullscreen"
-					<?php if ( $classes ) : ?>
-						class="<?php echo esc_attr( $classes ); ?>"
-					<?php endif; ?>
-				></iframe>
+			<div class="wp-block-background-video-ratio">
+				<div class="wp-block-background-video-iframe">
+					<iframe
+						src="<?php echo esc_url( $src ); ?>"
+						frameborder="0"
+						allow="autoplay; fullscreen"
+						<?php if ( $classes ) : ?>
+							class="<?php echo esc_attr( $classes ); ?>"
+						<?php endif; ?>
+					></iframe>
+				</div>
 			</div>
 		</div>
 		<?php

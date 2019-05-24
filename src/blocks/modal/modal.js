@@ -33,6 +33,9 @@ registerBlockType( 'editorial/modal', {
 	description: __( 'A block with a callout for opening a modal with supplemental or complementary information.' ),
 	icon: 'admin-page',
 	category: 'bu-editorial',
+	supports: {
+		align: true,
+	},
 	attributes: {
 		clientId: {
 			type: 'number',
