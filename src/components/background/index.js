@@ -67,6 +67,7 @@ function Background( props ) {
 		blockProps,
 		className = 'bu-blocks-background',
 		controlPanelTitle = __( 'Background Settings' ),
+		imageSize = 'full',
 		inlinePlaceholder = false,
 		options = [ 'opacity' ],
 		placeholderText = __( 'Background Media' ),
@@ -125,10 +126,17 @@ function Background( props ) {
 			mediaType = media.type;
 		}
 
+		let url = media.url;
+
+		// Assign the block-designated size if it exists.
+		if ( mediaType === 'image' && imageSize !== 'full' ) {
+			url = ( media.sizes[ imageSize ] ) ? media.sizes[ imageSize ].url : media.url;
+		}
+
 		setAttributes( {
 			backgroundId: media.id,
 			backgroundType: mediaType,
-			backgroundUrl: media.url,
+			backgroundUrl: url,
 			backgroundAlt: media.alt,
 			backgroundCaption: media.caption,
 		} );
@@ -278,8 +286,9 @@ function Background( props ) {
 	const classes = classnames(
 		className,
 		{
-			[ 'has-background-opacity' ]: backgroundOpacity !== 100,
+			'has-background-opacity': backgroundOpacity !== 100,
 			[ BackgroundOpacityToClass( backgroundOpacity ) ]: BackgroundOpacityToClass( backgroundOpacity ),
+			[ `wp-image-${backgroundId}` ]: backgroundId && 'image' === backgroundType,
 		}
 	);
 

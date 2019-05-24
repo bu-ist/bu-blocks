@@ -152,6 +152,7 @@ registerBlockType( 'editorial/listicle', {
 				number,
 				related,
 				credit,
+				BackgroundId,
 			} = attributes;
 
 			// Check if the block has aside content (extra condition due to use of multiline).
@@ -163,6 +164,7 @@ registerBlockType( 'editorial/listicle', {
 				{
 					'has-number': number,
 					'has-sidebar': hasAsideContent,
+					'has-media': BackgroundId,
 				}
 			);
 
@@ -291,6 +293,7 @@ registerBlockType( 'editorial/listicle', {
 			number,
 			related,
 			credit,
+			BackgroundId,
 		} = attributes;
 
 		// Build out the additional classes to apply to the block.
@@ -298,6 +301,7 @@ registerBlockType( 'editorial/listicle', {
 			{
 				'has-number': ! RichText.isEmpty( number ),
 				'has-sidebar': ! RichText.isEmpty( aside ),
+				'has-media': BackgroundId,
 			}
 		);
 
