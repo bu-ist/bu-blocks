@@ -165,7 +165,7 @@ registerBlockType( 'editorial/photoessay', {
 		const { layout } = attributes;
 
 		return(
-			<div className="wp-block-photoessay">
+			<div className="wp-block-photoessay js-block-editorial-photoessay">
 				<div className={ layout }>
 					<InnerBlocks.Content />
 				</div>
