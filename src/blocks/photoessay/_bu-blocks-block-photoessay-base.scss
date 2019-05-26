@@ -36,6 +36,10 @@ $photo-padding-xl: $padding/2 !default;
 	}
 	figure {
 		height: 100%;
+
+		figcaption {
+			display: none;
+		}
 	}
 	img,
 	video {
@@ -269,6 +273,152 @@ $photo-padding-xl: $padding/2 !default;
 					width: calc( 29.55% + #{$photo-padding-xl});
 				}
 			}
+		}
+	}
+}
+
+
+
+
+// Interaction styles.
+
+.wp-block-editorial-photoessay {
+	&.is-ready {
+		figure {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+
+.wp-block-editorial-photoessay-overlay {
+	@include transition( background 250ms ease-in-out 250ms, left 0ms ease-in-out 750ms );
+
+	position: fixed;
+	top: 0;
+	left: -100%;
+	background: transparent;
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+
+	.show-photo-essay-overlay & {
+		@include transition( background 400ms ease-in-out 400ms );
+		left: 0;
+		background: $color-grayscale-2;
+
+		img {
+			@include transition( opacity 250ms ease-in-out 0ms, transform 250ms ease-in-out 0ms );
+			@include transform( scale(1) );
+			opacity: 1.0;
+		}
+
+		figcaption {
+			@include transition( opacity 250ms ease-in-out 250ms );
+			opacity: 1.0;
+		}
+	}
+	.admin-bar.show-photo-essay-overlay & {
+		top: 32px;
+		height: calc( 100% - 32px );
+	}
+	.wp-block-editorial-photoessay-container {
+		height: calc( 100% - 122px );
+	}
+	.wp-block-editorial-photoessay-photocontainer {
+		height: 100%;
+		width: auto;
+		text-align: center;
+		@include breakpoint($sm) {
+			//padding: 122px 0;
+		}
+
+	}
+
+	figure {
+		display: block;
+		width: auto;
+		height: 100%;
+		margin: 0;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+
+		span {
+			display: block;
+			height: 100%;
+		}
+		img {
+			@include transition( opacity 250ms ease-in-out 250ms, transform 250ms ease-in-out 0ms );
+			@include transform( scale(0.1) );
+			@include box-shadow( 0 0 15px 0 rgba(0, 0, 0, 0.25) );
+			border: 1px solid rgba(255,255,255, 0.10);
+			flex: 0 1 auto;
+			height: 100%;
+			margin: 0 auto;
+			margin: 0;
+			max-height: 100%;
+			max-width: 100%;
+			min-height: 0;
+			opacity: 0;
+			width: auto;
+		}
+	}
+	figcaption {
+		@include transition( opacity 250ms ease-in-out 250ms );
+		opacity: 0;
+		max-width: 900px;
+		flex: 1 0 auto;
+		margin: 0 auto;
+		padding: 1em;
+		color: $color-grayscale-f;
+		p {
+			color: $color-grayscale-f;
+			margin-bottom: 0;
+			font-size: 0.8em;
+		}
+	}
+}
+
+.wp-block-editorial-photoessay-overlay-nav {
+	text-align: center;
+	padding: $margin/2 0;
+
+	@include breakpoint( $sm ) {
+		height: 121px;
+		padding: $margin 0;
+	}
+
+	.wp-block-editorial-photoessay-overlay-close {
+		@extend %icon-close;
+		margin: 0 $margin / 2;
+		&:before {
+			font-size: 2em;
+		}
+	}
+	.wp-block-editorial-photoessay-overlay-prev {
+		@extend %icon-navigateleft;
+	}
+	.wp-block-editorial-photoessay-overlay-next {
+		@extend %icon-navigateright;
+	}
+
+	button {
+		@include box-shadow( none );
+		color: $color-grayscale-f;
+		background: none;
+		margin: 0;
+		&:hover {
+			@include box-shadow( none );
+		}
+		&:active {
+			@include box-shadow( none );
+		}
+
+		&:before {
+			margin-right: 0;
 		}
 	}
 }
