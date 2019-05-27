@@ -245,7 +245,7 @@ bu_blocks.photoessay = (function() {
 	*/
 	var overlayToggle = function() {
 
-		if( $body.classList.contains( 'show-photo-essay-overlay' ) ) {
+		if( $html.classList.contains( 'show-photo-essay-overlay' ) ) {
 			// Closing: Remove event listener.
 			document.removeEventListener( 'scroll', scrollEvent );
 		} else {
@@ -359,8 +359,7 @@ bu_blocks.photoessay = (function() {
 					'<div class="wp-block-editorial-photoessay-photocontainer">',
 					'</div>',
 				'</div>',
-
-			'</div>'
+			'</div>',
 		].join("\n");
 
 		return html;
