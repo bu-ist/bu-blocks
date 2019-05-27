@@ -559,7 +559,7 @@ const bu_blocks = {};
 	*/
 	var overlayToggle = function() {
 
-		if( $body.classList.contains( 'show-photo-essay-overlay' ) ) {
+		if( $html.classList.contains( 'show-photo-essay-overlay' ) ) {
 			// Closing: Remove event listener.
 			document.removeEventListener( 'scroll', scrollEvent );
 		} else {
@@ -604,6 +604,9 @@ const bu_blocks = {};
 	* HTML tag.
 	*/
 	var overlayClass = function() {
+		if ( overlayActiveGroup.length > 1 ) {
+			$html.classList.toggle( 'photo-essay-overlay-has-multiple' );
+		}
 		$html.classList.toggle( 'show-photo-essay-overlay' );
 	};
 
@@ -639,6 +642,9 @@ const bu_blocks = {};
 
 		// Append to overlay container.
 		photoEssayOverlay.photoContainer.appendChild( newFigure );
+
+		//Wrap the img tag in a span for better styling.
+		wrapElement( photoEssayOverlay.photoContainer.querySelector( 'img' ), document.createElement( 'span' ) );
 	};
 
 
@@ -654,6 +660,18 @@ const bu_blocks = {};
 
 		return $body.appendChild( element );
 	};
+
+	/*
+	* Wrap an element in  some html:
+	*
+	* example: wrapElement(document.querySelector('a.wrap_me'), document.createElement('div'));
+	*
+	*/
+	var wrapElement = function( el, wrapper ) {
+		el.parentNode.insertBefore( wrapper, el );
+		wrapper.appendChild( el );
+	}
+
 
 	/*
 	* Generate the template for the
@@ -673,8 +691,7 @@ const bu_blocks = {};
 					'<div class="wp-block-editorial-photoessay-photocontainer">',
 					'</div>',
 				'</div>',
-
-			'</div>'
+			'</div>',
 		].join("\n");
 
 		return html;
