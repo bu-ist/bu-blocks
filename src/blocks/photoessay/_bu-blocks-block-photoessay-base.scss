@@ -332,7 +332,7 @@ $photo-padding-xl: $padding/2 !default;
 		width: auto;
 		text-align: center;
 		@include breakpoint($sm) {
-			//padding: 122px 0;
+
 		}
 
 	}
@@ -349,6 +349,8 @@ $photo-padding-xl: $padding/2 !default;
 		span {
 			display: block;
 			height: 100%;
+			flex: 0 1 auto;
+    		position: relative;
 		}
 		img {
 			@include transition( opacity 250ms ease-in-out 250ms, transform 250ms ease-in-out 0ms );
@@ -364,6 +366,13 @@ $photo-padding-xl: $padding/2 !default;
 			min-height: 0;
 			opacity: 0;
 			width: auto;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
 		}
 	}
 	figcaption {
@@ -400,9 +409,19 @@ $photo-padding-xl: $padding/2 !default;
 	}
 	.wp-block-editorial-photoessay-overlay-prev {
 		@extend %icon-navigateleft;
+		display: none;
+
+		.photo-essay-overlay-has-multiple & {
+			display: inline;
+		}
 	}
 	.wp-block-editorial-photoessay-overlay-next {
 		@extend %icon-navigateright;
+		display: none;
+
+		.photo-essay-overlay-has-multiple & {
+			display: inline;
+		}
 	}
 
 	button {

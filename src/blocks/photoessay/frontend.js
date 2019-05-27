@@ -290,6 +290,9 @@ bu_blocks.photoessay = (function() {
 	* HTML tag.
 	*/
 	var overlayClass = function() {
+		if ( overlayActiveGroup.length > 1 ) {
+			$html.classList.toggle( 'photo-essay-overlay-has-multiple' );
+		}
 		$html.classList.toggle( 'show-photo-essay-overlay' );
 	};
 
@@ -325,6 +328,9 @@ bu_blocks.photoessay = (function() {
 
 		// Append to overlay container.
 		photoEssayOverlay.photoContainer.appendChild( newFigure );
+
+		//Wrap the img tag in a span for better styling.
+		wrapElement( photoEssayOverlay.photoContainer.querySelector( 'img' ), document.createElement( 'span' ) );
 	};
 
 
@@ -340,6 +346,18 @@ bu_blocks.photoessay = (function() {
 
 		return $body.appendChild( element );
 	};
+
+	/*
+	* Wrap an element in  some html:
+	*
+	* example: wrapElement(document.querySelector('a.wrap_me'), document.createElement('div'));
+	*
+	*/
+	var wrapElement = function( el, wrapper ) {
+		el.parentNode.insertBefore( wrapper, el );
+		wrapper.appendChild( el );
+	}
+
 
 	/*
 	* Generate the template for the
