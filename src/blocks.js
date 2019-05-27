@@ -26,3 +26,6 @@ import './blocks/relatedstories/relatedstories.js';
 import './blocks/listicle/listicle.js';
 import './blocks/clicktotweet/clicktotweet.js';
 import './blocks/custom-html/custom-html.js';
+
+// Add the 'Caption' style to the core paragraph block.
+import './components/paragraph-caption-style/paragraph-caption-style.js';

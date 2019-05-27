@@ -7905,6 +7905,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     font-size: 17px; }
   .wp-block-editorial-drawer-teaser h2 {
     font-size: 1.4em; }
+  .wp-block-editorial-drawer-teaser .js-bu-block-drawer-open {
+    margin-right: 0; }
 
 .wp-block-editorial-drawer-content {
   -webkit-transition: all 0.5s ease-in-out;
@@ -14213,7 +14215,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       right: 0;
       top: 0; }
     .wp-block-editorial-leadin .wp-block-leadin-media::after {
-      content: '';
       display: block;
       padding-top: 75%; }
     .wp-block-editorial-leadin .wp-block-leadin-media img {
@@ -14232,9 +14233,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     height: 100%;
     position: absolute;
     width: 100%; }
-  @media (min-width: 500px) {
-    .wp-block-editorial-leadin.is-style-text-to-image .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-image-to-text .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-emphasis-on-text .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-text-over-image .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-side-by-side .wp-block-leadin-media::after {
-      display: none; } }
+  .wp-block-editorial-leadin.is-style-text-to-image .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-image-to-text .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-emphasis-on-text .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-text-over-image .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-side-by-side .wp-block-leadin-media::after {
+    content: ''; }
+    @media (min-width: 500px) {
+      .wp-block-editorial-leadin.is-style-text-to-image .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-image-to-text .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-emphasis-on-text .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-text-over-image .wp-block-leadin-media::after, .wp-block-editorial-leadin.is-style-side-by-side .wp-block-leadin-media::after {
+        display: none; } }
   .wp-block-editorial-leadin.is-style-text-to-image .container-lockup {
     display: -ms-flexbox;
     display: flex;
