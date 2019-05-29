@@ -60,6 +60,7 @@ $scope: blocks-get( 'scope' );
 	h2 {
 		color: blocks-get( 'font-color-heading');
 	}
+
 	h3,
 	h4 {
 		color: blocks-get( 'color-primary-text');
@@ -67,6 +68,7 @@ $scope: blocks-get( 'scope' );
 
 	.container-words-inner {
 		z-index: 1;
+
 		&:before {
 			content: '';
 			height: 100%;
@@ -76,23 +78,73 @@ $scope: blocks-get( 'scope' );
 			width: 100%;
 			z-index: -1;
 		}
-		&.has-opacity-10:before { opacity: .1; }
-		&.has-opacity-20:before { opacity: .2; }
-		&.has-opacity-30:before { opacity: .3; }
-		&.has-opacity-40:before { opacity: .4; }
-		&.has-opacity-50:before { opacity: .5; }
-		&.has-opacity-60:before { opacity: .6; }
-		&.has-opacity-70:before { opacity: .7; }
-		&.has-opacity-80:before { opacity: .8; }
-		&.has-opacity-90:before { opacity: .9; }
+
+		&.has-opacity-10:before { 
+			opacity: .1;
+		}
+
+		&.has-opacity-20:before { 
+			opacity: .2;
+		}
+
+		&.has-opacity-30:before { 
+			opacity: .3;
+		}
+
+		&.has-opacity-40:before { 
+			opacity: .4;
+		}
+
+		&.has-opacity-50:before { 
+			opacity: .5;
+		}
+
+		&.has-opacity-60:before { 
+			opacity: .6;
+		}
+
+		&.has-opacity-70:before { 
+			opacity: .7;
+		}
+
+		&.has-opacity-80:before { 
+			opacity: .8;
+		}
+
+		&.has-opacity-90:before { 
+			opacity: .9;
+		}
+	}
+
+	.wp-block-editorial-leadin-caption {
+		color: blocks-get( 'font-color-aside');
 	}
 
 	&.is-style-emphasis-on-text {
 		.container-words-inner:before {
 			background-color: blocks-get( 'color-page');
 		}
+
+		.wp-block-editorial-leadin-caption {
+			@include breakpoint( $xs ) {
+				color: blocks-get( 'font-color-theme-dark');
+			}
+		}
 	}
+
+	&.is-style-image-to-text {
+		.wp-block-editorial-leadin-caption {
+			color: blocks-get( 'font-color-theme-dark');
+		}
+	}
+
 	&.is-style-text-over-image {
+		.wp-block-editorial-leadin-caption {
+			@include breakpoint( $xs ) {
+				color: blocks-get( 'font-color-theme-dark');
+			}
+		}
+
 		&:not(.has-text-normal) {
 			@include breakpoint( $xs ) {
 				h1,
@@ -104,12 +156,14 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 	}
+
 	&.is-style-emphasis-on-text.has-box,
 	&.is-style-text-over-image.has-box {
 		@include breakpoint( $xs ) {
 			.container-words-inner:before {
 				background-color: blocks-get( 'background-color-dark');
 			}
+
 			&:not(.has-text-normal) {
 				h1,
 				h2,
@@ -120,12 +174,14 @@ $scope: blocks-get( 'scope' );
 			}
 		}
 	}
+
 	&.is-style-side-by-side {
 		&.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-outer {
 					background-color: blocks-get( 'background-color-dark');
 				}
+
 				&:not(.has-text-normal) {
 					h1,
 					h2,
@@ -140,6 +196,7 @@ $scope: blocks-get( 'scope' );
 	.wp-block-leadin-media {
 		background-color: blocks-get( 'background-color-dark');
 	}
+
 // THEME COLORS /////////////////////////////////////////////////
 
 // LIGHT /////////////////
@@ -150,22 +207,26 @@ $scope: blocks-get( 'scope' );
 				h2 {
 					color: blocks-get( 'font-color-heading');
 				}
+
 				h3,
 				h4 {
 					color: blocks-get( 'color-primary-text');
 				}
 			}
 		}
+
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-inner:before {
 					background-color: blocks-get( 'background-color-light');
 				}
+
 				h1,
 				h2 {
 					color: blocks-get( 'font-color-heading');
 				}
+
 				h3,
 				h4 {
 					color: blocks-get( 'color-primary-text');
@@ -178,10 +239,12 @@ $scope: blocks-get( 'scope' );
 					.container-words-outer {
 						background-color: blocks-get( 'background-color-light');
 					}
+
 					h1,
 					h2 {
 						color: blocks-get( 'font-color-heading');
 					}
+
 					h3,
 					h4 {
 						color: blocks-get( 'color-primary-text');
@@ -211,6 +274,7 @@ $scope: blocks-get( 'scope' );
 				.container-words-inner:before {
 					background-color: blocks-get( 'background-color-dark');
 				}
+
 				h1,
 				h2,
 				h3,
@@ -226,6 +290,7 @@ $scope: blocks-get( 'scope' );
 					.container-words-outer {
 						background-color: blocks-get( 'background-color-dark');
 					}
+
 					h1,
 					h2,
 					h3,
@@ -259,6 +324,7 @@ $scope: blocks-get( 'scope' );
 				.container-words-inner:before {
 					background-color: blocks-get( 'color-primary');
 				}
+
 				h1,
 				h2,
 				h3,
@@ -274,6 +340,7 @@ $scope: blocks-get( 'scope' );
 					.container-words-outer {
 						background-color: blocks-get( 'color-primary');
 					}
+
 					h1,
 					h2,
 					h3,
@@ -300,12 +367,14 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-inner:before {
 					background-color: blocks-get( 'color-secondary');
 				}
+
 				h1,
 				h2,
 				h3,
@@ -314,12 +383,14 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
 					.container-words-outer {
 						background-color: blocks-get( 'color-secondary');
 					}
+
 					h1,
 					h2,
 					h3,
@@ -329,6 +400,7 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		.wp-block-leadin-media {
 			background-color: blocks-get( 'color-secondary');
 		}
@@ -345,12 +417,14 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-inner:before {
 					background-color: blocks-get( 'color-tertiary');
 				}
+
 				h1,
 				h2,
 				h3,
@@ -359,12 +433,14 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
 					.container-words-outer {
 						background-color: blocks-get( 'color-tertiary');
 					}
+
 					h1,
 					h2,
 					h3,
@@ -374,6 +450,7 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		.wp-block-leadin-media {
 			background-color: blocks-get( 'color-tertiary');
 		}
@@ -390,12 +467,14 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
 				.container-words-inner:before {
 					background-color: blocks-get( 'color-quaternary');
 				}
+
 				h1,
 				h2,
 				h3,
@@ -404,12 +483,14 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		&.is-style-side-by-side {
 			&.has-box {
 				@include breakpoint( $xs ) {
 					.container-words-outer {
 						background-color: blocks-get( 'color-quaternary');
 					}
+
 					h1,
 					h2,
 					h3,
@@ -419,6 +500,7 @@ $scope: blocks-get( 'scope' );
 				}
 			}
 		}
+
 		.wp-block-leadin-media {
 			background-color: blocks-get( 'color-quaternary');
 		}

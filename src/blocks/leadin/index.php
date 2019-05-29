@@ -83,7 +83,7 @@ function render_block( $attributes ) {
 	$style_side_by_side		= strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
 	$style_text_to_image	= strpos( $attributes['className'], 'is-style-text-to-image' ) !== false;
 	$style_image_to_text	= strpos( $attributes['className'], 'is-style-image-to-text' ) !== false;
-	$style_default			= !($style_image_to_text && $style_text_to_image && $style_side_by_side && $style_text_over_image && $style_emphasize_text);
+	$style_default			= !$style_image_to_text && !$style_text_to_image && !$style_side_by_side && !$style_text_over_image && !$style_emphasize_text;
 
 	// Retrieve the classes to attach to the block.
 	$classes = get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side );
@@ -105,12 +105,21 @@ function render_block( $attributes ) {
 			<div class="wp-block-leadin-media">
 				<?php do_action( 'bu_blocks_background', $attributes ); ?>
 
-				<?php if ( $attributes['caption'] && ( $style_image_to_text || $style_emphasize_text || $style_default ) ) : ?>
+				<?php if ( $attributes['caption'] && ( $style_image_to_text ) ) : ?>
 					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 				<?php endif; ?>
 			</div>
 
+			<?php if ( $attributes['caption'] && ( $style_default ) ) : ?>
+				<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
+			<?php endif; ?>
+
 			<div class="container-words-outer">
+
+				<?php if ( $attributes['caption'] && $style_emphasize_text ) : ?>
+					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
+				<?php endif; ?>
+
 				<div class="<?php echo esc_attr( $box_classes ); ?>">
 
 					<?php if ( $primary_term ) : ?>
