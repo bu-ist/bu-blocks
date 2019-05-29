@@ -59,6 +59,9 @@ const getClasses = ( className, backgroundId, imageFocus ) => {
 	);
 }
 
+// Only allow images in the background component for this block.
+const allowedMedia = [ 'image' ];
+
 // Register the block.
 registerBlockType( 'bu/pullquote', {
 	title: __( 'Pullquote' ),
@@ -159,7 +162,9 @@ registerBlockType( 'bu/pullquote', {
 				<div className={ getClasses( className, backgroundId, imageFocus ) }>
 					{ isStyleDefault( className ) && (
 						<Background
+							allowedMediaTypes={ allowedMedia }
 							blockProps={ props }
+							placeholderText={ __( 'Add Image' ) }
 						/>
 					) }
 					<blockquote>
@@ -168,7 +173,9 @@ registerBlockType( 'bu/pullquote', {
 								<div className="container-icon-inner">
 									{ className.includes( 'is-style-modern' ) && (
 										<Background
+											allowedMediaTypes={ allowedMedia }
 											blockProps={ props }
+											placeholderText={ __( 'Add Image' ) }
 										/>
 									) }
 								</div>

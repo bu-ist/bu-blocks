@@ -169,7 +169,6 @@ registerBlockType( 'editorial/drawer', {
 							<Background
 								allowedMediaTypes={ [ 'image' ] }
 								blockProps={ props }
-								controlPanelTitle={ __( 'Image' ) }
 								inlinePlaceholder={ true }
 								options={ [] }
 								placeholderText={ __( 'Add Image' ) }

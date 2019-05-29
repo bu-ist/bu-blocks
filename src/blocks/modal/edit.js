@@ -18,6 +18,9 @@ const { InspectorControls, InnerBlocks, PanelColorSettings, RichText, withColors
 const { select } = wp.data;
 const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 
+// Only allow images in the background component for this block.
+const allowedMedia = [ 'image' ];
+
 class BUEditorialModalEdit extends Component {
 	constructor() {
 		super( ...arguments );
@@ -37,7 +40,7 @@ class BUEditorialModalEdit extends Component {
 			backgroundId,
 			calloutHeading,
 			calloutText,
-			trigger
+			trigger,
 		} = attributes;
 
 		const classes = classnames(
@@ -74,9 +77,10 @@ class BUEditorialModalEdit extends Component {
 						<div className="wp-block-editorial-modal-media">
 							<figure className="wp-block-editorial-modal-image">
 								<Background
+									allowedMediaTypes={ allowedMedia }
 									blockProps={ this.props }
 									className="banner-placeholder"
-									controlPanelTitle={ __( 'Add Media' ) }
+									placeholderText={ __( 'Add Image' ) }
 								/>
 							</figure>
 						</div>
