@@ -1,3 +1,11 @@
+.edit-post-settings-sidebar__panel-block .components-panel__body.components-panel__body-bu-background-media {
+
+	button + .components-range-control,
+	.is-button + .is-button {
+		margin-top: 1.5em;
+	}
+}
+
 .components-bu-background-url-note {
 	background: rgba(139,139,150,.1);
 	padding: 0 13px 13px;
