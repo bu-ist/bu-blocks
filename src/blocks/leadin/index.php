@@ -35,6 +35,7 @@ function get_block_classes( $attributes, $style_emphasize_text, $style_text_over
 		( $attributes['textPositionX'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionX'] : '',
 		( $attributes['textPositionY'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionY'] : '',
 		( $attributes['themeColor'] ) ? 'has-' . $attributes['themeColor'] . '-theme' : '',
+		( $attributes['backgroundAutoplay'] ) ? 'has-video-as-loop' : '',
 	);
 
 	// Trim values of the classes array after filtering out empty values.
@@ -55,24 +56,25 @@ function get_block_classes( $attributes, $style_emphasize_text, $style_text_over
  */
 function render_block( $attributes ) {
 	$defaults = array(
-		'backgroundAlt'     => '',
-		'backgroundOpacity' => 100,
-		'backgroundType'    => '',
-		'backgroundUrl'     => '',
-		'box'               => false,
-		'boxOpacity'        => 100,
-		'caption'           => '',
-		'className'         => '',
-		'deck'              => '',
-		'flip'              => false,
-		'head'              => '',
-		'imageFocus'        => 'center-middle',
-		'metabar'           => true,
-		'primaryTerm'       => '',
-		'textPositionX'     => 'x-center',
-		'textPositionY'     => '',
-		'themeColor'        => '',
-		'wide'              => false,
+		'backgroundAlt'      => '',
+		'backgroundAutoplay' => false,
+		'backgroundOpacity'  => 100,
+		'backgroundType'     => '',
+		'backgroundUrl'      => '',
+		'box'                => false,
+		'boxOpacity'         => 100,
+		'caption'            => '',
+		'className'          => '',
+		'deck'               => '',
+		'flip'               => false,
+		'head'               => '',
+		'imageFocus'         => 'center-middle',
+		'metabar'            => true,
+		'primaryTerm'        => '',
+		'textPositionX'      => 'x-center',
+		'textPositionY'      => '',
+		'themeColor'         => '',
+		'wide'               => false,
 	);
 
 	$attributes = wp_parse_args( $attributes, $defaults );
@@ -146,45 +148,49 @@ function register_block() {
 		'bu/leadin',
 		array(
 			'attributes'      => array(
-				'backgroundAlt'     => $shared_args,
-				'backgroundOpacity' => array(
-					'type'    => 'number',
-					'default' => 100,
-				),
-				'backgroundType'    => $shared_args,
-				'backgroundUrl'     => $shared_args,
-				'box'               => array(
+				'backgroundAlt'      => $shared_args,
+				'backgroundAutoplay' => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),
-				'boxOpacity'        => array(
+				'backgroundOpacity'  => array(
 					'type'    => 'number',
 					'default' => 100,
 				),
-				'caption'           => $shared_args,
-				'className'         => $shared_args,
-				'deck'              => $shared_args,
-				'flip'              => array(
+				'backgroundType'     => $shared_args,
+				'backgroundUrl'      => $shared_args,
+				'box'                => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),
-				'head'              => $shared_args,
-				'imageFocus'        => array(
+				'boxOpacity'         => array(
+					'type'    => 'number',
+					'default' => 100,
+				),
+				'caption'            => $shared_args,
+				'className'          => $shared_args,
+				'deck'               => $shared_args,
+				'flip'               => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+				'head'               => $shared_args,
+				'imageFocus'         => array(
 					'type'    => 'string',
 					'default' => 'center-middle',
 				),
-				'metabar'           => array(
+				'metabar'            => array(
 					'type'    => 'boolean',
 					'default' => true,
 				),
-				'primaryTerm'       => $shared_args,
-				'textPositionX'     => array(
+				'primaryTerm'        => $shared_args,
+				'textPositionX'      => array(
 					'type'    => 'string',
 					'default' => 'x-center',
 				),
-				'textPositionY'     => $shared_args,
-				'themeColor'        => $shared_args,
-				'wide'              => array(
+				'textPositionY'      => $shared_args,
+				'themeColor'         => $shared_args,
+				'wide'               => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),
