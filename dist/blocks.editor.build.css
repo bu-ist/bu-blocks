@@ -9735,21 +9735,9 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
-.components-bu-background-media {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  height: 100%;
-  max-width: 400px;
-  width: 100%;
-  z-index: 1; }
-  .components-bu-background-media .components-button {
-    padding-left: 6px; }
-  .components-bu-background-media .components-button:first-of-type {
-    margin-right: 4px; }
+.edit-post-settings-sidebar__panel-block .components-panel__body.components-panel__body-bu-background-media button + .components-range-control,
+.edit-post-settings-sidebar__panel-block .components-panel__body.components-panel__body-bu-background-media .is-button + .is-button {
+  margin-top: 1.5em; }
 
 .components-bu-background-url-note {
   background: rgba(139, 139, 150, 0.1);
