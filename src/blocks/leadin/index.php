@@ -115,7 +115,7 @@ function render_block( $attributes ) {
 			<?php endif; ?>
 
 
-			<?php if ( $attributes['head'] && $attributes['deck'] && $attributes['caption'] ) : ?>
+			<?php if ( $attributes['head'] || $attributes['deck'] || $attributes['caption'] ) : ?>
 
 				<div class="container-words-outer">
 
