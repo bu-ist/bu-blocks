@@ -80,9 +80,12 @@ function render_block( $attributes ) {
 	$attributes = wp_parse_args( $attributes, $defaults );
 
 	// Determine which style is applied to the block.
-	$style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
-	$style_text_over_image = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
-	$style_side_by_side    = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
+	$style_emphasize_text   = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
+	$style_text_over_image  = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
+	$style_side_by_side     = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
+	$style_text_to_image    = strpos( $attributes['className'], 'is-style-text-to-image' ) !== false;
+	$style_image_to_text    = strpos( $attributes['className'], 'is-style-image-to-text' ) !== false;
+	$style_default          = !$style_image_to_text && !$style_text_to_image && !$style_side_by_side && !$style_text_over_image && !$style_emphasize_text;
 
 	// Retrieve the classes to attach to the block.
 	$classes = get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side );
@@ -103,28 +106,55 @@ function render_block( $attributes ) {
 
 			<div class="wp-block-leadin-media">
 				<?php do_action( 'bu_blocks_background', $attributes ); ?>
+
+				<?php if ( $attributes['caption'] && ( $style_image_to_text ) ) : ?>
+					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
+				<?php endif; ?>
 			</div>
 
-			<div class="container-words-outer">
-				<div class="<?php echo esc_attr( $box_classes ); ?>">
+			<?php if ( $attributes['caption'] && ( $style_default ) ) : ?>
+				<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
+			<?php endif; ?>
 
-					<?php if ( $primary_term ) : ?>
-						<span class="wp-prepress-tag"><?php echo esc_html( $primary_term ); ?></span>
+
+			<?php if ( $attributes['head'] || $attributes['deck'] || $attributes['caption'] ) : ?>
+
+				<div class="container-words-outer">
+
+					<?php if ( $attributes['caption'] && $style_emphasize_text ) : ?>
+						<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 					<?php endif; ?>
 
-					<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
+					<div class="<?php echo esc_attr( $box_classes ); ?>">
 
-					<?php if ( $attributes['deck'] ) : ?>
-						<h4 class="deck"><?php echo wp_kses_post( $attributes['deck'] ); ?></h4>
-					<?php endif; ?>
+						<?php if ( $primary_term ) : ?>
+							<span class="wp-prepress-tag"><?php echo esc_html( $primary_term ); ?></span>
+						<?php endif; ?>
+
+						<?php if ( $attributes['head'] ) : ?>
+							<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
+						<?php endif; ?>
+
+						<?php if ( $attributes['deck'] ) : ?>
+							<h4 class="deck"><?php echo wp_kses_post( $attributes['deck'] ); ?></h4>
+						<?php endif; ?>
+
+						<?php if ( $attributes['caption'] && ( $style_side_by_side || $style_text_over_image ) ) : ?>
+							<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
+						<?php endif; ?>
+
+					</div>
 
 				</div>
-			</div>
+
+			<?php endif; ?>
 
 		</div>
-		<?php if ( $attributes['caption'] ) : ?>
-			<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></h4>
+
+		<?php if ( $attributes['caption'] && $style_text_to_image ) : ?>
+			<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 		<?php endif; ?>
+
 	</div>
 
 	<?php do_action( 'bu_blocks_leadin_meta_bar', $attributes['metabar'] ); ?>

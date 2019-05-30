@@ -104,6 +104,11 @@ const blockAttributes = {
 // Block styles.
 const blockStyles = [
 	{
+		name: 'default',
+		label: __( 'Default (uncropped unscaled)' ),
+		isDefault: true
+	},
+	{
 		name: 'text-to-image',
 		label: __( 'Text over Horizontal Image' ),
 	},
