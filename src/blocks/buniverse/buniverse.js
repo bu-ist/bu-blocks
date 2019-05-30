@@ -130,7 +130,7 @@ registerBlockType( 'bu/buniverse', {
 
 		// Build out the basic url, intentionally leaving off the extra parameters
 		// because they cause the iframe to reload every time they're changed.
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}`;
+		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
 
 		return(
 			<Fragment>
@@ -242,7 +242,7 @@ registerBlockType( 'bu/buniverse', {
 		);
 
 		// Build out the full url.
-		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}`;
+		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
 		url += ( controls !== 1 ) ? '&controls=0' : '';
 		url += ( autoplay === 1 ) ? '&autoplay=true' : '';
 		url += ( start ) ? `&start=${start}` : '';

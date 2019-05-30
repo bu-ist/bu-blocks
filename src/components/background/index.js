@@ -356,7 +356,7 @@ function Background( props ) {
 			const videoId = getQueryString( backgroundUrl ).split( '?' )[0].substr(2);
 
 			// Build the URL, adding the autoplay parameter if appropriate.
-			let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${videoId}`;
+			let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${videoId}&jsapi=1`;
 			url += ( autoplayVideo ) ? '&autoplay=true&controls=0' : '';
 
 			return (
