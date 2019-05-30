@@ -38,6 +38,29 @@ const {
 const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
 
 /**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string}  className          Default classes assigned to the block.
+ * @param {string}  number             Value of the number attribute.
+ * @param {string}  aside              Whether the block has aside content.
+ * @param {number}  backgroundUrl      The URL of the background media assigned to the block.
+ * @param {boolean} backgroundAutoplay Whether the background video is set to autoplay.
+ */
+const getClasses = ( className, number, aside, backgroundUrl, backgroundAutoplay ) => {
+	return (
+		classnames(
+			className,
+			{
+				'has-number': number,
+				'has-sidebar': aside,
+				'has-media': backgroundUrl,
+				'has-video-as-loop': backgroundAutoplay,
+			}
+		)
+	);
+};
+
+/**
  * Determine if the related links list is empty.
  *
  * @param {string} related The value of the `related` attribute.
@@ -91,6 +114,10 @@ registerBlockType( 'editorial/listicle', {
 			type: 'string',
 			source: 'html',
 			selector: '.wp-caption-text',
+		},
+		className: {
+			type: 'string',
+			default: '',
 		},
 		...BackgroundAttributes,
 		...ShareToolsAttributes,
@@ -152,21 +179,12 @@ registerBlockType( 'editorial/listicle', {
 				number,
 				related,
 				credit,
-				BackgroundId,
+				backgroundUrl,
+				backgroundAutoplay,
 			} = attributes;
 
 			// Check if the block has aside content (extra condition due to use of multiline).
 			const hasAsideContent = ( ! RichText.isEmpty( aside ) && aside !== '<br>' );
-
-			// Build out the class list for the block.
-			const classes = classnames(
-				className,
-				{
-					'has-number': number,
-					'has-sidebar': hasAsideContent,
-					'has-media': BackgroundId,
-				}
-			);
 
 			/**
 			 * Get a value to use for the inline width of the number input.
@@ -181,15 +199,13 @@ registerBlockType( 'editorial/listicle', {
 
 			// Return the block editing interface.
 			return (
-				<section className={ classes }>
+				<section className={ getClasses( className, number, hasAsideContent, backgroundUrl, backgroundAutoplay ) }>
 					<article className="wp-block-editorial-listicle-article">
 						<figure className="wp-block-editorial-listicle-figure">
 							<Background
-								autoplayVideo={ false }
 								blockProps={ this.props }
 								inlinePlaceholder={ true }
 								options={ [] }
-								placeholderText={ __( 'Add Media' ) }
 							/>
 							<figcaption className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption">
 								<PlainText
@@ -245,11 +261,11 @@ registerBlockType( 'editorial/listicle', {
 								{ ( hasAsideContent || isSelected ) && (
 									<aside className="wp-block-editorial-listicle-section-aside">
 										<RichText
-										tagName="p"
-										placeholder={ __( 'Add Sidebar (Optional)…' ) }
-										value={ aside }
-										onChange={ value => setAttributes( { aside: value } ) }
-										formattingControls={ [ 'bold', 'italic', 'link' ] }
+											tagName="p"
+											placeholder={ __( 'Add Sidebar (Optional)…' ) }
+											value={ aside }
+											onChange={ value => setAttributes( { aside: value } ) }
+											formattingControls={ [ 'bold', 'italic', 'link' ] }
 										/>
 									</aside>
 								) }
@@ -293,21 +309,14 @@ registerBlockType( 'editorial/listicle', {
 			number,
 			related,
 			credit,
-			BackgroundId,
+			backgroundUrl,
+			backgroundAutoplay,
+			className,
 		} = attributes;
-
-		// Build out the additional classes to apply to the block.
-		const classes = classnames(
-			{
-				'has-number': ! RichText.isEmpty( number ),
-				'has-sidebar': ! RichText.isEmpty( aside ),
-				'has-media': BackgroundId,
-			}
-		);
 
 		// Return the block rendering for the front end.
 		return (
-			<section className={ classes }>
+			<section className={ getClasses( className, number, aside, backgroundUrl, backgroundAutoplay ) }>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
@@ -343,8 +352,8 @@ registerBlockType( 'editorial/listicle', {
 							{ ! RichText.isEmpty( aside ) && (
 								<aside className="wp-block-editorial-listicle-section-aside">
 									<RichText.Content
-									tagName="p"
-									value={ aside }
+										tagName="p"
+										value={ aside }
 									/>
 								</aside>
 							) }

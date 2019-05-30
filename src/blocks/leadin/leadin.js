@@ -145,6 +145,8 @@ registerBlockType( 'bu/leadin', {
 		const {
 			attributes: {
 				backgroundId,
+				backgroundUrl,
+				backgroundAutoplay,
 				head,
 				deck,
 				caption,
@@ -154,7 +156,6 @@ registerBlockType( 'bu/leadin', {
 				wide,
 				box,
 				flip,
-				primaryTerm,
 				metabar,
 				boxOpacity,
 			},
@@ -177,7 +178,8 @@ registerBlockType( 'bu/leadin', {
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
-				'has-media': backgroundId,
+				'has-media': backgroundUrl,
+				'has-video-as-loop': backgroundAutoplay,
 				[ `has-media-focus-${imageFocus}` ]: imageFocus,
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
@@ -311,7 +313,6 @@ registerBlockType( 'bu/leadin', {
 						<div className="wp-block-leadin-media">
 							<Background
 								blockProps={ props }
-								controlPanelTitle={ __( 'Media' ) }
 							/>
 						</div>
 						<div className="container-words-outer">

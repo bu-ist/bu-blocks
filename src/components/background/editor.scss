@@ -1,18 +1,8 @@
-.components-bu-background-media {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	height: 100%;
-	max-width: 400px;
-	width: 100%;
-	z-index: 1;
+.edit-post-settings-sidebar__panel-block .components-panel__body.components-panel__body-bu-background-media {
 
-	.components-button {
-		padding-left: 6px;
-	}
-
-	.components-button:first-of-type {
-		margin-right: 4px;
+	button + .components-range-control,
+	.is-button + .is-button {
+		margin-top: 1.5em;
 	}
 }
 
