@@ -143,9 +143,9 @@ function render_block( $attributes ) {
 
 					</div>
 
-				<?php endif; ?>
+				</div>
 
-			</div>
+			<?php endif; ?>
 
 		</div>
 
