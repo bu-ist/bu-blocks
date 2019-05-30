@@ -114,29 +114,37 @@ function render_block( $attributes ) {
 				<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 			<?php endif; ?>
 
-			<div class="container-words-outer">
 
-				<?php if ( $attributes['caption'] && $style_emphasize_text ) : ?>
-					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
-				<?php endif; ?>
+			<?php if ( $attributes['head'] && $attributes['deck'] && $attributes['caption'] ) : ?>
 
-				<div class="<?php echo esc_attr( $box_classes ); ?>">
+				<div class="container-words-outer">
 
-					<?php if ( $primary_term ) : ?>
-						<span class="wp-prepress-tag"><?php echo esc_html( $primary_term ); ?></span>
-					<?php endif; ?>
-
-					<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
-
-					<?php if ( $attributes['deck'] ) : ?>
-						<h4 class="deck"><?php echo wp_kses_post( $attributes['deck'] ); ?></h4>
-					<?php endif; ?>
-
-					<?php if ( $attributes['caption'] && $style_side_by_side || $style_text_over_image ) : ?>
+					<?php if ( $attributes['caption'] && $style_emphasize_text ) : ?>
 						<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 					<?php endif; ?>
 
-				</div>
+					<div class="<?php echo esc_attr( $box_classes ); ?>">
+
+						<?php if ( $primary_term ) : ?>
+							<span class="wp-prepress-tag"><?php echo esc_html( $primary_term ); ?></span>
+						<?php endif; ?>
+
+						<?php if ( $attributes['head'] ) : ?>
+							<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
+						<?php endif; ?>
+
+						<?php if ( $attributes['deck'] ) : ?>
+							<h4 class="deck"><?php echo wp_kses_post( $attributes['deck'] ); ?></h4>
+						<?php endif; ?>
+
+						<?php if ( $attributes['caption'] && ( $style_side_by_side || $style_text_over_image ) ) : ?>
+							<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
+						<?php endif; ?>
+
+					</div>
+
+				<?php endif; ?>
+
 			</div>
 
 		</div>
