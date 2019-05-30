@@ -95,10 +95,6 @@ function render_block( $attributes ) {
 		$box_classes .= ' has-opacity-' . absint( $attributes['boxOpacity'] );
 	}
 
-	$primary_term = ( function_exists( 'bu_prepress_get_primary_term' ) && bu_prepress_get_primary_term( get_the_ID() ) )
-		? bu_prepress_get_primary_term( get_the_ID() )
-		: ( $attributes['primaryTerm'] ? $attributes['primaryTerm'] : false );
-
 	ob_start();
 	?>
 	<div class="<?php echo esc_attr( $classes ); ?>">
@@ -127,9 +123,7 @@ function render_block( $attributes ) {
 
 					<div class="<?php echo esc_attr( $box_classes ); ?>">
 
-						<?php if ( $primary_term ) : ?>
-							<span class="wp-prepress-tag"><?php echo esc_html( $primary_term ); ?></span>
-						<?php endif; ?>
+						<?php do_action( 'bu_blocks_leadin_primary_term', get_the_ID() ); ?>
 
 						<?php if ( $attributes['head'] ) : ?>
 							<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
