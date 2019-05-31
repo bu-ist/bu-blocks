@@ -80,12 +80,12 @@ function render_block( $attributes ) {
 	$attributes = wp_parse_args( $attributes, $defaults );
 
 	// Determine which style is applied to the block.
-	$style_emphasize_text   = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
-	$style_text_over_image  = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
-	$style_side_by_side     = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
-	$style_text_to_image    = strpos( $attributes['className'], 'is-style-text-to-image' ) !== false;
-	$style_image_to_text    = strpos( $attributes['className'], 'is-style-image-to-text' ) !== false;
-	$style_default          = !$style_image_to_text && !$style_text_to_image && !$style_side_by_side && !$style_text_over_image && !$style_emphasize_text;
+	$style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;
+	$style_text_over_image = strpos( $attributes['className'], 'is-style-text-over-image' ) !== false;
+	$style_side_by_side    = strpos( $attributes['className'], 'is-style-side-by-side' ) !== false;
+	$style_text_to_image   = strpos( $attributes['className'], 'is-style-text-to-image' ) !== false;
+	$style_image_to_text   = strpos( $attributes['className'], 'is-style-image-to-text' ) !== false;
+	$style_default         = ! $style_image_to_text && ! $style_text_to_image && ! $style_side_by_side && ! $style_text_over_image && ! $style_emphasize_text;
 
 	// Retrieve the classes to attach to the block.
 	$classes = get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side );
@@ -94,10 +94,6 @@ function render_block( $attributes ) {
 	if ( $attributes['box'] && 100 !== $attributes['boxOpacity'] && ( $style_emphasize_text || $style_text_over_image ) ) {
 		$box_classes .= ' has-opacity-' . absint( $attributes['boxOpacity'] );
 	}
-
-	$primary_term = ( function_exists( 'bu_prepress_get_primary_term' ) && bu_prepress_get_primary_term( get_the_ID() ) )
-		? bu_prepress_get_primary_term( get_the_ID() )
-		: ( $attributes['primaryTerm'] ? $attributes['primaryTerm'] : false );
 
 	ob_start();
 	?>
@@ -127,9 +123,7 @@ function render_block( $attributes ) {
 
 					<div class="<?php echo esc_attr( $box_classes ); ?>">
 
-						<?php if ( $primary_term ) : ?>
-							<span class="wp-prepress-tag"><?php echo esc_html( $primary_term ); ?></span>
-						<?php endif; ?>
+						<?php do_action( 'bu_blocks_leadin_primary_term', get_the_ID() ); ?>
 
 						<?php if ( $attributes['head'] ) : ?>
 							<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
