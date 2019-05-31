@@ -10,7 +10,6 @@
 
 %leadin-image-height-small {
 	.wp-block-leadin-media {
-		// height: 320px;
 		@include breakpoint( $xs ) {
 			height: 400px;
 		}
@@ -27,7 +26,6 @@
 }
 %leadin-image-height-medium {
 	.wp-block-leadin-media {
-		// height: 400px;
 		@include breakpoint( $xs ) {
 			height: 480px;
 		}
@@ -44,7 +42,6 @@
 }
 %leadin-image-height-large {
 	.wp-block-leadin-media {
-		// height: 320px;
 		@include breakpoint( $xs ) {
 			height: 560px;
 		}
@@ -271,59 +268,60 @@
 				bottom: 0;
 			}
 		}
+
 		.container-words-inner {
 			margin-top: 0;
 			margin-bottom: 0;
 		}
-		&:not(.has-box) {
-			.container-words-outer {
-				@include breakpoint( $xs ) {
-					&::before,
-					&::after  {
-						// content: " ";
-					}
-				}
 
-				&::before,
-				&::after  {
-					background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
-					position: absolute;
+		.container-words-outer {
+			&::before,
+			&::after  {
+				background: linear-gradient( 70deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.125) 100%);
+				position: absolute;
+				bottom: 0;
+				width: $shadow-width;
+				height: 140px;
+
+				@include breakpoint( $sm ) {
 					bottom: 0;
-					width: $shadow-width;
-					height: 140px;
-
-					@include breakpoint( $sm ) {
-						bottom: 0;
-					}
-
-					@include breakpoint( $md ) {
-						bottom: -70px;
-					}
 				}
 
-				&::before {
-					left: calc( 0px - #{$shadow-width} );
-				}
-
-				&::after {
-					right: calc( 0px - #{$shadow-width} );
-					@include scale( -1, 1 );
+				@include breakpoint( $md ) {
+					bottom: -70px;
 				}
 			}
 
-			.container-words-inner {
-				padding-top: 2em;
+			&::before {
+				left: calc( 0px - #{$shadow-width} );
 			}
 
-			.container-words-inner {
-				padding-left: $padding;
-				padding-right: $padding;
+			&::after {
+				right: calc( 0px - #{$shadow-width} );
+				@include scale( -1, 1 );
 			}
 		}
 
+		.container-words-inner {
+			padding-top: 2em;
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+
 		&.has-box {
-			@include breakpoint( $xs ) {
-				.container-words-inner {
+			.container-words-outer {
+				&::before,
+				&::after  {
+					display: none;
+				}
+			}
+
+			.container-words-inner {
+				padding-top: 0;
+				padding-left: 0;
+				padding-right: 0;
+
+				@include breakpoint( $xs ) {
 					padding-top: 2em;
 					padding-bottom: 2em;
 					padding-left: $padding * 2;
@@ -336,13 +334,11 @@
 		@extend %leadin-image-height-large;
 		@extend %leadin-text-over-image-base;
 
-		&:not(.has-box){
-			.wp-block-leadin-media {
-				@include breakpoint( $xs ) {
-					@for $i from 1 through 9 {
-						.has-background-opacity-#{$i}#{'0'} {
-							opacity: #{'0.'}#{$i};
-						}
+		.wp-block-leadin-media {
+			@include breakpoint( $xs ) {
+				@for $i from 1 through 9 {
+					.has-background-opacity-#{$i}#{'0'} {
+						opacity: #{'0.'}#{$i};
 					}
 				}
 			}
@@ -362,11 +358,19 @@
 
 	&.is-style-side-by-side {
 		@extend %leadin-sidebyside-vert-size;
+		padding-left: $padding;
+		padding-right: $padding;
 		text-align: center;
 
-		&:not(.has-wider) {
-			padding-left: $padding;
-			padding-right: $padding;
+		&.has-wider {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.container-lockup {
+			@include breakpoint( $xs ) {
+				text-align: left;
+			}
 		}
 
 		.container-words-inner {
@@ -417,23 +421,34 @@
 		}
 	}
 
-	&:not(.is-style-side-by-side) {
-		.container-lockup {
-			text-align: center;
+	.container-lockup {
+		text-align: center;
+	}
+
+	.wp-block-leadin-media {
+		margin: 0;
+
+		&::after {
+			display: none;
+		}
+
+		img {
+			position: relative;
+			height: auto;
 		}
 	}
 
-	&:not(.is-style-side-by-side):not(.is-style-text-to-image):not(.is-style-image-to-text):not(.is-style-emphasis-on-text):not(.is-style-text-over-image) {
+	&.is-style-side-by-side,
+	&.is-style-text-to-image,
+	&.is-style-image-to-text,
+	&.is-style-emphasis-on-text,
+	&.is-style-text-over-image {
 		.wp-block-leadin-media {
-			margin: 0;
-
-			&::after {
-				display: none;
-			}
 
 			img {
-				position: relative;
-				height: auto;
+				@include breakpoint( $xs ) {
+					height: 100%;
+				}
 			}
 		}
 	}
