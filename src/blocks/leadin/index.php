@@ -123,9 +123,10 @@ function render_block( $attributes ) {
 
 					<div class="<?php echo esc_attr( $box_classes ); ?>">
 
-						<?php do_action( 'bu_blocks_leadin_primary_term', get_the_ID() ); ?>
+
 
 						<?php if ( $attributes['head'] ) : ?>
+							<?php do_action( 'bu_blocks_leadin_primary_term', get_the_ID() ); ?>
 							<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
 						<?php endif; ?>
 
