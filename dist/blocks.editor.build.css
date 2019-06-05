@@ -23504,19 +23504,38 @@
     margin: 0 0 30px;
     position: relative; }
 
-.wp-block-photoessay-media-wrapper::before {
-  content: "";
-  display: inline-block; }
-
-.wp-block-photoessay-media-wrapper .wp-block-photoessay-media {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%; }
-  .wp-block-photoessay-media-wrapper .wp-block-photoessay-media figure {
-    margin: 0; }
-    .wp-block-photoessay-media-wrapper .wp-block-photoessay-media figure img {
-      height: 100%; }
+.wp-block-photoessay-media-wrapper {
+  position: relative; }
+  .wp-block-photoessay-media-wrapper::before {
+    content: "";
+    display: inline-block; }
+  .wp-block-photoessay-media-wrapper .wp-block-photoessay-media {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%; }
+    .wp-block-photoessay-media-wrapper .wp-block-photoessay-media figure {
+      margin: 0; }
+      .wp-block-photoessay-media-wrapper .wp-block-photoessay-media figure img {
+        height: 100%; }
+  .wp-block-photoessay-media-wrapper .editor-rich-text {
+    color: #fff;
+    left: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(black));
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), black);
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0), black);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), black); }
+  .wp-block-photoessay-media-wrapper .editor-rich-text__tinymce[data-is-placeholder-visible=true] {
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: auto; }
 
 .wp-block-photoessay-media {
   padding: 0; }
