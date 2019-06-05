@@ -1,8 +1,8 @@
 bu_blocks.drawer = ( function() {
 	var drawerBlocks = []; //stores all of our found blocks
 	var $body = document.getElementsByTagName( 'body' )[0]; //target body tag
-	var eventOpen = new Event( 'bu-blocks-drawer-open' );
-	var eventClose = new Event( 'bu-blocks-drawer-close' );
+	var eventOpen = new CustomEvent( 'bu-blocks-drawer-open' );
+	var eventClose = new CustomEvent( 'bu-blocks-drawer-close' );
 
 	var toggleDrawer = function( drawer ) {
 		console.log( drawer );

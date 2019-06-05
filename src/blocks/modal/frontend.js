@@ -1,8 +1,8 @@
 bu_blocks.modal = (function() {
 	var modalBlocks = [];
 	var $body = document.getElementsByTagName('body')[0];
-	var eventOpen = new Event('bu-blocks-modal-open');
-	var eventClose = new Event('bu-blocks-modal-close');
+	var eventOpen = new CustomEvent('bu-blocks-modal-open');
+	var eventClose = new CustomEvent('bu-blocks-modal-close');
 
 	var lockScroll = function() {
 		$body.classList.add('bu-blocks-modal-noscroll');
@@ -85,7 +85,7 @@ bu_blocks.modal = (function() {
 
 	//start on dom ready (ie8+)
 	document.addEventListener("DOMContentLoaded", function() {
-  		modalInit();
+		modalInit();
 
 	});
 

@@ -738,8 +738,9 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
   !*** ./src/components/paragraph-caption-style/paragraph-caption-style.js ***!
   \***************************************************************************/
 /*! dynamic exports provided */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__) {
 
+"use strict";
 eval("/**\n * Registers the caption style for the core paragraph block.\n */\n\nwp.blocks.registerBlockStyle('core/paragraph', {\n  name: 'caption',\n  label: 'Caption'\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNjMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvY29tcG9uZW50cy9wYXJhZ3JhcGgtY2FwdGlvbi1zdHlsZS9wYXJhZ3JhcGgtY2FwdGlvbi1zdHlsZS5qcz82ODIxIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogUmVnaXN0ZXJzIHRoZSBjYXB0aW9uIHN0eWxlIGZvciB0aGUgY29yZSBwYXJhZ3JhcGggYmxvY2suXG4gKi9cblxud3AuYmxvY2tzLnJlZ2lzdGVyQmxvY2tTdHlsZSgnY29yZS9wYXJhZ3JhcGgnLCB7XG4gIG5hbWU6ICdjYXB0aW9uJyxcbiAgbGFiZWw6ICdDYXB0aW9uJ1xufSk7XG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9zcmMvY29tcG9uZW50cy9wYXJhZ3JhcGgtY2FwdGlvbi1zdHlsZS9wYXJhZ3JhcGgtY2FwdGlvbi1zdHlsZS5qc1xuLy8gbW9kdWxlIGlkID0gNjNcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///63\n");
 
 /***/ })
