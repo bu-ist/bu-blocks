@@ -41,9 +41,6 @@ import classnames from 'classnames';
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
 
-// The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 /**
  * Render the SVG used for a drop cap when the drop cap has an
  * image assigned to it.
@@ -151,7 +148,6 @@ registerBlockType( 'editorial/introparagraph', {
 			label: __( 'Image dropcap' )
 		}
 	],
-	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
 	edit: withColors( 'paragraphColor', 'dropCapColor' )( props => {
 		const {
@@ -163,7 +159,6 @@ registerBlockType( 'editorial/introparagraph', {
 			setParagraphColor,
 			dropCapColor,
 			setDropCapColor,
-			publicationClassName,
 		} = props;
 
 		const {
@@ -290,7 +285,6 @@ registerBlockType( 'editorial/introparagraph', {
 
 		const classes = classnames(
 			className,
-			publicationClassName,
 			{
 				'has-dropcap': hasDropCapStyle,
 				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCapStyle && dropCapColor && dropCapColor.slug,
@@ -356,7 +350,6 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapImageURL,
 			paragraphColor,
 			className,
-			publicationClassName,
 		} = attributes;
 
 		let isImageDropCap = false;
@@ -382,7 +375,6 @@ registerBlockType( 'editorial/introparagraph', {
 
 		const classes = classnames(
 			className,
-			publicationClassName,
 			{
 				'has-dropcap': hasDropCapStyle,
 				[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,

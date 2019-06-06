@@ -23,9 +23,6 @@ const { InnerBlocks } = wp.editor;
 const { select } = wp.data;
 const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 
-// The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 // Register the block.
 registerBlockType( 'editorial/modal', {
 
@@ -60,7 +57,6 @@ registerBlockType( 'editorial/modal', {
 		},
 		...BackgroundAttributes,
 	},
-	publicationClassName: publicationClass + '-block-editorial-modal',
 
 	// Add the `selected-modal` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {

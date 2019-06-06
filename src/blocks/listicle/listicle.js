@@ -34,9 +34,6 @@ const {
 	PlainText,
 } = wp.editor;
 
-// The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 /**
  * Returns the class list for the block based on the current settings.
  *
@@ -122,7 +119,6 @@ registerBlockType( 'editorial/listicle', {
 		...BackgroundAttributes,
 		...ShareToolsAttributes,
 	},
-	publicationClassName: publicationClass + '-block-editorial-listicle',
 
 	edit: class extends Component {
 		constructor() {

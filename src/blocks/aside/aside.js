@@ -23,9 +23,6 @@ const { getColorClassName, InnerBlocks } = wp.editor;
 // Internal dependencies.
 import edit from './edit.js';
 
-// The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
 
@@ -41,7 +38,6 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 			type: 'string',
 		},
 	},
-	publicationClassName: publicationClass + '-block-editorial-aside',
 
 	edit,
 
