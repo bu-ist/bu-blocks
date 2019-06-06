@@ -104,24 +104,31 @@
 }
 
 %leadin-sidebyside-vert-size {
-	.container-lockup {
-		@include breakpoint( $xs ) {
-			min-height: 640px;
+	@include breakpoint( $xs ) {
+		min-height: 640px;
+		position: relative;
+
+		.container-lockup {
+			height: 100%;
+			position: absolute;
 		}
-		@include breakpoint( $sm ) {
-			min-height: 720px;
-		}
-		@include breakpoint( $md ) {
-			min-height: 800px;
-		}
-		@include breakpoint( $lg ) {
-			min-height: 880px;
-		}
+	}
+
+	@include breakpoint( $sm ) {
+		min-height: 720px;
+	}
+
+	@include breakpoint( $md ) {
+		min-height: 800px;
+	}
+
+	@include breakpoint( $lg ) {
+		min-height: 880px;
 	}
 }
 
 .wp-block-editorial-leadin {
-	@extend %media-focus;
+	@extend %media-crop-cover;
 	@extend %wp-block-background-video-scaling-media;
 	padding-bottom: 2em;
 
@@ -149,6 +156,10 @@
 		-ms-flex-align: center;
 		align-items: center;
 	}
+	.head,
+	.deck {
+		width: 100%;
+	}
 
 	.wp-block-leadin-media {
 		@include transition( height 500ms ease-in-out 0s );
@@ -175,8 +186,6 @@
 
 		img {
 			display: block;
-			-o-object-fit: cover;
-			object-fit: cover;
 			border-radius: 0.0005px; //chrome cover video overflow fix
 			height: 100%;
 			position: absolute;
