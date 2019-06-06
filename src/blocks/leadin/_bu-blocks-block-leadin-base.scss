@@ -196,6 +196,15 @@
 		}
 	}
 
+	// &.is-style-text-to-image { //ie11 flex fix
+	// 	.wp-block-leadin-media {
+	// 		height: 100%;
+	// 		@include breakpoint( $xs ) {
+	// 			height: auto;
+	// 		}
+	// 	}
+	// }
+
 	&.is-style-image-to-text,
 	&.is-style-text-to-image {
 		@extend %wp-block-background-video-scaling-contain;
@@ -225,7 +234,24 @@
 	}
 
 	&.is-style-text-to-image {
-		@extend %leadin-image-height-small;
+		// @extend %leadin-image-height-small;
+
+		.wp-block-leadin-media {
+			height: 100%;
+			
+			@include breakpoint( $xs ) {
+				height: 400px;
+			}
+			@include breakpoint( $sm ) {
+				height: 480px;
+			}
+			@include breakpoint( $md ) {
+				height: 560px;
+			}
+			@include breakpoint( $lg ) {
+				height: 640px;
+			}
+		}
 
 		.container-lockup {
 			display: -ms-flexbox;
@@ -555,7 +581,6 @@
 			left: 50%;
 			height: 100%;
 			width: 100%;
-
 			width: 1000%;
 			transform: translateX(-50%);
 		}
