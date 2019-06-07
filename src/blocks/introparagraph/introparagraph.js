@@ -150,10 +150,11 @@ registerBlockType( 'editorial/introparagraph', {
 			name: 'dropcap-dimensional',
 			label: __( 'Dimensional dropcap' )
 		},
-		{
-			name: 'dropcap-image',
-			label: __( 'Image dropcap' )
-		}
+		//Image Cap is not quite ready for prime time, will need more post launch testing 
+		// {
+		// 	name: 'dropcap-image',
+		// 	label: __( 'Image dropcap' )
+		// }
 	],
 	publicationClassName: publicationClass + '-block-editorial-introparagraph',
 
