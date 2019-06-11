@@ -16,7 +16,7 @@ add_action( 'bu_blocks_background', __NAMESPACE__ . '\\display_background', 10, 
  * @param array $image_size Image size as determined by the block.
  */
 function display_background( $attributes, $image_size = false ) {
-	$id      = $attributes['backgroundId'];
+	$id      = ( isset( $attributes['backgroundId'] ) ) ? $attributes['backgroundId'] : false;
 	$url     = $attributes['backgroundUrl'];
 	$type    = $attributes['backgroundType'];
 	$opacity = $attributes['backgroundOpacity'];
