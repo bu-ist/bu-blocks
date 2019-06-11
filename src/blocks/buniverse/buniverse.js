@@ -34,8 +34,23 @@ const {
 	RichText,
 } = wp.editor;
 
-// The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className     Default classes assigned to the block.
+ * @param {string} stylizedTitle If the block has a stylized title.
+ */
+const getClasses = ( className, aspectRatio ) => {
+	return (
+		classnames(
+			'wp-block-global-buniverse',
+			{
+				[ aspectRatio ]: aspectRatio,
+				[ className ]: className,
+			}
+		)
+	);
+};
 
 // Register the block.
 registerBlockType( 'bu/buniverse', {
@@ -70,22 +85,30 @@ registerBlockType( 'bu/buniverse', {
 		seconds: {
 			type: 'number',
 		},
+		className: {
+			type: 'string',
+			default: '',
+		},
 	},
 	supports: {
 		align: true,
 	},
-	publicationClassName: publicationClass + '-block-global-buniverse',
 
-	edit( { attributes, setAttributes, isSelected } ) {
+	edit( props ) {
 		const {
-			id,
-			aspectRatio,
-			caption,
-			controls,
-			autoplay,
-			minutes,
-			seconds,
-		} = attributes;
+			attributes: {
+				id,
+				aspectRatio,
+				caption,
+				controls,
+				autoplay,
+				minutes,
+				seconds,
+			},
+			className,
+			isSelected,
+			setAttributes,
+		} = props;
 
 		/**
 		 * Sets the value for the `minutes` attribute and
@@ -121,12 +144,6 @@ registerBlockType( 'bu/buniverse', {
 			setAttributes( { seconds: newValue } );
 			setAttributes( { start: newStart } );
 		};
-
-		// Build out the block class list, including the default and aspect ratio.
-		const classes = classnames(
-			'wp-block-global-buniverse',
-			{ [ aspectRatio ]: aspectRatio },
-		);
 
 		// Build out the basic url, intentionally leaving off the extra parameters
 		// because they cause the iframe to reload every time they're changed.
@@ -185,7 +202,7 @@ registerBlockType( 'bu/buniverse', {
 						onChange={ ( value ) => setAttributes( { id: value } ) }
 					/>
 				) }
-				<figure className={ classes }>
+				<figure className={ getClasses( className, aspectRatio ) }>
 					<div className="wp-block-global-buniverse-wrapper">
 						{ ! id && (
 							<div className="wp-block-global-buinverse-placeholder">
@@ -233,13 +250,8 @@ registerBlockType( 'bu/buniverse', {
 			controls,
 			autoplay,
 			start,
+			className,
 		} = attributes;
-
-		// Build out the block class list, including the default and aspect ratio.
-		const classes = classnames(
-			'wp-block-global-buniverse',
-			{ [ aspectRatio ]: aspectRatio },
-		);
 
 		// Build out the full url.
 		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
@@ -248,7 +260,7 @@ registerBlockType( 'bu/buniverse', {
 		url += ( start ) ? `&start=${start}` : '';
 
 		return(
-			<figure className={ classes }>
+			<figure className={ getClasses( className, aspectRatio ) }>
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
