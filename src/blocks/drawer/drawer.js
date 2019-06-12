@@ -45,9 +45,6 @@ const {
 	isBlockSelected,
 } = select( 'core/editor' );
 
-// Get the current publication owner.
-const publication = document.getElementById( 'bu_publication_owner' );
-
 /**
  * Returns the class list for the block based on the current settings.
  *
@@ -125,7 +122,6 @@ registerBlockType( 'editorial/drawer', {
 	supports: {
 		align: [ 'left', 'right', 'full' ],
 	},
-	publicationClassName: ( publication.value ) ? `${publication.value}-block-editorial-drawer` : '',
 
 	// Add the `selected-drawer` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {

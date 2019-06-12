@@ -64,9 +64,6 @@ const {
 
 import classnames from 'classnames';
 
-// Capture the edited article's publication.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 // Register the block.
 registerBlockType( 'editorial/relatedstories', {
 
@@ -135,9 +132,6 @@ registerBlockType( 'editorial/relatedstories', {
 
 		return { 'data-align': 'none' };
 	},
-
-	// Assign a publication class name.
-	publicationClassName: publicationClass + '-block-editorial-related-stories',
 
 	edit: compose( [
 		withState( {
@@ -276,7 +270,6 @@ registerBlockType( 'editorial/relatedstories', {
 	] )( ( { posts, errorMessage, attributes, ...props } ) => {
 		const {
 			className,
-			publicationClassName,
 			setAttributes,
 			setState,
 		} = props;
@@ -419,7 +412,6 @@ registerBlockType( 'editorial/relatedstories', {
 
 		const classes = classnames(
 			className,
-			publicationClassName,
 			cardCountClass,
 		);
 
