@@ -17,8 +17,7 @@ function register_block() {
 	register_block_type(
 		'editorial/custom-html',
 		array(
-			'attributes'      => array(
-			),
+			'attributes'      => apply_filters( 'bu_blocks_custom_html_attributes', array() ),
 			'render_callback' => __NAMESPACE__ . '\\render_block',
 		)
 	);
@@ -28,13 +27,15 @@ function register_block() {
  * Renders the `editorial/custom-html` block on the front-end as part of
  * article content.
  *
+ * @param array $attributes The block attributes.
+ *
  * @return string Returns the post content with latest posts added.
  */
 function render_block( $attributes ) {
 	$html = get_post_meta( get_the_ID(), '_bu_custom_html_block_' . sanitize_key( $attributes['customBlockID'] ), true );
 
 	// @todo - run through kses of some kind?
-	return $html;
+	return apply_filters( 'bu_blocks_custom_html', $html, $attributes );
 }
 
 /**
@@ -66,7 +67,7 @@ function rest_response( $request ) {
 		$block_id = sanitize_key( $request->get_param( 'custom_block_id' ) );
 
 		$html = get_post_meta( $post_id, '_bu_custom_html_block_' . $block_id, true );
-	} else if ( 'POST' === $method ) {
+	} elseif ( 'POST' === $method ) {
 		$post_id  = absint( $request->get_param( 'post_id' ) );
 		$block_id = sanitize_key( $request->get_param( 'custom_block_id' ) );
 		$html     = $request->get_param( 'html' );
