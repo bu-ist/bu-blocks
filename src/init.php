@@ -87,6 +87,15 @@ function enqueue_block_assets() {
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
 	);
 
+	// Enqueue object-fit-images.
+	wp_enqueue_script(
+		'object-fit-images',
+		'https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.4/ofi.min.js',
+		array(),
+		BU_BLOCKS_VERSION,
+		true,
+	);
+
 	if ( ! is_admin() ) {
 		wp_enqueue_script(
 			'bu-blocks-frontend-js', // Handle.
