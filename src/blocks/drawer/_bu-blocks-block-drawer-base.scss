@@ -37,7 +37,7 @@
 	}
 
 	&.is-size-wide .wp-block-editorial-drawer-teaser {
-		@extend %col-sm-two-third;
+		@extend %col-sm-6;
 	}
 
 	&.is-size-narrow,
@@ -45,7 +45,7 @@
 	&.is-size-medium,
 	&.is-size-wide {
 		.wp-block-editorial-drawer-teaser {
-			padding: 40px;
+			padding: 10px;
 
 			&::before,
 			&::after {
