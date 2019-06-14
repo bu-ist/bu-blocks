@@ -211,39 +211,13 @@
 		}
 	}
 
-	&.has-dark-background {
-		background: $color-grayscale-4;
-
-		h2 {
-			color: $color-grayscale-f;
-		}
-
-		p {
-			color: $color-grayscale-f0;
-		}
-
-		&::before,
-		&::after {
-			border-color: $color-grayscale-6;
-		}
-	}
-
-	&.has-light-background {
-		background: $color-grayscale-e;
-
-		&::before,
-		&::after {
-			border-color: $color-grayscale-f;
-		}
-	}
-
 	&.alignleft,
 	&.alignright {
 		max-width: 100%;
 	}
 }
 
-.wp-block-editorial-drawer-close  {
+.wp-block-editorial-drawer-close {
 	width: 100%;
 	text-align: center;
 }
