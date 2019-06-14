@@ -138,11 +138,15 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
+	&.is-style-side-by-side {
+		.wp-block-editorial-leadin-caption {
+			color: blocks-get( 'font-color-theme-dark');
+		}
+	}
+
 	&.is-style-text-over-image {
 		.wp-block-editorial-leadin-caption {
-			@include breakpoint( $xs ) {
-				color: blocks-get( 'font-color-theme-dark');
-			}
+			color: blocks-get( 'font-color-theme-dark');
 		}
 
 		&:not(.has-text-normal) {
