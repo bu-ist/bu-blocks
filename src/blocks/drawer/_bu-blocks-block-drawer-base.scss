@@ -237,4 +237,36 @@
 			opacity: 0;
 		}
 	}
+
+	&.alignleft {
+		.wp-block-editorial-drawer-content {
+			@include breakpoint( $md ) {
+				margin-left: -10%;
+			}
+
+			@include breakpoint( $lg ) {
+				margin-left: -15%;
+			}
+		}
+	}
+
+	&.alignright {
+		.wp-block-editorial-drawer-content {
+			@include breakpoint( $md ) {
+				margin-left: 10%;
+			}
+
+			@include breakpoint( $lg ) {
+				margin-left: 15%;
+			}
+		}
+	}
+
+	&.alignfull {
+		.wp-block-editorial-drawer-wrapper {
+			@include breakpoint($md ) {
+				padding: 74px 60px;
+			}
+		}
+	}
 }
