@@ -93,11 +93,13 @@
 		&.has-text-position-x-left {
 			.container-words-inner {
 				margin-left: 0;
+				text-align: left;
 			}
 		}
 		&.has-text-position-x-right {
 			.container-words-inner {
 				margin-right: 0;
+				text-align: left;
 			}
 		}
 	}
