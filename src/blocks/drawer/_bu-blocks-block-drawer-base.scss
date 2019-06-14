@@ -80,6 +80,15 @@
 		}
 	}
 
+	&.alignleft .wp-block-editorial-drawer-wrapper,
+	&.alignright .wp-block-editorial-drawer-wrapper {
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+
 	&.alignfull {
 		&::before,
 		&::after {
