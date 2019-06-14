@@ -9941,10 +9941,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 
 .bu-blocks-modal-noscroll {
   overflow: hidden; }
-  .bu-blocks-modal-noscroll .wp-component-progressbar-sticky.on-screen {
-    -webkit-transform: translateY(-300%);
-        -ms-transform: translateY(-300%);
-            transform: translateY(-300%); }
 
 .wp-block-editorial-modal.has-media .wp-block-editorial-modal-callout-content h1,
 .wp-block-editorial-modal.has-media .wp-block-editorial-modal-callout-content p {
