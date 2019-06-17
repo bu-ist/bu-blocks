@@ -5854,9 +5854,12 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     font-size: 16px; }
   .wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright {
     max-width: 100%;
-    margin-left: 0; }
+    margin-left: 8.3333%;
+    margin-right: 8.3333%; }
   .wp-block-editorial-aside.alignleft {
-    margin: 20px auto; }
+    margin: 20px auto;
+    margin-left: 8.3333%;
+    margin-right: 8.3333%; }
     @media (min-width: 768px) {
       .wp-block-editorial-aside.alignleft {
         float: left;
@@ -14180,9 +14183,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     -ms-flex-align: end;
         align-items: flex-end; }
   .has-text-position-x-left.wp-block-editorial-leadin.is-style-text-over-image .container-words-inner {
-    margin-left: 0; }
+    margin-left: 0;
+    text-align: left; }
   .has-text-position-x-right.wp-block-editorial-leadin.is-style-text-over-image .container-words-inner {
-    margin-right: 0; } }
+    margin-right: 0;
+    text-align: left; } }
 
 @media (min-width: 500px) {
   .wp-block-editorial-leadin.is-style-side-by-side {
@@ -14439,9 +14444,14 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   position: absolute;
   text-shadow: 0em 0em 0.75em #000; }
 
-@media (min-width: 500px) {
-  .is-style-text-over-image .wp-block-editorial-leadin-caption {
-    opacity: 0.66; } }
+.is-style-text-over-image .wp-block-editorial-leadin-caption,
+.is-style-side-by-side .wp-block-editorial-leadin-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0.5em;
+  opacity: 0.66; }
 
 @media (min-width: 500px) {
   .is-style-emphasis-on-text .wp-block-editorial-leadin-caption {
@@ -14614,9 +14624,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-leadin.is-style-image-to-text .wp-block-editorial-leadin-caption {
   color: #fff; }
 
-@media (min-width: 500px) {
-  .wp-block-editorial-leadin.is-style-text-over-image .wp-block-editorial-leadin-caption {
-    color: #fff; } }
+.wp-block-editorial-leadin.is-style-side-by-side .wp-block-editorial-leadin-caption {
+  color: #fff; }
+
+.wp-block-editorial-leadin.is-style-text-over-image .wp-block-editorial-leadin-caption {
+  color: #fff; }
 
 @media (min-width: 500px) {
   .wp-block-editorial-leadin.is-style-text-over-image:not(.has-text-normal) h1,
