@@ -133,6 +133,18 @@
 	@extend %media-crop-cover;
 	@extend %wp-block-background-video-scaling-media;
 	padding-bottom: 2em;
+	position: relative;
+
+	.head a {
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+	}
 
 	h1,
 	h2,
@@ -148,7 +160,7 @@
 	.container-words-inner {
 		margin-top: 2em;
 		margin-bottom: 2em;
-		position: relative;
+		// position: relative;
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-direction: column;
@@ -210,6 +222,10 @@
 	&.is-style-image-to-text,
 	&.is-style-text-to-image {
 		@extend %wp-block-background-video-scaling-contain;
+
+		.container-words-outer {
+			position: static;
+		}
 	}
 
 	&.is-style-emphasis-on-text,
@@ -279,10 +295,12 @@
 
 	&.is-style-emphasis-on-text {
 		$shadow-width: 50px;
-		@extend %leadin-image-height-medium;
 		position: relative;
+		@extend %leadin-image-height-medium;
 
 		.container-lockup {
+			position: relative;
+
 			@include breakpoint( $xs ) {
 				padding-bottom: 140px;
 			}
@@ -292,13 +310,11 @@
 			}
 		}
 
-		.container-lockup {
-			position: relative;
-		}
 		.container-words-outer {
 			width: 100%;
 			padding-left: $padding;
 			padding-right: $padding;
+			z-index: 1;
 
 			@include breakpoint( $xs ) {
 				position: absolute;
@@ -324,7 +340,7 @@
 					bottom: 0;
 				}
 
-				@include breakpoint( $md ) {
+				@include breakpoint( $sm ) {
 					bottom: -70px;
 				}
 			}

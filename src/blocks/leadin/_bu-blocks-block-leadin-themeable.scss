@@ -121,7 +121,7 @@ $scope: blocks-get( 'scope' );
 	}
 
 	&.is-style-emphasis-on-text {
-		.container-words-inner:before {
+		.container-words-inner {
 			background-color: blocks-get( 'color-page');
 		}
 
@@ -164,8 +164,48 @@ $scope: blocks-get( 'scope' );
 	&.is-style-emphasis-on-text.has-box,
 	&.is-style-text-over-image.has-box {
 		@include breakpoint( $xs ) {
-			.container-words-inner:before {
+			.container-words-inner {
 				background-color: blocks-get( 'background-color-dark');
+
+				&.has-opacity-00 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.0 );
+				}
+
+				&.has-opacity-10 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.1 );
+				}
+
+				&.has-opacity-20 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.2 );
+				}
+
+				&.has-opacity-30 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.3 );
+				}
+
+				&.has-opacity-40 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.4 );
+				}
+
+				&.has-opacity-50 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.5 );
+				}
+
+				&.has-opacity-60 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.6 );
+				}
+
+				&.has-opacity-70 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.7 );
+				}
+
+				&.has-opacity-80 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.8 );
+				}
+
+				&.has-opacity-90 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.9 );
+				}
 			}
 
 			&:not(.has-text-normal) {
@@ -222,8 +262,48 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner:before {
+				.container-words-inner {
 					background-color: blocks-get( 'background-color-light');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -275,8 +355,48 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner:before {
+				.container-words-inner {
 					background-color: blocks-get( 'background-color-dark');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -325,8 +445,48 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner:before {
+				.container-words-inner {
 					background-color: blocks-get( 'color-primary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -375,8 +535,48 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner:before {
+				.container-words-inner {
 					background-color: blocks-get( 'color-secondary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -425,8 +625,48 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner:before {
+				.container-words-inner {
 					background-color: blocks-get( 'color-tertiary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -475,8 +715,48 @@ $scope: blocks-get( 'scope' );
 		&.is-style-emphasis-on-text.has-box,
 		&.is-style-text-over-image.has-box {
 			@include breakpoint( $xs ) {
-				.container-words-inner:before {
+				.container-words-inner {
 					background-color: blocks-get( 'color-quaternary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.9 );
+					}
 				}
 
 				h1,
