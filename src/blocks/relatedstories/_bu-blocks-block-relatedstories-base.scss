@@ -93,18 +93,12 @@
 		.wp-block-editorial-relatedstories-article-image {
 
 			img {
-				height: auto;
+				@include object-fit( cover );
+				height: 250px;
 				width: 100%;
 
-				@supports (object-fit: cover) {
-					height: 250px;
-					object-fit: cover;
-				}
-
 				@include breakpoint( $lg ) {
-					@supports (object-fit: cover) {
-						height: 300px;
-					}
+					height: 300px;
 				}
 			}
 		}
@@ -187,21 +181,16 @@
 
 			img {
 				@include breakpoint( $sm ) {
-					@supports (object-fit: cover) {
-						height: 165px;
-					}
+					@include object-fit( cover );
+					height: 165px;
 				}
 
 				@include breakpoint( $md ) {
-					@supports (object-fit: cover) {
-						height: 200px;
-					}
+					height: 200px;
 				}
 
 				@include breakpoint( $lg ) {
-					@supports (object-fit: cover) {
-						height: 250px;
-					}
+					height: 250px;
 				}
 			}
 		}

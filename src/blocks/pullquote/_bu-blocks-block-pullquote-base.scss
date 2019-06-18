@@ -24,7 +24,7 @@
 		height: 100%;
 	}
 	img {
-		object-fit: cover;
+		@include object-fit( cover );
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -243,7 +243,7 @@
 		}
 	}
 
-	
+
 	//Video Styles
 	.wp-block-background-video {
 		position: relative;
