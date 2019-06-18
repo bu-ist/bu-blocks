@@ -103,7 +103,7 @@ function render_block( $attributes ) {
 			<div class="wp-block-leadin-media">
 				<?php do_action( 'bu_blocks_background', $attributes ); ?>
 
-				<?php if ( $attributes['caption'] && ( $style_image_to_text ) ) : ?>
+				<?php if ( $attributes['caption'] && ( $style_image_to_text || $style_side_by_side || $style_text_over_image ) ) : ?>
 					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 				<?php endif; ?>
 			</div>
@@ -132,10 +132,6 @@ function render_block( $attributes ) {
 
 						<?php if ( $attributes['deck'] ) : ?>
 							<h4 class="deck"><?php echo wp_kses_post( $attributes['deck'] ); ?></h4>
-						<?php endif; ?>
-
-						<?php if ( $attributes['caption'] && ( $style_side_by_side || $style_text_over_image ) ) : ?>
-							<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 						<?php endif; ?>
 
 					</div>
