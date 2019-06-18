@@ -64,4 +64,8 @@ $scope: blocks-get( 'scope' );
 			color: blocks-get( 'color-gray-a');
 		}
 	}
+
+	.wp-prepress-component-caption {
+		color: blocks-get( 'font-color-aside');
+	}
 }
