@@ -142,7 +142,7 @@
 		.container-icon-inner {
 			&::before {
 				content: '“';
-				font-size: 6em;
+				font-size: 110px;
 				line-height: 1.5em;
 				height: 1em;
 				position: absolute;
@@ -152,7 +152,7 @@
 				margin-left: -0.25em;
 				margin-top: -0.5em;
 				@include breakpoint( $xs ) {
-					font-size: 15em;
+					font-size: 270px;
 				}
 			}
 		}
