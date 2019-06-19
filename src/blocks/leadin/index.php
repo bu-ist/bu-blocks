@@ -102,7 +102,15 @@ function render_block( $attributes ) {
 		<div class="container-lockup">
 
 			<div class="wp-block-leadin-media">
+				<?php if ( $attributes['url'] && empty( $attributes['head'] ) ) : ?>
+					<a href="<?php echo esc_url( $attributes['url'] ); ?>">
+				<?php endif; ?>
+
 				<?php do_action( 'bu_blocks_background', $attributes ); ?>
+
+				<?php if ( $attributes['url'] && empty( $attributes['head'] ) ) : ?>
+					</a>
+				<?php endif; ?>
 
 				<?php if ( $attributes['caption'] && ( $style_image_to_text || $style_side_by_side || $style_text_over_image ) ) : ?>
 					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
