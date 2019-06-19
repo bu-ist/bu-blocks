@@ -10028,9 +10028,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       flex-wrap: wrap;
   margin: 60px 0; }
   .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
-    position: absolute;
     height: 100%;
-    left: 0; }
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
     .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
       width: 100%;
       height: 100%;
@@ -21094,32 +21096,59 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     .wp-block-editorial-pullquote.is-style-pop.has-image > img {
       display: block; }
   .wp-block-editorial-pullquote.has-image-focus-left-top img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 25% 25%;
-       object-position: 25% 25%; }
+    object-position: 25% 25%;
+    font-family: "object-fit: cover; object-position: 25% 25%"; }
   .wp-block-editorial-pullquote.has-image-focus-left-middle img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 25% 50%;
-       object-position: 25% 50%; }
+    object-position: 25% 50%;
+    font-family: "object-fit: cover; object-position: 25% 50%"; }
   .wp-block-editorial-pullquote.has-image-focus-left-bottom img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 25% 75%;
-       object-position: 25% 75%; }
+    object-position: 25% 75%;
+    font-family: "object-fit: cover; object-position: 25% 75%"; }
   .wp-block-editorial-pullquote.has-image-focus-center-top img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 50% 25%;
-       object-position: 50% 25%; }
+    object-position: 50% 25%;
+    font-family: "object-fit: cover; object-position: 50% 25%"; }
   .wp-block-editorial-pullquote.has-image-focus-center-middle img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 50% 50%;
-       object-position: 50% 50%; }
+    object-position: 50% 50%;
+    font-family: "object-fit: cover; object-position: 50% 50%"; }
   .wp-block-editorial-pullquote.has-image-focus-center-bottom img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 50% 75%;
-       object-position: 50% 75%; }
+    object-position: 50% 75%;
+    font-family: "object-fit: cover; object-position: 50% 75%"; }
   .wp-block-editorial-pullquote.has-image-focus-right-top img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 75% 25%;
-       object-position: 75% 25%; }
+    object-position: 75% 25%;
+    font-family: "object-fit: cover; object-position: 75% 25%"; }
   .wp-block-editorial-pullquote.has-image-focus-right-middle img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 75% 50%;
-       object-position: 75% 50%; }
+    object-position: 75% 50%;
+    font-family: "object-fit: cover; object-position: 75% 50%"; }
   .wp-block-editorial-pullquote.has-image-focus-right-bottom img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 75% 75%;
-       object-position: 75% 75%; }
+    object-position: 75% 75%;
+    font-family: "object-fit: cover; object-position: 75% 75%"; }
   .wp-block-editorial-pullquote .wp-block-background-video {
     position: relative;
     height: 100%;
