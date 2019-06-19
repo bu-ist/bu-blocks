@@ -37,6 +37,7 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
+	URLInput,
 	withColors,
 } = wp.editor;
 const {
@@ -97,6 +98,10 @@ const blockAttributes = {
 	boxOpacity: {
 		type: 'number',
 		default: 100,
+	},
+	url: {
+		type: 'string',
+		default: '',
 	},
 	...BackgroundAttributes,
 };
@@ -163,6 +168,7 @@ registerBlockType( 'bu/leadin', {
 				flip,
 				metabar,
 				boxOpacity,
+				url,
 			},
 			themeColor,
 			setThemeColor,
@@ -376,6 +382,16 @@ registerBlockType( 'bu/leadin', {
 							},
 						] }
 					/>
+					<PanelBody
+						className="components-panel__body-bu-leadin-block-url"
+						title={ __( 'URL' ) }
+					>
+						<p className="description">Link the leadin block to a story. (Optional)</p>
+						<URLInput
+							value={ url }
+							onChange={ ( value ) => setAttributes( { url: value } ) }
+						/>
+					</PanelBody>
 				</InspectorControls>
 			</Fragment>
 		);
