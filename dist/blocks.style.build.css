@@ -1933,6 +1933,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .block-sample-variant1 {
   text-align: right; }
 
@@ -3876,6 +3883,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-headline {
   display: block; }
   .wp-block-editorial-headline .wp-block-editorial-headline-pretext,
@@ -5838,6 +5852,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-aside {
   border: 1px solid #ddd;
   border-top: 3px solid #111;
@@ -7836,6 +7857,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-drawer.is-style-round .wp-block-editorial-drawer-teaser figure {
   border-radius: 50%;
   height: 150px;
@@ -7844,7 +7872,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   width: 150px; }
   .wp-block-editorial-drawer.is-style-round .wp-block-editorial-drawer-teaser figure img {
     -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
+    font-family: "object-fit: cover";
     height: 100%; }
 
 .wp-block-editorial-drawer.is-size-narrow .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer.is-size-small .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer.is-size-medium .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer.is-size-wide .wp-block-editorial-drawer-teaser {
@@ -9939,6 +9968,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .bu-blocks-modal-noscroll {
   overflow: hidden; }
 
@@ -9992,16 +10028,19 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       flex-wrap: wrap;
   margin: 60px 0; }
   .wp-block-editorial-modal-callout .wp-block-editorial-modal-media {
-    position: absolute;
     height: 100%;
-    left: 0; }
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
     .wp-block-editorial-modal-callout .wp-block-editorial-modal-media .wp-block-editorial-modal-image {
       width: 100%;
       height: 100%;
       max-height: 100%; }
     .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
       -o-object-fit: cover;
-         object-fit: cover;
+      object-fit: cover;
+      font-family: "object-fit: cover";
       height: 100%;
       width: 100%;
       max-height: 100%; }
@@ -12027,6 +12066,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-introparagraph p {
   background-size: 0%; }
 
@@ -14053,75 +14099,92 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 25% 25%;
-     object-position: 25% 25%; }
+  object-position: 25% 25%;
+  font-family: "object-fit: cover; object-position: 25% 25%"; }
 
 .has-media-focus-left-top.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-left-top.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 25% 25%;
-     object-position: 25% 25%; }
+  object-position: 25% 25%;
+  font-family: "object-fit: cover; object-position: 25% 25%"; }
 
 .has-media-focus-left-middle.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-left-middle.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 25% 50%;
-     object-position: 25% 50%; }
+  object-position: 25% 50%;
+  font-family: "object-fit: cover; object-position: 25% 50%"; }
 
 .has-media-focus-left-bottom.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-left-bottom.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 25% 75%;
-     object-position: 25% 75%; }
+  object-position: 25% 75%;
+  font-family: "object-fit: cover; object-position: 25% 75%"; }
 
 .has-media-focus-center-top.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-center-top.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 50% 25%;
-     object-position: 50% 25%; }
+  object-position: 50% 25%;
+  font-family: "object-fit: cover; object-position: 50% 25%"; }
 
 .has-media-focus-center-middle.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-center-middle.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 50% 50%;
-     object-position: 50% 50%; }
+  object-position: 50% 50%;
+  font-family: "object-fit: cover; object-position: 50% 50%"; }
 
 .has-media-focus-center-bottom.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-center-bottom.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 50% 75%;
-     object-position: 50% 75%; }
+  object-position: 50% 75%;
+  font-family: "object-fit: cover; object-position: 50% 75%"; }
 
 .has-media-focus-right-top.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-right-top.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 75% 25%;
-     object-position: 75% 25%; }
+  object-position: 75% 25%;
+  font-family: "object-fit: cover; object-position: 75% 25%"; }
 
 .has-media-focus-right-middle.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-right-middle.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 75% 50%;
-     object-position: 75% 50%; }
+  object-position: 75% 50%;
+  font-family: "object-fit: cover; object-position: 75% 50%"; }
 
 .has-media-focus-right-bottom.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] img,
 .has-media-focus-right-bottom.wp-block-editorial-leadin [class*="wp-block-"][class*="-media"] video {
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 75% 75%;
-     object-position: 75% 75%; }
+  object-position: 75% 75%;
+  font-family: "object-fit: cover; object-position: 75% 75%"; }
 
 @media (min-width: 500px) {
   .wp-block-editorial-leadin.is-style-image-to-text .wp-block-leadin-media, .wp-block-editorial-leadin.is-style-emphasis-on-text .wp-block-leadin-media {
@@ -16732,6 +16795,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .bu-blocks-editorial-slideshow {
   margin-bottom: 1em; }
 
@@ -16843,11 +16913,12 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
           transform: scale(1.25); }
 
 .bu-blocks-slideshow-media-actual {
-  position: absolute;
   -o-object-fit: contain;
-     object-fit: contain;
-  width: 100%;
-  height: 100%; }
+  object-fit: contain;
+  font-family: "object-fit: contain";
+  height: 100%;
+  position: absolute;
+  width: 100%; }
 
 .has-shownextup .bu-blocks-slideshow-media-track {
   -webkit-transform: translateX(-50px);
@@ -18908,6 +18979,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-global-buniverse.alignleft, .wp-block-global-buniverse.alignright {
   width: 100%; }
   @media (min-width: 768px) {
@@ -20886,6 +20964,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1), .wp-block-editorial-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup .row:nth-last-of-type(1), .wp-block-editorial-pullquote.is-style-modern .container-lockup .row:nth-last-of-type(1), .wp-block-editorial-pullquote.is-style-pop .container-lockup .row:nth-last-of-type(1), .row .wp-block-editorial-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup:nth-last-of-type(1), .wp-block-editorial-pullquote:not(.is-style-modern):not(.is-style-pop) .row .container-lockup:nth-last-of-type(1), .wp-block-editorial-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup .container-lockup:nth-last-of-type(1), .row .wp-block-editorial-pullquote.is-style-modern .container-lockup:nth-last-of-type(1), .wp-block-editorial-pullquote.is-style-modern .row .container-lockup:nth-last-of-type(1), .wp-block-editorial-pullquote.is-style-modern .container-lockup .container-lockup:nth-last-of-type(1), .row .wp-block-editorial-pullquote.is-style-pop .container-lockup:nth-last-of-type(1), .wp-block-editorial-pullquote.is-style-pop .row .container-lockup:nth-last-of-type(1), .wp-block-editorial-pullquote.is-style-pop .container-lockup .container-lockup:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 #main .wp-block-editorial-pullquote {
   position: relative; }
 
@@ -20901,7 +20986,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     height: 100%; }
   .wp-block-editorial-pullquote img {
     -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
+    font-family: "object-fit: cover";
     position: absolute;
     top: 0;
     left: 0;
@@ -21010,32 +21096,59 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     .wp-block-editorial-pullquote.is-style-pop.has-image > img {
       display: block; }
   .wp-block-editorial-pullquote.has-image-focus-left-top img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 25% 25%;
-       object-position: 25% 25%; }
+    object-position: 25% 25%;
+    font-family: "object-fit: cover; object-position: 25% 25%"; }
   .wp-block-editorial-pullquote.has-image-focus-left-middle img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 25% 50%;
-       object-position: 25% 50%; }
+    object-position: 25% 50%;
+    font-family: "object-fit: cover; object-position: 25% 50%"; }
   .wp-block-editorial-pullquote.has-image-focus-left-bottom img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 25% 75%;
-       object-position: 25% 75%; }
+    object-position: 25% 75%;
+    font-family: "object-fit: cover; object-position: 25% 75%"; }
   .wp-block-editorial-pullquote.has-image-focus-center-top img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 50% 25%;
-       object-position: 50% 25%; }
+    object-position: 50% 25%;
+    font-family: "object-fit: cover; object-position: 50% 25%"; }
   .wp-block-editorial-pullquote.has-image-focus-center-middle img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 50% 50%;
-       object-position: 50% 50%; }
+    object-position: 50% 50%;
+    font-family: "object-fit: cover; object-position: 50% 50%"; }
   .wp-block-editorial-pullquote.has-image-focus-center-bottom img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 50% 75%;
-       object-position: 50% 75%; }
+    object-position: 50% 75%;
+    font-family: "object-fit: cover; object-position: 50% 75%"; }
   .wp-block-editorial-pullquote.has-image-focus-right-top img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 75% 25%;
-       object-position: 75% 25%; }
+    object-position: 75% 25%;
+    font-family: "object-fit: cover; object-position: 75% 25%"; }
   .wp-block-editorial-pullquote.has-image-focus-right-middle img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 75% 50%;
-       object-position: 75% 50%; }
+    object-position: 75% 50%;
+    font-family: "object-fit: cover; object-position: 75% 50%"; }
   .wp-block-editorial-pullquote.has-image-focus-right-bottom img {
+    -o-object-fit: cover;
+    object-fit: cover;
     -o-object-position: 75% 75%;
-       object-position: 75% 75%; }
+    object-position: 75% 75%;
+    font-family: "object-fit: cover; object-position: 75% 75%"; }
   .wp-block-editorial-pullquote .wp-block-background-video {
     position: relative;
     height: 100%;
@@ -23054,6 +23167,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-photoessay [class*="photo-row-"] {
   margin: 0 -15px; }
   .wp-block-editorial-photoessay [class*="photo-row-"] > [class*="photo-"] {
@@ -23078,7 +23198,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-photoessay img,
 .wp-block-editorial-photoessay video {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
+  font-family: "object-fit: cover";
   width: 100%;
   height: 100%; }
 
@@ -25324,6 +25445,13 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 a:active,
 a:visited {
   color: inherit; }
@@ -27337,6 +27465,13 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-title {
   margin-bottom: 30px; }
   .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-title::after {
@@ -27405,17 +27540,14 @@ a:visited {
     transform: scale(1.05); }
 
 .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-image img {
-  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  font-family: "object-fit: cover";
+  height: 250px;
   width: 100%; }
-  @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-    .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-image img {
-      height: 250px;
-      -o-object-fit: cover;
-         object-fit: cover; } }
   @media (min-width: 1200px) {
-    @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-      .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-image img {
-        height: 300px; } } }
+    .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-image img {
+      height: 300px; } }
 
 .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-category {
   left: 10px;
@@ -27470,19 +27602,19 @@ a:visited {
       width: calc( 33.3% - 30px); } }
 
 @media (min-width: 768px) {
-  @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-    .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
-      height: 165px; } } }
+  .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    font-family: "object-fit: cover";
+    height: 165px; } }
 
 @media (min-width: 992px) {
-  @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-    .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
-      height: 200px; } } }
+  .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
+    height: 200px; } }
 
 @media (min-width: 1200px) {
-  @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-    .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
-      height: 250px; } } }
+  .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
+    height: 250px; } }
 
 .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-title-link:hover, .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-title-link:focus {
   text-decoration: none; }
@@ -29445,6 +29577,13 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-listicle {
   max-width: 975px;
   margin-bottom: 35px; }
@@ -29462,18 +29601,18 @@ a:visited {
   .wp-block-editorial-listicle-figure img {
     height: auto;
     width: 100%; }
-    @supports ((-o-object-fit: cover) or (object-fit: cover)) {
-      @media (min-width: 500px) {
-        .wp-block-editorial-listicle-figure img {
-          height: 350px;
-          -o-object-fit: cover;
-             object-fit: cover; } }
-      @media (min-width: 768px) {
-        .wp-block-editorial-listicle-figure img {
-          height: 500px; } }
-      @media (min-width: 992px) {
-        .wp-block-editorial-listicle-figure img {
-          height: 645px; } } }
+    @media (min-width: 500px) {
+      .wp-block-editorial-listicle-figure img {
+        -o-object-fit: cover;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+        height: 350px; } }
+    @media (min-width: 768px) {
+      .wp-block-editorial-listicle-figure img {
+        height: 500px; } }
+    @media (min-width: 992px) {
+      .wp-block-editorial-listicle-figure img {
+        height: 645px; } }
   .wp-block-editorial-listicle-figure .wp-caption-text {
     text-align: right; }
 
@@ -31551,6 +31690,13 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-clicktotweet:hover {
   cursor: pointer; }
 
@@ -33601,6 +33747,13 @@ a:visited {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .is-style-caption {
   font-size: 0.8em;
   padding: 1em 0;

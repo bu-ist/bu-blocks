@@ -1933,6 +1933,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -3874,6 +3881,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -5817,6 +5831,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -7780,6 +7801,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -9735,6 +9763,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .edit-post-settings-sidebar__panel-block .components-panel__body.components-panel__body-bu-background-media button + .components-range-control,
 .edit-post-settings-sidebar__panel-block .components-panel__body.components-panel__body-bu-background-media .is-button + .is-button {
   margin-top: 1.5em; }
@@ -11681,6 +11716,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -13643,6 +13685,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -15590,6 +15639,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -17542,6 +17598,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -19483,6 +19546,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -21531,6 +21601,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -23479,6 +23556,13 @@
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -25571,6 +25655,13 @@ input[value="photo-row-thirds-3"] + label {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -27515,6 +27606,13 @@ div[data-type="bu/button"] .components-autocomplete {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -29477,6 +29575,13 @@ figure.wp-block-editorial-relatedstories-article-image {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -31436,6 +31541,13 @@ figure.wp-block-editorial-relatedstories-article-image {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 /**
  * #.# Editor Styles
  *
@@ -33377,6 +33489,13 @@ figure.wp-block-editorial-relatedstories-article-image {
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
 
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
 .wp-block-editorial-custom-html {
   border-radius: 4px;
   border: 1px solid #e2e4e7;
@@ -35318,3 +35437,11 @@ figure.wp-block-editorial-relatedstories-article-image {
 
 .row .row:nth-last-of-type(1) {
   margin-bottom: 0; }
+
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
