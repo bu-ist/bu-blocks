@@ -2,9 +2,7 @@
 	[class*="wp-block-"][class*="-media"] {
 		img,
 		video {
-			-o-object-fit: cover;
-			object-fit: cover;
-			object-position: 25% 25%;
+			@include object-fit( cover, 25% 25% );
 		}
 	}
 
@@ -12,9 +10,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 25% 25%;
+				@include object-fit( cover, 25% 25% );
 			}
 		}
 	}
@@ -23,9 +19,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 25% 50%;
+				@include object-fit( cover, 25% 50% );
 			}
 		}
 	}
@@ -34,9 +28,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 25% 75%;
+				@include object-fit( cover, 25% 75% );
 			}
 		}
 	}
@@ -45,9 +37,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 50% 25%;
+				@include object-fit( cover, 50% 25% );
 			}
 		}
 	}
@@ -56,9 +46,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 50% 50%;
+				@include object-fit( cover, 50% 50% );
 			}
 		}
 	}
@@ -67,9 +55,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 50% 75%;
+				@include object-fit( cover, 50% 75% );
 			}
 		}
 	}
@@ -78,9 +64,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 75% 25%;
+				@include object-fit( cover, 75% 25% );
 			}
 		}
 	}
@@ -89,9 +73,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 75% 50%;
+				@include object-fit( cover, 75% 50% );
 			}
 		}
 	}
@@ -100,9 +82,7 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				-o-object-fit: cover;
-				object-fit: cover;
-				object-position: 75% 75%;
+				@include object-fit( cover, 75% 75% );
 			}
 		}
 	}
