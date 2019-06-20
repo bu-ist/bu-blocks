@@ -34,11 +34,14 @@
 		@extend %col-xs-half;
 		@extend %col-sm-third;
 		max-width: 100%;
-		margin-left: 0;
+		margin-left: 8.3333%;
+		margin-right: 8.3333%;
 	}
 
 	&.alignleft {
 		margin: 20px auto;
+		margin-left: 8.3333%;
+		margin-right: 8.3333%;
 
 		@include breakpoint( $sm ) {
 			float: left;
