@@ -54,6 +54,10 @@
 		}
 	}
 
+	.caption {
+		padding-bottom: 0;
+	}
+
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			&::before,
