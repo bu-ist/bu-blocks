@@ -248,6 +248,7 @@ registerBlockType( 'bu/pullquote', {
 								/>
 								<RichText.Content
 									tagName="footer"
+									className="caption"
 									value={ cite }
 								/>
 							<hr />
