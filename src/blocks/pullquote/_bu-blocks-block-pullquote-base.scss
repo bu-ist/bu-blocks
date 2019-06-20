@@ -8,11 +8,11 @@
 //
 //
 
-#main .wp-block-editorial-pullquote {
+#main .wp-block-bu-pullquote {
 	position: relative;
 };
 
-.wp-block-editorial-pullquote {
+.wp-block-bu-pullquote {
 	position: relative;
 	text-align: center;
 	margin-bottom: 1.5em;
@@ -24,7 +24,7 @@
 		height: 100%;
 	}
 	img {
-		object-fit: cover;
+		@include object-fit( cover );
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -142,7 +142,7 @@
 		.container-icon-inner {
 			&::before {
 				content: '“';
-				font-size: 6em;
+				font-size: 110px;
 				line-height: 1.5em;
 				height: 1em;
 				position: absolute;
@@ -152,7 +152,7 @@
 				margin-left: -0.25em;
 				margin-top: -0.5em;
 				@include breakpoint( $xs ) {
-					font-size: 15em;
+					font-size: 270px;
 				}
 			}
 		}
@@ -199,51 +199,51 @@
 	}
 	&.has-image-focus-left-top {
 		img {
-			object-position: 25% 25%;
+			@include object-fit( cover, 25% 25% );
 		}
 	}
 	&.has-image-focus-left-middle {
 		img {
-			object-position: 25% 50%;
+			@include object-fit( cover, 25% 50% );
 		}
 	}
 	&.has-image-focus-left-bottom {
 		img {
-			object-position: 25% 75%;
+			@include object-fit( cover, 25% 75% );
 		}
 	}
 	&.has-image-focus-center-top {
 		img {
-			object-position: 50% 25%;
+			@include object-fit( cover, 50% 25% );
 		}
 	}
 	&.has-image-focus-center-middle {
 		img {
-			object-position: 50% 50%;
+			@include object-fit( cover, 50% 50% );
 		}
 	}
 	&.has-image-focus-center-bottom {
 		img {
-			object-position: 50% 75%;
+			@include object-fit( cover, 50% 75% );
 		}
 	}
 	&.has-image-focus-right-top {
 		img {
-			object-position: 75% 25%;
+			@include object-fit( cover, 75% 25% );
 		}
 	}
 	&.has-image-focus-right-middle {
 		img {
-			object-position: 75% 50%;
+			@include object-fit( cover, 75% 50% );
 		}
 	}
 	&.has-image-focus-right-bottom {
 		img {
-			object-position: 75% 75%;
+			@include object-fit( cover, 75% 75% );
 		}
 	}
 
-	
+
 	//Video Styles
 	.wp-block-background-video {
 		position: relative;

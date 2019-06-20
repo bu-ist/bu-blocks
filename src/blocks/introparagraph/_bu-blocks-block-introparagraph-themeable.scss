@@ -57,32 +57,37 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-editorial-introparagraph {
 	&.is-style-large {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'font-color-heading-small');
 			font-family: blocks-get( 'font-family-secondary');
 		}
 	}
 
 	&.has-paragraph-color-primary {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'color-primary-text');
 		}
 	}
 
 	&.has-paragraph-color-secondary {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'color-secondary-text');
 		}
 	}
 
 	&.has-paragraph-color-tertiary {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'color-tertiary-text');
 		}
 	}
 
 	&.has-paragraph-color-quaternary {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'color-quaternary-text');
 		}
 	}

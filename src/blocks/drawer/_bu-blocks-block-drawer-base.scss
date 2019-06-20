@@ -18,7 +18,7 @@
 			width: 150px;
 
 			img {
-				object-fit: cover;
+				@include object-fit( cover );
 				height: 100%;
 			}
 		}

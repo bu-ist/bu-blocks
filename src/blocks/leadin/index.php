@@ -74,6 +74,7 @@ function render_block( $attributes ) {
 		'textPositionX'      => 'x-center',
 		'textPositionY'      => '',
 		'themeColor'         => '',
+		'url'                => '',
 		'wide'               => false,
 	);
 
@@ -101,7 +102,15 @@ function render_block( $attributes ) {
 		<div class="container-lockup">
 
 			<div class="wp-block-leadin-media">
+				<?php if ( $attributes['url'] && empty( $attributes['head'] ) ) : ?>
+					<a href="<?php echo esc_url( $attributes['url'] ); ?>">
+				<?php endif; ?>
+
 				<?php do_action( 'bu_blocks_background', $attributes ); ?>
+
+				<?php if ( $attributes['url'] && empty( $attributes['head'] ) ) : ?>
+					</a>
+				<?php endif; ?>
 
 				<?php if ( $attributes['caption'] && ( $style_image_to_text || $style_side_by_side || $style_text_over_image ) ) : ?>
 					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
@@ -113,7 +122,7 @@ function render_block( $attributes ) {
 			<?php endif; ?>
 
 
-			<?php if ( $attributes['head'] || $attributes['deck'] || $attributes['caption'] ) : ?>
+			<?php if ( $attributes['head'] || $attributes['deck'] ) : ?>
 
 				<div class="container-words-outer">
 
@@ -123,11 +132,15 @@ function render_block( $attributes ) {
 
 					<div class="<?php echo esc_attr( $box_classes ); ?>">
 
-
-
 						<?php if ( $attributes['head'] ) : ?>
 							<?php do_action( 'bu_blocks_leadin_primary_term', get_the_ID() ); ?>
-							<h1 class="head"><?php echo wp_kses_post( $attributes['head'] ); ?></h1>
+							<h1 class="head">
+								<?php if ( $attributes['url'] ) : ?>
+									<a href="<?php echo esc_url( $attributes['url'] ); ?>"><?php echo wp_kses_post( $attributes['head'] ); ?></a>
+								<?php else : ?>
+									<?php echo wp_kses_post( $attributes['head'] ); ?>
+								<?php endif; ?>
+							</h1>
 						<?php endif; ?>
 
 						<?php if ( $attributes['deck'] ) : ?>
@@ -211,6 +224,7 @@ function register_block() {
 				),
 				'textPositionY'      => $shared_args,
 				'themeColor'         => $shared_args,
+				'url'                => $shared_args,
 				'wide'               => array(
 					'type'    => 'boolean',
 					'default' => false,

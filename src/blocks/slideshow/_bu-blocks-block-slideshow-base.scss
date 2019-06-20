@@ -16,7 +16,7 @@
 .bu-blocks-slideshow-media-container {
 	overflow-x: hidden;
 	position: relative;
-	.back, 
+	.back,
 	.forward {
 		display: block;
 		position: absolute;
@@ -107,10 +107,10 @@
 	transform: scale(1.25);
 }
 .bu-blocks-slideshow-media-actual {
-	position: absolute;
-	object-fit: contain;
-	width: 100%;
+	@include object-fit( contain );
 	height: 100%;
+	position: absolute;
+	width: 100%;
 }
 
 .has-shownextup {
