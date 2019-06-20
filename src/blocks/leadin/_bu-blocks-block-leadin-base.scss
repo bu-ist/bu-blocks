@@ -256,7 +256,7 @@
 
 		.wp-block-leadin-media {
 			height: 100%;
-			
+
 			@include breakpoint( $xs ) {
 				height: 400px;
 			}
@@ -564,7 +564,7 @@
 			display: none;
 		}
 	}
-	
+
 	.wp-block-background-video {
 		position: relative;
 		height: 100%;
