@@ -132,6 +132,10 @@ registerBlockType( 'editorial/introparagraph', {
 			label: __( 'Split paragraph text' )
 		},
 		{
+			name: 'dropcap-default',
+			label: __( 'Dropcap' )
+		},
+		{
 			name: 'dropcap-boxed',
 			label: __( 'Boxed dropcap' )
 		},
