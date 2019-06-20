@@ -107,6 +107,11 @@
 		}
 		&.has-image {
 			color: #fff;
+
+			.caption {
+				color: #fff;
+			}
+
 			> img {
 				display: block;
 			}
