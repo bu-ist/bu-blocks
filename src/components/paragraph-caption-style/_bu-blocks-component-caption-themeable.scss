@@ -59,10 +59,6 @@ $scope: blocks-get( 'scope' );
 	p.is-style-caption {
 		color: blocks-get( 'color-quaternary-text');
 		font-family: blocks-get( 'font-family-secondary');
-
-		em {
-			color: blocks-get( 'color-gray-a');
-		}
 	}
 
 	.wp-prepress-component-caption {
