@@ -117,17 +117,17 @@
 			}
 		}
 		.container-lockup {
-			@extend .row;
+			@extend %row-styles;
 		}
 		.container-text {
 			@extend %row-child-styles;
-			@extend .col-12;
+			@extend %col-12;
 		}
 	}
 	&.is-style-modern,
 	&.is-style-pop {
 		.container-lockup {
-			@extend .row;
+			@extend %row-styles;
 			display: -ms-flexbox;
 			display: flex;
 			-ms-flex-direction: row;
@@ -135,7 +135,7 @@
 		}
 		.container-icon-outer {
 			@extend %row-child-styles;
-			@extend .col-4;
+			@extend %col-4;
 			display: -ms-flexbox;
 			display: flex;
 		}
@@ -145,7 +145,7 @@
 		}
 		.container-text {
 			@extend %row-child-styles;
-			@extend .col-8;
+			@extend %col-8;
 		}
 	}
 	&.is-style-modern {
