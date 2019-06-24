@@ -46,10 +46,18 @@
 		}
 	}
 	.quote-sizing {
-			@extend %font-size-3;
+		font-size: 1.25em;
+		line-height: 1.5em;
+
 		@include breakpoint( $xs ) {
+			font-size: 1.5em;
 		}
 	}
+
+	.caption {
+		padding-bottom: 0;
+	}
+
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			&::before,
@@ -99,22 +107,27 @@
 		}
 		&.has-image {
 			color: #fff;
+
+			.caption {
+				color: #fff;
+			}
+
 			> img {
 				display: block;
 			}
 		}
 		.container-lockup {
-			@extend .row;
+			@extend %row-styles;
 		}
 		.container-text {
 			@extend %row-child-styles;
-			@extend .col-12;
+			@extend %col-12;
 		}
 	}
 	&.is-style-modern,
 	&.is-style-pop {
 		.container-lockup {
-			@extend .row;
+			@extend %row-styles;
 			display: -ms-flexbox;
 			display: flex;
 			-ms-flex-direction: row;
@@ -122,7 +135,7 @@
 		}
 		.container-icon-outer {
 			@extend %row-child-styles;
-			@extend .col-4;
+			@extend %col-4;
 			display: -ms-flexbox;
 			display: flex;
 		}
@@ -132,7 +145,7 @@
 		}
 		.container-text {
 			@extend %row-child-styles;
-			@extend .col-8;
+			@extend %col-8;
 		}
 	}
 	&.is-style-modern {

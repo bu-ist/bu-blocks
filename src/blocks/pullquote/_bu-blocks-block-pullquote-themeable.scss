@@ -74,6 +74,10 @@ $scope: blocks-get( 'scope' );
 			blockquote::after {
 				color: blocks-get( 'color-page');
 			}
+
+			.caption {
+				color: blocks-get( 'color-page');
+			}
 		}
 		&.alignfull {
 			background-color: blocks-get( 'background-color-light');
