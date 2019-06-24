@@ -62,6 +62,10 @@ const {
 	applyFilters,
 } = wp.hooks;
 
+const {
+	decodeEntities,
+} = wp.htmlEntities;
+
 import classnames from 'classnames';
 
 // Register the block.
@@ -304,10 +308,10 @@ registerBlockType( 'editorial/relatedstories', {
 						) }
 						<div className="wp-block-editorial-relatedstories-article-content">
 							{ className.includes( 'is-style-card' ) && post.primary_term && (
-								<p className="wp-block-editorial-relatedstories-article-category"><span>{ post.primary_term }</span></p>
+								<p className="wp-block-editorial-relatedstories-article-category"><span>{ decodeEntities( post.primary_term ) }</span></p>
 							) }
 							<h4 className="wp-block-editorial-relatedstories-article-title">
-								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ post.title }</a>
+								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ decodeEntities( post.title ) }</a>
 							</h4>
 							<p className="wp-block-editorial-relatedstories-article-date">{ format( __experimentalGetSettings().formats.date, post.date_gmt ) }</p>
 							{ applyFilters( 'buBlocks.relatedStories.displayListItem', '', post, currentPost ) }
@@ -358,7 +362,7 @@ registerBlockType( 'editorial/relatedstories', {
 		 */
 		const displaySelectedPost = ( post ) => {
 			return (
-				<li data-post-id={ post.id }>{ post.title } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
+				<li data-post-id={ post.id }>{ decodeEntities( post.title ) } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
 			);
 		};
 
