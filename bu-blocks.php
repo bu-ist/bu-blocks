@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Defines the plugin version.
-define( 'BU_BLOCKS_VERSION', '0.1.9' );
+define( 'BU_BLOCKS_VERSION', '0.2.0' );
 
 /**
  * Displays admin notice and prevents activation.
