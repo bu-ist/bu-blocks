@@ -192,7 +192,7 @@ function render_block( $attributes ) {
 	ob_start();
 	?>
 	<aside class="<?php echo esc_attr( $classes ); ?>">
-		<h3 class="wp-block-editorial-relatedstories-title">Related</h3>
+		<h3 class="wp-block-editorial-relatedstories-title"><?php esc_html_e( 'Related' ); ?></h3>
 		<ul class="wp-block-editorial-relatedstories-list">
 			<?php
 
