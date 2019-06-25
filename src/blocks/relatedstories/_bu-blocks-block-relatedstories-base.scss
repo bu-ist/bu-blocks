@@ -32,6 +32,17 @@
 		margin-bottom: 20px;
 	}
 
+	.wp-block-editorial-relatedstories-article-title {
+
+		@include breakpoint( $sm ) {
+			font-size: 0.9em;
+		}
+
+		@include breakpoint( $lg ) {
+			font-size: 1.08839em;
+		}
+	}
+
 	.wp-block-editorial-relatedstories-article-title-link {
 		color: $color-link;
 		text-decoration: none;
@@ -65,10 +76,14 @@
 	&.alignright,
 	&.alignleft {
 		@include breakpoint( $xs ) {
-			max-width: 50%;
+			max-width: 83.33333%;
 		}
 
 		@include breakpoint( $sm ) {
+			max-width: 40%;
+		}
+
+		@include breakpoint( $lg ) {
 			max-width: 30%;
 		}
 
