@@ -54,3 +54,12 @@ figure.wp-block-editorial-relatedstories-article-image {
 		}
 	}
 }
+
+.editor-block-list__block {
+
+	.wp-block-editorial-relatedstories.is-style-card:not(.alignwide):not(.alignfull) {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+}
