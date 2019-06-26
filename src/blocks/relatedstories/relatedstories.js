@@ -468,6 +468,7 @@ registerBlockType( 'editorial/relatedstories', {
 					</BlockControls>
 				) }
 				<aside className={ classes }>
+					<h3 className="wp-block-editorial-relatedstories-title">Related</h3>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
 							{ displayPosts && displayPosts.map( post => displayListItem( className, post ) ) }
