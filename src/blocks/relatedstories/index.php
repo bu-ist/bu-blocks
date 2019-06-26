@@ -192,7 +192,7 @@ function render_block( $attributes ) {
 	ob_start();
 	?>
 	<aside class="<?php echo esc_attr( $classes ); ?>">
-		<h3 class="wp-block-editorial-relatedstories-title"><?php esc_html_e( 'Related' ); ?></h3>
+		<h3 class="wp-block-editorial-relatedstories-title"><?php esc_html_e( 'Related', 'bu-blocks' ); ?></h3>
 		<ul class="wp-block-editorial-relatedstories-list">
 			<?php
 
@@ -225,7 +225,7 @@ function render_block( $attributes ) {
 						}
 
 						?>
-							<h4 class="wp-block-editorial-relatedstories-article-title"><a href="<?php the_permalink( $post ); ?>" class="wp-block-editorial-relatedstories-article-title-link"><?php echo esc_html( get_the_title( $post ) ); ?></a></h4>
+							<h4 class="wp-block-editorial-relatedstories-article-title"><a href="<?php the_permalink( $post ); ?>" class="wp-block-editorial-relatedstories-article-title-link"><?php echo wp_kses_post( get_the_title( $post ) ); ?></a></h4>
 							<p class="wp-block-editorial-relatedstories-article-date"><?php echo esc_html( get_the_date( '', $post ) ); ?></p>
 						<?php
 
