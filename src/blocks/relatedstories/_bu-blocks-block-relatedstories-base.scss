@@ -65,15 +65,30 @@
 	&.alignright,
 	&.alignleft {
 		@include breakpoint( $xs ) {
-			max-width: 50%;
+			max-width: 83.33333%;
 		}
 
-		@include breakpoint( $sm ) {
+		@include breakpoint( 600px ) {
+			max-width: 40%;
+		}
+
+		@include breakpoint( $lg ) {
 			max-width: 30%;
 		}
 
 		.wp-block-editorial-relatedstories-article-title {
 			margin-top: 10px;
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+
+			@include breakpoint( 600px ) {
+				font-size: 1em;
+			}
+
+			@include breakpoint( $lg ) {
+				font-size: 1.18169em;
+			}
 		}
 	}
 
@@ -150,6 +165,17 @@
 				width: calc( 50% - 30px );
 			}
 		}
+
+		.wp-block-editorial-relatedstories-article-title {
+
+			@include breakpoint( $xs ) {
+				font-size: 1em;
+			}
+
+			@include breakpoint( $lg ) {
+				font-size: 1.18169em;
+			}
+		}
 	}
 
 	&.is-style-card.has-three {
@@ -174,6 +200,17 @@
 			@include breakpoint( $sm ) {
 				margin: 0 15px 20px;
 				width: calc( 33.3% - 30px );
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+
+			@include breakpoint( $sm ) {
+				font-size: 1em;
+			}
+
+			@include breakpoint( $lg ) {
+				font-size: 1.18169em;
 			}
 		}
 
