@@ -111,13 +111,9 @@ function render_block( $attributes ) {
 				<?php if ( $attributes['url'] && empty( $attributes['head'] ) ) : ?>
 					</a>
 				<?php endif; ?>
-
-				<?php if ( $attributes['caption'] && ( $style_image_to_text || $style_side_by_side || $style_text_over_image ) ) : ?>
-					<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
-				<?php endif; ?>
 			</div>
 
-			<?php if ( $attributes['caption'] && ( $style_default ) ) : ?>
+			<?php if ( $attributes['caption'] && ( $style_default || $style_image_to_text || $style_text_over_image || $style_side_by_side ) ) : ?>
 				<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 			<?php endif; ?>
 

@@ -108,12 +108,6 @@
 %leadin-sidebyside-vert-size {
 	@include breakpoint( $xs ) {
 		min-height: 640px;
-		position: relative;
-
-		.container-lockup {
-			height: 100%;
-			position: absolute;
-		}
 	}
 
 	@include breakpoint( $sm ) {
@@ -160,7 +154,6 @@
 	.container-words-inner {
 		margin-top: 2em;
 		margin-bottom: 2em;
-		// position: relative;
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-direction: column;
@@ -210,15 +203,6 @@
 		}
 	}
 
-	// &.is-style-text-to-image { //ie11 flex fix
-	// 	.wp-block-leadin-media {
-	// 		height: 100%;
-	// 		@include breakpoint( $xs ) {
-	// 			height: auto;
-	// 		}
-	// 	}
-	// }
-
 	&.is-style-image-to-text,
 	&.is-style-text-to-image {
 		@extend %wp-block-background-video-scaling-contain;
@@ -252,8 +236,6 @@
 	}
 
 	&.is-style-text-to-image {
-		// @extend %leadin-image-height-small;
-
 		.wp-block-leadin-media {
 			height: 100%;
 
@@ -410,7 +392,6 @@
 	}
 
 	&.is-style-side-by-side {
-		@extend %leadin-sidebyside-vert-size;
 		padding-left: $padding;
 		padding-right: $padding;
 		text-align: center;
@@ -423,7 +404,12 @@
 		.container-lockup {
 			@include breakpoint( $xs ) {
 				text-align: left;
+				flex-wrap: wrap;
 			}
+		}
+
+		.container-words-outter {
+			@extend %leadin-sidebyside-vert-size;
 		}
 
 		.container-words-inner {
@@ -443,16 +429,19 @@
 			.container-lockup{
 				display: flex;
 
-				.wp-block-leadin-media {
-					width: 33.333333%;
-				}
+			.wp-block-leadin-media,
+			.container-words-outer {
+				margin-left: -1px;
+				transform: translateX(1px);
+			}
+			}
 
-				.container-words-outer {
-					width: 66.666666%;
-				}
+			.wp-block-leadin-media {
+				width: 33.333333%;
 			}
 
 			.container-words-outer {
+				width: 66.666666%;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
@@ -465,11 +454,9 @@
 		}
 
 		@include breakpoint( $sm ) {
-			.container-lockup{
-				.wp-block-leadin-media,
-				.container-words-outer {
-					width: 50%;
-				}
+			.wp-block-leadin-media,
+			.container-words-outer {
+				width: 50%;
 			}
 		}
 	}
@@ -521,26 +508,9 @@
 	}
 }
 
-.is-style-image-to-text {
-	.wp-block-editorial-leadin-caption {
-		bottom: 0;
-		left: 1em;
-		opacity: 0.66;
-		margin-bottom: 0.5em;
-		position: absolute;
-		text-shadow: 0em 0em 0.75em #000;
-	}
-}
-
-.is-style-text-over-image,
 .is-style-side-by-side {
 	.wp-block-editorial-leadin-caption {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: 0.5em;
-		opacity: 0.66;
+		order: 2;
 	}
 }
 
