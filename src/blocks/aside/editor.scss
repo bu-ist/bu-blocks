@@ -12,7 +12,7 @@
 	width: calc(100% / 3);
 }
 
-.wp-block-editorial-aside {
+div[data-type="editorial/aside"] .wp-block-editorial-aside {
 	float: none;
 }
 
