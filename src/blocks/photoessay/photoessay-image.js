@@ -2,13 +2,10 @@
  * BLOCK: editorial/photoessay/image
  *
  * Register an individual image block for the photo essay block.
- *
- * Instead of using InnerBlocks with the default image block as the only
- * allowed block, this is a simplified version of the default image block.
- * This approach will prevent an extra block layer that could confuse users,
- * avoids the alignment options of the default image block, and may help with
- * the modal functionality of the photo essay block.
  */
+
+// Internal dependencies.
+import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
 const {
@@ -18,25 +15,13 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
-	IconButton,
-	PanelBody,
-	Toolbar,
-} = wp.components;
-const {
-	Fragment,
-} = wp.element;
-const {
-	BlockControls,
-	MediaPlaceholder,
-	MediaUpload,
-	MediaUploadCheck,
 	RichText,
 } = wp.editor;
 const {
-	addFilter
+	addFilter,
 } = wp.hooks;
 const {
-	createHigherOrderComponent
+	createHigherOrderComponent,
 } = wp.compose;
 
 // Add the layout class to the block wrapper component.
@@ -90,6 +75,7 @@ registerBlockType( 'editorial/photoessay-image', {
 		columnClass: {
 			type: 'string',
 		},
+		...BackgroundAttributes,
 	},
 	supports: {
 		className: false,
@@ -99,101 +85,35 @@ registerBlockType( 'editorial/photoessay-image', {
 		reusable: false,
 	},
 
-	edit( { attributes, setAttributes, isSelected } ) {
+	edit( props ) {
 		const {
-			id,
-			url,
-			alt,
-			caption,
-		} = attributes;
-
-		// Set attributes when an image is selected.
-		const onSelectImage = ( media ) => {
-			if ( ! media || ! media.id || ! media.url ) {
-				onRemoveImage();
-
-				return;
-			}
-
-			setAttributes( {
-				id: media.id,
-				url: ( media.sizes['16x9_md'] ) ? media.sizes['16x9_md'].url : media.url,
-				alt: media.alt,
-			} );
-		};
-
-		// Reset attributes when an image is removed.
-		const onRemoveImage = () => {
-			setAttributes( {
-				id: undefined,
-				url: undefined,
-				alt: undefined,
-			} );
-		};
+			attributes: {
+				backgroundCaption,
+				backgroundType,
+			},
+			isSelected,
+			setAttributes,
+		} = props;
 
 		return (
-			<div className={ ( url ) ? 'wp-block-photoessay-media-wrapper' : '' }>
+			<div className={ ( backgroundType ) ? 'wp-block-photoessay-media-wrapper' : '' }>
 				<div className="wp-block-photoessay-media">
-					<MediaUploadCheck>
-						{ ! url && (
-							<MediaPlaceholder
-								icon="format-image"
-								label="Image"
-								labels={ {
-									title: 'Image',
-									name: 'images',
-								} }
-								onSelect={ onSelectImage }
-								allowedTypes={ [ 'image' ] }
-							/>
-						) }
-						{ url && (
-							<BlockControls>
-								{ isSelected && (
-								<Toolbar>
-									<MediaUpload
-										onSelect={ onSelectImage }
-										value={ id }
-										allowedTypes={ [ 'image' ] }
-										render={ ( { open } ) => (
-											<div>
-												<IconButton
-													className="components-toolbar__control"
-													label="Edit image"
-													icon="edit"
-													onClick={ open }
-												/>
-												<IconButton
-													icon="no-alt"
-													onClick={ onRemoveImage }
-													className="blocks-gallery-image__remove"
-													label="Remove image"
-												/>
-											</div>
-										) }
-									/>
-								</Toolbar>
-								) }
-							</BlockControls>
-						) }
-					</MediaUploadCheck>
-					{ url && (
-						<figure>
-							<img
-								src={ url }
-								alt={ alt }
-								className={ id ? `wp-image-${ id }` : null }
-							/>
-						</figure>
-					) }
+					<figure>
+						<Background
+							blockProps={ props }
+							imageSize="16x9_md"
+							inlinePlaceholder={ true }
+							options={ [] }
+						/>
+					</figure>
 				</div>
-				{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
+				{ ( ! RichText.isEmpty( backgroundCaption ) || isSelected ) && (
 					<RichText
 						tagName="p"
 						className="wp-block-photoessay-media-caption wp-prepress-component-caption"
 						placeholder={ __( 'Add a caption and/or media credit...' ) }
-						value={ caption }
-						onChange={ value => setAttributes( { caption: value } ) }
+						value={ backgroundCaption }
+						onChange={ value => setAttributes( { backgroundCaption: value } ) }
 						formattingControls={ [ 'bold', 'italic', 'link' ] }
 						keepPlaceholderOnFocus
 					/>
@@ -202,34 +122,108 @@ registerBlockType( 'editorial/photoessay-image', {
 		);
 	},
 
-	save( { attributes } ) {
+	save( props ) {
 		const {
-			id,
-			url,
-			alt,
-			columnClass,
-			caption,
-		} = attributes;
+			attributes: {
+				backgroundCaption,
+				columnClass,
+			}
+		} = props;
 
 		return (
 			<div className={ columnClass }>
 				<div className="wp-block-photoessay-media">
 					<figure>
-						<img
-							src={ url }
-							alt={ alt }
-							className={ id ? `wp-image-${ id }` : null }
-						/>
-						{ caption && (
+						<Background blockProps={ props } />
+						{ ! RichText.isEmpty( backgroundCaption ) && (
 							<figcaption>
-								<p class="wp-block-photoessay-media-caption wp-prepress-component-caption">
-									{ caption }
-								</p>
+								<RichText.Content
+									tagName="p"
+									className="wp-block-photoessay-media-caption wp-prepress-component-caption"
+									value={ backgroundCaption }
+								/>
 							</figcaption>
-						)}
+						) }
 					</figure>
 				</div>
 			</div>
 		);
 	},
+
+	deprecated: [
+		{
+			attributes: {
+				id: {
+					type: 'number',
+				},
+				url: {
+					type: 'string',
+					source: 'attribute',
+					selector: 'img',
+					attribute: 'src',
+				},
+				alt: {
+					type: 'string',
+					source: 'attribute',
+					selector: 'img',
+					attribute: 'alt',
+					default: '',
+				},
+				caption: {
+					type: 'string',
+				},
+				columnClass: {
+					type: 'string',
+				},
+			},
+
+			supports: {
+				className: false,
+				customClassName: false,
+				html: false,
+				inserter: false,
+				reusable: false,
+			},
+
+			migrate( { id, url, alt, caption } ) {
+				return {
+					backgroundId: id,
+					backgroundUrl: url,
+					backgroundAlt: alt,
+					backgroundCaption: caption,
+				};
+			},
+
+			save( { attributes } ) {
+				const {
+					id,
+					url,
+					alt,
+					columnClass,
+					caption,
+				} = attributes;
+
+				return (
+					<div className={ columnClass }>
+						<div className="wp-block-photoessay-media">
+							<figure>
+								<img
+									src={ url }
+									alt={ alt }
+									className={ id ? `wp-image-${ id }` : null }
+								/>
+								{ caption && (
+									<figcaption>
+										<p class="wp-block-photoessay-media-caption wp-prepress-component-caption">
+											{ caption }
+										</p>
+									</figcaption>
+								) }
+							</figure>
+						</div>
+					</div>
+				);
+			},
+		}
+	]
 } );
