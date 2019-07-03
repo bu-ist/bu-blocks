@@ -225,7 +225,7 @@ function render_block( $attributes ) {
 						}
 
 						?>
-							<h4 class="wp-block-editorial-relatedstories-article-title"><a href="<?php the_permalink( $post ); ?>" class="wp-block-editorial-relatedstories-article-title-link"><?php echo wp_kses_post( get_the_title( $post ) ); ?></a></h4>
+							<h4 class="wp-block-editorial-relatedstories-article-title"><a href="<?php the_permalink( $post ); ?>" class="wp-block-editorial-relatedstories-article-title-link"><?php echo wp_kses( get_the_title( $post ), bu_blocks_kses_title() ); ?></a></h4>
 							<p class="wp-block-editorial-relatedstories-article-date"><?php echo esc_html( get_the_date( '', $post ) ); ?></p>
 						<?php
 
