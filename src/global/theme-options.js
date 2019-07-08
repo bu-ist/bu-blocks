@@ -30,7 +30,7 @@ const themeOptions = () => {
 	 *
 	 * @see https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/components/colors/utils.js#L7.
 	 */
-	if ( ! themeOptions.some( v => defaultColors.includes( v ) ) ) {
+	if ( themeOptions && ! themeOptions.some( v => defaultColors.includes( v ) ) ) {
 		const newColors = defaultColors.concat( themeOptions );
 
 		updateEditorSettings( { colors: newColors } );

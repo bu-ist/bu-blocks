@@ -35,9 +35,6 @@ const {
 	RichText,
 } = wp.editor;
 
-// Get the current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {
 	return ( ! className.includes( 'is-style-modern' ) && ! className.includes( 'is-style-pop' ) );
@@ -49,7 +46,6 @@ const getClasses = ( className, backgroundId, imageFocus ) => {
 
 	return (
 		classnames(
-			'wp-block-pullquote',
 			className,
 			{
 				'has-image': ( backgroundId && ! isStylePop ),
@@ -58,6 +54,9 @@ const getClasses = ( className, backgroundId, imageFocus ) => {
 		)
 	);
 }
+
+// Only allow images in the background component for this block.
+const allowedMedia = [ 'image' ];
 
 // Register the block.
 registerBlockType( 'bu/pullquote', {
@@ -103,7 +102,6 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
-	publicationClassName: publicationClass + '-block-pullquote',
 
 	edit( props ) {
 		// Get the block properties.
@@ -131,7 +129,7 @@ registerBlockType( 'bu/pullquote', {
 			return (
 				<PanelBody title={ __( 'Media Positioning' ) } initialOpen={ false }>
 					<SelectControl
-						label={ __( 'Media Focal Point' ) }
+						label={ __( 'Crop Media to:' ) }
 						value={ imageFocus }
 						onChange={ value => setAttributes( { imageFocus: value } ) }
 						options={ [
@@ -159,7 +157,9 @@ registerBlockType( 'bu/pullquote', {
 				<div className={ getClasses( className, backgroundId, imageFocus ) }>
 					{ isStyleDefault( className ) && (
 						<Background
+							allowedMediaTypes={ allowedMedia }
 							blockProps={ props }
+							placeholderText={ __( 'Add Image' ) }
 						/>
 					) }
 					<blockquote>
@@ -168,7 +168,9 @@ registerBlockType( 'bu/pullquote', {
 								<div className="container-icon-inner">
 									{ className.includes( 'is-style-modern' ) && (
 										<Background
+											allowedMediaTypes={ allowedMedia }
 											blockProps={ props }
+											placeholderText={ __( 'Add Image' ) }
 										/>
 									) }
 								</div>
@@ -246,6 +248,7 @@ registerBlockType( 'bu/pullquote', {
 								/>
 								<RichText.Content
 									tagName="footer"
+									className="caption"
 									value={ cite }
 								/>
 							<hr />

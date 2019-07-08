@@ -16,6 +16,10 @@
 	@include breakpoint( $sm ) {
 		margin-bottom: 70px;
 	}
+
+	.wp-blocks-components-share-tools {
+		display: none;
+	}
 }
 
 .wp-block-editorial-listicle-figure {
@@ -29,22 +33,18 @@
 		height: auto;
 		width: 100%;
 
-		@supports ( object-fit: cover ) {
-
-			@include breakpoint( $xs ) {
-				height: 350px;
-				object-fit: cover;
-			}
-
-			@include breakpoint( $sm ) {
-				height: 500px;
-			}
-
-			@include breakpoint( $md ) {
-				height: 645px;
-			}
+		@include breakpoint( $xs ) {
+			@include object-fit( cover );
+			height: 350px;
 		}
 
+		@include breakpoint( $sm ) {
+			height: 500px;
+		}
+
+		@include breakpoint( $md ) {
+			height: 645px;
+		}
 	}
 
 	.wp-caption-text {

@@ -37,16 +37,12 @@ const {
 	select,
 } = wp.data;
 
-// The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
-
 // Register the block.
 registerBlockType( 'editorial/photoessay', {
 	title: __( 'Photo Essay' ),
 	description: __( 'Insert a row of photos with optional layouts.' ),
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu-editorial',
-	publicationClassName: publicationClass + '-block-editorial-photoessay',
 	attributes: {
 		layout: {
 			type: 'string',
@@ -148,7 +144,7 @@ registerBlockType( 'editorial/photoessay', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<div className="wp-block-photoessay">
+				<div className="wp-block-editorial-photoessay">
 					<div className={ layout }>
 						<InnerBlocks
 							templateLock="all"
@@ -165,7 +161,7 @@ registerBlockType( 'editorial/photoessay', {
 		const { layout } = attributes;
 
 		return(
-			<div className="wp-block-photoessay">
+			<div className="wp-block-photoessay js-block-editorial-photoessay">
 				<div className={ layout }>
 					<InnerBlocks.Content />
 				</div>

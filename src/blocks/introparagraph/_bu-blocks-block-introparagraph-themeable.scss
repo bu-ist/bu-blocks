@@ -57,21 +57,41 @@ $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-editorial-introparagraph {
 	&.is-style-large {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'font-color-heading-small');
 			font-family: blocks-get( 'font-family-secondary');
 		}
 	}
+
 	&.has-paragraph-color-primary {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'color-primary-text');
 		}
 	}
+
 	&.has-paragraph-color-secondary {
-		p {
+		p,
+		.wp-block-editorial-introparagraph-content {
 			color: blocks-get( 'color-secondary-text');
 		}
 	}
+
+	&.has-paragraph-color-tertiary {
+		p,
+		.wp-block-editorial-introparagraph-content {
+			color: blocks-get( 'color-tertiary-text');
+		}
+	}
+
+	&.has-paragraph-color-quaternary {
+		p,
+		.wp-block-editorial-introparagraph-content {
+			color: blocks-get( 'color-quaternary-text');
+		}
+	}
+
 	&.has-dropcap:not( :focus-within ) {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter,
@@ -79,18 +99,35 @@ $scope: blocks-get( 'scope' );
 			font-family: blocks-get( 'font-family-secondary');
 		}
 	}
+
 	&.has-dropcap-color-primary:not( :focus-within ) {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-primary-text');
 		}
 	}
+
 	&.has-dropcap-color-secondary:not( :focus-within ) {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-secondary-text');
 		}
 	}
+
+	&.has-dropcap-color-tertiary:not( :focus-within ) {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		p:first-of-type:first-letter {
+			color: blocks-get( 'color-tertiary-text');
+		}
+	}
+
+	&.has-dropcap-color-quaternary:not( :focus-within ) {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		p:first-of-type:first-letter {
+			color: blocks-get( 'color-quaternary-text');
+		}
+	}
+
 	&.is-style-dropcap-dimensional:not( :focus-within ) {
 		&.has-dropcap-color-primary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
@@ -98,12 +135,28 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-primary');
 			}
 		}
+
 		&.has-dropcap-color-secondary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
 				color: blocks-get( 'color-secondary');
 			}
 		}
+
+		&.has-dropcap-color-tertiary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-tertiary');
+			}
+		}
+
+		&.has-dropcap-color-quaternary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-quaternary');
+			}
+		}
+
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			text-shadow:	1px 1px blocks-get( 'color-gray-e'),
@@ -118,12 +171,14 @@ $scope: blocks-get( 'scope' );
 							10px 10px blocks-get( 'color-gray-e');
 		}
 	}
+
 	&.is-style-dropcap-boxed:not( :focus-within ) {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-page');
 			background-color: blocks-get( 'font-color-heading');
 		}
+
 		&.has-dropcap-color-primary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
@@ -131,6 +186,7 @@ $scope: blocks-get( 'scope' );
 				background-color: blocks-get( 'color-primary');
 			}
 		}
+
 		&.has-dropcap-color-secondary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
@@ -138,7 +194,24 @@ $scope: blocks-get( 'scope' );
 				background-color: blocks-get( 'color-secondary');
 			}
 		}
+
+		&.has-dropcap-color-tertiary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-page');
+				background-color: blocks-get( 'color-tertiary');
+			}
+		}
+
+		&.has-dropcap-color-quaternary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-page');
+				background-color: blocks-get( 'color-quaternary');
+			}
+		}
 	}
+
 	&.is-style-dropcap-image:not( :focus-within ) {
 		.has-dropcap-color-primary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
@@ -146,10 +219,25 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-primary');
 			}
 		}
+		
 		.has-dropcap-color-secondary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
 				color: blocks-get( 'color-secondary');
+			}
+		}
+
+		.has-dropcap-color-tertiary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-tertiary');
+			}
+		}
+		
+		.has-dropcap-color-quaternary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			p:first-of-type:first-letter {
+				color: blocks-get( 'color-quaternary');
 			}
 		}
 	}

@@ -8,11 +8,11 @@
 //
 //
 
-#main .wp-block-pullquote {
+#main .wp-block-bu-pullquote {
 	position: relative;
 };
 
-.wp-block-pullquote {
+.wp-block-bu-pullquote {
 	position: relative;
 	text-align: center;
 	margin-bottom: 1.5em;
@@ -24,7 +24,7 @@
 		height: 100%;
 	}
 	img {
-		object-fit: cover;
+		@include object-fit( cover );
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -46,10 +46,18 @@
 		}
 	}
 	.quote-sizing {
-			@extend %font-size-3;
+		font-size: 1.25em;
+		line-height: 1.5em;
+
 		@include breakpoint( $xs ) {
+			font-size: 1.5em;
 		}
 	}
+
+	.caption {
+		padding-bottom: 0;
+	}
+
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			&::before,
@@ -99,22 +107,27 @@
 		}
 		&.has-image {
 			color: #fff;
+
+			.caption {
+				color: #fff;
+			}
+
 			> img {
 				display: block;
 			}
 		}
 		.container-lockup {
-			@extend .row;
+			@extend %row-styles;
 		}
 		.container-text {
 			@extend %row-child-styles;
-			@extend .col-12;
+			@extend %col-12;
 		}
 	}
 	&.is-style-modern,
 	&.is-style-pop {
 		.container-lockup {
-			@extend .row;
+			@extend %row-styles;
 			display: -ms-flexbox;
 			display: flex;
 			-ms-flex-direction: row;
@@ -122,7 +135,7 @@
 		}
 		.container-icon-outer {
 			@extend %row-child-styles;
-			@extend .col-4;
+			@extend %col-4;
 			display: -ms-flexbox;
 			display: flex;
 		}
@@ -132,7 +145,7 @@
 		}
 		.container-text {
 			@extend %row-child-styles;
-			@extend .col-8;
+			@extend %col-8;
 		}
 	}
 	&.is-style-modern {
@@ -142,7 +155,7 @@
 		.container-icon-inner {
 			&::before {
 				content: '“';
-				font-size: 6em;
+				font-size: 110px;
 				line-height: 1.5em;
 				height: 1em;
 				position: absolute;
@@ -152,7 +165,7 @@
 				margin-left: -0.25em;
 				margin-top: -0.5em;
 				@include breakpoint( $xs ) {
-					font-size: 15em;
+					font-size: 270px;
 				}
 			}
 		}
@@ -199,47 +212,94 @@
 	}
 	&.has-image-focus-left-top {
 		img {
-			object-position: 25% 25%;
+			@include object-fit( cover, 25% 25% );
 		}
 	}
 	&.has-image-focus-left-middle {
 		img {
-			object-position: 25% 50%;
+			@include object-fit( cover, 25% 50% );
 		}
 	}
 	&.has-image-focus-left-bottom {
 		img {
-			object-position: 25% 75%;
+			@include object-fit( cover, 25% 75% );
 		}
 	}
 	&.has-image-focus-center-top {
 		img {
-			object-position: 50% 25%;
+			@include object-fit( cover, 50% 25% );
 		}
 	}
 	&.has-image-focus-center-middle {
 		img {
-			object-position: 50% 50%;
+			@include object-fit( cover, 50% 50% );
 		}
 	}
 	&.has-image-focus-center-bottom {
 		img {
-			object-position: 50% 75%;
+			@include object-fit( cover, 50% 75% );
 		}
 	}
 	&.has-image-focus-right-top {
 		img {
-			object-position: 75% 25%;
+			@include object-fit( cover, 75% 25% );
 		}
 	}
 	&.has-image-focus-right-middle {
 		img {
-			object-position: 75% 50%;
+			@include object-fit( cover, 75% 50% );
 		}
 	}
 	&.has-image-focus-right-bottom {
 		img {
-			object-position: 75% 75%;
+			@include object-fit( cover, 75% 75% );
+		}
+	}
+
+
+	//Video Styles
+	.wp-block-background-video {
+		position: relative;
+		height: 100%;
+		overflow: hidden;
+
+		iframe {
+			display: block;
+			left: 0;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+	}
+
+	.wp-block-background-video-ratio {
+		display: block;
+		height: 100%;
+		padding-top: ( 9 / 16 ) * 100%;
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.wp-block-background-video-iframe {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		overflow: hidden;
+
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			height: 100%;
+			width: 100%;
+
+			width: 1000%;
+			transform: translateX(-50%);
 		}
 	}
 }

@@ -55,7 +55,7 @@ $current-map: $blocks-block-aside-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-aside {
+.#{$scope}-block-editorial-aside {
 	font-family: blocks-get( 'font-family-primary');
 
 	p {
@@ -70,7 +70,13 @@ $scope: blocks-get( 'scope' );
 	&.has-dark-background {
 		background: blocks-get( 'background-color-dark' );
 
-		p {
+		p,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			color: blocks-get( 'font-color-aside-lighter' );
 		}
 	}
@@ -81,6 +87,22 @@ $scope: blocks-get( 'scope' );
 		p {
 			color: blocks-get( 'font-color-aside-lighter' );
 		}
+	}
+
+	&.has-secondary-background {
+		background: blocks-get( 'color-secondary' );
+	}
+
+	&.has-tertiary-background {
+		background: blocks-get( 'color-tertiary' );
+	}
+
+	&.has-quaternary-background {
+		background: blocks-get( 'color-quaternary' );
+	}
+
+	&.has-quinary-background {
+		background: blocks-get( 'color-quinary' );
 	}
 }
 

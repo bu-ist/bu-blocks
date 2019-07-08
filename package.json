@@ -1,11 +1,12 @@
 {
   "name": "bu-blocks",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
   "contributors": [
-    "Jeremy Felt <jfelt@bu.edu>"
+    "Jeremy Felt <jfelt@bu.edu>",
+    "Ashley Kolodziej <kolodz10@bu.edu>"
   ],
   "scripts": {
     "start": "cgb-scripts start",
@@ -13,11 +14,12 @@
     "eject": "cgb-scripts eject"
   },
   "dependencies": {
-    "cgb-scripts": "1.9.8",
-    "classnames": "^2.2.6"
+    "cgb-scripts": "^1.17.0",
+    "classnames": "^2.2.6",
+    "object-fit-images": "^3.2.4"
   },
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.0.4",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^0.8.0",

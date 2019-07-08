@@ -62,10 +62,11 @@ const {
 	applyFilters,
 } = wp.hooks;
 
-import classnames from 'classnames';
+const {
+	decodeEntities,
+} = wp.htmlEntities;
 
-// Capture the edited article's publication.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+import classnames from 'classnames';
 
 // Register the block.
 registerBlockType( 'editorial/relatedstories', {
@@ -135,9 +136,6 @@ registerBlockType( 'editorial/relatedstories', {
 
 		return { 'data-align': 'none' };
 	},
-
-	// Assign a publication class name.
-	publicationClassName: publicationClass + '-block-related-stories',
 
 	edit: compose( [
 		withState( {
@@ -276,7 +274,6 @@ registerBlockType( 'editorial/relatedstories', {
 	] )( ( { posts, errorMessage, attributes, ...props } ) => {
 		const {
 			className,
-			publicationClassName,
 			setAttributes,
 			setState,
 		} = props;
@@ -311,10 +308,10 @@ registerBlockType( 'editorial/relatedstories', {
 						) }
 						<div className="wp-block-editorial-relatedstories-article-content">
 							{ className.includes( 'is-style-card' ) && post.primary_term && (
-								<p className="wp-block-editorial-relatedstories-article-category"><span>{ post.primary_term }</span></p>
+								<p className="wp-block-editorial-relatedstories-article-category"><span>{ decodeEntities( post.primary_term ) }</span></p>
 							) }
 							<h4 className="wp-block-editorial-relatedstories-article-title">
-								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ post.title }</a>
+								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ decodeEntities( post.title ) }</a>
 							</h4>
 							<p className="wp-block-editorial-relatedstories-article-date">{ format( __experimentalGetSettings().formats.date, post.date_gmt ) }</p>
 							{ applyFilters( 'buBlocks.relatedStories.displayListItem', '', post, currentPost ) }
@@ -365,7 +362,7 @@ registerBlockType( 'editorial/relatedstories', {
 		 */
 		const displaySelectedPost = ( post ) => {
 			return (
-				<li data-post-id={ post.id }>{ post.title } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
+				<li data-post-id={ post.id }>{ decodeEntities( post.title ) } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
 			);
 		};
 
@@ -419,7 +416,6 @@ registerBlockType( 'editorial/relatedstories', {
 
 		const classes = classnames(
 			className,
-			publicationClassName,
 			cardCountClass,
 		);
 
@@ -472,6 +468,7 @@ registerBlockType( 'editorial/relatedstories', {
 					</BlockControls>
 				) }
 				<aside className={ classes }>
+					<h3 className="wp-block-editorial-relatedstories-title">Related</h3>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
 							{ displayPosts && displayPosts.map( post => displayListItem( className, post ) ) }

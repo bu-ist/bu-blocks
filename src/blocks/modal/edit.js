@@ -8,6 +8,7 @@ import classnames from 'classnames';
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
 import Background from '../../components/background';
+import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -16,6 +17,9 @@ const { compose } = wp.compose;
 const { InspectorControls, InnerBlocks, PanelColorSettings, RichText, withColors } = wp.editor;
 const { select } = wp.data;
 const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
+
+// Only allow images in the background component for this block.
+const allowedMedia = [ 'image' ];
 
 class BUEditorialModalEdit extends Component {
 	constructor() {
@@ -36,7 +40,7 @@ class BUEditorialModalEdit extends Component {
 			backgroundId,
 			calloutHeading,
 			calloutText,
-			trigger
+			trigger,
 		} = attributes;
 
 		const classes = classnames(
@@ -73,9 +77,10 @@ class BUEditorialModalEdit extends Component {
 						<div className="wp-block-editorial-modal-media">
 							<figure className="wp-block-editorial-modal-image">
 								<Background
+									allowedMediaTypes={ allowedMedia }
 									blockProps={ this.props }
 									className="banner-placeholder"
-									controlPanelTitle={ __( 'Add Media' ) }
+									placeholderText={ __( 'Add Image' ) }
 								/>
 							</figure>
 						</div>
@@ -112,7 +117,9 @@ class BUEditorialModalEdit extends Component {
 						<div className="overlay overlay-scale">
 							<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
 							<article>
-								<InnerBlocks />
+								<InnerBlocks
+									allowedBlocks={ allowedBlocks() }
+								/>
 							</article>
 						</div>
 					</div>

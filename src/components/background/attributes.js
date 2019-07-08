@@ -22,6 +22,10 @@ const BackgroundAttributes = {
 	backgroundCaption: {
 		type: 'string',
 	},
+	backgroundAutoplay: {
+		type: 'boolean',
+		default: false,
+	},
 };
 
 export default BackgroundAttributes;

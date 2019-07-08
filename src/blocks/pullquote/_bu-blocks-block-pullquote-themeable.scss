@@ -55,7 +55,7 @@ $current-map: $blocks-block-pullquote-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-pullquote {
+.#{$scope}-block-bu-pullquote {
 	&:not(.is-style-modern):not(.is-style-pop) {
 		blockquote {
 			&::before,
@@ -72,6 +72,10 @@ $scope: blocks-get( 'scope' );
 			}
 			blockquote::before,
 			blockquote::after {
+				color: blocks-get( 'color-page');
+			}
+
+			.caption {
 				color: blocks-get( 'color-page');
 			}
 		}

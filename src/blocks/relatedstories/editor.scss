@@ -21,16 +21,45 @@ figure.wp-block-editorial-relatedstories-article-image {
 	text-align: center;
 }
 
-.panelbody-related-stories .editor-url-input input {
-	max-width: 95%;
+.panelbody-related-stories {
+	.editor-url-input input {
+		max-width: 95%;
+	}
+
+	.editor-url-input ~ h3 {
+		margin: 1em 0;
+		padding-left: .25em;
+	}
+
+	.panelbody-related-stories-list {
+		list-style-type: circle;
+		padding-left: 1.5em;
+	}
+
+	.editor-url-input input {
+		&::-webkit-input-placeholder {
+			color: #fff;
+		}
+
+		&::-moz-placeholder {
+			color: #fff;
+		}
+
+		&:-ms-input-placeholder {
+			color: #fff;
+		}
+
+		&:-moz-placeholder {
+			color: #fff;
+		}
+	}
 }
 
-.panelbody-related-stories .editor-url-input ~ h3 {
-	margin: 1em 0;
-	padding-left: .25em;
-}
+.editor-block-list__block {
 
-.panelbody-related-stories-list {
-    list-style-type: circle;
-    padding-left: 1.5em;
+	.wp-block-editorial-relatedstories.is-style-card:not(.alignwide):not(.alignfull) {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
 }

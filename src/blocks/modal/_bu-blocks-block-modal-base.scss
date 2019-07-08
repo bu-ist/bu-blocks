@@ -86,8 +86,11 @@
 
 
 	.wp-block-editorial-modal-media {
-		position: absolute;
 		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
 
 		.wp-block-editorial-modal-image {
 			width: 100%;
@@ -96,7 +99,7 @@
 		}
 
 		img {
-			object-fit: cover;
+			@include object-fit( cover );
 			height: 100%;
 			width: 100%;
 			max-height: 100%;
@@ -138,17 +141,13 @@
 			}
 		}
 	}
-
-	h1,
-	p {
-		color: $color-grayscale-0;
-	}
 }
 
 
 .wp-block-editorial-modal-callout-content {
 	z-index: 1000;
 	padding: 40px;
+	position: relative;
 
 	@include breakpoint( $sm ) {
 		padding: 80px;
@@ -157,6 +156,19 @@
 	.button,
 	p:last-of-type {
 		margin-bottom: 0;
+	}
+
+	h1 {
+		font-size: 1.75em;
+
+		@include breakpoint( $sm ) {
+			font-size: 2.2em;
+		}
+	}
+
+	h1,
+	p {
+		color: $color-grayscale-0;
 	}
 }
 

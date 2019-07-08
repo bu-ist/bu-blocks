@@ -14,28 +14,27 @@ $blocks-config: ();
 
 $blocks-defaults: (
 	scope: 							wp,
-	
+
 	color-body: 					$color-grayscale-f,
 	color-page: 					$color-grayscale-f,
-
 
 	color-gray-a: 					null,
 	color-gray-b: 					null,
 	color-gray-c: 					null,
 	color-gray-d: 					null,
-	color-gray-e: 					null,
-	color-gray-f: 					null,
+	color-gray-e: 					$color-grayscale-e,
+	color-gray-f: 					#f5f6fa,
 
-	color-primary: 					null,
-	color-primary-text: 			null,
-	color-secondary: 				null,
-	color-secondary-text: 			null,
-	color-tertiary: 				null,
-	color-tertiary-text: 			null,
-	color-quaternary: 				null,
-	color-quaternary-text: 			null,
-	color-quinary: 					null,
-	color-quinary-text: 			null,
+	color-primary: 					$color-grayscale-6,
+	color-primary-text: 			$color-grayscale-6,
+	color-secondary: 				$color-grayscale-6,
+	color-secondary-text: 			$color-grayscale-6,
+	color-tertiary: 				$color-grayscale-6,
+	color-tertiary-text: 			$color-grayscale-6,
+	color-quaternary: 				$color-grayscale-6,
+	color-quaternary-text: 			$color-grayscale-6,
+	color-quinary: 					$color-grayscale-6,
+	color-quinary-text: 			$color-grayscale-6,
 
 	color-tint:						null,
 
@@ -49,6 +48,8 @@ $blocks-defaults: (
 	font-color-link: 				null,
 	font-color-link-active: 		null,
 	font-color-link-visited: 		null,
+	font-color-aside:				$color-grayscale-4,
+	font-color-aside-lighter:		$color-grayscale-6,
 
 	font-color-theme-dark:			$color-grayscale-f,
 
@@ -56,7 +57,7 @@ $blocks-defaults: (
 	background-color-dark:			$color-grayscale-0,
 	background-color-default:		$color-grayscale-f,
 
-	border-radius:					0,
+	border-radius:					   0,
 );
 
 // Merge defaults with the final map.
