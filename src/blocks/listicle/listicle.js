@@ -26,10 +26,13 @@ const {
 	Component,
 } = wp.element;
 const {
+	PanelBody,
 	Path,
-	SVG
+	SVG,
+	ToggleControl,
 } = wp.components;
 const {
+	InspectorControls,
 	RichText,
 	PlainText,
 } = wp.editor;
@@ -43,7 +46,7 @@ const {
  * @param {number}  backgroundUrl      The URL of the background media assigned to the block.
  * @param {boolean} backgroundAutoplay Whether the background video is set to autoplay.
  */
-const getClasses = ( className, number, aside, backgroundUrl, backgroundAutoplay ) => {
+const getClasses = ( className, number, aside, backgroundUrl, backgroundAutoplay, divider ) => {
 	return (
 		classnames(
 			className,
@@ -52,6 +55,7 @@ const getClasses = ( className, number, aside, backgroundUrl, backgroundAutoplay
 				'has-sidebar': aside,
 				'has-media': backgroundUrl,
 				'has-video-as-loop': backgroundAutoplay,
+				'has-no-bottom-divider' : !divider,
 			}
 		)
 	);
@@ -116,6 +120,10 @@ registerBlockType( 'editorial/listicle', {
 			type: 'string',
 			default: '',
 		},
+		divider: {
+			type: 'boolean',
+			default: true,
+		},
 		...BackgroundAttributes,
 		...ShareToolsAttributes,
 	},
@@ -177,6 +185,7 @@ registerBlockType( 'editorial/listicle', {
 				credit,
 				backgroundUrl,
 				backgroundAutoplay,
+				divider,
 			} = attributes;
 
 			// Check if the block has aside content (extra condition due to use of multiline).
@@ -195,7 +204,7 @@ registerBlockType( 'editorial/listicle', {
 
 			// Return the block editing interface.
 			return (
-				<section className={ getClasses( className, number, hasAsideContent, backgroundUrl, backgroundAutoplay ) }>
+				<section className={ getClasses( className, number, hasAsideContent, backgroundUrl, backgroundAutoplay, divider ) }>
 					<article className="wp-block-editorial-listicle-article">
 						<figure className="wp-block-editorial-listicle-figure">
 							<Background
@@ -285,6 +294,15 @@ registerBlockType( 'editorial/listicle', {
 							</footer>
 						) }
 					</article>
+					<InspectorControls>
+						<PanelBody title={ __( 'Display Options' ) }>
+							<ToggleControl
+								label={ __( 'Show Bottom Divider' ) }
+								checked={ divider }
+								onChange={ () => setAttributes( { divider: !divider } ) }
+							/>
+						</PanelBody>
+					</InspectorControls>
 				</section>
 			);
 		};
@@ -308,11 +326,12 @@ registerBlockType( 'editorial/listicle', {
 			backgroundUrl,
 			backgroundAutoplay,
 			className,
+			divider,
 		} = attributes;
 
 		// Return the block rendering for the front end.
 		return (
-			<section className={ getClasses( className, number, aside, backgroundUrl, backgroundAutoplay ) }>
+			<section className={ getClasses( className, number, aside, backgroundUrl, backgroundAutoplay, divider ) }>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
