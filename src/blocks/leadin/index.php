@@ -132,15 +132,15 @@ function render_block( $attributes ) {
 							<?php do_action( 'bu_blocks_leadin_primary_term', get_the_ID() ); ?>
 							<h1 class="head">
 								<?php if ( $attributes['url'] ) : ?>
-									<a href="<?php echo esc_url( $attributes['url'] ); ?>"><?php echo wp_kses_post( $attributes['head'] ); ?></a>
+									<a href="<?php echo esc_url( $attributes['url'] ); ?>"><?php echo wp_kses( $attributes['head'], bu_blocks_kses_title() ); ?></a>
 								<?php else : ?>
-									<?php echo wp_kses_post( $attributes['head'] ); ?>
+									<?php echo wp_kses( $attributes['head'], bu_blocks_kses_title() ); ?>
 								<?php endif; ?>
 							</h1>
 						<?php endif; ?>
 
 						<?php if ( $attributes['deck'] ) : ?>
-							<h4 class="deck"><?php echo wp_kses_post( $attributes['deck'] ); ?></h4>
+							<h4 class="deck"><?php echo wp_kses( $attributes['deck'], bu_blocks_kses_title() ); ?></h4>
 						<?php endif; ?>
 
 					</div>
