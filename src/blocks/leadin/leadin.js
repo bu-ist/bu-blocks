@@ -99,6 +99,10 @@ const blockAttributes = {
 		type: 'number',
 		default: 100,
 	},
+	videoUncropped: {
+		type: 'boolean',
+		default: false,
+	},
 	url: {
 		type: 'string',
 		default: '',
@@ -168,6 +172,7 @@ registerBlockType( 'bu/leadin', {
 				flip,
 				metabar,
 				boxOpacity,
+				videoUncropped,
 				url,
 			},
 			themeColor,
@@ -180,6 +185,8 @@ registerBlockType( 'bu/leadin', {
 		const isStyleEmphasisOnText = className.includes( 'is-style-emphasis-on-text' );
 		const isStyleTextOverImage = className.includes( 'is-style-text-over-image' );
 		const isStyleSideBySide = className.includes( 'is-style-side-by-side' );
+		const isStyleTextToImage = className.includes( 'is-style-text-to-image' );
+		const isStyleImageToText = className.includes( 'is-style-image-to-text' );
 
 		const classes = classnames(
 			'wp-block-editorial-leadin',
@@ -191,6 +198,7 @@ registerBlockType( 'bu/leadin', {
 				'has-flip': flip && isStyleSideBySide,
 				'has-media': backgroundUrl,
 				'has-video-as-loop': backgroundAutoplay,
+				'has-video-uncropped': videoUncropped,
 				[ `has-media-focus-${imageFocus}` ]: imageFocus,
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
@@ -316,6 +324,23 @@ registerBlockType( 'bu/leadin', {
 			);
 		};
 
+		// Return video cropping options if specific styles are set.
+		const videoCropControls = () => {
+			if ( ! ( isStyleTextToImage || isStyleImageToText ) ) {
+				return null;
+			}
+
+			return (
+				<PanelBody title={ __( 'Video Options' ) }>
+					<ToggleControl
+						label={ __( 'Leave Video Uncropped' ) }
+						checked={ videoUncropped }
+						onChange={ () => setAttributes( { videoUncropped: !videoUncropped } ) }
+					/>
+				</PanelBody>
+			);
+		};
+
 		// Return the block editing interface.
 		return (
 			<Fragment>
@@ -368,6 +393,7 @@ registerBlockType( 'bu/leadin', {
 
 				<InspectorControls>
 					{ mediaPositioningControls() }
+					{ videoCropControls() }
 					{ layoutControls() }
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
