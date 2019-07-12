@@ -20,7 +20,7 @@ add_action( 'init', __NAMESPACE__ . '\\register_block' );
  *
  * @return string A space separated string of class names.
  */
-function get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side ) {
+function get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side, $style_image_to_text, $style_text_to_image ) {
 
 	// Build array of classes from the provide attributes.
 	$classes = array(
@@ -36,6 +36,7 @@ function get_block_classes( $attributes, $style_emphasize_text, $style_text_over
 		( $attributes['textPositionY'] && $style_text_over_image ) ? 'has-text-position-' . $attributes['textPositionY'] : '',
 		( $attributes['themeColor'] ) ? 'has-' . $attributes['themeColor'] . '-theme' : '',
 		( $attributes['backgroundAutoplay'] ) ? 'has-video-as-loop' : '',
+		( $attributes['videoUncropped'] && ( $style_image_to_text || $style_text_to_image ) ) ? 'has-video-uncropped' : '',
 	);
 
 	// Trim values of the classes array after filtering out empty values.
@@ -75,6 +76,7 @@ function render_block( $attributes ) {
 		'textPositionY'      => '',
 		'themeColor'         => '',
 		'url'                => '',
+		'videoUncropped'     => false,
 		'wide'               => false,
 	);
 
@@ -89,7 +91,7 @@ function render_block( $attributes ) {
 	$style_default         = ! $style_image_to_text && ! $style_text_to_image && ! $style_side_by_side && ! $style_text_over_image && ! $style_emphasize_text;
 
 	// Retrieve the classes to attach to the block.
-	$classes = get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side );
+	$classes = get_block_classes( $attributes, $style_emphasize_text, $style_text_over_image, $style_side_by_side, $style_image_to_text, $style_text_to_image );
 
 	$box_classes = 'container-words-inner';
 	if ( $attributes['box'] && 100 !== $attributes['boxOpacity'] && ( $style_emphasize_text || $style_text_over_image ) ) {
@@ -222,6 +224,10 @@ function register_block() {
 				'themeColor'         => $shared_args,
 				'url'                => $shared_args,
 				'wide'               => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+				'videoUncropped'     => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),
