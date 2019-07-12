@@ -267,6 +267,13 @@
 		}
 	}
 
+	&.is-style-default-alt {
+		.container-lockup {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+	}
+
 	&.is-style-text-to-image {
 		.wp-block-leadin-media {
 			height: 100%;

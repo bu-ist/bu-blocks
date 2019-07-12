@@ -118,6 +118,11 @@ const blockStyles = [
 		isDefault: true
 	},
 	{
+		name: 'default-alt',
+		label: __( 'Default Alternate Order' ),
+		isDefault: true
+	},
+	{
 		name: 'text-to-image',
 		label: __( 'Text over Horizontal Image' ),
 	},
