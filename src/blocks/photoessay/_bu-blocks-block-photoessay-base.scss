@@ -196,10 +196,18 @@ $photo-padding-xl: $padding/2 !default;
 		}
 		@include breakpoint( $xs ) {
 			.photo-1 {
-				width: calc( 45.52% - #{$photo-padding});
+				width: calc( 45.8% - #{$photo-padding});
 			}
 			.photo-s {
-				width: calc( 54.48% + #{$photo-padding});
+				width: calc( 54.2% + #{$photo-padding});
+			}
+		}
+		@include breakpoint( $xl ) {
+			.photo-1 {
+				width: calc( 45.8% - #{$photo-padding-xl});
+			}
+			.photo-s {
+				width: calc( 54.2% + #{$photo-padding-xl});
 			}
 		}
 	}
@@ -210,10 +218,18 @@ $photo-padding-xl: $padding/2 !default;
 		}
 		@include breakpoint( $xs ) {
 			.photo-2 {
-				width: calc( 62.333% - #{$photo-padding});
+				width: calc( 61.666% - #{$photo-padding});
 			}
 			.photo-s {
-				width: calc( 37.666% + #{$photo-padding});
+				width: calc( 38.333% + #{$photo-padding});
+			}
+		}
+		@include breakpoint( $xl ) {
+			.photo-2 {
+				width: calc( 61.666% - #{$photo-padding-xl});
+			}
+			.photo-s {
+				width: calc( 38.333% + #{$photo-padding-xl});
 			}
 		}
 	}
@@ -224,10 +240,26 @@ $photo-padding-xl: $padding/2 !default;
 		}
 		@include breakpoint( $xs ) {
 			.photo-3 {
-				width: calc( 70.45% - #{$photo-padding});
+				width: calc( 70.333% - #{$photo-padding});
 			}
 			.photo-s {
-				width: calc( 29.55% + #{$photo-padding});
+				width: calc( 29.666% + #{$photo-padding});
+			}
+		}
+		@include breakpoint( $md ) {
+			.photo-3 {
+				width: calc( 69.666% - #{$photo-padding});
+			}
+			.photo-s {
+				width: calc( 30.333% + #{$photo-padding});
+			}
+		}
+		@include breakpoint( $xl ) {
+			.photo-3 {
+				width: calc( 69.666% - #{$photo-padding-xl});
+			}
+			.photo-s {
+				width: calc( 30.333% + #{$photo-padding-xl});
 			}
 		}
 	}
