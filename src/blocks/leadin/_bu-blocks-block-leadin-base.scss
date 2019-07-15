@@ -9,49 +9,68 @@
 //
 
 %leadin-image-height-small {
-	.wp-block-leadin-media {
-		@include breakpoint( $xs ) {
+
+	@include breakpoint( $xs ) {
+		.wp-block-leadin-media {
 			height: 400px;
 		}
-		@include breakpoint( $sm ) {
+	}
+	@include breakpoint( $sm ) {
+		.wp-block-leadin-media {
 			height: 480px;
 		}
-		@include breakpoint( $md ) {
+	}
+	@include breakpoint( $md ) {
+		.wp-block-leadin-media {
 			height: 560px;
 		}
-		@include breakpoint( $lg ) {
+	}
+	@include breakpoint( $lg ) {
+		.wp-block-leadin-media {
 			height: 640px;
 		}
 	}
 }
 %leadin-image-height-medium {
-	.wp-block-leadin-media {
-		@include breakpoint( $xs ) {
+	@include breakpoint( $xs ) {
+		.wp-block-leadin-media {
 			height: 480px;
 		}
-		@include breakpoint( $sm ) {
+	}
+	@include breakpoint( $sm ) {
+		.wp-block-leadin-media {
 			height: 560px;
 		}
-		@include breakpoint( $md ) {
+	}
+	@include breakpoint( $md ) {
+		.wp-block-leadin-media {
 			height: 640px;
 		}
-		@include breakpoint( $lg ) {
+	}
+	@include breakpoint( $lg ) {
+		.wp-block-leadin-media {
 			height: 720px;
 		}
 	}
 }
 %leadin-image-height-large {
-	.wp-block-leadin-media {
-		@include breakpoint( $xs ) {
+	@include breakpoint( $xs ) {
+		.wp-block-leadin-media {
 			height: 560px;
 		}
-		@include breakpoint( $sm ) {
+	}
+	@include breakpoint( $sm ) {
+		.wp-block-leadin-media {
 			height: 640px;
 		}
-		@include breakpoint( $md ) {
+	}
+	@include breakpoint( $md ) {
+		.wp-block-leadin-media {
 			height: 720px;
 		}
-		@include breakpoint( $lg ) {
+	}
+	@include breakpoint( $lg ) {
+		.wp-block-leadin-media {
 			height: 800px;
 		}
 	}
@@ -126,6 +145,7 @@
 .wp-block-editorial-leadin {
 	@extend %media-crop-cover;
 	@extend %wp-block-background-video-scaling-media;
+	@extend %wp-block-background-video-scaling-cover;
 	padding-bottom: 2em;
 	position: relative;
 
@@ -205,17 +225,29 @@
 
 	&.is-style-image-to-text,
 	&.is-style-text-to-image {
-		@extend %wp-block-background-video-scaling-contain;
+		// @extend %wp-block-background-video-scaling-contain;
 
 		.container-words-outer {
 			position: static;
 		}
-	}
 
-	&.is-style-emphasis-on-text,
-	&.is-style-text-over-image,
-	&.is-style-side-by-side {
-		@extend %wp-block-background-video-scaling-cover;
+		&.has-video-uncropped {
+			.wp-block-background-video-ratio,
+			.wp-block-background-video-iframe {
+				padding-top:0
+			}
+
+			.wp-block-leadin-media {
+				@include breakpoint( $xs ) {
+					height: auto;
+					&::before {
+						position: relative;
+						padding-top: 9 / 16 * 100%;
+					}
+				}
+
+			}
+		}
 	}
 
 	//layout specific styles
@@ -232,6 +264,13 @@
 					display: none;
 				}
 			}
+		}
+	}
+
+	&.is-style-default-alt {
+		.container-lockup {
+			display: flex;
+			flex-direction: column-reverse;
 		}
 	}
 
@@ -408,7 +447,7 @@
 			}
 		}
 
-		.container-words-outter {
+		.container-words-outer {
 			@extend %leadin-sidebyside-vert-size;
 		}
 
@@ -491,6 +530,23 @@
 				}
 			}
 		}
+
+		.wp-block-background-video {
+			@include breakpoint( $xs ) {
+				bottom: 0;
+				left: 0;
+				overflow: hidden;
+				right: 0;
+				padding-top: 0;
+				position: absolute;
+				top: 0;
+			}
+		}
+
+
+		.wp-block-background-video-iframe iframe {
+			width: 1000%;
+		}
 	}
 }
 
@@ -520,62 +576,6 @@
 			margin-bottom: 0.5em;
 			opacity: 0.66;
 			text-shadow: 0em 0em 0.75em #000;
-		}
-	}
-}
-
-.wp-block-editorial-leadin.has-video-as-loop {
-	.wp-block-leadin-media {
-		@media screen and (max-width: 499px) {
-			height: 300px;
-		}
-
-		&::after {
-			display: none;
-		}
-	}
-
-	.wp-block-background-video {
-		position: relative;
-		height: 100%;
-		overflow: hidden;
-
-		iframe {
-			display: block;
-			left: 0;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			width: 100%;
-		}
-	}
-
-	.wp-block-background-video-ratio {
-		display: block;
-		height: 100%;
-		padding-top: ( 9 / 16 ) * 100%;
-		position: absolute;
-		width: 100%;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	.wp-block-background-video-iframe {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		overflow: hidden;
-
-		iframe {
-			position: absolute;
-			top: 0;
-			left: 50%;
-			height: 100%;
-			width: 100%;
-			width: 1000%;
-			transform: translateX(-50%);
 		}
 	}
 }
@@ -652,15 +652,10 @@
 	.wp-block-background-video-iframe iframe {
 		left: 50%;
 		transform: translateX(-50%);
-		width: 1000%;
 	}
 
 	.wp-block-background-video {
-		bottom: 0;
-		left: 0;
-		overflow: hidden;
-		right: 0;
-		position: absolute;
-		top: 0;
+		padding-top: 9 / 16 * 100%;
+		position: relative;
 	}
 }
