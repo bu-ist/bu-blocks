@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.5
+
+- Fix sizing of Square Photos in Photo Essay blocks (https://github.com/bu-ist/bu-blocks/pull/161)
+- Leadin Block Updates:
+ - Added an alternate default style (similar to image-to-text and text-to-image but without with any extensive styling.
+ - Fixed numerous bugs with video positioning, some of the styles where tied to video as loop, but now the autoplay loop function should have no affect no how the video is positioned.
+ - Added a Video Uncropped option to is-style-text-to-image and is-style-image-to-text, so that the video can work more as content rather than a cinemagraph in these layouts
+  - See: https://github.com/bu-ist/bu-blocks/pull/159
+
+
 
 ## 0.2.4
 - Fix Autoplay for videos switch in Background Component
