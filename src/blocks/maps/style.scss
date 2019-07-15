@@ -1,0 +1,38 @@
+// =================================================================
+// Maps Block Base Styles
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/maps/bu-blocks-block-maps-base';
+@import 'src/blocks/maps/bu-blocks-block-maps-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here.
+
+// Maps Block
+//
+// This is a Map Block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-maps.hbs
+//
+// .has-aspectratio-16by9 - 16 x 9 inline version
+// .has-aspectratio-1by1 - 1 x 1 inline version
+// .has-aspectratio-4by3 - 4 x 3 inline version
+// .has-aspectratio-2by1 - 2 x 1 inline version
+// .has-aspectratio-1by2 - 1 x 2 inline version
+// .alignwide.xsmall - Wide version of map, xsmall height
+// .alignwide.small - Wide version of map, small height
+// .alignwide.medium - Wide version of map, medium height
+// .alignwide.large - Wide version of map, large height
+// .alignwide.xlarge - Wide version of map, xlarge height
+// .alignfull.xsmall - Full width version of map, xsmall height
+// .alignfull.small - Full width version of map, small height
+// .alignfull.medium - Full width version of map, medium height
+// .alignfull.large - Full width version of map, large height
+// .alignfull.xlarge - Full width version of map, xlarge height
+//
+// Styleguide Blocks.Global.Maps
