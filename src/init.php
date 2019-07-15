@@ -213,14 +213,14 @@ function default_theme_colors( $editor_settings, $post ) {
  *
  * @since 0.2.6
  */
-$path_to_blocks = plugin_dir_path( __DIR__ ) . 'src/';
-require_once $path_to_blocks . 'functions.php';
-require_once $path_to_blocks . 'blocks/custom-html/index.php';
-require_once $path_to_blocks . 'blocks/relatedstories/index.php';
-require_once $path_to_blocks . 'blocks/relatedstories/yarpprelated-endpoint.php';
-require_once $path_to_blocks . 'blocks/relatedstories/collection-endpoint.php';
-require_once $path_to_blocks . 'blocks/leadin/index.php';
-require_once $path_to_blocks . 'components/background/index.php';
+$path_to_src = plugin_dir_path( __DIR__ ) . 'src/';
+require_once $path_to_src . 'functions.php';
+require_once $path_to_src . 'blocks/custom-html/index.php';
+require_once $path_to_src . 'blocks/relatedstories/index.php';
+require_once $path_to_src . 'blocks/relatedstories/yarpprelated-endpoint.php';
+require_once $path_to_src . 'blocks/relatedstories/collection-endpoint.php';
+require_once $path_to_src . 'blocks/leadin/index.php';
+require_once $path_to_src . 'components/background/index.php';
 
 // Kicks off all hooks.
 namespace\init_hooks();
