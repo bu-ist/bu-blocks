@@ -204,18 +204,23 @@ function default_theme_colors( $editor_settings, $post ) {
 }
 
 /**
- * Recursively load all PHP files within the /src/ directory.
+ * Load all the PHP file within the /src/ directory.
  *
- * This is different than using composer.json to use Composer's autoload
- * library because this plugin needs to load regular PHP files -- not just
- * ones that define classes. This helps developers focus on creating blocks
- * rather than adding `include_once`,  `require_once`, etc calls for each
- * PHP file that gets created.
+ * This used to be done through:
+ * `\AaronHolbrook\Autoload\autoload( plugin_dir_path( __DIR__ ) . 'src' );`
+ * which was included in this repo, but has since been removed for performance
+ * reasons. Please manually include all files in the /src/ directory below.
  *
- * @since    0.1.0
+ * @since 0.2.6
  */
-require_once plugin_dir_path( __DIR__ ) . 'vendor/autoload/autoload.php';
-\AaronHolbrook\Autoload\autoload( plugin_dir_path( __DIR__ ) . 'src' );
+$path_to_blocks = plugin_dir_path( __DIR__ ) . 'src/';
+require_once $path_to_blocks . 'functions.php';
+require_once $path_to_blocks . 'blocks/custom-html/index.php';
+require_once $path_to_blocks . 'blocks/relatedstories/index.php';
+require_once $path_to_blocks . 'blocks/relatedstories/yarpprelated-endpoint.php';
+require_once $path_to_blocks . 'blocks/relatedstories/collection-endpoint.php';
+require_once $path_to_blocks . 'blocks/leadin/index.php';
+require_once $path_to_blocks . 'components/background/index.php';
 
 // Kicks off all hooks.
 namespace\init_hooks();
