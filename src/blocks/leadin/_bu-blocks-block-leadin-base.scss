@@ -175,6 +175,10 @@
 		@extend %clearfix;
 	}
 
+	.wp-prepress-tag {
+		line-height: 1.5;
+	}
+
 	.container-words-inner {
 		margin-top: 2em;
 		margin-bottom: 2em;
