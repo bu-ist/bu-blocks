@@ -270,7 +270,15 @@
 	&.is-style-default-alt {
 		.container-lockup {
 			display: flex;
-			flex-direction: column-reverse;
+			flex-direction: column;
+		}
+
+		.wp-block-leadin-media {
+			order: 1;
+		}
+
+		.wp-block-editorial-leadin-caption {
+			order: 1;
 		}
 	}
 
