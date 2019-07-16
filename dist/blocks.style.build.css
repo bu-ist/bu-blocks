@@ -14496,8 +14496,14 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   .wp-block-editorial-leadin.is-style-default-alt .container-lockup {
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column-reverse;
-        flex-direction: column-reverse; }
+    -ms-flex-direction: column;
+        flex-direction: column; }
+  .wp-block-editorial-leadin.is-style-default-alt .wp-block-leadin-media {
+    -ms-flex-order: 1;
+        order: 1; }
+  .wp-block-editorial-leadin.is-style-default-alt .wp-block-editorial-leadin-caption {
+    -ms-flex-order: 1;
+        order: 1; }
   .wp-block-editorial-leadin.is-style-text-to-image .wp-block-leadin-media {
     height: 100%; }
     @media (min-width: 500px) {
