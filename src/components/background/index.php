@@ -33,9 +33,11 @@ function display_background( $attributes, $image_size = false ) {
 		?>
 			<video
 				src="<?php echo esc_url( $url ); ?>"
-				autoPlay
-				muted
-				loop
+				<?php if ( $attributes['backgroundAutoplay'] ) : ?>
+					autoPlay
+					muted
+					loop
+				<?php endif; ?>
 				<?php if ( $classes ) : ?>
 					class="<?php echo esc_attr( $classes ); ?>"
 				<?php endif; ?>
@@ -48,7 +50,7 @@ function display_background( $attributes, $image_size = false ) {
 		$parsed_url = wp_parse_url( $url ); // Parse the provided URL.
 		$host       = $parsed_url['host']; // Get the host of the provided URL.
 		$src        = false; // Set a flag for the iframe `src` attribute value.
-		$autoplay   = true; // Hardcoded for now (as it is in the JS component).
+		$autoplay   = $attributes['backgroundAutoplay'];
 
 		// Build the iframe `src` value for Youtube videos.
 		if ( 'www.youtube.com' === $host || 'youtu.be' === $host ) {
