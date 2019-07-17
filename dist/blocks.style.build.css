@@ -34217,7 +34217,7 @@ a:visited {
   height: 0;
   margin: 30px auto;
   overflow: hidden;
-  padding-top: 56.25%;
+  padding-top: calc( ( 9 / 16 ) * 100%);
   position: relative; }
   .wp-block-maps iframe {
     left: 0;
@@ -34226,15 +34226,15 @@ a:visited {
     width: 100%;
     position: absolute; }
   .wp-block-maps.has-aspectratio-16by9 {
-    padding-top: 56.25%; }
+    padding-top: calc( ( 9 / 16 ) * 100%); }
   .wp-block-maps.has-aspectratio-4by3 {
-    padding-top: 75%; }
+    padding-top: calc( ( 3 / 4 ) * 100%); }
   .wp-block-maps.has-aspectratio-1by1 {
-    padding-top: 100%; }
+    padding-top: calc( ( 1 / 1 ) * 100%); }
   .wp-block-maps.has-aspectratio-2by1 {
-    padding-top: 50%; }
+    padding-top: calc( ( 1 / 2 ) * 100%); }
   .wp-block-maps.has-aspectratio-1by2 {
-    padding-top: 200%; }
+    padding-top: calc( ( 2 / 1 ) * 100%); }
   @media (min-width: 992px) {
     .wp-block-maps.xsmall {
       padding-top: 20%; } }
