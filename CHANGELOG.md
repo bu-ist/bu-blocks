@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.6
+- Replace AaronHolbrook\Autoload with require statements
+- Leadin Block Updates
+    - Fixed the content ordering to accomidate the image caption.
+- Add bottom margin to tag in leadin
+- Increase leadin tag bottom margin
+   - Fixes https://github.com/bu-ist/r-editorial/issues/698
+- Adjust leadin block prepress tag line height
+
 ## 0.2.5
 
 - Fix sizing of Square Photos in Photo Essay blocks (https://github.com/bu-ist/bu-blocks/pull/161)
