@@ -167,8 +167,16 @@
 		margin:0 0 0.25em ;
 	}
 
+	.wp-prepress-tag {
+		margin-bottom: 30px;
+	}
+
 	.container-lockup {
 		@extend %clearfix;
+	}
+
+	.wp-prepress-tag {
+		line-height: 1.5;
 	}
 
 	.container-words-inner {
@@ -270,7 +278,15 @@
 	&.is-style-default-alt {
 		.container-lockup {
 			display: flex;
-			flex-direction: column-reverse;
+			flex-direction: column;
+		}
+
+		.wp-block-leadin-media {
+			order: 1;
+		}
+
+		.wp-block-editorial-leadin-caption {
+			order: 1;
 		}
 	}
 
