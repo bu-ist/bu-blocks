@@ -113,12 +113,14 @@
 			.container-words-inner {
 				margin-left: 0;
 				text-align: left;
+				align-items: start;
 			}
 		}
 		&.has-text-position-x-right {
 			.container-words-inner {
 				margin-right: 0;
 				text-align: left;
+				align-items: start;
 			}
 		}
 	}
