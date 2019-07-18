@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.7
+- Leadin Block caption and Tag placement fixes when text is aligned on top of image
+
 ## 0.2.6
 - Replace AaronHolbrook\Autoload with require statements
 - Leadin Block Updates
