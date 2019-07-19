@@ -107,24 +107,28 @@
 	}
 
 	.wp-block-maps-info {
-		align-items: flex-start;
-		display: flex;
-		justify-content: space-between;
 		margin-top: 20px;
+
+		@include breakpoint( $sm ) {
+			align-items: flex-start;
+			display: flex;
+			justify-content: space-between;
+		}
 	}
 
 	.wp-block-maps-info-caption {
-		margin-right: 20px;
+
+		@include breakpoint( $sm ) {
+			margin-right: 20px;
+		}
 	}
 
 	.wp-block-maps-info-button {
-		margin-right: 0;
-	}
+		@include icon( expand, before );
+		white-space: nowrap;
 
-	&.alignfull {
-
-		.wp-block-maps-info {
-			margin: 20px 20px 0 20px;
+		@include breakpoint( $sm ) {
+			margin-right: 0;
 		}
 	}
 }
