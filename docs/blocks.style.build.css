@@ -34221,42 +34221,57 @@ a:visited {
   @include object-fit(cover, top);
 */
 .wp-block-maps {
-  height: 0;
-  margin: 30px auto;
-  overflow: hidden;
-  padding-top: calc( ( 9 / 16 ) * 100%);
-  position: relative; }
+  margin: 30px auto; }
+  .wp-block-maps .wp-block-maps-wrapper {
+    height: 0;
+    overflow: hidden;
+    padding-top: calc( ( 3 / 4 ) * 100%);
+    position: relative; }
   .wp-block-maps iframe {
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
     position: absolute; }
-  .wp-block-maps.has-aspectratio-16by9 {
+  .wp-block-maps.has-aspectratio-16by9 .wp-block-maps-wrapper {
     padding-top: calc( ( 9 / 16 ) * 100%); }
-  .wp-block-maps.has-aspectratio-4by3 {
+  .wp-block-maps.has-aspectratio-4by3 .wp-block-maps-wrapper {
     padding-top: calc( ( 3 / 4 ) * 100%); }
-  .wp-block-maps.has-aspectratio-1by1 {
+  .wp-block-maps.has-aspectratio-1by1 .wp-block-maps-wrapper {
     padding-top: calc( ( 1 / 1 ) * 100%); }
-  .wp-block-maps.has-aspectratio-2by1 {
+  .wp-block-maps.has-aspectratio-2by1 .wp-block-maps-wrapper {
     padding-top: calc( ( 1 / 2 ) * 100%); }
-  .wp-block-maps.has-aspectratio-1by2 {
+  .wp-block-maps.has-aspectratio-1by2 .wp-block-maps-wrapper {
     padding-top: calc( ( 2 / 1 ) * 100%); }
   @media (min-width: 992px) {
-    .wp-block-maps.xsmall {
+    .wp-block-maps.xsmall .wp-block-maps-wrapper {
       padding-top: 20%; } }
   @media (min-width: 992px) {
-    .wp-block-maps.small {
+    .wp-block-maps.small .wp-block-maps-wrapper {
       padding-top: 35%; } }
   @media (min-width: 992px) {
-    .wp-block-maps.medium {
+    .wp-block-maps.medium .wp-block-maps-wrapper {
       padding-top: 50%; } }
   @media (min-width: 992px) {
-    .wp-block-maps.large {
+    .wp-block-maps.large .wp-block-maps-wrapper {
       padding-top: 65%; } }
   @media (min-width: 992px) {
-    .wp-block-maps.xlarge {
+    .wp-block-maps.xlarge .wp-block-maps-wrapper {
       padding-top: 80%; } }
+  .wp-block-maps .wp-block-maps-info {
+    -ms-flex-align: start;
+        align-items: flex-start;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    margin-top: 20px; }
+  .wp-block-maps .wp-block-maps-info-caption {
+    margin-right: 20px; }
+  .wp-block-maps .wp-block-maps-info-button {
+    margin-right: 0; }
+  .wp-block-maps.alignfull .wp-block-maps-info {
+    margin: 20px 20px 0 20px; }
 
 .wp-block-sample {
   border-radius: 0; }
