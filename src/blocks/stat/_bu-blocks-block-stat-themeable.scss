@@ -55,7 +55,91 @@ $current-map: $blocks-block-sample-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-stat {
-	border-radius: blocks-get( 'border-radius' );
+.#{$scope}-block-stats {
+	.wp-block-stats-caption {
+		font-family: blocks-get( 'font-family-secondary' );
+		color: blocks-get( 'font-color-aside' );
+	}
+
+	.wp-block-stat-number {
+		font-family: blocks-get( 'font-family-secondary' );
+	}
+
+
+	&.has-number-font-primary {
+		.wp-block-stat-number {
+			font-family: blocks-get( 'font-family-primary' );
+		}
+	}
+
+	&.has-number-font-secondary {
+		.wp-block-stat-number {
+			font-family: blocks-get( 'font-family-secondary' );
+		}
+	}
+
+	&.has-number-font-tertiary {
+		.wp-block-stat-number {
+			font-family: blocks-get( 'font-family-tertiary' );
+		}
+	}
+
+	&.has-text-font-primary {
+		.wp-block-stat-text-pre,
+		.wp-block-stat-text-post {
+			font-family: blocks-get( 'font-family-primary' );
+		}
+	}
+
+	&.has-text-font-secondary {
+		.wp-block-stat-text-pre,
+		.wp-block-stat-text-post {
+			font-family: blocks-get( 'font-family-secondary' );
+		}
+	}
+
+	&.has-text-font-tertiary {
+		.wp-block-stat-text-pre,
+		.wp-block-stat-text-post {
+			font-family: blocks-get( 'font-family-tertiary' );
+		}
+	}
+
+	.wp-block-stat-circle1,
+	.wp-block-stat-circle2, {
+		stroke: blocks-get( 'background-color-light' );
+	}
+
+	.has-circle1-color-primary .wp-block-stat-circle1 {
+		stroke: blocks-get( 'color-primary' );
+	}
+
+	.has-circle1-color-secondary .wp-block-stat-circle1 {
+		stroke: blocks-get( 'color-secondary' );
+	}
+
+	.has-circle1-color-tertiary .wp-block-stat-circle1 {
+		stroke: blocks-get( 'color-tertiary' );
+	}
+
+	.has-circle1-color-quaternary .wp-block-stat-circle1 {
+		stroke: blocks-get( 'color-quaternary' );
+	}
+
+	.has-circle2-color-primary .wp-block-stat-circle2 {
+		stroke: blocks-get( 'color-primary' );
+	}
+
+	.has-circle2-color-secondary .wp-block-stat-circle2 {
+		stroke: blocks-get( 'color-secondary' );
+	}
+
+	.has-circle2-color-tertiary .wp-block-stat-circle2 {
+		stroke: blocks-get( 'color-tertiary' );
+	}
+
+	.has-circle2-color-quaternary .wp-block-stat-circle2 {
+		stroke: blocks-get( 'color-quaternary' );
+	}
 }
 
