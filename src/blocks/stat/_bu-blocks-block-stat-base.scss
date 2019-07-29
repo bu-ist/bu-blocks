@@ -9,6 +9,9 @@
 //
 
 //stat layout styles
+.wp-block-stats {
+	margin-bottom: 2em;
+}
 
 .wp-block-stats-caption {
 	text-align: center;
@@ -65,6 +68,7 @@
 
 
 .wp-block-stat {
+	margin-bottom: 1.5em;
 	text-align: center;
 }
 
@@ -95,16 +99,17 @@
 	}
 
 	.wp-block-stat {
-		// width: 100%;
-
 		@include breakpoint( $xs ) {
 			width: 100%;
 		}
 	}
 }
 
+/////////////////////////
 // circle specific styles
-.is-style-circle {
+/////////////////////////
+
+// .is-style-circle {
 	.wp-block-stat-container-outer {
 		position: relative;
 
@@ -264,10 +269,10 @@
 			}
 		}
 	}
-}
+
 
 .has-3-stats {
-	.is-style-circle {
+	// .is-style-circle {
 		.wp-block-stat-number {
 			font-size: 2.5em;
 
@@ -356,97 +361,95 @@
 				}
 			}
 		}
-	}
+	// }
 }
 
 .has-4-stats {
-	.is-style-circle {
+	.wp-block-stat-number {
+		font-size: 2.5em;
+
+		@include breakpoint( $xs ) {
+			font-size: 3em;
+		}
+
+		@include breakpoint( $sm ) {
+			font-size: 4em;
+		}
+
+		@include breakpoint( $md ) {
+			font-size: 5em;
+		}
+
+		@include breakpoint( $lg ) {
+			font-size: 2em;
+		}
+	}
+
+	&.has-number-size-1 {
 		.wp-block-stat-number {
-			font-size: 2.5em;
+			font-size: 4em;
 
 			@include breakpoint( $xs ) {
-				font-size: 3em;
+				font-size: 4.5em;
 			}
 
 			@include breakpoint( $sm ) {
-				font-size: 4em;
-			}
-
-			@include breakpoint( $md ) {
 				font-size: 5em;
 			}
 
+			@include breakpoint( $md ) {
+				font-size: 6em;
+			}
+
 			@include breakpoint( $lg ) {
-				font-size: 2em;
+				font-size: 3em;
 			}
 		}
+	}
 
-		&.has-number-size-1 {
-			.wp-block-stat-number {
+	&.has-number-size-2 {
+	}
+
+	&.has-number-size-3 {
+		.wp-block-stat-number {
+			font-size: 2em;
+
+			@include breakpoint( $xs ) {
+				font-size: 2.5em;
+			}
+
+			@include breakpoint( $sm ) {
+				font-size: 3em;
+			}
+
+			@include breakpoint( $md ) {
 				font-size: 4em;
+			}
 
-				@include breakpoint( $xs ) {
-					font-size: 4.5em;
-				}
-
-				@include breakpoint( $sm ) {
-					font-size: 5em;
-				}
-
-				@include breakpoint( $md ) {
-					font-size: 6em;
-				}
-
-				@include breakpoint( $lg ) {
-					font-size: 3em;
-				}
+			@include breakpoint( $lg ) {
+				font-size: 1.75em;
 			}
 		}
+	}
 
-		&.has-number-size-2 {
-		}
+	&.has-number-size-4 {
+		.wp-block-stat-number {
+			font-size: 1.5em;
 
-		&.has-number-size-3 {
-			.wp-block-stat-number {
+			@include breakpoint( $xs ) {
+				font-size: 1.75em;
+			}
+
+			@include breakpoint( $sm ) {
 				font-size: 2em;
-
-				@include breakpoint( $xs ) {
-					font-size: 2.5em;
-				}
-
-				@include breakpoint( $sm ) {
-					font-size: 3em;
-				}
-
-				@include breakpoint( $md ) {
-					font-size: 4em;
-				}
-
-				@include breakpoint( $lg ) {
-					font-size: 1.75em;
-				}
 			}
-		}
 
-		&.has-number-size-4 {
-			.wp-block-stat-number {
-				font-size: 1.5em;
+			@include breakpoint( $md ) {
+				font-size: 3em;
+			}
 
-				@include breakpoint( $xs ) {
-					font-size: 1.75em;
-				}
-
-				@include breakpoint( $sm ) {
-					font-size: 2em;
-				}
-
-				@include breakpoint( $md ) {
-					font-size: 3em;
-				}
-
-				@include breakpoint( $lg ) {
-					font-size: 1.25em;
-				}
+			@include breakpoint( $lg ) {
+				font-size: 1.25em;
 			}
 		}
 	}
