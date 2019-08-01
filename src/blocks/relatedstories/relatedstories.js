@@ -43,7 +43,7 @@ const {
 	BlockAlignmentToolbar,
 	BlockControls,
 	URLInput,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const {
 	addQueryArgs,

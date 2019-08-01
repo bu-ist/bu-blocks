@@ -20,7 +20,7 @@ const { Fragment } = wp.element;
 const {
 	RichText,
 	BlockControls,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const { select } = wp.data;
 
 // Register the block.

@@ -37,7 +37,7 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	getAuthority,
 	getPath,

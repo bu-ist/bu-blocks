@@ -31,7 +31,7 @@ const {
 const {
 	InnerBlocks,
 	InspectorControls,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	dispatch,
 	select,

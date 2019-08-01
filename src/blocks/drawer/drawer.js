@@ -36,7 +36,7 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select
 } = wp.data;
