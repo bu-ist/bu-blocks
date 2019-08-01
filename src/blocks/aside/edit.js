@@ -18,7 +18,7 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 class BUAsideEdit extends Component {
 	constructor() {

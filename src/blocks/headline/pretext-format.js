@@ -12,7 +12,7 @@ const { registerFormatType, toggleFormat } = wp.richText;
 const {
 	RichTextToolbarButton,
 	RichTextShortcut,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const name = 'editorial/pretext';
 

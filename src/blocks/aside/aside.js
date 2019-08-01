@@ -21,7 +21,7 @@ const { registerBlockType } = wp.blocks;
 const {
 	getColorClassName,
 	InnerBlocks,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Internal dependencies.
 import edit from './edit.js';

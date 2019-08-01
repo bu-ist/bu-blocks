@@ -31,7 +31,7 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
-} = wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	addFilter
 } = wp.hooks;
