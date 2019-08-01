@@ -39,7 +39,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
-} = wp.editor;
+} = wp.blockEditor;
 const {
 	applyFilters,
 } = wp.hooks;

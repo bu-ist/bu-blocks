@@ -18,8 +18,10 @@ import Background, { BackgroundAttributes } from '../../components/background';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { getColorClassName } = wp.editor;
-const { InnerBlocks } = wp.editor;
+const {
+	getColorClassName,
+	InnerBlocks,
+} = wp.blockEditor;
 const { select } = wp.data;
 const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 

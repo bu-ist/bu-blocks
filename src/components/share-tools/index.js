@@ -20,7 +20,7 @@ const {
 } = wp.components;
 const {
 	InspectorControls,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Share tools attributes.
 const ShareToolsAttributes = {

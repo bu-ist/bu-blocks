@@ -17,7 +17,10 @@ import './posttext-format.js'
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { RichText, BlockControls } = wp.editor;
+const {
+	RichText,
+	BlockControls,
+} = wp.blockEditor;
 const { select } = wp.data;
 
 // Register the block.

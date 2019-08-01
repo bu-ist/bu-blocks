@@ -29,7 +29,7 @@ const {
 
 const {
 	PlainText,
-} = wp.editor;
+} = wp.blockEditor;
 
 const {
 	addQueryArgs,

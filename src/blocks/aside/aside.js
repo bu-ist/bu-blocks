@@ -18,7 +18,10 @@ import RegisterBlockPreset from '../../global/register-block-preset.js';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { getColorClassName, InnerBlocks } = wp.editor;
+const {
+	getColorClassName,
+	InnerBlocks,
+} = wp.blockEditor;
 
 // Internal dependencies.
 import edit from './edit.js';
