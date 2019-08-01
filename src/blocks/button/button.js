@@ -40,7 +40,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
-} = wp.editor;
+} = wp.blockEditor;
 
 // The current publication owner.
 const publication = document.getElementById( 'bu_publication_owner' );

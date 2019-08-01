@@ -31,7 +31,7 @@ const {
 const {
 	InnerBlocks,
 	InspectorControls,
-} = wp.editor;
+} = wp.blockEditor;
 const {
 	dispatch,
 	select,

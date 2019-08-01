@@ -14,7 +14,13 @@ import allowedBlocks from '../../components/allowed-blocks';
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 const { compose } = wp.compose;
-const { InspectorControls, InnerBlocks, PanelColorSettings, RichText, withColors } = wp.editor;
+const {
+	InspectorControls,
+	InnerBlocks,
+	PanelColorSettings,
+	RichText,
+	withColors,
+} = wp.blockEditor;
 const { select } = wp.data;
 const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
 

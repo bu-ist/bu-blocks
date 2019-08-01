@@ -33,7 +33,7 @@ const {
 	MediaUploadCheck,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Import a library used to manage multiple class names.
 import classnames from 'classnames';

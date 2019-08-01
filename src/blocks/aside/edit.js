@@ -13,7 +13,12 @@ import allowedBlocks from '../../components/allowed-blocks';
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 const { compose } = wp.compose;
-const { InnerBlocks, InspectorControls, PanelColorSettings, withColors } = wp.editor;
+const {
+	InnerBlocks,
+	InspectorControls,
+	PanelColorSettings,
+	withColors,
+} = wp.blockEditor;
 
 class BUAsideEdit extends Component {
 	constructor() {

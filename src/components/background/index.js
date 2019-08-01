@@ -37,7 +37,7 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
-} = wp.editor;
+} = wp.blockEditor;
 const {
 	getAuthority,
 	getPath,
