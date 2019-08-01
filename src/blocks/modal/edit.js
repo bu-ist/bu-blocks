@@ -21,8 +21,16 @@ const {
 	RichText,
 	withColors,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const { select } = wp.data;
-const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
+const {
+	select,
+} = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	hasSelectedInnerBlock,
+	isBlockSelected,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];

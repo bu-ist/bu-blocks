@@ -40,10 +40,13 @@ const {
 const {
 	select
 } = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
 const {
 	hasSelectedInnerBlock,
 	isBlockSelected,
-} = select( 'core/editor' );
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 /**
  * Returns the class list for the block based on the current settings.

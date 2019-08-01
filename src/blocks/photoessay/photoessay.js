@@ -37,6 +37,20 @@ const {
 	select,
 } = wp.data;
 
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getBlocksByClientId,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+
+// Populate actions that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	updateBlockAttributes,
+	insertBlock,
+	removeBlock,
+} = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
+
 // Register the block.
 registerBlockType( 'editorial/photoessay', {
 	title: __( 'Photo Essay' ),
@@ -69,7 +83,7 @@ registerBlockType( 'editorial/photoessay', {
 			const blockClasses = newLayout.split( '-' ).splice( 3 );
 
 			// Get any existing image blocks.
-			const currentBlocks = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks;
+			const currentBlocks = getBlocksByClientId( clientId )[ 0 ].innerBlocks;
 
 			// Update or insert new blocks accordingly.
 			blockClasses.forEach( ( blockClass, i ) => {
@@ -78,12 +92,12 @@ registerBlockType( 'editorial/photoessay', {
 
 				if ( existingBlock ) {
 					// Update the `columnClass` attribute of the existing block at this index.
-					dispatch( 'core/editor' ).updateBlockAttributes( existingBlock.clientId, newColumnClass );
+					updateBlockAttributes( existingBlock.clientId, newColumnClass );
 				} else {
 					// Otherwise, create and insert a new block.
 					const newBlock = createBlock( 'editorial/photoessay-image', newColumnClass );
 
-					dispatch( 'core/editor' ).insertBlock( newBlock, i, clientId );
+					insertBlock( newBlock, i, clientId );
 				}
 			} );
 
@@ -93,7 +107,7 @@ registerBlockType( 'editorial/photoessay', {
 					return;
 				}
 
-				dispatch( 'core/editor' ).removeBlock( block.clientId, false );
+				removeBlock( block.clientId, false );
 			} );
 		};
 
