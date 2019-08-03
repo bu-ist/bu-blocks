@@ -89,7 +89,8 @@ registerBlockType( 'editorial/headline', {
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
-					formattingControls={ [ 'pretext', 'posttext', 'bold', 'italic' ] }
+					allowedFormats={ [ 'editorial/pretext', 'editorial/posttext', 'core/bold', 'core/italic' ] }
+					withoutInteractiveFormats={ true }
 				/>
 			</Fragment>
 		);
