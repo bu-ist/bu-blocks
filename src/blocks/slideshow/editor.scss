@@ -4,3 +4,32 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+
+.wp-block-editorial-slideshow {
+
+	.wp-block-editorial-slideshow-edit-slide {
+		position: relative;
+
+		.wp-block-editorial-slideshow-edit-slide__image,
+		.wp-block-editorial-slideshow-edit-slide__remove-slide {
+			position: absolute;
+			top: 0;
+		}
+
+		.wp-block-editorial-slideshow-edit-slide__image {
+			display: flex;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+	.bu-blocks-slideshow-caption {
+		list-style:  none;
+	}
+
+	&::after {
+		clear: both;
+		content: ' ';
+		display: table;
+	}
+}

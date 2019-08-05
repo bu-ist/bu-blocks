@@ -20,7 +20,6 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
-	Button,
 	IconButton,
 	Path,
 	SVG,
@@ -52,6 +51,10 @@ const slideIndex = ( index ) => {
  * @param {array} slides Array of objects containing slide data.
  */
 const blockMarkup = ( slides ) => {
+	// Define widths for the `ul` and `li` elements based on the number of slides.
+	const ulWidth = `${ slides.length }00%`;
+	const liWidth = `calc(${ 100 / slides.length }% - 2px)`;
+
 	return (
 		<Fragment>
 			<div className="bu-blocks-slideshow-media-container">
@@ -59,10 +62,16 @@ const blockMarkup = ( slides ) => {
 				<div className="back js-bu-blocks-slideshow-back-onmedia-btn"></div>
 				<div className="forward js-bu-blocks-slideshow-forward-onmedia-btn"></div>
 
-				<ul className="bu-blocks-slideshow-media-track js-bu-blocks-slideshow-media-track js-bu-blocks-slideshow-forward-ontrack-btn">
+				<ul
+					className="bu-blocks-slideshow-media-track js-bu-blocks-slideshow-media-track js-bu-blocks-slideshow-forward-ontrack-btn"
+					style={ { width: ulWidth } }
+				>
 
 					{ slides.map( ( slide, index ) =>
-						<li className={ `js-bu-blocks-slideshow-media-track-item bu-blocks-slideshow-media bu-blocks-slideshow-media-${ slideIndex( index ) }` }>
+						<li
+							className={ `js-bu-blocks-slideshow-media-track-item bu-blocks-slideshow-media bu-blocks-slideshow-media-${ slideIndex( index ) }` }
+							style={ { width: liWidth } }
+						>
 							<div
 								className="bu-blocks-slideshow-media-backfill"
 								style={ { backgroundImage: `url(${ slide.imageUrl })` } }
@@ -83,10 +92,16 @@ const blockMarkup = ( slides ) => {
 
 			<div className="bu-blocks-slideshow-caption-container bu-blocks-slideshow-caption-container-collapsed js-bu-blocks-slideshow-caption-container">
 
-				<ul className="bu-blocks-slideshow-caption-track js-bu-blocks-slideshow-caption-track">
+				<ul
+					className="bu-blocks-slideshow-caption-track js-bu-blocks-slideshow-caption-track"
+					style={ { width: ulWidth } }
+				>
 
 					{ slides.map( ( slide, index ) =>
-						<li className={ `bu-blocks-slideshow-caption bu-blocks-slideshow-caption-${ slideIndex( index ) } js-bu-blocks-slideshow-caption-item` }>
+						<li
+							className={ `bu-blocks-slideshow-caption bu-blocks-slideshow-caption-${ slideIndex( index ) } js-bu-blocks-slideshow-caption-item` }
+							style={ { width: liWidth } }
+						>
 							<p>{ slide.caption }</p>
 						</li>
 					) }
@@ -180,10 +195,13 @@ registerBlockType( 'editorial/slideshow', {
 			};
 
 			return (
-				<div className="wp-block-editorial-slideshow-edit">
+				<div className="wp-block-editorial-slideshow-edit-slide">
 					<IconButton
-						className="wp-block-editorial-slideshow-edit__remove-slide"
+						className="wp-block-editorial-slideshow-edit-slide__remove-slide"
 						icon="no-alt"
+						isButton
+						isDefault
+						isLarge
 						label={ __( 'Remove Slide' ) }
 						onClick={ () => {
 							slides.splice( index, 1 );
@@ -197,16 +215,16 @@ registerBlockType( 'editorial/slideshow', {
 								allowedTypes={ [ 'image' ] }
 								value={ slide.imageId }
 								render={ ( { open } ) => (
-									<div className="wp-block-editorial-slideshow-edit__image">
+									<div className="wp-block-editorial-slideshow-edit-slide__image">
 										<IconButton
-											className="wp-block-editorial-slideshow-edit__image-edit"
+											className="wp-block-editorial-slideshow-edit-slide__image-edit"
 											icon="edit"
 											label={ __( 'Edit Image' ) }
 											onClick={ open }
 										/>
 										<IconButton
-											className="wp-block-editorial-slideshow-edit__image-remove"
-											icon="no-alt"
+											className="wp-block-editorial-slideshow-edit-slide__image-remove"
+											icon="no"
 											label={ __( 'Remove Image' ) }
 											onClick={ onRemoveImage }
 										/>
@@ -245,12 +263,14 @@ registerBlockType( 'editorial/slideshow', {
 				{ ( isSelected || !slides[0].imageId ) ? (
 					<Fragment>
 						{ slides.map( ( slide, index ) => slideEdit( slide, index ) ) }
-						<Button
+						<IconButton
 							onClick={ () => setAttributes( { slides: slides.concat( [ emptySlide ] ) } ) }
-							label={ __( 'Add a Slide' ) }
+							icon="plus"
+							isButton
 							isDefault
-							isSmall
-						>{ __( 'Add New Slide' ) }</Button>
+							isLarge
+							label={ __( 'Add a Slide' ) }
+						>{ __( 'Add New Slide' ) }</IconButton>
 					</Fragment>
 				) : (
 					blockMarkup( slides )
