@@ -174,17 +174,17 @@ registerBlockType( 'editorial/introparagraph', {
 		} = attributes;
 
 		// Determine if a sepecific dropcap style has been selected.
-		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
+		let hasDropCapStyle = className && className.includes( 'is-style-dropcap' );
 
 		// Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
-		if ( hasDropCapStyle ) {
+		if ( hasDropCapStyle && 'undefined' !== typeof paragraphColor.color ) {
 			setAttributes( { paragraphColor: '' } );
-		} else if ( ! hasDropCapStyle ) {
+		} else if ( ! hasDropCapStyle && 'undefined' !== typeof dropCapColor.color ) {
 			setAttributes( { dropCapColor: '' } );
 		}
 
 		// Determine if the drop cap SVG should be included in content.
-		let isImageDropCap = className.includes( 'is-style-dropcap-image' );
+		let isImageDropCap = className && className.includes( 'is-style-dropcap-image' );
 
 		// Pull the first character from the article content use in the drop cap SVG.
 		let dropCapCharacter = '';
