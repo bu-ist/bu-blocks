@@ -9,6 +9,8 @@ const { select, dispatch } = wp.data;
 const { getEditorSettings } = select( 'core/editor' );
 const { updateEditorSettings } = dispatch( 'core/editor' );
 
+import publicationSlug from './publication-slug';
+
 const themeOptions = () => {
 	// Get the default colors as set by the editor or theme.
 	const defaultColors = getEditorSettings().colors;
@@ -17,10 +19,16 @@ const themeOptions = () => {
 	// function in `../init.php`. (Defined via PHP for the comparison below.)
 	const defaultThemes = getEditorSettings().buDefaultThemes;
 
-	// Check for publication theme colors and use those if available.
-	const themes = getEditorSettings().buPublicationThemes;
-	const publication = document.getElementById( 'bu_publication_owner' ).value;
-	const themeOptions = ( themes && themes[ publication ] ) ? themes[ publication ] : defaultThemes;
+	// Get publication specific color options set by the active theme through
+	// the `block_editor_settings` filter in PHP.
+	const publicationThemes = getEditorSettings().buPublicationThemes;
+
+	// Retrieve the current publication from the DOM.
+	const publication = publicationSlug();
+
+	// Populate the final `themeOptions` from the current publication, if the exist.
+	// If not, use the default options.
+	const themeOptions = ( publicationThemes && publicationThemes[ publication ] ) ? publicationThemes[ publication ] : defaultThemes;
 
 	/**
 	 * Add custom color objects to the defaults if they haven't already been added.
