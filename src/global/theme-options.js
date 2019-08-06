@@ -29,6 +29,8 @@ const {
 	updateSettings,
 } = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
 
+import publicationSlug from './publication-slug';
+
 const themeOptions = () => {
 	// Get the default colors as set by the block editor and in the theme
 	// through `add_theme_support()`.
@@ -43,7 +45,7 @@ const themeOptions = () => {
 	const publicationThemes = getEditorSettings().buPublicationThemes;
 
 	// Retrieve the current publication from the DOM.
-	const publication = document.getElementById( 'bu_publication_owner' ).value;
+	const publication = publicationSlug();
 
 	// Populate the final `themeOptions` from the current publication, if the exist.
 	// If not, use the default options.
