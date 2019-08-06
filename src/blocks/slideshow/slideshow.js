@@ -21,18 +21,45 @@ const {
 } = wp.blocks;
 const {
 	IconButton,
+	PanelBody,
 	Path,
+	RadioControl,
+	SelectControl,
 	SVG,
+	ToggleControl,
 } = wp.components;
 const {
 	Fragment,
 } = wp.element;
 const {
+	InspectorControls,
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
 } = wp.editor;
+
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string}  aspectRatio The value of the aspect ratio option.
+ * @param {string}  className   Default and additional classes applied to the block.
+ * @param {boolean} crop        Whether the Crop option is toggled on.
+ * @param {boolean} showNextUp  Whether the Show Next Up option is toggled on.
+ */
+const getClasses = ( aspectRatio, className, crop, showNextUp ) => {
+	return (
+		classnames(
+			'js-bu-blocks-slideshow',
+			className,
+			{
+				'has-crop': crop,
+				'has-shownextup': showNextUp,
+				[ `has-aspectratio-${aspectRatio}` ]: aspectRatio,
+			}
+		)
+	);
+}
 
 /**
  * Return a string for use in slide classes using the provided index.
@@ -127,7 +154,8 @@ const blockMarkup = ( slides ) => {
 // Empty slide object.
 const emptySlide = {
 	caption: '',
-	focus: '',
+	imageFocusX: 'center',
+	imageFocusY: 'center',
 	imageId: '',
 	imageUrl: '',
 };
@@ -139,6 +167,22 @@ registerBlockType( 'editorial/slideshow', {
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu-editorial',
 	attributes: {
+		aspectRatio: {
+			type: 'string',
+			default: '16by9',
+		},
+		className: {
+			type: 'string',
+			default: '',
+		},
+		crop: {
+			type: 'boolean',
+			default: false,
+		},
+		showNextUp: {
+			type: 'boolean',
+			default: false,
+		},
 		slides: {
 			type: 'array',
 			default: [ emptySlide, emptySlide ],
@@ -148,6 +192,9 @@ registerBlockType( 'editorial/slideshow', {
 	edit( props ) {
 		const {
 			attributes: {
+				aspectRatio,
+				crop,
+				showNextUp,
 				slides,
 			},
 			className,
@@ -186,7 +233,7 @@ registerBlockType( 'editorial/slideshow', {
 
 				const imageSize = 'huge';
 
-				let url = ( image.sizes[ imageSize ] ) ? image.sizes[ imageSize ].url : image.url;;
+				let url = ( image.sizes[ imageSize ] ) ? image.sizes[ imageSize ].url : image.url;
 
 				slides[ index ].imageId = image.id;
 				slides[ index ].imageUrl = url;
@@ -232,6 +279,32 @@ registerBlockType( 'editorial/slideshow', {
 								) }
 							/>
 							<img src={ slide.imageUrl } />
+							<SelectControl
+								label={ __( 'Image Focus X:' ) }
+								value={ slide.imageFocusX }
+								onChange={ value => {
+									slides[ index ].imageFocusX = value;
+									setAttributes( { slides: slides } );
+								} }
+								options={ [
+									{ value: 'left', label: __( 'Left' ) },
+									{ value: 'center', label: __( 'Center' ) },
+									{ value: 'right', label: __( 'Right' ) },
+								] }
+							/>
+							<SelectControl
+								label={ __( 'Image Focus Y:' ) }
+								value={ slide.imageFocusY }
+								onChange={ value => {
+									slides[ index ].imageFocusY = value;
+									setAttributes( { slides: slides } );
+								} }
+								options={ [
+									{ value: 'top', label: __( 'Top' ) },
+									{ value: 'center', label: __( 'Center' ) },
+									{ value: 'bottom', label: __( 'Bottom' ) },
+								] }
+							/>
 						</MediaUploadCheck>
 					) : (
 						<MediaPlaceholder
@@ -259,7 +332,7 @@ registerBlockType( 'editorial/slideshow', {
 		};
 
 		return (
-			<div className={ classnames( className, 'js-bu-blocks-slideshow' ) }>
+			<div className={ getClasses( aspectRatio, className, crop, showNextUp ) }>
 				{ ( isSelected || !slides[0].imageId ) ? (
 					<Fragment>
 						{ slides.map( ( slide, index ) => slideEdit( slide, index ) ) }
@@ -271,6 +344,33 @@ registerBlockType( 'editorial/slideshow', {
 							isLarge
 							label={ __( 'Add a Slide' ) }
 						>{ __( 'Add New Slide' ) }</IconButton>
+						<InspectorControls>
+							<PanelBody title={ __( 'Display Settings' ) }>
+								<RadioControl
+									className="bu-block-editorial-slideshow-aspect-ratio-options"
+									label={ __( 'Aspect Ratio' ) }
+									selected={ aspectRatio }
+									options={ [
+										{ label: '16:9', value: '16by9' },
+										{ label: '4:3', value: '4by3' },
+										{ label: '1:1', value: '1by1' },
+										{ label: '3:4', value: '3by4' },
+										{ label: '9:16', value: '9by16' },
+									] }
+									onChange={ option => setAttributes( { aspectRatio: option } ) }
+								/>
+								<ToggleControl
+									label={ __( 'Crop Images to Fit Slideshow' ) }
+									checked={ crop }
+									onChange={ () => setAttributes( { crop: !crop } ) }
+								/>
+								<ToggleControl
+									label={ __( 'Preview Next Image' ) }
+									checked={ showNextUp }
+									onChange={ () => setAttributes( { showNextUp: !showNextUp } ) }
+								/>
+							</PanelBody>
+						</InspectorControls>
 					</Fragment>
 				) : (
 					blockMarkup( slides )
@@ -281,11 +381,15 @@ registerBlockType( 'editorial/slideshow', {
 
 	save( { attributes } ) {
 		const {
+			aspectRatio,
+			className,
+			crop,
+			showNextUp,
 			slides,
 		} = attributes;
 
 		return (
-			<div className="js-bu-blocks-slideshow">
+			<div className={ getClasses( aspectRatio, className, crop, showNextUp ) }>
 				{ blockMarkup( slides ) }
 			</div>
 		);

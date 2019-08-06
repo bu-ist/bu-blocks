@@ -33,3 +33,42 @@
 		display: table;
 	}
 }
+
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 1.5em;
+
+	.components-base-control__label {
+		padding-bottom: 1em;
+		width: 100%;
+	}
+
+	input {
+		display: none;
+	}
+
+	.components-radio-control__option label {
+		background-color: #fff;
+		border: 1px solid #e2e4e7;
+		padding: 8px 10px;
+	}
+
+	.components-radio-control__option input:checked + label {
+		color: #fff;
+		background-color: #1e8cbe;
+		border-color: #1e8cbe;
+	}
+
+	> div:first-of-type label {
+		border-radius: 5px 0 0 5px;
+	}
+
+	> div:last-of-type label {
+		border-radius: 0 5px 5px 0;
+	}
+
+	> div:not(:last-of-type) label {
+		border-right: 0;
+	}
+}
