@@ -73,6 +73,29 @@ const slideIndex = ( index ) => {
 };
 
 /**
+ * Return the image markup for a slide.
+ *
+ * @param {object} slide Object with slide data.
+ */
+const imageMarkup = ( slide ) => {
+	return (
+		<Fragment>
+			<div
+				className="bu-blocks-slideshow-media-backfill"
+				style={ { backgroundImage: `url(${ slide.imageUrl })` } }
+			></div>
+			<img
+				className={ classnames(
+					'bu-blocks-slideshow-media-actual',
+					{ [ `wp-image-${slide.imageId}` ]: slide.imageId, },
+				) }
+				src={ slide.imageUrl }
+			/>
+		</Fragment>
+	);
+};
+
+/**
  * Return the block markup.
  *
  * @param {array} slides Array of objects containing slide data.
@@ -98,19 +121,7 @@ const blockMarkup = ( slides ) => {
 						<li
 							className={ `js-bu-blocks-slideshow-media-track-item bu-blocks-slideshow-media bu-blocks-slideshow-media-${ slideIndex( index ) }` }
 							style={ { width: liWidth } }
-						>
-							<div
-								className="bu-blocks-slideshow-media-backfill"
-								style={ { backgroundImage: `url(${ slide.imageUrl })` } }
-							></div>
-							<img
-								className={ classnames(
-									'bu-blocks-slideshow-media-actual',
-									{ [ `wp-image-${slide.imageId}` ]: slide.imageId, },
-								) }
-								src={ slide.imageUrl }
-							/>
-						</li>
+						>{ imageMarkup( slide ) }</li>
 					) }
 
 				</ul>
@@ -213,10 +224,16 @@ registerBlockType( 'editorial/slideshow', {
 			 * Removes the slide image.
 			 */
 			const onRemoveImage = () => {
-				slides[ index ].imageId = undefined;
-				slides[ index ].imageUrl = undefined;
+				const newSlides = Object.values( {
+					...slides,
+					[ index ]: {
+						...slides[ index ],
+						imageId: '',
+						imageUrl: '',
+					}
+				} );
 
-				setAttributes( { slides: slides } );
+				setAttributes( { slides: newSlides } );
 			};
 
 			/**
@@ -231,14 +248,16 @@ registerBlockType( 'editorial/slideshow', {
 					return;
 				}
 
-				const imageSize = 'huge';
+				const newSlides = Object.values( {
+					...slides,
+					[ index ]: {
+						...slides[ index ],
+						imageId: image.id,
+						imageUrl: image.url,
+					}
+				} );
 
-				let url = ( image.sizes[ imageSize ] ) ? image.sizes[ imageSize ].url : image.url;
-
-				slides[ index ].imageId = image.id;
-				slides[ index ].imageUrl = url;
-
-				setAttributes( { slides: slides } );
+				setAttributes( { slides: newSlides } );
 			};
 
 			return (
@@ -252,60 +271,83 @@ registerBlockType( 'editorial/slideshow', {
 						label={ __( 'Remove Slide' ) }
 						onClick={ () => {
 							slides.splice( index, 1 );
-							setAttributes( { slides: slides } );
+
+							setAttributes( { slides: [ ...slides ] } );
 						} }
 					>{ __( 'Remove Slide' ) }</IconButton>
 					{ slide.imageId ? (
-						<MediaUploadCheck>
-							<MediaUpload
-								onSelect={ onSelectImage }
-								allowedTypes={ [ 'image' ] }
-								value={ slide.imageId }
-								render={ ( { open } ) => (
-									<div className="wp-block-editorial-slideshow-edit-slide__image">
-										<IconButton
-											className="wp-block-editorial-slideshow-edit-slide__image-edit"
-											icon="edit"
-											label={ __( 'Edit Image' ) }
-											onClick={ open }
-										/>
-										<IconButton
-											className="wp-block-editorial-slideshow-edit-slide__image-remove"
-											icon="no"
-											label={ __( 'Remove Image' ) }
-											onClick={ onRemoveImage }
-										/>
-									</div>
-								) }
-							/>
-							<img src={ slide.imageUrl } />
-							<SelectControl
-								label={ __( 'Image Focus X:' ) }
-								value={ slide.imageFocusX }
-								onChange={ value => {
-									slides[ index ].imageFocusX = value;
-									setAttributes( { slides: slides } );
-								} }
-								options={ [
-									{ value: 'left', label: __( 'Left' ) },
-									{ value: 'center', label: __( 'Center' ) },
-									{ value: 'right', label: __( 'Right' ) },
-								] }
-							/>
-							<SelectControl
-								label={ __( 'Image Focus Y:' ) }
-								value={ slide.imageFocusY }
-								onChange={ value => {
-									slides[ index ].imageFocusY = value;
-									setAttributes( { slides: slides } );
-								} }
-								options={ [
-									{ value: 'top', label: __( 'Top' ) },
-									{ value: 'center', label: __( 'Center' ) },
-									{ value: 'bottom', label: __( 'Bottom' ) },
-								] }
-							/>
-						</MediaUploadCheck>
+						<div className={ classnames( 'wp-block-editorial-slideshow-edit-slide-image', { 'has-image': slide.imageId } ) }>
+							<MediaUploadCheck>
+								<MediaUpload
+									onSelect={ onSelectImage }
+									allowedTypes={ [ 'image' ] }
+									value={ slide.imageId }
+									render={ ( { open } ) => (
+										<div className="wp-block-editorial-slideshow-edit-slide-image-controls">
+											<IconButton
+												className="wp-block-editorial-slideshow-edit-slide-image-controls__edit"
+												icon="edit"
+												label={ __( 'Edit Image' ) }
+												onClick={ open }
+											/>
+											<IconButton
+												className="wp-block-editorial-slideshow-edit-slide-image-controls__remove"
+												icon="no"
+												label={ __( 'Remove Image' ) }
+												onClick={ onRemoveImage }
+											/>
+										</div>
+									) }
+								/>
+								<div className="bu-blocks-slideshow-media">
+									{ imageMarkup( slide ) }
+								</div>
+								<div className="wp-block-editorial-slideshow-edit-slide-image-controls__focus">
+									<SelectControl
+										className="wp-block-editorial-slideshow-edit-slide-image-controls__focus-x"
+										label={ __( 'Image Focus X:' ) }
+										value={ slide.imageFocusX }
+										onChange={ value => {
+											const newSlides = Object.values( {
+												...slides,
+												[ index ]: {
+													...slides[ index ],
+													imageFocusX: value,
+												}
+											} );
+
+											setAttributes( { slides: newSlides } );
+										} }
+										options={ [
+											{ value: 'left', label: __( 'Left' ) },
+											{ value: 'center', label: __( 'Center' ) },
+											{ value: 'right', label: __( 'Right' ) },
+										] }
+									/>
+									<SelectControl
+										className="wp-block-editorial-slideshow-edit-slide-image-controls__focus-y"
+										label={ __( 'Image Focus Y:' ) }
+										value={ slide.imageFocusY }
+										onChange={ value => {
+											const newSlides = Object.values( {
+												...slides,
+												[ index ]: {
+													...slides[ index ],
+													imageFocusY: value,
+												}
+											} );
+
+											setAttributes( { slides: newSlides } );
+										} }
+										options={ [
+											{ value: 'top', label: __( 'Top' ) },
+											{ value: 'center', label: __( 'Center' ) },
+											{ value: 'bottom', label: __( 'Bottom' ) },
+										] }
+									/>
+								</div>
+							</MediaUploadCheck>
+						</div>
 					) : (
 						<MediaPlaceholder
 							icon='format-image'
@@ -322,10 +364,18 @@ registerBlockType( 'editorial/slideshow', {
 						placeholder={ __( 'Add a caption…' ) }
 						value={ slide.caption }
 						onChange={ value => {
-							slides[ index ].caption = value;
-							setAttributes( { slides: slides } );
+							const newSlides = Object.values( {
+								...slides,
+								[ index ]: {
+									...slides[ index ],
+									caption: value,
+								}
+							} );
+
+							setAttributes( { slides: newSlides } );
 						} }
 						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						keepPlaceholderOnFocus
 					/>
 				</div>
 			);

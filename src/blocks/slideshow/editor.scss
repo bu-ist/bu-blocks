@@ -7,19 +7,42 @@
 
 .wp-block-editorial-slideshow {
 
-	.wp-block-editorial-slideshow-edit-slide {
+	.wp-block-editorial-slideshow-edit-slide-image {
 		position: relative;
 
-		.wp-block-editorial-slideshow-edit-slide__image,
-		.wp-block-editorial-slideshow-edit-slide__remove-slide {
-			position: absolute;
-			top: 0;
+		&:not(.has-image) {
+			display: block;
+			margin: 0;
+
+			&:before,
+			&:after {
+				content: none;
+			}
 		}
 
-		.wp-block-editorial-slideshow-edit-slide__image {
+		.bu-blocks-slideshow-media {
+			float: none;
+			width: 100%;
+		}
+
+		.wp-block-editorial-slideshow-edit-slide-image-controls {
 			display: flex;
 			left: 50%;
+			position: absolute;
+			top: 0;
 			transform: translateX(-50%);
+			z-index: 1;
+		}
+
+		.wp-block-editorial-slideshow-edit-slide-image-controls__focus {
+			text-align: right;
+
+			.components-base-control__label {
+				display: inline;
+			}
+			.components-select-control__input {
+				width: auto;
+			}
 		}
 	}
 
