@@ -43,6 +43,9 @@ const {
 	getPath,
 	getQueryString,
 } = wp.url;
+const {
+	isBlobURL,
+} = wp.blob;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
@@ -101,9 +104,13 @@ function Background( props ) {
 
 	// Set attributes based on the selected or uploaded media.
 	const onSelectMedia = ( media ) => {
-		if ( ! media || ! media.url ) {
+		if ( !media || !media.url ) {
 			onRemoveMedia();
 
+			return;
+		}
+
+		if ( isBlobURL( media.url ) ) {
 			return;
 		}
 
@@ -130,7 +137,13 @@ function Background( props ) {
 
 		// Assign the block-designated size if it exists.
 		if ( mediaType === 'image' && imageSize !== 'full' ) {
-			url = ( media.sizes[ imageSize ] ) ? media.sizes[ imageSize ].url : media.url;
+			// The first check is for images already in the media library.
+			// The second is for newly uploaded images.
+			if ( media.sizes && media.sizes[ imageSize ] ) {
+				url = media.sizes[ imageSize ].url;
+			} else if ( media.media_details && media.media_details.sizes[ imageSize ] ) {
+				url = media.media_details.sizes[ imageSize ].source_url;
+			}
 		}
 
 		setAttributes( {
