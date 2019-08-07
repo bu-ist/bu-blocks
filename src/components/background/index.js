@@ -27,6 +27,7 @@ const {
 	IconButton,
 	PanelBody,
 	RangeControl,
+	Spinner,
 	TextControl,
 	ToggleControl,
 	Toolbar,
@@ -46,6 +47,9 @@ const {
 const {
 	isBlobURL,
 } = wp.blob;
+const {
+	withState,
+} = wp.compose;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
@@ -73,6 +77,8 @@ function Background( props ) {
 		inlinePlaceholder = false,
 		options = [ 'opacity' ],
 		placeholderText = __( 'Add Media' ),
+		isUploading,
+		setState,
 	} = props;
 
 	// Get the properties of the block using this component.
@@ -111,6 +117,10 @@ function Background( props ) {
 		}
 
 		if ( isBlobURL( media.url ) ) {
+			setState( { isUploading: true } );
+
+			setAttributes( { backgroundUrl: media.url } );
+
 			return;
 		}
 
@@ -145,6 +155,8 @@ function Background( props ) {
 				url = media.media_details.sizes[ imageSize ].source_url;
 			}
 		}
+
+		setState( { isUploading: false } );
 
 		setAttributes( {
 			backgroundId: media.id,
@@ -401,6 +413,13 @@ function Background( props ) {
 					</div>
 				</div>
 			) }
+			{ isUploading && (
+				<div className="wp-block-background-is-uploading">
+					<img src={ backgroundUrl } />
+					<Spinner />
+				</div>
+
+			) }
 		</Fragment>
 	);
 }
@@ -412,4 +431,6 @@ export {
 };
 
 // Export the background interface.
-export default Background;
+export default withState( {
+	isUploading: false,
+} )( Background );
