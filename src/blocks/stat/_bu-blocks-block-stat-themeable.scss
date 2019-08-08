@@ -55,7 +55,7 @@ $current-map: $blocks-block-sample-config;
 
 $scope: blocks-get( 'scope' );
 
-.#{$scope}-block-stats {
+.#{$scope}-block-bu-stats {
 	.wp-block-stats-caption {
 		font-family: blocks-get( 'font-family-secondary' );
 		color: blocks-get( 'font-color-aside' );
@@ -106,7 +106,7 @@ $scope: blocks-get( 'scope' );
 	}
 
 	.wp-block-stat-circle1,
-	.wp-block-stat-circle2, {
+	.wp-block-stat-circle2 {
 		stroke: blocks-get( 'background-color-light' );
 	}
 
@@ -142,4 +142,3 @@ $scope: blocks-get( 'scope' );
 		stroke: blocks-get( 'color-quaternary' );
 	}
 }
-

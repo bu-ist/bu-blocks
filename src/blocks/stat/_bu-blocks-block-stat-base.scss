@@ -9,7 +9,7 @@
 //
 
 //stat layout styles
-.wp-block-stats {
+.wp-block-bu-stats {
 	margin-bottom: 2em;
 }
 
@@ -31,7 +31,7 @@
 .has-2-stats,
 .has-3-stats,
 .has-4-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %row-child-styles;
 		@extend %col-8;
 
@@ -40,44 +40,38 @@
 }
 
 .has-1-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 	}
 }
 
 .has-2-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 	}
 }
 
 .has-3-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 		@extend %col-sm-4;
 	}
 }
 
 .has-4-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 		@extend %col-lg-3;
 	}
 }
 
-
-
-.wp-block-stat {
+.wp-block-bu-stat {
 	margin-bottom: 1.5em;
 	text-align: center;
 }
 
-.wp-block-stat-container-outer {
-}
-
-
-.wp-block-stats.has-1-stats.alignleft,
-.wp-block-stats.has-1-stats.alignright {
+.wp-block-bu-stats.has-1-stats.alignleft,
+.wp-block-bu-stats.has-1-stats.alignright {
 	@include breakpoint( $xs ) {
 		width: 300px;
 	}
@@ -98,7 +92,7 @@
 		width: auto;
 	}
 
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@include breakpoint( $xs ) {
 			width: 100%;
 		}
