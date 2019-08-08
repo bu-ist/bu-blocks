@@ -45,7 +45,7 @@ const {
 } = wp.hooks;
 
 // The current publication owner.
-const publicationClass = document.getElementById( 'bu_publication_owner' ).value;
+const publication = document.getElementById( 'bu_publication_owner' );
 
 // Block attributes.
 const blockAttributes = {
@@ -195,9 +195,9 @@ registerBlockType( 'bu/leadin', {
 
 		const classes = classnames(
 			'wp-block-editorial-leadin',
-			publicationClass + '-block-editorial-leadin',
 			className,
 			{
+				[ `${publication.value}-block-editorial-leadin` ]: publication && publication.value !== '',
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
