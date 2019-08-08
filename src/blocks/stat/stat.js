@@ -1,10 +1,266 @@
 /**
- * BLOCK: bu-sample-cgb
+ * BLOCK: bu/stat
  *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
+ * Register a stat block with Gutenberg.
  */
 
-//  Import CSS.
+// External dependencies.
+import classnames from 'classnames';
+
+// Import CSS.
 import './style.scss';
 import './editor.scss';
+
+// Internal dependencies.
+import themeOptions from '../../global/theme-options';
+
+// WordPress dependencies.
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+	Circle,
+	PanelBody,
+	Path,
+	RangeControl,
+	SVG,
+} = wp.components;
+const {
+	InspectorControls,
+	PanelColorSettings,
+	PlainText,
+	withColors,
+} = wp.editor;
+
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} circleOneColor The color option for circle 1.
+ * @param {string} circleTwoColor The color option for circle 2.
+ * @param {string} className      Default classes assigned to the block.
+ * @param {number} numberSize     The size at which to display the stat number.
+ */
+const getBlockClasses = ( circleOneColor, circleTwoColor, className, numberSize ) => {
+	return (
+		classnames(
+			className,
+			{
+				[ `has-cicle1-color-${circleOneColor}` ]: circleOneColor,
+				[ `has-cicle2-color-${circleTwoColor}` ]: circleTwoColor,
+				[ `has-number-size-${numberSize}` ]: numberSize,
+			}
+		)
+	);
+};
+
+/**
+ * The markup for the stat SVG.
+ *
+ * @param {number} circleOneFill The percentage of circle one to fill in.
+ * @param {number} circleTwoFill The percentage of circle two to fill in.
+ */
+const statSVG = ( circleOneFill, circleTwoFill ) => (
+	<SVG
+		className="wp-block-stat-svg"
+		xmlns="http://www.w3.org/2000/svg"
+		width="100px"
+		height="100px"
+		viewBox="0 0 100 100"
+		style={ { enableBackground: 'new 0 0 100 100' } }
+	>
+		<Circle
+			className="wp-block-stat-circle1"
+			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleOneFill } * 0.01 ) ) )` } }
+		/>
+		<Circle
+			className="wp-block-stat-circle2"
+			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleTwoFill } * 0.01 ) ) )` } }
+		/>
+	</SVG>
+);
+
+// Register the block.
+registerBlockType( 'bu/stat', {
+	parent: [ 'bu/stats' ],
+	title: __( 'Stat' ),
+	description: __( 'Display statistical information.' ),
+	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	category: 'bu',
+	attributes: {
+		circleOneColor: {
+			type: 'string',
+			default: '',
+		},
+		circleOneFill: {
+			type: 'number',
+			default: 0,
+		},
+		circleTwoColor: {
+			type: 'string',
+			default: '',
+		},
+		circleTwoFill: {
+			type: 'number',
+			default: 0,
+		},
+		className: {
+			type: 'string',
+			default: '',
+		},
+		number: {
+			type: 'string',
+			default: '',
+			source: 'text',
+			selector: '.wp-block-stat-number',
+		},
+		numberSize: {
+			type: 'number',
+			default: 2,
+		},
+		postText: {
+			type: 'string',
+			default: '',
+			source: 'text',
+			selector: '.wp-block-stat-text-post',
+		},
+		preText: {
+			type: 'string',
+			default: '',
+			source: 'text',
+			selector: '.wp-block-stat-text-pre',
+		},
+	},
+
+	edit: withColors( 'circleOneColor', 'circleTwoColor' )( props => {
+		const {
+			attributes: {
+				circleOneFill,
+				circleTwoFill,
+				numberSize,
+				number,
+				postText,
+				preText,
+			},
+			circleOneColor,
+			circleTwoColor,
+			className,
+			setAttributes,
+			setCircleOneColor,
+			setCircleTwoColor,
+		} = props;
+
+		return (
+			<div className={ getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ) }>
+				<div className="wp-block-stat-container-outer">
+					<div className="wp-block-stat-container-inner">
+
+						<div className="wp-block-stat-text-pre">
+							<PlainText
+								placeholder={ __( 'Opening text (optional)…' ) }
+								value={ preText }
+								onChange={ preText => setAttributes( { preText } ) }
+							/>
+						</div>
+
+						<div className="wp-block-stat-number">
+							<PlainText
+								placeholder={ __( 'Number (optional)…' ) }
+								value={ number }
+								onChange={ number => setAttributes( { number } ) }
+							/>
+						</div>
+
+						<div className="wp-block-stat-text-post">
+							<PlainText
+								placeholder={ __( 'Closing text (optional)…' ) }
+								value={ postText }
+								onChange={ postText => setAttributes( { postText } ) }
+							/>
+						</div>
+
+						{ statSVG( circleOneFill, circleTwoFill ) }
+
+					</div>
+				</div>
+
+				<InspectorControls>
+					<PanelBody title={ __( 'Display Options' ) } >
+						<RangeControl
+							label={ __( 'Number Size' ) }
+							value={ numberSize }
+							onChange={ value => setAttributes( { numberSize: value } ) }
+							min={ 1 }
+							max={ 4 }
+							step={ 1 }
+						/>
+						<RangeControl
+							label={ __( 'Circle 1 Fill' ) }
+							value={ circleOneFill }
+							onChange={ circleOneFill => setAttributes( { circleOneFill } ) }
+							min={ 0 }
+							max={ 100 }
+							step={ 1 }
+						/>
+						<RangeControl
+							label={ __( 'Circle 2 Fill' ) }
+							value={ circleTwoFill }
+							onChange={ circleTwoFill => setAttributes( { circleTwoFill } ) }
+							min={ 0 }
+							max={ 100 }
+							step={ 1 }
+						/>
+					</PanelBody>
+					<PanelColorSettings
+						title={ __( 'Color Options' ) }
+						colorSettings={ [
+							{
+								value: circleOneColor.color,
+								onChange: setCircleOneColor,
+								label: __( 'Circle 1' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+							{
+								value: circleTwoColor.color,
+								onChange: setCircleTwoColor,
+								label: __( 'Circle 2' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+						] }
+					/>
+				</InspectorControls>
+
+			</div>
+		);
+	} ),
+
+	save( { attributes }) {
+		const {
+			circleOneColor,
+			circleOneFill,
+			circleTwoColor,
+			circleTwoFill,
+			className,
+			number,
+			numberSize,
+			postText,
+			preText,
+		} = attributes;
+		return (
+			<div className={ getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ) }>
+				<div className="wp-block-stat-container-outer">
+					<div className="wp-block-stat-container-inner">
+						<div className="wp-block-stat-text-pre">{ preText }</div>
+						<div className="wp-block-stat-number">{ number }</div>
+						<div className="wp-block-stat-text-post">{ postText }</div>
+						{ statSVG( circleOneFill, circleTwoFill ) }
+					</div>
+				</div>
+			</div>
+		);
+	},
+} );
