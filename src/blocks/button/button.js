@@ -10,6 +10,7 @@ import classnames from 'classnames';
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
 import publicationSlug from '../../global/publication-slug';
+import getAllowedFormats from '../../global/allowed-formats';
 
 //  Import CSS.
 import './style.scss';
@@ -177,7 +178,8 @@ registerBlockType( 'bu/button', {
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
 						onChange={ ( value ) => setAttributes( { text: value } ) }
-						formattingControls={ [ 'bold', 'italic' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 						className={ getClasses( className, themeColor.slug, icon ) }
 						keepPlaceholderOnFocus
 					/>
