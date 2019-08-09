@@ -1,5 +1,5 @@
 /**
- * BLOCK: bu-editorial-click-to-tweet
+ * BLOCK: bu/clicktotweet
  *
  * Registers a Click to Tweet block.
  */
@@ -29,12 +29,20 @@ const {
 	RichText,
 } = wp.editor;
 
-const getClasses = ( content ) => {
+/**
+ * Return the class list for the block.
+ *
+ * @param {string} className Default and additional classes applied to the block.
+ * @param {string} content   The block content.
+ *
+ * @return {string} The block class list.
+ */
+const getClasses = ( className, content ) => {
 	return (
 		classnames(
-			'wp-block-clicktotweet',
 			{
-				'has-format-highlight': content.includes( '<span class="wp-block-clicktotweet-highlight">' ),
+				[ className ]: className,
+				'has-format-highlight': content.includes( '<span class="wp-block-bu-clicktotweet-highlight">' ),
 			}
 		)
 	);
@@ -47,16 +55,16 @@ registerBlockType( 'bu/clicktotweet', {
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu',
 	attributes: {
+		className: {
+			type: 'string',
+			default: '',
+		},
 		content: {
 			type: 'string',
 			default: '',
 			source: 'html',
-			selector: '.wp-block-clicktotweet-content',
+			selector: '.wp-block-bu-clicktotweet-content',
 		},
-	},
-	supports: {
-		className: false,
-		customClassName: false,
 	},
 
 	edit( props ) {
@@ -64,13 +72,14 @@ registerBlockType( 'bu/clicktotweet', {
 			attributes: {
 				content,
 			},
+			className,
 			setAttributes,
 		} = props;
 
 		return (
-			<p className={ getClasses( content ) }>
+			<p className={ getClasses( className, content ) }>
 				<RichText
-					className="wp-block-clicktotweet-content"
+					className="wp-block-bu-clicktotweet-content"
 					tagName="span"
 					formattingControls={ [ 'highlight', 'bold', 'italic' ] }
 					onChange={ value => setAttributes( { content: value } ) }
@@ -78,8 +87,8 @@ registerBlockType( 'bu/clicktotweet', {
 					value={ content }
 					keepPlaceholderOnFocus
 				/>
-				{ !content.includes( '<span class="wp-block-clicktotweet-highlight">' ) &&
-					<button className="wp-block-clicktotweet-action js-wp-block-clicktotweet-action">Tweet this</button>
+				{ !content.includes( '<span class="wp-block-bu-clicktotweet-highlight">' ) &&
+					<button className="wp-block-bu-clicktotweet-action js-wp-block-bu-clicktotweet-action">Tweet this</button>
 				}
 			</p>
 		);
@@ -87,18 +96,19 @@ registerBlockType( 'bu/clicktotweet', {
 
 	save( { attributes } ) {
 		const {
+			className,
 			content,
 		} = attributes;
 
 		return (
-			<p className={ getClasses( content ) }>
+			<p className={ getClasses( className, content ) }>
 				<RichText.Content
-					className="wp-block-clicktotweet-content"
+					className="wp-block-bu-clicktotweet-content"
 					tagName="span"
 					value={ content }
 				/>
-				{ !content.includes( '<span class="wp-block-clicktotweet-highlight">' ) &&
-					<button className="wp-block-clicktotweet-action js-wp-block-clicktotweet-action">Tweet this</button>
+				{ !content.includes( '<span class="wp-block-bu-clicktotweet-highlight">' ) &&
+					<button className="wp-block-bu-clicktotweet-action js-wp-block-bu-clicktotweet-action">Tweet this</button>
 				}
 			</p>
 		);

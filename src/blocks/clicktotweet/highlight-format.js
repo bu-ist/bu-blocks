@@ -26,7 +26,7 @@ const name = 'bu/clicktotweet-highlight';
 registerFormatType( name, {
 	title: __( 'Highlight' ),
 	tagName: 'span',
-	className: 'wp-block-clicktotweet-highlight',
+	className: 'wp-block-bu-clicktotweet-highlight',
 
 	edit( { isActive, value, onChange } ) {
 		const onToggle = () => onChange( toggleFormat( value, { type: name } ) );
