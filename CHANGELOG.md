@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.8
+- Fix publication class handling in Leadin block: Fixes part of #160. This was throwing an error and preventing this block and all those after it from loading up if bu-prepress was not activated.
+- Initial styles and frontend markup for the Stat Block
+
 ## 0.2.7
 - Leadin Block caption and Tag placement fixes when text is aligned on top of image
 
