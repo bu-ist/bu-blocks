@@ -9,6 +9,7 @@ import classnames from 'classnames';
 import themeOptions from '../../global/theme-options';
 import Background from '../../components/background';
 import allowedBlocks from '../../components/allowed-blocks';
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -98,7 +99,8 @@ class BUEditorialModalEdit extends Component {
 									onChange={ value => setAttributes( { calloutText: value } ) }
 									value={ calloutText }
 									placeholder={ __( 'Enter text…' ) }
-									formattingControls={ [ 'bold', 'italic', 'link' ] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 								/>
 								<div className="wp-block-editorial-modal-trigger-wrapper">
 									<RichText

@@ -15,6 +15,7 @@ import './editor.scss';
 import Background, { BackgroundAttributes } from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -180,7 +181,8 @@ registerBlockType( 'editorial/drawer', {
 						value={ hed }
 					/>
 					<RichText
-						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { lede: value } ) }
 						placeholder={ __( 'Enter text…' ) }
