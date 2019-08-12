@@ -66,7 +66,7 @@ registerBlockType( 'bu/stats', {
 			type: 'string',
 			default: '',
 			source: 'html',
-			selector: '.wp-block-stats-caption',
+			selector: '.wp-block-bu-stats-caption',
 		},
 		className: {
 			type: 'string',
@@ -120,11 +120,12 @@ registerBlockType( 'bu/stats', {
 
 		return (
 			<div className={ getBlockClasses( className, stats ) }>
-				<figure className="wp-block-stats-figure">
-					<div className="wp-block-stats-row">
+				<figure className="wp-block-bu-stats-figure">
+					<div className="wp-block-bu-stats-row">
 						<InnerBlocks
 							allowedBlocks={ [ 'bu/stat' ] }
 							templateLock="all"
+							template={ [ [ 'bu/stat' ] ] }
 						/>
 						{ !isAlignedLeftOrRight &&
 							<InspectorControls>
@@ -143,7 +144,7 @@ registerBlockType( 'bu/stats', {
 					</div>
 					<RichText
 						tagName="figcaption"
-						className="wp-block-stats-caption"
+						className="wp-block-bu-stats-caption"
 						placeholder={ __( 'Add a caption (optional)…' ) }
 						value={ caption }
 						onChange={ value => setAttributes( { caption: value } ) }
@@ -164,13 +165,13 @@ registerBlockType( 'bu/stats', {
 
 		return (
 			<div className={ getBlockClasses( className, stats ) }>
-				<figure className="wp-block-stats-figure">
-					<div className="wp-block-stats-row">
+				<figure className="wp-block-bu-stats-figure">
+					<div className="wp-block-bu-stats-row">
 						<InnerBlocks.Content />
 					</div>
 					<RichText.Content
 						tagName="figcaption"
-						className="wp-block-stats-caption"
+						className="wp-block-bu-stats-caption"
 						value={ caption }
 					/>
 				</figure>

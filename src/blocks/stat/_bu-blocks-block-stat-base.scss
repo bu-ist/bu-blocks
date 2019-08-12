@@ -9,16 +9,16 @@
 //
 
 //stat layout styles
-.wp-block-stats {
+.wp-block-bu-stats {
 	margin-bottom: 2em;
 }
 
-.wp-block-stats-caption {
+.wp-block-bu-stats-caption {
 	text-align: center;
 	font-size: 0.8em;
 }
 
-.wp-block-stats-row {
+.wp-block-bu-stats-row {
 	@extend %row-styles;
 
 	display: flex;
@@ -31,7 +31,7 @@
 .has-2-stats,
 .has-3-stats,
 .has-4-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %row-child-styles;
 		@extend %col-8;
 
@@ -40,44 +40,38 @@
 }
 
 .has-1-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 	}
 }
 
 .has-2-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 	}
 }
 
 .has-3-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 		@extend %col-sm-4;
 	}
 }
 
 .has-4-stats {
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@extend %col-xs-6;
 		@extend %col-lg-3;
 	}
 }
 
-
-
-.wp-block-stat {
+.wp-block-bu-stat {
 	margin-bottom: 1.5em;
 	text-align: center;
 }
 
-.wp-block-stat-container-outer {
-}
-
-
-.wp-block-stats.has-1-stats.alignleft,
-.wp-block-stats.has-1-stats.alignright {
+.wp-block-bu-stats.has-1-stats.alignleft,
+.wp-block-bu-stats.has-1-stats.alignright {
 	@include breakpoint( $xs ) {
 		width: 300px;
 	}
@@ -90,15 +84,15 @@
 	// 	width: 400px;
 	// }
 
-	.wp-block-stats-caption {
+	.wp-block-bu-stats-caption {
 		text-align: left;
 	}
 
-	.wp-block-stats-row {
+	.wp-block-bu-stats-row {
 		width: auto;
 	}
 
-	.wp-block-stat {
+	.wp-block-bu-stat {
 		@include breakpoint( $xs ) {
 			width: 100%;
 		}
@@ -109,7 +103,7 @@
 // circle specific styles
 /////////////////////////
 
-.wp-block-stat-container-outer {
+.wp-block-bu-stat-container-outer {
 	position: relative;
 
 	&::before {
@@ -121,7 +115,7 @@
 	}
 }
 
-.wp-block-stat-container-inner {
+.wp-block-bu-stat-container-inner {
 	align-items: center;
 	bottom: 0;
 	display: flex;
@@ -133,25 +127,25 @@
 	top: 0;
 }
 
-.wp-block-stat-text-pre,
-.wp-block-stat-text-post,
-.wp-block-stat-number {
+.wp-block-bu-stat-text-pre,
+.wp-block-bu-stat-text-post,
+.wp-block-bu-stat-number {
 	line-height: 1em;
 	transform: translatey(7.5%);
 	z-index: 1;
 }
 
-.wp-block-stat-text-pre,
-.wp-block-stat-text-post {
+.wp-block-bu-stat-text-pre,
+.wp-block-bu-stat-text-post {
 	font-size: 0.8em
 }
 
-.wp-block-stat-number {
+.wp-block-bu-stat-number {
 	font-size: 2.5em;
 	font-weight: 700;
 }
 
-svg.wp-block-stat-svg {
+svg.wp-block-bu-stat-svg {
 	height: 100%;
 	overflow: visible;
 	position: absolute;
@@ -160,8 +154,8 @@ svg.wp-block-stat-svg {
 	width: 100%;
 }
 
-.wp-block-stat-circle1,
-.wp-block-stat-circle2 {
+.wp-block-bu-stat-circle1,
+.wp-block-bu-stat-circle2 {
 	cx: 50;
 	cy: 50;
 	fill: transparent;
@@ -172,15 +166,15 @@ svg.wp-block-stat-svg {
 	stroke-width: 4;
 }
 
-.wp-block-stat-circle1 {
+.wp-block-bu-stat-circle1 {
 	stroke-width: 4;
 }
 
-.wp-block-stat-circle2 {
+.wp-block-bu-stat-circle2 {
 	stroke-width: 5;
 }
 
-.wp-block-stat-number {
+.wp-block-bu-stat-number {
 	font-size: 3em;
 
 	@include breakpoint( $xs ) {
@@ -201,7 +195,7 @@ svg.wp-block-stat-svg {
 }
 
 .has-number-size-1 {
-	.wp-block-stat-number {
+	.wp-block-bu-stat-number {
 		font-size: 4.25em;
 
 		@include breakpoint( $xs ) {
@@ -223,7 +217,7 @@ svg.wp-block-stat-svg {
 }
 
 .has-number-size-3 {
-	.wp-block-stat-number {
+	.wp-block-bu-stat-number {
 		font-size: 2.75em;
 
 		@include breakpoint( $xs ) {
@@ -245,7 +239,7 @@ svg.wp-block-stat-svg {
 }
 
 .has-number-size-4 {
-	.wp-block-stat-number {
+	.wp-block-bu-stat-number {
 		font-size: 1.75em;
 
 		@include breakpoint( $xs ) {
@@ -269,7 +263,7 @@ svg.wp-block-stat-svg {
 
 .has-3-stats {
 	// .is-style-circle {
-		.wp-block-stat-number {
+		.wp-block-bu-stat-number {
 			font-size: 2.5em;
 
 			@include breakpoint( $xs ) {
@@ -290,7 +284,7 @@ svg.wp-block-stat-svg {
 		}
 
 		&.has-number-size-1 {
-			.wp-block-stat-number {
+			.wp-block-bu-stat-number {
 				font-size: 4em;
 
 				@include breakpoint( $xs ) {
@@ -315,7 +309,7 @@ svg.wp-block-stat-svg {
 		}
 
 		&.has-number-size-3 {
-			.wp-block-stat-number {
+			.wp-block-bu-stat-number {
 				font-size: 2em;
 
 				@include breakpoint( $xs ) {
@@ -337,7 +331,7 @@ svg.wp-block-stat-svg {
 		}
 
 		&.has-number-size-4 {
-			.wp-block-stat-number {
+			.wp-block-bu-stat-number {
 				font-size: 1.5em;
 
 				@include breakpoint( $xs ) {
@@ -361,7 +355,7 @@ svg.wp-block-stat-svg {
 }
 
 .has-4-stats {
-	.wp-block-stat-number {
+	.wp-block-bu-stat-number {
 		font-size: 2.5em;
 
 		@include breakpoint( $xs ) {
@@ -382,7 +376,7 @@ svg.wp-block-stat-svg {
 	}
 
 	&.has-number-size-1 {
-		.wp-block-stat-number {
+		.wp-block-bu-stat-number {
 			font-size: 4em;
 
 			@include breakpoint( $xs ) {
@@ -407,7 +401,7 @@ svg.wp-block-stat-svg {
 	}
 
 	&.has-number-size-3 {
-		.wp-block-stat-number {
+		.wp-block-bu-stat-number {
 			font-size: 2em;
 
 			@include breakpoint( $xs ) {
@@ -429,7 +423,7 @@ svg.wp-block-stat-svg {
 	}
 
 	&.has-number-size-4 {
-		.wp-block-stat-number {
+		.wp-block-bu-stat-number {
 			font-size: 1.5em;
 
 			@include breakpoint( $xs ) {

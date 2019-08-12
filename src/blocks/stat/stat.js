@@ -48,8 +48,8 @@ const getBlockClasses = ( circleOneColor, circleTwoColor, className, numberSize 
 		classnames(
 			className,
 			{
-				[ `has-cicle1-color-${circleOneColor}` ]: circleOneColor,
-				[ `has-cicle2-color-${circleTwoColor}` ]: circleTwoColor,
+				[ `has-circle1-color-${circleOneColor}` ]: circleOneColor,
+				[ `has-circle2-color-${circleTwoColor}` ]: circleTwoColor,
 				[ `has-number-size-${numberSize}` ]: numberSize,
 			}
 		)
@@ -64,7 +64,7 @@ const getBlockClasses = ( circleOneColor, circleTwoColor, className, numberSize 
  */
 const statSVG = ( circleOneFill, circleTwoFill ) => (
 	<SVG
-		className="wp-block-stat-svg"
+		className="wp-block-bu-stat-svg"
 		xmlns="http://www.w3.org/2000/svg"
 		width="100px"
 		height="100px"
@@ -72,11 +72,11 @@ const statSVG = ( circleOneFill, circleTwoFill ) => (
 		style={ { enableBackground: 'new 0 0 100 100' } }
 	>
 		<Circle
-			className="wp-block-stat-circle1"
+			className="wp-block-bu-stat-circle1"
 			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleOneFill } * 0.01 ) ) )` } }
 		/>
 		<Circle
-			className="wp-block-stat-circle2"
+			className="wp-block-bu-stat-circle2"
 			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleTwoFill } * 0.01 ) ) )` } }
 		/>
 	</SVG>
@@ -114,7 +114,7 @@ registerBlockType( 'bu/stat', {
 			type: 'string',
 			default: '',
 			source: 'text',
-			selector: '.wp-block-stat-number',
+			selector: '.wp-block-bu-stat-number',
 		},
 		numberSize: {
 			type: 'number',
@@ -124,13 +124,13 @@ registerBlockType( 'bu/stat', {
 			type: 'string',
 			default: '',
 			source: 'text',
-			selector: '.wp-block-stat-text-post',
+			selector: '.wp-block-bu-stat-text-post',
 		},
 		preText: {
 			type: 'string',
 			default: '',
 			source: 'text',
-			selector: '.wp-block-stat-text-pre',
+			selector: '.wp-block-bu-stat-text-pre',
 		},
 	},
 
@@ -154,10 +154,10 @@ registerBlockType( 'bu/stat', {
 
 		return (
 			<div className={ getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ) }>
-				<div className="wp-block-stat-container-outer">
-					<div className="wp-block-stat-container-inner">
+				<div className="wp-block-bu-stat-container-outer">
+					<div className="wp-block-bu-stat-container-inner">
 
-						<div className="wp-block-stat-text-pre">
+						<div className="wp-block-bu-stat-text-pre">
 							<PlainText
 								placeholder={ __( 'Opening text (optional)…' ) }
 								value={ preText }
@@ -165,7 +165,7 @@ registerBlockType( 'bu/stat', {
 							/>
 						</div>
 
-						<div className="wp-block-stat-number">
+						<div className="wp-block-bu-stat-number">
 							<PlainText
 								placeholder={ __( 'Number (optional)…' ) }
 								value={ number }
@@ -173,7 +173,7 @@ registerBlockType( 'bu/stat', {
 							/>
 						</div>
 
-						<div className="wp-block-stat-text-post">
+						<div className="wp-block-bu-stat-text-post">
 							<PlainText
 								placeholder={ __( 'Closing text (optional)…' ) }
 								value={ postText }
@@ -250,13 +250,14 @@ registerBlockType( 'bu/stat', {
 			postText,
 			preText,
 		} = attributes;
+
 		return (
-			<div className={ getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ) }>
-				<div className="wp-block-stat-container-outer">
-					<div className="wp-block-stat-container-inner">
-						<div className="wp-block-stat-text-pre">{ preText }</div>
-						<div className="wp-block-stat-number">{ number }</div>
-						<div className="wp-block-stat-text-post">{ postText }</div>
+			<div className={ getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ) }>
+				<div className="wp-block-bu-stat-container-outer">
+					<div className="wp-block-bu-stat-container-inner">
+						<div className="wp-block-bu-stat-text-pre">{ preText }</div>
+						<div className="wp-block-bu-stat-number">{ number }</div>
+						<div className="wp-block-bu-stat-text-post">{ postText }</div>
 						{ statSVG( circleOneFill, circleTwoFill ) }
 					</div>
 				</div>
