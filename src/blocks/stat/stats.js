@@ -62,6 +62,10 @@ registerBlockType( 'bu/stats', {
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu',
 	attributes: {
+		align: {
+			type: 'string',
+			default: '',
+		},
 		caption: {
 			type: 'string',
 			default: '',
@@ -84,6 +88,7 @@ registerBlockType( 'bu/stats', {
 	edit( props ) {
 		const {
 			attributes: {
+				align,
 				caption,
 				stats,
 			},
@@ -93,7 +98,7 @@ registerBlockType( 'bu/stats', {
 		} = props;
 
 		// Determine whether the block is aligned left or right.
-		const isAlignedLeftOrRight = className.includes( 'alignleft' ) || className.includes( 'alignright' );
+		const isAlignedLeftOrRight = ( align === 'left' || align === 'right' );
 
 		/**
 		 * Updates the stats attribute and handles innerBlock insertions or removals.
@@ -120,6 +125,11 @@ registerBlockType( 'bu/stats', {
 
 		// Set a child Stat block when first inserted.
 		if ( stats === '' ) {
+			onChangeStatsNumber( 1 );
+		}
+
+		// Reset to a single Stat block if aligned left or right.
+		if ( isAlignedLeftOrRight && stats !== 1 ) {
 			onChangeStatsNumber( 1 );
 		}
 

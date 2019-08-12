@@ -49,3 +49,19 @@
 		font-size: .6em;
 	}
 }
+
+div[data-align="left"],
+div[data-align="right"] {
+	.wp-block-bu-stats .editor-inner-blocks .editor-block-list__layout > div {
+		width: 100%;
+
+		.editor-block-list__block-edit {
+			float: none;
+			margin-right: 0;
+		}
+
+		.wp-block-bu-stat-number textarea::placeholder {
+			font-size: .35em;
+		}
+	}
+}
