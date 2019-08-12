@@ -52,16 +52,20 @@
 
 div[data-align="left"],
 div[data-align="right"] {
-	.wp-block-bu-stats .editor-inner-blocks .editor-block-list__layout > div {
-		width: 100%;
+	.wp-block-bu-stats {
+		min-width: 230px;
 
-		.editor-block-list__block-edit {
-			float: none;
-			margin-right: 0;
-		}
+		.editor-inner-blocks .editor-block-list__layout > div {
+			width: 100%;
 
-		.wp-block-bu-stat-number textarea::placeholder {
-			font-size: .35em;
+			.editor-block-list__block-edit {
+				float: none;
+				margin: 0;
+			}
+
+			.wp-block-bu-stat-number textarea::placeholder {
+				font-size: .35em;
+			}
 		}
 	}
 }
