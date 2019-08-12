@@ -74,7 +74,7 @@ registerBlockType( 'bu/stats', {
 		},
 		stats: {
 			type: 'number',
-			default: 1,
+			default: '',
 		},
 	},
 	supports: {
@@ -118,6 +118,11 @@ registerBlockType( 'bu/stats', {
 			}
 		};
 
+		// Set a child Stat block when first inserted.
+		if ( stats === '' ) {
+			onChangeStatsNumber( 1 );
+		}
+
 		return (
 			<div className={ getBlockClasses( className, stats ) }>
 				<figure className="wp-block-bu-stats-figure">
@@ -125,7 +130,6 @@ registerBlockType( 'bu/stats', {
 						<InnerBlocks
 							allowedBlocks={ [ 'bu/stat' ] }
 							templateLock="all"
-							template={ [ [ 'bu/stat' ] ] }
 						/>
 						{ !isAlignedLeftOrRight &&
 							<InspectorControls>
