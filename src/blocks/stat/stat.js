@@ -147,6 +147,7 @@ registerBlockType( 'bu/stat', {
 			circleOneColor,
 			circleTwoColor,
 			className,
+			isSelected,
 			setAttributes,
 			setCircleOneColor,
 			setCircleTwoColor,
@@ -158,27 +159,31 @@ registerBlockType( 'bu/stat', {
 					<div className="wp-block-bu-stat-container-inner">
 
 						<div className="wp-block-bu-stat-text-pre">
-							<PlainText
-								placeholder={ __( 'Opening text (optional)…' ) }
-								value={ preText }
-								onChange={ preText => setAttributes( { preText } ) }
-							/>
+							{ ( isSelected || preText ) &&
+								<PlainText
+									placeholder={ __( 'Opening text…' ) }
+									value={ preText }
+									onChange={ preText => setAttributes( { preText } ) }
+								/>
+							}
 						</div>
 
 						<div className="wp-block-bu-stat-number">
 							<PlainText
-								placeholder={ __( 'Number (optional)…' ) }
+								placeholder={ __( 'Number…' ) }
 								value={ number }
 								onChange={ number => setAttributes( { number } ) }
 							/>
 						</div>
 
 						<div className="wp-block-bu-stat-text-post">
-							<PlainText
-								placeholder={ __( 'Closing text (optional)…' ) }
-								value={ postText }
-								onChange={ postText => setAttributes( { postText } ) }
-							/>
+							{ ( isSelected || postText ) &&
+								<PlainText
+									placeholder={ __( 'Closing text…' ) }
+									value={ postText }
+									onChange={ postText => setAttributes( { postText } ) }
+								/>
+							}
 						</div>
 
 						{ statSVG( circleOneFill, circleTwoFill ) }
@@ -255,9 +260,9 @@ registerBlockType( 'bu/stat', {
 			<div className={ getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ) }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
-						<div className="wp-block-bu-stat-text-pre">{ preText }</div>
+						{ preText && <div className="wp-block-bu-stat-text-pre">{ preText }</div> }
 						<div className="wp-block-bu-stat-number">{ number }</div>
-						<div className="wp-block-bu-stat-text-post">{ postText }</div>
+						{ postText && <div className="wp-block-bu-stat-text-post">{ postText }</div> }
 						{ statSVG( circleOneFill, circleTwoFill ) }
 					</div>
 				</div>
