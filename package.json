@@ -1,6 +1,6 @@
 {
   "name": "bu-blocks",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
