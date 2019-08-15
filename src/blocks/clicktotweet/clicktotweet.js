@@ -180,7 +180,7 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
 
 			setAttributes( {
-				className: classnames( className.replace( 'wp-block-bu-clicktotweet', '' ) ),
+				className: className ? classnames( className.replace( 'wp-block-bu-clicktotweet', '' ) ) : undefined,
 				content: strippedContent,
 			} );
 		}
