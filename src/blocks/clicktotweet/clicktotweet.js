@@ -7,9 +7,6 @@
 // External dependencies.
 import classnames from 'classnames';
 
-// Import internal dependencies.
-import './highlight-format';
-
 // Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -19,98 +16,260 @@ const {
 	__,
 } = wp.i18n;
 const {
-	registerBlockType,
-} = wp.blocks;
+	Fragment,
+} = wp.element;
 const {
-	Path,
-	SVG,
-} = wp.components;
+	withSelect,
+} = wp.data;
 const {
-	RichText,
+	compose,
+	ifCondition,
+} = wp.compose;
+const {
+	registerFormatType,
+	toggleFormat,
+} = wp.richText;
+const {
+	RichTextShortcut,
+	RichTextToolbarButton,
 } = wp.editor;
+const {
+	createHigherOrderComponent
+} = wp.compose;
+const {
+	addFilter,
+} = wp.hooks;
+
+// Define the format name.
+const name = 'bu/clicktotweet-highlight';
+
+// Define the opening markup for Click to Tweet content.
+const clickToTweetContainer = '<span class="wp-block-bu-clicktotweet-content">';
+
+// Define the openeing markup for highlighted Click to Tweet text.
+const clickToTweetHighlight = '<span class="wp-block-bu-clicktotweet-highlight">';
+
+// Registers the 'Click to Tweet highlight' format.
+registerFormatType( name, {
+	title: __( 'Click to Tweet' ),
+	tagName: 'span',
+	className: 'wp-block-bu-clicktotweet-highlight',
+	edit: compose(
+		withSelect( select => {
+			return {
+				selectedBlock: select( 'core/editor' ).getSelectedBlock()
+			}
+		} ),
+		ifCondition( props => {
+			return (
+				props.selectedBlock &&
+				props.selectedBlock.name === 'core/paragraph'
+			);
+		} )
+	)( ( props ) => {
+		const {
+			isActive,
+			onChange,
+			selectedBlock,
+			value,
+		} = props;
+
+		const {
+			clickToTweet,
+			content,
+		} = selectedBlock.attributes;
+
+		// Set up a boolean for displaying the format button as active.
+		const active = isActive || ( clickToTweet && !content.includes( clickToTweetHighlight ) );
+
+		const onToggle = () => {
+			// A super hacky way to fake `setAttributes` for `clickToTweet`in this context.
+			// If it's `true` and the format is being removed from text or the entire block
+			// is being toggled back off, we switch it to `false`.
+			// In all other cases, we switch it to `true`.
+			if ( clickToTweet && ( isActive || ( !isActive && content.includes( clickToTweetContainer ) ) ) ) {
+				props.selectedBlock.attributes.clickToTweet = false;
+			} else {
+				props.selectedBlock.attributes.clickToTweet = true;
+			}
+
+			// Handle the toggling of the Click to Tweet Highlight format.
+			onChange( toggleFormat( value, { type: name } ) );
+		};
+
+		return (
+			<Fragment>
+				<RichTextShortcut
+					character="b"
+					onUse={ onToggle }
+					type="access"
+				/>
+				<RichTextToolbarButton
+					icon="twitter"
+					isActive={ active }
+					onClick={ onToggle }
+					shortcutCharacter="b"
+					shortcutType="access"
+					title={ __( 'Click to Tweet' ) }
+				/>
+			</Fragment>
+		);
+	} ),
+} );
 
 /**
- * Return the class list for the block.
+ * Adds the `clickToTweet` attribute to the paragraph block.
  *
- * @param {string} className Default and additional classes applied to the block.
- * @param {string} content   The block content.
- *
- * @return {string} The block class list.
+ * @param {object} settings The block settings.
+ * @param {string} name     The block name.
  */
-const getClasses = ( className, content ) => {
-	return (
-		classnames(
-			{
-				[ className ]: className,
-				'has-format-highlight': content.includes( '<span class="wp-block-bu-clicktotweet-highlight">' ),
-			}
-		)
-	);
-}
+const registerClickToTweetAttributes = ( settings, name ) => {
+	if ( 'core/paragraph' !== name ) {
+		return settings;
+	}
 
-// Register the block.
-registerBlockType( 'bu/clicktotweet', {
-	title: __( 'Click to Tweet' ),
-	description: __( 'Add content for readers to share via Twitter.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
-	category: 'bu',
-	attributes: {
-		className: {
-			type: 'string',
-			default: '',
-		},
-		content: {
-			type: 'string',
-			default: '',
-			source: 'html',
-			selector: '.wp-block-bu-clicktotweet-content',
-		},
-	},
+	const clickToTweetAttributes = {
+		clickToTweet: {
+			type: 'boolean',
+			default: false,
+		}
+	};
 
-	edit( props ) {
+	settings.attributes = Object.assign( settings.attributes, clickToTweetAttributes );
+
+	return settings;
+};
+
+addFilter(
+	'blocks.registerBlockType',
+	'bu-blocks/click-to-tweet-paragraph',
+	registerClickToTweetAttributes
+);
+
+/**
+ * Toggle the block `content` and `className` attributes when the
+ * Click to Tweet format is applied.
+ */
+const registerFields = createHigherOrderComponent( BlockEdit => {
+	return ( props ) => {
+		if ( 'core/paragraph' !== props.name ) {
+			return (
+				<BlockEdit { ...props } />
+			);
+		}
+
 		const {
 			attributes: {
+				className,
+				clickToTweet,
 				content,
 			},
-			className,
 			setAttributes,
 		} = props;
 
-		return (
-			<p className={ getClasses( className, content ) }>
-				<RichText
-					className="wp-block-bu-clicktotweet-content"
-					tagName="span"
-					formattingControls={ [ 'highlight', 'bold', 'italic' ] }
-					onChange={ value => setAttributes( { content: value } ) }
-					placeholder={ __( 'Start writing…' ) }
-					value={ content }
-					keepPlaceholderOnFocus
-				/>
-				{ !content.includes( '<span class="wp-block-bu-clicktotweet-highlight">' ) &&
-					<button className="wp-block-bu-clicktotweet-action js-wp-block-bu-clicktotweet-action">Tweet this</button>
-				}
-			</p>
-		);
-	},
+		if ( !content.includes( clickToTweetContainer ) && clickToTweet ) {
+			const wrappedContent = `<span class="wp-block-bu-clicktotweet-content">${ content }</span>`;
 
-	save( { attributes } ) {
-		const {
-			className,
-			content,
-		} = attributes;
+			setAttributes( {
+				className: classnames( className, 'wp-block-bu-clicktotweet' ),
+				content: wrappedContent,
+			} );
+		}
+
+		if ( content.includes( clickToTweetContainer ) && !clickToTweet ) {
+			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
+
+			setAttributes( {
+				className: classnames( className.replace( 'wp-block-bu-clicktotweet', '' ) ),
+				content: strippedContent,
+			} );
+		}
 
 		return (
-			<p className={ getClasses( className, content ) }>
-				<RichText.Content
-					className="wp-block-bu-clicktotweet-content"
-					tagName="span"
-					value={ content }
-				/>
-				{ !content.includes( '<span class="wp-block-bu-clicktotweet-highlight">' ) &&
-					<button className="wp-block-bu-clicktotweet-action js-wp-block-bu-clicktotweet-action">Tweet this</button>
-				}
-			</p>
+			<BlockEdit { ...props } />
 		);
-	}
+	};
 } );
+
+addFilter(
+	'editor.BlockEdit',
+	'bu-blocks/click-to-tweet-paragraph',
+	registerFields
+);
+
+/**
+ * Modify the result of the paragraph block's `save` function.
+ *
+ * @param {object} element    The original save element.
+ * @param {object} settings   The block settings.
+ * @param {object} attributes The block attributes.
+ */
+const saveClickToTweet = ( element, settings, attributes ) => {
+	if ( 'core/paragraph' !== settings.name ) {
+		return element;
+	}
+
+	const {
+		props,
+	} = element;
+	const {
+		className,
+		value,
+	} = props;
+	const {
+		clickToTweet,
+	} = attributes;
+
+	// Stop here if the value property of the save element is empty,
+	// or the `clickToTweet` attribute is false.
+	if ( !value || !clickToTweet ) {
+
+		// Check if the value previously had Click to Tweet markup.
+		if ( value && value.includes( clickToTweetContainer ) ) {
+
+			// Trim the Click to Tweet markup from the value.
+			const newValue = value.slice( clickToTweetContainer.length, -7 );
+
+			// Assign our new `value` value to the `element` object.
+			element.props = Object.assign(
+				props,
+				{
+					value: newValue,
+				}
+			);
+		}
+
+		return element;
+	}
+
+	// Build the new value for the `className` property.
+	const newClassName = classnames(
+		className,
+		'wp-block-bu-clicktotweet',
+		{
+			'has-format-highlight': value.includes( clickToTweetHighlight ),
+		},
+	);
+
+	// Build the new value for the `value` property.
+	const newValue = ( !value.includes( clickToTweetContainer ) )
+		? `<span class="wp-block-bu-clicktotweet-content">${ value }</span>`
+		: value;
+
+	// Assign our new `className` and `value` values to the `element` object.
+	element.props = Object.assign(
+		props,
+		{
+			className: newClassName,
+			value: newValue,
+		}
+	);
+
+	return element;
+};
+
+addFilter(
+	'blocks.getSaveElement',
+	'bu-blocks/click-to-tweet-paragraph',
+	saveClickToTweet
+);
