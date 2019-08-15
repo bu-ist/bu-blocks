@@ -140,6 +140,9 @@ function Background( props ) {
 			backgroundAlt: media.alt,
 			backgroundCaption: media.caption,
 		} );
+
+		// Let the block code take care of any further handling.
+		props.onChange( media, mediaType );
 	};
 
 	// Set attributes based on a selected URL.
