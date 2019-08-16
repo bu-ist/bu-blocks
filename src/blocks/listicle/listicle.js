@@ -213,13 +213,15 @@ registerBlockType( 'editorial/listicle', {
 								inlinePlaceholder={ true }
 								options={ [] }
 							/>
-							<figcaption className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption">
-								<PlainText
-									value={ credit }
-									onChange={ credit => setAttributes( { credit } ) }
-									placeholder={ __( 'Add Photo or Video Credit…' ) }
-								/>
-							</figcaption>
+							<RichText
+								tagName="figcaption"
+								className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption"
+								value={ credit }
+								onChange={ value => setAttributes( { credit: value } ) }
+								placeholder={ __( 'Add Photo or Video Credit…' ) }
+								formattingControls={ [ 'bold', 'italic', 'link' ] }
+								keepPlaceholderOnFocus
+							/>
 						</figure>
 						<header className="wp-block-editorial-listicle-header">
 							{ ( number || isSelected ) && (
@@ -343,7 +345,11 @@ registerBlockType( 'editorial/listicle', {
 						<Background
 							blockProps={ props }
 						/>
-						<figcaption className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption">{ credit }</figcaption>
+						<RichText.Content
+							tagName="figcaption"
+							className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption"
+							value={ credit }
+						/>
 					</figure>
 					<header className="wp-block-editorial-listicle-header">
 						{ number && (
