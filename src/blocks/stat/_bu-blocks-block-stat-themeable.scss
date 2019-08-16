@@ -110,6 +110,10 @@ $scope: blocks-get( 'scope' );
 		stroke: blocks-get( 'background-color-light' );
 	}
 
+	.has-circle1-color-dark .wp-block-stat-circle1 {
+		stroke: blocks-get( 'background-color-dark' );
+	}
+
 	.has-circle1-color-primary .wp-block-stat-circle1 {
 		stroke: blocks-get( 'color-primary' );
 	}
@@ -124,6 +128,10 @@ $scope: blocks-get( 'scope' );
 
 	.has-circle1-color-quaternary .wp-block-stat-circle1 {
 		stroke: blocks-get( 'color-quaternary' );
+	}
+
+	.has-circle2-color-dark .wp-block-stat-circle2 {
+		stroke: blocks-get( 'background-color-dark' );
 	}
 
 	.has-circle2-color-primary .wp-block-stat-circle2 {
