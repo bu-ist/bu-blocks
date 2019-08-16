@@ -27,6 +27,7 @@ const {
 	IconButton,
 	PanelBody,
 	RangeControl,
+	Spinner,
 	TextControl,
 	ToggleControl,
 	Toolbar,
@@ -43,6 +44,12 @@ const {
 	getPath,
 	getQueryString,
 } = wp.url;
+const {
+	isBlobURL,
+} = wp.blob;
+const {
+	withState,
+} = wp.compose;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
@@ -70,6 +77,8 @@ function Background( props ) {
 		inlinePlaceholder = false,
 		options = [ 'opacity' ],
 		placeholderText = __( 'Add Media' ),
+		isUploading,
+		setState,
 	} = props;
 
 	// Get the properties of the block using this component.
@@ -101,8 +110,16 @@ function Background( props ) {
 
 	// Set attributes based on the selected or uploaded media.
 	const onSelectMedia = ( media ) => {
-		if ( ! media || ! media.url ) {
+		if ( !media || !media.url ) {
 			onRemoveMedia();
+
+			return;
+		}
+
+		if ( isBlobURL( media.url ) ) {
+			setState( { isUploading: true } );
+
+			setAttributes( { backgroundUrl: media.url } );
 
 			return;
 		}
@@ -130,8 +147,16 @@ function Background( props ) {
 
 		// Assign the block-designated size if it exists.
 		if ( mediaType === 'image' && imageSize !== 'full' ) {
-			url = ( media.sizes[ imageSize ] ) ? media.sizes[ imageSize ].url : media.url;
+			// The first check is for images already in the media library.
+			// The second is for newly uploaded images.
+			if ( media.sizes && media.sizes[ imageSize ] ) {
+				url = media.sizes[ imageSize ].url;
+			} else if ( media.media_details && media.media_details.sizes[ imageSize ] ) {
+				url = media.media_details.sizes[ imageSize ].source_url;
+			}
 		}
+
+		setState( { isUploading: false } );
 
 		setAttributes( {
 			backgroundId: media.id,
@@ -140,6 +165,9 @@ function Background( props ) {
 			backgroundAlt: media.alt,
 			backgroundCaption: media.caption,
 		} );
+
+		// Let the block code take care of any further handling.
+		props.onChange( media, mediaType );
 	};
 
 	// Set attributes based on a selected URL.
@@ -385,6 +413,13 @@ function Background( props ) {
 					</div>
 				</div>
 			) }
+			{ isUploading && (
+				<div className="wp-block-background-is-uploading">
+					<img src={ backgroundUrl } />
+					<Spinner />
+				</div>
+
+			) }
 		</Fragment>
 	);
 }
@@ -396,4 +431,6 @@ export {
 };
 
 // Export the background interface.
-export default Background;
+export default withState( {
+	isUploading: false,
+} )( Background );

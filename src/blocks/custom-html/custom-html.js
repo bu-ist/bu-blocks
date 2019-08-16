@@ -180,10 +180,17 @@ registerBlockType( 'editorial/custom-html', {
 			return;
 		}
 
+		let customTextArea = document.querySelector( '#block-' + customBlockID + ' textarea' );
+
+		// This may be true on the first load of some posts.
+		if ( null === customTextArea ) {
+			return;
+		}
+
 		let post = {
 			post_id: postID,
 			custom_block_id: customBlockID,
-			html: document.querySelector( '#block-' + customBlockID + ' textarea' ).value,
+			html: customTextArea.value,
 		}
 
 		// Save the data for this block using a custom endpoint.

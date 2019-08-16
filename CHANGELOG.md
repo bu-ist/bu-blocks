@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+- Background Component Updates
+    - Add an `onChange` property to allow blocks the opportunity for custom handling.
+    - Fix uploads when an image size is defined.
+    - Enhance the upload experience by temporarily setting a placeholder while the media is loading.
+- Fix a JS error when Custom HTML block is first auto-saved.
+- Introduce a global `publicationSlug()` component that provides either a publication slug via BU Prepress or a fallback to `bu-blocks` in cases where one is expected.
+
 ## 0.2.9
 - Allow HTML in Listicle Caption. https://github.com/bu-ist/r-editorial/pull/775
 

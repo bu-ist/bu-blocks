@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies
 import themeOptions from '../../global/theme-options';
+import publicationSlug from '../../global/publication-slug';
 import Background, { BackgroundAttributes } from '../../components/background';
 
 // WordPress dependencies.
@@ -43,9 +44,6 @@ const {
 const {
 	applyFilters,
 } = wp.hooks;
-
-// The current publication owner.
-const publication = document.getElementById( 'bu_publication_owner' );
 
 // Block attributes.
 const blockAttributes = {
@@ -192,12 +190,15 @@ registerBlockType( 'bu/leadin', {
 		const isStyleSideBySide = className.includes( 'is-style-side-by-side' );
 		const isStyleTextToImage = className.includes( 'is-style-text-to-image' );
 		const isStyleImageToText = className.includes( 'is-style-image-to-text' );
+		const publication = publicationSlug();
 
 		const classes = classnames(
 			'wp-block-editorial-leadin',
+			{
+				[ `${publication}-block-editorial-leadin` ]: publication !== '',
+			},
 			className,
 			{
-				[ `${publication.value}-block-editorial-leadin` ]: publication && publication.value !== '',
 				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
