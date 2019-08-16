@@ -169,18 +169,32 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 
 		if ( !content.includes( clickToTweetContainer ) && clickToTweet ) {
 			const wrappedContent = `<span class="wp-block-bu-clicktotweet-content">${ content }</span>`;
+			// Build the new value for the `className` property.
+			const wrappedClassName = classnames(
+				className,
+				'wp-block-bu-clicktotweet',
+				{
+					'has-format-highlight': content.includes( clickToTweetHighlight ),
+				},
+			);
 
 			setAttributes( {
-				className: classnames( className, 'wp-block-bu-clicktotweet' ),
+				className: wrappedClassName,
 				content: wrappedContent,
 			} );
 		}
 
 		if ( content.includes( clickToTweetContainer ) && !clickToTweet ) {
 			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
+			const strippedClassName = !className
+				? undefined
+				: classnames(
+					className.replace( 'wp-block-bu-clicktotweet', '' ),
+					className.replace( 'has-format-highlight', '' ),
+				);
 
 			setAttributes( {
-				className: className ? classnames( className.replace( 'wp-block-bu-clicktotweet', '' ) ) : undefined,
+				className: strippedClassName,
 				content: strippedContent,
 			} );
 		}
@@ -242,15 +256,6 @@ const saveClickToTweet = ( element, settings, attributes ) => {
 		return element;
 	}
 
-	// Build the new value for the `className` property.
-	const newClassName = classnames(
-		className,
-		'wp-block-bu-clicktotweet',
-		{
-			'has-format-highlight': value.includes( clickToTweetHighlight ),
-		},
-	);
-
 	// Build the new value for the `value` property.
 	const newValue = ( !value.includes( clickToTweetContainer ) )
 		? `<span class="wp-block-bu-clicktotweet-content">${ value }</span>`
@@ -260,7 +265,6 @@ const saveClickToTweet = ( element, settings, attributes ) => {
 	element.props = Object.assign(
 		props,
 		{
-			className: newClassName,
 			value: newValue,
 		}
 	);
