@@ -34,7 +34,7 @@ const {
 const {
 	InspectorControls,
 	RichText,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {

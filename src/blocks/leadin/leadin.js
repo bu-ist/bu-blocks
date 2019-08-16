@@ -40,7 +40,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	applyFilters,
 } = wp.hooks;

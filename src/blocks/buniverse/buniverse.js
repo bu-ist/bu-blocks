@@ -35,7 +35,7 @@ const {
 const {
 	InspectorControls,
 	RichText,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.

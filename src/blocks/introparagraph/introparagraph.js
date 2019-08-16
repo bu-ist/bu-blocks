@@ -35,7 +35,7 @@ const {
 	MediaUploadCheck,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Import a library used to manage multiple class names.
 import classnames from 'classnames';

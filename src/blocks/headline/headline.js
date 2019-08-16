@@ -18,8 +18,19 @@ import getAllowedFormats from '../../global/allowed-formats';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { RichText, BlockControls } = wp.editor;
-const { select } = wp.data;
+const {
+	RichText,
+	BlockControls,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	select,
+} = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getBlocks,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 // Register the block.
 registerBlockType( 'editorial/headline', {
@@ -71,8 +82,7 @@ registerBlockType( 'editorial/headline', {
 
 		// Generate an index-based value for the anchor attribute if it is not set.
 		if ( ! anchor ) {
-			const allBlocks = select( 'core/editor' ).getBlocks();
-			const headlineBlocks = allBlocks.filter( e => e.name === 'editorial/headline' );
+			const headlineBlocks = getBlocks().filter( e => e.name === 'editorial/headline' );
 			const HeadlineIndex = headlineBlocks.findIndex( e => e.clientId === clientId );
 			const id = 'headline-' + ( HeadlineIndex + 1 );
 
