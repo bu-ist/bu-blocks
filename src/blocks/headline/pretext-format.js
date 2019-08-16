@@ -30,7 +30,6 @@ registerFormatType( name, {
 					onUse={ onToggle }
 				/>
 				<RichTextToolbarButton
-					name="pretext"
 					icon="warning"
 					title={ __( 'Pretext' ) }
 					onClick={ onToggle }

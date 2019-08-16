@@ -12,6 +12,7 @@ import './editor.scss';
 import HeadingToolbar from './heading-toolbar';
 import './pretext-format.js'
 import './posttext-format.js'
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -89,7 +90,9 @@ registerBlockType( 'editorial/headline', {
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
-					formattingControls={ [ 'pretext', 'posttext', 'bold', 'italic' ] }
+					formattingControls={ getAllowedFormats( 'formattingControls', [ 'pretext', 'posttext', 'bold', 'italic' ] ) }
+					allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'editorial/pretext', 'editorial/posttext', 'core/bold', 'core/italic' ] ) }
+					withoutInteractiveFormats={ true }
 				/>
 			</Fragment>
 		);

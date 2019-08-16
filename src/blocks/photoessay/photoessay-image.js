@@ -10,6 +10,8 @@
  * the modal functionality of the photo essay block.
  */
 
+ import getAllowedFormats from '../../global/allowed-formats';
+
 // WordPress dependencies.
 const {
 	__,
@@ -194,7 +196,8 @@ registerBlockType( 'editorial/photoessay-image', {
 						placeholder={ __( 'Add a caption and/or media credit...' ) }
 						value={ caption }
 						onChange={ value => setAttributes( { caption: value } ) }
-						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 						keepPlaceholderOnFocus
 					/>
 				) }
