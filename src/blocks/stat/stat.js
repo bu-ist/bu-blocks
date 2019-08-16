@@ -32,6 +32,7 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	PlainText,
+	RichText,
 	withColors,
 } = wp.editor;
 
@@ -123,13 +124,13 @@ registerBlockType( 'bu/stat', {
 		postText: {
 			type: 'string',
 			default: '',
-			source: 'text',
+			source: 'html',
 			selector: '.wp-block-bu-stat-text-post',
 		},
 		preText: {
 			type: 'string',
 			default: '',
-			source: 'text',
+			source: 'html',
 			selector: '.wp-block-bu-stat-text-pre',
 		},
 	},
@@ -158,15 +159,16 @@ registerBlockType( 'bu/stat', {
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
 
-						<div className="wp-block-bu-stat-text-pre">
-							{ ( isSelected || preText ) &&
-								<PlainText
-									placeholder={ __( 'Opening text…' ) }
-									value={ preText }
-									onChange={ preText => setAttributes( { preText } ) }
-								/>
-							}
-						</div>
+						{ ( isSelected || !RichText.isEmpty( preText ) ) &&
+							<RichText
+								tagName="div"
+								className="wp-block-bu-stat-text-pre"
+								placeholder={ __( 'Opening text…' ) }
+								value={ preText }
+								onChange={ value => setAttributes( { preText: value } ) }
+								formattingControls={ [ 'bold', 'italic' ] }
+							/>
+						}
 
 						<div className="wp-block-bu-stat-number">
 							<PlainText
@@ -176,15 +178,16 @@ registerBlockType( 'bu/stat', {
 							/>
 						</div>
 
-						<div className="wp-block-bu-stat-text-post">
-							{ ( isSelected || postText ) &&
-								<PlainText
-									placeholder={ __( 'Closing text…' ) }
-									value={ postText }
-									onChange={ postText => setAttributes( { postText } ) }
-								/>
-							}
-						</div>
+						{ ( isSelected || !RichText.isEmpty( postText ) ) &&
+							<RichText
+								tagName="div"
+								className="wp-block-bu-stat-text-post"
+								placeholder={ __( 'Closing text…' ) }
+								value={ postText }
+								onChange={ value => setAttributes( { postText: value } ) }
+								formattingControls={ [ 'bold', 'italic' ] }
+							/>
+						}
 
 						{ statSVG( circleOneFill, circleTwoFill ) }
 
@@ -260,9 +263,21 @@ registerBlockType( 'bu/stat', {
 			<div className={ getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ) }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
-						{ preText && <div className="wp-block-bu-stat-text-pre">{ preText }</div> }
+						{ !RichText.isEmpty( preText ) &&
+							<RichText.Content
+								tagName="div"
+								className="wp-block-bu-stat-text-pre"
+								value={ preText }
+							/>
+						}
 						<div className="wp-block-bu-stat-number">{ number }</div>
-						{ postText && <div className="wp-block-bu-stat-text-post">{ postText }</div> }
+						{ !RichText.isEmpty( postText ) &&
+							<RichText.Content
+								tagName="div"
+								className="wp-block-bu-stat-text-post"
+								value={ postText }
+							/>
+						}
 						{ statSVG( circleOneFill, circleTwoFill ) }
 					</div>
 				</div>
