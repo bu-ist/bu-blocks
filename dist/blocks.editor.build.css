@@ -9781,6 +9781,18 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   .editor-block-list__block-edit .components-bu-background-url-note {
     font-size: 13px;
     margin-top: 0; }
+
+.wp-block-background-is-uploading {
+  position: relative; }
+  .wp-block-background-is-uploading img {
+    opacity: .5; }
+  .wp-block-background-is-uploading .components-spinner {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
