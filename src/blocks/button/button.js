@@ -9,6 +9,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
+import publicationSlug from '../../global/publication-slug';
 
 //  Import CSS.
 import './style.scss';
@@ -43,7 +44,7 @@ const {
 } = wp.editor;
 
 // The current publication owner.
-const publication = document.getElementById( 'bu_publication_owner' );
+const publication = publicationSlug();
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -55,7 +56,7 @@ const publication = document.getElementById( 'bu_publication_owner' );
 const getClasses = ( className, themeColor, icon ) => classnames(
 	'wp-block-button',
 	{
-		[ `${publication.value}-block-button` ]: publication && publication.value !== '',
+		[ `${publication}-block-button` ]: publication && publication !== '',
 		[ `has-${themeColor}-theme` ]: themeColor,
 		[ `icon-navigateright ${icon}` ]: icon,
 		[ className ]: className,

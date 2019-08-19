@@ -383,14 +383,141 @@ if ("document" in self) {
 }
 
 const bu_blocks = {};
-;;bu_blocks.drawer = ( function() {
+;;bu_blocks.clicktotweet = ( function() {
+	var tweetBlocks = []; //stores all of our found blocks
+	var tweetLabel = "Tweet this";
+
+	var findElements = function() {
+		//find all the blocks
+		var elements = document.querySelectorAll( '.wp-block-bu-clicktotweet' );
+		//if found
+		if ( elements.length > 0 ) {
+			//for each found block do stuff
+			elements.forEach( function( theBlock, item ) {
+
+				var block = {};
+
+				// Get DOM element.
+				block.element = theBlock;
+
+				// Check if this block has a highlight subsection of text
+				if ( theBlock.classList.contains('has-format-highlight') ) {
+					block.highlight = theBlock.querySelector( '.wp-block-bu-clicktotweet-highlight');
+
+					// Get and store the highlighted text as our text to tweet.
+					block.tweet_text = block.highlight.innerText;
+				} else {
+					// Get the entire paragraph's text to tweet.
+					block.tweet_text = theBlock.innerText;
+				}
+
+				//for each one found store as object in the array
+				tweetBlocks.push( block );
+			});
+		}
+	};
+
+	/*
+	Setup click handlers for these blocks
+	*/
+	var setupHandlers = function() {
+		if ( tweetBlocks.length > 0 ) {
+
+			// Loop through all found Tweet Blocks
+			tweetBlocks.forEach( function( theBlock, item ) {
+				var btn;
+
+				// If has subtext highlighted to tweet use that.
+				if ( theBlock.highlight ) {
+					btn = theBlock.highlight;
+				} else {
+					// Otherwise append the tweet button for the whole <p>.
+					btn = document.createElement( 'button' );
+					btn.appendChild( document.createTextNode( tweetLabel ) );
+					btn.classList.add( 'wp-block-bu-clicktotweet-action' );
+					btn.classList.add( 'js-wp-block-clicktotweet-action' );
+					theBlock.element.appendChild( btn );
+
+					// Store reference to the btn.
+					theBlock.btn = btn;
+				}
+
+				// If we have a button element, setup click handler
+				// to open Tweet window.
+				if ( btn ) {
+					btn.addEventListener( "click", function(e) {
+						e.preventDefault();
+						openTweet( theBlock.tweet_text );
+					});
+				}
+
+			});
+		}
+	};
+
+	/*
+	Opens a small window with
+	the Twitter Link Sharing Tool open and
+	passes the text of the tweet and url
+	of the post	to Twitter.
+	*/
+	var openTweet = function( text ) {
+		var tweetedLink = window.location.href;
+
+  		window.open(
+  			"http://twitter.com/intent/tweet?url=" + tweetedLink +
+  			"&text=" + text +
+  			"&",
+  			"twitterwindow",
+  			"height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0"
+  		);
+
+	};
+
+	/*
+	Helper function to set the Button text
+	to a new value on new and existing blocks.
+	 */
+	var setButtonText = function( str ) {
+		tweetLabel = str;
+
+		tweetBlocks.forEach( function( theBlock, item ) {
+			if( theBlock.btn ) {
+				theBlock.btn.innerText = tweetLabel;
+			}
+		});
+	};
+
+	var tweetInit = function() {
+		//find the elements
+		findElements();
+
+		//setup handlers
+		setupHandlers();
+	};
+
+	//start on dom ready (ie8+)
+	document.addEventListener( "DOMContentLoaded", function() {
+  		tweetInit();
+
+	});
+
+	return {
+		gettweetBlocks: function() {
+			return tweetBlocks;
+		},
+		settweetButtonText: function( str ) {
+			setButtonText( str );
+		}
+	};
+})();;bu_blocks.drawer = ( function() {
 	var drawerBlocks = []; //stores all of our found blocks
 	var $body = document.getElementsByTagName( 'body' )[0]; //target body tag
 	var eventOpen = new CustomEvent( 'bu-blocks-drawer-open' );
 	var eventClose = new CustomEvent( 'bu-blocks-drawer-close' );
 
 	var toggleDrawer = function( drawer ) {
-		console.log( drawer );
+
 		// Using an if statement to check the class
 		if ( drawer.classList.contains( 'show-drawer' ) ) {
 			drawer.classList.remove( 'show-drawer' );
@@ -405,7 +532,7 @@ const bu_blocks = {};
 
 	var findElements = function() {
 		//find all the blocks
-		var elements = document.getElementsByClassName( 'js-bu-block-drawer' );
+		var elements = document.querySelectorAll( '.js-bu-block-drawer' );
 		//if found
 		if ( elements.length > 0 ) {
 			//for each found block do stuff
@@ -416,9 +543,9 @@ const bu_blocks = {};
 				//get first returned drawer content element
 				block.drawer = elements[i];
 				//get all matched trigger btns
-				block.button = elements[i].getElementsByClassName( 'js-bu-block-drawer-open' );
+				block.button = elements[i].querySelectorAll( '.js-bu-block-drawer-open' );
 				//get first returned overlay element
-				block.close = elements[i].getElementsByClassName( 'js-bu-block-drawer-close' )[0];
+				block.close = elements[i].querySelector( '.js-bu-block-drawer-close' );
 
 				//for each one found store as object in the array
 				drawerBlocks.push( block );
@@ -428,26 +555,25 @@ const bu_blocks = {};
 
 	var setupHandlers = function() {
 		if ( drawerBlocks.length > 0 ) {
-
-			for ( var i = 0; i < drawerBlocks.length; i++ ) {
-				//store for loop instance as variable so event handlers
-				//can reference element when event fires
-				var thisDrawer = drawerBlocks[i];
+			drawerBlocks.forEach( function( thisDrawer, item ) {
 
 				//some drawer blocks may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( var b = 0; b < thisDrawer.button.length; b++ ) {
+				thisDrawer.button.forEach( function( button, index ) {
 					//for each btn we find, add an event handler
-					thisDrawer.button[b].addEventListener( "click", function(e) {
+					button.addEventListener( "click", function(e) {
 						e.preventDefault();
 						toggleDrawer( thisDrawer.drawer );
 					});
-				}
+
+				});
+
 				thisDrawer.close.addEventListener( "click", function(e) {
 					e.preventDefault();
 					toggleDrawer( thisDrawer.drawer );
 				});
-			}
+
+			});
 		}
 	};
 
@@ -506,7 +632,7 @@ const bu_blocks = {};
 
 	var findElements = function() {
 		//find all the blocks
-		var elements = document.getElementsByClassName('js-bu-block-modal');
+		var elements = document.querySelectorAll( '.js-bu-block-modal' );
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
@@ -515,40 +641,37 @@ const bu_blocks = {};
 				var block = {};
 
 				//get first returned overlay element
-				block.overlay = elements[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
+				block.overlay = elements[i].querySelector( '.js-bu-block-modal-overlay' );
 				//get all matched trigger btns
-				block.button = elements[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
+				block.button = elements[i].querySelectorAll( '.js-bu-block-modal-trigger-overlay' );
 				//get first returned overlay element
-				block.close = elements[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
+				block.close = elements[i].querySelector( '.js-bu-block-modal-overlay-close' );
 
 				//for each one found store as object in the array
-				modalBlocks.push(block);
+				modalBlocks.push( block );
 			}
 		}
 	};
 
 	var setupHandlers = function() {
 		if (modalBlocks.length > 0) {
-
-			for ( var i = 0; i < modalBlocks.length; i++ ) {
-				//store for loop instance as variable so event handlers
-				//can reference element when event fires
-				var thisModal = modalBlocks[i];
+			modalBlocks.forEach( function( thisModal, item ) {
 
 				//some modals may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( var b = 0; b < thisModal.button.length; b++ ) {
+				thisModal.button.forEach( function( button, index ) {
 					//for each btn we find, add an event handler
-					thisModal.button[b].addEventListener( "click", function(e) {
+					button.addEventListener( "click", function(e) {
 						e.preventDefault();
 						toggleModal( thisModal.overlay );
 					});
-				}
+
+				});
 				thisModal.close.addEventListener( "click", function(e) {
 					e.preventDefault();
 					toggleModal( thisModal.overlay );
 				});
-			}
+			});
 		}
 	};
 
@@ -849,7 +972,7 @@ const bu_blocks = {};
 	*/
 	var scrollEvent = function( e ) {
 		if( $html.scrollTop - scrollTop > 250 ) {
-			console.log("close");
+			//console.log("close");
 			// Reset scrollTop.
 			scrollTop = 0;
 

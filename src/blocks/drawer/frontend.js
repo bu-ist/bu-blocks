@@ -5,7 +5,7 @@ bu_blocks.drawer = ( function() {
 	var eventClose = new CustomEvent( 'bu-blocks-drawer-close' );
 
 	var toggleDrawer = function( drawer ) {
-		console.log( drawer );
+
 		// Using an if statement to check the class
 		if ( drawer.classList.contains( 'show-drawer' ) ) {
 			drawer.classList.remove( 'show-drawer' );
@@ -20,7 +20,7 @@ bu_blocks.drawer = ( function() {
 
 	var findElements = function() {
 		//find all the blocks
-		var elements = document.getElementsByClassName( 'js-bu-block-drawer' );
+		var elements = document.querySelectorAll( '.js-bu-block-drawer' );
 		//if found
 		if ( elements.length > 0 ) {
 			//for each found block do stuff
@@ -31,9 +31,9 @@ bu_blocks.drawer = ( function() {
 				//get first returned drawer content element
 				block.drawer = elements[i];
 				//get all matched trigger btns
-				block.button = elements[i].getElementsByClassName( 'js-bu-block-drawer-open' );
+				block.button = elements[i].querySelectorAll( '.js-bu-block-drawer-open' );
 				//get first returned overlay element
-				block.close = elements[i].getElementsByClassName( 'js-bu-block-drawer-close' )[0];
+				block.close = elements[i].querySelector( '.js-bu-block-drawer-close' );
 
 				//for each one found store as object in the array
 				drawerBlocks.push( block );
@@ -43,26 +43,25 @@ bu_blocks.drawer = ( function() {
 
 	var setupHandlers = function() {
 		if ( drawerBlocks.length > 0 ) {
-
-			for ( var i = 0; i < drawerBlocks.length; i++ ) {
-				//store for loop instance as variable so event handlers
-				//can reference element when event fires
-				var thisDrawer = drawerBlocks[i];
+			drawerBlocks.forEach( function( thisDrawer, item ) {
 
 				//some drawer blocks may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( var b = 0; b < thisDrawer.button.length; b++ ) {
+				thisDrawer.button.forEach( function( button, index ) {
 					//for each btn we find, add an event handler
-					thisDrawer.button[b].addEventListener( "click", function(e) {
+					button.addEventListener( "click", function(e) {
 						e.preventDefault();
 						toggleDrawer( thisDrawer.drawer );
 					});
-				}
+
+				});
+
 				thisDrawer.close.addEventListener( "click", function(e) {
 					e.preventDefault();
 					toggleDrawer( thisDrawer.drawer );
 				});
-			}
+
+			});
 		}
 	};
 
