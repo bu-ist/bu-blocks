@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -166,7 +167,8 @@ registerBlockType( 'bu/stat', {
 								placeholder={ __( 'Opening text…' ) }
 								value={ preText }
 								onChange={ value => setAttributes( { preText: value } ) }
-								formattingControls={ [ 'bold', 'italic' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							/>
 						}
 
@@ -185,7 +187,8 @@ registerBlockType( 'bu/stat', {
 								placeholder={ __( 'Closing text…' ) }
 								value={ postText }
 								onChange={ value => setAttributes( { postText: value } ) }
-								formattingControls={ [ 'bold', 'italic' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							/>
 						}
 
