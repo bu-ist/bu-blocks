@@ -46,7 +46,7 @@ const name = 'bu/clicktotweet-highlight';
 // Define the opening markup for Click to Tweet content.
 const clickToTweetContainer = '<span class="wp-block-bu-clicktotweet-content">';
 
-// Define the openeing markup for highlighted Click to Tweet text.
+// Define the opening markup for highlighted Click to Tweet text.
 const clickToTweetHighlight = '<span class="wp-block-bu-clicktotweet-highlight">';
 
 // Registers the 'Click to Tweet highlight' format.
@@ -167,7 +167,7 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 			setAttributes,
 		} = props;
 
-		if ( !content.includes( clickToTweetContainer ) && clickToTweet ) {
+		if ( clickToTweet && content && !content.includes( clickToTweetContainer ) ) {
 			const wrappedContent = `<span class="wp-block-bu-clicktotweet-content">${ content }</span>`;
 			// Build the new value for the `className` property.
 			const wrappedClassName = classnames(
@@ -184,7 +184,17 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 			} );
 		}
 
-		if ( content.includes( clickToTweetContainer ) && !clickToTweet ) {
+		if ( clickToTweet && content ) {
+			if ( content.includes( clickToTweetHighlight ) && className && !className.includes( 'has-format-highlight' ) ) {
+				setAttributes( { className: classnames( className, 'has-format-highlight' ) } );
+			}
+
+			if ( !content.includes( clickToTweetHighlight ) && className && className.includes( 'has-format-highlight' ) ) {
+				setAttributes( { className: classnames( className.replace( /has-format-highlight/g, '' ) ).trim() } );
+			}
+		}
+
+		if ( !clickToTweet && ( !content || content.includes( clickToTweetContainer ) ) ) {
 			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
 			const strippedClassName = !className
 				? undefined
@@ -224,7 +234,6 @@ const saveClickToTweet = ( element, settings, attributes ) => {
 		props,
 	} = element;
 	const {
-		className,
 		value,
 	} = props;
 	const {
