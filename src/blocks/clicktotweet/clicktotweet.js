@@ -188,10 +188,7 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
 			const strippedClassName = !className
 				? undefined
-				: classnames(
-					className.replace( 'wp-block-bu-clicktotweet', '' ),
-					className.replace( 'has-format-highlight', '' ),
-				);
+				: classnames( className.replace( /wp-block-bu-clicktotweet|has-format-highlight/g, '' ) ).trim();
 
 			setAttributes( {
 				className: strippedClassName,
