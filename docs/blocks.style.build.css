@@ -32161,6 +32161,7 @@ a:visited {
   or object-fit and object-position:
   @include object-fit(cover, top);
 */
+<<<<<<< HEAD
 .wp-block-bu-clicktotweet:hover {
   cursor: pointer; }
 
@@ -32186,6 +32187,33 @@ a:visited {
   .has-format-highlight .wp-block-bu-clicktotweet-highlight span {
     display: none; }
   .has-format-highlight .wp-block-bu-clicktotweet-highlight::after {
+=======
+.wp-block-clicktotweet:hover {
+  cursor: pointer; }
+
+.wp-block-clicktotweet.has-format-highlight:hover {
+  cursor: initial; }
+
+.no-js .wp-block-clicktotweet:hover {
+  background: transparent; }
+
+.wp-block-clicktotweet-content {
+  display: block; }
+  .wp-block-clicktotweet.has-format-highlight:hover .wp-block-clicktotweet-content {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+  .wp-block-clicktotweet:not(.has-format-highlight) .wp-block-clicktotweet-content {
+    margin-bottom: 0; }
+
+.has-format-highlight .wp-block-clicktotweet-highlight {
+  padding: 0 7.5px; }
+  .lt-ie9:hover .has-format-highlight .wp-block-clicktotweet-highlight {
+    -ms-zoom: 1; }
+  .has-format-highlight .wp-block-clicktotweet-highlight span {
+    display: none; }
+  .has-format-highlight .wp-block-clicktotweet-highlight::after {
+>>>>>>> develop
     color: unset;
     display: inline-block;
     font-family: "bu-default-icons";
@@ -32204,6 +32232,7 @@ a:visited {
     white-space: nowrap;
     margin-left: 0.5em;
     content: ""; }
+<<<<<<< HEAD
   .has-format-highlight .wp-block-bu-clicktotweet-highlight:hover {
     cursor: pointer; }
 
@@ -32214,6 +32243,18 @@ a:visited {
     display: none; }
 
 .wp-block-bu-clicktotweet-action {
+=======
+  .has-format-highlight .wp-block-clicktotweet-highlight:hover {
+    cursor: pointer; }
+
+.no-js .wp-block-clicktotweet-highlight {
+  padding: 0;
+  background: transparent; }
+  .no-js .wp-block-clicktotweet-highlight::after {
+    display: none; }
+
+.wp-block-clicktotweet-action {
+>>>>>>> develop
   display: -ms-flexbox;
   display: flex;
   font-size: 14px;
@@ -32225,11 +32266,19 @@ a:visited {
   text-align: right;
   text-transform: lowercase;
   position: relative; }
+<<<<<<< HEAD
   .lt-ie9:hover .wp-block-bu-clicktotweet-action {
     -ms-zoom: 1; }
   .wp-block-bu-clicktotweet-action span {
     display: none; }
   .wp-block-bu-clicktotweet-action::after {
+=======
+  .lt-ie9:hover .wp-block-clicktotweet-action {
+    -ms-zoom: 1; }
+  .wp-block-clicktotweet-action span {
+    display: none; }
+  .wp-block-clicktotweet-action::after {
+>>>>>>> develop
     color: unset;
     display: inline-block;
     font-family: "bu-default-icons";
@@ -32248,7 +32297,11 @@ a:visited {
     white-space: nowrap;
     margin-left: 0.5em;
     content: ""; }
+<<<<<<< HEAD
   .wp-block-bu-clicktotweet-action::before {
+=======
+  .wp-block-clicktotweet-action::before {
+>>>>>>> develop
     content: '';
     display: block;
     width: 0;
@@ -32258,6 +32311,7 @@ a:visited {
     position: absolute;
     left: -10px;
     top: 0; }
+<<<<<<< HEAD
   .has-format-highlight .wp-block-bu-clicktotweet-action,
   .wp-block-bu-clicktotweet-highlight .wp-block-bu-clicktotweet-action {
     display: none; }
@@ -32265,10 +32319,20 @@ a:visited {
     display: none; }
 
 .wp-block-bu-clicktotweet:hover .wp-block-bu-clicktotweet-content {
+=======
+  .has-format-highlight .wp-block-clicktotweet-action,
+  .wp-block-clicktotweet-highlight .wp-block-clicktotweet-action {
+    display: none; }
+  .no-js .wp-block-clicktotweet-action {
+    display: none; }
+
+.wp-block-clicktotweet:hover .wp-block-clicktotweet-content {
+>>>>>>> develop
   background-color: #f5f6fa;
   -webkit-box-shadow: 0px 0px 0px 10px #f5f6fa;
           box-shadow: 0px 0px 0px 10px #f5f6fa; }
 
+<<<<<<< HEAD
 .wp-block-bu-clicktotweet.has-format-highlight .wp-block-bu-clicktotweet-highlight {
   background: #f5f6fa;
   color: #666; }
@@ -32277,6 +32341,16 @@ a:visited {
   background-color: #f5f6fa;
   color: #666; }
   .wp-block-bu-clicktotweet .wp-block-bu-clicktotweet-action::before {
+=======
+.wp-block-clicktotweet.has-format-highlight .wp-block-clicktotweet-highlight {
+  background: #f5f6fa;
+  color: #666; }
+
+.wp-block-clicktotweet .wp-block-clicktotweet-action {
+  background-color: #f5f6fa;
+  color: #666; }
+  .wp-block-clicktotweet .wp-block-clicktotweet-action::before {
+>>>>>>> develop
     border-color: transparent #f5f6fa transparent transparent; }
 @charset "UTF-8";
 /**
