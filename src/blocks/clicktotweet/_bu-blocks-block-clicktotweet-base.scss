@@ -8,7 +8,7 @@
 //
 //
 
-.wp-block-clicktotweet {
+.wp-block-bu-clicktotweet {
 	&:hover {
 		cursor: pointer;
 	}
@@ -24,20 +24,20 @@
 	}
 }
 
-.wp-block-clicktotweet-content {
+.wp-block-bu-clicktotweet-content {
 	display: block;
 
-	.wp-block-clicktotweet.has-format-highlight:hover & {
+	.wp-block-bu-clicktotweet.has-format-highlight:hover & {
 		background-color: transparent;
 		box-shadow: none;
 	}
 
-	.wp-block-clicktotweet:not( .has-format-highlight ) & {
+	.wp-block-bu-clicktotweet:not( .has-format-highlight ) & {
 		margin-bottom: 0;
 	}
 }
 
-.wp-block-clicktotweet-highlight {
+.wp-block-bu-clicktotweet-highlight {
 	.has-format-highlight & {
 		@include icon( 'twitter', 'after' );
 		padding: 0 ( $padding-small / 2 );
@@ -57,7 +57,7 @@
 	}
 }
 
-.wp-block-clicktotweet-action {
+.wp-block-bu-clicktotweet-action {
 	@include icon( 'twitter', 'after' );
 	display: flex;
 	font-size: 14px;
@@ -83,7 +83,7 @@
 	}
 
 	.has-format-highlight &,
-	.wp-block-clicktotweet-highlight & {
+	.wp-block-bu-clicktotweet-highlight & {
 		display: none;
 	}
 
