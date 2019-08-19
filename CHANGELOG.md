@@ -8,6 +8,7 @@
 - Fix a JS error when Custom HTML block is first auto-saved.
 - Introduce a global `publicationSlug()` component that provides either a publication slug via BU Prepress or a fallback to `bu-blocks` in cases where one is expected.
 - Introduce the `Click to Tweet` format.
+- Introduce the `Stats` block.
 
 ## 0.2.9
 - Allow HTML in Listicle Caption. https://github.com/bu-ist/r-editorial/pull/775
