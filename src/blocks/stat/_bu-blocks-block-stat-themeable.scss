@@ -130,15 +130,11 @@ $scope: blocks-get( 'scope' );
 		stroke: blocks-get( 'color-quaternary' );
 	}
 
-<<<<<<< HEAD
-	.has-circle2-color-primary .wp-block-bu-stat-circle2 {
-=======
 	.has-circle2-color-dark .wp-block-stat-circle2 {
 		stroke: blocks-get( 'background-color-dark' );
 	}
 
 	.has-circle2-color-primary .wp-block-stat-circle2 {
->>>>>>> feature/stat-block
 		stroke: blocks-get( 'color-primary' );
 	}
 
