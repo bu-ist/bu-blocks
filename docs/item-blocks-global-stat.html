@@ -354,7 +354,38 @@
 							</span>-->
 						</header>
 							<div class="id-kss-description">
-								<p>This is a Stat Block, you can use this as a base line for writing up the static markup and styles for a new block.</p>
+								<p>The Stats Block allows you to add a group of 1 to 4 stats. EAch stat by default is presented as a number and a circle. A basic example would have a &quot;75%&quot; with an encompassing circle that would be filled three forth  of its  circumference.</p>
+		<h2>Stats Block (parent)</h2>
+		<p>The Stats Block is composed of a parent block <code>.wp-block-stats</code> and 1 to 4 child blocks <code>.wp-block-stat</code>.</p>
+		<h3>Options</h3>
+		<ul>
+		<li>
+		<p><em><strong>Number of Stats:</strong></em> 1 to 4 stats only 1 if set to <code>.alignleft</code> or <code>.alignright</code>; (1 by default).</p>
+		</li>
+		<li>
+		<p><em><strong>Aligment options</strong></em></p>
+		<ul>
+		<li>None</li>
+		<li>Align Left</li>
+		<li>Align Right</li>
+		<li>Align Wide</li>
+		</ul>
+		</li>
+		</ul>
+		<h2>Stat Block (child)</h2>
+		<p>That Stat Block is composed of 3 potential lines of text ( text-pre, number, text-post), as well as 2 circle graphs that fill clockwise.</p>
+		<h3>Fields</h3>
+		<ul>
+		<li><em><strong>pre/post text:</strong></em> These two are optional fields that sit above and below the number. They should be limited a word or two.</li>
+		<li><em><strong>Number:</strong></em> This field sits at the center of the Stat, if left unfilled it would show the percentage value of the second circle with a percentage mark (i.e. &quot;75%&quot;). Technically anything can go in this feld, its not locked to numeric values or percentages. That way the author can have more atypical stats (i.e. &quot;no.1&quot;, 1/2&quot;, &quot;254!&quot;, &quot;1 in 3&quot;. in any case the value should only be a handful of characters long, since the space in the circle is limited.</li>
+		</ul>
+		<h3>Options</h3>
+		<ul>
+		<li><em><strong>Number Size:</strong></em> the class<code>.has-number-size-1</code>-<code>4</code> controls the text size for the number field. 1 being the largest, 4 being the smallest; 2 would be the default.</li>
+		<li><em><strong>Circle 1 Fill:</strong></em> A percentage value that adjust the fill amount of the first circle. By default this is set to 100.</li>
+		<li>***Circle 2 Fill:***A percentage value that adjust the fill amount of the first circle. By default this is set to 0.</li>
+		<li><em><strong>Circle 1 and 2 Color:</strong></em> Both Circles can be assigned a color independently, (i.e. <code>.has-circle1-color-primary</code> and <code>.has-circle2-color-tertiary</code>.)</li>
+		</ul>
 		
 							</div>
 		
@@ -363,7 +394,7 @@
 		
 						<div class="id-kss-modifier__wrapper">
 							<div class="id-kss-modifier-heading id-kss-docs-heading id-kss-style">
-								Examples
+								Example
 		
 									<span class="id-kss-source id-kss-style">
 										Source: <code>blocks/stat/style.scss, line 16</code>
@@ -379,9 +410,6 @@
 		
 									<div class="id-kss-info-wrapper">
 										<div class="is-example-default">
-												<div class="id-kss-class-name id-kss-modifier-default-name id-kss-style">
-													Default styling
-												</div>
 									
 											<div class="id-kss-modifier-example ">
 												<div class="id-kss-example-wrapper">
@@ -395,10 +423,204 @@
 																}
 															</style>
 															<div class="iframe-wrapper " id="">
-																
-															<div class="wp-block-sample ">
-																<p>This is Sample markup of a simple div</p>
+																<div class="wp-block-stats butoday-block-stats has-1-stats alignleft">
+																<figure class="wp-block-stats-figure">
+																	<div class="wp-block-stats-row">
+																		<div class="wp-block-stat has-number-size-4 has-circle2-color-primary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-text-pre">pretext</div>
+																					<div class="wp-block-stat-number">1,000</div>
+																					<div class="wp-block-stat-text-post">post-text</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<figcaption class="wp-block-stats-caption">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing</figcaption>
+																</figure>
 															</div>
+															
+															
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras</p>
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras</p>
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras</p>
+															
+															
+															<div class="wp-block-stats butoday-block-stats has-1-stats">
+																<figure class="wp-block-stats-figure">
+																	<div class="wp-block-stats-row">
+																		<div class="wp-block-stat has-number-size-4 has-circle2-color-primary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-text-pre">pretext</div>
+																					<div class="wp-block-stat-number">1,000</div>
+																					<div class="wp-block-stat-text-post">post-text</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<figcaption class="wp-block-stats-caption">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing</figcaption>
+																</figure>
+															</div>
+															
+															
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras</p>
+															
+															
+															<div class="wp-block-stats butoday-block-stats has-2-stats">
+																<figure class="wp-block-stats-figure">
+																	<div class="wp-block-stats-row">
+																		<div class="wp-block-stat has-number-size-1 has-circle1-color-primary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">#1</div>
+																					<div class="wp-block-stat-text-post">a</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 0 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+															
+																		<div class="wp-block-stat has-number-size-4 has-circle2-color-secondary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">1,000</div>
+																					<div class="wp-block-stat-text-post">b</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<figcaption class="wp-block-stats-caption">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing</figcaption>
+																</figure>
+															</div>
+															
+															
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras</p>
+															
+															
+															<div class="wp-block-stats butoday-block-stats has-3-stats">
+																<figure class="wp-block-stats-figure">
+																	<div class="wp-block-stats-row">
+																		<div class="wp-block-stat has-number-size-1 has-circle1-color-primary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">#1</div>
+																					<div class="wp-block-stat-text-post">a</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 0 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+															
+																		<div class="wp-block-stat has-number-size-4 has-circle2-color-secondary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">1,000</div>
+																					<div class="wp-block-stat-text-post">b</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+															
+																		<div class="wp-block-stat has-number-size-3 has-circle2-color-tertiary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">262</div>
+																					<div class="wp-block-stat-text-post">c</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 33 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<figcaption class="wp-block-stats-caption">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing</figcaption>
+																</figure>
+															</div>
+															
+															
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras</p>
+															
+															
+															<div class="wp-block-stats butoday-block-stats has-4-stats">
+																<figure class="wp-block-stats-figure">
+																	<div class="wp-block-stats-row">
+																		<div class="wp-block-stat has-number-size-1 has-circle1-color-primary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">#1</div>
+																					<div class="wp-block-stat-text-post">a</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 0 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+															
+																		<div class="wp-block-stat has-number-size-4 has-circle2-color-secondary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">1,000</div>
+																					<div class="wp-block-stat-text-post">b</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+															
+																		<div class="wp-block-stat has-number-size-3 has-circle2-color-tertiary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">262</div>
+																					<div class="wp-block-stat-text-post">c</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 33 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+															
+																		<div class="wp-block-stat has-number-size-2 has-circle1-color-secondary has-circle2-color-quaternary">
+																			<div class="wp-block-stat-container-outer">
+																				<div class="wp-block-stat-container-inner">
+																					<div class="wp-block-stat-number">33%</div>
+																					<div class="wp-block-stat-text-post">d</div>
+																					<svg class="wp-block-stat-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+																						<circle class="wp-block-stat-circle1" style="stroke-dashoffset: calc( 302 * ( 1 - ( 66 * 0.01 ) ) )"/>
+																						<circle class="wp-block-stat-circle2" style="stroke-dashoffset: calc( 302 * ( 1 - ( 33 * 0.01 ) ) )"/>
+																					</svg>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<figcaption class="wp-block-stats-caption">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing</figcaption>
+																</figure>
+															</div>
+															
 															</div>
 									
 													</script>
@@ -410,81 +632,211 @@
 										</div>
 									</div>
 									<div class="id-kss-info-wrapper">
-									
-									
-											<div class="is-example-variant block-sample-variant1">
-												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.block-sample-variant1
-												</div>
-												<p class="id-kss-modifier-description id-kss-style">
-													Example of a Layout Variation
-												</p>
-												<div class="id-kss-modifier-example">
-													<div class="id-kss-example-wrapper">
-														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
-														<script type="text/template" class="template-iframe">
-									
-																<style type="text/css">
-																	body {
-																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
-																	}
-																</style>
-																<div class="iframe-wrapper " id="">
-																	
-																<div class="wp-block-sample block-sample-variant1">
-																	<p>This is Sample markup of a simple div</p>
-																</div>
-																</div>
-														</script>
-									
-														<div class="id-kss-example-iframe-handle"></div>
-													</div>
-													<div class="id-kss-modifier-example-footer"></div>
-												</div>
-											</div>
-									
-									
-											<div class="is-example-variant is-style-layoutBig">
-												<div class="id-kss-class-name id-kss-modifier-name id-kss-style">
-													.is-style-layoutBig
-												</div>
-												<p class="id-kss-modifier-description id-kss-style">
-													layout big
-												</p>
-												<div class="id-kss-modifier-example">
-													<div class="id-kss-example-wrapper">
-														<iframe class="id-kss-example-iframe" scrolling="no"></iframe>
-														<script type="text/template" class="template-iframe">
-									
-																<style type="text/css">
-																	body {
-																		background-color: #fff; /* TODO: Need to fix this in Foundation, then remove here. */
-																	}
-																</style>
-																<div class="iframe-wrapper " id="">
-																	
-																<div class="wp-block-sample is-style-layoutBig">
-																	<p>This is Sample markup of a simple div</p>
-																</div>
-																</div>
-														</script>
-									
-														<div class="id-kss-example-iframe-handle"></div>
-													</div>
-													<div class="id-kss-modifier-example-footer"></div>
-												</div>
-											</div>
 									</div>
 						</div>
 		
 							<details class="id-kss-markup id-kss-style" open="">
 								<summary class="id-kss-docs-heading">
-										Markup <code>blocks/sample/bu-blocks-block-sample.hbs</code>
+										Markup <code>blocks/stat/bu-blocks-block-stat.hbs</code>
 								</summary>
-								<pre class="hljs"><code class="language-handlebars"><span class="xml">
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-sample </span></span></span><span class="hljs-template-variable">{{modifier_class}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is Sample markup of a simple div<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
+								<pre class="hljs"><code class="language-handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats butoday-block-stats has-1-stats alignleft"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-figure"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-row"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-4 has-circle2-color-primary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-pre"</span>&gt;</span>pretext<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>1,000<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>post-text<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-caption"</span>&gt;</span>Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats butoday-block-stats has-1-stats"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-figure"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-row"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-4 has-circle2-color-primary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-pre"</span>&gt;</span>pretext<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>1,000<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>post-text<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-caption"</span>&gt;</span>Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats butoday-block-stats has-2-stats"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-figure"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-row"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-1 has-circle1-color-primary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>#1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 0 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-4 has-circle2-color-secondary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>1,000<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>b<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-caption"</span>&gt;</span>Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats butoday-block-stats has-3-stats"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-figure"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-row"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-1 has-circle1-color-primary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>#1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 0 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-4 has-circle2-color-secondary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>1,000<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>b<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-3 has-circle2-color-tertiary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>262<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>c<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 33 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-caption"</span>&gt;</span>Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam nunc, consequat nec egestas ac, volutpat ac nisi. Sed consectetur dignissim dignissim. Donec pretium est sit amet ipsum fringilla feugiat. Aliquam erat volutpat. Maecenas scelerisque, orci sit amet cursus tincidunt, libero nisl eleifend tortor, vitae cursus risus mauris vitae nisi. Cras<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		
+		
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats butoday-block-stats has-4-stats"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-figure"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-row"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-1 has-circle1-color-primary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>#1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 0 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-4 has-circle2-color-secondary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>1,000<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>b<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 75 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-3 has-circle2-color-tertiary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>262<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>c<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 100 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 33 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		
+					<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat has-number-size-2 has-circle1-color-secondary has-circle2-color-quaternary"</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-outer"</span>&gt;</span>
+							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-container-inner"</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-number"</span>&gt;</span>33%<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-text-post"</span>&gt;</span>d<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+								<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-svg"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Layer_1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">"http://www.w3.org/1999/xlink"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0px"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100px"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 100 100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"enable-background:new 0 0 100 100;"</span> <span class="hljs-attr">xml:space</span>=<span class="hljs-string">"preserve"</span>&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle1"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 66 * 0.01 ) ) )"</span>/&gt;</span>
+									<span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stat-circle2"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"stroke-dashoffset: calc( 302 * ( 1 - ( 33 * 0.01 ) ) )"</span>/&gt;</span>
+								<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wp-block-stats-caption"</span>&gt;</span>Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		</span></code></pre>
 							</details>
 		
 				</div>
