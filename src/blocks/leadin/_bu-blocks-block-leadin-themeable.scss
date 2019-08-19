@@ -132,23 +132,7 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
-	&.is-style-image-to-text {
-		.wp-block-editorial-leadin-caption {
-			// color: blocks-get( 'font-color-theme-dark');
-		}
-	}
-
-	// &.is-style-side-by-side {
-	// 	.wp-block-editorial-leadin-caption {
-	// 		color: blocks-get( 'font-color-theme-dark');
-	// 	}
-	// }
-
 	&.is-style-text-over-image {
-		// .wp-block-editorial-leadin-caption {
-		// 	color: blocks-get( 'font-color-theme-dark');
-		// }
-
 		&:not(.has-text-normal) {
 			@include breakpoint( $xs ) {
 				h1,
