@@ -83,7 +83,7 @@ registerBlockType( 'editorial/drawer', {
 	attributes: {
 		button: {
 			type: 'string',
-			default: '',
+			default: 'Read More',
 			source: 'text',
 			selector: '.button.js-bu-block-drawer-open'
 		},
