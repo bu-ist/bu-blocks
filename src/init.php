@@ -50,7 +50,6 @@ function define_editor_hooks() {
 	// Enqueue block scripts and styles for admin and front-end.
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
-
 	add_action( 'bu_blocks_enqueue_block_stylesheet', __NAMESPACE__ . '\\enqueue_bu_blocks_general_stylesheet', 10 );
 
 	// Add block categories.
@@ -76,6 +75,9 @@ function bu_blocks_load_textdomain() {
 /**
  * Fire an action used by this plugin and others to enqueue
  * general block stylesheets in the desired order.
+ *
+ * This function is called at two different points in the load process
+ * depending on whether this is WordPress 4.9 or 5.x.
  */
 function enqueue_blocks_stylesheet() {
 	do_action( 'bu_blocks_enqueue_block_stylesheet' );
