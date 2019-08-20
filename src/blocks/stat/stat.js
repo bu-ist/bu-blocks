@@ -74,11 +74,17 @@ const statSVG = ( circleOneFill, circleTwoFill ) => (
 	>
 		<Circle
 			className="wp-block-bu-stat-circle1"
-			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleOneFill } * 0.01 ) ) )` } }
+			cx="50"
+			cy="50"
+			r="47"
+			style={ { strokeDashoffset: `${ 302 * ( 1 - ( circleOneFill * 0.01 ) ) }` } }
 		/>
 		<Circle
 			className="wp-block-bu-stat-circle2"
-			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleTwoFill } * 0.01 ) ) )` } }
+			cx="50"
+			cy="50"
+			r="47"
+			style={ { strokeDashoffset: `${ 302 * ( 1 - ( circleTwoFill * 0.01 ) ) }` } }
 		/>
 	</SVG>
 );
