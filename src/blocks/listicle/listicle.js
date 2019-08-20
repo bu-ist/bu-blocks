@@ -218,8 +218,7 @@ registerBlockType( 'editorial/listicle', {
 								value={ credit }
 								onChange={ value => setAttributes( { credit: value } ) }
 								placeholder={ __( 'Add Photo or Video Credit…' ) }
-								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+								formattingControls={ [ 'bold', 'italic', 'link' ] }
 								keepPlaceholderOnFocus
 							/>
 						</figure>
