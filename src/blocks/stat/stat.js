@@ -75,11 +75,17 @@ const statSVG = ( circleOneFill, circleTwoFill ) => (
 	>
 		<Circle
 			className="wp-block-bu-stat-circle1"
-			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleOneFill } * 0.01 ) ) )` } }
+			cx="50"
+			cy="50"
+			r="47"
+			style={ { strokeDashoffset: `${ 302 * ( 1 - ( circleOneFill * 0.01 ) ) }` } }
 		/>
 		<Circle
 			className="wp-block-bu-stat-circle2"
-			style={ { strokeDashoffset: `calc( 302 * ( 1 - ( ${ circleTwoFill } * 0.01 ) ) )` } }
+			cx="50"
+			cy="50"
+			r="47"
+			style={ { strokeDashoffset: `${ 302 * ( 1 - ( circleTwoFill * 0.01 ) ) }` } }
 		/>
 	</SVG>
 );
@@ -98,7 +104,7 @@ registerBlockType( 'bu/stat', {
 		},
 		circleOneFill: {
 			type: 'number',
-			default: 0,
+			default: 100,
 		},
 		circleTwoColor: {
 			type: 'string',
@@ -106,7 +112,7 @@ registerBlockType( 'bu/stat', {
 		},
 		circleTwoFill: {
 			type: 'number',
-			default: 0,
+			default: 25,
 		},
 		className: {
 			type: 'string',
@@ -208,7 +214,7 @@ registerBlockType( 'bu/stat', {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Circle 1 Fill' ) }
+							label={ __( 'Bottom Circle Fill' ) }
 							value={ circleOneFill }
 							onChange={ circleOneFill => setAttributes( { circleOneFill } ) }
 							min={ 0 }
@@ -216,7 +222,7 @@ registerBlockType( 'bu/stat', {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Circle 2 Fill' ) }
+							label={ __( 'Top Circle Fill' ) }
 							value={ circleTwoFill }
 							onChange={ circleTwoFill => setAttributes( { circleTwoFill } ) }
 							min={ 0 }
@@ -230,14 +236,14 @@ registerBlockType( 'bu/stat', {
 							{
 								value: circleOneColor.color,
 								onChange: setCircleOneColor,
-								label: __( 'Circle 1' ),
+								label: __( 'Bottom Circle' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 							{
 								value: circleTwoColor.color,
 								onChange: setCircleTwoColor,
-								label: __( 'Circle 2' ),
+								label: __( 'Top Circle' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
