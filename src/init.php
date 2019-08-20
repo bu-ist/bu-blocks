@@ -126,6 +126,15 @@ function enqueue_block_editor_assets() {
 		true // Enqueue the script in the footer.
 	);
 
+	// Enqueue script for filtering blocks allowed per post type.
+	wp_enqueue_script(
+		'bu-blocks-allowed-blocks',
+		plugins_url( 'allowed-blocks.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'src/allowed-blocks.js' ),
+		true,
+	);
+
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-editor-css', // Handle.
