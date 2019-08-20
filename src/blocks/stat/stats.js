@@ -13,7 +13,6 @@ import './editor.scss';
 
 // Internal dependencies.
 import './stat';
-import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -163,8 +162,7 @@ registerBlockType( 'bu/stats', {
 						placeholder={ __( 'Add a caption (optional)…' ) }
 						value={ caption }
 						onChange={ value => setAttributes( { caption: value } ) }
-						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+						formattingControls={ [ 'bold', 'italic', 'link' ] }
 						keepPlaceholderOnFocus
 					/>
 				</figure>
