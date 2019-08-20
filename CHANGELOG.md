@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.2.11
+- Fix editor bugs in Click to tweet Block
+  - Twitter icons now use Dashicons in Editor and BU Icons on frontend
+  - Improved editor styles
 - Fixed Stat Block light and dark default colors on top circle.
 - Added user friendly labels to stat block (Bottom Circle, Top Circle).
 - Fixed IE related bugs preventing circle stroke from displaying correctly.
