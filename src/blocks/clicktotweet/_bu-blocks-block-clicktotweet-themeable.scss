@@ -55,28 +55,30 @@ $current-map: $blocks-block-bu-clicktotweet-config;
 
 $scope: blocks-get( 'scope' );
 
-$_tweet-bg: blocks-get( 'color-gray-f' );
+$_tweet-bg: blocks-get( 'color-gray-e' );
 
-.#{$scope}-block-bu-clicktotweet {
-	&:hover .wp-block-bu-clicktotweet-content {
-		background-color: $_tweet-bg;
-		box-shadow: 0px 0px 0px 10px $_tweet-bg;
-	}
-
-	&.has-format-highlight {
-		.wp-block-bu-clicktotweet-highlight {
-			background: $_tweet-bg;
-			color: blocks-get( 'color-quaternary-text' );
+.publication-#{$scope} {
+	.wp-block-bu-clicktotweet {
+		&:not(.has-format-highlight):hover .wp-block-bu-clicktotweet-content {
+			background-color: $_tweet-bg;
+			box-shadow: 0px 0px 0px 10px $_tweet-bg;
 		}
-	}
 
-	.wp-block-bu-clicktotweet-action {
-		background-color: $_tweet-bg;
-		color: blocks-get( 'color-quaternary-text' );
-		font-family: blocks-get( 'font-family-secondary' );
+		&.has-format-highlight {
+			.wp-block-bu-clicktotweet-highlight {
+				background: $_tweet-bg;
+				color: blocks-get( 'color-quaternary-text' );
+			}
+		}
 
-		&::before {
-			border-color: transparent $_tweet-bg transparent transparent;
+		.wp-block-bu-clicktotweet-action {
+			background-color: $_tweet-bg;
+			color: blocks-get( 'color-quaternary-text' );
+			font-family: blocks-get( 'font-family-secondary' );
+
+			&::before {
+				border-color: transparent $_tweet-bg transparent transparent;
+			}
 		}
 	}
 }
