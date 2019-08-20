@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+- Fixed Stat Block light and dark default colors on top circle.
+- Added user friendly labels to stat block (Bottom Circle, Top Circle).
+- Fixed IE related bugs preventing circle stroke from displaying correctly.
+
 ## 0.2.10
 - Background Component Updates
     - Add an `onChange` property to allow blocks the opportunity for custom handling.
