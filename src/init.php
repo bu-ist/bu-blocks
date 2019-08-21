@@ -126,12 +126,12 @@ function enqueue_block_editor_assets() {
 		true // Enqueue the script in the footer.
 	);
 
-	// Enqueue script for filtering blocks allowed per post type.
+	// Enqueue handling of block support for post types.
 	wp_enqueue_script(
-		'bu-blocks-allowed-blocks',
-		plugins_url( 'allowed-blocks.js', __FILE__ ),
+		'bu-blocks-block-support',
+		plugins_url( 'block-support.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __DIR__ ) . 'src/allowed-blocks.js' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
 		true,
 	);
 
