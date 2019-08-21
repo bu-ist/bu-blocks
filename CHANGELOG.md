@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- added theme color styles for pull quote block.
+- added image opacity styles for pull quote.
+
 ## 0.2.10
 - Background Component Updates
     - Add an `onChange` property to allow blocks the opportunity for custom handling.
