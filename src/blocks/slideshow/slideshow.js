@@ -165,7 +165,7 @@ const blockMarkup = ( slides ) => {
 // Empty slide object.
 const emptySlide = {
 	caption: '',
-	imageFocus: 'middle-center',
+	imageFocus: 'center-middle',
 	imageId: '',
 	imageUrl: '',
 };
@@ -324,9 +324,9 @@ registerBlockType( 'editorial/slideshow', {
 											{ value: 'center-top', label: __( 'Center Top' ) },
 											{ value: 'center-middle', label: __( 'Center Middle' ) },
 											{ value: 'center-bottom', label: __( 'Center Bottom' ) },
-											{ value: 'Right-top', label: __( 'Right Top' ) },
-											{ value: 'Right-middle', label: __( 'Right Middle' ) },
-											{ value: 'Right-bottom', label: __( 'Right Bottom' ) },
+											{ value: 'right-top', label: __( 'Right Top' ) },
+											{ value: 'right-middle', label: __( 'Right Middle' ) },
+											{ value: 'right-bottom', label: __( 'Right Bottom' ) },
 										] }
 									/>
 								</div>
