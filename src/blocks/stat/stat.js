@@ -140,6 +140,9 @@ registerBlockType( 'bu/stat', {
 			selector: '.wp-block-bu-stat-text-pre',
 		},
 	},
+	supports: {
+		inserter: false,
+	},
 
 	edit: withColors( 'circleOneColor', 'circleTwoColor' )( props => {
 		const {
