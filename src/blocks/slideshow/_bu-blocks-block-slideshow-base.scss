@@ -207,15 +207,80 @@
 	.bu-blocks-slideshow-media-actual {
 		object-fit: cover;
 	}
+
+	.has-mediafocus-left-top {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 25% 25%;
+			font-family: 'object-fit: cover; object-position: 25% 25%;'
+		}
+	}
+
+	.has-mediafocus-left-middle {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 25% 50%;
+			font-family: 'object-fit: cover; object-position: 25% 50%;'
+		}
+	}
+
+	.has-mediafocus-left-bottom {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 25% 75%;
+			font-family: 'object-fit: cover; object-position: 25% 75%;'
+		}
+	}
+
+	.has-mediafocus-center-top {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 50% 25%;
+			font-family: 'object-fit: cover; object-position: 50% 25%;'
+		}
+	}
+
+	.has-mediafocus-center-middle {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 50% 50%;
+			font-family: 'object-fit: cover; object-position: 50% 50%;'
+		}
+	}
+
+	.has-mediafocus-center-bottom {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 50% 75%;
+			font-family: 'object-fit: cover; object-position: 50% 75%;'
+		}
+	}
+
+	.has-mediafocus-right-top {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 75% 25%;
+			font-family: 'object-fit: cover; object-position: 75% 25%;'
+		}
+	}
+
+	.has-mediafocus-right-middle {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 75% 50%;
+			font-family: 'object-fit: cover; object-position: 75% 50%;'
+		}
+	}
+
+	.has-mediafocus-right-bottom {
+		.bu-blocks-slideshow-media-actual {
+			object-fit: cover;
+			object-position: 75% 75%;
+			font-family: 'object-fit: cover; object-position: 75% 75%;'
+		}
+	}
 }
 
-// .has-aspectratio-16by9 {
-// 	.bu-blocks-slideshow-media {
-// 		&:after {
-// 			padding-top: 9 / 16 * 100%;
-// 		}
-// 	}
-// }
 .has-aspectratio-4by3 {
 	.bu-blocks-slideshow-media {
 		&:after {

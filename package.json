@@ -1,12 +1,13 @@
 {
   "name": "bu-blocks",
-  "version": "0.2.7",
+  "version": "0.2.11",
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
   "contributors": [
     "Jeremy Felt <jfelt@bu.edu>",
-    "Ashley Kolodziej <kolodz10@bu.edu>"
+    "Ashley Kolodziej <kolodz10@bu.edu>",
+    "Dakota Chichester <acketon@bu.edu>"
   ],
   "scripts": {
     "start": "cgb-scripts start",
