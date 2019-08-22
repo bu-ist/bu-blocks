@@ -119,7 +119,7 @@ const blockMarkup = ( slides ) => {
 
 					{ slides.map( ( slide, index ) =>
 						<li
-							className={ `js-bu-blocks-slideshow-media-track-item bu-blocks-slideshow-media bu-blocks-slideshow-media-${ slideIndex( index ) }` }
+							className={ `js-bu-blocks-slideshow-media-track-item bu-blocks-slideshow-media bu-blocks-slideshow-media-${ slideIndex( index ) } has-mediafocus-${ slide.imageFocus }` }
 							style={ { width: liWidth } }
 						>{ imageMarkup( slide ) }</li>
 					) }
@@ -165,8 +165,7 @@ const blockMarkup = ( slides ) => {
 // Empty slide object.
 const emptySlide = {
 	caption: '',
-	imageFocusX: 'center',
-	imageFocusY: 'center',
+	imageFocus: 'middle-center',
 	imageId: '',
 	imageUrl: '',
 };
@@ -304,45 +303,30 @@ registerBlockType( 'editorial/slideshow', {
 								</div>
 								<div className="wp-block-editorial-slideshow-edit-slide-image-controls__focus">
 									<SelectControl
-										className="wp-block-editorial-slideshow-edit-slide-image-controls__focus-x"
-										label={ __( 'Image Focus X:' ) }
-										value={ slide.imageFocusX }
+										className="wp-block-editorial-slideshow-edit-slide-image-controls__focus"
+										label={ __( 'Crop Media to:' ) }
+										value={ slide.imageFocus }
 										onChange={ value => {
 											const newSlides = Object.values( {
 												...slides,
 												[ index ]: {
 													...slides[ index ],
-													imageFocusX: value,
+													imageFocus: value,
 												}
 											} );
 
 											setAttributes( { slides: newSlides } );
 										} }
 										options={ [
-											{ value: 'left', label: __( 'Left' ) },
-											{ value: 'center', label: __( 'Center' ) },
-											{ value: 'right', label: __( 'Right' ) },
-										] }
-									/>
-									<SelectControl
-										className="wp-block-editorial-slideshow-edit-slide-image-controls__focus-y"
-										label={ __( 'Image Focus Y:' ) }
-										value={ slide.imageFocusY }
-										onChange={ value => {
-											const newSlides = Object.values( {
-												...slides,
-												[ index ]: {
-													...slides[ index ],
-													imageFocusY: value,
-												}
-											} );
-
-											setAttributes( { slides: newSlides } );
-										} }
-										options={ [
-											{ value: 'top', label: __( 'Top' ) },
-											{ value: 'center', label: __( 'Center' ) },
-											{ value: 'bottom', label: __( 'Bottom' ) },
+											{ value: 'left-top', label: __( 'Left Top' ) },
+											{ value: 'left-middle', label: __( 'Left Middle' ) },
+											{ value: 'left-bottom', label: __( 'Left Bottom' ) },
+											{ value: 'center-top', label: __( 'Center Top' ) },
+											{ value: 'center-middle', label: __( 'Center Middle' ) },
+											{ value: 'center-bottom', label: __( 'Center Bottom' ) },
+											{ value: 'Right-top', label: __( 'Right Top' ) },
+											{ value: 'Right-middle', label: __( 'Right Middle' ) },
+											{ value: 'Right-bottom', label: __( 'Right Bottom' ) },
 										] }
 									/>
 								</div>
