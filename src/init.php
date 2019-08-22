@@ -132,7 +132,7 @@ function enqueue_block_editor_assets() {
 		plugins_url( 'block-support.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
 		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
-		true,
+		true
 	);
 
 	// Styles.
