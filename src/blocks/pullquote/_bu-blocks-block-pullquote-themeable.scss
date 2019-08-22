@@ -64,12 +64,15 @@ $scope: blocks-get( 'scope' );
 				font-family: blocks-get( 'font-family-secondary');
 			}
 		}
+
 		&.has-image {
 			color: blocks-get( 'color-page');
+
 			hr::before,
 			hr::after {
 				background-color: blocks-get( 'color-page');
 			}
+
 			blockquote::before,
 			blockquote::after {
 				color: blocks-get( 'color-page');
@@ -79,23 +82,73 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-page');
 			}
 		}
+
+		&.has-light-theme,
+		&.has-light-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'background-color-light');
+				}
+			}
+		}
+
+		&.has-dark-theme,
+		&.has-dark-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'background-color-dark');
+				}
+			}
+		}
+
+		&.has-primary-theme,
+		&.has-primary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-primary');
+				}
+			}
+		}
+
+		&.has-secondary-theme,
+		&.has-secondary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-secondary');
+				}
+			}
+		}
+
+		&.has-tertiary-theme,
+		&.has-light-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-tertiary');
+				}
+			}
+		}
+
+		&.has-quaternary-theme,
+		&.has-quaternary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-quaternary');
+				}
+			}
+		}
+
 		&.alignfull {
 			background-color: blocks-get( 'background-color-light');
+
 			&.has-image {
 				background-color: blocks-get( 'background-color-dark');
 			}
-			// &.has-tint-dark {
-			// }
-			// &.has-tint-primary {
-			// 	&.has-image {
-			// 		background-color: blocks-get( 'color-primary');
-			// 	}
-			// }
-			// &.has-tint-secondary {
-			// 	&.has-image {
-			// 		background-color: blocks-get( 'color-secondary');
-			// 	}
-			// }
 		}
 	}
 	&.is-style-modern {
@@ -104,65 +157,131 @@ $scope: blocks-get( 'scope' );
 				background-color: blocks-get( 'background-color-light');
 			}
 		}
+
 		&.alignfull {
 			background-color: blocks-get( 'background-color-light');
 		}
+
 		.container-icon-inner {
 			background-color: blocks-get( 'color-primary');
 			color: blocks-get( 'color-page');
 		}
+
 		&.has-image {
 			.container-icon-inner {
 				background-color: blocks-get( 'background-color-dark');
 			}
 		}
-		// &.has-tint-dark {
-		// }
-		// &.has-tint-primary {
-		// 	&.has-image {
-		// 		.container-icon-inner {
-		// 			background-color: blocks-get( 'color-primary');
-		// 		}
-		// 	}
-		// }
-		// &.has-tint-secondary {
-		// 	&.has-image {
-		// 		.container-icon-inner {
-		// 			background-color: blocks-get( 'color-secondary');
-		// 		}
-		// 	}
-		// }
+
+		&.has-light-theme,
+		&.has-light-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'background-color-light');
+			}
+		}
+
+		&.has-dark-theme,
+		&.has-dark-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'background-color-dark');
+			}
+		}
+
+		&.has-primary-theme,
+		&.has-primary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-primary');
+			}
+		}
+
+		&.has-secondary-theme,
+		&.has-secondary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-secondary');
+			}
+		}
+
+		&.has-tertiary-theme,
+		&.has-light-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-tertiary');
+			}
+		}
+
+		&.has-quaternary-theme,
+		&.has-quaternary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-quaternary');
+			}
+		}
 	}
 	&.is-style-pop {
 		background-color: blocks-get( 'background-color-light');
+
 		.container-icon-inner {
 			color: blocks-get( 'color-primary');
 		}
+
 		&.has-image {
 			color: blocks-get( 'color-page');
 			background-color: blocks-get( 'background-color-dark');
+
 			hr {
 				background-color: blocks-get( 'color-page');
 			}
+
 			.container-icon-inner {
 				color: blocks-get( 'color-page');
 			}
 		}
-		// &.has-tint-dark {
-		// 	&.has-image {
-				
-		// 	}
-		// }
-		// &.has-tint-primary {
-		// 	&.has-image {
-		// 		background-color: blocks-get( 'color-primary');
-		// 	}
-		// }
-		// &.has-tint-secondary {
-		// 	&.has-image {
-		// 		background-color: blocks-get( 'color-secondary');
-		// 	}
-		// }
+
+		&.has-light-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'background-color-light');
+				}
+			}
+		}
+
+		&.has-dark-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'background-color-dark');
+				}
+			}
+		}
+
+		&.has-primary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-primary');
+				}
+			}
+		}
+
+		&.has-secondary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-secondary');
+				}
+			}
+		}
+
+		&.has-tertiary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-tertiary');
+				}
+			}
+		}
+
+		&.has-quaternary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-quaternary');
+				}
+			}
+		}
 	}
 }
 
