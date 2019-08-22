@@ -29,7 +29,7 @@ bu_blocks.modal = (function() {
 
 	var findElements = function() {
 		//find all the blocks
-		var elements = document.getElementsByClassName('js-bu-block-modal');
+		var elements = document.querySelectorAll( '.js-bu-block-modal' );
 		//if found
 		if (elements.length > 0) {
 			//for each found block do stuff
@@ -38,40 +38,37 @@ bu_blocks.modal = (function() {
 				var block = {};
 
 				//get first returned overlay element
-				block.overlay = elements[i].getElementsByClassName('js-bu-block-modal-overlay')[0];
+				block.overlay = elements[i].querySelector( '.js-bu-block-modal-overlay' );
 				//get all matched trigger btns
-				block.button = elements[i].getElementsByClassName('js-bu-block-modal-trigger-overlay');
+				block.button = elements[i].querySelectorAll( '.js-bu-block-modal-trigger-overlay' );
 				//get first returned overlay element
-				block.close = elements[i].getElementsByClassName('js-bu-block-modal-overlay-close')[0];
+				block.close = elements[i].querySelector( '.js-bu-block-modal-overlay-close' );
 
 				//for each one found store as object in the array
-				modalBlocks.push(block);
+				modalBlocks.push( block );
 			}
 		}
 	};
 
 	var setupHandlers = function() {
 		if (modalBlocks.length > 0) {
-
-			for ( var i = 0; i < modalBlocks.length; i++ ) {
-				//store for loop instance as variable so event handlers
-				//can reference element when event fires
-				var thisModal = modalBlocks[i];
+			modalBlocks.forEach( function( thisModal, item ) {
 
 				//some modals may have more than one trigger btn
 				//so loop through all matched to setup events
-				for ( var b = 0; b < thisModal.button.length; b++ ) {
+				thisModal.button.forEach( function( button, index ) {
 					//for each btn we find, add an event handler
-					thisModal.button[b].addEventListener( "click", function(e) {
+					button.addEventListener( "click", function(e) {
 						e.preventDefault();
 						toggleModal( thisModal.overlay );
 					});
-				}
+
+				});
 				thisModal.close.addEventListener( "click", function(e) {
 					e.preventDefault();
 					toggleModal( thisModal.overlay );
 				});
-			}
+			});
 		}
 	};
 

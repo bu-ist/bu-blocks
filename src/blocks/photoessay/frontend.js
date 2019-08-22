@@ -271,7 +271,7 @@ bu_blocks.photoessay = (function() {
 	*/
 	var scrollEvent = function( e ) {
 		if( $html.scrollTop - scrollTop > 250 ) {
-			console.log("close");
+			//console.log("close");
 			// Reset scrollTop.
 			scrollTop = 0;
 
