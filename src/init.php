@@ -175,6 +175,15 @@ function enqueue_block_editor_assets() {
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
 	);
+
+	// Enqueue handling of block support for post types.
+	wp_enqueue_script(
+		'bu-blocks-block-support',
+		plugins_url( 'block-support.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
+		true
+	);
 }
 
 /**

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- added theme color styles for pull quote block.
+- added image opacity styles for pull quote.
+
 ## 0.2.11
 - Fix editor bugs in Click to tweet Block
   - Twitter icons now use Dashicons in Editor and BU Icons on frontend
