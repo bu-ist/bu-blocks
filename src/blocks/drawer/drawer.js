@@ -176,7 +176,8 @@ registerBlockType( 'editorial/drawer', {
 						</figure>
 					}
 					<RichText
-						formattingControls={ [] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { hed: value } ) }
 						placeholder={ __( 'Enter heading…' ) }
@@ -194,7 +195,8 @@ registerBlockType( 'editorial/drawer', {
 					/>
 					<div className="wp-block-editorial-drawer-open-wrapper">
 						<RichText
-							formattingControls={ [] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 							keepPlaceholderOnFocus={ true }
 							className="button js-bu-block-drawer-open"
 							onChange={ value => setAttributes( { button: value } ) }
