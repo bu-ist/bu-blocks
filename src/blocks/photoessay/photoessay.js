@@ -161,7 +161,6 @@ registerBlockType( 'editorial/photoessay', {
 				<div className="wp-block-editorial-photoessay">
 					<div className={ layout }>
 						<InnerBlocks
-							templateLock="all"
 							allowedBlocks={ [ 'editorial/photoessay-image' ] }
 							templateInsertUpdatesSelection={ false }
 						/>
