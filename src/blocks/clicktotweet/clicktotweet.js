@@ -32,7 +32,7 @@ const {
 const {
 	RichTextShortcut,
 	RichTextToolbarButton,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	createHigherOrderComponent
 } = wp.compose;
