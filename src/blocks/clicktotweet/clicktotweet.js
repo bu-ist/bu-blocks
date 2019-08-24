@@ -56,8 +56,10 @@ registerFormatType( name, {
 	className: 'wp-block-bu-clicktotweet-highlight',
 	edit: compose(
 		withSelect( select => {
+			let getSelectedBlock = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ).getSelectedBlock : select( 'core/block-editor' ).getSelectedBlock;
+
 			return {
-				selectedBlock: select( 'core/editor' ).getSelectedBlock()
+				selectedBlock: getSelectedBlock()
 			}
 		} ),
 		ifCondition( props => {
