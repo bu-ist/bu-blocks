@@ -64,7 +64,7 @@ registerBlockType( 'editorial/headline', {
 	],
 
 	edit( props ) {
-		const { attributes, setAttributes, className, clientId } = props;
+		const { attributes, setAttributes, className } = props;
 		const { content, level, anchor } = attributes;
 		const tagName = 'h' + level;
 
@@ -72,8 +72,7 @@ registerBlockType( 'editorial/headline', {
 		if ( ! anchor ) {
 			const allBlocks = select( 'core/editor' ).getBlocks();
 			const headlineBlocks = allBlocks.filter( e => e.name === 'editorial/headline' );
-			const HeadlineIndex = headlineBlocks.findIndex( e => e.clientId === clientId );
-			const id = 'headline-' + ( HeadlineIndex + 1 );
+			const id = 'headline-' + ( headlineBlocks.length );
 
 			setAttributes( { anchor: id } );
 		}
