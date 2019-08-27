@@ -4,6 +4,9 @@
  * A headline with anchor support and pre- and post-text formatting options.
  */
 
+// External dependencies.
+import classnames from 'classnames';
+
 // Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -14,15 +17,39 @@ import './pretext-format.js'
 import './posttext-format.js'
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { RichText, BlockControls } = wp.editor;
-const { select } = wp.data;
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+	Fragment,
+} = wp.element;
+const {
+	RichText,
+	BlockControls,
+} = wp.editor;
+const {
+	select,
+} = wp.data;
+const {
+	applyFilters,
+} = wp.hooks;
+
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className Classes assigned to the block.
+ */
+const getClasses = ( className ) => {
+	const blockClasses = classnames( { [ className ]: className } );
+
+	return applyFilters( 'buBlocks.headline.classNames', blockClasses );
+};
 
 // Register the block.
 registerBlockType( 'editorial/headline', {
-
 	title: __( 'Headline' ),
 	description: __( 'Add a section heading with an anchor and pre- and post-text formatting options.' ),
 	icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#c00" d="M5 4v3h5.5v12h3V7H19V4z" /><path fill="none" d="M0 0h24v24H0V0z" /></svg>,
@@ -31,6 +58,10 @@ registerBlockType( 'editorial/headline', {
 		anchor: true,
 	},
 	attributes: {
+		className: {
+			type: 'string',
+			default: '',
+		},
 		content: {
 			type: 'string',
 			source: 'html',
@@ -85,7 +116,7 @@ registerBlockType( 'editorial/headline', {
 				</BlockControls>
 				<RichText
 					tagName={ tagName }
-					className={ className }
+					className={ getClasses( className ) }
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
@@ -96,12 +127,17 @@ registerBlockType( 'editorial/headline', {
 	},
 
 	save( { attributes } ) {
-		const { content, level } = attributes;
+		const {
+			className,
+			content,
+			level,
+		} = attributes;
 		const tagName = 'h' + level;
 
 		return (
 			<RichText.Content
 				tagName={ tagName }
+				className={ getClasses( className ) }
 				value={ content }
 			/>
 		);
