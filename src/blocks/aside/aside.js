@@ -33,6 +33,9 @@ const {
 const {
 	Fragment,
 } = wp.element;
+const {
+	applyFilters,
+} = wp.hooks;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -41,12 +44,12 @@ const {
  * @param {string} themeColor The theme color assigned to the block.
  */
 const getClasses = ( className, themeColor ) => {
-	return classnames(
-		className,
-		{
-			[ `has-${themeColor}-background` ]: themeColor,
-		},
-	);
+	const blockClasses = classnames( {
+		[ className ]: className,
+		[ `has-${themeColor}-background` ]: themeColor,
+	} );
+
+	return applyFilters( 'buBlocks.aside.classNames', blockClasses );
 };
 
 // Register the block.
@@ -89,10 +92,12 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 					/>
 				</InspectorControls>
 				<aside className={ getClasses( className, themeColor.slug ) }>
+					{ applyFilters( 'buBlocks.aside.afterOpening', '' ) }
 					<InnerBlocks
 						allowedBlocks={ allowedBlocks() }
 						template={ presetTemplate }
 					/>
+					{ applyFilters( 'buBlocks.aside.beforeClosing', '' ) }
 				</aside>
 			</Fragment>
 		);
@@ -105,7 +110,9 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 
 		return (
 			<aside className={ getClasses( className, themeColor ) }>
+				{ applyFilters( 'buBlocks.aside.afterOpeningOutput', '' ) }
 				<InnerBlocks.Content />
+				{ applyFilters( 'buBlocks.aside.beforeClosingOutput', '' ) }
 			</aside>
 		);
 	},
