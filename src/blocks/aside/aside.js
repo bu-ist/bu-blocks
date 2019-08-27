@@ -14,18 +14,43 @@ import './editor.scss';
 
 // Internal dependencies.
 import RegisterBlockPreset from '../../global/register-block-preset.js';
+import themeOptions from '../../global/theme-options.js';
+import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { getColorClassName, InnerBlocks } = wp.editor;
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+	InnerBlocks,
+	InspectorControls,
+	PanelColorSettings,
+	withColors,
+} = wp.editor;
+const {
+	Fragment,
+} = wp.element;
 
-// Internal dependencies.
-import edit from './edit.js';
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className  Classes assigned to the block.
+ * @param {string} themeColor The theme color assigned to the block.
+ */
+const getClasses = ( className, themeColor ) => {
+	return classnames(
+		className,
+		{
+			[ `has-${themeColor}-background` ]: themeColor,
+		},
+	);
+};
 
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
-
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
 	icon: 'format-aside',
@@ -39,18 +64,47 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 		},
 	},
 
-	edit,
-
-	save( { attributes, className } ) {
-		const { themeColor } = attributes;
-
-		const classes = classnames(
+	edit: withColors( 'themeColor' )( props => {
+		const {
 			className,
-			{ [ getColorClassName( 'background', themeColor ) ]: getColorClassName( 'background', themeColor ) }
-		);
+			themeColor,
+			setThemeColor,
+			presetTemplate,
+		} = props;
 
 		return (
-			<aside className={ classes }>
+			<Fragment>
+				<InspectorControls>
+					<PanelColorSettings
+						title={ __( 'Color Settings' ) }
+						colorSettings={ [
+							{
+								value: themeColor.color,
+								onChange: setThemeColor,
+								label: __( 'Theme' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+						] }
+					/>
+				</InspectorControls>
+				<aside className={ getClasses( className, themeColor.slug ) }>
+					<InnerBlocks
+						allowedBlocks={ allowedBlocks() }
+						template={ presetTemplate }
+					/>
+				</aside>
+			</Fragment>
+		);
+	} ),
+
+	save( { attributes, className } ) {
+		const {
+			themeColor
+		} = attributes;
+
+		return (
+			<aside className={ getClasses( className, themeColor ) }>
 				<InnerBlocks.Content />
 			</aside>
 		);
