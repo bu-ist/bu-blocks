@@ -33,23 +33,26 @@ const {
 	InspectorControls,
 	RichText,
 } = wp.editor;
+const {
+	applyFilters,
+} = wp.hooks;
 
 /**
  * Returns the class list for the block based on the current settings.
  *
- * @param {string} className     Default classes assigned to the block.
- * @param {string} stylizedTitle If the block has a stylized title.
+ * @param {string} className   Default classes assigned to the block.
+ * @param {string} aspectRatio Aspect ratio options set on the block.
  */
 const getClasses = ( className, aspectRatio ) => {
-	return (
-		classnames(
-			'wp-block-global-buniverse',
-			{
-				[ aspectRatio ]: aspectRatio,
-				[ className ]: className,
-			}
-		)
+	const blockClasses = classnames(
+		'wp-block-global-buniverse',
+		{
+			[ className ]: className,
+			[ aspectRatio ]: aspectRatio,
+		}
 	);
+
+	return applyFilters( 'buBlocks.buniverse.classNames', blockClasses );
 };
 
 // Register the block.
@@ -203,6 +206,7 @@ registerBlockType( 'bu/buniverse', {
 					/>
 				) }
 				<figure className={ getClasses( className, aspectRatio ) }>
+					{ applyFilters( 'buBlocks.buniverse.afterOpening', '' ) }
 					<div className="wp-block-global-buniverse-wrapper">
 						{ ! id && (
 							<div className="wp-block-global-buinverse-placeholder">
@@ -237,6 +241,7 @@ registerBlockType( 'bu/buniverse', {
 							/>
 						</figcaption>
 					) }
+					{ applyFilters( 'buBlocks.buniverse.beforeClosing', '' ) }
 				</figure>
 			</Fragment>
 		);
@@ -261,6 +266,7 @@ registerBlockType( 'bu/buniverse', {
 
 		return(
 			<figure className={ getClasses( className, aspectRatio ) }>
+				{ applyFilters( 'buBlocks.buniverse.afterOpeningOutput', '' ) }
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
@@ -277,7 +283,7 @@ registerBlockType( 'bu/buniverse', {
 							</p>
 						</figcaption>
 					)}
-
+				{ applyFilters( 'buBlocks.buniverse.beforeClosingOutput', '' ) }
 			</figure>
 		);
 	},
