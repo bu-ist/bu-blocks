@@ -34,6 +34,9 @@ const {
 	PanelColorSettings,
 	withColors,
 } = wp.editor;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // Import a library used to manage multiple class names.
 import classnames from 'classnames';
@@ -69,6 +72,23 @@ const renderDropCapSVG = ( character, imageURL ) => {
 				className="dropcap-filltext">{ character }</text>
 		</svg>
 	);
+};
+
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className  Classes assigned to the block.
+ * @param {string} themeColor The theme color assigned to the block.
+ */
+const getClasses = ( className, hasDropCapStyle, dropCapColor, paragraphColor ) => {
+	const blockClasses = classnames( {
+		[ className ]: className,
+		'has-dropcap': hasDropCapStyle,
+		[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,
+		[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
+	} );
+
+	return applyFilters( 'buBlocks.introparagraph.classNames', blockClasses );
 };
 
 // Register the block.
@@ -287,15 +307,6 @@ registerBlockType( 'editorial/introparagraph', {
 			);
 		};
 
-		const classes = classnames(
-			className,
-			{
-				'has-dropcap': hasDropCapStyle,
-				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCapStyle && dropCapColor && dropCapColor.slug,
-				[`has-paragraph-color-${paragraphColor.slug}`]: ! hasDropCapStyle && paragraphColor && paragraphColor.slug,
-			},
-		);
-
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -303,7 +314,8 @@ registerBlockType( 'editorial/introparagraph', {
 					{ hasDropCapStyle && ! isImageDropCap && renderDropCapColorSettings() }
 					{ hasDropCapStyle && isImageDropCap && renderDropCapImageSettings() }
 				</InspectorControls>
-				<div className={ classes }>
+				<div className={ getClasses( className, hasDropCapStyle, dropCapColor.slug, paragraphColor.slug ) }>
+					{ applyFilters( 'buBlocks.introparagraph.afterOpening', '' ) }
 					<PlainText
 						tagname='h4'
 						value={ heading }
@@ -340,6 +352,7 @@ registerBlockType( 'editorial/introparagraph', {
 							}
 						/>
 					</div>
+					{ applyFilters( 'buBlocks.introparagraph.beforeClosing', '' ) }
 				</div>
 			</Fragment>
 		);
@@ -377,17 +390,9 @@ registerBlockType( 'editorial/introparagraph', {
 		// Determine if a sepecific dropcap style has been selected.
 		let hasDropCapStyle = className && className.includes( 'is-style-dropcap' );
 
-		const classes = classnames(
-			className,
-			{
-				'has-dropcap': hasDropCapStyle,
-				[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,
-				[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
-			},
-		);
-
 		return (
-			<div className={ classes }>
+			<div className={ getClasses( className, hasDropCapStyle, dropCapColor, paragraphColor ) }>
+				{ applyFilters( 'buBlocks.introparagraph.afterOpeningOutput', '' ) }
 				{ ! RichText.isEmpty( heading ) && (
 					<RichText.Content tagName="h4" value={ heading } />
 				) }
@@ -408,6 +413,7 @@ registerBlockType( 'editorial/introparagraph', {
 						/>
 					</div>
 				) }
+				{ applyFilters( 'buBlocks.introparagraph.beforeClosingOutput', '' ) }
 			</div>
 		);
 	},
