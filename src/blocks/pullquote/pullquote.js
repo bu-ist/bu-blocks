@@ -37,10 +37,13 @@ const {
 	RichText,
 	withColors,
 } = wp.editor;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {
-	return ( ! className.includes( 'is-style-modern' ) && ! className.includes( 'is-style-pop' ) );
+	return ( className && !className.includes( 'is-style-modern' ) && !className.includes( 'is-style-pop' ) );
 };
 
 /**
@@ -52,18 +55,16 @@ const isStyleDefault = ( className ) => {
  * @param {string} themeColor   Value of the "Theme Color" setting.
  */
 const getClasses = ( className, backgroundId, imageFocus, themeColor ) => {
-	const isStylePop = className.includes( 'is-style-pop' );
+	const isStylePop = className && className.includes( 'is-style-pop' );
 
-	return (
-		classnames(
-			className,
-			{
-				'has-image': ( backgroundId && ! isStylePop ),
-				[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
-				[ `has-${themeColor}-theme` ]: themeColor,
-			}
-		)
-	);
+	const blockClasses = classnames( {
+		[ className ]: className,
+		'has-image': ( backgroundId && ! isStylePop ),
+		[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
+		[ `has-${themeColor}-theme` ]: themeColor,
+	} );
+
+	return applyFilters( 'buBlocks.pullquote.classNames', blockClasses );
 }
 
 // Only allow images in the background component for this block.
@@ -185,6 +186,7 @@ registerBlockType( 'bu/pullquote', {
 					{ mediaPositioningControls() }
 				</InspectorControls>
 				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
+					{ applyFilters( 'buBlocks.pullquote.afterOpening', '' ) }
 					{ isStyleDefault( className ) && (
 						<Background
 							allowedMediaTypes={ allowedMedia }
@@ -228,6 +230,7 @@ registerBlockType( 'bu/pullquote', {
 							</div>
 						</div>
 					</blockquote>
+					{ applyFilters( 'buBlocks.pullquote.beforeClosing', '' ) }
 				</div>
 			</Fragment>
 		);
@@ -245,13 +248,14 @@ registerBlockType( 'bu/pullquote', {
 			cite,
 			imageFocus,
 			backgroundId,
-			className = '', // Assign default in case the unpacked value is `undefined`.
+			className,
 			themeColor,
 		} = attributes;
 
 		// Returns the block rendering for the front end.
 		return (
 			<div className={ getClasses( className, backgroundId, imageFocus, themeColor ) }>
+				{ applyFilters( 'buBlocks.pullquote.afterOpeningOutput', '' ) }
 				{ isStyleDefault( className ) && (
 					<figure>
 						<Background
@@ -263,7 +267,7 @@ registerBlockType( 'bu/pullquote', {
 					<div className="container-lockup">
 						<div className="container-icon-outer">
 							<div className="container-icon-inner">
-								{ className.includes( 'is-style-modern' ) && (
+								{ ( className && className.includes( 'is-style-modern' ) ) && (
 									<Background
 										blockProps={ props }
 									/>
@@ -286,6 +290,7 @@ registerBlockType( 'bu/pullquote', {
 						</div>
 					</div>
 				</blockquote>
+				{ applyFilters( 'buBlocks.pullquote.beforeClosingOutput', '' ) }
 			</div>
 		);
 	},
