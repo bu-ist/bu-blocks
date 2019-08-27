@@ -106,7 +106,8 @@ class BUEditorialModalEdit extends Component {
 									onChange={ value => setAttributes( { calloutHeading: value } ) }
 									value={ calloutHeading }
 									placeholder={ __( 'Enter heading…' ) }
-									formattingControls={ [] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 								/>
 								<RichText
 									tagName="p"
@@ -123,7 +124,8 @@ class BUEditorialModalEdit extends Component {
 										onChange={ value => setAttributes( { trigger: value } ) }
 										value={ trigger }
 										placeholder={ __( 'Enter trigger label…' ) }
-										formattingControls={ [] }
+										formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 									/>
 								</div>
 							</div>
