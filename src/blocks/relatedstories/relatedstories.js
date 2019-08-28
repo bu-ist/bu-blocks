@@ -414,10 +414,14 @@ registerBlockType( 'editorial/relatedstories', {
 			cardCountClass = ' has-three';
 		}
 
-		const classes = classnames(
-			className,
-			cardCountClass,
-		);
+		const getClasses = () => {
+			const blockClasses = classnames(
+				className,
+				cardCountClass,
+			);
+
+			return applyFilters( 'buBlocks.relatedstories.classNames', blockClasses );
+		}
 
 		return (
 			<Fragment>
@@ -467,7 +471,8 @@ registerBlockType( 'editorial/relatedstories', {
 						/>
 					</BlockControls>
 				) }
-				<aside className={ classes }>
+				<aside className={ getClasses() }>
+					{ applyFilters( 'buBlocks.relatedStories.afterOpening', '' ) }
 					<h3 className="wp-block-editorial-relatedstories-title">Related</h3>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
@@ -476,6 +481,7 @@ registerBlockType( 'editorial/relatedstories', {
 					) : (
 						<p class="wp-block-editorial-relatedstories-error">{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
 					) }
+					{ applyFilters( 'buBlocks.relatedStories.beforeClosing', '' ) }
 				</aside>
 			</Fragment>
 		);

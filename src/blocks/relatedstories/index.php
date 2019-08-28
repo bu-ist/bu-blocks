@@ -192,6 +192,7 @@ function render_block( $attributes ) {
 	ob_start();
 	?>
 	<aside class="<?php echo esc_attr( $classes ); ?>">
+		<?php echo apply_filters( 'bu_blocks_related_stories_after_opening', '' ); // WPCS: XSS ok. ?>
 		<h3 class="wp-block-editorial-relatedstories-title"><?php esc_html_e( 'Related', 'bu-blocks' ); ?></h3>
 		<ul class="wp-block-editorial-relatedstories-list">
 			<?php
@@ -245,6 +246,7 @@ function render_block( $attributes ) {
 
 			?>
 		</ul>
+		<?php echo apply_filters( 'bu_blocks_related_stories_before_closing', '' ); // WPCS: XSS ok. ?>
 	</aside>
 	<?php
 	$html = ob_get_clean();
