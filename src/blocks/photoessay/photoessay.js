@@ -69,8 +69,7 @@ registerBlockType( 'editorial/photoessay', {
 		const { layout } = attributes;
 
 		/**
-		 * Updates the layout attribute and handles any necessary block updates,
-		 * insertions, or removals.
+		 * Updates the layout attribute and handles any necessary block updates or removals.
 		 *
 		 * @param {string} newLayout Currently selected layout option.
 		 */
@@ -84,7 +83,9 @@ registerBlockType( 'editorial/photoessay', {
 			const currentBlocks = getBlocksByClientId( clientId )[ 0 ].innerBlocks;
 
 			// Update any existing photoessay-image blocks with the correct class name when
-			// the layout changes.
+			// the layout changes. A template applied to the photoessay block provides default
+			// columnClass values for the inner photoessay-image blocks, but will not override
+			// attributes previously assigned to the block.
 			blockClasses.forEach( ( blockClass, i ) => {
 				const existingBlock = currentBlocks[ i ];
 				const newColumnClass = { columnClass: `photo-${blockClass}` };
