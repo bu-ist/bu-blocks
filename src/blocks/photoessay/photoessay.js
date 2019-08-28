@@ -114,14 +114,14 @@ registerBlockType( 'editorial/photoessay', {
 		// ensure one photoessay-image block is added to the template.
 		if ( layout === '' ) {
 			setAttributes( { layout: 'photo-row-thirds-3' } );
-			photoTemplate.push( [ 'editorial/photoessay-image' ] );
+			photoTemplate.push( [ 'editorial/photoessay-image', { columnClass: 'photo-3' } ] );
 		} else {
 			const blockClasses = layout.split( '-' ).splice( 3 );
 
 			// Ensure the photoessay template for this block contains enough
 			// room for the number of expected photoessay-image blocks.
 			blockClasses.forEach( ( blockClass, i ) => {
-				photoTemplate.push( [ 'editorial/photoessay-image' ] );
+				photoTemplate.push( [ 'editorial/photoessay-image', { columnClass: `photo-${blockClass}` } ] );
 			} );
 		}
 
