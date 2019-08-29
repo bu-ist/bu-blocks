@@ -9,7 +9,10 @@
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { registerFormatType, toggleFormat } = wp.richText;
-const { RichTextToolbarButton, RichTextShortcut } = wp.editor;
+const {
+	RichTextToolbarButton,
+	RichTextShortcut,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const name = 'editorial/pretext';
 
@@ -30,7 +33,6 @@ registerFormatType( name, {
 					onUse={ onToggle }
 				/>
 				<RichTextToolbarButton
-					name="pretext"
 					icon="warning"
 					title={ __( 'Pretext' ) }
 					onClick={ onToggle }

@@ -50,6 +50,7 @@ function define_editor_hooks() {
 	// Enqueue block scripts and styles for admin and front-end.
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+	add_action( 'bu_blocks_enqueue_block_stylesheet', __NAMESPACE__ . '\\enqueue_bu_blocks_general_stylesheet', 10 );
 
 	// Add block categories.
 	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
@@ -72,13 +73,23 @@ function bu_blocks_load_textdomain() {
 }
 
 /**
- * Enqueue Gutenberg block assets for both frontend + backend.
+ * Fire an action used by this plugin and others to enqueue
+ * general block stylesheets in the desired order.
  *
- * `wp-blocks`: includes block type registration and related functions.
- *
- * @since    0.1.0
+ * This function is called at two different points in the load process
+ * depending on whether this is WordPress 4.9 or 5.x.
  */
-function enqueue_block_assets() {
+function enqueue_blocks_stylesheet() {
+	do_action( 'bu_blocks_enqueue_block_stylesheet' );
+}
+
+/**
+ * Enqueue the general block styles added by this plugin.
+ *
+ * These styles are not editor specific and are enqueued in both the
+ * front-end and back-end views.
+ */
+function enqueue_bu_blocks_general_stylesheet() {
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-css', // Handle.
@@ -86,6 +97,28 @@ function enqueue_block_assets() {
 		array( 'wp-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
 	);
+}
+
+/**
+ * Enqueue Gutenberg block assets for both frontend + backend.
+ *
+ * `wp-blocks`: includes block type registration and related functions.
+ *
+ * @since    0.1.0
+ */
+function enqueue_block_assets() {
+
+	// If a pre-5.0 version of WordPress, enqueue general block styles from
+	// this plugin whenever block assets are enqueued.
+	//
+	// If a 5.0+ version of WordPress, only enqueue general block styles in
+	// this function on non-admin requests. See `enqueue_block_editor_assets()`
+	// for when styles are used in the editor context.
+	if ( ! function_exists( 'wp_common_block_scripts_and_styles' ) ) {
+		enqueue_blocks_stylesheet();
+	} else if ( ! is_admin() ) {
+		enqueue_blocks_stylesheet();
+	}
 
 	// Enqueue object-fit-images.
 	wp_enqueue_script(
@@ -126,14 +159,14 @@ function enqueue_block_editor_assets() {
 		true // Enqueue the script in the footer.
 	);
 
-	// Enqueue handling of block support for post types.
-	wp_enqueue_script(
-		'bu-blocks-block-support',
-		plugins_url( 'block-support.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
-		true
-	);
+	// If a pre-5.0 version of WordPress, general block styles are always loaded
+	// via `enqueue_block_assets` and they are not needed here.
+	//
+	// If a 5.0+ version of WordPress, enqueue general styles here—before the styles
+	// for the editor are loaded.
+	if ( function_exists( 'wp_common_block_scripts_and_styles' ) && is_admin() ) {
+		enqueue_blocks_stylesheet();
+	}
 
 	// Styles.
 	wp_enqueue_style(
@@ -141,6 +174,15 @@ function enqueue_block_editor_assets() {
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
+	);
+
+	// Enqueue handling of block support for post types.
+	wp_enqueue_script(
+		'bu-blocks-block-support',
+		plugins_url( 'block-support.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
+		true
 	);
 }
 

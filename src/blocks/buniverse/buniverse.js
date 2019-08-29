@@ -7,6 +7,9 @@
 // External dependencies.
 import classnames from 'classnames';
 
+// Internal dependencies.
+import getAllowedFormats from '../../global/allowed-formats';
+
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -32,7 +35,7 @@ const {
 const {
 	InspectorControls,
 	RichText,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -232,7 +235,8 @@ registerBlockType( 'bu/buniverse', {
 								placeholder={ __( 'Add a caption and/or media credit...' ) }
 								value={ caption }
 								onChange={ value => setAttributes( { caption: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'link' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 								keepPlaceholderOnFocus
 							/>
 						</figcaption>

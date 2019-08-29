@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import Background, { BackgroundAttributes } from '../../components/background';
+import getAllowedFormats from '../../global/allowed-formats';
 import themeOptions from '../../global/theme-options';
 
 // WordPress dependencies.
@@ -36,7 +37,7 @@ const {
 	PanelColorSettings,
 	RichText,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {
@@ -213,7 +214,8 @@ registerBlockType( 'bu/pullquote', {
 										placeholder={ __( 'Add quote text…' ) }
 										value={ quote }
 										onChange={ value => setAttributes( { quote: value } ) }
-										formattingControls={ [ 'bold', 'italic', 'link' ] }
+										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 										keepPlaceholderOnFocus
 									/>
 									<RichText
@@ -221,7 +223,8 @@ registerBlockType( 'bu/pullquote', {
 										placeholder={ __( 'Add quote attribution…' ) }
 										value={ cite }
 										onChange={ value => setAttributes( { cite: value } ) }
-										formattingControls={ [ 'bold', 'italic', 'link' ] }
+										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 										keepPlaceholderOnFocus
 									/>
 								<hr />

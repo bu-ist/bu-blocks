@@ -15,6 +15,7 @@ import './editor.scss';
 import Background, { BackgroundAttributes } from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -36,14 +37,17 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select
 } = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
 const {
 	hasSelectedInnerBlock,
 	isBlockSelected,
-} = select( 'core/editor' );
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -172,7 +176,8 @@ registerBlockType( 'editorial/drawer', {
 						</figure>
 					}
 					<RichText
-						formattingControls={ [] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { hed: value } ) }
 						placeholder={ __( 'Enter heading…' ) }
@@ -180,7 +185,8 @@ registerBlockType( 'editorial/drawer', {
 						value={ hed }
 					/>
 					<RichText
-						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { lede: value } ) }
 						placeholder={ __( 'Enter text…' ) }
@@ -189,7 +195,8 @@ registerBlockType( 'editorial/drawer', {
 					/>
 					<div className="wp-block-editorial-drawer-open-wrapper">
 						<RichText
-							formattingControls={ [] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 							keepPlaceholderOnFocus={ true }
 							className="button js-bu-block-drawer-open"
 							onChange={ value => setAttributes( { button: value } ) }

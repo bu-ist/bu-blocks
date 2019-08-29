@@ -14,6 +14,7 @@ import './editor.scss';
 // Internal dependencies.
 import Background, { BackgroundAttributes } from '../../components/background';
 import ShareTools, { ShareToolsAttributes } from '../../components/share-tools';
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -35,7 +36,7 @@ const {
 	InspectorControls,
 	RichText,
 	PlainText,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -218,7 +219,8 @@ registerBlockType( 'editorial/listicle', {
 								value={ credit }
 								onChange={ value => setAttributes( { credit: value } ) }
 								placeholder={ __( 'Add Photo or Video Credit…' ) }
-								formattingControls={ [ 'bold', 'italic', 'link' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 								keepPlaceholderOnFocus
 							/>
 						</figure>
@@ -242,7 +244,8 @@ registerBlockType( 'editorial/listicle', {
 									placeholder={ __( 'Add Title…' ) }
 									value={ hed }
 									onChange={ value => setAttributes( { hed: value } ) }
-									formattingControls={ [ 'bold', 'italic' ] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 								/>
 								<RichText
 									tagName="h4"
@@ -250,7 +253,8 @@ registerBlockType( 'editorial/listicle', {
 									placeholder={ __( 'Add Subtitle…' ) }
 									value={ dek }
 									onChange={ value => setAttributes( { dek: value } ) }
-									formattingControls={ [ 'bold', 'italic' ] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 								/>
 							</div>
 						</header>
@@ -262,7 +266,8 @@ registerBlockType( 'editorial/listicle', {
 								placeholder={ __( 'Add Content… lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in dictum felis. Nullam gravida dui nunc, vitae tristique ex pellentesque at. Suspendisse id porttitor metus. Nullam et ipsum hendrerit urna mattis porttitor at in leo.' ) }
 								value={ content }
 								onChange={ value => setAttributes( { content: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'link' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 							/>
 							<div className="wp-block-editorial-listicle-section-meta">
 								{ ( hasAsideContent || isSelected ) && (
@@ -272,7 +277,8 @@ registerBlockType( 'editorial/listicle', {
 											placeholder={ __( 'Add Sidebar (Optional)…' ) }
 											value={ aside }
 											onChange={ value => setAttributes( { aside: value } ) }
-											formattingControls={ [ 'bold', 'italic', 'link' ] }
+											formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+											allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 										/>
 									</aside>
 								) }
@@ -291,7 +297,8 @@ registerBlockType( 'editorial/listicle', {
 									placeholder={ __( 'Enter Related Stories List…' ) }
 									value={ related }
 									onChange={ ( value ) => setAttributes( { related: value } ) }
-									formattingControls={ [ 'link' ] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [ 'link' ] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/link' ] ) }
 								/>
 							</footer>
 						) }
