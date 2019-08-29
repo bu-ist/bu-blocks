@@ -79,39 +79,39 @@ $scope: blocks-get( 'scope' );
 			z-index: -1;
 		}
 
-		&.has-opacity-10:before { 
+		&.has-opacity-10:before {
 			opacity: .1;
 		}
 
-		&.has-opacity-20:before { 
+		&.has-opacity-20:before {
 			opacity: .2;
 		}
 
-		&.has-opacity-30:before { 
+		&.has-opacity-30:before {
 			opacity: .3;
 		}
 
-		&.has-opacity-40:before { 
+		&.has-opacity-40:before {
 			opacity: .4;
 		}
 
-		&.has-opacity-50:before { 
+		&.has-opacity-50:before {
 			opacity: .5;
 		}
 
-		&.has-opacity-60:before { 
+		&.has-opacity-60:before {
 			opacity: .6;
 		}
 
-		&.has-opacity-70:before { 
+		&.has-opacity-70:before {
 			opacity: .7;
 		}
 
-		&.has-opacity-80:before { 
+		&.has-opacity-80:before {
 			opacity: .8;
 		}
 
-		&.has-opacity-90:before { 
+		&.has-opacity-90:before {
 			opacity: .9;
 		}
 	}
@@ -521,6 +521,46 @@ $scope: blocks-get( 'scope' );
 			@include breakpoint( $xs ) {
 				.container-words-inner {
 					background-color: blocks-get( 'color-secondary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -571,6 +611,46 @@ $scope: blocks-get( 'scope' );
 			@include breakpoint( $xs ) {
 				.container-words-inner {
 					background-color: blocks-get( 'color-tertiary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.9 );
+					}
 				}
 
 				h1,
@@ -694,7 +774,7 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 ////////////////////////////////////////////////////////////////////
-	
+
 	.wp-block-editorial-leadin-caption {
 		font-family: blocks-get( 'font-family-primary');
 	}
