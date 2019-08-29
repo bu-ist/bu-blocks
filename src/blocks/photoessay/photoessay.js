@@ -16,7 +16,6 @@ const {
 	__,
 } = wp.i18n;
 const {
-	createBlock,
 	registerBlockType,
 } = wp.blocks;
 const {
@@ -47,7 +46,6 @@ const {
 // now located in core/block-editor.
 const {
 	updateBlockAttributes,
-	insertBlock,
 	removeBlock,
 } = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
 
@@ -71,8 +69,7 @@ registerBlockType( 'editorial/photoessay', {
 		const { layout } = attributes;
 
 		/**
-		 * Updates the layout attribute and handles any necessary block updates,
-		 * insertions, or removals.
+		 * Updates the layout attribute and handles any necessary block updates or removals.
 		 *
 		 * @param {string} newLayout Currently selected layout option.
 		 */
@@ -85,7 +82,10 @@ registerBlockType( 'editorial/photoessay', {
 			// Get any existing image blocks.
 			const currentBlocks = getBlocksByClientId( clientId )[ 0 ].innerBlocks;
 
-			// Update or insert new blocks accordingly.
+			// Update any existing photoessay-image blocks with the correct class name when
+			// the layout changes. A template applied to the photoessay block provides default
+			// columnClass values for the inner photoessay-image blocks, but will not override
+			// attributes previously assigned to the block.
 			blockClasses.forEach( ( blockClass, i ) => {
 				const existingBlock = currentBlocks[ i ];
 				const newColumnClass = { columnClass: `photo-${blockClass}` };
@@ -93,11 +93,6 @@ registerBlockType( 'editorial/photoessay', {
 				if ( existingBlock ) {
 					// Update the `columnClass` attribute of the existing block at this index.
 					updateBlockAttributes( existingBlock.clientId, newColumnClass );
-				} else {
-					// Otherwise, create and insert a new block.
-					const newBlock = createBlock( 'editorial/photoessay-image', newColumnClass );
-
-					insertBlock( newBlock, i, clientId );
 				}
 			} );
 
@@ -111,9 +106,23 @@ registerBlockType( 'editorial/photoessay', {
 			} );
 		};
 
-		// Set a default layout when the block is first inserted.
+		// Assume an empty template that will be populated based on the number
+		// of blocks expected by the selected layout.
+		let photoTemplate = [];
+
+		// Set a default layout when the block is first inserted and
+		// ensure one photoessay-image block is added to the template.
 		if ( layout === '' ) {
-			onChangeLayout( 'photo-row-thirds-3' );
+			setAttributes( { layout: 'photo-row-thirds-3' } );
+			photoTemplate.push( [ 'editorial/photoessay-image', { columnClass: 'photo-3' } ] );
+		} else {
+			const blockClasses = layout.split( '-' ).splice( 3 );
+
+			// Ensure the photoessay template for this block contains enough
+			// room for the number of expected photoessay-image blocks.
+			blockClasses.forEach( ( blockClass, i ) => {
+				photoTemplate.push( [ 'editorial/photoessay-image', { columnClass: `photo-${blockClass}` } ] );
+			} );
 		}
 
 		return(
@@ -161,6 +170,7 @@ registerBlockType( 'editorial/photoessay', {
 				<div className="wp-block-editorial-photoessay">
 					<div className={ layout }>
 						<InnerBlocks
+							template={ photoTemplate }
 							templateLock="all"
 							allowedBlocks={ [ 'editorial/photoessay-image' ] }
 							templateInsertUpdatesSelection={ false }
