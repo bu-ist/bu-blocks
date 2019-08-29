@@ -56,6 +56,12 @@ $current-map: $blocks-block-button-config;
 $scope: blocks-get( 'scope' );
 
 .publication-#{$scope} {
+	.wp-prepress-layout-article-content p {
+		.wp-block-button {
+			color: inherit;
+		}
+	}
+
 	.wp-block-button {
 		border-radius: blocks-get( 'border-radius' );
 		font-family: blocks-get( 'font-family-tertiary' );
