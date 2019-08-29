@@ -24003,6 +24003,9 @@ a:visited {
     .wp-block-button.is-style-text:hover {
       text-decoration: none; }
 
+.publication-wp .wp-prepress-layout-article-content p .wp-block-button {
+  color: inherit; }
+
 .publication-wp .wp-block-button {
   border-radius: 0; }
 
