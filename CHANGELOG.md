@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.12
+- added theme color styles for pull quote block.
+- added image opacity styles for pull quote.
+- Fix photo essay caption colors in Editor
+- Fix button text color when in `<p>` tag https://github.com/bu-ist/bu-blocks/pull/209
+- Update headline anchor setting https://github.com/bu-ist/bu-blocks/pull/207
+- Only call `onChange` on Background component if it exists as a function #206
+- Use post date as pre-formatted in related stories list #205
+- Remove unused "Sample" and "Block" blocks #204
+- Add Post Type Block Filtering: https://github.com/bu-ist/bu-blocks/pull/199
+
+
 ## 0.2.11
 - Fix editor bugs in Click to tweet Block
   - Twitter icons now use Dashicons in Editor and BU Icons on frontend

@@ -126,6 +126,15 @@ function enqueue_block_editor_assets() {
 		true // Enqueue the script in the footer.
 	);
 
+	// Enqueue handling of block support for post types.
+	wp_enqueue_script(
+		'bu-blocks-block-support',
+		plugins_url( 'block-support.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
+		true
+	);
+
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-editor-css', // Handle.

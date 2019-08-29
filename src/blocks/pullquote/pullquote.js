@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import Background, { BackgroundAttributes } from '../../components/background';
+import themeOptions from '../../global/theme-options';
 
 // WordPress dependencies.
 const {
@@ -32,7 +33,9 @@ const {
 } = wp.components;
 const {
 	InspectorControls,
+	PanelColorSettings,
 	RichText,
+	withColors,
 } = wp.editor;
 
 // Returns true if the current block style is "Default".
@@ -40,8 +43,15 @@ const isStyleDefault = ( className ) => {
 	return ( ! className.includes( 'is-style-modern' ) && ! className.includes( 'is-style-pop' ) );
 };
 
-// Returns the class list for the block based on the current settings.
-const getClasses = ( className, backgroundId, imageFocus ) => {
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className    The classnames assigned to the block
+ * @param {number} backgroundId ID of the background media, if set.
+ * @param {string} imageFocus   Value of the "Crop Media To" setting.
+ * @param {string} themeColor   Value of the "Theme Color" setting.
+ */
+const getClasses = ( className, backgroundId, imageFocus, themeColor ) => {
 	const isStylePop = className.includes( 'is-style-pop' );
 
 	return (
@@ -50,6 +60,7 @@ const getClasses = ( className, backgroundId, imageFocus ) => {
 			{
 				'has-image': ( backgroundId && ! isStylePop ),
 				[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
+				[ `has-${themeColor}-theme` ]: themeColor,
 			}
 		)
 	);
@@ -85,6 +96,10 @@ registerBlockType( 'bu/pullquote', {
 		className: {
 			type: 'string',
 		},
+		themeColor: {
+			type: 'string',
+			default: '',
+		},
 		...BackgroundAttributes,
 	},
 	styles: [
@@ -103,12 +118,14 @@ registerBlockType( 'bu/pullquote', {
 		},
 	],
 
-	edit( props ) {
+	edit: withColors( 'themeColor' )( props => {
 		// Get the block properties.
 		const {
 			attributes,
 			setAttributes,
 			className,
+			setThemeColor,
+			themeColor,
 		} = props;
 
 		// Get the block attributes.
@@ -152,9 +169,22 @@ registerBlockType( 'bu/pullquote', {
 		return (
 			<Fragment>
 				<InspectorControls>
+					<PanelColorSettings
+						title={ __( 'Theme Color' ) }
+						initialOpen={ false }
+						colorSettings={ [
+							{
+								value: themeColor.color,
+								onChange: setThemeColor,
+								label: __( 'Theme' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+						] }
+					/>
 					{ mediaPositioningControls() }
 				</InspectorControls>
-				<div className={ getClasses( className, backgroundId, imageFocus ) }>
+				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
 					{ isStyleDefault( className ) && (
 						<Background
 							allowedMediaTypes={ allowedMedia }
@@ -201,7 +231,7 @@ registerBlockType( 'bu/pullquote', {
 				</div>
 			</Fragment>
 		);
-	},
+	} ),
 
 	save( props ) {
 		// Get the block properties.
@@ -216,11 +246,12 @@ registerBlockType( 'bu/pullquote', {
 			imageFocus,
 			backgroundId,
 			className = '', // Assign default in case the unpacked value is `undefined`.
+			themeColor,
 		} = attributes;
 
 		// Returns the block rendering for the front end.
 		return (
-			<div className={ getClasses( className, backgroundId, imageFocus ) }>
+			<div className={ getClasses( className, backgroundId, imageFocus, themeColor ) }>
 				{ isStyleDefault( className ) && (
 					<figure>
 						<Background
