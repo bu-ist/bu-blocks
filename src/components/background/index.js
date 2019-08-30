@@ -38,7 +38,7 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	getAuthority,
 	getPath,
@@ -166,8 +166,11 @@ function Background( props ) {
 			backgroundCaption: media.caption,
 		} );
 
-		// Let the block code take care of any further handling.
-		props.onChange( media, mediaType );
+		// If an `onChange` attribute is part of the Background component, ensure
+		// that fires as expected.
+		if ( 'function' === typeof props.onChange ) {
+			props.onChange( media, mediaType );
+		}
 	};
 
 	// Set attributes based on a selected URL.

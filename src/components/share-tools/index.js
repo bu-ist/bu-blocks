@@ -20,7 +20,7 @@ const {
 } = wp.components;
 const {
 	InspectorControls,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Share tools attributes.
 const ShareToolsAttributes = {

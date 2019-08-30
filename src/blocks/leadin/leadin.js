@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies
 import themeOptions from '../../global/theme-options';
+import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 import Background, { BackgroundAttributes } from '../../components/background';
 
@@ -40,7 +41,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	applyFilters,
 } = wp.hooks;
@@ -369,7 +370,8 @@ registerBlockType( 'bu/leadin', {
 									placeholder={ __( 'Add headline' ) }
 									value={ head }
 									onChange={ value => setAttributes( { head: value } ) }
-									formattingControls={ [ 'bold', 'italic' ] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 									keepPlaceholderOnFocus
 								/>
 								{ ( ! RichText.isEmpty( deck ) || isSelected ) && (
@@ -379,7 +381,8 @@ registerBlockType( 'bu/leadin', {
 										placeholder={ __( 'Add subheader (optional)' ) }
 										value={ deck }
 										onChange={ value => setAttributes( { deck: value } ) }
-										formattingControls={ [ 'bold', 'italic' ] }
+										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 									/>
 								) }
 							</div>
@@ -392,7 +395,8 @@ registerBlockType( 'bu/leadin', {
 							placeholder={ __( 'Add a caption and/or media credit...' ) }
 							value={ caption }
 							onChange={ value => setAttributes( { caption: value } ) }
-							formattingControls={ [ 'bold', 'italic', 'link' ] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 							keepPlaceholderOnFocus
 						/>
 					) }

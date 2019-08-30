@@ -15,6 +15,7 @@ import './editor.scss';
 import HeadingToolbar from './heading-toolbar';
 import './pretext-format.js'
 import './posttext-format.js'
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -29,10 +30,17 @@ const {
 const {
 	RichText,
 	BlockControls,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select,
 } = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getBlocks,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+
 const {
 	applyFilters,
 } = wp.hooks;
@@ -95,16 +103,14 @@ registerBlockType( 'editorial/headline', {
 	],
 
 	edit( props ) {
-		const { attributes, setAttributes, className, clientId } = props;
+		const { attributes, setAttributes, className } = props;
 		const { content, level, anchor } = attributes;
 		const tagName = 'h' + level;
 
 		// Generate an index-based value for the anchor attribute if it is not set.
 		if ( ! anchor ) {
-			const allBlocks = select( 'core/editor' ).getBlocks();
-			const headlineBlocks = allBlocks.filter( e => e.name === 'editorial/headline' );
-			const HeadlineIndex = headlineBlocks.findIndex( e => e.clientId === clientId );
-			const id = 'headline-' + ( HeadlineIndex + 1 );
+			const headlineBlocks = getBlocks().filter( e => e.name === 'editorial/headline' );
+			const id = 'headline-' + ( headlineBlocks.length );
 
 			setAttributes( { anchor: id } );
 		}
@@ -120,7 +126,9 @@ registerBlockType( 'editorial/headline', {
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
-					formattingControls={ [ 'pretext', 'posttext', 'bold', 'italic' ] }
+					formattingControls={ getAllowedFormats( 'formattingControls', [ 'pretext', 'posttext', 'bold', 'italic' ] ) }
+					allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'editorial/pretext', 'editorial/posttext', 'core/bold', 'core/italic' ] ) }
+					withoutInteractiveFormats={ true }
 				/>
 			</Fragment>
 		);

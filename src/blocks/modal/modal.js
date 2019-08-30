@@ -32,14 +32,18 @@ const {
 	PanelColorSettings,
 	RichText,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select,
 } = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
 const {
 	hasSelectedInnerBlock,
-	isBlockSelected,
-} = select( 'core/editor' );
+	isBlockSelected
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+
 const {
 	applyFilters,
 } = wp.hooks;

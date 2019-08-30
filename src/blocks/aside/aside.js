@@ -29,7 +29,7 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	Fragment,
 } = wp.element;

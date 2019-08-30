@@ -8,6 +8,8 @@
 import './style.scss';
 import './editor.scss';
 
+import getAllowedFormats from '../../global/allowed-formats';
+
 // WordPress dependencies.
 const {
 	__,
@@ -33,7 +35,7 @@ const {
 	MediaUploadCheck,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	applyFilters,
 } = wp.hooks;
@@ -329,7 +331,8 @@ registerBlockType( 'editorial/introparagraph', {
 						value={ list }
 						wrapperClassName="wp-block-editorial-introparagraph-toc"
 						placeholder={ __( 'Enter Teaser Intro List (optional)' ) }
-						formattingControls={ [ 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/link' ] ) }
 					/>
 					<div className="wp-block-editorial-introparagraph-content">
 						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
@@ -338,7 +341,8 @@ registerBlockType( 'editorial/introparagraph', {
 							value= { content }
 							onChange={ content => setAttributes( { content: content } ) }
 							placeholder={ __( 'Write paragraph…' ) }
-							formattingControls={ [ 'bold', 'italic' ] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							unstableOnSplit={
 								insertBlocksAfter ?
 									( before, after, ...blocks ) => {

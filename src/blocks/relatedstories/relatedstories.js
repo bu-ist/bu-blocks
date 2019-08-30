@@ -43,16 +43,11 @@ const {
 	BlockAlignmentToolbar,
 	BlockControls,
 	URLInput,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const {
 	addQueryArgs,
 } = wp.url;
-
-const {
-	format,
-	__experimentalGetSettings, // Used to retrieve date format, watch for deprecation.
-} = wp.date;
 
 const {
 	apiFetch,
@@ -313,7 +308,7 @@ registerBlockType( 'editorial/relatedstories', {
 							<h4 className="wp-block-editorial-relatedstories-article-title">
 								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ decodeEntities( post.title ) }</a>
 							</h4>
-							<p className="wp-block-editorial-relatedstories-article-date">{ format( __experimentalGetSettings().formats.date, post.date_gmt ) }</p>
+							<p className="wp-block-editorial-relatedstories-article-date">{ post.date_gmt }</p>
 							{ applyFilters( 'buBlocks.relatedStories.displayListItem', '', post, currentPost ) }
 						</div>
 					</article>
