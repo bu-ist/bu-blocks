@@ -56,7 +56,7 @@ const getClasses = ( className ) => {
 		}
 	);
 
-	return applyFilters( 'buBlocks.photoessay.classNames', blockClasses );
+	return applyFilters( 'buBlocks.photoEssay.classNames', blockClasses );
 };
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
@@ -195,7 +195,7 @@ registerBlockType( 'editorial/photoessay', {
 					</PanelBody>
 				</InspectorControls>
 				<div className={ getClasses( className ) }>
-					{ applyFilters( 'buBlocks.photoessay.afterOpening', '' ) }
+					{ applyFilters( 'buBlocks.photoEssay.afterOpening', '' ) }
 					<div className={ layout }>
 						<InnerBlocks
 							template={ photoTemplate }
@@ -204,7 +204,7 @@ registerBlockType( 'editorial/photoessay', {
 							templateInsertUpdatesSelection={ false }
 						/>
 					</div>
-					{ applyFilters( 'buBlocks.photoessay.beforeClosing', '' ) }
+					{ applyFilters( 'buBlocks.photoEssay.beforeClosing', '' ) }
 				</div>
 			</Fragment>
 		);
@@ -218,11 +218,11 @@ registerBlockType( 'editorial/photoessay', {
 
 		return(
 			<div className={ getClasses( className ) }>
-				{ applyFilters( 'buBlocks.photoessay.afterOpeningOutput', '' ) }
+				{ applyFilters( 'buBlocks.photoEssay.afterOpeningOutput', '' ) }
 				<div className={ layout }>
 					<InnerBlocks.Content />
 				</div>
-				{ applyFilters( 'buBlocks.photoessay.beforeClosingOutput', '' ) }
+				{ applyFilters( 'buBlocks.photoEssay.beforeClosingOutput', '' ) }
 			</div>
 		);
 	},

@@ -90,7 +90,7 @@ const getClasses = ( className, hasDropCapStyle, dropCapColor, paragraphColor ) 
 		[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
 	} );
 
-	return applyFilters( 'buBlocks.introparagraph.classNames', blockClasses );
+	return applyFilters( 'buBlocks.introParagraph.classNames', blockClasses );
 };
 
 // Register the block.
@@ -317,7 +317,7 @@ registerBlockType( 'editorial/introparagraph', {
 					{ hasDropCapStyle && isImageDropCap && renderDropCapImageSettings() }
 				</InspectorControls>
 				<div className={ getClasses( className, hasDropCapStyle, dropCapColor.slug, paragraphColor.slug ) }>
-					{ applyFilters( 'buBlocks.introparagraph.afterOpening', '' ) }
+					{ applyFilters( 'buBlocks.introParagraph.afterOpening', '' ) }
 					<PlainText
 						tagname='h4'
 						value={ heading }
@@ -356,7 +356,7 @@ registerBlockType( 'editorial/introparagraph', {
 							}
 						/>
 					</div>
-					{ applyFilters( 'buBlocks.introparagraph.beforeClosing', '' ) }
+					{ applyFilters( 'buBlocks.introParagraph.beforeClosing', '' ) }
 				</div>
 			</Fragment>
 		);
@@ -396,7 +396,7 @@ registerBlockType( 'editorial/introparagraph', {
 
 		return (
 			<div className={ getClasses( className, hasDropCapStyle, dropCapColor, paragraphColor ) }>
-				{ applyFilters( 'buBlocks.introparagraph.afterOpeningOutput', '' ) }
+				{ applyFilters( 'buBlocks.introParagraph.afterOpeningOutput', '' ) }
 				{ ! RichText.isEmpty( heading ) && (
 					<RichText.Content tagName="h4" value={ heading } />
 				) }
@@ -417,7 +417,7 @@ registerBlockType( 'editorial/introparagraph', {
 						/>
 					</div>
 				) }
-				{ applyFilters( 'buBlocks.introparagraph.beforeClosingOutput', '' ) }
+				{ applyFilters( 'buBlocks.introParagraph.beforeClosingOutput', '' ) }
 			</div>
 		);
 	},

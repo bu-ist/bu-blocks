@@ -415,7 +415,7 @@ registerBlockType( 'editorial/relatedstories', {
 				cardCountClass,
 			);
 
-			return applyFilters( 'buBlocks.relatedstories.classNames', blockClasses );
+			return applyFilters( 'buBlocks.relatedStories.classNames', blockClasses );
 		}
 
 		return (
