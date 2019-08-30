@@ -30,6 +30,7 @@ const {
 	PanelBody,
 	Path,
 	SelectControl,
+	TextControl,
 	SVG,
 } = wp.components;
 const {
@@ -85,6 +86,11 @@ registerBlockType( 'bu/pullquote', {
 			source: 'children',
 			selector: '.quote-sizing'
 		},
+		photoCredit: {
+			type: 'string',
+			source: 'text',
+			selector: '.wp-component-photo-credit',
+		},
 		cite: {
 			type: 'array',
 			source: 'children',
@@ -133,6 +139,7 @@ registerBlockType( 'bu/pullquote', {
 		const {
 			quote,
 			cite,
+			photoCredit,
 			imageFocus,
 			backgroundId,
 		} = attributes;
@@ -170,6 +177,13 @@ registerBlockType( 'bu/pullquote', {
 		return (
 			<Fragment>
 				<InspectorControls>
+					<PanelBody title={ __( 'Media Options' ) } >
+						<TextControl
+							label={ __( 'Media Credit' ) }
+							onChange={ photoCredit => setAttributes( { photoCredit } ) }
+							value={ photoCredit }
+						/>
+					</PanelBody>
 					<PanelColorSettings
 						title={ __( 'Theme Color' ) }
 						initialOpen={ false }
@@ -187,11 +201,15 @@ registerBlockType( 'bu/pullquote', {
 				</InspectorControls>
 				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
 					{ isStyleDefault( className ) && (
-						<Background
-							allowedMediaTypes={ allowedMedia }
-							blockProps={ props }
-							placeholderText={ __( 'Add Image' ) }
-						/>
+						<Fragment>
+							<Background
+								allowedMediaTypes={ allowedMedia }
+								blockProps={ props }
+								placeholderText={ __( 'Add Image' ) }
+							/>
+
+
+						</Fragment>
 					) }
 					<blockquote>
 						<div className="container-lockup">
@@ -247,6 +265,7 @@ registerBlockType( 'bu/pullquote', {
 			quote,
 			cite,
 			imageFocus,
+			photoCredit,
 			backgroundId,
 			className = '', // Assign default in case the unpacked value is `undefined`.
 			themeColor,
@@ -260,6 +279,9 @@ registerBlockType( 'bu/pullquote', {
 						<Background
 							blockProps={ props }
 						/>
+						<div className="wp-component-photo-credit">
+							{ photoCredit }
+						</div>
 					</figure>
 				) }
 				<blockquote>
