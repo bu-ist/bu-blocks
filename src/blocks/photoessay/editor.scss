@@ -28,10 +28,6 @@
 		margin-left: 0;
 		margin-right: 0;
 	}
-	.wp-block {
-		float: left;
-		max-width: none;
-	}
 }
 
 .wp-block-photoessay .editor-block-list__layout {
@@ -95,6 +91,12 @@
 
 .wp-block-photoessay-media {
 	padding: 0;
+}
+
+
+.editor-block-list__block[class*="photo-"] {
+	float: left;
+	max-width: none;
 }
 
 // Layout options styles.
