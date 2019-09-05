@@ -37,6 +37,9 @@ const {
 	RichText,
 	PlainText,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	applyFilters,
+} = wp.hooks;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -48,18 +51,16 @@ const {
  * @param {boolean} backgroundAutoplay Whether the background video is set to autoplay.
  */
 const getClasses = ( className, number, aside, backgroundUrl, backgroundAutoplay, divider ) => {
-	return (
-		classnames(
-			className,
-			{
-				'has-number': number,
-				'has-sidebar': aside,
-				'has-media': backgroundUrl,
-				'has-video-as-loop': backgroundAutoplay,
-				'has-no-bottom-divider' : !divider,
-			}
-		)
-	);
+	const blockClasses = classnames( {
+		[ className ]: className,
+		'has-number': number,
+		'has-sidebar': aside,
+		'has-media': backgroundUrl,
+		'has-video-as-loop': backgroundAutoplay,
+		'has-no-bottom-divider' : !divider,
+	} );
+
+	return applyFilters( 'buBlocks.listicle.classNames', blockClasses );
 };
 
 /**
@@ -206,6 +207,7 @@ registerBlockType( 'editorial/listicle', {
 			// Return the block editing interface.
 			return (
 				<section className={ getClasses( className, number, hasAsideContent, backgroundUrl, backgroundAutoplay, divider ) }>
+					{ applyFilters( 'buBlocks.listicle.afterOpening', '' ) }
 					<article className="wp-block-editorial-listicle-article">
 						<figure className="wp-block-editorial-listicle-figure">
 							<Background
@@ -312,6 +314,7 @@ registerBlockType( 'editorial/listicle', {
 							/>
 						</PanelBody>
 					</InspectorControls>
+					{ applyFilters( 'buBlocks.listicle.beforeClosing', '' ) }
 				</section>
 			);
 		};
@@ -341,6 +344,7 @@ registerBlockType( 'editorial/listicle', {
 		// Return the block rendering for the front end.
 		return (
 			<section className={ getClasses( className, number, aside, backgroundUrl, backgroundAutoplay, divider ) }>
+				{ applyFilters( 'buBlocks.listicle.afterOpeningOutput', '' ) }
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
@@ -402,6 +406,7 @@ registerBlockType( 'editorial/listicle', {
 						</footer>
 					) }
 				</article>
+				{ applyFilters( 'buBlocks.listicle.beforeClosingOutput', '' ) }
 			</section>
 		);
 	},

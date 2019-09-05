@@ -43,6 +43,9 @@ const {
 	URLInput,
 	withColors,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -54,19 +57,22 @@ const publication = publicationSlug();
  * @param {string} themeColor The theme color assigned to the block.
  * @param {string} icon       The icon placement.
  */
-const getClasses = ( className, themeColor, icon ) => classnames(
-	'wp-block-button',
-	{
-		[ `${publication}-block-button` ]: publication && publication !== '',
-		[ `has-${themeColor}-theme` ]: themeColor,
-		[ `icon-navigateright ${icon}` ]: icon,
-		[ className ]: className,
-	}
-);
+const getClasses = ( className, themeColor, icon ) => {
+	const blockClasses = classnames(
+		'wp-block-button',
+		{
+			[ className ]: className,
+			[ `${publication}-block-button` ]: publication && publication !== '',
+			[ `has-${themeColor}-theme` ]: themeColor,
+			[ `icon-navigateright ${icon}` ]: icon,
+		}
+	);
+
+	return applyFilters( 'buBlocks.button.classNames', blockClasses );
+};
 
 // Register the block.
 registerBlockType( 'bu/button', {
-
 	title: __( 'Button' ),
 	description: __( 'Prompt visitors to take action with a custom button.' ),
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="none" d="M0 0h24v24H0V0z" /><G><Path fill="#c00" d="M19 6H5L3 8v8l2 2h14l2-2V8l-2-2zm0 10H5V8h14v8z" /></G></SVG>,
@@ -174,6 +180,7 @@ registerBlockType( 'bu/button', {
 						</PanelBody>
 					</InspectorControls>
 				<p>
+					{ applyFilters( 'buBlocks.button.afterOpening', '' ) }
 					<RichText
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
@@ -183,6 +190,7 @@ registerBlockType( 'bu/button', {
 						className={ getClasses( className, themeColor.slug, icon ) }
 						keepPlaceholderOnFocus
 					/>
+					{ applyFilters( 'buBlocks.button.beforeClosing', '' ) }
 				</p>
 				{ isSelected && (
 					<form
@@ -211,12 +219,14 @@ registerBlockType( 'bu/button', {
 
 		return (
 			<p>
+				{ applyFilters( 'buBlocks.button.afterOpeningOutput', '' ) }
 				<RichText.Content
 					tagName="a"
 					className={ getClasses( className, themeColor, icon ) }
 					href={ url }
 					value={ text }
 				/>
+				{ applyFilters( 'buBlocks.button.beforeClosingOutput', '' ) }
 			</p>
 		);
 	},

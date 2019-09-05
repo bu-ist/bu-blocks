@@ -49,6 +49,10 @@ const {
 	isBlockSelected,
 } = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
+const {
+	applyFilters,
+} = wp.hooks;
+
 /**
  * Returns the class list for the block based on the current settings.
  *
@@ -59,19 +63,19 @@ const {
  * @param {string}  themeColor The assigned background color.
  */
 const getClasses = ( background, className, hideTeaser, round, size, themeColor ) => {
-	return (
-		classnames(
-			'js-bu-block-drawer',
-			{
-				'has-hide-teaser': hideTeaser,
-				'is-style-round': round,
-				[ className ]: className,
-				[ `has-${themeColor}-background` ]: themeColor,
-				[ size ]: size && size !== '',
-				'has-media': background,
-			}
-		)
+	const blockClasses = classnames(
+		'js-bu-block-drawer',
+		{
+			[ className ]: className,
+			'has-hide-teaser': hideTeaser,
+			'is-style-round': round,
+			[ `has-${themeColor}-background` ]: themeColor,
+			[ size ]: size && size !== '',
+			'has-media': background,
+		}
 	);
+
+	return applyFilters( 'buBlocks.drawer.classNames', blockClasses );
 };
 
 // Register the block.
@@ -163,6 +167,7 @@ registerBlockType( 'editorial/drawer', {
 
 		return (
 			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+				{ applyFilters( 'buBlocks.drawer.afterOpening', '' ) }
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
@@ -272,6 +277,7 @@ registerBlockType( 'editorial/drawer', {
 						/>
 					</PanelBody>
 				</InspectorControls>
+				{ applyFilters( 'buBlocks.drawer.beforeClosing', '' ) }
 			</aside>
 		);
 	} ),
@@ -294,6 +300,7 @@ registerBlockType( 'editorial/drawer', {
 
 		return (
 			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor ) }>
+				{ applyFilters( 'buBlocks.drawer.afterOpeningOutput', '' ) }
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
@@ -322,6 +329,7 @@ registerBlockType( 'editorial/drawer', {
 						</div>
 					</div>
 				</section>
+				{ applyFilters( 'buBlocks.drawer.beforeClosingOutput', '' ) }
 			</aside>
 		);
 	},

@@ -17,6 +17,8 @@ add_action( 'init', __NAMESPACE__ . '\\register_block' );
  * @param bool  $style_emphasize_text  Whether the emphasize text style is applied to the block.
  * @param bool  $style_text_over_image Whether the text over image style is applied to the block.
  * @param bool  $style_side_by_side    Whether the side by side style is applied to the block.
+ * @param bool  $style_image_to_text   Whether the Text over Horizontal Image style is applied.
+ * @param bool  $style_text_to_image   Whether the Horizontal Image over Text style is applied.
  *
  * @return string A space separated string of class names.
  */
@@ -46,11 +48,12 @@ function get_block_classes( $attributes, $style_emphasize_text, $style_text_over
 	// Turn classes array into a space delimited string before returning.
 	$classes = implode( ' ', $classes );
 
-	return $classes;
+	// Allow the class list to be filterable.
+	return apply_filters( 'bu_blocks_leadin_classnames', $classes );
 }
 
 /**
- * Renders the `core/latest-posts` block on server.
+ * Renders the `bu/leadin` block on server.
  *
  * @param array $attributes The block attributes.
  *
@@ -102,8 +105,8 @@ function render_block( $attributes ) {
 	ob_start();
 	?>
 	<div class="<?php echo esc_attr( $classes ); ?>">
+		<?php echo apply_filters( 'bu_blocks_leadin_after_opening', '' ); // WPCS: XSS ok. ?>
 		<div class="container-lockup">
-
 			<div class="wp-block-leadin-media">
 				<?php if ( $attributes['url'] && empty( $attributes['head'] ) ) : ?>
 					<a href="<?php echo esc_url( $attributes['url'] ); ?>">
@@ -119,7 +122,6 @@ function render_block( $attributes ) {
 			<?php if ( $attributes['caption'] && ( $style_default || $style_image_to_text || $style_side_by_side ) ) : ?>
 				<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 			<?php endif; ?>
-
 
 			<?php if ( $attributes['head'] || $attributes['deck'] ) : ?>
 
@@ -157,6 +159,8 @@ function render_block( $attributes ) {
 		<?php if ( $attributes['caption'] && $style_text_to_image || $style_text_over_image ) : ?>
 			<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 		<?php endif; ?>
+
+		<?php echo apply_filters( 'bu_blocks_leadin_before_closing', '' ); // WPCS: XSS ok. ?>
 
 	</div>
 

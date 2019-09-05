@@ -193,25 +193,27 @@ registerBlockType( 'bu/leadin', {
 		const isStyleImageToText = className.includes( 'is-style-image-to-text' );
 		const publication = publicationSlug();
 
-		const classes = classnames(
-			'wp-block-editorial-leadin',
-			{
-				[ `${publication}-block-editorial-leadin` ]: publication !== '',
-			},
-			className,
-			{
-				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
-				'has-wider': wide && isStyleSideBySide,
-				'has-flip': flip && isStyleSideBySide,
-				'has-media': backgroundUrl,
-				'has-video-as-loop': backgroundAutoplay,
-				'has-video-uncropped': videoUncropped,
-				[ `has-media-focus-${imageFocus}` ]: imageFocus,
-				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
-				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
-				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
-			}
-		);
+		const getClasses = () => {
+			blockClasses = classnames(
+				'wp-block-editorial-leadin',
+				className,
+				{
+					[ `${publication}-block-editorial-leadin` ]: publication !== '',
+					'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
+					'has-wider': wide && isStyleSideBySide,
+					'has-flip': flip && isStyleSideBySide,
+					'has-media': backgroundUrl,
+					'has-video-as-loop': backgroundAutoplay,
+					'has-video-uncropped': videoUncropped,
+					[ `has-media-focus-${imageFocus}` ]: imageFocus,
+					[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
+					[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
+					[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+				}
+			);
+
+			return applyFilters( 'buBlocks.leadin.classNames', blockClasses );
+		};
 
 		const boxClasses = classnames(
 			'container-words-inner',
@@ -351,7 +353,8 @@ registerBlockType( 'bu/leadin', {
 		// Return the block editing interface.
 		return (
 			<Fragment>
-				<div className={ classes }>
+				<div className={ getClasses() }>
+					{ applyFilters( 'buBlocks.leadin.afterOpening', '' ) }
 					<div className="container-lockup">
 						<div className="wp-block-leadin-media">
 							<Background
@@ -397,6 +400,7 @@ registerBlockType( 'bu/leadin', {
 							keepPlaceholderOnFocus
 						/>
 					) }
+					{ applyFilters( 'buBlocks.leadin.beforeClosing', '' ) }
 				</div>
 
 				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar ) }

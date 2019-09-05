@@ -14,21 +14,46 @@ import './editor.scss';
 
 // Internal dependencies.
 import RegisterBlockPreset from '../../global/register-block-preset.js';
+import themeOptions from '../../global/theme-options.js';
+import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
 const {
-	getColorClassName,
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
 	InnerBlocks,
+	InspectorControls,
+	PanelColorSettings,
+	withColors,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	Fragment,
+} = wp.element;
+const {
+	applyFilters,
+} = wp.hooks;
 
-// Internal dependencies.
-import edit from './edit.js';
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className  Classes assigned to the block.
+ * @param {string} themeColor The theme color assigned to the block.
+ */
+const getClasses = ( className, themeColor ) => {
+	const blockClasses = classnames( {
+		[ className ]: className,
+		[ `has-${themeColor}-background` ]: themeColor,
+	} );
+
+	return applyFilters( 'buBlocks.aside.classNames', blockClasses );
+};
 
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
-
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
 	icon: 'format-aside',
@@ -42,19 +67,52 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 		},
 	},
 
-	edit,
-
-	save( { attributes, className } ) {
-		const { themeColor } = attributes;
-
-		const classes = classnames(
+	edit: withColors( 'themeColor' )( props => {
+		const {
 			className,
-			{ [ getColorClassName( 'background', themeColor ) ]: getColorClassName( 'background', themeColor ) }
-		);
+			themeColor,
+			setThemeColor,
+			presetTemplate,
+		} = props;
 
 		return (
-			<aside className={ classes }>
+			<Fragment>
+				<InspectorControls>
+					<PanelColorSettings
+						title={ __( 'Color Settings' ) }
+						colorSettings={ [
+							{
+								value: themeColor.color,
+								onChange: setThemeColor,
+								label: __( 'Theme' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+						] }
+					/>
+				</InspectorControls>
+				<aside className={ getClasses( className, themeColor.slug ) }>
+					{ applyFilters( 'buBlocks.aside.afterOpening', '' ) }
+					<InnerBlocks
+						allowedBlocks={ allowedBlocks() }
+						template={ presetTemplate }
+					/>
+					{ applyFilters( 'buBlocks.aside.beforeClosing', '' ) }
+				</aside>
+			</Fragment>
+		);
+	} ),
+
+	save( { attributes, className } ) {
+		const {
+			themeColor
+		} = attributes;
+
+		return (
+			<aside className={ getClasses( className, themeColor ) }>
+				{ applyFilters( 'buBlocks.aside.afterOpeningOutput', '' ) }
 				<InnerBlocks.Content />
+				{ applyFilters( 'buBlocks.aside.beforeClosingOutput', '' ) }
 			</aside>
 		);
 	},

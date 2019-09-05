@@ -38,6 +38,9 @@ const {
 	dispatch,
 	select,
 } = wp.data;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
@@ -59,14 +62,12 @@ const {
  * @param {number} stats     The number of stat blocks to display.
  */
 const getBlockClasses = ( className, stats ) => {
-	return (
-		classnames(
-			className,
-			{
-				[ `has-${stats}-stats` ]: stats,
-			}
-		)
-	);
+	const blockClasses = classnames( {
+		[ className ]: className,
+		[ `has-${stats}-stats` ]: stats,
+	} );
+
+	return applyFilters( 'buBlocks.stats.classNames', blockClasses );
 };
 
 // Register the block.
@@ -149,6 +150,7 @@ registerBlockType( 'bu/stats', {
 
 		return (
 			<div className={ getBlockClasses( className, stats ) }>
+				{ applyFilters( 'buBlocks.stats.afterOpening', '' ) }
 				<figure className="wp-block-bu-stats-figure">
 					<div className="wp-block-bu-stats-row">
 						<InnerBlocks
@@ -181,6 +183,7 @@ registerBlockType( 'bu/stats', {
 						keepPlaceholderOnFocus
 					/>
 				</figure>
+				{ applyFilters( 'buBlocks.stats.beforeClosing', '' ) }
 			</div>
 		);
 	},
@@ -194,6 +197,7 @@ registerBlockType( 'bu/stats', {
 
 		return (
 			<div className={ getBlockClasses( className, stats ) }>
+				{ applyFilters( 'buBlocks.stats.afterOpeningOutput', '' ) }
 				<figure className="wp-block-bu-stats-figure">
 					<div className="wp-block-bu-stats-row">
 						<InnerBlocks.Content />
@@ -204,6 +208,7 @@ registerBlockType( 'bu/stats', {
 						value={ caption }
 					/>
 				</figure>
+				{ applyFilters( 'buBlocks.stats.beforeClosingOutput', '' ) }
 			</div>
 		);
 	},

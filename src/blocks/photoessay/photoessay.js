@@ -8,6 +8,9 @@
 import './style.scss';
 import './editor.scss';
 
+// External dependencies.
+import classnames from 'classnames';
+
 // Internal dependencies.
 import './photoessay-image';
 
@@ -35,6 +38,26 @@ const {
 	dispatch,
 	select,
 } = wp.data;
+const {
+	applyFilters,
+} = wp.hooks;
+
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string} className  Classes assigned to the block.
+ */
+const getClasses = ( className ) => {
+	const blockClasses = classnames(
+		'wp-block-photoessay',
+		'js-block-editorial-photoessay',
+		{
+			[ className ]: className,
+		}
+	);
+
+	return applyFilters( 'buBlocks.photoEssay.classNames', blockClasses );
+};
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
@@ -56,6 +79,10 @@ registerBlockType( 'editorial/photoessay', {
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu-editorial',
 	attributes: {
+		className: {
+			type: 'string',
+			default: '',
+		},
 		layout: {
 			type: 'string',
 			default: '',
@@ -65,7 +92,7 @@ registerBlockType( 'editorial/photoessay', {
 		align: [ 'wide', 'full' ],
 	},
 
-	edit( { attributes, setAttributes, clientId } ) {
+	edit( { attributes, setAttributes, clientId, className } ) {
 		const { layout } = attributes;
 
 		/**
@@ -77,7 +104,7 @@ registerBlockType( 'editorial/photoessay', {
 			setAttributes( { layout: newLayout } );
 
 			// Get the image block classes from the information contained in the layout option.
-			const blockClasses = newLayout.split( '-' ).splice( 3 );
+			const childBlockClasses = newLayout.split( '-' ).splice( 3 );
 
 			// Get any existing image blocks.
 			const currentBlocks = getBlocksByClientId( clientId )[ 0 ].innerBlocks;
@@ -86,7 +113,7 @@ registerBlockType( 'editorial/photoessay', {
 			// the layout changes. A template applied to the photoessay block provides default
 			// columnClass values for the inner photoessay-image blocks, but will not override
 			// attributes previously assigned to the block.
-			blockClasses.forEach( ( blockClass, i ) => {
+			childBlockClasses.forEach( ( blockClass, i ) => {
 				const existingBlock = currentBlocks[ i ];
 				const newColumnClass = { columnClass: `photo-${blockClass}` };
 
@@ -98,7 +125,7 @@ registerBlockType( 'editorial/photoessay', {
 
 			// Remove excess blocks if the new layout has fewer images than the previous.
 			currentBlocks.forEach( ( block, i ) => {
-				if ( blockClasses[ i ] ) {
+				if ( childBlockClasses[ i ] ) {
 					return;
 				}
 
@@ -167,7 +194,8 @@ registerBlockType( 'editorial/photoessay', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<div className="wp-block-editorial-photoessay">
+				<div className={ getClasses( className ) }>
+					{ applyFilters( 'buBlocks.photoEssay.afterOpening', '' ) }
 					<div className={ layout }>
 						<InnerBlocks
 							template={ photoTemplate }
@@ -176,19 +204,25 @@ registerBlockType( 'editorial/photoessay', {
 							templateInsertUpdatesSelection={ false }
 						/>
 					</div>
+					{ applyFilters( 'buBlocks.photoEssay.beforeClosing', '' ) }
 				</div>
 			</Fragment>
 		);
 	},
 
 	save( { attributes } ) {
-		const { layout } = attributes;
+		const {
+			className,
+			layout,
+		} = attributes;
 
 		return(
-			<div className="wp-block-photoessay js-block-editorial-photoessay">
+			<div className={ getClasses( className ) }>
+				{ applyFilters( 'buBlocks.photoEssay.afterOpeningOutput', '' ) }
 				<div className={ layout }>
 					<InnerBlocks.Content />
 				</div>
+				{ applyFilters( 'buBlocks.photoEssay.beforeClosingOutput', '' ) }
 			</div>
 		);
 	},
