@@ -1,5 +1,8 @@
 # Changelog
 
+## UNRELEASED
+- Fixes editor side column classes for photo essay, photos now sized correctly
+
 ## 0.2.12
 - added theme color styles for pull quote block.
 - added image opacity styles for pull quote.
