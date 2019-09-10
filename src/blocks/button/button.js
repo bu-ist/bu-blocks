@@ -9,6 +9,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
+import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 
 //  Import CSS.
@@ -41,7 +42,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -177,7 +178,8 @@ registerBlockType( 'bu/button', {
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
 						onChange={ ( value ) => setAttributes( { text: value } ) }
-						formattingControls={ [ 'bold', 'italic' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 						className={ getClasses( className, themeColor.slug, icon ) }
 						keepPlaceholderOnFocus
 					/>

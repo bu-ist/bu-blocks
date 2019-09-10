@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import './stat';
+import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
 const {
@@ -32,11 +33,24 @@ const {
 	InnerBlocks,
 	InspectorControls,
 	RichText,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	dispatch,
 	select,
 } = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getBlocksByClientId,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+
+// Populate actions that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	removeBlock,
+	insertBlock,
+} = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -109,17 +123,17 @@ registerBlockType( 'bu/stats', {
 			setAttributes( { stats: statNumber } );
 
 			// Get the current innerBlocks.
-			const blocks = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks;
+			const blocks = getBlocksByClientId( clientId )[ 0 ].innerBlocks;
 
 			// Remove the last innerBlock if there are more innerBlocks than columns.
 			if ( blocks.length > statNumber && blocks[ statNumber ] ) {
-				dispatch( 'core/editor' ).removeBlock( blocks[ statNumber ].clientId, false );
+				removeBlock( blocks[ statNumber ].clientId, false );
 			} else {
 				// Otherwise, create and insert a new block.
 				const newBlock = createBlock( 'bu/stat', {} );
 				const index = statNumber - 1;
 
-				dispatch( 'core/editor' ).insertBlock( newBlock, index, clientId );
+				insertBlock( newBlock, index, clientId );
 			}
 		};
 
@@ -162,7 +176,8 @@ registerBlockType( 'bu/stats', {
 						placeholder={ __( 'Add a caption (optional)…' ) }
 						value={ caption }
 						onChange={ value => setAttributes( { caption: value } ) }
-						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 						keepPlaceholderOnFocus
 					/>
 				</figure>

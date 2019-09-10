@@ -10,6 +10,8 @@
  * the modal functionality of the photo essay block.
  */
 
+ import getAllowedFormats from '../../global/allowed-formats';
+
 // WordPress dependencies.
 const {
 	__,
@@ -31,7 +33,7 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	addFilter
 } = wp.hooks;
@@ -39,25 +41,11 @@ const {
 	createHigherOrderComponent
 } = wp.compose;
 
-// Add the layout class to the block wrapper component.
-const addColumnClassName = createHigherOrderComponent( ( BlockListBlock ) => {
-	return ( props ) => {
-		const { attributes } = props;
-
-		if ( attributes.columnClass ) {
-			return <BlockListBlock { ...props } className={ attributes.columnClass } />;
-		} else {
-			return <BlockListBlock { ...props } />
-		}
-	};
-},
-'addColumnClassName' );
 
 // Filter the block wrapper component with the `addColumnClassName` function.
 addFilter(
 	'editor.BlockListBlock',
 	'bu-blocks/column-class-name',
-	addColumnClassName
 );
 
 // Register the block.
@@ -99,11 +87,16 @@ registerBlockType( 'editorial/photoessay-image', {
 		reusable: false,
 	},
 
+	getEditWrapperProps( { columnClass } ) {
+		return { className: 'wp-block editor-block-list__block ' + columnClass };
+	},
+
 	edit( { attributes, setAttributes, isSelected } ) {
 		const {
 			id,
 			url,
 			alt,
+			columnClass,
 			caption,
 		} = attributes;
 
@@ -194,7 +187,8 @@ registerBlockType( 'editorial/photoessay-image', {
 						placeholder={ __( 'Add a caption and/or media credit...' ) }
 						value={ caption }
 						onChange={ value => setAttributes( { caption: value } ) }
-						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 						keepPlaceholderOnFocus
 					/>
 				) }
