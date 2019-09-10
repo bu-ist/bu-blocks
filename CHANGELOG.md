@@ -1,7 +1,9 @@
 # Changelog
 
-## UNRELEASED
+## 0.2.13
 - Fixes editor side column classes for photo essay, photos now sized correctly
+- Merges long running branch(s) to update plugin codebase to support upgrade to WP 5.x. from Jeremy Felt.
+- Fixes error causing posttext,pretext format api formats to appear on all toolbars after update branch changes. https://github.com/bu-ist/bu-blocks/pull/222
 
 ## 0.2.12
 - added theme color styles for pull quote block.
