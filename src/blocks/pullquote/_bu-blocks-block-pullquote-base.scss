@@ -16,6 +16,11 @@
 	position: relative;
 	text-align: center;
 	margin-bottom: 1.5em;
+
+	.wp-block-bu-pullquote-inner {
+		position: relative;
+	}
+
 	figure {
 		position: absolute;
 		top: 0;
