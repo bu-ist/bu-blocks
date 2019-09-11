@@ -89,7 +89,7 @@ registerBlockType( 'bu/pullquote', {
 		photoCredit: {
 			type: 'string',
 			source: 'text',
-			selector: '.wp-component-photo-credit',
+			selector: '.wp-component-media-credit',
 		},
 		cite: {
 			type: 'array',
@@ -200,6 +200,7 @@ registerBlockType( 'bu/pullquote', {
 					{ mediaPositioningControls() }
 				</InspectorControls>
 				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
+					<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
 						<Fragment>
 							<Background
@@ -207,8 +208,6 @@ registerBlockType( 'bu/pullquote', {
 								blockProps={ props }
 								placeholderText={ __( 'Add Image' ) }
 							/>
-
-
 						</Fragment>
 					) }
 					<blockquote>
@@ -249,6 +248,13 @@ registerBlockType( 'bu/pullquote', {
 							</div>
 						</div>
 					</blockquote>
+					</div>
+					{ photoCredit && (
+						<div className="wp-component-media-credit">
+							{ photoCredit }
+						</div>
+						)
+					}
 				</div>
 			</Fragment>
 		);
@@ -274,14 +280,12 @@ registerBlockType( 'bu/pullquote', {
 		// Returns the block rendering for the front end.
 		return (
 			<div className={ getClasses( className, backgroundId, imageFocus, themeColor ) }>
+				<div className="wp-block-bu-pullquote-inner">
 				{ isStyleDefault( className ) && (
 					<figure>
 						<Background
 							blockProps={ props }
 						/>
-						<div className="wp-component-photo-credit">
-							{ photoCredit }
-						</div>
 					</figure>
 				) }
 				<blockquote>
@@ -311,6 +315,13 @@ registerBlockType( 'bu/pullquote', {
 						</div>
 					</div>
 				</blockquote>
+				</div>
+				{ photoCredit && (
+					<div className="wp-component-media-credit">
+						{ photoCredit }
+					</div>
+					)
+				}
 			</div>
 		);
 	},
