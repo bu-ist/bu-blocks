@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+- fixes: https://github.com/bu-ist/r-editorial/issues/817
+- Adds a media credit field for the background photo on the pullquote block.
+- renames the pullquote block "BU Pullquote" to distinguish it from the default WP pullquote block
+- Fix a click-through bug with the `pop` style pullquote when the curly quote character div overlaps nearby content preventing clicks on links. `pointer-events:none` should be a sufficient fix in all browsers except old IE.
+
 ## 0.2.13
 - Fixes editor side column classes for photo essay, photos now sized correctly
 - Merges long running branch(s) to update plugin codebase to support upgrade to WP 5.x. from Jeremy Felt.
