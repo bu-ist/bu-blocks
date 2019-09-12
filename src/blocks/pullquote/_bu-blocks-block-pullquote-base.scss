@@ -143,6 +143,7 @@
 			@extend %col-4;
 			display: -ms-flexbox;
 			display: flex;
+			pointer-events: none;
 		}
 		.container-icon-inner {
 			width: 100%;
