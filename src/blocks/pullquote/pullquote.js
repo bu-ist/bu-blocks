@@ -30,6 +30,7 @@ const {
 	PanelBody,
 	Path,
 	SelectControl,
+	TextControl,
 	SVG,
 } = wp.components;
 const {
@@ -72,7 +73,7 @@ const allowedMedia = [ 'image' ];
 
 // Register the block.
 registerBlockType( 'bu/pullquote', {
-	title: __( 'Pullquote' ),
+	title: __( 'BU Pullquote' ),
 	description: __( '' ),
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu',
@@ -84,6 +85,11 @@ registerBlockType( 'bu/pullquote', {
 			type: 'array',
 			source: 'children',
 			selector: '.quote-sizing'
+		},
+		photoCredit: {
+			type: 'string',
+			source: 'text',
+			selector: '.wp-component-media-credit',
 		},
 		cite: {
 			type: 'array',
@@ -133,6 +139,7 @@ registerBlockType( 'bu/pullquote', {
 		const {
 			quote,
 			cite,
+			photoCredit,
 			imageFocus,
 			backgroundId,
 		} = attributes;
@@ -170,6 +177,13 @@ registerBlockType( 'bu/pullquote', {
 		return (
 			<Fragment>
 				<InspectorControls>
+					<PanelBody title={ __( 'Media Options' ) } >
+						<TextControl
+							label={ __( 'Media Credit' ) }
+							onChange={ photoCredit => setAttributes( { photoCredit } ) }
+							value={ photoCredit }
+						/>
+					</PanelBody>
 					<PanelColorSettings
 						title={ __( 'Theme Color' ) }
 						initialOpen={ false }
@@ -186,12 +200,15 @@ registerBlockType( 'bu/pullquote', {
 					{ mediaPositioningControls() }
 				</InspectorControls>
 				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
+					<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
-						<Background
-							allowedMediaTypes={ allowedMedia }
-							blockProps={ props }
-							placeholderText={ __( 'Add Image' ) }
-						/>
+						<Fragment>
+							<Background
+								allowedMediaTypes={ allowedMedia }
+								blockProps={ props }
+								placeholderText={ __( 'Add Image' ) }
+							/>
+						</Fragment>
 					) }
 					<blockquote>
 						<div className="container-lockup">
@@ -231,6 +248,13 @@ registerBlockType( 'bu/pullquote', {
 							</div>
 						</div>
 					</blockquote>
+					</div>
+					{ photoCredit && (
+						<div className="wp-component-media-credit">
+							{ photoCredit }
+						</div>
+						)
+					}
 				</div>
 			</Fragment>
 		);
@@ -247,6 +271,7 @@ registerBlockType( 'bu/pullquote', {
 			quote,
 			cite,
 			imageFocus,
+			photoCredit,
 			backgroundId,
 			className = '', // Assign default in case the unpacked value is `undefined`.
 			themeColor,
@@ -255,6 +280,7 @@ registerBlockType( 'bu/pullquote', {
 		// Returns the block rendering for the front end.
 		return (
 			<div className={ getClasses( className, backgroundId, imageFocus, themeColor ) }>
+				<div className="wp-block-bu-pullquote-inner">
 				{ isStyleDefault( className ) && (
 					<figure>
 						<Background
@@ -289,6 +315,13 @@ registerBlockType( 'bu/pullquote', {
 						</div>
 					</div>
 				</blockquote>
+				</div>
+				{ photoCredit && (
+					<div className="wp-component-media-credit">
+						{ photoCredit }
+					</div>
+					)
+				}
 			</div>
 		);
 	},

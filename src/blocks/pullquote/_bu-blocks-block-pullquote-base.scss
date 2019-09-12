@@ -16,6 +16,11 @@
 	position: relative;
 	text-align: center;
 	margin-bottom: 1.5em;
+
+	.wp-block-bu-pullquote-inner {
+		position: relative;
+	}
+
 	figure {
 		position: absolute;
 		top: 0;
@@ -138,6 +143,7 @@
 			@extend %col-4;
 			display: -ms-flexbox;
 			display: flex;
+			pointer-events: none;
 		}
 		.container-icon-inner {
 			width: 100%;
@@ -168,6 +174,9 @@
 					font-size: 270px;
 				}
 			}
+		}
+		.wp-component-media-credit {
+			margin-top: -2em;
 		}
 		&.has-image {
 			.container-icon-inner {
