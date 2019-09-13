@@ -19575,6 +19575,9 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     color: #fff; }
   .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image .caption {
     color: #fff; }
+  .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image figure {
+    background: #333;
+    margin: 0; }
 
 .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme blockquote::after, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme.has-image blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme.has-image blockquote::after {
   color: #fff; }
