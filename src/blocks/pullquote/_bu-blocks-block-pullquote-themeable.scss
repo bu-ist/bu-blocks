@@ -81,6 +81,10 @@ $scope: blocks-get( 'scope' );
 			.caption {
 				color: blocks-get( 'color-page');
 			}
+			figure {
+				background: $color-grayscale-3;
+				margin: 0;
+			}
 		}
 
 		&.has-light-theme,

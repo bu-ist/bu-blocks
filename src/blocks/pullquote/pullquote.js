@@ -203,11 +203,13 @@ registerBlockType( 'bu/pullquote', {
 					<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
 						<Fragment>
-							<Background
-								allowedMediaTypes={ allowedMedia }
-								blockProps={ props }
-								placeholderText={ __( 'Add Image' ) }
-							/>
+							<figure>
+								<Background
+									allowedMediaTypes={ allowedMedia }
+									blockProps={ props }
+									placeholderText={ __( 'Add Image' ) }
+								/>
+							</figure>
 						</Fragment>
 					) }
 					<blockquote>
