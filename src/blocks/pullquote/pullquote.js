@@ -53,7 +53,7 @@ const isStyleDefault = ( className ) => {
  * @param {string} imageFocus   Value of the "Crop Media To" setting.
  * @param {string} themeColor   Value of the "Theme Color" setting.
  */
-const getClasses = ( className, backgroundId, imageFocus, themeColor ) => {
+const getClasses = ( className, backgroundId, imageFocus, themeColor, textColor ) => {
 	const isStylePop = className.includes( 'is-style-pop' );
 
 	return (
@@ -63,6 +63,7 @@ const getClasses = ( className, backgroundId, imageFocus, themeColor ) => {
 				'has-image': ( backgroundId && ! isStylePop ),
 				[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
 				[ `has-${themeColor}-theme` ]: themeColor,
+				[ `has-${textColor}-theme-text` ]: textColor,
 			}
 		)
 	);
@@ -107,6 +108,10 @@ registerBlockType( 'bu/pullquote', {
 			type: 'string',
 			default: '',
 		},
+		textColor: {
+			type: 'string',
+			default: '',
+		},
 		...BackgroundAttributes,
 	},
 	styles: [
@@ -125,7 +130,7 @@ registerBlockType( 'bu/pullquote', {
 		},
 	],
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: withColors( 'themeColor', 'textColor' )( props => {
 		// Get the block properties.
 		const {
 			attributes,
@@ -133,6 +138,8 @@ registerBlockType( 'bu/pullquote', {
 			className,
 			setThemeColor,
 			themeColor,
+			textColor,
+			setTextColor,
 		} = props;
 
 		// Get the block attributes.
@@ -197,9 +204,22 @@ registerBlockType( 'bu/pullquote', {
 							},
 						] }
 					/>
+					<PanelColorSettings
+						title={ __( 'Text Color' ) }
+						colorSettings={ [
+							{
+								value: textColor.color,
+								onChange: setTextColor,
+								label: __( 'Text Color' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+
+						] }
+					/>
 					{ mediaPositioningControls() }
 				</InspectorControls>
-				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
+				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug, textColor.slug ) }>
 					<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
 						<Fragment>
@@ -277,11 +297,12 @@ registerBlockType( 'bu/pullquote', {
 			backgroundId,
 			className = '', // Assign default in case the unpacked value is `undefined`.
 			themeColor,
+			textColor,
 		} = attributes;
 
 		// Returns the block rendering for the front end.
 		return (
-			<div className={ getClasses( className, backgroundId, imageFocus, themeColor ) }>
+			<div className={ getClasses( className, backgroundId, imageFocus, themeColor, textColor ) }>
 				<div className="wp-block-bu-pullquote-inner">
 				{ isStyleDefault( className ) && (
 					<figure>

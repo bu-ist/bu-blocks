@@ -56,7 +56,56 @@ $current-map: $blocks-block-pullquote-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-bu-pullquote {
+	&.has-light-theme-text blockquote,
+	&.has-light-theme-text.has-image blockquote,
+	&.has-light-theme-text blockquote .caption,
+	&.has-light-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'background-color-light' );
+	}
+
+	&.has-dark-theme-text blockquote,
+	&.has-dark-theme-text.has-image blockquote,
+	&.has-dark-theme-text blockquote .caption,
+	&.has-dark-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'background-color-dark' );
+	}
+
+	&.has-primary-theme-text blockquote,
+	&.has-primary-theme-text.has-image blockquote,
+	&.has-primary-theme-text blockquote .caption,
+	&.has-primary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-primary-text' );
+	}
+
+	&.has-secondary-theme-text blockquote,
+	&.has-secondary-theme-text.has-image blockquote,
+	&.has-secondary-theme-text blockquote .caption,
+	&.has-secondary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-secondary-text' );
+	}
+
+	&.has-tertiary-theme-text blockquote,
+	&.has-tertiary-theme-text.has-image blockquote,
+	&.has-tertiary-theme-text blockquote .caption,
+	&.has-tertiary-theme-text.has-image blockquote .container-text .caption{
+		color: blocks-get( 'color-tertiary-text' );
+	}
+
+	&.has-quaternary-theme-text blockquote,
+	&.has-quaternary-theme-text.has-image blockquote,
+	&.has-quaternary-theme-text blockquote .caption,
+	&.has-quaternary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-quaternary-text' );
+	}
+
+	&.has-quinary-theme-text blockquote,
+	&.has-quinary-theme-text.has-image blockquote,
+	&.has-quinary-theme-text blockquote .caption,
+	&.has-quinary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-quinary-text' );
+	}
 	&:not(.is-style-modern):not(.is-style-pop) {
+
 		blockquote {
 			&::before,
 			&::after {
@@ -66,7 +115,6 @@ $scope: blocks-get( 'scope' );
 		}
 
 		&.has-image {
-			color: blocks-get( 'color-page');
 
 			hr::before,
 			hr::after {
@@ -78,9 +126,6 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-page');
 			}
 
-			.caption {
-				color: blocks-get( 'color-page');
-			}
 			figure {
 				background: $color-grayscale-3;
 				margin: 0;
@@ -143,6 +188,16 @@ $scope: blocks-get( 'scope' );
 				&::before,
 				&::after {
 					color: blocks-get( 'color-quaternary');
+				}
+			}
+		}
+
+		&.has-quinary-theme,
+		&.has-quinary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-quinary');
 				}
 			}
 		}
@@ -218,6 +273,13 @@ $scope: blocks-get( 'scope' );
 				background-color: blocks-get( 'color-quaternary');
 			}
 		}
+
+		&.has-quinary-theme,
+		&.has-quinary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-quinary');
+			}
+		}
 	}
 	&.is-style-pop {
 		background-color: blocks-get( 'background-color-light');
@@ -283,6 +345,14 @@ $scope: blocks-get( 'scope' );
 			.container-icon-inner {
 				&::before {
 					color: blocks-get( 'color-quaternary');
+				}
+			}
+		}
+
+		&.has-quinary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-quinary');
 				}
 			}
 		}
