@@ -8234,7 +8234,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-callout {
   background: #000; }
   .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-content p,
-  .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-callout p {
+  .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-content ul,
+  .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-content ol,
+  .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-callout p,
+  .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-callout ul,
+  .wp-block-editorial-modal.has-dark-theme .wp-block-editorial-modal-callout ol {
     color: #fff; }
 
 .wp-block-editorial-modal.has-light-theme .wp-block-editorial-modal-content,
