@@ -65,6 +65,7 @@
 		// this causes theh parent div to still be full width,
 		// but have height of basically zero
 		float: none;
+		display: inline;
 		max-width: none;
 	}
 
