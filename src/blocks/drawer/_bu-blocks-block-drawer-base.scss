@@ -45,6 +45,8 @@
 	&.is-size-medium,
 	&.is-size-wide {
 		.wp-block-editorial-drawer-teaser {
+			float: none;
+			margin: 0 auto;
 			padding: 10px;
 
 			&::before,
