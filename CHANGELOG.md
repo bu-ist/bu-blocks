@@ -9,6 +9,8 @@
 - Adjusts margin on drawer block
 - Adjusts alignleft and alignright styles for drawer block
 - Adjusts editor styles for drawer block
+- Background Component: add styles for opacity directly on image tags added by the Background Component shared in many blocks. Specifically in this case to add opacity support to the Billboard block.
+
 
 ## 0.2.13
 - Fixes editor side column classes for photo essay, photos now sized correctly

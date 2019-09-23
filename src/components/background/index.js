@@ -12,6 +12,7 @@ import classnames from 'classnames';
 
 // Import CSS.
 import './editor.scss';
+import './style.scss';
 
 // Internal dependencies.
 import BackgroundAttributes from './attributes.js';
