@@ -11,6 +11,7 @@
 - Adjusts alignleft and alignright styles for drawer block
 - Adjusts editor styles for drawer block
 - Background Component: add styles for opacity directly on image tags added by the Background Component shared in many blocks. Specifically in this case to add opacity support to the Billboard block.
+- fixes aggresive crop on photo gallery block in https://github.com/bu-ist/r-editorial/issues/746
 
 
 ## 0.2.13
