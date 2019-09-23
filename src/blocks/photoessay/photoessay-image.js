@@ -110,7 +110,7 @@ registerBlockType( 'editorial/photoessay-image', {
 
 			setAttributes( {
 				id: media.id,
-				url: ( media.sizes['16x9_md'] ) ? media.sizes['16x9_md'].url : media.url,
+				url: ( media.sizes['md'] ) ? media.sizes['md'].url : media.url,
 				alt: media.alt,
 			} );
 		};
