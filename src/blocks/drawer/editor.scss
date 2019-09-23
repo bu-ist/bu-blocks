@@ -27,3 +27,42 @@
 		}
 	}
 }
+
+[data-type="editorial/drawer"] {
+
+	&[data-align="left"],
+	&[data-align="right"] {
+
+		.editor-block-list__block-edit {
+			width: 50%;
+		}
+
+		.wp-block-editorial-drawer {
+
+			&.is-size-narrow,
+			&.is-size-small,
+			&.is-size-medium,
+			&.is-size-wide {
+
+				.wp-block-editorial-drawer-teaser {
+					width: 100%;
+				}
+			}
+		}
+
+		.wp-block-editorial-drawer-teaser {
+
+			&::before,
+			&::after {
+				display: none;
+			}
+		}
+
+		.wp-block-editorial-drawer-content {
+
+			.editor-block-list__block-edit {
+				width: 100%;
+			}
+		}
+	}
+}
