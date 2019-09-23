@@ -103,6 +103,7 @@
 	&.alignleft .wp-block-editorial-drawer-teaser {
 		// float the teaser left, but not the <aside>
 		float: left;
+		margin: 0 0 45px;
 
 		@include breakpoint( $sm ) {
 			margin: 0 30px 20px;
@@ -112,6 +113,7 @@
 	&.alignright .wp-block-editorial-drawer-teaser {
 		// float the teaser right, but not the <aside>
 		float: right;
+		margin: 0 0 45px;
 
 		@include breakpoint( $sm ) {
 			margin: 0 30px 20px;
@@ -232,6 +234,16 @@
 		.wp-block-editorial-drawer-content {
 			display: block;
 			opacity: 1;
+		}
+
+		&.alignleft .wp-block-editorial-drawer-teaser,
+		&.alignright .wp-block-editorial-drawer-teaser {
+			margin-bottom: 0;
+		}
+
+		&.alignleft .wp-block-editorial-drawer-content,
+		&.alignright .wp-block-editorial-drawer-content {
+			margin-bottom: 45px;
 		}
 	}
 
