@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- fixes: https://github.com/bu-ist/r-editorial/issues/816
 - fixes: https://github.com/bu-ist/r-editorial/issues/817
 - Adds a media credit field for the background photo on the pullquote block.
 - renames the pullquote block "BU Pullquote" to distinguish it from the default WP pullquote block

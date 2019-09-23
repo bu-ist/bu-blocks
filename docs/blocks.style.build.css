@@ -21539,19 +21539,62 @@ img.has-background-opacity-100 {
   .wp-block-bu-pullquote .bu-blocks-background.has-background-opacity-90 {
     opacity: 0.9; }
 
+.wp-block-bu-pullquote.has-light-theme-text blockquote,
+.wp-block-bu-pullquote.has-light-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-light-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-light-theme-text.has-image blockquote .container-text .caption {
+  color: #fff; }
+
+.wp-block-bu-pullquote.has-dark-theme-text blockquote,
+.wp-block-bu-pullquote.has-dark-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-dark-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-dark-theme-text.has-image blockquote .container-text .caption {
+  color: #000; }
+
+.wp-block-bu-pullquote.has-primary-theme-text blockquote,
+.wp-block-bu-pullquote.has-primary-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-primary-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-primary-theme-text.has-image blockquote .container-text .caption {
+  color: #666; }
+
+.wp-block-bu-pullquote.has-secondary-theme-text blockquote,
+.wp-block-bu-pullquote.has-secondary-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-secondary-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-secondary-theme-text.has-image blockquote .container-text .caption {
+  color: #666; }
+
+.wp-block-bu-pullquote.has-tertiary-theme-text blockquote,
+.wp-block-bu-pullquote.has-tertiary-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-tertiary-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-tertiary-theme-text.has-image blockquote .container-text .caption {
+  color: #666; }
+
+.wp-block-bu-pullquote.has-quaternary-theme-text blockquote,
+.wp-block-bu-pullquote.has-quaternary-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-quaternary-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-quaternary-theme-text.has-image blockquote .container-text .caption {
+  color: #666; }
+
+.wp-block-bu-pullquote.has-quinary-theme-text blockquote,
+.wp-block-bu-pullquote.has-quinary-theme-text.has-image blockquote,
+.wp-block-bu-pullquote.has-quinary-theme-text blockquote .caption,
+.wp-block-bu-pullquote.has-quinary-theme-text.has-image blockquote .container-text .caption {
+  color: #666; }
+
 .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop) blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop) blockquote::after {
   color: #666; }
 
-.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image {
+.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image hr::before,
+.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image hr::after {
+  background-color: #fff; }
+
+.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image blockquote::before,
+.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image blockquote::after {
   color: #fff; }
-  .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image hr::before,
-  .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image hr::after {
-    background-color: #fff; }
-  .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image blockquote::before,
-  .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image blockquote::after {
-    color: #fff; }
-  .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image .caption {
-    color: #fff; }
+
+.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-image figure {
+  background: #333;
+  margin: 0; }
 
 .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme blockquote::after, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme.has-image blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-light-theme.has-image blockquote::after {
   color: #fff; }
@@ -21569,6 +21612,9 @@ img.has-background-opacity-100 {
   color: #666; }
 
 .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quaternary-theme blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quaternary-theme blockquote::after, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quaternary-theme.has-image blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quaternary-theme.has-image blockquote::after {
+  color: #666; }
+
+.wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quinary-theme blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quinary-theme blockquote::after, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quinary-theme.has-image blockquote::before, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).has-quinary-theme.has-image blockquote::after {
   color: #666; }
 
 .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).alignfull {
@@ -21607,6 +21653,9 @@ img.has-background-opacity-100 {
 .wp-block-bu-pullquote.is-style-modern.has-quaternary-theme .container-icon-inner, .wp-block-bu-pullquote.is-style-modern.has-quaternary-theme.has-image .container-icon-inner {
   background-color: #666; }
 
+.wp-block-bu-pullquote.is-style-modern.has-quinary-theme .container-icon-inner, .wp-block-bu-pullquote.is-style-modern.has-quinary-theme.has-image .container-icon-inner {
+  background-color: #666; }
+
 .wp-block-bu-pullquote.is-style-pop {
   background-color: #fff; }
   .wp-block-bu-pullquote.is-style-pop .container-icon-inner {
@@ -21629,6 +21678,8 @@ img.has-background-opacity-100 {
   .wp-block-bu-pullquote.is-style-pop.has-tertiary-theme .container-icon-inner::before {
     color: #666; }
   .wp-block-bu-pullquote.is-style-pop.has-quaternary-theme .container-icon-inner::before {
+    color: #666; }
+  .wp-block-bu-pullquote.is-style-pop.has-quinary-theme .container-icon-inner::before {
     color: #666; }
 @charset "UTF-8";
 /**
