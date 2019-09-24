@@ -84,10 +84,13 @@ function get_block_posts_manual( $post_ids, $args ) {
 
 	$posts = get_posts(
 		array(
-			'post__in'    => $post_ids,
-			'post_type'   => $args['post_type'],
-			'orderby'     => 'post__in',
-			'numberposts' => $args['per_page'],
+			'post__in'               => $post_ids,
+			'post_type'              => $args['post_type'],
+			'orderby'                => 'post__in',
+			'numberposts'            => $args['per_page'],
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
 		)
 	);
 
