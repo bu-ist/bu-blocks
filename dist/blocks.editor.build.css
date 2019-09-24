@@ -5880,6 +5880,18 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   margin-top: 1.2em; }
   .wp-block-editorial-drawer .wp-block-editorial-drawer-open-wrapper p[role="textbox"]:not(:only-child) {
     height: 28px; }
+
+[data-type="editorial/drawer"][data-align="left"] .editor-block-list__block-edit, [data-type="editorial/drawer"][data-align="right"] .editor-block-list__block-edit {
+  width: 50%; }
+
+[data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer.is-size-narrow .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer.is-size-small .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer.is-size-medium .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer.is-size-wide .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer.is-size-narrow .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer.is-size-small .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer.is-size-medium .wp-block-editorial-drawer-teaser, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer.is-size-wide .wp-block-editorial-drawer-teaser {
+  width: 100%; }
+
+[data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer-teaser::before, [data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer-teaser::after, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer-teaser::before, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer-teaser::after {
+  display: none; }
+
+[data-type="editorial/drawer"][data-align="left"] .wp-block-editorial-drawer-content .editor-block-list__block-edit, [data-type="editorial/drawer"][data-align="right"] .wp-block-editorial-drawer-content .editor-block-list__block-edit {
+  width: 100%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
