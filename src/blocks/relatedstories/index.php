@@ -62,10 +62,20 @@ function get_block_classes( $attributes ) {
  * Retrieve a list of posts from a given set of post IDs.
  *
  * @param array $post_ids A list of post IDs to include.
- * @param array $args     Arguments
+ * @param array $args     Arguments.
  * @return void
  */
 function get_block_posts_manual( $post_ids, $args ) {
+	$post_id = get_the_ID();
+
+	// Check for the manual_related_posts_for_{$post_id} key in the 'bu_blocks' group.
+	$posts = wp_cache_get( "manual_related_posts_for_{$post_id}", 'bu_blocks' );
+
+	// If the posts were found in cache, return them now.
+	if ( $posts ) {
+		return $posts;
+	}
+
 	$defaults = array(
 		'post_type' => '',
 		'per_page'  => 3,
@@ -80,6 +90,9 @@ function get_block_posts_manual( $post_ids, $args ) {
 			'numberposts' => $args['per_page'],
 		)
 	);
+
+	// Cache the results and store for 15 minutes.
+	wp_cache_set( "manual_related_posts_for_{$post_id}", $posts, 'bu_blocks', 15 * MINUTE_IN_SECONDS );
 
 	return $posts;
 }
