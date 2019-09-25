@@ -48,12 +48,7 @@
 		.wp-block-editorial-drawer-teaser {
 			float: none;
 			margin: 0 auto;
-			padding: 10px;
-
-			&::before,
-			&::after {
-				display: none;
-			}
+			//padding: 10px;
 		}
 	}
 
@@ -76,7 +71,7 @@
 		// make the teaser narrower size when
 		// align left and right is set
 
-		@extend %col-sm-third;
+		@extend %col-sm-quarter;
 
 		&::before,
 		&::after {
