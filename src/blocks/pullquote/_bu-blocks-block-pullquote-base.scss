@@ -17,6 +17,16 @@
 	text-align: center;
 	margin-bottom: 1.5em;
 
+
+	.wp-component-media-credit {
+		position: relative;
+		z-index: 2; //ensure credit is on top of any background colors.
+
+		&.align-full {
+			padding-left: 1em;
+			padding-right: 1em;
+		}
+	}
 	.wp-block-bu-pullquote-inner {
 		position: relative;
 	}
@@ -137,6 +147,11 @@
 			display: flex;
 			-ms-flex-direction: row;
 			flex-direction: row;
+			-webkit-flex-wrap: wrap;
+			-moz-flex-wrap: wrap;
+			-ms-flex-wrap: wrap;
+			-o-flex-wrap: wrap;
+			flex-wrap: wrap;
 		}
 		.container-icon-outer {
 			@extend %row-child-styles;
@@ -177,6 +192,7 @@
 		}
 		.wp-component-media-credit {
 			margin-top: -2em;
+			width: 100%;
 		}
 		&.has-image {
 			.container-icon-inner {
