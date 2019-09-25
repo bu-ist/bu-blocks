@@ -268,10 +268,15 @@ registerBlockType( 'bu/pullquote', {
 									/>
 								<hr />
 							</div>
+							{ className.includes( 'is-style-modern' ) && photoCredit && (
+								<div className="wp-component-media-credit">
+									{ photoCredit }
+								</div>
+							) }
 						</div>
 					</blockquote>
 					</div>
-					{ photoCredit && (
+					{ isStyleDefault( className ) && photoCredit && (
 						<div className="wp-component-media-credit">
 							{ photoCredit }
 						</div>
@@ -322,6 +327,7 @@ registerBlockType( 'bu/pullquote', {
 								) }
 							</div>
 						</div>
+
 						<div className="container-text">
 							<hr />
 								<RichText.Content
@@ -336,10 +342,16 @@ registerBlockType( 'bu/pullquote', {
 								/>
 							<hr />
 						</div>
+						{ className.includes( 'is-style-modern' ) && photoCredit && (
+							<div className="wp-component-media-credit">
+								{ photoCredit }
+							</div>
+						) }
 					</div>
 				</blockquote>
 				</div>
-				{ photoCredit && (
+
+				{ isStyleDefault( className ) && photoCredit && (
 					<div className="wp-component-media-credit">
 						{ photoCredit }
 					</div>
