@@ -206,7 +206,7 @@ $scope: blocks-get( 'scope' );
 			background-color: blocks-get( 'background-color-light');
 
 			&.has-image {
-				background-color: blocks-get( 'background-color-dark');
+				background-color: transparent;
 			}
 		}
 	}
