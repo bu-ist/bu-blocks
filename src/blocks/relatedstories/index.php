@@ -8,6 +8,7 @@
 namespace BU\Plugins\BU_Blocks\Blocks\RelatedStories;
 
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
+add_action( 'save_post', __NAMESPACE__ . '\\save_post' );
 
 /**
  * Build a list of class names for the related stories block based
@@ -63,7 +64,8 @@ function get_block_classes( $attributes ) {
  *
  * @param array $post_ids A list of post IDs to include.
  * @param array $args     Arguments.
- * @return void
+ *
+ * @return array
  */
 function get_block_posts_manual( $post_ids, $args ) {
 	$post_id = get_the_ID();
@@ -95,7 +97,7 @@ function get_block_posts_manual( $post_ids, $args ) {
 	);
 
 	// Cache the results and store for 15 minutes.
-	wp_cache_set( "manual_related_posts_for_{$post_id}", $posts, 'bu_blocks', 15 * MINUTE_IN_SECONDS );
+	wp_cache_set( "manual_related_posts_for_{$post_id}", $posts, 'bu_blocks', DAY_IN_SECONDS );
 
 	return $posts;
 }
@@ -300,4 +302,33 @@ function register_block() {
 			'render_callback' => __NAMESPACE__ . '\\render_block',
 		)
 	);
+}
+
+/**
+ * Delete the value of the `manual_related_posts_for_{$post_ID}` key in the
+ * `bu_blocks` cache group when a post with the Related Stories block and
+ * manual posts is saved.
+ *
+ * @param int $post_ID The post ID.
+ */
+function save_post( $post_ID ) {
+	// Bail if this is an autosave or revision.
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_ID ) ) {
+		return;
+	}
+	// Bail if the user doesn't have permissions to edit the page.
+	if ( ! current_user_can( 'edit_post', $post_ID ) ) {
+		return;
+	}
+	// Bail if the post does not have the Related Stories block.
+	if ( ! has_block( 'editorial/relatedstories', $post_ID ) ) {
+		return;
+	}
+	// Bail if there is no cache value for manual related posts.
+	if ( ! wp_cache_get( "manual_related_posts_for_{$post_ID}", 'bu_blocks' ) ) {
+		return;
+	}
+	// Delete the previous cache value for manual related posts.
+	// The cache will be reset on the front end.
+	wp_cache_delete( "manual_related_posts_for_{$post_ID}", 'bu_blocks' );
 }
