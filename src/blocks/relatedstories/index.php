@@ -8,6 +8,7 @@
 namespace BU\Plugins\BU_Blocks\Blocks\RelatedStories;
 
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
+add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
 
 /**
  * Build a list of class names for the related stories block based
@@ -59,6 +60,19 @@ function get_block_classes( $attributes ) {
 }
 
 /**
+ * Build a cache key using the ID of the current post
+ * and the IDs of the manually selected related stories.
+ *
+ * @param int   $post_id  The ID of the current post.
+ * @param array $post_ids The IDs of the manually selected related stories.
+ *
+ * @return string
+ */
+function build_cache_key( $post_id, $post_ids ) {
+	return "manual_related_posts_for_{$post_id}:" . md5( wp_json_encode( $post_ids ) );
+}
+
+/**
  * Retrieve a list of posts from a given set of post IDs.
  *
  * @param array $post_ids A list of post IDs to include.
@@ -67,29 +81,16 @@ function get_block_classes( $attributes ) {
  * @return array
  */
 function get_block_posts_manual( $post_ids, $args ) {
-	$post_id = get_the_ID();
 
-	// Get the value of `last_changed` from the WP core `posts` cache group.
-	// This value is upated when posts are created, updated, deleted, etc.
-	$last_changed = wp_cache_get( 'last_changed', 'posts' );
-
-	// Use the current time if no `last_changed` value was found.
-	if ( ! $last_changed ) {
-		$last_changed = microtime();
-		wp_cache_set( 'last_changed', $last_changed, 'posts' );
-	}
-
-	// Build a cache key using the args to account for the possibility of
-	// multiple manual Related Stories blocks on the same post.
-	$cache_key = "manual_related_posts_for_{$post_id}:" . md5( wp_json_encode( $args ) );
+	// Build a cache key unique to this instance of the block.
+	$cache_key = build_cache_key( get_the_ID(), $post_ids );
 
 	// Check for the cache key in the 'bu_blocks' group.
 	$posts = wp_cache_get( $cache_key, 'bu_blocks' );
 
-	// If a cached value exists and its `last_changed` property matches
-	// WP core's `last_changed`, return its value property.
-	if ( $posts && $last_changed === $posts['last_changed'] ) {
-		return $posts['value'];
+	// Return the cached value if it exists.
+	if ( $posts ) {
+		return $posts;
 	}
 
 	$defaults = array(
@@ -110,14 +111,8 @@ function get_block_posts_manual( $post_ids, $args ) {
 		)
 	);
 
-	// Create an array with the `last_changed` value and the `get_posts` results.
-	$cache_value = array(
-		'last_changed' => $last_changed,
-		'value'        => $posts,
-	);
-
-	// Store the array in cache for a day.
-	wp_cache_set( $cache_key, $cache_value, 'bu_blocks', DAY_IN_SECONDS );
+	// Store the `get_posts` results in cache for a day.
+	wp_cache_set( $cache_key, $posts, 'bu_blocks', DAY_IN_SECONDS );
 
 	return $posts;
 }
@@ -322,4 +317,53 @@ function register_block() {
 			'render_callback' => __NAMESPACE__ . '\\render_block',
 		)
 	);
+}
+
+/**
+ * Delete the value of the `manual_related_posts_for_{$post_ID}` key in the
+ * `bu_blocks` cache group when a post with the Related Stories block and
+ * manual posts is saved.
+ *
+ * @param int     $post_ID The post ID.
+ * @param WP_Post $post    The post object.
+ */
+function save_post( $post_ID, $post ) {
+	// Bail if this is an autosave or revision.
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_ID ) ) {
+		return;
+	}
+
+	// Bail if the user doesn't have permissions to edit the page.
+	if ( ! current_user_can( 'edit_post', $post_ID ) ) {
+		return;
+	}
+
+	// Bail if the post does not have the Related Stories block.
+	if ( ! has_block( 'editorial/relatedstories', $post_ID ) ) {
+		return;
+	}
+
+	// Parse the blocks.
+	$blocks = \bu_blocks_parse_blocks( $post->post_content );
+
+	// Loop through the blocks, skipping all but the
+	// Related Stories blocks with manual posts.
+	foreach ( $blocks as $block ) {
+		if ( 'editorial/relatedstories' !== $block['blockName'] ) {
+			continue;
+		}
+
+		if ( ! $block['attrs']['relatedManual'] || ! $block['attrs']['includePosts'] ) {
+			continue;
+		}
+
+		// Build a cache key unique to this instance of the block.
+		$cache_key = build_cache_key( $post_ID, $block['attrs']['includePosts'] );
+
+		// Delete the cache key if it exists,
+		// allowing for it to be rebuilt on the front end.
+		if ( wp_cache_get( $cache_key, 'bu_blocks' ) ) {
+			wp_cache_delete( $cache_key, 'bu_blocks' );
+		}
+	}
 }
