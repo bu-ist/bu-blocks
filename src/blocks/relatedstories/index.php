@@ -320,9 +320,8 @@ function register_block() {
 }
 
 /**
- * Delete the value of the `manual_related_posts_for_{$post_ID}` key in the
- * `bu_blocks` cache group when a post with the Related Stories block and
- * manual posts is saved.
+ * Delete the value of any existing cache keys for Related Stories blocks
+ * with manually selected stories that the post being saved may contain.
  *
  * @param int     $post_ID The post ID.
  * @param WP_Post $post    The post object.
