@@ -8,7 +8,6 @@
 namespace BU\Plugins\BU_Blocks\Blocks\RelatedStories;
 
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
-add_action( 'save_post', __NAMESPACE__ . '\\save_post' );
 
 /**
  * Build a list of class names for the related stories block based
@@ -70,12 +69,27 @@ function get_block_classes( $attributes ) {
 function get_block_posts_manual( $post_ids, $args ) {
 	$post_id = get_the_ID();
 
-	// Check for the manual_related_posts_for_{$post_id} key in the 'bu_blocks' group.
-	$posts = wp_cache_get( "manual_related_posts_for_{$post_id}", 'bu_blocks' );
+	// Get the value of `last_changed` from the WP core `posts` cache group.
+	// This value is upated when posts are created, updated, deleted, etc.
+	$last_changed = wp_cache_get( 'last_changed', 'posts' );
 
-	// If the posts were found in cache, return them now.
-	if ( $posts ) {
-		return $posts;
+	// Use the current time if no `last_changed` value was found.
+	if ( ! $last_changed ) {
+		$last_changed = microtime();
+		wp_cache_set( 'last_changed', $last_changed, 'posts' );
+	}
+
+	// Build a cache key using the args to account for the possibility of
+	// multiple manual Related Stories blocks on the same post.
+	$cache_key = "manual_related_posts_for_{$post_id}:" . md5( wp_json_encode( $args ) );
+
+	// Check for the cache key in the 'bu_blocks' group.
+	$posts = wp_cache_get( $cache_key, 'bu_blocks' );
+
+	// If a cached value exists and its `last_changed` property matches
+	// WP core's `last_changed`, return its value property.
+	if ( $posts && $last_changed === $posts['last_changed'] ) {
+		return $posts['value'];
 	}
 
 	$defaults = array(
@@ -96,8 +110,14 @@ function get_block_posts_manual( $post_ids, $args ) {
 		)
 	);
 
-	// Cache the results and store for 15 minutes.
-	wp_cache_set( "manual_related_posts_for_{$post_id}", $posts, 'bu_blocks', DAY_IN_SECONDS );
+	// Create an array with the `last_changed` value and the `get_posts` results.
+	$cache_value = array(
+		'last_changed' => $last_changed,
+		'value'        => $posts,
+	);
+
+	// Store the array in cache for a day.
+	wp_cache_set( $cache_key, $cache_value, 'bu_blocks', DAY_IN_SECONDS );
 
 	return $posts;
 }
@@ -302,33 +322,4 @@ function register_block() {
 			'render_callback' => __NAMESPACE__ . '\\render_block',
 		)
 	);
-}
-
-/**
- * Delete the value of the `manual_related_posts_for_{$post_ID}` key in the
- * `bu_blocks` cache group when a post with the Related Stories block and
- * manual posts is saved.
- *
- * @param int $post_ID The post ID.
- */
-function save_post( $post_ID ) {
-	// Bail if this is an autosave or revision.
-	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_ID ) ) {
-		return;
-	}
-	// Bail if the user doesn't have permissions to edit the page.
-	if ( ! current_user_can( 'edit_post', $post_ID ) ) {
-		return;
-	}
-	// Bail if the post does not have the Related Stories block.
-	if ( ! has_block( 'editorial/relatedstories', $post_ID ) ) {
-		return;
-	}
-	// Bail if there is no cache value for manual related posts.
-	if ( ! wp_cache_get( "manual_related_posts_for_{$post_ID}", 'bu_blocks' ) ) {
-		return;
-	}
-	// Delete the previous cache value for manual related posts.
-	// The cache will be reset on the front end.
-	wp_cache_delete( "manual_related_posts_for_{$post_ID}", 'bu_blocks' );
 }
