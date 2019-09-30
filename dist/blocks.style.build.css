@@ -21291,6 +21291,12 @@ img.has-background-opacity-100 {
   position: relative;
   text-align: center;
   margin-bottom: 1.5em; }
+  .wp-block-bu-pullquote .wp-component-media-credit {
+    position: relative;
+    z-index: 2; }
+    .wp-block-bu-pullquote .wp-component-media-credit.align-full {
+      padding-left: 1em;
+      padding-right: 1em; }
   .wp-block-bu-pullquote .wp-block-bu-pullquote-inner {
     position: relative; }
   .wp-block-bu-pullquote figure {
@@ -21371,7 +21377,10 @@ img.has-background-opacity-100 {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
-    flex-direction: row; }
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap; }
   .wp-block-bu-pullquote.is-style-modern .container-icon-outer, .wp-block-bu-pullquote.is-style-pop .container-icon-outer {
     display: -ms-flexbox;
     display: flex;
@@ -21396,7 +21405,8 @@ img.has-background-opacity-100 {
       .wp-block-bu-pullquote.is-style-modern .container-icon-inner::before {
         font-size: 270px; } }
   .wp-block-bu-pullquote.is-style-modern .wp-component-media-credit {
-    margin-top: -2em; }
+    margin-top: -2em;
+    width: 100%; }
   .wp-block-bu-pullquote.is-style-modern.has-image .container-icon-inner {
     color: #fff; }
     .wp-block-bu-pullquote.is-style-modern.has-image .container-icon-inner img {
@@ -21617,7 +21627,7 @@ img.has-background-opacity-100 {
 .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).alignfull {
   background-color: #fff; }
   .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop).alignfull.has-image {
-    background-color: #000; }
+    background-color: transparent; }
 
 .wp-block-bu-pullquote.is-style-modern.alignwide .container-lockup {
   background-color: #fff; }
