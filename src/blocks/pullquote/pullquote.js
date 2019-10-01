@@ -30,6 +30,7 @@ const {
 	PanelBody,
 	Path,
 	SelectControl,
+	TextControl,
 	SVG,
 } = wp.components;
 const {
@@ -52,7 +53,7 @@ const isStyleDefault = ( className ) => {
  * @param {string} imageFocus   Value of the "Crop Media To" setting.
  * @param {string} themeColor   Value of the "Theme Color" setting.
  */
-const getClasses = ( className, backgroundId, imageFocus, themeColor ) => {
+const getClasses = ( className, backgroundId, imageFocus, themeColor, textColor ) => {
 	const isStylePop = className.includes( 'is-style-pop' );
 
 	return (
@@ -62,6 +63,7 @@ const getClasses = ( className, backgroundId, imageFocus, themeColor ) => {
 				'has-image': ( backgroundId && ! isStylePop ),
 				[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
 				[ `has-${themeColor}-theme` ]: themeColor,
+				[ `has-${textColor}-theme-text` ]: textColor,
 			}
 		)
 	);
@@ -72,7 +74,7 @@ const allowedMedia = [ 'image' ];
 
 // Register the block.
 registerBlockType( 'bu/pullquote', {
-	title: __( 'Pullquote' ),
+	title: __( 'BU Pullquote' ),
 	description: __( '' ),
 	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
 	category: 'bu',
@@ -84,6 +86,11 @@ registerBlockType( 'bu/pullquote', {
 			type: 'array',
 			source: 'children',
 			selector: '.quote-sizing'
+		},
+		photoCredit: {
+			type: 'string',
+			source: 'text',
+			selector: '.wp-component-media-credit',
 		},
 		cite: {
 			type: 'array',
@@ -98,6 +105,10 @@ registerBlockType( 'bu/pullquote', {
 			type: 'string',
 		},
 		themeColor: {
+			type: 'string',
+			default: '',
+		},
+		textColor: {
 			type: 'string',
 			default: '',
 		},
@@ -119,7 +130,7 @@ registerBlockType( 'bu/pullquote', {
 		},
 	],
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: withColors( 'themeColor', 'textColor' )( props => {
 		// Get the block properties.
 		const {
 			attributes,
@@ -127,12 +138,15 @@ registerBlockType( 'bu/pullquote', {
 			className,
 			setThemeColor,
 			themeColor,
+			textColor,
+			setTextColor,
 		} = props;
 
 		// Get the block attributes.
 		const {
 			quote,
 			cite,
+			photoCredit,
 			imageFocus,
 			backgroundId,
 		} = attributes;
@@ -170,6 +184,13 @@ registerBlockType( 'bu/pullquote', {
 		return (
 			<Fragment>
 				<InspectorControls>
+					<PanelBody title={ __( 'Media Options' ) } >
+						<TextControl
+							label={ __( 'Media Credit' ) }
+							onChange={ photoCredit => setAttributes( { photoCredit } ) }
+							value={ photoCredit }
+						/>
+					</PanelBody>
 					<PanelColorSettings
 						title={ __( 'Theme Color' ) }
 						initialOpen={ false }
@@ -183,15 +204,33 @@ registerBlockType( 'bu/pullquote', {
 							},
 						] }
 					/>
+					<PanelColorSettings
+						title={ __( 'Text Color' ) }
+						colorSettings={ [
+							{
+								value: textColor.color,
+								onChange: setTextColor,
+								label: __( 'Text Color' ),
+								disableCustomColors: true,
+								colors: themeOptions(),
+							},
+
+						] }
+					/>
 					{ mediaPositioningControls() }
 				</InspectorControls>
-				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug ) }>
+				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug, textColor.slug ) }>
+					<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
-						<Background
-							allowedMediaTypes={ allowedMedia }
-							blockProps={ props }
-							placeholderText={ __( 'Add Image' ) }
-						/>
+						<Fragment>
+							<figure>
+								<Background
+									allowedMediaTypes={ allowedMedia }
+									blockProps={ props }
+									placeholderText={ __( 'Add Image' ) }
+								/>
+							</figure>
+						</Fragment>
 					) }
 					<blockquote>
 						<div className="container-lockup">
@@ -229,8 +268,20 @@ registerBlockType( 'bu/pullquote', {
 									/>
 								<hr />
 							</div>
+							{ className.includes( 'is-style-modern' ) && photoCredit && (
+								<div className="wp-component-media-credit">
+									{ photoCredit }
+								</div>
+							) }
 						</div>
 					</blockquote>
+					</div>
+					{ isStyleDefault( className ) && photoCredit && (
+						<div className="wp-component-media-credit">
+							{ photoCredit }
+						</div>
+						)
+					}
 				</div>
 			</Fragment>
 		);
@@ -247,14 +298,17 @@ registerBlockType( 'bu/pullquote', {
 			quote,
 			cite,
 			imageFocus,
+			photoCredit,
 			backgroundId,
 			className = '', // Assign default in case the unpacked value is `undefined`.
 			themeColor,
+			textColor,
 		} = attributes;
 
 		// Returns the block rendering for the front end.
 		return (
-			<div className={ getClasses( className, backgroundId, imageFocus, themeColor ) }>
+			<div className={ getClasses( className, backgroundId, imageFocus, themeColor, textColor ) }>
+				<div className="wp-block-bu-pullquote-inner">
 				{ isStyleDefault( className ) && (
 					<figure>
 						<Background
@@ -273,6 +327,7 @@ registerBlockType( 'bu/pullquote', {
 								) }
 							</div>
 						</div>
+
 						<div className="container-text">
 							<hr />
 								<RichText.Content
@@ -287,8 +342,21 @@ registerBlockType( 'bu/pullquote', {
 								/>
 							<hr />
 						</div>
+						{ className.includes( 'is-style-modern' ) && photoCredit && (
+							<div className="wp-component-media-credit">
+								{ photoCredit }
+							</div>
+						) }
 					</div>
 				</blockquote>
+				</div>
+
+				{ isStyleDefault( className ) && photoCredit && (
+					<div className="wp-component-media-credit">
+						{ photoCredit }
+					</div>
+					)
+				}
 			</div>
 		);
 	},

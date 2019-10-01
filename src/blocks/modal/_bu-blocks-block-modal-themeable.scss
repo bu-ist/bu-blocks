@@ -75,7 +75,9 @@ $scope: blocks-get( 'scope' );
 		.wp-block-editorial-modal-callout {
 			background: blocks-get( 'background-color-dark' );
 
-			p {
+			p,
+			ul,
+			ol {
 				color: blocks-get( 'font-color-theme-dark' );
 			}
 		}
@@ -93,7 +95,9 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-gray-a' );
 			}
 
-			p {
+			p,
+			ol,
+			ul {
 				color: blocks-get( 'color-gray-b' );
 			}
 
