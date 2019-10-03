@@ -214,13 +214,15 @@ registerBlockType( 'editorial/photoessay-image', {
 							alt={ alt }
 							className={ id ? `wp-image-${ id }` : null }
 						/>
-						{ caption && (
+						{ !RichText.isEmpty( caption ) &&
 							<figcaption>
-								<p class="wp-block-photoessay-media-caption wp-prepress-component-caption">
-									{ caption }
-								</p>
+							<RichText.Content
+								tagName="p"
+								className="wp-block-photoessay-media-caption wp-prepress-component-caption"
+								value={ caption }
+							/>
 							</figcaption>
-						)}
+						}
 					</figure>
 				</div>
 			</div>
