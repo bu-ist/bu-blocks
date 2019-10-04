@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.15
 - fixes a bug that prevented photo essay image captions from rendering HTML (bold/italic) properly. HTML was escaped as text.
 
 ## 0.2.14
