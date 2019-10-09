@@ -146,13 +146,12 @@ module.exports = function( grunt ) {
 		},
 		babel: {
 			options: {
-				//cwd: 'src/components',
 				sourceMap: false,
 				presets: [ '@babel/preset-env', '@babel/preset-react' ]
 			},
 			dist: {
 				files: {
-					'dist/background.js': 'src/components/background/index.js'
+					'dist/blocks.babel.js': 'dist/blocks.build.js'
 				}
 			}
 		},
