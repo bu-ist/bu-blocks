@@ -28,11 +28,3 @@ import './blocks/custom-html/custom-html.js';
 
 // Add the 'Caption' style to the core paragraph block.
 import './components/paragraph-caption-style/paragraph-caption-style.js';
-
-import Background, { BackgroundAttributes, BackgroundOpacityToClass } from './components/background';
-
-export {
-	Background,
-	BackgroundAttributes,
-	BackgroundOpacityToClass,
-}

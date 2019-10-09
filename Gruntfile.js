@@ -151,7 +151,7 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				files: {
-					'dist/blocks.babel.js': 'dist/blocks.build.js'
+					'src/components/background/index.babel.js': 'src/components/background/index.js'
 				}
 			}
 		},
