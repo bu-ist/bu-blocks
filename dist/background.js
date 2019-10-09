@@ -3,21 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "BackgroundAttributes", {
-  enumerable: true,
-  get: function get() {
-    return _attributes["default"];
-  }
-});
-exports["default"] = exports.BackgroundOpacityToClass = void 0;
+exports["default"] = exports.BackgroundOpacityToClass = exports.BackgroundAttributes = void 0;
 
 var _classnames2 = _interopRequireDefault(require("classnames"));
 
 require("./editor.scss");
 
 require("./style.scss");
-
-var _attributes = _interopRequireDefault(require("./attributes.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -47,12 +39,40 @@ var _wp$url = wp.url,
     getPath = _wp$url.getPath,
     getQueryString = _wp$url.getQueryString;
 var isBlobURL = wp.blob.isBlobURL;
-var withState = wp.compose.withState;
+var withState = wp.compose.withState; // Define the background component attributes.
+
+var BackgroundAttributes = {
+  backgroundId: {
+    type: 'number'
+  },
+  backgroundType: {
+    type: 'string'
+  },
+  backgroundUrl: {
+    type: 'string'
+  },
+  backgroundOpacity: {
+    type: 'number',
+    "default": 100
+  },
+  backgroundAlt: {
+    type: 'string'
+  },
+  backgroundCaption: {
+    type: 'string'
+  },
+  backgroundAutoplay: {
+    type: 'boolean',
+    "default": false
+  }
+};
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
  *
  * @param {number} ratio The value of the 'Background Opacity' setting.
 */
+
+exports.BackgroundAttributes = BackgroundAttributes;
 
 var BackgroundOpacityToClass = function BackgroundOpacityToClass(ratio) {
   return ratio === 100 ? null : 'has-background-opacity-' + 10 * Math.round(ratio / 10);

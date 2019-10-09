@@ -14,9 +14,6 @@ import classnames from 'classnames';
 import './editor.scss';
 import './style.scss';
 
-// Internal dependencies.
-import BackgroundAttributes from './attributes.js';
-
 // WordPress dependencies.
 const {
 	__,
@@ -51,6 +48,33 @@ const {
 const {
 	withState,
 } = wp.compose;
+
+// Define the background component attributes.
+const BackgroundAttributes = {
+	backgroundId: {
+		type: 'number',
+	},
+	backgroundType: {
+		type: 'string',
+	},
+	backgroundUrl: {
+		type: 'string',
+	},
+	backgroundOpacity: {
+		type: 'number',
+		default: 100,
+	},
+	backgroundAlt: {
+		type: 'string',
+	},
+	backgroundCaption: {
+		type: 'string',
+	},
+	backgroundAutoplay: {
+		type: 'boolean',
+		default: false,
+	},
+};
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
