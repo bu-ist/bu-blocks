@@ -2,7 +2,7 @@
   "name": "bu-blocks",
   "version": "0.2.15",
   "private": true,
-  "main": "dist/blocks.build.js",
+  "main": "dist/background.js",
   "author": "Boston University: Interactive Design",
   "contributors": [
     "Jeremy Felt <jfelt@bu.edu>",
@@ -20,7 +20,11 @@
     "object-fit-images": "^3.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
     "grunt": "^1.0.4",
+    "grunt-babel": "^8.0.0",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^0.8.0",

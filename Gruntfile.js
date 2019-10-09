@@ -143,10 +143,23 @@ module.exports = function( grunt ) {
 					baseDir: "./docs"
 				}
 			}
-		}
+		},
+		babel: {
+			options: {
+				//cwd: 'src/components',
+				sourceMap: false,
+				presets: [ '@babel/preset-env', '@babel/preset-react' ]
+			},
+			dist: {
+				files: {
+					'dist/background.js': 'src/components/background/index.js'
+				}
+			}
+		},
 	} );
 
 	// 3. Where we tell Grunt we plan to use this plug-in.
+	grunt.loadNpmTasks( 'grunt-babel' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
@@ -158,10 +171,10 @@ module.exports = function( grunt ) {
 	// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask( 'i18n', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'readme', [ 'wp_readme_to_markdown' ] );
-	grunt.registerTask( 'install',  [ 'build' ] );
-	grunt.registerTask( 'styles',   [ 'kss', 'copy:css', 'copy:kssassets' ] );
-	grunt.registerTask( 'build',    [ 'styles', 'kss', 'concat', 'copy:css', 'copy:js', 'copy:kssassets'  ] );
-	grunt.registerTask( 'default',  [ 'kss', 'browserSync', 'watch' ] );
+	grunt.registerTask( 'install', [ 'build' ] );
+	grunt.registerTask( 'styles', [ 'kss', 'copy:css', 'copy:kssassets' ] );
+	grunt.registerTask( 'build', [ 'styles', 'kss', 'concat', 'copy:css', 'copy:js', 'copy:kssassets', 'babel' ] );
+	grunt.registerTask( 'default', [ 'kss', 'browserSync', 'watch' ] );
 
 	grunt.util.linefeed = '\n';
 };
