@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.2.15
+- fixes a bug that prevented photo essay image captions from rendering HTML (bold/italic) properly. HTML was escaped as text.
+
+## 0.2.14
 - fixes: https://github.com/bu-ist/r-editorial/issues/816
 - fixes: https://github.com/bu-ist/r-editorial/issues/817
 - Adds a media credit field for the background photo on the pullquote block.
