@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "cgb-scripts start",
-    "build": "cgb-scripts build",
+    "build": "cgb-scripts build; grunt browserify",
     "eject": "cgb-scripts eject"
   },
   "dependencies": {
