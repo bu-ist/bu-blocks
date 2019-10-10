@@ -143,6 +143,20 @@ module.exports = function( grunt ) {
 					baseDir: "./docs"
 				}
 			}
+		},
+		browserify: {
+			options: {
+				browserifyOptions: { debug: false },
+				transform: [
+					[ 'babelify', { "presets": [ '@babel/preset-env', '@babel/preset-react' ] } ],
+					[ 'sassify' ]
+				],
+			},
+			dist: {
+				files: {
+					'dist/components/background.js': 'src/components/background/index.js'
+				}
+			}
 		}
 	} );
 
@@ -154,6 +168,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-browser-sync' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
+	grunt.loadNpmTasks( 'grunt-browserify' );
 
 	// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask( 'i18n', [ 'addtextdomain', 'makepot' ] );
