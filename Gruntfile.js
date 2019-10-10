@@ -155,10 +155,25 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+		browserify: {
+			options: {
+				browserifyOptions: { debug: false },
+				transform: [
+					[ 'babelify', { "presets": [ '@babel/preset-env', '@babel/preset-react' ] } ],
+					[ 'sassify' ]
+				],
+			},
+			dist: {
+				files: {
+					'src/components/background/index.browserify.js': 'src/components/background/index.js'
+				}
+			}
+		}
 	} );
 
 	// 3. Where we tell Grunt we plan to use this plug-in.
 	grunt.loadNpmTasks( 'grunt-babel' );
+	grunt.loadNpmTasks( 'grunt-browserify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
