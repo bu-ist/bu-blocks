@@ -678,6 +678,7 @@
 	}
 
 	.wp-block-background-video {
+		box-sizing: border-box;
 		padding-top: 9 / 16 * 100%;
 		position: relative;
 	}
