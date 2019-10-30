@@ -8,6 +8,7 @@
 namespace BU\Plugins\BU_Blocks\Blocks\RelatedStories;
 
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
+add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
 
 /**
  * Build a list of class names for the related stories block based
@@ -59,13 +60,39 @@ function get_block_classes( $attributes ) {
 }
 
 /**
+ * Build a cache key using the ID of the current post
+ * and the IDs of the manually selected related stories.
+ *
+ * @param int   $post_id  The ID of the current post.
+ * @param array $post_ids The IDs of the manually selected related stories.
+ *
+ * @return string
+ */
+function build_cache_key( $post_id, $post_ids ) {
+	return "manual_related_posts_for_{$post_id}:" . md5( wp_json_encode( $post_ids ) );
+}
+
+/**
  * Retrieve a list of posts from a given set of post IDs.
  *
  * @param array $post_ids A list of post IDs to include.
- * @param array $args     Arguments
- * @return void
+ * @param array $args     Arguments.
+ *
+ * @return array
  */
 function get_block_posts_manual( $post_ids, $args ) {
+
+	// Build a cache key unique to this instance of the block.
+	$cache_key = build_cache_key( get_the_ID(), $post_ids );
+
+	// Check for the cache key in the 'bu_blocks' group.
+	$posts = wp_cache_get( $cache_key, 'bu_blocks' );
+
+	// Return the cached value if it exists.
+	if ( $posts ) {
+		return $posts;
+	}
+
 	$defaults = array(
 		'post_type' => '',
 		'per_page'  => 3,
@@ -74,12 +101,18 @@ function get_block_posts_manual( $post_ids, $args ) {
 
 	$posts = get_posts(
 		array(
-			'post__in'    => $post_ids,
-			'post_type'   => $args['post_type'],
-			'orderby'     => 'post__in',
-			'numberposts' => $args['per_page'],
+			'post__in'               => $post_ids,
+			'post_type'              => $args['post_type'],
+			'orderby'                => 'post__in',
+			'numberposts'            => $args['per_page'],
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
 		)
 	);
+
+	// Store the `get_posts` results in cache for a day.
+	wp_cache_set( $cache_key, $posts, 'bu_blocks', DAY_IN_SECONDS );
 
 	return $posts;
 }
@@ -284,4 +317,52 @@ function register_block() {
 			'render_callback' => __NAMESPACE__ . '\\render_block',
 		)
 	);
+}
+
+/**
+ * Delete the value of any existing cache keys for Related Stories blocks
+ * with manually selected stories that the post being saved may contain.
+ *
+ * @param int     $post_ID The post ID.
+ * @param WP_Post $post    The post object.
+ */
+function save_post( $post_ID, $post ) {
+	// Bail if this is an autosave or revision.
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_ID ) ) {
+		return;
+	}
+
+	// Bail if the user doesn't have permissions to edit the page.
+	if ( ! current_user_can( 'edit_post', $post_ID ) ) {
+		return;
+	}
+
+	// Bail if the post does not have the Related Stories block.
+	if ( ! has_block( 'editorial/relatedstories', $post_ID ) ) {
+		return;
+	}
+
+	// Parse the blocks.
+	$blocks = \bu_blocks_parse_blocks( $post->post_content );
+
+	// Loop through the blocks, skipping all but the
+	// Related Stories blocks with manual posts.
+	foreach ( $blocks as $block ) {
+		if ( 'editorial/relatedstories' !== $block['blockName'] ) {
+			continue;
+		}
+
+		if ( ! $block['attrs']['relatedManual'] || ! $block['attrs']['includePosts'] ) {
+			continue;
+		}
+
+		// Build a cache key unique to this instance of the block.
+		$cache_key = build_cache_key( $post_ID, $block['attrs']['includePosts'] );
+
+		// Delete the cache key if it exists,
+		// allowing for it to be rebuilt on the front end.
+		if ( wp_cache_get( $cache_key, 'bu_blocks' ) ) {
+			wp_cache_delete( $cache_key, 'bu_blocks' );
+		}
+	}
 }

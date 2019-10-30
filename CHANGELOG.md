@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.16
+- Adds a caching layer for the Related Stories block manual posts option.
+- Fix stats block width of small text: https://github.com/bu-ist/bu-blocks/pull/236
+- Fix leadin block Admin preview rendering bug: https://github.com/bu-ist/bu-blocks/pull/237
+
 ## 0.2.15
 - fixes a bug that prevented photo essay image captions from rendering HTML (bold/italic) properly. HTML was escaped as text.
 
