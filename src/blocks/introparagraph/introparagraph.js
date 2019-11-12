@@ -43,6 +43,8 @@ import classnames from 'classnames';
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
 
+import deprecated from './deprecated';
+
 /**
  * Render the SVG used for a drop cap when the drop cap has an
  * image assigned to it.
@@ -62,7 +64,7 @@ const renderDropCapSVG = ( character, imageURL ) => {
 				patternUnits="userSpaceOnUse"
 				width="100%" height="100%"
 				x="0%" y="0%">
-				<image href={ imageURL } width="1024" height="1024"/>
+				<image href={ imageURL } width="1024" height="1024" preserveAspectRatio="xMinYMin slice"/>
 			</pattern>
 			<text textAnchor="start"
 				x="0"
@@ -415,4 +417,7 @@ registerBlockType( 'editorial/introparagraph', {
 			</div>
 		);
 	},
+
+	deprecated,
+
 } );
