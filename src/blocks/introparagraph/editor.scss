@@ -5,10 +5,33 @@
  * which makes it higher in priority.
  */
 
- .wp-block-editorial-introparagraph textarea {
-	font-size: 1.18169em;
-	line-height: 1.25887;
-	color: #3f2f39;
-	font-family: "Tiempos-Headline";
-	font-weight: 700;
- }
+ *[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph {
+ 	textarea {
+		font-size: 1.18169em;
+		line-height: 1.25887;
+		color: #3f2f39;
+		font-family: "Tiempos-Headline";
+		font-weight: 700;
+	}
+
+	&.has-dropcap:focus-within {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		p:first-of-type:first-letter {
+			float: none;
+			font-size: inherit;
+			line-height: inherit;
+			float: none;
+			display: inline;
+			color: inherit;
+			margin: inherit;
+			padding: inherit;
+			background: inherit;
+			font-weight: inherit;
+		}
+
+		svg {
+			display: none;
+		}
+	}
+
+}
