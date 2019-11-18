@@ -52,11 +52,6 @@ import deprecated from './deprecated';
  * This is used in the block editor and stored in post content
  * as part of the block markup.
  *
- * Note "preserveaspectratio" is intentionally lowercase due to a validation
- * bug with the block.
- *
- * ToDo: Fix formatting of svg attribute when Gutenberg Editor fixes
- * svg attribute validation bugs
  *
  * @param {string} character The character to display in the drop cap.
  * @param {string} imageURL  The background image for the drop cap character.
@@ -75,7 +70,7 @@ const renderDropCapSVG = ( character, imageURL ) => {
 					className="dropcap-filltext">{ character }</text>
 			</clipPath>
 			<g clip-path={ clipPathURL }>
-				<image {...xlinkurlAttr} href={ imageURL } width="100%" height="100%" preserveaspectratio="none" />
+				<image {...xlinkurlAttr} href={ imageURL } width="100%" height="100%" preserveAspectRatio="none" />
 			</g>
 		</svg>
 	);
