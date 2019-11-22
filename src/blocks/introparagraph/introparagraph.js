@@ -25,6 +25,7 @@ const {
 	IconButton,
 	PanelBody,
 	Toolbar,
+	SVG,
 } = wp.components;
 const {
 	RichText,
@@ -57,7 +58,7 @@ import deprecated from './deprecated';
  * @param {string} imageURL  The background image for the drop cap character.
  */
 const renderDropCapSVG = ( character, imageURL ) => {
-	let randomID = 'dropcap-text-' + character +'-'+ Math.floor(Math.random() * 9999);
+	let randomID = 'dropcap-text-' + character;
 	let clipPathURL = 'url(#' + randomID + ')';
 	let xlinkurlAttr = {'xlink:href': imageURL };
 	return (
