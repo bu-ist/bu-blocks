@@ -92,7 +92,7 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
-	&.has-dropcap:not( :focus-within ) {
+	&.has-dropcap {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter,
 		svg text {
@@ -100,35 +100,35 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
-	&.has-dropcap-color-primary:not( :focus-within ) {
+	&.has-dropcap-color-primary {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-primary-text');
 		}
 	}
 
-	&.has-dropcap-color-secondary:not( :focus-within ) {
+	&.has-dropcap-color-secondary {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-secondary-text');
 		}
 	}
 
-	&.has-dropcap-color-tertiary:not( :focus-within ) {
+	&.has-dropcap-color-tertiary {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-tertiary-text');
 		}
 	}
 
-	&.has-dropcap-color-quaternary:not( :focus-within ) {
+	&.has-dropcap-color-quaternary {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-quaternary-text');
 		}
 	}
 
-	&.is-style-dropcap-dimensional:not( :focus-within ) {
+	&.is-style-dropcap-dimensional {
 		&.has-dropcap-color-primary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
@@ -172,7 +172,7 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
-	&.is-style-dropcap-boxed:not( :focus-within ) {
+	&.is-style-dropcap-boxed {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			color: blocks-get( 'color-page');
@@ -212,14 +212,14 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
-	&.is-style-dropcap-image:not( :focus-within ) {
+	&.is-style-dropcap-image {
 		.has-dropcap-color-primary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
 				color: blocks-get( 'color-primary');
 			}
 		}
-		
+
 		.has-dropcap-color-secondary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {
@@ -233,7 +233,7 @@ $scope: blocks-get( 'scope' );
 				color: blocks-get( 'color-tertiary');
 			}
 		}
-		
+
 		.has-dropcap-color-quaternary {
 			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
 			p:first-of-type:first-letter {

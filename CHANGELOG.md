@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+- Intro Paragraph Block Bugs:
+  - fixes: https://github.com/bu-ist/r-editorial/issues/869
+  - Fix dropcap rendering bugs
+  - update SVG output to improve rendering
+  - fix bugs causing dropcap rendering problems in Responsive Framework (without BU Prepress)
+  - test deprecation feature of old block markup
+
 ## 0.2.16
 - Adds a caching layer for the Related Stories block manual posts option.
 - Fix stats block width of small text: https://github.com/bu-ist/bu-blocks/pull/236
