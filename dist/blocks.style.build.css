@@ -38749,3 +38749,6 @@ svg.wp-block-bu-stat-svg {
 
 .is-style-end-of-article::after {
   font-size: 0.6em; }
+
+.publication-wp p.is-style-end-of-article::after {
+  color: #666; }
