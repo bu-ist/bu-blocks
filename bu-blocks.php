@@ -7,7 +7,7 @@
  * Author URI:      http://www.bu.edu/interactive-design/
  * Text Domain:     bu-blocks
  * Domain Path:     /languages
- * Version:         0.2.16
+ * Version:         0.2.17
  *
  * @package         BU_Blocks
  */
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Defines the plugin version.
-define( 'BU_BLOCKS_VERSION', '0.2.16' );
+define( 'BU_BLOCKS_VERSION', '0.2.17' );
 
 /**
  * Displays admin notice and prevents activation.
