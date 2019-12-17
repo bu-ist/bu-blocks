@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add new End of Article paragraph styles. Refactor to manual paragraph style fixes this issue in r-editorial: https://github.com/bu-ist/r-editorial/issues/876
 - Intro Paragraph Block Bugs:
   - fixes: https://github.com/bu-ist/r-editorial/issues/869
   - Fix dropcap rendering bugs

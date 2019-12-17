@@ -1,5 +1,5 @@
 /**
- * Registers the caption style for the core paragraph block.
+ * Registers the end-of-article style for the core paragraph block.
  */
 
 //  Import CSS.
@@ -15,8 +15,8 @@ wp.domReady( () => {
 			isDefault: true,
 		},
 		{
-			name: 'caption',
-			label: 'Caption'
+			name: 'end-of-article',
+			label: 'End of Article'
 		}
 	]);
 } );
