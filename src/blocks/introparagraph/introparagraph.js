@@ -25,6 +25,7 @@ const {
 	IconButton,
 	PanelBody,
 	Toolbar,
+	SVG,
 } = wp.components;
 const {
 	RichText,
@@ -43,6 +44,8 @@ import classnames from 'classnames';
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
 
+import deprecated from './deprecated';
+
 /**
  * Render the SVG used for a drop cap when the drop cap has an
  * image assigned to it.
@@ -50,25 +53,26 @@ import themeOptions from '../../global/theme-options';
  * This is used in the block editor and stored in post content
  * as part of the block markup.
  *
+ *
  * @param {string} character The character to display in the drop cap.
  * @param {string} imageURL  The background image for the drop cap character.
  */
 const renderDropCapSVG = ( character, imageURL ) => {
+	let randomID = 'dropcap-text-' + character;
+	let clipPathURL = 'url(#' + randomID + ')';
+	let xlinkurlAttr = {'xlink:href': imageURL };
 	return (
 		<svg>
-			<pattern
-				id="dropcap-texture"
-				viewBox="0 0 1024 1024"
-				patternUnits="userSpaceOnUse"
-				width="100%" height="100%"
-				x="0%" y="0%">
-				<image href={ imageURL } width="1024" height="1024"/>
-			</pattern>
-			<text textAnchor="start"
-				x="0"
-				y="50%"
-				dy=".404em"
-				className="dropcap-filltext">{ character }</text>
+			<clipPath id={ randomID }>
+				<text textAnchor="start"
+					x="0"
+					y="50%"
+					dy=".404em"
+					className="dropcap-filltext">{ character }</text>
+			</clipPath>
+			<g clip-path={ clipPathURL }>
+				<image {...xlinkurlAttr} href={ imageURL } width="100%" height="100%" preserveAspectRatio="none" />
+			</g>
 		</svg>
 	);
 };
@@ -415,4 +419,7 @@ registerBlockType( 'editorial/introparagraph', {
 			</div>
 		);
 	},
+
+	deprecated,
+
 } );

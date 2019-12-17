@@ -42,12 +42,6 @@ const {
 } = wp.compose;
 
 
-// Filter the block wrapper component with the `addColumnClassName` function.
-addFilter(
-	'editor.BlockListBlock',
-	'bu-blocks/column-class-name',
-);
-
 // Register the block.
 registerBlockType( 'editorial/photoessay-image', {
 	title: __( 'Photo Essay Image' ),
