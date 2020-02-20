@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.18
+- Leadin Block: fix image caption position for text-over-image style. This moves the caption up below the photo on small device sizes instead of the caption displaying below the hed/dek of the leadin block.
+
 ## 0.2.17
 - Add new End of Article paragraph styles. Refactor to manual paragraph style fixes this issue in r-editorial: https://github.com/bu-ist/r-editorial/issues/876
 - Intro Paragraph Block Bugs:
