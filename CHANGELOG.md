@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.19
 - Bug Fix: Fixes listicle sidebar sizing https://github.com/bu-ist/r-editorial/issues/783
 
 ## 0.2.18
