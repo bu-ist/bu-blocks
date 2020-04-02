@@ -2,6 +2,7 @@
 
 ## 0.2.19
 - Bug Fix: Fixes listicle sidebar sizing https://github.com/bu-ist/r-editorial/issues/783
+- Fix Photo essay Modal Keyboard Navigation https://github.com/bu-ist/r-editorial/issues/827
 
 ## 0.2.18
 - Leadin Block: fix image caption position for text-over-image style. This moves the caption up below the photo on small device sizes instead of the caption displaying below the hed/dek of the leadin block.
