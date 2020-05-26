@@ -16,6 +16,7 @@
 
 	&.has-dropcap:focus-within {
 		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		.wp-block-editorial-introparagraph-content .block-editor-rich-text:first-letter,
 		p:first-of-type:first-letter {
 			float: none;
 			font-size: inherit;

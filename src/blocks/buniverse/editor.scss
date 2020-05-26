@@ -138,7 +138,8 @@
 }
 
 // Align option fixes.
-.editor-block-list__block[aria-label="Block: BUniverse Video"] {
+.editor-block-list__block[aria-label="Block: BUniverse Video"],
+.block-editor-block-list__block[aria-label="Block: BUniverse Video"] {
 	&[data-align="center"] {
 		text-align: unset;
 	}
