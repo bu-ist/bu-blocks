@@ -23697,22 +23697,25 @@ img.has-background-opacity-100 {
 */
 .wp-block-editorial-photoessay [class*="photo-row-"] {
   margin: 0 -15px; }
-  .wp-block-editorial-photoessay [class*="photo-row-"] > [class*="photo-"] {
+  .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"] {
     position: relative;
     float: left;
     margin-bottom: 30px; }
-    .wp-block-editorial-photoessay [class*="photo-row-"] > [class*="photo-"] > * {
+    .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"] .wp-block-photoessay-media {
       position: absolute;
       top: 0;
       width: 100%;
       height: 100%;
       padding: 0 15px; }
-    .wp-block-editorial-photoessay [class*="photo-row-"] > [class*="photo-"]::before {
+    .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"]::after {
       content: "";
       display: inline-block; }
 
 .wp-block-editorial-photoessay figure {
-  height: 100%; }
+  height: 100%;
+  margin: 0; }
+  .wp-block-editorial-photoessay figure:hover {
+    cursor: pointer; }
   .wp-block-editorial-photoessay figure figcaption {
     display: none; }
 
@@ -23724,28 +23727,28 @@ img.has-background-opacity-100 {
   width: 100%;
   height: 100%; }
 
-.wp-block-editorial-photoessay .photo-1::before,
-.wp-block-editorial-photoessay .photo-1 .wp-block-photoessay-media-wrapper::before {
+.wp-block-editorial-photoessay .photo-1::after,
+.wp-block-editorial-photoessay .photo-1 .wp-block-photoessay-media-wrapper::after {
   padding-top: 120%; }
 
-.wp-block-editorial-photoessay .photo-2::before,
-.wp-block-editorial-photoessay .photo-2 .wp-block-photoessay-media-wrapper::before {
+.wp-block-editorial-photoessay .photo-2::after,
+.wp-block-editorial-photoessay .photo-2 .wp-block-photoessay-media-wrapper::after {
   padding-top: 60%; }
 
-.wp-block-editorial-photoessay .photo-3::before,
-.wp-block-editorial-photoessay .photo-3 .wp-block-photoessay-media-wrapper::before {
+.wp-block-editorial-photoessay .photo-3::after,
+.wp-block-editorial-photoessay .photo-3 .wp-block-photoessay-media-wrapper::after {
   padding-top: 40%; }
 
-.wp-block-editorial-photoessay .photo-4::before,
-.wp-block-editorial-photoessay .photo-4 .wp-block-photoessay-media-wrapper::before {
+.wp-block-editorial-photoessay .photo-4::after,
+.wp-block-editorial-photoessay .photo-4 .wp-block-photoessay-media-wrapper::after {
   padding-top: 30%; }
 
-.wp-block-editorial-photoessay .photo-s::before,
-.wp-block-editorial-photoessay .photo-s .wp-block-photoessay-media-wrapper::before {
+.wp-block-editorial-photoessay .photo-s::after,
+.wp-block-editorial-photoessay .photo-s .wp-block-photoessay-media-wrapper::after {
   padding-top: calc(100% - 30px); }
   @media (min-width: 1500px) {
-    .wp-block-editorial-photoessay .photo-s::before,
-    .wp-block-editorial-photoessay .photo-s .wp-block-photoessay-media-wrapper::before {
+    .wp-block-editorial-photoessay .photo-s::after,
+    .wp-block-editorial-photoessay .photo-s .wp-block-photoessay-media-wrapper::after {
       padding-top: calc(100% - 30px); } }
 
 .wp-block-editorial-photoessay [class*="photo-row-short"] .photo-2 {
@@ -23963,9 +23966,9 @@ img.has-background-opacity-100 {
 @media (min-width: 1500px) {
   .wp-block-editorial-photoessay [class*="photo-row-"] {
     margin: 0 -15px; }
-    .wp-block-editorial-photoessay [class*="photo-row-"] > [class*="photo-"] {
+    .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"] {
       margin-bottom: 30px; }
-      .wp-block-editorial-photoessay [class*="photo-row-"] > [class*="photo-"] > * {
+      .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"] .wp-block-photoessay-media {
         padding: 0 15px; } }
 
 @media (min-width: 1500px) and (min-width: 500px) {
