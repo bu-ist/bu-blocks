@@ -104,7 +104,7 @@ registerBlockType( 'editorial/photoessay-image', {
 
 			setAttributes( {
 				id: media.id,
-				url: ( media.sizes['medium'] ) ? media.sizes['medium'].url : media.url,
+				url: ( media.sizes['large'] ) ? media.sizes['large'].url : media.url,
 				alt: media.alt,
 			} );
 		};
@@ -119,7 +119,7 @@ registerBlockType( 'editorial/photoessay-image', {
 		};
 
 		return (
-			<div className={ ( url ) ? 'wp-block-photoessay-media-wrapper' : '' }>
+			<Fragment>
 				<div className="wp-block-photoessay-media">
 					<MediaUploadCheck>
 						{ ! url && (
@@ -173,20 +173,24 @@ registerBlockType( 'editorial/photoessay-image', {
 							/>
 						</figure>
 					) }
+
+					{ ( ( ! RichText.isEmpty( caption ) || isSelected ) && url ) && (
+						<div className="wp-block-photoessay-media-caption-editor-wrapper">
+							<RichText
+								tagName="p"
+								className="wp-block-photoessay-media-caption wp-prepress-component-caption"
+								placeholder={ __( 'Add a caption and/or media credit...' ) }
+								value={ caption }
+								onChange={ value => setAttributes( { caption: value } ) }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+								keepPlaceholderOnFocus
+							/>
+						</div>
+					) }
 				</div>
-				{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
-					<RichText
-						tagName="p"
-						className="wp-block-photoessay-media-caption wp-prepress-component-caption"
-						placeholder={ __( 'Add a caption and/or media credit...' ) }
-						value={ caption }
-						onChange={ value => setAttributes( { caption: value } ) }
-						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
-						keepPlaceholderOnFocus
-					/>
-				) }
-			</div>
+
+			</Fragment>
 		);
 	},
 
