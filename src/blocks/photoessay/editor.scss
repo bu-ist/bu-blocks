@@ -46,6 +46,13 @@
 		}
 	}
 
+	// Remove float on single image row layouts.
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-3"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-4"] {
+		float: none !important;
+		max-width: none;
+	}
+
 
 }
 

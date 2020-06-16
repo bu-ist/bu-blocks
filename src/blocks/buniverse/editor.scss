@@ -58,6 +58,7 @@
 .buniverse-start-time {
 	align-items: center;
 	display: flex;
+	margin: 24px 0;
 
 	> div:first-of-type {
 		flex: 1 0 auto;
@@ -68,9 +69,15 @@
 			justify-content: space-between;
 		}
 
+
 		input {
 			width: 6ch;
 		}
+	}
+
+	.components-base-control,
+	.components-base-control:last-child {
+		margin-bottom: 0;
 	}
 
 	> div:last-of-type {
@@ -90,9 +97,11 @@
 	flex-direction: column;
 	height: 100%;
 	justify-content: center;
+	min-height: 250px;
 	position: absolute;
 	top: 0;
 	width: 100%;
+	z-index: 3;
 
 	.buniverse-logo {
 		background: center no-repeat url('./../images/buniverse/buniverse-logo.png');
@@ -112,7 +121,8 @@
 		background-size: 100%;
 		display: block;
 		height: 140px;
-		width: 400px;
+		max-width: 400px;
+		width: 100%;
 	}
 }
 
@@ -129,6 +139,7 @@
 }
 
 // Remove default margin on figure.
+// Disable interactions on video iframe.
 .wp-block-global-buniverse {
 	margin: 0;
 
@@ -138,16 +149,10 @@
 }
 
 // Align option fixes.
-.editor-block-list__block[aria-label="Block: BUniverse Video"],
-.block-editor-block-list__block[aria-label="Block: BUniverse Video"] {
-	&[data-align="center"] {
-		text-align: unset;
-	}
-
-	&[data-align="left"],
-	&[data-align="right"] {
-		.editor-block-list__block-edit {
-			width: 50%;
-		}
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=right],
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=left] {
+	>.is-block-content {
+		width: 50%;
 	}
 }
+
