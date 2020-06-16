@@ -17706,7 +17706,8 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   -ms-flex-align: center;
       align-items: center;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  margin: 24px 0; }
   .buniverse-start-time > div:first-of-type {
     -ms-flex: 1 0 auto;
         flex: 1 0 auto; }
@@ -17719,6 +17720,9 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
           justify-content: space-between; }
     .buniverse-start-time > div:first-of-type input {
       width: 6ch; }
+  .buniverse-start-time .components-base-control,
+  .buniverse-start-time .components-base-control:last-child {
+    margin-bottom: 0; }
   .buniverse-start-time > div:last-of-type {
     width: 6ch; }
 
@@ -17737,9 +17741,11 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   height: 100%;
   -ms-flex-pack: center;
       justify-content: center;
+  min-height: 250px;
   position: absolute;
   top: 0;
-  width: 100%; }
+  width: 100%;
+  z-index: 3; }
   .wp-block-global-buinverse-placeholder .buniverse-logo {
     background: center no-repeat url("./../images/buniverse/buniverse-logo.png");
     background-size: 100%;
@@ -17754,7 +17760,8 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
     background-size: 100%;
     display: block;
     height: 140px;
-    width: 400px; }
+    max-width: 400px;
+    width: 100%; }
 
 .buniverse-set-video-id .components-base-control__label,
 .buniverse-set-video-id .components-text-control__input {
@@ -17769,13 +17776,8 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   .wp-block-global-buniverse iframe {
     pointer-events: none; }
 
-.editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="center"],
-.block-editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="center"] {
-  text-align: unset; }
-
-.editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="left"] .editor-block-list__block-edit, .editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="right"] .editor-block-list__block-edit,
-.block-editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="left"] .editor-block-list__block-edit,
-.block-editor-block-list__block[aria-label="Block: BUniverse Video"][data-align="right"] .editor-block-list__block-edit {
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=right] > .is-block-content,
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=left] > .is-block-content {
   width: 50%; }
 @charset "UTF-8";
 /**
@@ -21704,6 +21706,10 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
     margin-bottom: 0; }
   [data-type="editorial/photoessay"] figure:hover {
     cursor: default; }
+  [data-type="editorial/photoessay"] .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-3"],
+  [data-type="editorial/photoessay"] .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-4"] {
+    float: none !important;
+    max-width: none; }
 
 /*
 * Styles for the Block Inspector to
