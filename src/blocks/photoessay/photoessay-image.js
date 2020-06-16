@@ -82,7 +82,7 @@ registerBlockType( 'editorial/photoessay-image', {
 	},
 
 	getEditWrapperProps( { columnClass } ) {
-		return { className: 'wp-block editor-block-list__block ' + columnClass };
+		return { className: 'wp-block editor-block-list__block block-editor-block-list__block ' + columnClass };
 	},
 
 	edit( { attributes, setAttributes, isSelected } ) {
