@@ -163,7 +163,6 @@ registerBlockType( 'editorial/custom-html', {
 
 			// Save the data for this block using a custom endpoint.
 			if ( '' !== customBlockID ) {
-
 				apiFetch(
 					{
 						path: '/bu-blocks/v1/customhtml',
@@ -172,10 +171,8 @@ registerBlockType( 'editorial/custom-html', {
 					}
 				).then( html => {
 					// Success!
-
 				} ).catch( error => {
 					// How to handle this error?
-
 				} );
 			}
 		};
