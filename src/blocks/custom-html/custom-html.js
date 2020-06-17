@@ -178,14 +178,14 @@ registerBlockType( 'editorial/custom-html', {
 		};
 
 		// Subscribe to Post Saving and trigger Post Meta Save via REST.
-		wp.data.subscribe(function () {
-		  var isSavingPost = wp.data.select('core/editor').isSavingPost();
-		  var isAutosavingPost = wp.data.select('core/editor').isAutosavingPost();
+		wp.data.subscribe( function () {
+		  var isSavingPost = wp.data.select( 'core/editor' ).isSavingPost();
+		  var isAutosavingPost = wp.data.select( 'core/editor' ).isAutosavingPost();
 
-		  if (isSavingPost && !isAutosavingPost) {
+		  if ( isSavingPost && !isAutosavingPost ) {
 		    savePostMeta();
 		  }
-		})
+		} );
 
 
 
