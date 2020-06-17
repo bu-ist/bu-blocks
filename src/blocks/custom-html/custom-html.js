@@ -138,6 +138,60 @@ registerBlockType( 'editorial/custom-html', {
 			} );
 		};
 
+		// Save post meta via REST Endpoint.
+		const savePostMeta = function() {
+
+			let postID = select( 'core/editor' ).getCurrentPostId();
+
+			// This may be true on the first load of some posts.
+			if ( null === postID ) {
+				return;
+			}
+
+			let customTextArea = document.querySelector( '#block-' + customBlockID + ' textarea' );
+
+			// This may be true on the first load of some posts.
+			if ( null === customTextArea ) {
+				return;
+			}
+
+			let post = {
+				post_id: postID,
+				custom_block_id: customBlockID,
+				html: customTextArea.value,
+			}
+
+			// Save the data for this block using a custom endpoint.
+			if ( '' !== customBlockID ) {
+
+				apiFetch(
+					{
+						path: '/bu-blocks/v1/customhtml',
+						method: 'POST',
+						data: post,
+					}
+				).then( html => {
+					// Success!
+
+				} ).catch( error => {
+					// How to handle this error?
+
+				} );
+			}
+		};
+
+		// Subscribe to Post Saving and trigger Post Meta Save via REST.
+		wp.data.subscribe(function () {
+		  var isSavingPost = wp.data.select('core/editor').isSavingPost();
+		  var isAutosavingPost = wp.data.select('core/editor').isAutosavingPost();
+
+		  if (isSavingPost && !isAutosavingPost) {
+		    savePostMeta();
+		  }
+		})
+
+
+
 		// Set a timestamp based block ID if it does not yet exist. It is okay
 		// for multiple posts to share similar block IDs, but not okay for multiple
 		// blocks on the same post. Using `Date().getTime()` here provides a unique
@@ -169,45 +223,6 @@ registerBlockType( 'editorial/custom-html', {
 	// The front-end HTML for this block is handled in PHP, but
 	// the save function is required.
 	save( { attributes } ) {
-		const {
-			customBlockID,
-		} = attributes;
-
-		let postID = select( 'core/editor' ).getCurrentPostId();
-
-		// This may be true on the first load of some posts.
-		if ( null === postID ) {
-			return;
-		}
-
-		let customTextArea = document.querySelector( '#block-' + customBlockID + ' textarea' );
-
-		// This may be true on the first load of some posts.
-		if ( null === customTextArea ) {
-			return;
-		}
-
-		let post = {
-			post_id: postID,
-			custom_block_id: customBlockID,
-			html: customTextArea.value,
-		}
-
-		// Save the data for this block using a custom endpoint.
-		if ( '' !== customBlockID ) {
-			apiFetch(
-				{
-					path: '/bu-blocks/v1/customhtml',
-					method: 'POST',
-					data: post,
-				}
-			).then( html => {
-				// Success!
-			} ).catch( error => {
-				// How to handle this error?
-			} );
-		}
-
 		return null;
 	},
 } );
