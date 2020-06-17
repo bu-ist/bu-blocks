@@ -12,6 +12,8 @@ import themeOptions from '../../global/theme-options.js';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 
+import deprecated from './deprecated';
+
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -56,6 +58,7 @@ const publication = publicationSlug();
  */
 const getClasses = ( className, themeColor, icon ) => classnames(
 	'wp-block-button',
+	'wp-block-bu-button',
 	{
 		[ `${publication}-block-button` ]: publication && publication !== '',
 		[ `has-${themeColor}-theme` ]: themeColor,
@@ -220,4 +223,7 @@ registerBlockType( 'bu/button', {
 			</p>
 		);
 	},
+
+	deprecated,
+
 } );
