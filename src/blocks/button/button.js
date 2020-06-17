@@ -175,6 +175,17 @@ registerBlockType( 'bu/button', {
 								{ __( 'Clear' ) }
 							</Button>
 						</PanelBody>
+
+						<PanelBody
+							className="components-panel__body-bu-button-block-url"
+							title={ __( 'URL' ) }
+						>
+							<p className="description">Add link to the button</p>
+							<URLInput
+								value={ url }
+								onChange={ ( value ) => setAttributes( { url: value } ) }
+							/>
+						</PanelBody>
 					</InspectorControls>
 				<p>
 					<RichText
@@ -187,18 +198,7 @@ registerBlockType( 'bu/button', {
 						keepPlaceholderOnFocus
 					/>
 				</p>
-				{ isSelected && (
-					<form
-						className="block-library-button__inline-link"
-						onSubmit={ ( event ) => event.preventDefault() }>
-						<Dashicon icon="admin-links" />
-						<URLInput
-							value={ url }
-							onChange={ ( value ) => setAttributes( { url: value } ) }
-						/>
-						<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
-					</form>
-				) }
+
 			</Fragment>
 		);
 	} ),
