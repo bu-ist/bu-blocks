@@ -91,7 +91,7 @@ registerBlockType( 'editorial/headline', {
 		return (
 			<Fragment>
 				<BlockControls>
-					<HeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+					<HeadingToolbar minLevel={ 1 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 				<RichText
 					tagName={ tagName }
