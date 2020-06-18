@@ -25,6 +25,7 @@ const {
 const {
 	withSelect,
 	select,
+	subscribe,
 } = wp.data;
 
 const {
@@ -196,15 +197,33 @@ registerBlockType( 'editorial/custom-html', {
 			}
 		};
 
-		// Subscribe to Post Saving and trigger Post Meta Save via REST.
-		wp.data.subscribe( function () {
-		  var isSavingPost = wp.data.select( 'core/editor' ).isSavingPost();
-		  var isAutosavingPost = wp.data.select( 'core/editor' ).isAutosavingPost();
+		/* In 5.4 the previous method of saving the html to post meta was
+		not working properly. A temporary fix of using wp.data.subscribe() to
+		monitor for post save and update the post meta then is being used here.
 
-		  if ( isSavingPost && !isAutosavingPost ) {
-		    savePostMeta();
-		  }
+		Ultimately a better solution is needed. A suggested approach to bypass validation
+		by the block editor instead of this method of storing in postmeta via the rest
+		api would be to encode the html as base64 so it appears to be a nonsensical string
+		and store that in a normal block attribute and then decode the base64 "hidden" html
+		on the frontend to convert back to html. */
+
+		const { isSavingPost } = select( 'core/editor' );
+		const { isAutosavingPost } = select( 'core/editor' );
+		const { didPostSaveRequestSucceed } = select( 'core/editor' );
+		var saving = false;
+
+		subscribe( () => {
+			if ( isSavingPost() && ! isAutosavingPost() && didPostSaveRequestSucceed() ) {
+				saving = true;
+			} else {
+				if ( saving ) {
+					savePostMeta();
+					saving = false;
+				}
+			}
 		} );
+
+
 
 
 
