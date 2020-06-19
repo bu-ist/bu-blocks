@@ -204,7 +204,23 @@ registerBlockType( 'editorial/introparagraph', {
 				setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
 				return;
 			}
-			setAttributes( { dropCapImageURL: media.url, dropCapImageId: media.id } );
+
+			// Try to set a sensible image size to avoid full size images being loaded. 
+			let selectedMediaURL = media.url;
+			
+			if ( media.sizes['bu_prepress_3x2_xs'] ) {
+				selectedMediaURL = media.sizes['bu_prepress_3x2_xs'].url
+			} else if ( media.sizes['thumbnail'] ) {
+				selectedMediaURL = media.sizes['thumbnail'].url
+			} else if ( media.sizes['medium'] ) {
+				selectedMediaURL = media.sizes['medium'].url
+			}
+			
+			setAttributes( { 
+				dropCapImageURL: selectedMediaURL, 
+				dropCapImageId: media.id 
+			} );
+			
 		};
 
 		// When an image is removed, reset the URL and ID attributes on the block.
