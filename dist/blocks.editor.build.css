@@ -11793,22 +11793,8 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   font-family: "Tiempos-Headline";
   font-weight: 700; }
 
-*[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph.has-dropcap:focus-within .wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
-*[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph.has-dropcap:focus-within .wp-block-editorial-introparagraph-content .block-editor-rich-text:first-letter,
-*[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph.has-dropcap:focus-within p:first-of-type:first-letter {
-  float: none;
-  font-size: inherit;
-  line-height: inherit;
-  float: none;
-  display: inline;
-  color: inherit;
-  margin: inherit;
-  padding: inherit;
-  background: inherit;
-  font-weight: inherit; }
-
-*[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph.has-dropcap:focus-within svg {
-  display: none; }
+*[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph.has-dropcap:focus-within svg, *[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph.has-dropcap:focus svg {
+  display: none !important; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
