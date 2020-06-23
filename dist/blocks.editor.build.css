@@ -1948,6 +1948,9 @@
  */
 .edit-post-visual-editor h2.wp-block-editorial-headline.is-style-emphasis-weight {
   font-weight: 100; }
+
+[data-type="editorial/headline"] .components-toolbar button.components-toolbar__control.has-icon {
+  position: relative; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
