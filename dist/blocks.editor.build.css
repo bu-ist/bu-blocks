@@ -23759,9 +23759,17 @@ input[value="photo-row-thirds-3"] + label {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-div[data-type="bu/button"] .components-autocomplete {
+[data-type="bu/button"] .wp-block-button.wp-block-bu-button {
+  color: inherit; }
+  [data-type="bu/button"] .wp-block-button.wp-block-bu-button [data-rich-text-placeholder]:after {
+    color: inherit; }
+
+[data-type="bu/button"] .components-autocomplete {
   display: inline-block;
   position: relative; }
+
+.components-panel__body-bu-button-block-url input {
+  max-width: 100%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
