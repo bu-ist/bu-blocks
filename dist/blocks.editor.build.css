@@ -5875,9 +5875,9 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
  * which makes it higher in priority.
  */
 [data-selected-drawer="true"] .wp-block-editorial-drawer-content {
-  display: block;
-  float: none;
-  opacity: 1; }
+  display: block !important;
+  float: none !important;
+  opacity: 1 !important; }
 
 .wp-block-editorial-drawer .wp-block-editorial-drawer-teaser,
 .wp-block-editorial-drawer .wp-block-editorial-drawer-content {
