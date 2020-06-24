@@ -9,6 +9,8 @@
 //
 
 .wp-block-editorial-relatedstories {
+	
+	text-align: left; // Override any theme styling to center aside blocks.
 
 	.wp-block-editorial-relatedstories-title {
 		margin-bottom: 30px;
@@ -94,6 +96,13 @@
 
 	&.is-style-card {
 
+		.wp-block-editorial-relatedstories-title {
+			text-align: center;
+			&:after {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
 		.wp-block-editorial-relatedstories-article {
 			@include transform( perspective( 1px ) translateZ( 0 ));
 			@include transition( transform 0.3s ease 0s );
