@@ -208,13 +208,26 @@ registerBlockType( 'editorial/introparagraph', {
 			// Try to set a sensible image size to avoid full size images being loaded. 
 			let selectedMediaURL = media.url;
 			
-			if ( media.sizes['bu_prepress_3x2_xs'] ) {
-				selectedMediaURL = media.sizes['bu_prepress_3x2_xs'].url
-			} else if ( media.sizes['thumbnail'] ) {
-				selectedMediaURL = media.sizes['thumbnail'].url
-			} else if ( media.sizes['medium'] ) {
-				selectedMediaURL = media.sizes['medium'].url
+			// The first check is for images already in the media library.
+			// The second is for newly uploaded images.
+			if ( media.sizes ) {
+				if ( media.sizes['bu_prepress_3x2_xs'] ) {
+					selectedMediaURL = media.sizes['bu_prepress_3x2_xs'].url
+				} else if ( media.sizes['thumbnail'] ) {
+					selectedMediaURL = media.sizes['thumbnail'].url
+				} else if ( media.sizes['medium'] ) {
+					selectedMediaURL = media.sizes['medium'].url
+				}
+			} else if ( media.media_details ) {
+				if ( media.media_details.sizes['bu_prepress_3x2_xs'] ) {
+					selectedMediaURL = media.media_details.sizes['bu_prepress_3x2_xs'].source_url
+				} else if ( media.media_details.sizes['thumbnail'] ) {
+					selectedMediaURL = media.media_details.sizes['thumbnail'].source_url
+				} else if ( media.media_details.sizes['medium'] ) {
+					selectedMediaURL = media.media_details.sizes['medium'].source_url
+				}
 			}
+
 			
 			setAttributes( { 
 				dropCapImageURL: selectedMediaURL, 
