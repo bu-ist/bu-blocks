@@ -1948,6 +1948,9 @@
  */
 .edit-post-visual-editor h2.wp-block-editorial-headline.is-style-emphasis-weight {
   font-weight: 100; }
+
+[data-type="editorial/headline"] .components-toolbar button.components-toolbar__control.has-icon {
+  position: relative; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -5875,9 +5878,9 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
  * which makes it higher in priority.
  */
 [data-selected-drawer="true"] .wp-block-editorial-drawer-content {
-  display: block;
-  float: none;
-  opacity: 1; }
+  display: block !important;
+  float: none !important;
+  opacity: 1 !important; }
 
 .wp-block-editorial-drawer .wp-block-editorial-drawer-teaser,
 .wp-block-editorial-drawer .wp-block-editorial-drawer-content {
@@ -9817,11 +9820,11 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
  * which makes it higher in priority.
  */
 [data-selected-modal="true"] .wp-block-editorial-modal-content {
-  display: block; }
+  display: block !important; }
 
 .wp-block-editorial-modal-callout,
 .wp-block-editorial-modal-content {
-  float: none; }
+  float: none !important; }
 
 .wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce,
 .wp-block-editorial-modal-callout .block-editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .block-editor-rich-text__tinymce {
@@ -23742,9 +23745,17 @@ input[value="photo-row-thirds-3"] + label {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-div[data-type="bu/button"] .components-autocomplete {
+[data-type="bu/button"] .wp-block-button.wp-block-bu-button {
+  color: inherit; }
+  [data-type="bu/button"] .wp-block-button.wp-block-bu-button [data-rich-text-placeholder]:after {
+    color: inherit; }
+
+[data-type="bu/button"] .components-autocomplete {
   display: inline-block;
   position: relative; }
+
+.components-panel__body-bu-button-block-url input {
+  max-width: 100%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS

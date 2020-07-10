@@ -8,9 +8,11 @@
 import classnames from 'classnames';
 
 // Internal dependencies.
-import themeOptions from '../../global/theme-options.js';
+import themeOptions from '../../global/theme-options';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
+
+import deprecated from './deprecated';
 
 //  Import CSS.
 import './style.scss';
@@ -56,6 +58,7 @@ const publication = publicationSlug();
  */
 const getClasses = ( className, themeColor, icon ) => classnames(
 	'wp-block-button',
+	'wp-block-bu-button',
 	{
 		[ `${publication}-block-button` ]: publication && publication !== '',
 		[ `has-${themeColor}-theme` ]: themeColor,
@@ -172,6 +175,17 @@ registerBlockType( 'bu/button', {
 								{ __( 'Clear' ) }
 							</Button>
 						</PanelBody>
+
+						<PanelBody
+							className="components-panel__body-bu-button-block-url"
+							title={ __( 'URL' ) }
+						>
+							<p className="description">Add link to the button</p>
+							<URLInput
+								value={ url }
+								onChange={ ( value ) => setAttributes( { url: value } ) }
+							/>
+						</PanelBody>
 					</InspectorControls>
 				<p>
 					<RichText
@@ -184,18 +198,7 @@ registerBlockType( 'bu/button', {
 						keepPlaceholderOnFocus
 					/>
 				</p>
-				{ isSelected && (
-					<form
-						className="block-library-button__inline-link"
-						onSubmit={ ( event ) => event.preventDefault() }>
-						<Dashicon icon="admin-links" />
-						<URLInput
-							value={ url }
-							onChange={ ( value ) => setAttributes( { url: value } ) }
-						/>
-						<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
-					</form>
-				) }
+
 			</Fragment>
 		);
 	} ),
@@ -220,4 +223,7 @@ registerBlockType( 'bu/button', {
 			</p>
 		);
 	},
+
+	deprecated,
+
 } );
