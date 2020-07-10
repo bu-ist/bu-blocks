@@ -33,7 +33,8 @@
 	&[data-align="left"],
 	&[data-align="right"] {
 
-		.editor-block-list__block-edit {
+		.editor-block-list__block-edit,
+		.block-editor-block-list__block-edit {
 			width: 50%;
 		}
 
@@ -60,7 +61,8 @@
 
 		.wp-block-editorial-drawer-content {
 
-			.editor-block-list__block-edit {
+			.editor-block-list__block-edit
+			.block-editor-block-list__block-edit {
 				width: 100%;
 			}
 		}

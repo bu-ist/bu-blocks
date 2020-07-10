@@ -14,7 +14,8 @@
 	float: none;
 }
 
-.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce {
+.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce,
+.wp-block-editorial-modal-callout .block-editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .block-editor-rich-text__tinymce {
 	padding-right: 0;
 }
 

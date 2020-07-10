@@ -22,11 +22,13 @@ figure.wp-block-editorial-relatedstories-article-image {
 }
 
 .panelbody-related-stories {
-	.editor-url-input input {
+	.editor-url-input input,
+	.block-editor-url-input input {
 		max-width: 95%;
 	}
 
-	.editor-url-input ~ h3 {
+	.editor-url-input ~ h3,
+	.block-editor-url-input ~ h3 {
 		margin: 1em 0;
 		padding-left: .25em;
 	}
@@ -36,7 +38,8 @@ figure.wp-block-editorial-relatedstories-article-image {
 		padding-left: 1.5em;
 	}
 
-	.editor-url-input input {
+	.editor-url-input input,
+	.block-editor-url-input input {
 		&::-webkit-input-placeholder {
 			color: #fff;
 		}
@@ -55,7 +58,8 @@ figure.wp-block-editorial-relatedstories-article-image {
 	}
 }
 
-.editor-block-list__block {
+.editor-block-list__block,
+.block-editor-block-list__block {
 
 	.wp-block-editorial-relatedstories.is-style-card:not(.alignwide):not(.alignfull) {
 		margin: 0;
