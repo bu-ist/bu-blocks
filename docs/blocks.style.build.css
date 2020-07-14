@@ -26,7 +26,8 @@
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -1003,7 +1004,8 @@
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -1998,7 +2000,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -2975,7 +2978,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -4019,7 +4023,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -4997,7 +5002,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -6151,7 +6157,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -7128,7 +7135,8 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -8125,7 +8133,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -9111,7 +9120,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -10260,7 +10270,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -11237,7 +11248,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -12415,7 +12427,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -13392,7 +13405,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -15260,7 +15274,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -16237,7 +16252,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -17449,7 +17465,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -18426,7 +18443,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -19426,7 +19444,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup, .wp-block-bu-pullquote.is-style-modern .container-lockup, .wp-block-bu-pullquote.is-style-pop .container-lockup {
   margin: 0 -15px; }
@@ -20403,7 +20422,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row, .wp-block-bu-pullquote:not(.is-style-modern):not(.is-style-pop) .container-lockup, .wp-block-bu-pullquote.is-style-modern .container-lockup, .wp-block-bu-pullquote.is-style-pop .container-lockup {
   margin: 0 -15px; }
@@ -21772,7 +21792,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -22758,7 +22779,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -24164,7 +24186,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -25141,7 +25164,8 @@ img.has-background-opacity-100 {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -26230,7 +26254,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -27207,7 +27232,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -28353,7 +28379,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container, .wp-block-editorial-listicle {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -29354,7 +29381,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container, .wp-block-editorial-listicle {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -30502,7 +30530,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -31479,7 +31508,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -32561,7 +32591,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row, .wp-block-bu-stats-row {
   margin: 0 -15px; }
@@ -33552,7 +33583,8 @@ a:visited {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row, .wp-block-bu-stats-row {
   margin: 0 -15px; }
@@ -34870,7 +34902,8 @@ svg.wp-block-bu-stat-svg {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -35847,7 +35880,8 @@ svg.wp-block-bu-stat-svg {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -36836,7 +36870,8 @@ svg.wp-block-bu-stat-svg {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
@@ -37813,7 +37848,8 @@ svg.wp-block-bu-stat-svg {
       max-width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      max-width: 1170px; } }
+      max-width: 1170px;
+      grid-gap: 60px; } }
 
 .row {
   margin: 0 -15px; }
