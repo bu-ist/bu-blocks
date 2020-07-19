@@ -128,6 +128,9 @@ registerBlockType( 'editorial/relatedstories', {
 		if ( [ 'left', 'right' ].includes( align ) && ( 'undefined' === typeof className || className.includes( 'is-style-list' ) ) ) {
 			return { 'data-align': align };
 		}
+		if ( className.includes( 'is-style-card' ) ) {
+				return { 'data-style': 'card' }
+		}
 
 		return { 'data-align': 'none' };
 	},

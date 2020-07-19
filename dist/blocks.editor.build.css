@@ -25703,6 +25703,16 @@ input[value="photo-row-thirds-3"] + label {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+.wp-block[data-type="editorial/relatedstories"][data-style="card"] {
+  max-width: 80%; }
+  .wp-block[data-type="editorial/relatedstories"][data-style="card"] aside.wp-block-editorial-relatedstories.is-style-card {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto; }
+
+.wp-block[data-type="editorial/relatedstories"] a {
+  pointer-events: none; }
+
 aside.wp-block-editorial-relatedstories:after {
   content: "";
   display: table;
@@ -25742,12 +25752,6 @@ figure.wp-block-editorial-relatedstories-article-image {
 .panelbody-related-stories .editor-url-input input:-moz-placeholder,
 .panelbody-related-stories .block-editor-url-input input:-moz-placeholder {
   color: #fff; }
-
-.editor-block-list__block .wp-block-editorial-relatedstories.is-style-card:not(.alignwide):not(.alignfull),
-.block-editor-block-list__block .wp-block-editorial-relatedstories.is-style-card:not(.alignwide):not(.alignfull) {
-  margin: 0;
-  padding: 0;
-  width: 100%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
