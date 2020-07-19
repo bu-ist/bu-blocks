@@ -6,6 +6,7 @@
  */
 
 .wp-block-bu-stats {
+	padding: 20px 0; // Make parent block easier to select in editor.
 	.editor-inner-blocks,
 	.block-editor-inner-blocks {
 		width: 100%;
