@@ -53,7 +53,7 @@ registerBlockType( 'editorial/collapsible', {
 
 			<div className={className}>
 				<BlockControls>
-					<HeadingToolbar minLevel={ 2 } maxLevel={ 6 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+					<HeadingToolbar minLevel={ 2 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 				<RichText
 					tagName={ tagName }
