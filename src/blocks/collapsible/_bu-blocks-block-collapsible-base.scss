@@ -1,0 +1,22 @@
+// =================================================================
+// Collapsible Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-editorial-collapsible {
+	background-color: #ccc;
+
+	.bu-block-collapsible-content {
+		display: none;
+	}
+
+	&.is-open .bu-block-collapsible-content {
+		display: block;
+	}
+
+}

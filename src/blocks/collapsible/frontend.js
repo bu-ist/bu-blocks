@@ -2,6 +2,7 @@ bu_blocks.collapsible = ( function() {
 
 	// Store all collapsible block
 	var collapsibleBlocks = [];
+	var collapsibleOpenClass = 'is-open';
 
 	/**
 	 * Toggle collapsible block
@@ -10,13 +11,13 @@ bu_blocks.collapsible = ( function() {
 	 */
 	var toggleCollapsible = function( collapsible ) {
 
-		if ( collapsible.classList.contains ( 'bu-collapsible-open' ) ) {
+		if ( collapsible.classList.contains ( collapsibleOpenClass ) ) {
 
-			collapsible.classList.remove( 'bu-collapsible-open' );
+			collapsible.classList.remove( collapsibleOpenClass );
 
 		} else {
 
-			collapsible.classList.add( 'bu-collapsible-open' );
+			collapsible.classList.add( collapsibleOpenClass );
 
 		}
 

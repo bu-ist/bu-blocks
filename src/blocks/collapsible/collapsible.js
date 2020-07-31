@@ -5,6 +5,7 @@
  */
 
 // Import CSS.
+import './style.scss';
 import './editor.scss';
 
 // WordPress dependencies.
@@ -83,7 +84,9 @@ registerBlockType( 'editorial/collapsible', {
 						value={ content }
 					/>
 				</button>
-				<InnerBlocks.Content />
+				<div className="bu-block-collapsible-content">
+					<InnerBlocks.Content />
+				</div>
 			</div>
 		);
 
