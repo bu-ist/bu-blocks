@@ -76,8 +76,8 @@ registerBlockType( 'editorial/collapsible', {
 		const tagName = 'h' + level;
 
 		return (
-			<div className="bu-collapsible">
-				<button>
+			<div>
+				<button className="js-bu-block-collapsible-toggle">
 					<RichText.Content
 						tagName={ tagName }
 						value={ content }
