@@ -4,6 +4,9 @@
  * A collapsible content block.
  */
 
+// External dependencies.
+import classnames from 'classnames';
+
 // Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -12,12 +15,15 @@ import './editor.scss';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const {
+	PanelBody,
+	ToggleControl,
 	Path,
 	SVG
 } = wp.components;
 const {
 	InnerBlocks,
 	BlockControls,
+	InspectorControls,
 	RichText
 } = wp.blockEditor;
 
@@ -39,13 +45,17 @@ registerBlockType( 'editorial/collapsible', {
 		level: {
 			type: 'number',
 			default: 2
+		},
+		isOpen: {
+			type: 'bool',
+			default: false
 		}
 	},
 
 	edit( props ) {
 
 		const { attributes, setAttributes, className } = props;
-		const { content, level } = attributes;
+		const { content, level, isOpen } = attributes;
 		const tagName = 'h' + level;
 
 		const allowedBlocks = [ 'editorial/collapsible', 'core/heading', 'core/paragraph', 'core/button', 'core/image' ];
@@ -53,9 +63,23 @@ registerBlockType( 'editorial/collapsible', {
 		return (
 
 			<div className={className}>
+
+				<InspectorControls>
+					<PanelBody title={ __( 'Default Collapsible Status' ) }>
+
+						<ToggleControl
+							label={ __( 'Open' ) }
+							checked={ isOpen }
+							onChange={ () => setAttributes( { isOpen: !isOpen } ) }
+						/>
+
+					</PanelBody>
+				</InspectorControls>
+
 				<BlockControls>
 					<HeadingToolbar minLevel={ 2 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
+
 				<RichText
 					tagName={ tagName }
 					className="bu-collapsible-heading"
@@ -64,7 +88,9 @@ registerBlockType( 'editorial/collapsible', {
 					placeholder={ __( 'Heading...' ) }
 					formattingControls={ [ 'bold', 'italic' ] }
 				/>
+
 				<InnerBlocks allowedBlocks={ allowedBlocks }/>
+
 			</div>
 
 		);
@@ -73,11 +99,15 @@ registerBlockType( 'editorial/collapsible', {
 
 	save( { attributes } ) {
 
-		const { content, level } = attributes;
+		const { content, level, isOpen, className } = attributes;
 		const tagName = 'h' + level;
 
+		let classes = className;
+
+		if ( isOpen ) classes += ' is-open';
+
 		return (
-			<div>
+			<div className={ classnames( className, { isOpen: isOpen } ) }>
 				<button className="js-bu-block-collapsible-toggle">
 					<RichText.Content
 						tagName={ tagName }
