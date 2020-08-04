@@ -143,10 +143,6 @@ registerBlockType( 'editorial/collapsible', {
 		const { content, level, isOpen, className, iconStyle } = attributes;
 		const tagName = 'h' + level;
 
-		let classes = className;
-
-		if ( isOpen ) classes += ' is-open';
-
 		return (
 			<div className={ classnames( className, { isOpen: isOpen }, `icon-style-${ iconStyle }` ) }>
 				<button className="js-bu-block-collapsible-toggle">
