@@ -130,6 +130,7 @@ registerBlockType( 'editorial/collapsible', {
 					<RichText.Content
 						tagName={ tagName }
 						value={ content }
+						className="bu-collapsible-heading"
 					/>
 				</button>
 				<div className="bu-block-collapsible-content">
