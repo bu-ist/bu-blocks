@@ -552,23 +552,18 @@ const bu_blocks = {};
 			var block = {};
 
 			block.collapsible = element;
-			block.button = element.querySelector( '.js-bu-block-collapsible-toggle' );
+			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
 
 			collapsibleBlocks.push( block );
-
-			// Open the Collapsible block if the ID is in the current URL
-			if ( window.location.hash === '#' + element.id ) {
-				element.classList.add( collapsibleOpenClass );
-			}
 
 		} );
 
 	}
 
 	/**
-	 * Set up handlers
+	 * Set up handlers, aria, and other functionality
 	 */
-	var setupHandlers = function() {
+	var setupCollapsibleBlocks = function() {
 
 		if ( collapsibleBlocks.length === 0 ) {
 			return;
@@ -576,13 +571,21 @@ const bu_blocks = {};
 
 		collapsibleBlocks.forEach( function( thisCollapsible, i ) {
 
-			thisCollapsible.button.addEventListener( 'click', function( e ) {
+			const { toggle, collapsible } = thisCollapsible;
+
+			// Add toggle event
+			toggle.addEventListener( 'click', function( e ) {
 
 				e.preventDefault();
 
-				toggleCollapsible( thisCollapsible.collapsible );
+				toggleCollapsible( collapsible );
 
 			} );
+
+			// Open the Collapsible block if the ID is in the current URL
+			if ( window.location.hash === '#' + collapsible.id ) {
+				collapsible.classList.add( collapsibleOpenClass );
+			}
 
 		} );
 
@@ -595,7 +598,7 @@ const bu_blocks = {};
 
 		findElements();
 
-		setupHandlers();
+		setupCollapsibleBlocks();
 
 	}
 
