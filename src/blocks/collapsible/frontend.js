@@ -44,6 +44,11 @@ bu_blocks.collapsible = ( function() {
 
 			collapsibleBlocks.push( block );
 
+			// Open the Collapsible block if the ID is in the current URL
+			if ( window.location.hash === '#' + element.id ) {
+				element.classList.add( collapsibleOpenClass );
+			}
+
 		} );
 
 	}
