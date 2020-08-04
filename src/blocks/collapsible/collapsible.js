@@ -18,6 +18,7 @@ const {
 	PanelBody,
 	ToggleControl,
 	SelectControl,
+	RangeControl,
 	Path,
 	SVG
 } = wp.components;
@@ -57,6 +58,10 @@ registerBlockType( 'editorial/collapsible', {
 		iconStyle: {
 			type: 'string',
 			default: 'plus-minus'
+		},
+		marginBottom: {
+			type: 'number',
+			default: 0
 		}
 	},
 	styles: [
@@ -78,14 +83,21 @@ registerBlockType( 'editorial/collapsible', {
 	edit( props ) {
 
 		const { attributes, setAttributes, className } = props;
-		const { content, level, isOpen, iconStyle } = attributes;
+		const { content, level, isOpen, iconStyle, marginBottom } = attributes;
 		const tagName = 'h' + level;
 
 		const allowedBlocks = [ 'editorial/collapsible', 'core/heading', 'core/paragraph', 'core/button', 'core/image' ];
 
+		// Add an offset to the bottom margin in the editor to account for the container element padding
+		const editorContainerPaddingOffset = 28;
+
+		const styles = {
+			marginBottom: marginBottom + editorContainerPaddingOffset
+		};
+
 		return (
 
-			<div className={className}>
+			<div className={className} style={ styles }>
 
 				<InspectorControls>
 
@@ -115,6 +127,17 @@ registerBlockType( 'editorial/collapsible', {
 						/>
 					</PanelBody>
 
+					<PanelBody title={ __( 'Spacing' ) }>
+						<RangeControl
+							label={ __( 'Bottom Margin (px)' ) }
+							value={ marginBottom }
+							onChange={ ( value ) => setAttributes( { marginBottom: value } ) }
+							min={ 0 }
+							max={ 200 }
+							step={ 1 }
+						/>
+					</PanelBody>
+
 				</InspectorControls>
 
 				<BlockControls>
@@ -140,11 +163,15 @@ registerBlockType( 'editorial/collapsible', {
 
 	save( { attributes } ) {
 
-		const { content, level, isOpen, className, iconStyle } = attributes;
+		const { content, level, isOpen, className, iconStyle, marginBottom } = attributes;
 		const tagName = 'h' + level;
 
+		const styles = {
+			marginBottom: marginBottom
+		};
+
 		return (
-			<div className={ classnames( className, { isOpen: isOpen }, `icon-style-${ iconStyle }` ) }>
+			<div className={ classnames( className, { isOpen: isOpen }, `icon-style-${ iconStyle }` ) } style={ styles }>
 				<button className="js-bu-block-collapsible-toggle">
 					<RichText.Content
 						tagName={ tagName }
