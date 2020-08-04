@@ -54,6 +54,21 @@ registerBlockType( 'editorial/collapsible', {
 			default: false
 		}
 	},
+	styles: [
+		{
+			name: 'plain',
+			label: __( 'Plain' ),
+			isDefault: true,
+		},
+		{
+			name: 'outline',
+			label: __( 'Outline' )
+		},
+		{
+			name: 'preview',
+			label: __( 'Preview' )
+		}
+	],
 
 	edit( props ) {
 
