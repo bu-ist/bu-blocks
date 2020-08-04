@@ -28,6 +28,8 @@ const {
 	InspectorControls,
 	RichText
 } = wp.blockEditor;
+const { select } = wp.data;
+const { getBlocks } = select( 'core/block-editor' );
 
 import HeadingToolbar from '../headline/heading-toolbar';
 
@@ -62,6 +64,12 @@ registerBlockType( 'editorial/collapsible', {
 		marginBottom: {
 			type: 'number',
 			default: 0
+		},
+		anchor: {
+			type: 'string',
+			source: 'attribute',
+			attribute: 'id',
+			selector: '.wp-block-editorial-collapsible'
 		}
 	},
 	styles: [
@@ -83,13 +91,24 @@ registerBlockType( 'editorial/collapsible', {
 	edit( props ) {
 
 		const { attributes, setAttributes, className } = props;
-		const { content, level, isOpen, iconStyle, marginBottom } = attributes;
+		const { content, level, isOpen, iconStyle, marginBottom, anchor } = attributes;
 		const tagName = 'h' + level;
 
 		const allowedBlocks = [ 'editorial/collapsible', 'core/heading', 'core/paragraph', 'core/button', 'core/image' ];
 
 		// Add an offset to the bottom margin in the editor to account for the container element padding
 		const editorContainerPaddingOffset = 28;
+
+		// Generate anchor if not set
+		if ( ! anchor ) {
+
+			const collapsibleBlocks = getBlocks().filter( e => e.name === 'editorial/collapsible' );
+
+			const id = 'bu-collapsible-' + collapsibleBlocks.length;
+
+			setAttributes( { anchor: id } );
+
+		}
 
 		const styles = {
 			marginBottom: marginBottom + editorContainerPaddingOffset
