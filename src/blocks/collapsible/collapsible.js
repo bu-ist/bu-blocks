@@ -17,6 +17,7 @@ const { registerBlockType } = wp.blocks;
 const {
 	PanelBody,
 	ToggleControl,
+	SelectControl,
 	Path,
 	SVG
 } = wp.components;
@@ -52,6 +53,10 @@ registerBlockType( 'editorial/collapsible', {
 		isOpen: {
 			type: 'bool',
 			default: false
+		},
+		iconStyle: {
+			type: 'string',
+			default: 'plus-minus'
 		}
 	},
 	styles: [
@@ -73,7 +78,7 @@ registerBlockType( 'editorial/collapsible', {
 	edit( props ) {
 
 		const { attributes, setAttributes, className } = props;
-		const { content, level, isOpen } = attributes;
+		const { content, level, isOpen, iconStyle } = attributes;
 		const tagName = 'h' + level;
 
 		const allowedBlocks = [ 'editorial/collapsible', 'core/heading', 'core/paragraph', 'core/button', 'core/image' ];
@@ -83,15 +88,33 @@ registerBlockType( 'editorial/collapsible', {
 			<div className={className}>
 
 				<InspectorControls>
-					<PanelBody title={ __( 'Default Collapsible Status' ) }>
 
+					<PanelBody title={ __( 'Default Collapsible Status' ) }>
 						<ToggleControl
 							label={ __( 'Open' ) }
 							checked={ isOpen }
 							onChange={ () => setAttributes( { isOpen: !isOpen } ) }
 						/>
-
 					</PanelBody>
+
+					<PanelBody title={ __( 'Icon Style' ) }>
+						<SelectControl
+							label={ __( 'Icon Style' ) }
+							value={ iconStyle }
+							options={ [
+								{
+									label: __( 'Plus/Minus' ),
+									value: 'plus-minus'
+								},
+								{
+									label: __( 'Arrows' ),
+									value: 'arrows'
+								}
+							] }
+							onChange={ ( value ) => setAttributes( { iconStyle: value } ) }
+						/>
+					</PanelBody>
+
 				</InspectorControls>
 
 				<BlockControls>
@@ -117,7 +140,7 @@ registerBlockType( 'editorial/collapsible', {
 
 	save( { attributes } ) {
 
-		const { content, level, isOpen, className } = attributes;
+		const { content, level, isOpen, className, iconStyle } = attributes;
 		const tagName = 'h' + level;
 
 		let classes = className;
@@ -125,7 +148,7 @@ registerBlockType( 'editorial/collapsible', {
 		if ( isOpen ) classes += ' is-open';
 
 		return (
-			<div className={ classnames( className, { isOpen: isOpen } ) }>
+			<div className={ classnames( className, { isOpen: isOpen }, `icon-style-${ iconStyle }` ) }>
 				<button className="js-bu-block-collapsible-toggle">
 					<RichText.Content
 						tagName={ tagName }
