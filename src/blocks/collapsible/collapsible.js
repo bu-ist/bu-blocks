@@ -210,7 +210,7 @@ registerBlockType( 'editorial/collapsible', {
 		};
 
 		return (
-			<div className={ classnames( className, { isOpen: isOpen }, `icon-style-${ iconStyle }` ) } style={ styles }>
+			<div className={ classnames( className, { 'is-open': isOpen }, `icon-style-${ iconStyle }` ) } style={ styles }>
 				<button className="js-bu-block-collapsible-toggle">
 					<RichText.Content
 						tagName={ tagName }
