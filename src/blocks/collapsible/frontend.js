@@ -41,6 +41,7 @@ bu_blocks.collapsible = ( function() {
 
 			block.collapsible = element;
 			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
+			block.panel = element.querySelector( '.bu-block-collapsible-content' );
 
 			collapsibleBlocks.push( block );
 
@@ -59,7 +60,7 @@ bu_blocks.collapsible = ( function() {
 
 		collapsibleBlocks.forEach( function( thisCollapsible, i ) {
 
-			const { toggle, collapsible } = thisCollapsible;
+			const { collapsible, toggle, panel } = thisCollapsible;
 
 			// Add toggle event
 			toggle.addEventListener( 'click', function( e ) {
@@ -73,6 +74,27 @@ bu_blocks.collapsible = ( function() {
 			// Open the Collapsible block if the ID is in the current URL
 			if ( window.location.hash === '#' + collapsible.id ) {
 				collapsible.classList.add( collapsibleOpenClass );
+			}
+
+			// Make sure the collapsible block has an id
+			if ( collapsible.id === '' ) {
+
+				collapsible.setAttribute( 'id', 'bu-collapsible-block-' + i );
+
+			}
+
+			// Make sure the button has an id
+			if ( toggle.id === '' ) {
+
+				toggle.setAttribute( 'id', collapsible.id + '-toggle' );
+
+			}
+
+			// Make sure the panel has an id
+			if ( panel.id === '' ) {
+
+				panel.setAttribute( 'id', collapsible.id + '-panel' );
+
 			}
 
 		} );
