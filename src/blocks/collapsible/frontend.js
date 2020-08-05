@@ -135,6 +135,22 @@ bu_blocks.collapsible = ( function() {
 
 			}
 
+			// Set ARIA attributes
+			toggle.setAttribute( 'aria-controls', panel.id );
+			panel.setAttribute( 'aria-labelledby', toggle.id );
+
+			if ( isOpen( collapsible ) ) {
+
+				toggle.setAttribute( 'aria-expanded', true );
+				panel.setAttribute( 'aria-hidden', false );
+
+			} else {
+
+				toggle.setAttribute( 'aria-expanded', false );
+				panel.setAttribute( 'aria-hidden', true );
+
+			}
+
 		} );
 
 	};
