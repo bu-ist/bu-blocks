@@ -102,9 +102,29 @@ registerBlockType( 'editorial/collapsible', {
 		// Generate anchor if not set
 		if ( ! anchor ) {
 
+			// Get all collapsibleBlocks in the post
 			const collapsibleBlocks = getBlocks().filter( e => e.name === 'editorial/collapsible' );
 
-			const id = 'bu-collapsible-' + collapsibleBlocks.length;
+			// Store all anchors in an array
+			let anchors = [];
+			collapsibleBlocks.forEach( ( block, i ) => {
+
+				anchors.push( block.attributes.anchor );
+
+			} );
+
+			// Set default anchor based on how many Collapsible blocks are in the post
+			let i = collapsibleBlocks.length;
+			let id = 'bu-collapsible-' + i;
+
+			// Make sure the new anchor doesn't exist already
+			// This fixes duplicate anchors from being used if older Collapsible blocks are removed from the post
+			while ( anchors.includes( id ) ) {
+
+				i++;
+				id = 'bu-collapsible-' + i;
+
+			}
 
 			setAttributes( { anchor: id } );
 
