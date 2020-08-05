@@ -90,7 +90,7 @@ bu_blocks.collapsible = ( function() {
 			var block = {};
 
 			block.container = element;
-			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
+			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
 			block.panel = element.querySelector( '.bu-block-collapsible-content' );
 
 			collapsibleBlocks.push( block );
