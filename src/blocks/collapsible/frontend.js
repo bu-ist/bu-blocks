@@ -5,6 +5,22 @@ bu_blocks.collapsible = ( function() {
 	var collapsibleOpenClass = 'is-open';
 
 	/**
+	 * Check if a Collapsible block is open
+	 *
+	 * @param element collapsible block
+	 * @return bool
+	 */
+	var isOpen = function( collapsible ) {
+
+		if ( collapsible.classList.contains ( collapsibleOpenClass ) ) {
+			return true;
+		}
+
+		return false;
+
+	};
+
+	/**
 	 * Open Collapsible block
 	 *
 	 * @param element collapsible block
@@ -33,7 +49,7 @@ bu_blocks.collapsible = ( function() {
 	 */
 	var toggleCollapsible = function( collapsible ) {
 
-		if ( collapsible.classList.contains ( collapsibleOpenClass ) ) {
+		if ( isOpen( collapsible ) ) {
 
 			closeCollapsible( collapsible );
 
