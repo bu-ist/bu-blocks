@@ -541,9 +541,12 @@ const bu_blocks = {};
 	 */
 	var openCollapsible = function( collapsible ) {
 
-		const { container } = collapsible;
+		const { container, toggle, panel } = collapsible;
 
 		container.classList.add( collapsibleOpenClass );
+
+		toggle.setAttribute( 'aria-expanded', true );
+		panel.setAttribute( 'aria-hidden', false );
 
 	};
 
@@ -554,9 +557,12 @@ const bu_blocks = {};
 	 */
 	var closeCollapsible = function( collapsible ) {
 
-		const { container } = collapsible;
+		const { container, toggle, panel } = collapsible;
 
 		container.classList.remove( collapsibleOpenClass );
+
+		toggle.setAttribute( 'aria-expanded', false );
+		panel.setAttribute( 'aria-hidden', true );
 
 	};
 
