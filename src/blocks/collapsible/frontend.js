@@ -7,12 +7,14 @@ bu_blocks.collapsible = ( function() {
 	/**
 	 * Check if a Collapsible block is open
 	 *
-	 * @param element collapsible block
+	 * @param object collapsible block
 	 * @return bool
 	 */
 	var isOpen = function( collapsible ) {
 
-		if ( collapsible.classList.contains ( collapsibleOpenClass ) ) {
+		const { container } = collapsible;
+
+		if ( container.classList.contains ( collapsibleOpenClass ) ) {
 			return true;
 		}
 
@@ -23,22 +25,26 @@ bu_blocks.collapsible = ( function() {
 	/**
 	 * Open Collapsible block
 	 *
-	 * @param element collapsible block
+	 * @param object collapsible block
 	 */
 	var openCollapsible = function( collapsible ) {
 
-		collapsible.classList.add( collapsibleOpenClass );
+		const { container } = collapsible;
+
+		container.classList.add( collapsibleOpenClass );
 
 	};
 
 	/**
 	 * Close Collapsible block
 	 *
-	 * @param element collapsible block
+	 * @param object collapsible block
 	 */
 	var closeCollapsible = function( collapsible ) {
 
-		collapsible.classList.remove( collapsibleOpenClass );
+		const { container } = collapsible;
+
+		container.classList.remove( collapsibleOpenClass );
 
 	};
 
@@ -66,18 +72,18 @@ bu_blocks.collapsible = ( function() {
 	 */
 	var findElements = function() {
 
-		var elements = document.querySelectorAll( '.wp-block-editorial-collapsible' );
+		var containers = document.querySelectorAll( '.wp-block-editorial-collapsible' );
 
 		// Don't coninue if no Collapsible blocks exist
-		if ( elements.length === 0 ) {
+		if ( containers.length === 0 ) {
 			return;
 		}
 
-		elements.forEach( function( element, i ) {
+		containers.forEach( function( element, i ) {
 
 			var block = {};
 
-			block.collapsible = element;
+			block.container = element;
 			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
 			block.panel = element.querySelector( '.bu-block-collapsible-content' );
 
@@ -96,9 +102,9 @@ bu_blocks.collapsible = ( function() {
 			return;
 		}
 
-		collapsibleBlocks.forEach( function( thisCollapsible, i ) {
+		collapsibleBlocks.forEach( function( collapsible, i ) {
 
-			const { collapsible, toggle, panel } = thisCollapsible;
+			const { container, toggle, panel } = collapsible;
 
 			// Add toggle event
 			toggle.addEventListener( 'click', function( e ) {
@@ -110,18 +116,18 @@ bu_blocks.collapsible = ( function() {
 			} );
 
 			// Open the Collapsible block if the ID is in the current URL
-			if ( window.location.hash === '#' + collapsible.id ) {
+			if ( window.location.hash === '#' + container.id ) {
 				openCollapsible( collapsible );
 			}
 
 			// Make sure the collapsible block has an id
-			if ( collapsible.id === '' ) {
+			if ( container.id === '' ) {
 
-				collapsible.setAttribute( 'id', 'bu-collapsible-block-' + i );
+				container.setAttribute( 'id', 'bu-collapsible-block-' + i );
 
 			}
 
-			// Make sure the button has an id
+			// Make sure the toggle has an id
 			if ( toggle.id === '' ) {
 
 				toggle.setAttribute( 'id', collapsible.id + '-toggle' );
