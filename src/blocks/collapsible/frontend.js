@@ -136,14 +136,14 @@ bu_blocks.collapsible = ( function() {
 			// Make sure the toggle has an id
 			if ( toggle.id === '' ) {
 
-				toggle.setAttribute( 'id', collapsible.id + '-toggle' );
+				toggle.setAttribute( 'id', container.id + '-toggle' );
 
 			}
 
 			// Make sure the panel has an id
 			if ( panel.id === '' ) {
 
-				panel.setAttribute( 'id', collapsible.id + '-panel' );
+				panel.setAttribute( 'id', container.id + '-panel' );
 
 			}
 
