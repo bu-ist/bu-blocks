@@ -21,7 +21,7 @@ bu_blocks.collapsible = ( function() {
 
 		}
 
-	}
+	};
 
 	/**
 	 * Find all Collapsible blocks
@@ -47,7 +47,7 @@ bu_blocks.collapsible = ( function() {
 
 		} );
 
-	}
+	};
 
 	/**
 	 * Set up handlers, aria, and other functionality
@@ -99,7 +99,7 @@ bu_blocks.collapsible = ( function() {
 
 		} );
 
-	}
+	};
 
 	/**
 	 * Init
@@ -110,7 +110,7 @@ bu_blocks.collapsible = ( function() {
 
 		setupCollapsibleBlocks();
 
-	}
+	};
 
 	// Start things on dom ready.
 	document.addEventListener( "DOMContentLoaded", function() {

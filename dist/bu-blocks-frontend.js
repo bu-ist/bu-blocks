@@ -533,7 +533,7 @@ const bu_blocks = {};
 
 		}
 
-	}
+	};
 
 	/**
 	 * Find all Collapsible blocks
@@ -559,7 +559,7 @@ const bu_blocks = {};
 
 		} );
 
-	}
+	};
 
 	/**
 	 * Set up handlers, aria, and other functionality
@@ -611,7 +611,7 @@ const bu_blocks = {};
 
 		} );
 
-	}
+	};
 
 	/**
 	 * Init
@@ -622,7 +622,7 @@ const bu_blocks = {};
 
 		setupCollapsibleBlocks();
 
-	}
+	};
 
 	// Start things on dom ready.
 	document.addEventListener( "DOMContentLoaded", function() {
