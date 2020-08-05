@@ -5,6 +5,28 @@ bu_blocks.collapsible = ( function() {
 	var collapsibleOpenClass = 'is-open';
 
 	/**
+	 * Open Collapsible block
+	 *
+	 * @param element collapsible block
+	 */
+	var openCollapsible = function( collapsible ) {
+
+		collapsible.classList.add( collapsibleOpenClass );
+
+	};
+
+	/**
+	 * Close Collapsible block
+	 *
+	 * @param element collapsible block
+	 */
+	var closeCollapsible = function( collapsible ) {
+
+		collapsible.classList.remove( collapsibleOpenClass );
+
+	};
+
+	/**
 	 * Toggle collapsible block
 	 *
 	 * @param element collapsible block
@@ -13,11 +35,11 @@ bu_blocks.collapsible = ( function() {
 
 		if ( collapsible.classList.contains ( collapsibleOpenClass ) ) {
 
-			collapsible.classList.remove( collapsibleOpenClass );
+			closeCollapsible( collapsible );
 
 		} else {
 
-			collapsible.classList.add( collapsibleOpenClass );
+			openCollapsible( collapsible );
 
 		}
 
@@ -73,7 +95,7 @@ bu_blocks.collapsible = ( function() {
 
 			// Open the Collapsible block if the ID is in the current URL
 			if ( window.location.hash === '#' + collapsible.id ) {
-				collapsible.classList.add( collapsibleOpenClass );
+				openCollapsible( collapsible );
 			}
 
 			// Make sure the collapsible block has an id
