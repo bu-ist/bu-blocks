@@ -42,11 +42,11 @@
 
 	&.is-open {
 
-		.bu-block-collapsible-content {
+		& > .bu-block-collapsible-content {
 			display: block;
 		}
 
-		.bu-collapsible-heading:after {
+		& > .bu-block-collapsible-toggle .bu-collapsible-heading:after {
 			content: '-';
 		}
 
