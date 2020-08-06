@@ -35651,8 +35651,27 @@ div[data-align="right"] .wp-block-bu-stats {
   or object-fit and object-position:
   @include object-fit(cover, top);
 */
-.bu-collapsible {
-  padding: 10px 0; }
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block.is-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-content,
+.wp-block.has-child-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-content {
+  display: block; }
+
+.wp-block.is-selected > .wp-block-editorial-collapsible > .bu-collapsible-heading::after,
+.wp-block.has-child-selected > .wp-block-editorial-collapsible > .bu-collapsible-heading::after {
+  content: '-'; }
+
+.wp-block-editorial-collapsible .bu-collapsible-heading {
+  margin-top: 0; }
+
+.wp-block-editorial-collapsible .bu-block-collapsible-content {
+  margin-left: 10px;
+  padding-left: 15px;
+  border-left: 3px solid #ddd; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS

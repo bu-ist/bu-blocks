@@ -192,7 +192,9 @@ registerBlockType( 'editorial/collapsible', {
 					formattingControls={ [ 'bold', 'italic' ] }
 				/>
 
-				<InnerBlocks allowedBlocks={ allowedBlocks }/>
+				<div className="bu-block-collapsible-content">
+					<InnerBlocks allowedBlocks={ allowedBlocks }/>
+				</div>
 
 			</div>
 
