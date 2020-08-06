@@ -136,7 +136,7 @@ registerBlockType( 'editorial/collapsible', {
 
 		return (
 
-			<div className={className} style={ styles }>
+			<div className={ classnames( className, { 'is-open': isOpen }, `icon-style-${ iconStyle }` ) } style={ styles }>
 
 				<InspectorControls>
 
