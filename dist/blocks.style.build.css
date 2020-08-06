@@ -36801,8 +36801,40 @@ svg.wp-block-bu-stat-svg {
 .wp-block-editorial-collapsible .bu-block-collapsible-content {
   display: none; }
 
-.wp-block-editorial-collapsible.is-open .bu-block-collapsible-content {
+.wp-block-editorial-collapsible .bu-block-collapsible-toggle {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  text-align: left;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+
+.wp-block-editorial-collapsible .bu-collapsible-heading {
+  position: relative;
+  margin-bottom: 0; }
+  .wp-block-editorial-collapsible .bu-collapsible-heading:after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    font-family: 'bu-default-icons';
+    font-size: 16px;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%); }
+
+.wp-block-editorial-collapsible.is-open > .bu-block-collapsible-content {
   display: block; }
+
+.wp-block-editorial-collapsible.is-open > .bu-block-collapsible-toggle .bu-collapsible-heading:after {
+  content: '-'; }
+
+.wp-block-editorial-collapsible.is-style-outline {
+  padding: 10px;
+  border: 3px solid #000; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
