@@ -183,14 +183,18 @@ registerBlockType( 'editorial/collapsible', {
 					<HeadingToolbar minLevel={ 2 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 
-				<RichText
-					tagName={ tagName }
-					className="bu-collapsible-heading"
-					value={ content }
-					onChange={ content => setAttributes( { content } ) }
-					placeholder={ __( 'Heading...' ) }
-					formattingControls={ [ 'bold', 'italic' ] }
-				/>
+				<div className="bu-block-collapsible-toggle">
+
+					<RichText
+						tagName={ tagName }
+						className="bu-collapsible-heading"
+						value={ content }
+						onChange={ content => setAttributes( { content } ) }
+						placeholder={ __( 'Heading...' ) }
+						formattingControls={ [ 'bold', 'italic' ] }
+					/>
+
+				</div>
 
 				<div className="bu-block-collapsible-content">
 					<InnerBlocks allowedBlocks={ allowedBlocks }/>
