@@ -35665,6 +35665,10 @@ div[data-align="right"] .wp-block-bu-stats {
 .wp-block.has-child-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
   content: '\002D'; }
 
+.wp-block.is-selected > .wp-block-editorial-collapsible.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after,
+.wp-block.has-child-selected > .wp-block-editorial-collapsible.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  content: '\F501'; }
+
 .wp-block-editorial-collapsible .bu-collapsible-heading {
   margin-top: 0; }
 

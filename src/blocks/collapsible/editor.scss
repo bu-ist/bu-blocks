@@ -17,6 +17,10 @@
 		content: '\002D';
 	}
 
+	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		content: '\F501';
+	}
+
 }
 
 .wp-block-editorial-collapsible {
