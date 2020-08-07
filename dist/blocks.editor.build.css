@@ -35663,7 +35663,7 @@ div[data-align="right"] .wp-block-bu-stats {
 
 .wp-block.is-selected > .wp-block-editorial-collapsible > .bu-collapsible-heading::after,
 .wp-block.has-child-selected > .wp-block-editorial-collapsible > .bu-collapsible-heading::after {
-  content: '-'; }
+  content: '\002D'; }
 
 .wp-block-editorial-collapsible .bu-collapsible-heading {
   margin-top: 0; }

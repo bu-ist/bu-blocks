@@ -28,13 +28,13 @@
 		position: relative;
 		margin-bottom: 0;
 
+		@include icon( 'plus', 'after' );
+
 		&:after {
-			content: '+';
 			position: absolute;
 			right: 0;
 			top: 50%;
-			font-family: 'bu-default-icons';
-			font-size: 16px;
+			font-size: .75em;
 			transform: translateY( -50% );
 		}
 
@@ -46,8 +46,8 @@
 			display: block;
 		}
 
-		& > .bu-collapsible-heading:after {
-			content: '-';
+		& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+			content: '\002D';
 		}
 
 	}

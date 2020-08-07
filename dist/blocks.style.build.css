@@ -36815,13 +36815,34 @@ svg.wp-block-bu-stat-svg {
 .wp-block-editorial-collapsible .bu-collapsible-heading {
   position: relative;
   margin-bottom: 0; }
+  .lt-ie9:hover .wp-block-editorial-collapsible .bu-collapsible-heading {
+    -ms-zoom: 1; }
+  .wp-block-editorial-collapsible .bu-collapsible-heading span {
+    display: none; }
+  .wp-block-editorial-collapsible .bu-collapsible-heading::after {
+    color: unset;
+    display: inline-block;
+    font-family: "bu-default-icons";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-bottom: 0.2em;
+    speak: none;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-left: 0.5em;
+    content: "+"; }
   .wp-block-editorial-collapsible .bu-collapsible-heading:after {
-    content: '+';
     position: absolute;
     right: 0;
     top: 50%;
-    font-family: 'bu-default-icons';
-    font-size: 16px;
+    font-size: .75em;
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%); }
@@ -36829,8 +36850,8 @@ svg.wp-block-bu-stat-svg {
 .wp-block-editorial-collapsible.is-open > .bu-block-collapsible-content {
   display: block; }
 
-.wp-block-editorial-collapsible.is-open > .bu-block-collapsible-toggle .bu-collapsible-heading:after {
-  content: '-'; }
+.wp-block-editorial-collapsible.is-open > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  content: '\002D'; }
 
 .wp-block-editorial-collapsible.is-style-outline {
   padding: 10px;
