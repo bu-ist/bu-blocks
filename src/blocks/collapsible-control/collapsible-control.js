@@ -28,6 +28,9 @@ registerBlockType( 'editorial/collapsible-control', {
 			selector: 'button'
 		}
 	},
+	supports: {
+		align: [ 'left', 'center', 'right' ]
+	},
 
 	edit( props ) {
 
@@ -42,6 +45,7 @@ registerBlockType( 'editorial/collapsible-control', {
 					value={ text }
 					className="button"
 					onChange={ ( value ) => setAttributes( { text: value } ) }
+					formattingControls={ [ 'bold', 'italic' ] }
 					withoutInteractiveFormatting
 				/>
 			</div>
