@@ -94,7 +94,7 @@ registerBlockType( 'editorial/collapsible-control', {
 
 		const { text, target } = attributes;
 
-		const classes = 'js-bu-collapsible-control-target-' + target;
+		const classes = 'bu-collapsible-control-toggle js-bu-collapsible-control-target-' + target;
 
 		return(
 
