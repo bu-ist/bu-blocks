@@ -47,6 +47,7 @@ registerBlockType( 'editorial/collapsible-control', {
 					onChange={ ( value ) => setAttributes( { text: value } ) }
 					formattingControls={ [ 'bold', 'italic' ] }
 					withoutInteractiveFormatting
+					keepPlaceholderOnFocus
 				/>
 			</div>
 
