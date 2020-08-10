@@ -2,7 +2,7 @@ bu_blocks.collapsibleControl = ( function() {
 
 	// Store all Control blocks
 	var collapsibleControlBlocks = [];
-	var collapsibleBlocks = [];
+	var allCollapsibleBlocks = [];
 	var allBlocksOpen = false;
 	var collapsibleOpenClass = 'is-open';
 
@@ -11,7 +11,7 @@ bu_blocks.collapsibleControl = ( function() {
 	 */
 	var toggleAll = function( control ) {
 
-		if ( 0 === collapsibleBlocks.length ) {
+		if ( 0 === allCollapsibleBlocks.length ) {
 			return;
 		}
 
@@ -21,7 +21,7 @@ bu_blocks.collapsibleControl = ( function() {
 			shouldOpen = false;
 		}
 
-		collapsibleBlocks.forEach( function( collapsible, i ) {
+		allCollapsibleBlocks.forEach( function( collapsible, i ) {
 
 			const { container, toggle, panel } = collapsible;
 
@@ -54,8 +54,33 @@ bu_blocks.collapsibleControl = ( function() {
 	 */
 	var toggleGroup = function( control ) {
 
-		// TODO toggle group
-		// maybe find all in a group during setup?
+		const { groupIsOpen, collapsibleBlocks } = control;
+
+		collapsibleBlocks.forEach( function( collapsible, i ) {
+
+			const { container, toggle, panel } = collapsible;
+
+			if ( groupIsOpen ) {
+
+				container.classList.remove( collapsibleOpenClass );
+				toggle.setAttribute( 'aria-expanded', false );
+				panel.setAttribute( 'aria-hidden', true );
+
+			} else {
+
+				container.classList.add( collapsibleOpenClass );
+				toggle.setAttribute( 'aria-expanded', true );
+				panel.setAttribute( 'aria-hidden', false );
+
+			}
+
+		} );
+
+		if ( groupIsOpen ) {
+			control.groupIsOpen = false;
+		} else {
+			control.groupIsOpen = true;
+		}
 
 	};
 
@@ -79,7 +104,7 @@ bu_blocks.collapsibleControl = ( function() {
 			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
 			block.panel = element.querySelector( '.bu-block-collapsible-content' );
 
-			collapsibleBlocks.push( block );
+			allCollapsibleBlocks.push( block );
 
 		} );
 
@@ -92,11 +117,24 @@ bu_blocks.collapsibleControl = ( function() {
 	 *
 	 * @return array list of all collapsible blocks in group
 	 */
-	var getGroupCollapsibleBlocks = function() {
+	var getGroupCollapsibleBlocks = function( control ) {
 
 		var blocks = [];
 
-		// TODO: find blocks in group
+		var group = control.closest( '.wp-block-group' );
+		var containers = group.querySelectorAll( '.wp-block-editorial-collapsible' );
+
+		containers.forEach( function( element, i ) {
+
+			var block = {};
+
+			block.container = element;
+			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
+			block.panel = element.querySelector( '.bu-block-collapsible-content' );
+
+			blocks.push( block );
+
+		} );
 
 		return blocks;
 
@@ -129,6 +167,8 @@ bu_blocks.collapsibleControl = ( function() {
 				block.targetGroup = true;
 
 				block.collapsibleBlocks = getGroupCollapsibleBlocks( control );
+
+				block.groupIsOpen = false;
 
 			} else {
 
