@@ -40,6 +40,7 @@ registerBlockType( 'editorial/collapsible-control', {
 				<RichText
 					placeholder={ __( 'Toggle Text' ) }
 					value={ text }
+					className="button"
 					onChange={ ( value ) => setAttributes( { text: value } ) }
 					withoutInteractiveFormatting
 				/>
