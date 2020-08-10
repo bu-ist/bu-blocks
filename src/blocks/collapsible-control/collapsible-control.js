@@ -8,10 +8,15 @@
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const {
+	PanelBody,
+	RadioControl,
 	Path,
 	SVG
 } = wp.components;
-const { RichText } = wp.blockEditor;
+const {
+	InspectorControls,
+	RichText
+} = wp.blockEditor;
 
 // Register the block.
 registerBlockType( 'editorial/collapsible-control', {
@@ -26,6 +31,10 @@ registerBlockType( 'editorial/collapsible-control', {
 			type: 'string',
 			source: 'html',
 			selector: 'button'
+		},
+		target: {
+			type: 'string',
+			default: 'all'
 		}
 	},
 	supports: {
@@ -35,11 +44,36 @@ registerBlockType( 'editorial/collapsible-control', {
 	edit( props ) {
 
 		const { attributes, setAttributes } = props;
-		const { text } = attributes;
+		const { text, target } = attributes;
 
 		return (
 
 			<div>
+
+				<InspectorControls>
+
+					<PanelBody title={ __( 'Control Options' ) }>
+
+						<RadioControl
+							label={ __( 'Target' ) }
+							selected={ target }
+							onChange={ ( value ) => setAttributes( { target: value } ) }
+							options={ [
+								{
+									label: __( 'All Collapsible blocks on this page' ),
+									value: 'all'
+								},
+								{
+									label: __( 'All Collapsible blocks in this group' ),
+									value: 'group'
+								}
+							] }
+						/>
+
+					</PanelBody>
+
+				</InspectorControls>
+
 				<RichText
 					placeholder={ __( 'Toggle Text' ) }
 					value={ text }
@@ -49,6 +83,7 @@ registerBlockType( 'editorial/collapsible-control', {
 					withoutInteractiveFormatting
 					keepPlaceholderOnFocus
 				/>
+
 			</div>
 
 		);
@@ -57,7 +92,9 @@ registerBlockType( 'editorial/collapsible-control', {
 
 	save( { attributes } ) {
 
-		const { text } = attributes;
+		const { text, target } = attributes;
+
+		const classes = 'js-bu-collapsible-control-target-' + target;
 
 		return(
 
@@ -65,6 +102,7 @@ registerBlockType( 'editorial/collapsible-control', {
 				<RichText.Content
 					tagName="button"
 					value={ text }
+					className={ classes }
 				/>
 			</p>
 
