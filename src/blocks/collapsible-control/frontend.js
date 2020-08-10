@@ -7,25 +7,18 @@ bu_blocks.collapsibleControl = ( function() {
 	var collapsibleOpenClass = 'is-open';
 
 	/**
-	 * Toggle all Collapsible blocks
+	 * Open or close a group of collapsible blocks
+	 *
+	 * @param array collapsible blocks
+	 * @param bool true to open set of collapsible blocks, false to close
 	 */
-	var toggleAll = function( control ) {
+	var controlCollapsibleBlocks = function( collapsibleBlocks, open = true ) {
 
-		if ( 0 === allCollapsibleBlocks.length ) {
-			return;
-		}
-
-		var shouldOpen = true;
-
-		if ( allBlocksOpen ) {
-			shouldOpen = false;
-		}
-
-		allCollapsibleBlocks.forEach( function( collapsible, i ) {
+		collapsibleBlocks.forEach( function( collapsible, i ) {
 
 			const { container, toggle, panel } = collapsible;
 
-			if ( shouldOpen ) {
+			if ( open ) {
 
 				container.classList.add( collapsibleOpenClass );
 				toggle.setAttribute( 'aria-expanded', true );
@@ -41,11 +34,20 @@ bu_blocks.collapsibleControl = ( function() {
 
 		} );
 
-		if ( allBlocksOpen ) {
-			allBlocksOpen = false;
-		} else {
-			allBlocksOpen = true;
+	}
+
+	/**
+	 * Toggle all Collapsible blocks
+	 */
+	var toggleAll = function( control ) {
+
+		if ( 0 === allCollapsibleBlocks.length ) {
+			return;
 		}
+
+		controlCollapsibleBlocks( allCollapsibleBlocks, !allBlocksOpen );
+
+		allBlocksOpen = ( allBlocksOpen ) ? false : true;
 
 	};
 
@@ -56,31 +58,9 @@ bu_blocks.collapsibleControl = ( function() {
 
 		const { groupIsOpen, collapsibleBlocks } = control;
 
-		collapsibleBlocks.forEach( function( collapsible, i ) {
+		controlCollapsibleBlocks( collapsibleBlocks, !groupIsOpen );
 
-			const { container, toggle, panel } = collapsible;
-
-			if ( groupIsOpen ) {
-
-				container.classList.remove( collapsibleOpenClass );
-				toggle.setAttribute( 'aria-expanded', false );
-				panel.setAttribute( 'aria-hidden', true );
-
-			} else {
-
-				container.classList.add( collapsibleOpenClass );
-				toggle.setAttribute( 'aria-expanded', true );
-				panel.setAttribute( 'aria-hidden', false );
-
-			}
-
-		} );
-
-		if ( groupIsOpen ) {
-			control.groupIsOpen = false;
-		} else {
-			control.groupIsOpen = true;
-		}
+		control.groupIsOpen = ( groupIsOpen ) ? false : true;
 
 	};
 
