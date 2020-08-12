@@ -157,8 +157,6 @@ registerBlockType( 'bu/button', {
 			className,
 		} = props;
 
-		console.log( props );
-
 		return (
 			<Fragment>
 				<BlockControls>
