@@ -142,14 +142,6 @@ registerBlockType( 'editorial/collapsible', {
 
 				<InspectorControls>
 
-					<PanelBody title={ __( 'Default Collapsible Status' ) }>
-						<ToggleControl
-							label={ __( 'Open' ) }
-							checked={ isOpen }
-							onChange={ () => setAttributes( { isOpen: !isOpen } ) }
-						/>
-					</PanelBody>
-
 					{ ! isPreviewStyle && (
 						<PanelBody title={ __( 'Icon Style' ) }>
 							<SelectControl
@@ -169,6 +161,14 @@ registerBlockType( 'editorial/collapsible', {
 							/>
 						</PanelBody>
 					) }
+
+					<PanelBody title={ __( 'Default Collapsible Status' ) }>
+						<ToggleControl
+							label={ __( 'Open' ) }
+							checked={ isOpen }
+							onChange={ () => setAttributes( { isOpen: !isOpen } ) }
+						/>
+					</PanelBody>
 
 					<PanelBody title={ __( 'Spacing' ) }>
 						<RangeControl
