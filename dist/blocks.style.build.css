@@ -36850,6 +36850,9 @@ svg.wp-block-bu-stat-svg {
 .wp-block-editorial-collapsible.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
   content: '\25C5'; }
 
+.wp-block-editorial-collapsible.is-style-preview > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  display: none; }
+
 .wp-block-editorial-collapsible.is-open > .bu-block-collapsible-content {
   display: block; }
 
