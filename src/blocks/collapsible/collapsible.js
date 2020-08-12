@@ -94,6 +94,8 @@ registerBlockType( 'editorial/collapsible', {
 		const { content, level, isOpen, iconStyle, marginBottom, anchor } = attributes;
 		const tagName = 'h' + level;
 
+		const isPreviewStyle = className.includes( 'is-style-preview' );
+
 		const allowedBlocks = [ 'editorial/collapsible', 'core/heading', 'core/paragraph', 'core/button', 'core/image' ];
 
 		// Add an offset to the bottom margin in the editor to account for the container element padding
@@ -148,23 +150,25 @@ registerBlockType( 'editorial/collapsible', {
 						/>
 					</PanelBody>
 
-					<PanelBody title={ __( 'Icon Style' ) }>
-						<SelectControl
-							label={ __( 'Icon Style' ) }
-							value={ iconStyle }
-							options={ [
-								{
-									label: __( 'Plus/Minus' ),
-									value: 'plus-minus'
-								},
-								{
-									label: __( 'Arrows' ),
-									value: 'arrows'
-								}
-							] }
-							onChange={ ( value ) => setAttributes( { iconStyle: value } ) }
-						/>
-					</PanelBody>
+					{ ! isPreviewStyle && (
+						<PanelBody title={ __( 'Icon Style' ) }>
+							<SelectControl
+								label={ __( 'Icon Style' ) }
+								value={ iconStyle }
+								options={ [
+									{
+										label: __( 'Plus/Minus' ),
+										value: 'plus-minus'
+									},
+									{
+										label: __( 'Arrows' ),
+										value: 'arrows'
+									}
+								] }
+								onChange={ ( value ) => setAttributes( { iconStyle: value } ) }
+							/>
+						</PanelBody>
+					) }
 
 					<PanelBody title={ __( 'Spacing' ) }>
 						<RangeControl
