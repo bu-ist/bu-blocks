@@ -1,7 +1,25 @@
 # Changelog
 
+## 0.3.0
+- Official support for WordPress 5.4, including:
+- Compatibility for the the listicle block https://github.com/bu-ist/bu-blocks/pull/271
+- Compatibility for the Photo Essay block https://github.com/bu-ist/bu-blocks/pull/269
+- Compatibility for the BUniverse block https://github.com/bu-ist/bu-blocks/pull/255
+- Compabilility for the Button block https://github.com/bu-ist/bu-blocks/pull/256
+- Compatibility for the Custom HTML block https://github.com/bu-ist/bu-blocks/pull/257
+- Compatibility for the Headline block https://github.com/bu-ist/bu-blocks/pull/258
+- Compatibility for the Intro Paragraph block https://github.com/bu-ist/bu-blocks/pull/260
+- Compatibility for the Drawer block https://github.com/bu-ist/bu-blocks/pull/261
+- Compatibility for the Modal block https://github.com/bu-ist/bu-blocks/pull/262
+- Compatibility for the Related Stories block https://github.com/bu-ist/bu-blocks/pull/263
+- Compatibility for the Stats block https://github.com/bu-ist/bu-blocks/pull/270
+- Compatibility for the Listicle block https://github.com/bu-ist/bu-blocks/pull/271
+- Improved parent block selection in editor by adding padding https://github.com/bu-ist/bu-blocks/pull/270
+- Fixed issue with templateLock changes upstream that block child blocks from being inserted https://github.com/bu-ist/bu-blocks/pull/270
+
 ## 0.2.19
 - Bug Fix: Fixes listicle sidebar sizing https://github.com/bu-ist/r-editorial/issues/783
+- Fix Photo essay Modal Keyboard Navigation https://github.com/bu-ist/r-editorial/issues/827
 
 ## 0.2.18
 - Leadin Block: fix image caption position for text-over-image style. This moves the caption up below the photo on small device sizes instead of the caption displaying below the hed/dek of the leadin block.

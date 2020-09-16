@@ -14,23 +14,11 @@
 		font-weight: 700;
 	}
 
-	&.has-dropcap:focus-within {
-		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
-		p:first-of-type:first-letter {
-			float: none;
-			font-size: inherit;
-			line-height: inherit;
-			float: none;
-			display: inline;
-			color: inherit;
-			margin: inherit;
-			padding: inherit;
-			background: inherit;
-			font-weight: inherit;
-		}
-
+	&.has-dropcap:focus-within,
+	&.has-dropcap:focus {
+		
 		svg {
-			display: none;
+			display: none !important;
 		}
 	}
 

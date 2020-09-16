@@ -11,7 +11,8 @@
 	padding: 0 13px 13px;
 	text-align: center;
 
-	.editor-block-list__block-edit & {
+	.editor-block-list__block-edit &,
+	.block-editor-block-list__block-edit & {
 		font-size: 13px;
 		margin-top: 0;
 	}

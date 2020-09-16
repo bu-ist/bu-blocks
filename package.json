@@ -1,6 +1,6 @@
 {
   "name": "bu-blocks",
-  "version": "0.2.19",
+  "version": "0.3.0",
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
@@ -29,6 +29,6 @@
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "~1.0.0",
     "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#1.0.0",
-    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#develop"
+    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1"
   }
 }

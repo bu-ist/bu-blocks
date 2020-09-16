@@ -4,100 +4,63 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.block-editor__container {
-	.wp-block-editorial-photoessay [class*="photo-row-"] {
-		margin-left: 0;
-		margin-right: 0;
-	}
-}
 
-.wp-block-editorial-photoessay {
-	padding-bottom: 32px;
-	padding-top: 32px;
+[data-type="editorial/photoessay"] {
+	// Adds some padding to the block just to make
+	// it a bit easier to select the parent block in the editor.
+	padding-bottom: 15px;
+	padding-top: 15px;
 
-	.editor-block-list__insertion-point {
-		top: 0;
-	}
-
-	.editor-block-list__layout > .editor-block-list__block > .editor-block-list__block-edit {
-		margin-bottom: 0;
-		margin-top: 0;
+	// Removes negative margin from front-end css to
+	// make toolbar for child blocks visible when parent
+	// is set to full width.
+	&[data-align="full"] div[class*="photo-row-"] {
+		margin: 0;
 	}
 
-	.editor-block-list__block .editor-block-list__layout {
-		margin-left: 0;
-		margin-right: 0;
-	}
-}
-
-.wp-block-photoessay .editor-block-list__layout {
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 15px;
-	padding-right: 15px;
-
-	> div {
-		float: left;
-		margin: 0 0 30px;
-		position: relative;
-	}
-}
-
-.wp-block-photoessay-media-wrapper {
-	position: relative;
-
-	&::before {
-		content: "";
-		display: inline-block;
-	}
-
-	.wp-block-photoessay-media {
-		height: 100%;
-		position: absolute;
-		top: 0;
-		width: 100%;
-
-		figure {
-			margin: 0;
-
-			img {
-				height: 100%;
-			}
-		}
-	}
-
-	.editor-rich-text {
+	// This element only exists in the editor and is used
+	// to allow easier input of the caption for each photo.
+	.wp-block-photoessay-media-caption-editor-wrapper {
 		position: absolute;
 		bottom: 0;
-		width: 100%;
-		left: 0;
+		left: 30px;
+		right: 30px;
 		max-height: 100%;
 		background-image: linear-gradient( rgba( 0, 0, 0, 0 ), rgba( 0, 0, 0, 1 ) );
-		.wp-block-photoessay-media-caption {
-			color: #fff !important;
-			overflow-y: auto;
-			padding: 1em;
+		color: #fff !important;
+		overflow-y: auto;
+		padding: 1em;
+		margin: 0;
+	}
 
+	// Make media placeholder same size as photo essay block.
+	.block-editor-media-placeholder {
+		min-height: 100%;
+		margin-bottom: 0;
+	}
+
+	// Set cursor to default in editor.
+	figure {
+		&:hover {
+			cursor: default;
 		}
 	}
 
-	.editor-rich-text__tinymce[data-is-placeholder-visible=true] {
-		left: 0;
-		right: 0;
-		margin: 0;
-		width: auto;
+	// Remove float on single image row layouts.
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-3"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-4"] {
+		max-width: none;
 	}
-}
 
-.wp-block-photoessay-media {
-	padding: 0;
+
 }
 
 
-.editor-block-list__block[class*="photo-"] {
-	float: left;
-	max-width: none;
-}
+/*
+* Styles for the Block Inspector to
+* insert images as a replacement for the
+* radio buttons to select a row layout.
+*/
 
 // Layout options styles.
 .bu-photoessay-layout-options {

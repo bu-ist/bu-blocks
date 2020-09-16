@@ -6,10 +6,13 @@
  */
 
  // Mimic the 'show-drawer' class behavior when the block or its inner blocks are selected.
-[data-selected-drawer="true"] .wp-block-editorial-drawer-content {
-	display: block;
-	float: none;
-	opacity: 1;
+[data-selected-drawer="true"] {
+
+	.wp-block-editorial-drawer-content {
+		display: block !important;
+		float: none !important;
+		opacity: 1 !important;
+	}
 }
 
 .wp-block-editorial-drawer {
@@ -33,7 +36,8 @@
 	&[data-align="left"],
 	&[data-align="right"] {
 
-		.editor-block-list__block-edit {
+		.editor-block-list__block-edit,
+		.block-editor-block-list__block-edit {
 			width: 50%;
 		}
 
@@ -60,7 +64,8 @@
 
 		.wp-block-editorial-drawer-content {
 
-			.editor-block-list__block-edit {
+			.editor-block-list__block-edit
+			.block-editor-block-list__block-edit {
 				width: 100%;
 			}
 		}
