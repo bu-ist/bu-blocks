@@ -153,7 +153,7 @@ registerBlockType( 'bu/stats', {
 					<div className="wp-block-bu-stats-row">
 						<InnerBlocks
 							allowedBlocks={ [ 'bu/stat' ] }
-							templateLock="all"
+							templateLock={ false }
 						/>
 						{ !isAlignedLeftOrRight &&
 							<InspectorControls>

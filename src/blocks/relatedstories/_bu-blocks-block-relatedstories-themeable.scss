@@ -62,17 +62,27 @@ $scope: blocks-get( 'scope' );
 		&::after {
 			border-color: blocks-get( 'color-primary' );
 		}
+
 	}
 
-	.wp-block-editorial-relatedstories-article-title-link {
-		color: blocks-get( 'color-gray-a' );
+	.wp-block-editorial-relatedstories-list {
+		.wp-block-editorial-relatedstories-list-item {
+			.wp-block-editorial-relatedstories-article-title {
 
-		&:hover,
-		&:focus {
-			color: blocks-get( 'color-primary-text' );
-			text-decoration: none;
+				.wp-block-editorial-relatedstories-article-title-link {
+					color: blocks-get( 'color-gray-a' );
+		
+					&:hover,
+					&:focus {
+						color: blocks-get( 'color-primary-text' );
+						text-decoration: none;
+					}
+				}
+			}
 		}
-	}
+	} 
+
+	
 
 	.wp-block-editorial-relatedstories-article-date {
 		color: blocks-get( 'color-gray-b');

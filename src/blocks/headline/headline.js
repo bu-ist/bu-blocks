@@ -19,8 +19,12 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
 const {
+	PanelBody
+} = wp.components;
+const {
 	RichText,
 	BlockControls,
+	InspectorControls
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select,
@@ -90,8 +94,23 @@ registerBlockType( 'editorial/headline', {
 
 		return (
 			<Fragment>
+				<InspectorControls>
+					<PanelBody title={ __( 'Help' ) } initialOpen={ false }>
+						<Fragment>
+							<p><strong>PreText and PostText Formats</strong><br />
+							These formats are intended to style text such as "Chapter 3:" as part
+							of a headline text either before or after the main Headline text. Enter
+							the Headline and then select text in the headline and apply a pre or post text
+							format from the Format Control Toolbar on the block.</p>
+							<p><strong>Emphasis Color & Weight</strong><br />
+							Emphasis Color and Emphasis weight can be selectively applied to a word(s)
+							by selecting those characters and applying a <strong>Bold</strong> style. The
+							color or weight change will apply to any bold text inside the Headline tag.</p>
+						</Fragment>
+					</PanelBody>
+				</InspectorControls>
 				<BlockControls>
-					<HeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+					<HeadingToolbar minLevel={ 1 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 				<RichText
 					tagName={ tagName }
