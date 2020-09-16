@@ -247,6 +247,10 @@
 				padding-top:0
 			}
 
+			.wp-block-background-video-iframe iframe {
+				width: 100%;
+			}
+
 			.wp-block-leadin-media {
 				@include breakpoint( $xs ) {
 					height: auto;
