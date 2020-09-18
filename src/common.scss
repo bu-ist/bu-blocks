@@ -21,7 +21,6 @@ $burf-extras:							   false;
 $use-default-icons:                        false;
 $print-icon-classes:                       false;
 @import '~responsive-foundation/css-dev/burf-tools/tools-cgb';
-@import '~responsive-foundation/css-dev/burf-base/grid/package';
 @import 'src/global/bu-blocks-functions';
 @import '~object-fit-images/preprocessors/mixin.scss';
 
