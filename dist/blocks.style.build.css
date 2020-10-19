@@ -23740,7 +23740,18 @@ img.has-background-opacity-100 {
 
 .wp-block-editorial-photoessay figure {
   height: 100%;
-  margin: 0; }
+  margin: 0;
+  overflow: hidden; }
+  .wp-block-editorial-photoessay figure img {
+    -webkit-transition: -webkit-transform 1000ms ease-out;
+    transition: -webkit-transform 1000ms ease-out;
+    -o-transition: transform 1000ms ease-out;
+    transition: transform 1000ms ease-out;
+    transition: transform 1000ms ease-out, -webkit-transform 1000ms ease-out; }
+    .wp-block-editorial-photoessay figure img:hover, .wp-block-editorial-photoessay figure img:focus {
+      -webkit-transform: scale(1.125);
+          -ms-transform: scale(1.125);
+              transform: scale(1.125); }
   .wp-block-editorial-photoessay figure:hover {
     cursor: pointer; }
   .wp-block-editorial-photoessay figure figcaption {
