@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1
+- Photo Essay Block Improvements: 
+  - Puts captions blocks closer to photo essay blocks. fixes: bu-ist/r-editorial#984
+  - Adds hover effect to photo essay images to denote click-ability. fixes:bu-ist/r-editorial#896
+
+
+
 ## 0.3.0
 - Official support for WordPress 5.4, including:
 - Compatibility for the the listicle block https://github.com/bu-ist/bu-blocks/pull/271
