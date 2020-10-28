@@ -23732,6 +23732,11 @@ img.has-background-opacity-100 {
     .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"]::after {
       content: "";
       display: inline-block; }
+    @media (hover: none) and (pointer: coarse) {
+      .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"]:first-child figure {
+        position: relative; }
+        .wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-"]:first-child figure::before {
+          opacity: 1; } }
 
 .wp-block-editorial-photoessay + .is-style-caption {
   float: left;
@@ -23740,9 +23745,40 @@ img.has-background-opacity-100 {
 
 .wp-block-editorial-photoessay figure {
   height: 100%;
-  margin: 0; }
+  margin: 0;
+  overflow: hidden; }
+  .wp-block-editorial-photoessay figure img {
+    -webkit-transition: -webkit-transform 1000ms ease-out;
+    transition: -webkit-transform 1000ms ease-out;
+    -o-transition: transform 1000ms ease-out;
+    transition: transform 1000ms ease-out;
+    transition: transform 1000ms ease-out, -webkit-transform 1000ms ease-out; }
+    .wp-block-editorial-photoessay figure img:hover, .wp-block-editorial-photoessay figure img:focus {
+      -webkit-transform: scale(1.125);
+          -ms-transform: scale(1.125);
+              transform: scale(1.125); }
   .wp-block-editorial-photoessay figure:hover {
     cursor: pointer; }
+  @media (hover: none) and (pointer: coarse) {
+    .wp-block-editorial-photoessay figure {
+      position: relative; }
+      .wp-block-editorial-photoessay figure::before {
+        content: "\2922";
+        display: block;
+        font-family: "BU-Default-Icons";
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        color: #fff;
+        font-size: 14px;
+        line-height: 14px;
+        width: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px;
+        -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+        border-radius: 4px;
+        opacity: 0.5; } }
   .wp-block-editorial-photoessay figure figcaption {
     display: none; }
 
