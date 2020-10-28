@@ -57,10 +57,9 @@ const publication = publicationSlug();
  * @param {string} icon       The icon placement.
  */
 const getClasses = ( className, themeColor, icon ) => classnames(
-	'wp-block-button',
 	'wp-block-bu-button',
 	{
-		[ `${publication}-block-button` ]: publication && publication !== '',
+		[ `${publication}-block-bu-button` ]: publication && publication !== '',
 		[ `has-${themeColor}-theme` ]: themeColor,
 		[ `icon-navigateright ${icon}` ]: icon,
 		[ className ]: className,

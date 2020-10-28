@@ -56,7 +56,7 @@ $current-map: $blocks-block-button-config;
 $scope: blocks-get( 'scope' );
 
 
-.#{$scope}-block-button {
+.#{$scope}-block-bu-button {
 	.wp-prepress-layout-article-content p & {
 		color: inherit;
 	}
