@@ -94,7 +94,7 @@ function enqueue_bu_blocks_general_stylesheet() {
 	wp_enqueue_style(
 		'bu-blocks-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-blocks' ), // Dependency to include the CSS after it.
+		array(), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
 	);
 }
