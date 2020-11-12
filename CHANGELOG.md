@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2
+- fix stylesheet loading in WP 5.x. This wasn't noticed earlier as the current implementations of the plugin load the plugin
+stylesheet via the child theme. This fixes the block styling when BU-Blocks is activated on a Responsive Framework site. 
+
 ## 0.3.1
 - Photo Essay Block Improvements: 
   - Puts captions blocks closer to photo essay blocks. fixes: bu-ist/r-editorial#984
