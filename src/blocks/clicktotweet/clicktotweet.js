@@ -154,7 +154,7 @@ addFilter(
  */
 const registerFields = createHigherOrderComponent( BlockEdit => {
 	return ( props ) => {
-		if ( 'core/paragraph' !== props.name ) {
+		if ( 'core/paragraph' !== props.name || '' === props.attributes.content ) {
 			return (
 				<BlockEdit { ...props } />
 			);
