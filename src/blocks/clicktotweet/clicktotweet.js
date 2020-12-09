@@ -196,7 +196,7 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 			}
 		}
 
-		if ( !clickToTweet && ( !content || content.includes( clickToTweetContainer ) ) ) {
+		if ( !clickToTweet && content.includes( clickToTweetContainer ) ) {
 			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
 			const strippedClassName = !className
 				? undefined
