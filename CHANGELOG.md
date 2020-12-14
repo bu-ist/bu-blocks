@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Fixes: #294 Related Stories block displays wrong list of stories in card layout in some cases.
+
 ## 0.3.2
 - fix stylesheet loading in WP 5.x. This wasn't noticed earlier as the current implementations of the plugin load the plugin
 stylesheet via the child theme. This fixes the block styling when BU-Blocks is activated on a Responsive Framework site. 
