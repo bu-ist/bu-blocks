@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Fixes: #294 Related Stories block displays wrong list of stories in card layout in some cases.
 - fix KSS at 3 beta 23 for now to prevent newer versions from installing and breaking build tools on our older node versions.
 - Fix bug #291 in Media & Text block caused by Featured Tweet's strip html markup function.
 
