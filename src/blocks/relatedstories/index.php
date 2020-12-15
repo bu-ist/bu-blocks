@@ -68,8 +68,14 @@ function get_block_classes( $attributes ) {
  *
  * @return string
  */
-function build_cache_key( $post_id, $post_ids ) {
-	return "manual_related_posts_for_{$post_id}:" . md5( wp_json_encode( $post_ids ) );
+function build_cache_key( $post_id, $post_ids, $card_style ) {
+	if ( $card_style ) {
+		$card_style = 'card';
+
+	} else {
+		$card_style = 'list';
+	}
+	return "manual_related_posts_for_{$post_id}:_" . $card_style . '_' . md5( wp_json_encode( $post_ids ) );
 }
 
 /**
@@ -83,7 +89,7 @@ function build_cache_key( $post_id, $post_ids ) {
 function get_block_posts_manual( $post_ids, $args ) {
 
 	// Build a cache key unique to this instance of the block.
-	$cache_key = build_cache_key( get_the_ID(), $post_ids );
+	$cache_key = build_cache_key( get_the_ID(), $post_ids, $args['card_style'] );
 
 	// Check for the cache key in the 'bu_blocks' group.
 	$posts = wp_cache_get( $cache_key, 'bu_blocks' );
@@ -214,6 +220,7 @@ function render_block( $attributes ) {
 		array(
 			'post_type' => $post_types,
 			'per_page'  => $per_page,
+			'card_style' => strpos( $classes, 'is-style-card' ),
 		)
 	);
 
@@ -356,8 +363,13 @@ function save_post( $post_ID, $post ) {
 			continue;
 		}
 
+		// Retrieve the classes to attach to the block wrapper.
+		$classes = get_block_classes( $attributes );
+
+		$card_style = strpos( $classes, 'is-style-card' );
+
 		// Build a cache key unique to this instance of the block.
-		$cache_key = build_cache_key( $post_ID, $block['attrs']['includePosts'] );
+		$cache_key = build_cache_key( $post_ID, $block['attrs']['includePosts'], $card_style );
 
 		// Delete the cache key if it exists,
 		// allowing for it to be rebuilt on the front end.
