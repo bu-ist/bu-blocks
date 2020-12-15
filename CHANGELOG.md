@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- fix KSS at 3 beta 23 for now to prevent newer versions from installing and breaking build tools on our older node versions.
+- Fix bug #291 in Media & Text block caused by Featured Tweet's strip html markup function.
+
 ## 0.3.2
 - fix stylesheet loading in WP 5.x. This wasn't noticed earlier as the current implementations of the plugin load the plugin
 stylesheet via the child theme. This fixes the block styling when BU-Blocks is activated on a Responsive Framework site. 
