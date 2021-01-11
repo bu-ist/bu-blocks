@@ -18,6 +18,7 @@ const {
 	PanelBody,
 	ToggleControl,
 	SelectControl,
+	TextControl,
 	RangeControl,
 	Path,
 	SVG,
@@ -155,6 +156,14 @@ registerBlockType( 'editorial/collapsible', {
 							min={ 0 }
 							max={ 200 }
 							step={ 1 }
+						/>
+					</PanelBody>
+
+					<PanelBody title={ __( 'Anchor ID' ) }>
+						<TextControl
+							label={ __( 'Unique HTML ID' ) }
+							value={ id }
+							onChange={ ( value ) => setAttributes( { id: value } ) }
 						/>
 					</PanelBody>
 
