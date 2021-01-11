@@ -36861,8 +36861,11 @@ svg.wp-block-bu-stat-svg {
             appearance: none; }
   .wp-block-editorial-collapsible .bu-collapsible-heading {
     position: relative;
-    margin-bottom: 0;
-    font-size: 1.2em; }
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.2em;
+    font-weight: bold; }
     .lt-ie9:hover .wp-block-editorial-collapsible .bu-collapsible-heading {
       -ms-zoom: 1; }
     .wp-block-editorial-collapsible .bu-collapsible-heading span {
