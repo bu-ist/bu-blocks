@@ -46,32 +46,29 @@ registerBlockType( 'editorial/collapsible', {
 		anchor: true
 	},
 	attributes: {
-		content: {
+		title: {
 			type: 'string',
-			source: 'html',
-			selector: '.bu-collapsible-heading'
+			default: '',
 		},
 		level: {
 			type: 'number',
-			default: 2
+			default: 2,
 		},
 		isOpen: {
 			type: 'bool',
-			default: false
+			default: false,
 		},
 		iconStyle: {
 			type: 'string',
-			default: 'plus-minus'
+			default: 'plus-minus',
 		},
 		marginBottom: {
 			type: 'number',
-			default: 0
+			default: 0,
 		},
-		anchor: {
+		id: {
 			type: 'string',
-			source: 'attribute',
-			attribute: 'id',
-			selector: '.wp-block-editorial-collapsible'
+			default: '',
 		}
 	},
 	styles: [
@@ -93,8 +90,9 @@ registerBlockType( 'editorial/collapsible', {
 	edit( props ) {
 
 		const { attributes, setAttributes, clientId, className } = props;
-		const { content, level, isOpen, iconStyle, marginBottom, anchor } = attributes;
-		const tagName = 'h' + level;
+		const { title, level, isOpen, iconStyle, marginBottom, id } = attributes;
+		//const tagName = 'h' + level;
+		const tagName = 'p';
 
 		const isPreviewStyle = className.includes( 'is-style-preview' );
 
@@ -104,8 +102,8 @@ registerBlockType( 'editorial/collapsible', {
 		const editorContainerPaddingOffset = 28;
 
 		// Generate anchor if not set
-		if ( ! anchor ) {
-			setAttributes( { anchor: `bu-collapsible-${clientId.split( '-', 1 )}` } );
+		if ( ! id ) {
+			setAttributes( { id: `bu-collapsible-${clientId.split( '-', 1 )}` } );
 		}
 
 		const styles = {
@@ -173,8 +171,8 @@ registerBlockType( 'editorial/collapsible', {
 					<RichText
 						tagName={ tagName }
 						className="bu-collapsible-heading"
-						value={ content }
-						onChange={ content => setAttributes( { content } ) }
+						value={ title }
+						onChange={ value => setAttributes( { title: value } ) }
 						placeholder={ __( 'Heading...' ) }
 						formattingControls={ [ 'bold', 'italic' ] }
 					/>
@@ -192,29 +190,7 @@ registerBlockType( 'editorial/collapsible', {
 	},
 
 	save( { attributes } ) {
-
-		const { content, level, isOpen, className, iconStyle, marginBottom } = attributes;
-		const tagName = 'h' + level;
-
-		const styles = {
-			marginBottom: marginBottom
-		};
-
-		return (
-			<div className={ classnames( className, { 'is-open': isOpen }, `icon-style-${ iconStyle }` ) } style={ styles }>
-				<button className="bu-block-collapsible-toggle">
-					<RichText.Content
-						tagName={ tagName }
-						value={ content }
-						className="bu-collapsible-heading"
-					/>
-				</button>
-				<div className="bu-block-collapsible-content">
-					<InnerBlocks.Content />
-				</div>
-			</div>
-		);
-
+		return <InnerBlocks.Content />;
 	}
 
 } );
