@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.3.3
+- Fixes: #294 Related Stories block displays wrong list of stories in card layout in some cases.
+- fix KSS at 3 beta 23 for now to prevent newer versions from installing and breaking build tools on our older node versions.
+- Fix bug #291 in Media & Text block caused by Featured Tweet's strip html markup function.
+
+## 0.3.2
+- fix stylesheet loading in WP 5.x. This wasn't noticed earlier as the current implementations of the plugin load the plugin
+stylesheet via the child theme. This fixes the block styling when BU-Blocks is activated on a Responsive Framework site. 
+
+## 0.3.1
+- Photo Essay Block Improvements: 
+  - Puts captions blocks closer to photo essay blocks. fixes: bu-ist/r-editorial#984
+  - Adds hover effect to photo essay images to denote click-ability. fixes:bu-ist/r-editorial#896
+
+
+
+## 0.3.0
+- Official support for WordPress 5.4, including:
+- Compatibility for the the listicle block https://github.com/bu-ist/bu-blocks/pull/271
+- Compatibility for the Photo Essay block https://github.com/bu-ist/bu-blocks/pull/269
+- Compatibility for the BUniverse block https://github.com/bu-ist/bu-blocks/pull/255
+- Compabilility for the Button block https://github.com/bu-ist/bu-blocks/pull/256
+- Compatibility for the Custom HTML block https://github.com/bu-ist/bu-blocks/pull/257
+- Compatibility for the Headline block https://github.com/bu-ist/bu-blocks/pull/258
+- Compatibility for the Intro Paragraph block https://github.com/bu-ist/bu-blocks/pull/260
+- Compatibility for the Drawer block https://github.com/bu-ist/bu-blocks/pull/261
+- Compatibility for the Modal block https://github.com/bu-ist/bu-blocks/pull/262
+- Compatibility for the Related Stories block https://github.com/bu-ist/bu-blocks/pull/263
+- Compatibility for the Stats block https://github.com/bu-ist/bu-blocks/pull/270
+- Compatibility for the Listicle block https://github.com/bu-ist/bu-blocks/pull/271
+- Improved parent block selection in editor by adding padding https://github.com/bu-ist/bu-blocks/pull/270
+- Fixed issue with templateLock changes upstream that block child blocks from being inserted https://github.com/bu-ist/bu-blocks/pull/270
+
 ## 0.2.19
 - Bug Fix: Fixes listicle sidebar sizing https://github.com/bu-ist/r-editorial/issues/783
 - Fix Photo essay Modal Keyboard Navigation https://github.com/bu-ist/r-editorial/issues/827
