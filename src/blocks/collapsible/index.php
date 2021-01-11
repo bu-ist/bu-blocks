@@ -70,6 +70,7 @@ function render_block( $attributes, $content ) {
 			'wp-block-editorial-collapsible',
 			$attr['isOpen'] ? 'is-open' : 'is-closed',
 			"icon-style-{$attr['iconStyle']}",
+			$attr['className'],
 		]
 	);
 	ob_start();
