@@ -5,6 +5,15 @@
  * which makes it higher in priority.
  */
 
+// Add missing icon in admin.
+@font-face {
+	font-family: "bu-default-icons";
+	src: url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.eot?") format("embedded-opentype");
+	src: url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.woff") format("woff"), url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.ttf") format("truetype"), url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.svg#bu-default-icons") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
 // Open state, when block is selected or has a child block selected
 .wp-block.is-selected > .wp-block-editorial-collapsible,
 .wp-block.has-child-selected > .wp-block-editorial-collapsible {
@@ -18,7 +27,7 @@
 	}
 
 	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
-		content: '\F501';
+		content: '\F500';
 	}
 
 }
@@ -30,9 +39,6 @@
 	}
 
 	.bu-block-collapsible-content {
-		margin-left: 10px;
-		padding-left: 15px;
-		border-left: 3px solid #ddd;
 	}
 
 }

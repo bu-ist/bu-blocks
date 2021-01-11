@@ -9,16 +9,19 @@
 //
 
 .wp-block-editorial-collapsible {
+	border: 1px solid #ccc;
+	margin-top: -1px;
 
 	.bu-block-collapsible-content {
 		display: none;
+		padding: 10px 20px;
 	}
 
 	.bu-block-collapsible-toggle {
 		display: block;
 		width: 100%;
 		margin: 0;
-		padding: 0;
+		padding: 10px 20px;
 		background-color: transparent;
 		text-align: left;
 		appearance: none;
@@ -27,6 +30,7 @@
 	.bu-collapsible-heading {
 		position: relative;
 		margin-bottom: 0;
+		font-size: 1.2em;
 
 		@include icon( 'plus', 'after' );
 
@@ -41,7 +45,7 @@
 	}
 
 	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
-		content: '\25C5';
+		content: '\F501';
 	}
 
 	&.is-style-preview > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
@@ -49,6 +53,11 @@
 	}
 
 	&.is-open {
+
+		& > .bu-block-collapsible-toggle {
+			display: block;
+			border-bottom: 1px solid #ccc;
+		}
 
 		& > .bu-block-collapsible-content {
 			display: block;
@@ -59,7 +68,7 @@
 		}
 
 		&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
-			content: '\F501'
+			content: '\F500'
 		}
 
 	}
