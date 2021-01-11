@@ -20,7 +20,9 @@ const {
 	SelectControl,
 	RangeControl,
 	Path,
-	SVG
+	SVG,
+	Button,
+	ButtonGroup,
 } = wp.components;
 const {
 	InnerBlocks,
@@ -144,21 +146,26 @@ registerBlockType( 'editorial/collapsible', {
 
 					{ ! isPreviewStyle && (
 						<PanelBody title={ __( 'Icon Style' ) }>
-							<SelectControl
-								label={ __( 'Icon Style' ) }
-								value={ iconStyle }
-								options={ [
-									{
-										label: __( 'Plus/Minus' ),
-										value: 'plus-minus'
-									},
-									{
-										label: __( 'Arrows' ),
-										value: 'arrows'
-									}
-								] }
-								onChange={ ( value ) => setAttributes( { iconStyle: value } ) }
-							/>
+							<ButtonGroup className="icon-style-button">
+								<Button
+									isPrimary={ 'plus-minus' === iconStyle }
+									isSecondary={ 'plus-minus' !== iconStyle }
+									showTooltip={ true }
+									label={ __( 'Plus/Minus' ) }
+									onClick={ ( value ) => setAttributes( { iconStyle: 'plus-minus' } ) }
+								>
+									+ -
+								</Button>
+								<Button
+									isPrimary={ 'arrows' === iconStyle }
+									isSecondary={ 'arrows' !== iconStyle }
+									showTooltip={ true }
+									label={ __( 'Arrows' ) }
+									onClick={ ( value ) => setAttributes( { iconStyle: 'arrows' } ) }
+								>
+									&#62721; &#62720;
+								</Button>
+							</ButtonGroup>
 						</PanelBody>
 					) }
 

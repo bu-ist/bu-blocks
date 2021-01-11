@@ -35664,9 +35664,13 @@ div[data-align="right"] .wp-block-bu-stats {
   font-weight: normal;
   font-style: normal; }
 
+.icon-style-button {
+  font-family: "bu-default-icons"; }
+
 .wp-block.is-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-content,
 .wp-block.has-child-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-content {
-  display: block; }
+  display: block;
+  padding: 5px 20px; }
 
 .wp-block.is-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-toggle .bu-collapsible-heading::after,
 .wp-block.has-child-selected > .wp-block-editorial-collapsible > .bu-block-collapsible-toggle .bu-collapsible-heading::after {

@@ -14,12 +14,17 @@
 	font-style: normal;
 }
 
+.icon-style-button {
+	font-family: "bu-default-icons";
+}
+
 // Open state, when block is selected or has a child block selected
 .wp-block.is-selected > .wp-block-editorial-collapsible,
 .wp-block.has-child-selected > .wp-block-editorial-collapsible {
 
 	& > .bu-block-collapsible-content {
 		display: block;
+		padding: 5px 20px;
 	}
 
 	& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
