@@ -65,14 +65,12 @@ function render_block( $attributes, $content ) {
 			'id'           => 'bu-collapsible-1',
 		]
 	);
-	$classes = array_filter(
-		[
-			'wp-block-editorial-collapsible',
-			$attr['isOpen'] ? 'is-open' : 'is-closed',
-			"icon-style-{$attr['iconStyle']}",
-			$attr['className'],
-		]
-	);
+	$classes = [
+		'wp-block-editorial-collapsible',
+		$attr['isOpen'] ? 'is-open' : 'is-closed',
+		"icon-style-{$attr['iconStyle']}",
+		$attr['className'],
+	];
 	ob_start();
 	?>
 
@@ -86,5 +84,5 @@ function render_block( $attributes, $content ) {
 	</div>
 
 	<?php
-	return ob_get_clean();
+	return apply_filters( 'bu_blocks_editorial_collapsible_render_output', ob_get_clean(), $attr, $classes, $content );
 }
