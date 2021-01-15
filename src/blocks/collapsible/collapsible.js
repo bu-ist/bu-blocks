@@ -11,6 +11,9 @@ import classnames from 'classnames';
 import './style.scss';
 import './editor.scss';
 
+// Internal dependencies.
+import allowedBlocks from '../../components/allowed-blocks';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType, createBlock } = wp.blocks;
@@ -95,7 +98,8 @@ registerBlockType( 'editorial/collapsible', {
 
 		const isPreviewStyle = className.includes( 'is-style-preview' );
 
-		const allowedBlocks = [ 'editorial/collapsible', 'core/heading', 'core/paragraph', 'core/button', 'core/image' ];
+		const allowedBlockList = allowedBlocks().filter( block => undefined !== block );
+		allowedBlockList.push( 'editorial/collapsible' );
 
 		// Add an offset to the bottom margin in the editor to account for the container element padding
 		const editorContainerPaddingOffset = 28;
@@ -187,7 +191,7 @@ registerBlockType( 'editorial/collapsible', {
 				</div>
 
 				<div className="bu-block-collapsible-content">
-					<InnerBlocks allowedBlocks={ allowedBlocks }/>
+					<InnerBlocks allowedBlocks={ allowedBlockList }/>
 				</div>
 
 			</div>
