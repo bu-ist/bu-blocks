@@ -93,8 +93,7 @@ registerBlockType( 'editorial/collapsible', {
 
 		const { attributes, setAttributes, clientId, className } = props;
 		const { title, level, isOpen, iconStyle, marginBottom, id } = attributes;
-		//const tagName = 'h' + level;
-		const tagName = 'p';
+		const tagName = 'h' + level;
 
 		const isPreviewStyle = className.includes( 'is-style-preview' );
 
