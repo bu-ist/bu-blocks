@@ -14,7 +14,7 @@ add_action( 'init', __NAMESPACE__ . '\\register_block' );
  */
 function register_block() {
 	register_block_type(
-		'editorial/collapsible',
+		'bu/collapsible',
 		array(
 			'attributes'      => [
 				'title' => [
