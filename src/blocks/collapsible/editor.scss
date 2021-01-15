@@ -19,8 +19,8 @@
 }
 
 // Open state, when block is selected or has a child block selected
-.wp-block.is-selected > .wp-block-editorial-collapsible,
-.wp-block.has-child-selected > .wp-block-editorial-collapsible {
+.wp-block.is-selected > .wp-block-bu-collapsible,
+.wp-block.has-child-selected > .wp-block-bu-collapsible {
 
 	& > .bu-block-collapsible-content {
 		display: block;
@@ -35,8 +35,8 @@
 		content: '\F500';
 	}
 }
-.is-selected > .wp-block-editorial-collapsible,
-.has-child-selected > .wp-block-editorial-collapsible {
+.is-selected > .wp-block-bu-collapsible,
+.has-child-selected > .wp-block-bu-collapsible {
 	& > .bu-block-collapsible-toggle {
 		display: block;
 		border-bottom: 1px solid #ccc;
@@ -51,7 +51,7 @@
 	}
 }
 
-.wp-block-editorial-collapsible {
+.wp-block-bu-collapsible {
 
 	.bu-collapsible-heading {
 		margin-top: 0;

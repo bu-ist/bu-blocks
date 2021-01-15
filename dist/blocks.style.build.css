@@ -36843,13 +36843,13 @@ svg.wp-block-bu-stat-svg {
   or object-fit and object-position:
   @include object-fit(cover, top);
 */
-.wp-block-editorial-collapsible {
+.wp-block-bu-collapsible {
   border: 1px solid #ccc;
   margin-top: -1px; }
-  .wp-block-editorial-collapsible .bu-block-collapsible-content {
+  .wp-block-bu-collapsible .bu-block-collapsible-content {
     display: none;
     padding: 20px; }
-  .wp-block-editorial-collapsible .bu-block-collapsible-toggle {
+  .wp-block-bu-collapsible .bu-block-collapsible-toggle {
     display: block;
     width: 100%;
     margin: 0;
@@ -36859,18 +36859,18 @@ svg.wp-block-bu-stat-svg {
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none; }
-  .wp-block-editorial-collapsible .bu-collapsible-heading {
+  .wp-block-bu-collapsible .bu-collapsible-heading {
     position: relative;
     padding: 0;
     margin: 0;
     line-height: 1.5;
     font-size: 1.2em;
     font-weight: bold; }
-    .lt-ie9:hover .wp-block-editorial-collapsible .bu-collapsible-heading {
+    .lt-ie9:hover .wp-block-bu-collapsible .bu-collapsible-heading {
       -ms-zoom: 1; }
-    .wp-block-editorial-collapsible .bu-collapsible-heading span {
+    .wp-block-bu-collapsible .bu-collapsible-heading span {
       display: none; }
-    .wp-block-editorial-collapsible .bu-collapsible-heading::after {
+    .wp-block-bu-collapsible .bu-collapsible-heading::after {
       color: unset;
       display: inline-block;
       font-family: "bu-default-icons";
@@ -36889,7 +36889,7 @@ svg.wp-block-bu-stat-svg {
       white-space: nowrap;
       margin-left: 0.5em;
       content: "+"; }
-    .wp-block-editorial-collapsible .bu-collapsible-heading:after {
+    .wp-block-bu-collapsible .bu-collapsible-heading:after {
       position: absolute;
       right: 0;
       top: 50%;
@@ -36897,20 +36897,20 @@ svg.wp-block-bu-stat-svg {
       -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
               transform: translateY(-50%); }
-  .wp-block-editorial-collapsible.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  .wp-block-bu-collapsible.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
     content: '\F501'; }
-  .wp-block-editorial-collapsible.is-style-preview > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  .wp-block-bu-collapsible.is-style-preview > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
     display: none; }
-  .wp-block-editorial-collapsible.is-open > .bu-block-collapsible-toggle {
+  .wp-block-bu-collapsible.is-open > .bu-block-collapsible-toggle {
     display: block;
     border-bottom: 1px solid #ccc; }
-  .wp-block-editorial-collapsible.is-open > .bu-block-collapsible-content {
+  .wp-block-bu-collapsible.is-open > .bu-block-collapsible-content {
     display: block; }
-  .wp-block-editorial-collapsible.is-open > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  .wp-block-bu-collapsible.is-open > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
     content: '\002D'; }
-  .wp-block-editorial-collapsible.is-open.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+  .wp-block-bu-collapsible.is-open.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
     content: '\F500'; }
-  .wp-block-editorial-collapsible.is-style-outline {
+  .wp-block-bu-collapsible.is-style-outline {
     padding: 10px;
     border: 3px solid #000; }
 @charset "UTF-8";

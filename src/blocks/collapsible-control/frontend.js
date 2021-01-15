@@ -69,7 +69,7 @@ bu_blocks.collapsibleControl = ( function() {
 	 */
 	var findAllCollapsibleBlocks = function() {
 
-		var containers = document.querySelectorAll( '.wp-block-editorial-collapsible' );
+		var containers = document.querySelectorAll( '.wp-block-bu-collapsible' );
 
 		// Don't coninue if no Collapsible blocks exist
 		if ( containers.length === 0 ) {
@@ -102,7 +102,7 @@ bu_blocks.collapsibleControl = ( function() {
 		var blocks = [];
 
 		var group = control.closest( '.wp-block-group' );
-		var containers = group.querySelectorAll( '.wp-block-editorial-collapsible' );
+		var containers = group.querySelectorAll( '.wp-block-bu-collapsible' );
 
 		containers.forEach( function( element, i ) {
 
