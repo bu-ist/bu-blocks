@@ -53,7 +53,6 @@ bu_blocks.collapsible = ( function() {
 	 * @param element collapsible block
 	 */
 	var toggleCollapsible = function( collapsible ) {
-		window.console.log( 'BATMAN', collapsible );
 		if ( isOpen( collapsible ) ) {
 			closeCollapsible( collapsible );
 		} else {

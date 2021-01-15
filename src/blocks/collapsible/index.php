@@ -79,7 +79,7 @@ function render_block( $attributes, $content ) {
 			<<?php echo esc_html( "h{$attr['level']}" );?> class="bu-collapsible-heading"><?php echo wp_kses_post( $attr['title'] ); ?></<?php echo esc_html( "h{$attr['level']}" );?>>
 		</button>
 		<div class="bu-block-collapsible-content" id="<?php echo esc_attr( "{$attr['id']}-panel"); ?>">
-			<?php echo wp_kses_post( $content ); ?>
+			<?php echo $content; ?>
 		</div>
 	</div>
 
