@@ -32,6 +32,10 @@ function register_block() {
 					'type'     => 'string',
 					'default'  => 'plus-minus',
 				],
+				'customMarginBottom' => [
+					'type'     => 'boolean',
+					'default'  => false,
+				],
 				'marginBottom' => [
 					'type'     => 'number',
 					'default'  => 0,
@@ -56,13 +60,14 @@ function render_block( $attributes, $content ) {
 	$attr = wp_parse_args(
 		$attributes,
 		[
-			'title'        => '',
-			'level'        => '2',
-			'isOpen'       => false,
-			'iconStyle'    => 'plus-minus',
-			'className'    => 'is-style-plain',
-			'marginBottom' => 0,
-			'id'           => 'bu-collapsible-1',
+			'title'              => '',
+			'level'              => '2',
+			'isOpen'             => false,
+			'iconStyle'          => 'plus-minus',
+			'className'          => 'is-style-plain',
+			'customMarginBottom' => false,
+			'marginBottom'       => 0,
+			'id'                 => 'bu-collapsible-1',
 		]
 	);
 	$classes = [
@@ -71,10 +76,21 @@ function render_block( $attributes, $content ) {
 		"icon-style-{$attr['iconStyle']}",
 		$attr['className'],
 	];
+	$styles = [];
+	if ( $attr['customMarginBottom'] ) {
+		$styles['margin-bottom'] = "{$attr['marginBottom']}px";
+	}
+	$get_styles = function( $styles ) {
+		$out = '';
+		foreach ( $styles as $k => $v ) {
+			$out .= "{$k}:{$v}";
+		}
+		return $out;
+	};
 	ob_start();
 	?>
 
-	<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" style="margin-bottom:<?php echo esc_attr( "{$attr['marginBottom']}px" ); ?>" id="<?php echo esc_attr( $attr['id'] ); ?>">
+	<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" style="<?php echo esc_attr( $get_styles( $styles ) ); ?>" id="<?php echo esc_attr( $attr['id'] ); ?>">
 		<button class="bu-block-collapsible-toggle" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>">
 			<<?php echo esc_html( "h{$attr['level']}" );?> class="bu-collapsible-heading"><?php echo wp_kses_post( $attr['title'] ); ?></<?php echo esc_html( "h{$attr['level']}" );?>>
 		</button>

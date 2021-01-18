@@ -16,7 +16,7 @@ import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
-const { registerBlockType, createBlock } = wp.blocks;
+const { registerBlockType } = wp.blocks;
 const {
 	PanelBody,
 	ToggleControl,
@@ -57,12 +57,16 @@ registerBlockType( 'bu/collapsible', {
 			default: 2,
 		},
 		isOpen: {
-			type: 'bool',
+			type: 'boolean',
 			default: false,
 		},
 		iconStyle: {
 			type: 'string',
 			default: 'plus-minus',
+		},
+		customMarginBottom: {
+			type: 'boolean',
+			default: false,
 		},
 		marginBottom: {
 			type: 'number',
@@ -92,7 +96,15 @@ registerBlockType( 'bu/collapsible', {
 	edit( props ) {
 
 		const { attributes, setAttributes, clientId, className } = props;
-		const { title, level, isOpen, iconStyle, marginBottom, id } = attributes;
+		const {
+			title,
+			level,
+			isOpen,
+			iconStyle,
+			customMarginBottom,
+			marginBottom,
+			id,
+		} = attributes;
 		const tagName = 'h' + level;
 
 		const isPreviewStyle = className.includes( 'is-style-preview' );
@@ -152,14 +164,23 @@ registerBlockType( 'bu/collapsible', {
 					</PanelBody>
 
 					<PanelBody title={ __( 'Spacing' ) }>
-						<RangeControl
-							label={ __( 'Bottom Margin (px)' ) }
-							value={ marginBottom }
-							onChange={ ( value ) => setAttributes( { marginBottom: value } ) }
-							min={ 0 }
-							max={ 200 }
-							step={ 1 }
+						<ToggleControl
+							label={ __( 'Custom spacing' ) }
+							checked={ customMarginBottom }
+							onChange={ () => setAttributes( { customMarginBottom: !customMarginBottom } ) }
 						/>
+
+						{ customMarginBottom && (
+							<RangeControl
+								label={ __( 'Bottom Margin (px)' ) }
+								value={ marginBottom }
+								onChange={ ( value ) => setAttributes( { marginBottom: value } ) }
+								min={ 0 }
+								max={ 200 }
+								step={ 1 }
+							/>
+						) }
+
 					</PanelBody>
 
 					<PanelBody title={ __( 'Anchor ID' ) }>
