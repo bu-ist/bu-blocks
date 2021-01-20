@@ -76,10 +76,9 @@ function render_block( $attributes, $content ) {
 		"icon-style-{$attr['iconStyle']}",
 		$attr['className'],
 	];
-	$styles = [];
-	if ( $attr['customMarginBottom'] ) {
-		$styles['margin-bottom'] = "{$attr['marginBottom']}px";
-	}
+	$styles = [
+		'margin-bottom' => $attr['customMarginBottom'] ? "{$attr['marginBottom']}px" : '0',
+	];
 	$get_styles = function( $styles ) {
 		$out = '';
 		foreach ( $styles as $k => $v ) {
