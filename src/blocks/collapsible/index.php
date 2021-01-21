@@ -90,9 +90,11 @@ function render_block( $attributes, $content ) {
 	?>
 
 	<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" style="<?php echo esc_attr( $get_styles( $styles ) ); ?>" id="<?php echo esc_attr( $attr['id'] ); ?>">
-		<button class="bu-block-collapsible-toggle" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>">
-			<<?php echo esc_html( "h{$attr['level']}" );?> class="bu-collapsible-heading"><?php echo wp_kses_post( $attr['title'] ); ?></<?php echo esc_html( "h{$attr['level']}" );?>>
-		</button>
+		<<?php echo esc_html( "h{$attr['level']}" );?> class="bu-collapsible-heading">
+			<button class="bu-block-collapsible-toggle" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>">
+				<?php echo wp_kses_post( $attr['title'] ); ?>
+			</button>
+		</<?php echo esc_html( "h{$attr['level']}" );?>>
 		<div class="bu-block-collapsible-content" id="<?php echo esc_attr( "{$attr['id']}-panel"); ?>">
 			<?php echo $content; ?>
 		</div>

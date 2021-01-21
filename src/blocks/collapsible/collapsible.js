@@ -105,7 +105,7 @@ registerBlockType( 'bu/collapsible', {
 			marginBottom,
 			id,
 		} = attributes;
-		const tagName = 'h' + level;
+		const TagName = `h${level}`;
 
 		const isPreviewStyle = className.includes( 'is-style-preview' );
 
@@ -197,18 +197,19 @@ registerBlockType( 'bu/collapsible', {
 					<HeadingToolbar minLevel={ 2 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 
-				<div className="bu-block-collapsible-toggle">
+				<TagName className="bu-collapsible-heading">
 
+					{/* Using div because button cause issue in editor */}
 					<RichText
-						tagName={ tagName }
-						className="bu-collapsible-heading"
+						tagName={ 'div' }
+						className="bu-block-collapsible-toggle"
 						value={ title }
 						onChange={ value => setAttributes( { title: value } ) }
 						placeholder={ __( 'Heading...' ) }
 						formattingControls={ [ 'bold', 'italic' ] }
 					/>
 
-				</div>
+				</TagName>
 
 				<div className="bu-block-collapsible-content">
 					<InnerBlocks allowedBlocks={ allowedBlockList }/>

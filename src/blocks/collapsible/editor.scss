@@ -37,7 +37,7 @@
 }
 .is-selected > .wp-block-bu-collapsible,
 .has-child-selected > .wp-block-bu-collapsible {
-	& > .bu-block-collapsible-toggle {
+	& > .bu-collapsible-heading {
 		display: block;
 		border-bottom: 1px solid #ccc;
 	}
