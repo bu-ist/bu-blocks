@@ -56,6 +56,7 @@ registerBlockType( 'bu/collapsible-control', {
 
 						<RadioControl
 							label={ __( 'Target' ) }
+							help={ __( 'To control expanding/collapsing a select number of collapsible blocks on the page, place the collapsible blocks AND this control block inside a Group block.' ) }
 							selected={ target }
 							onChange={ ( value ) => setAttributes( { target: value } ) }
 							options={ [
