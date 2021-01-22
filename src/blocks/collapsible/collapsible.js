@@ -121,7 +121,7 @@ registerBlockType( 'bu/collapsible', {
 		}
 
 		const styles = {
-			marginBottom: marginBottom + editorContainerPaddingOffset
+			marginBottom: ( customMarginBottom ? marginBottom : 0 ) + editorContainerPaddingOffset
 		};
 
 		return (

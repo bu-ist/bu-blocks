@@ -110,7 +110,6 @@ bu_blocks.collapsible = ( function() {
 				panel.setAttribute( 'aria-hidden', true );
 			}
 		} );
-
 	};
 
 	/**
