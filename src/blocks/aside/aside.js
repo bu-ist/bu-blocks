@@ -14,6 +14,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import RegisterBlockPreset from '../../global/register-block-preset.js';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -31,7 +32,7 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
-	icon: 'format-aside',
+	icon: blockIcons('aside'),
 	category: 'bu-editorial',
 	supports: {
 		align: [ 'left', 'right' ],
