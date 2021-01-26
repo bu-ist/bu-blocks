@@ -18,11 +18,6 @@ const icons = {
 			<path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></path>
 		</Fragment>
 	),
-	"test" : (
-		<Fragment>
-
-		</Fragment>
-	),
 	"aside" : (
 		<Fragment>
 			<path
