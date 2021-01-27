@@ -570,7 +570,7 @@ const bu_blocks = {};
 	 * Find all Collapsible blocks on a page
 	 */
 	var findAllCollapsibleBlocks = function() {
-		var containers = document.querySelectorAll( '.wp-block-bu-collapsible' );
+		var containers = document.querySelectorAll( '.js-wp-block-bu-collapsible' );
 
 		// Don't coninue if no Collapsible blocks exist
 		if ( containers.length === 0 ) {
@@ -581,8 +581,8 @@ const bu_blocks = {};
 			var block = {};
 
 			block.container = element;
-			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
-			block.panel = element.querySelector( '.bu-block-collapsible-content' );
+			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
+			block.panel = element.querySelector( '.js-bu-block-collapsible-content' );
 			allCollapsibleBlocks.push( block );
 		} );
 
@@ -602,14 +602,14 @@ const bu_blocks = {};
 		if ( ! group ) {
 			return blocks;
 		}
-		var containers = group.querySelectorAll( '.wp-block-bu-collapsible' );
+		var containers = group.querySelectorAll( '.js-wp-block-bu-collapsible' );
 
 		containers.forEach( function( element, i ) {
 			var block = {};
 
 			block.container = element;
-			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
-			block.panel = element.querySelector( '.bu-block-collapsible-content' );
+			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
+			block.panel = element.querySelector( '.js-bu-block-collapsible-content' );
 			blocks.push( block );
 		} );
 
@@ -697,6 +697,7 @@ const bu_blocks = {};
 	// Store all collapsible block
 	var collapsibleBlocks = [];
 	var collapsibleOpenClass = 'is-open';
+	var collapsibleClosedClass = 'is-closed';
 
 	/**
 	 * Check if a Collapsible block is open.
@@ -723,9 +724,14 @@ const bu_blocks = {};
 		const { container, toggle, panel } = collapsible;
 
 		container.classList.add( collapsibleOpenClass );
+		container.classList.remove( collapsibleClosedClass );
 
 		toggle.setAttribute( 'aria-expanded', true );
 		panel.setAttribute( 'aria-hidden', false );
+
+		if ( container.classList.contains( 'is-style-preview' ) ) {
+			toggle.innerHTML = toggle.dataset.closeText;
+		}
 	};
 
 	/**
@@ -737,8 +743,13 @@ const bu_blocks = {};
 		const { container, toggle, panel } = collapsible;
 
 		container.classList.remove( collapsibleOpenClass );
+		container.classList.add( collapsibleClosedClass );
 		toggle.setAttribute( 'aria-expanded', false );
 		panel.setAttribute( 'aria-hidden', true );
+
+		if ( container.classList.contains( 'is-style-preview' ) ) {
+			toggle.innerHTML = toggle.dataset.openText;
+		}
 	};
 
 	/**
@@ -758,7 +769,7 @@ const bu_blocks = {};
 	 * Find all Collapsible blocks
 	 */
 	var findElements = function() {
-		var containers = document.querySelectorAll( '.wp-block-bu-collapsible' );
+		var containers = document.querySelectorAll( '.js-wp-block-bu-collapsible' );
 
 		// Don't coninue if no Collapsible blocks exist
 		if ( containers.length === 0 ) {
@@ -769,8 +780,8 @@ const bu_blocks = {};
 			var block = {};
 
 			block.container = element;
-			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
-			block.panel = element.querySelector( '.bu-block-collapsible-content' );
+			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
+			block.panel = element.querySelector( '.js-bu-block-collapsible-content' );
 			collapsibleBlocks.push( block );
 		} );
 	};
@@ -804,7 +815,6 @@ const bu_blocks = {};
 				panel.setAttribute( 'aria-hidden', true );
 			}
 		} );
-
 	};
 
 	/**
