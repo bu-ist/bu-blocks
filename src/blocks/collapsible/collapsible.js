@@ -227,22 +227,40 @@ registerBlockType( 'bu/collapsible', {
 				</BlockControls>
 
 				<TagName className="bu-collapsible-heading">
-
 					{/* Using div because button cause issue in editor */}
-					<RichText
-						tagName={ 'div' }
-						className="bu-block-collapsible-toggle"
-						value={ title }
-						onChange={ value => setAttributes( { title: value } ) }
-						placeholder={ __( 'Heading...' ) }
-						formattingControls={ [ 'bold', 'italic' ] }
-					/>
+					{ ! isPreviewStyle && (
+						<RichText
+							tagName={ 'div' }
+							className="bu-block-collapsible-toggle"
+							value={ title }
+							onChange={ value => setAttributes( { title: value } ) }
+							placeholder={ __( 'Heading...' ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+						/>
+					) }
+
+					{ isPreviewStyle && (
+						<RichText
+							tagName={ 'div' }
+							className=""
+							value={ title }
+							onChange={ value => setAttributes( { title: value } ) }
+							placeholder={ __( 'Heading...' ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+						/>
+					) }
 
 				</TagName>
 
 				<div className="bu-block-collapsible-content">
 					<InnerBlocks allowedBlocks={ allowedBlockList }/>
 				</div>
+
+				{ isPreviewStyle && (
+					<div className="button">
+						{ buttonOpenLabel }
+					</div>
+				) }
 
 			</div>
 
