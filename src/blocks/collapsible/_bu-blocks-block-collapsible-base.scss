@@ -127,6 +127,20 @@
 		border: none;
 		position: relative;
 		margin-bottom: $margin;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		-webkit-align-items: flex-start;
+		-ms-flex-align: flex-start;
+		align-items: flex-start;
+
+
 
 		// Don't show any icons to open/collapse.
 	 	> .bu-collapsible-heading::after {
@@ -139,6 +153,12 @@
 
 		.bu-block-collapsible-content {
 			padding: 0;
+		}
+
+		.button {
+			-webkit-order: 3;
+			-ms-flex-order: 3;
+			order: 3;
 		}
 
 

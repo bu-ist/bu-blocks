@@ -111,13 +111,19 @@ function render_block( $attributes, $content ) {
 				</button>
 			<?php endif; ?>
 		</<?php echo esc_html( "h{$attr['level']}" );?>>
-
+		<?php if ( $is_preview_style ) : ?>
+		<button
+			class="js-bu-block-collapsible-toggle button"
+			id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>"
+			data-close-text="<?php echo esc_attr( "{$attr['buttonCloseLabel']}"); ?>"
+			data-open-text="<?php echo esc_attr( "{$attr['buttonOpenLabel']}"); ?>"
+			aria-label="Toggle <?php echo wp_kses_post( $attr['title'] ); ?>"
+		><?php echo esc_html( "{$attr['buttonOpenLabel']}"); ?></button>
+		<?php endif; ?>
 		<div class="bu-block-collapsible-content js-bu-block-collapsible-content" id="<?php echo esc_attr( "{$attr['id']}-panel"); ?>">
 			<?php echo $content; ?>
 		</div>
-		<?php if ( $is_preview_style ) : ?>
-		<button class="js-bu-block-collapsible-toggle button" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>" data-close-text="<?php echo esc_attr( "{$attr['buttonCloseLabel']}"); ?>" data-open-text="<?php echo esc_attr( "{$attr['buttonOpenLabel']}"); ?>"><?php echo esc_html( "{$attr['buttonOpenLabel']}"); ?></button>
-		<?php endif; ?>
+
 
 	</div>
 
