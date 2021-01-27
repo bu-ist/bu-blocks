@@ -64,40 +64,61 @@ function render_block( $attributes, $content ) {
 			'level'              => '2',
 			'isOpen'             => false,
 			'iconStyle'          => 'plus-minus',
-			'className'          => 'is-style-plain',
+			'className'          => 'is-style-plain', // Default classname for the block.
 			'customMarginBottom' => false,
 			'marginBottom'       => 0,
 			'id'                 => 'bu-collapsible-1',
+			'buttonCloseLabel'   => 'Close',
+			'buttonOpenLabel'    => 'Read More',
 		]
 	);
 	$classes = [
 		'wp-block-bu-collapsible',
+		'js-wp-block-bu-collapsible',
 		$attr['isOpen'] ? 'is-open' : 'is-closed',
 		"icon-style-{$attr['iconStyle']}",
 		$attr['className'],
 	];
 	$styles = [
-		'margin-bottom' => $attr['customMarginBottom'] ? "{$attr['marginBottom']}px" : '0',
+		'margin-bottom' => $attr['customMarginBottom'] ? "{$attr['marginBottom']}px" : null,
 	];
 	$get_styles = function( $styles ) {
 		$out = '';
 		foreach ( $styles as $k => $v ) {
-			$out .= "{$k}:{$v}";
+			if ( $v ) {
+				$out .= "{$k}:{$v}";
+			}
 		}
 		return $out;
 	};
+
+	$is_preview_style = in_array( 'is-style-preview', $classes ) ? true : false;
+
 	ob_start();
 	?>
 
-	<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" style="<?php echo esc_attr( $get_styles( $styles ) ); ?>" id="<?php echo esc_attr( $attr['id'] ); ?>">
+	<div
+		class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>"
+		style="<?php echo esc_attr( $get_styles( $styles ) ); ?>"
+		id="<?php echo esc_attr( $attr['id'] ); ?>"
+	>
 		<<?php echo esc_html( "h{$attr['level']}" );?> class="bu-collapsible-heading">
-			<button class="bu-block-collapsible-toggle" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>">
+			<?php if ( $is_preview_style ) : ?>
 				<?php echo wp_kses_post( $attr['title'] ); ?>
-			</button>
+			<?php else : ?>
+				<button class="bu-block-collapsible-toggle js-bu-block-collapsible-toggle" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>">
+					<?php echo wp_kses_post( $attr['title'] ); ?>
+				</button>
+			<?php endif; ?>
 		</<?php echo esc_html( "h{$attr['level']}" );?>>
-		<div class="bu-block-collapsible-content" id="<?php echo esc_attr( "{$attr['id']}-panel"); ?>">
+
+		<div class="bu-block-collapsible-content js-bu-block-collapsible-content" id="<?php echo esc_attr( "{$attr['id']}-panel"); ?>">
 			<?php echo $content; ?>
 		</div>
+		<?php if ( $is_preview_style ) : ?>
+		<button class="js-bu-block-collapsible-toggle button" id="<?php echo esc_attr( "{$attr['id']}-toggle"); ?>" data-close-text="<?php echo esc_attr( "{$attr['buttonCloseLabel']}"); ?>" data-open-text="<?php echo esc_attr( "{$attr['buttonOpenLabel']}"); ?>"><?php echo esc_html( "{$attr['buttonOpenLabel']}"); ?></button>
+		<?php endif; ?>
+
 	</div>
 
 	<?php
