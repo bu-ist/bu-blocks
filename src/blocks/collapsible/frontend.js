@@ -3,6 +3,7 @@ bu_blocks.collapsible = ( function() {
 	// Store all collapsible block
 	var collapsibleBlocks = [];
 	var collapsibleOpenClass = 'is-open';
+	var collapsibleClosedClass = 'is-closed';
 
 	/**
 	 * Check if a Collapsible block is open.
@@ -29,9 +30,14 @@ bu_blocks.collapsible = ( function() {
 		const { container, toggle, panel } = collapsible;
 
 		container.classList.add( collapsibleOpenClass );
+		container.classList.remove( collapsibleClosedClass );
 
 		toggle.setAttribute( 'aria-expanded', true );
 		panel.setAttribute( 'aria-hidden', false );
+
+		if ( container.classList.contains( 'is-style-preview' ) ) {
+			toggle.innerHTML = toggle.dataset.closeText;
+		}
 	};
 
 	/**
@@ -43,8 +49,13 @@ bu_blocks.collapsible = ( function() {
 		const { container, toggle, panel } = collapsible;
 
 		container.classList.remove( collapsibleOpenClass );
+		container.classList.add( collapsibleClosedClass );
 		toggle.setAttribute( 'aria-expanded', false );
 		panel.setAttribute( 'aria-hidden', true );
+
+		if ( container.classList.contains( 'is-style-preview' ) ) {
+			toggle.innerHTML = toggle.dataset.openText;
+		}
 	};
 
 	/**
