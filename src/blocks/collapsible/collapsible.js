@@ -77,6 +77,14 @@ registerBlockType( 'bu/collapsible', {
 		id: {
 			type: 'string',
 			default: '',
+		},
+		buttonOpenLabel: {
+			type: 'string',
+			default: 'Read More',
+		},
+		buttonCloseLabel: {
+			type: 'string',
+			default: 'Close',
 		}
 	},
 	styles: [
@@ -106,6 +114,8 @@ registerBlockType( 'bu/collapsible', {
 			customMarginBottom,
 			marginBottom,
 			id,
+			buttonCloseLabel,
+			buttonOpenLabel,
 		} = attributes;
 		const TagName = `h${level}`;
 
@@ -157,13 +167,30 @@ registerBlockType( 'bu/collapsible', {
 						</PanelBody>
 					) }
 
-					<PanelBody title={ __( 'Default Collapsible Status' ) }>
-						<ToggleControl
-							label={ __( 'Open' ) }
-							checked={ isOpen }
-							onChange={ () => setAttributes( { isOpen: !isOpen } ) }
-						/>
-					</PanelBody>
+					{ isPreviewStyle && (
+						<PanelBody title={ __( 'Button Labels' ) }>
+							<TextControl
+								label={ __( 'Open Button Label' ) }
+								value={ buttonOpenLabel }
+								onChange={ ( value ) => setAttributes( { buttonOpenLabel: value } ) }
+							/>
+							<TextControl
+								label={ __( 'Close Button Label' ) }
+								value={ buttonCloseLabel }
+								onChange={ ( value ) => setAttributes( { buttonCloseLabel: value } ) }
+							/>
+						</PanelBody>
+					) }
+
+					{ ! isPreviewStyle && (
+						<PanelBody title={ __( 'Default Collapsible Status' ) }>
+							<ToggleControl
+								label={ __( 'Open' ) }
+								checked={ isOpen }
+								onChange={ () => setAttributes( { isOpen: !isOpen } ) }
+							/>
+						</PanelBody>
+					) }
 
 					<PanelBody title={ __( 'Spacing' ) }>
 						<ToggleControl
