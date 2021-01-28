@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.65883,1.92723e-34,-1.92723e-34,0.65883,-11.726,-11.7197)">
+        <path d="M53.19,24.16L18.81,24.16C18.261,24.16 17.81,24.611 17.81,25.16L17.81,46.86C17.81,47.409 18.261,47.86 18.81,47.86L53.19,47.86C53.739,47.86 54.19,47.409 54.19,46.86L54.19,25.16C54.19,24.611 53.739,24.16 53.19,24.16ZM50,27.51L48.35,29L46.66,27.54L50,27.51ZM29.58,27.65C29.58,27.57 29.63,27.51 29.68,27.51L42.5,27.51C42.5,27.51 42.6,27.57 42.6,27.65L42.6,28.8C42.6,28.88 42.55,28.94 42.5,28.94L29.72,28.94C29.72,28.94 29.62,28.88 29.62,28.8L29.58,27.65ZM21.92,27.65L21.92,27.51L26.44,27.51L26.44,28.94L22,28.94L22,28.8L21.92,27.65ZM52.19,45.84L19.8,45.84L19.8,31.52L52.19,31.52L52.19,45.84Z" style="fill:rgb(201,8,19);fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(0.65883,1.92723e-34,-1.92723e-34,0.65883,-11.726,-11.7197)">
+        <circle cx="24.33" cy="38.68" r="2.12" style="fill:rgb(201,8,19);"/>
+    </g>
+    <g transform="matrix(0.65883,1.92723e-34,-1.92723e-34,0.65883,-11.726,-11.7197)">
+        <circle cx="30.17" cy="38.68" r="2.12" style="fill:rgb(201,8,19);"/>
+    </g>
+    <g transform="matrix(0.65883,1.92723e-34,-1.92723e-34,0.65883,-11.726,-11.7197)">
+        <circle cx="36" cy="38.68" r="2.12" style="fill:rgb(201,8,19);"/>
+    </g>
+    <g transform="matrix(0.65883,1.92723e-34,-1.92723e-34,0.65883,-11.726,-11.7197)">
+        <circle cx="41.83" cy="38.68" r="2.12" style="fill:rgb(201,8,19);"/>
+    </g>
+    <g transform="matrix(0.65883,1.92723e-34,-1.92723e-34,0.65883,-11.726,-11.7197)">
+        <circle cx="47.67" cy="38.68" r="2.12" style="fill:rgb(201,8,19);"/>
+    </g>
+</svg>
