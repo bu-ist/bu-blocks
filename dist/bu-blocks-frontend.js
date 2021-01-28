@@ -699,6 +699,25 @@ const bu_blocks = {};
 	var collapsibleOpenClass = 'is-open';
 	var collapsibleClosedClass = 'is-closed';
 
+
+
+
+	/**
+	 * Check if a Collapsible block is set to open by default by user.
+	 *
+	 * @param object collapsible block
+	 * @return bool
+	 */
+	var isOpenDefault = function( collapsible ) {
+		const { container } = collapsible;
+
+		if ( 'true' === container.getAttribute("data-default-open") ) {
+			return true;
+		}
+
+		return false;
+	};
+
 	/**
 	 * Check if a Collapsible block is open.
 	 *
@@ -730,7 +749,7 @@ const bu_blocks = {};
 		panel.setAttribute( 'aria-hidden', false );
 
 		if ( container.classList.contains( 'is-style-preview' ) ) {
-			toggle.innerHTML = toggle.dataset.closeText;
+			toggle.innerHTML = toggle.getAttribute("data-close-text");
 		}
 	};
 
@@ -748,7 +767,7 @@ const bu_blocks = {};
 		panel.setAttribute( 'aria-hidden', true );
 
 		if ( container.classList.contains( 'is-style-preview' ) ) {
-			toggle.innerHTML = toggle.dataset.openText;
+			toggle.innerHTML = toggle.getAttribute("data-open-text");
 		}
 	};
 
@@ -806,6 +825,13 @@ const bu_blocks = {};
 			// Set ARIA attributes
 			toggle.setAttribute( 'aria-controls', panel.id );
 			panel.setAttribute( 'aria-labelledby', toggle.id );
+
+			// Setup initial state of each block.
+			if ( isOpenDefault( collapsible ) ) {
+				openCollapsible( collapsible );
+			} else {
+				closeCollapsible( collapsible );
+			}
 
 			if ( isOpen( collapsible ) ) {
 				toggle.setAttribute( 'aria-expanded', true );
