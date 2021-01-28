@@ -16,6 +16,7 @@ import Background, { BackgroundAttributes } from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
@@ -78,7 +79,7 @@ const getClasses = ( background, className, hideTeaser, round, size, themeColor 
 registerBlockType( 'editorial/drawer', {
 	title: __( 'Drawer' ),
 	description: __( 'Add content that can be toggled.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('drawer'),
 	category: 'bu-editorial',
 	attributes: {
 		button: {

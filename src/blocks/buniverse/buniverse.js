@@ -9,6 +9,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 //  Import CSS.
 import './style.scss';
@@ -59,7 +60,7 @@ const getClasses = ( className, aspectRatio ) => {
 registerBlockType( 'bu/buniverse', {
 	title: __( 'BUniverse Video' ),
 	description: __( '' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('buniverse'),
 	category: 'bu',
 	attributes: {
 		id: {
