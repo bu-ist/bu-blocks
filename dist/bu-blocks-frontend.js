@@ -804,7 +804,6 @@ const bu_blocks = {};
 				panel.setAttribute( 'aria-hidden', true );
 			}
 		} );
-
 	};
 
 	/**

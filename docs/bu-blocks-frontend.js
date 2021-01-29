@@ -527,21 +527,16 @@ const bu_blocks = {};
 	var controlCollapsibleBlocks = function( collapsibleBlocks, open = true ) {
 
 		collapsibleBlocks.forEach( function( collapsible, i ) {
-
 			const { container, toggle, panel } = collapsible;
 
 			if ( open ) {
-
 				container.classList.add( collapsibleOpenClass );
 				toggle.setAttribute( 'aria-expanded', true );
 				panel.setAttribute( 'aria-hidden', false );
-
 			} else {
-
 				container.classList.remove( collapsibleOpenClass );
 				toggle.setAttribute( 'aria-expanded', false );
 				panel.setAttribute( 'aria-hidden', true );
-
 			}
 
 		} );
@@ -558,30 +553,24 @@ const bu_blocks = {};
 		}
 
 		controlCollapsibleBlocks( allCollapsibleBlocks, !allBlocksOpen );
-
 		allBlocksOpen = ( allBlocksOpen ) ? false : true;
-
 	};
 
 	/**
 	 * Toggle Collapsible blocks in control's group
 	 */
 	var toggleGroup = function( control ) {
-
 		const { groupIsOpen, collapsibleBlocks } = control;
 
 		controlCollapsibleBlocks( collapsibleBlocks, !groupIsOpen );
-
 		control.groupIsOpen = ( groupIsOpen ) ? false : true;
-
 	};
 
 	/**
 	 * Find all Collapsible blocks on a page
 	 */
 	var findAllCollapsibleBlocks = function() {
-
-		var containers = document.querySelectorAll( '.wp-block-editorial-collapsible' );
+		var containers = document.querySelectorAll( '.wp-block-bu-collapsible' );
 
 		// Don't coninue if no Collapsible blocks exist
 		if ( containers.length === 0 ) {
@@ -589,15 +578,12 @@ const bu_blocks = {};
 		}
 
 		containers.forEach( function( element, i ) {
-
 			var block = {};
 
 			block.container = element;
 			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
 			block.panel = element.querySelector( '.bu-block-collapsible-content' );
-
 			allCollapsibleBlocks.push( block );
-
 		} );
 
 	};
@@ -612,24 +598,22 @@ const bu_blocks = {};
 	var getGroupCollapsibleBlocks = function( control ) {
 
 		var blocks = [];
-
 		var group = control.closest( '.wp-block-group' );
-		var containers = group.querySelectorAll( '.wp-block-editorial-collapsible' );
+		if ( ! group ) {
+			return blocks;
+		}
+		var containers = group.querySelectorAll( '.wp-block-bu-collapsible' );
 
 		containers.forEach( function( element, i ) {
-
 			var block = {};
 
 			block.container = element;
 			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
 			block.panel = element.querySelector( '.bu-block-collapsible-content' );
-
 			blocks.push( block );
-
 		} );
 
 		return blocks;
-
 	}
 
 	/**
@@ -638,46 +622,35 @@ const bu_blocks = {};
 	var findElements = function() {
 
 		var controls = document.querySelectorAll( '.bu-collapsible-control-toggle' );
+		var allCollapsibleBlocksFound = false;
 
 		// Don't coninue if no Controls are found
 		if ( controls.length === 0 ) {
 			return;
 		}
 
-		var allCollapsibleBlocksFound = false;
-
 		// Store all controls
 		controls.forEach( function( control, i ) {
-
 			var block = {};
 
 			block.toggle = control;
 
 			// Check if Control targets all blocks or blocks in its group
 			if ( control.classList.contains( 'js-bu-collapsible-control-target-group' ) ) {
-
 				block.targetGroup = true;
-
 				block.collapsibleBlocks = getGroupCollapsibleBlocks( control );
-
 				block.groupIsOpen = false;
-
 			} else {
-
 				block.targetGroup = false;
 
 				if ( ! allCollapsibleBlocksFound ) {
-
 					findAllCollapsibleBlocks();
-
 				}
 
 				allCollapsibleBlocksFound = true;
-
 			}
 
 			collapsibleControlBlocks.push( block );
-
 		} );
 
 	};
@@ -686,31 +659,21 @@ const bu_blocks = {};
 	 * Set up handlers, aria, and other functionality
 	 */
 	var setupCollapsibleControlBlocks = function() {
-
 		if ( collapsibleControlBlocks.length === 0 ) {
 			return;
 		}
 
 		collapsibleControlBlocks.forEach( function( control, i ) {
-
 			const { toggle, targetGroup } = control;
 
 			toggle.addEventListener( 'click', function( e ) {
-
 				e.preventDefault();
-
 				if ( targetGroup ) {
-
 					toggleGroup( control );
-
 				} else {
-
 					toggleAll( control );
-
 				}
-
 			} );
-
 		} );
 
 	};
@@ -719,18 +682,13 @@ const bu_blocks = {};
 	 * Init
 	 */
 	var collapsibleControlInit = function() {
-
 		findElements();
-
 		setupCollapsibleControlBlocks();
-
 	};
 
 	// Start things on dom ready.
 	document.addEventListener( "DOMContentLoaded", function() {
-
-  	collapsibleControlInit();
-
+		collapsibleControlInit();
 	} );
 
 } )();
@@ -741,13 +699,12 @@ const bu_blocks = {};
 	var collapsibleOpenClass = 'is-open';
 
 	/**
-	 * Check if a Collapsible block is open
+	 * Check if a Collapsible block is open.
 	 *
 	 * @param object collapsible block
 	 * @return bool
 	 */
 	var isOpen = function( collapsible ) {
-
 		const { container } = collapsible;
 
 		if ( container.classList.contains ( collapsibleOpenClass ) ) {
@@ -755,7 +712,6 @@ const bu_blocks = {};
 		}
 
 		return false;
-
 	};
 
 	/**
@@ -764,14 +720,12 @@ const bu_blocks = {};
 	 * @param object collapsible block
 	 */
 	var openCollapsible = function( collapsible ) {
-
 		const { container, toggle, panel } = collapsible;
 
 		container.classList.add( collapsibleOpenClass );
 
 		toggle.setAttribute( 'aria-expanded', true );
 		panel.setAttribute( 'aria-hidden', false );
-
 	};
 
 	/**
@@ -780,14 +734,11 @@ const bu_blocks = {};
 	 * @param object collapsible block
 	 */
 	var closeCollapsible = function( collapsible ) {
-
 		const { container, toggle, panel } = collapsible;
 
 		container.classList.remove( collapsibleOpenClass );
-
 		toggle.setAttribute( 'aria-expanded', false );
 		panel.setAttribute( 'aria-hidden', true );
-
 	};
 
 	/**
@@ -796,25 +747,18 @@ const bu_blocks = {};
 	 * @param element collapsible block
 	 */
 	var toggleCollapsible = function( collapsible ) {
-
 		if ( isOpen( collapsible ) ) {
-
 			closeCollapsible( collapsible );
-
 		} else {
-
 			openCollapsible( collapsible );
-
 		}
-
 	};
 
 	/**
 	 * Find all Collapsible blocks
 	 */
 	var findElements = function() {
-
-		var containers = document.querySelectorAll( '.wp-block-editorial-collapsible' );
+		var containers = document.querySelectorAll( '.wp-block-bu-collapsible' );
 
 		// Don't coninue if no Collapsible blocks exist
 		if ( containers.length === 0 ) {
@@ -822,103 +766,57 @@ const bu_blocks = {};
 		}
 
 		containers.forEach( function( element, i ) {
-
 			var block = {};
 
 			block.container = element;
 			block.toggle = element.querySelector( '.bu-block-collapsible-toggle' );
 			block.panel = element.querySelector( '.bu-block-collapsible-content' );
-
 			collapsibleBlocks.push( block );
-
 		} );
-
 	};
 
 	/**
 	 * Set up handlers, aria, and other functionality
 	 */
 	var setupCollapsibleBlocks = function() {
-
 		if ( collapsibleBlocks.length === 0 ) {
 			return;
 		}
 
 		collapsibleBlocks.forEach( function( collapsible, i ) {
-
 			const { container, toggle, panel } = collapsible;
 
 			// Add toggle event
 			toggle.addEventListener( 'click', function( e ) {
-
 				e.preventDefault();
-
 				toggleCollapsible( collapsible );
-
 			} );
-
-			// Open the Collapsible block if the ID is in the current URL
-			if ( window.location.hash === '#' + container.id ) {
-				openCollapsible( collapsible );
-			}
-
-			// Make sure the collapsible block has an id
-			if ( container.id === '' ) {
-
-				container.setAttribute( 'id', 'bu-collapsible-block-' + i );
-
-			}
-
-			// Make sure the toggle has an id
-			if ( toggle.id === '' ) {
-
-				toggle.setAttribute( 'id', container.id + '-toggle' );
-
-			}
-
-			// Make sure the panel has an id
-			if ( panel.id === '' ) {
-
-				panel.setAttribute( 'id', container.id + '-panel' );
-
-			}
 
 			// Set ARIA attributes
 			toggle.setAttribute( 'aria-controls', panel.id );
 			panel.setAttribute( 'aria-labelledby', toggle.id );
 
 			if ( isOpen( collapsible ) ) {
-
 				toggle.setAttribute( 'aria-expanded', true );
 				panel.setAttribute( 'aria-hidden', false );
-
 			} else {
-
 				toggle.setAttribute( 'aria-expanded', false );
 				panel.setAttribute( 'aria-hidden', true );
-
 			}
-
 		} );
-
 	};
 
 	/**
 	 * Init
 	 */
 	var collapsibleInit = function() {
-
 		findElements();
-
 		setupCollapsibleBlocks();
-
 	};
 
 	// Start things on dom ready.
 	document.addEventListener( "DOMContentLoaded", function() {
-
-  	collapsibleInit();
-
+		collapsibleInit();
 	});
 
 } )();
