@@ -127,18 +127,12 @@
 		border: none;
 		position: relative;
 		margin-bottom: $margin;
-		display: -ms-flexbox;
-		display: -webkit-flex;
 		display: flex;
-		-webkit-flex-direction: column;
-		-ms-flex-direction: column;
-		flex-direction: column;
-		-webkit-flex-wrap: nowrap;
-		-ms-flex-wrap: nowrap;
 		flex-wrap: nowrap;
-		-webkit-align-items: flex-start;
-		-ms-flex-align: flex-start;
-		align-items: flex-start;
+		flex-direction: column;
+		justify-content: start;
+		align-items: start;
+		align-content: start;
 
 
 
@@ -149,16 +143,21 @@
 
 		.bu-collapsible-heading {
 			position: static;
+			flex: 0 1 auto;
+			align-self: stretch;
 		}
 
 		.bu-block-collapsible-content {
 			padding: 0;
+			flex: 0 1 auto;
+			align-self: stretch;
 		}
 
 		.button {
 			-webkit-order: 3;
 			-ms-flex-order: 3;
 			order: 3;
+			flex: 0 0 auto;
 		}
 
 
@@ -175,7 +174,7 @@
 				bottom:0;
 				left: 0;
 				right: 0;
-				background-image: linear-gradient(to bottom, transparent, #fff);
+				background-image: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
 			}
 		}
 	}
