@@ -1,0 +1,63 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+// Add missing icon in admin.
+@font-face {
+	font-family: "bu-default-icons";
+	src: url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.eot?") format("embedded-opentype");
+	src: url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.woff") format("woff"), url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.ttf") format("truetype"), url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.svg#bu-default-icons") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon-style-button button {
+	font-family: "bu-default-icons";
+}
+
+// Open state, when block is selected or has a child block selected
+.wp-block.is-selected > .wp-block-bu-collapsible,
+.wp-block.has-child-selected > .wp-block-bu-collapsible {
+
+	& > .bu-block-collapsible-content {
+		display: block;
+		padding: 5px 20px;
+	}
+
+	& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		content: '\002D';
+	}
+
+	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		content: '\F500';
+	}
+}
+.is-selected > .wp-block-bu-collapsible,
+.has-child-selected > .wp-block-bu-collapsible {
+	& > .bu-collapsible-heading {
+		display: block;
+		border-bottom: 1px solid #ccc;
+	}
+
+	& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		content: '\002D';
+	}
+
+	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		content: '\F500'
+	}
+}
+
+.wp-block-bu-collapsible {
+
+	.bu-collapsible-heading {
+		margin-top: 0;
+	}
+
+	.bu-block-collapsible-content {
+	}
+
+}

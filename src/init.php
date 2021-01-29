@@ -271,6 +271,7 @@ require_once $path_to_src . 'blocks/relatedstories/index.php';
 require_once $path_to_src . 'blocks/relatedstories/yarpprelated-endpoint.php';
 require_once $path_to_src . 'blocks/relatedstories/collection-endpoint.php';
 require_once $path_to_src . 'blocks/leadin/index.php';
+require_once $path_to_src . 'blocks/collapsible/index.php';
 require_once $path_to_src . 'components/background/index.php';
 
 // Kicks off all hooks.

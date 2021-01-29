@@ -1,0 +1,85 @@
+// =================================================================
+// Collapsible Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-bu-collapsible {
+	border: 1px solid #ccc;
+	margin-top: -1px;
+
+	.bu-block-collapsible-content {
+		display: none;
+		padding: 20px;
+	}
+
+	.bu-block-collapsible-toggle {
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 10px 20px;
+		background-color: transparent;
+		text-align: left;
+		appearance: none;
+		font-weight: bold;
+	}
+
+	.bu-collapsible-heading {
+		position: relative;
+		padding: 0;
+		margin: 0;
+		line-height: 1.5;
+		font-size: 1.2em;
+		font-weight: bold;
+
+		@include icon( 'plus', 'after' );
+
+		&:after {
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			font-size: .75em;
+			transform: translateY( -50% );
+		}
+
+	}
+
+	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		content: '\F501';
+	}
+
+	&.is-style-preview > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+		display: none;
+	}
+
+	&.is-open {
+
+		& > .bu-collapsible-heading {
+			display: block;
+			border-bottom: 1px solid #ccc;
+		}
+
+		& > .bu-block-collapsible-content {
+			display: block;
+		}
+
+		& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+			content: '\002D';
+		}
+
+		&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+			content: '\F500'
+		}
+
+	}
+
+	&.is-style-outline {
+		padding: 10px;
+		border: 3px solid #000;
+	}
+}
+
