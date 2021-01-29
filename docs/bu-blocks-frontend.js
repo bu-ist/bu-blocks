@@ -74,6 +74,38 @@ if (!Array.prototype.findIndex) {
   });
 }
 
+
+// Matches polyfill.
+if (!Element.prototype.matches) {
+	Element.prototype.matches =
+	  Element.prototype.msMatchesSelector ||
+	  Element.prototype.webkitMatchesSelector;
+}
+// element.closest() polyfill.
+if (!Element.prototype.closest) {
+	Element.prototype.closest = function(s) {
+	  var el = this;
+
+	  do {
+		if (Element.prototype.matches.call(el, s)) return el;
+		el = el.parentElement || el.parentNode;
+	  } while (el !== null && el.nodeType === 1);
+	  return null;
+	};
+}
+
+// Foreach NodeList Polyfill for IE.
+if ('NodeList' in window && !NodeList.prototype.forEach) {
+    console.info('polyfill for IE11');
+    NodeList.prototype.forEach = function (callback, thisArg) {
+      thisArg = thisArg || window;
+      for (var i = 0; i < this.length; i++) {
+        callback.call(thisArg, this[i], i, this);
+      }
+    };
+}
+
+
 // Foreach Polyfill
 // Production steps of ECMA-262, Edition 5, 15.4.4.18
 // Reference: http://es5.github.io/#x15.4.4.18
@@ -524,10 +556,16 @@ const bu_blocks = {};
 	 * @param array collapsible blocks
 	 * @param bool true to open set of collapsible blocks, false to close
 	 */
-	var controlCollapsibleBlocks = function( collapsibleBlocks, open = true ) {
+	var controlCollapsibleBlocks = function( collapsibleBlocks, open ) {
+
+		if ( open === undefined ) {
+			open = true;
+		}
 
 		collapsibleBlocks.forEach( function( collapsible, i ) {
-			const { container, toggle, panel } = collapsible;
+			const container = collapsible.container;
+			const toggle = collapsible.toggle;
+			const panel = collapsible.panel;
 
 			if ( open ) {
 				container.classList.add( collapsibleOpenClass );
@@ -560,7 +598,8 @@ const bu_blocks = {};
 	 * Toggle Collapsible blocks in control's group
 	 */
 	var toggleGroup = function( control ) {
-		const { groupIsOpen, collapsibleBlocks } = control;
+		const groupIsOpen = control.groupIsOpen;
+		const collapsibleBlocks = control.collapsibleBlocks
 
 		controlCollapsibleBlocks( collapsibleBlocks, !groupIsOpen );
 		control.groupIsOpen = ( groupIsOpen ) ? false : true;
@@ -664,7 +703,8 @@ const bu_blocks = {};
 		}
 
 		collapsibleControlBlocks.forEach( function( control, i ) {
-			const { toggle, targetGroup } = control;
+			const toggle = control.toggle;
+			const targetGroup = control.targetGroup;
 
 			toggle.addEventListener( 'click', function( e ) {
 				e.preventDefault();
@@ -709,7 +749,7 @@ const bu_blocks = {};
 	 * @return bool
 	 */
 	var isOpenDefault = function( collapsible ) {
-		const { container } = collapsible;
+		const container = collapsible.container;
 
 		if ( 'true' === container.getAttribute("data-default-open") ) {
 			return true;
@@ -725,7 +765,7 @@ const bu_blocks = {};
 	 * @return bool
 	 */
 	var isOpen = function( collapsible ) {
-		const { container } = collapsible;
+		const container = collapsible.container;
 
 		if ( container.classList.contains ( collapsibleOpenClass ) ) {
 			return true;
@@ -740,7 +780,9 @@ const bu_blocks = {};
 	 * @param object collapsible block
 	 */
 	var openCollapsible = function( collapsible ) {
-		const { container, toggle, panel } = collapsible;
+		const container = collapsible.container;
+		const toggle = collapsible.toggle;
+		const panel = collapsible.panel;
 
 		container.classList.add( collapsibleOpenClass );
 		container.classList.remove( collapsibleClosedClass );
@@ -759,7 +801,9 @@ const bu_blocks = {};
 	 * @param object collapsible block
 	 */
 	var closeCollapsible = function( collapsible ) {
-		const { container, toggle, panel } = collapsible;
+		const container = collapsible.container;
+		const toggle = collapsible.toggle;
+		const panel = collapsible.panel;
 
 		container.classList.remove( collapsibleOpenClass );
 		container.classList.add( collapsibleClosedClass );
@@ -814,7 +858,9 @@ const bu_blocks = {};
 		}
 
 		collapsibleBlocks.forEach( function( collapsible, i ) {
-			const { container, toggle, panel } = collapsible;
+			const container = collapsible.container;
+			const toggle = collapsible.toggle;
+			const panel = collapsible.panel;
 
 			// Add toggle event
 			toggle.addEventListener( 'click', function( e ) {
