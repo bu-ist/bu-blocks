@@ -15,7 +15,7 @@ bu_blocks.collapsible = ( function() {
 	 * @return bool
 	 */
 	var isOpenDefault = function( collapsible ) {
-		const { container } = collapsible;
+		const container = collapsible.container;
 
 		if ( 'true' === container.getAttribute("data-default-open") ) {
 			return true;
@@ -31,7 +31,7 @@ bu_blocks.collapsible = ( function() {
 	 * @return bool
 	 */
 	var isOpen = function( collapsible ) {
-		const { container } = collapsible;
+		const container = collapsible.container;
 
 		if ( container.classList.contains ( collapsibleOpenClass ) ) {
 			return true;
@@ -46,7 +46,9 @@ bu_blocks.collapsible = ( function() {
 	 * @param object collapsible block
 	 */
 	var openCollapsible = function( collapsible ) {
-		const { container, toggle, panel } = collapsible;
+		const container = collapsible.container;
+		const toggle = collapsible.toggle;
+		const panel = collapsible.panel;
 
 		container.classList.add( collapsibleOpenClass );
 		container.classList.remove( collapsibleClosedClass );
@@ -65,7 +67,9 @@ bu_blocks.collapsible = ( function() {
 	 * @param object collapsible block
 	 */
 	var closeCollapsible = function( collapsible ) {
-		const { container, toggle, panel } = collapsible;
+		const container = collapsible.container;
+		const toggle = collapsible.toggle;
+		const panel = collapsible.panel;
 
 		container.classList.remove( collapsibleOpenClass );
 		container.classList.add( collapsibleClosedClass );
@@ -120,7 +124,9 @@ bu_blocks.collapsible = ( function() {
 		}
 
 		collapsibleBlocks.forEach( function( collapsible, i ) {
-			const { container, toggle, panel } = collapsible;
+			const container = collapsible.container;
+			const toggle = collapsible.toggle;
+			const panel = collapsible.panel;
 
 			// Add toggle event
 			toggle.addEventListener( 'click', function( e ) {

@@ -12,10 +12,16 @@ bu_blocks.collapsibleControl = ( function() {
 	 * @param array collapsible blocks
 	 * @param bool true to open set of collapsible blocks, false to close
 	 */
-	var controlCollapsibleBlocks = function( collapsibleBlocks, open = true ) {
+	var controlCollapsibleBlocks = function( collapsibleBlocks, open ) {
+
+		if ( open === undefined ) {
+			open = true;
+		}
 
 		collapsibleBlocks.forEach( function( collapsible, i ) {
-			const { container, toggle, panel } = collapsible;
+			const container = collapsible.container;
+			const toggle = collapsible.toggle;
+			const panel = collapsible.panel;
 
 			if ( open ) {
 				container.classList.add( collapsibleOpenClass );
@@ -48,7 +54,8 @@ bu_blocks.collapsibleControl = ( function() {
 	 * Toggle Collapsible blocks in control's group
 	 */
 	var toggleGroup = function( control ) {
-		const { groupIsOpen, collapsibleBlocks } = control;
+		const groupIsOpen = control.groupIsOpen;
+		const collapsibleBlocks = control.collapsibleBlocks
 
 		controlCollapsibleBlocks( collapsibleBlocks, !groupIsOpen );
 		control.groupIsOpen = ( groupIsOpen ) ? false : true;
@@ -152,7 +159,8 @@ bu_blocks.collapsibleControl = ( function() {
 		}
 
 		collapsibleControlBlocks.forEach( function( control, i ) {
-			const { toggle, targetGroup } = control;
+			const toggle = control.toggle;
+			const targetGroup = control.targetGroup;
 
 			toggle.addEventListener( 'click', function( e ) {
 				e.preventDefault();
