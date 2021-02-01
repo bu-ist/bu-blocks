@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Add icons for each block to improve UI and accessibility.
+- Add Collapsible Block
 
 ## 0.3.3
 - Fixes: #294 Related Stories block displays wrong list of stories in card layout in some cases.

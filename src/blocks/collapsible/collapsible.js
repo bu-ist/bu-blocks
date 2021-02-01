@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import allowedBlocks from '../../components/allowed-blocks';
+import blockIcons from '../../components/block-icons';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -44,7 +45,7 @@ registerBlockType( 'bu/collapsible', {
 	name: 'bu/collapsible',
 	title: __( 'Collapsible' ),
 	description: __( 'A collapsible content block.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('collapsible'),
 	category: 'bu',
 	supports: {
 		align: [ 'wide', 'full' ],
@@ -77,6 +78,14 @@ registerBlockType( 'bu/collapsible', {
 		id: {
 			type: 'string',
 			default: '',
+		},
+		buttonOpenLabel: {
+			type: 'string',
+			default: 'Read More',
+		},
+		buttonCloseLabel: {
+			type: 'string',
+			default: 'Close',
 		}
 	},
 	styles: [
@@ -106,6 +115,8 @@ registerBlockType( 'bu/collapsible', {
 			customMarginBottom,
 			marginBottom,
 			id,
+			buttonCloseLabel,
+			buttonOpenLabel,
 		} = attributes;
 		const TagName = `h${level}`;
 
@@ -157,13 +168,30 @@ registerBlockType( 'bu/collapsible', {
 						</PanelBody>
 					) }
 
-					<PanelBody title={ __( 'Default Collapsible Status' ) }>
-						<ToggleControl
-							label={ __( 'Open' ) }
-							checked={ isOpen }
-							onChange={ () => setAttributes( { isOpen: !isOpen } ) }
-						/>
-					</PanelBody>
+					{ isPreviewStyle && (
+						<PanelBody title={ __( 'Button Labels' ) }>
+							<TextControl
+								label={ __( 'Open Button Label' ) }
+								value={ buttonOpenLabel }
+								onChange={ ( value ) => setAttributes( { buttonOpenLabel: value } ) }
+							/>
+							<TextControl
+								label={ __( 'Close Button Label' ) }
+								value={ buttonCloseLabel }
+								onChange={ ( value ) => setAttributes( { buttonCloseLabel: value } ) }
+							/>
+						</PanelBody>
+					) }
+
+					{ ! isPreviewStyle && (
+						<PanelBody title={ __( 'Default Collapsible Status' ) }>
+							<ToggleControl
+								label={ __( 'Open' ) }
+								checked={ isOpen }
+								onChange={ () => setAttributes( { isOpen: !isOpen } ) }
+							/>
+						</PanelBody>
+					) }
 
 					<PanelBody title={ __( 'Spacing' ) }>
 						<ToggleControl
@@ -200,22 +228,40 @@ registerBlockType( 'bu/collapsible', {
 				</BlockControls>
 
 				<TagName className="bu-collapsible-heading">
-
 					{/* Using div because button cause issue in editor */}
-					<RichText
-						tagName={ 'div' }
-						className="bu-block-collapsible-toggle"
-						value={ title }
-						onChange={ value => setAttributes( { title: value } ) }
-						placeholder={ __( 'Heading...' ) }
-						formattingControls={ [ 'bold', 'italic' ] }
-					/>
+					{ ! isPreviewStyle && (
+						<RichText
+							tagName={ 'div' }
+							className="bu-block-collapsible-toggle"
+							value={ title }
+							onChange={ value => setAttributes( { title: value } ) }
+							placeholder={ __( 'Heading...' ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+						/>
+					) }
+
+					{ isPreviewStyle && (
+						<RichText
+							tagName={ 'div' }
+							className=""
+							value={ title }
+							onChange={ value => setAttributes( { title: value } ) }
+							placeholder={ __( 'Heading...' ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+						/>
+					) }
 
 				</TagName>
 
 				<div className="bu-block-collapsible-content">
 					<InnerBlocks allowedBlocks={ allowedBlockList }/>
 				</div>
+
+				{ isPreviewStyle && (
+					<div className="button">
+						{ buttonOpenLabel }
+					</div>
+				) }
 
 			</div>
 

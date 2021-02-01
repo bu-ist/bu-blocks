@@ -25,13 +25,20 @@
 	& > .bu-block-collapsible-content {
 		display: block;
 		padding: 5px 20px;
+		height: auto; //Override is-style-preview value.
+		overflow: auto; //Override is-style-preview value.
+		position: static; //Override is-style-preview value.
+
+		&:after {
+			display: none; //Override is-style-preview value.
+		}
 	}
 
-	& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+	& > .bu-collapsible-heading::after {
 		content: '\002D';
 	}
 
-	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+	&.icon-style-arrows > .bu-collapsible-heading::after {
 		content: '\F500';
 	}
 }
@@ -42,11 +49,15 @@
 		border-bottom: 1px solid #ccc;
 	}
 
-	& > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+	&.is-style-preview .bu-collapsible-heading {
+		border-bottom: 0;
+	}
+
+	& > .bu-collapsible-heading::after {
 		content: '\002D';
 	}
 
-	&.icon-style-arrows > .bu-block-collapsible-toggle .bu-collapsible-heading::after {
+	&.icon-style-arrows > .bu-collapsible-heading::after {
 		content: '\F500'
 	}
 }
@@ -54,10 +65,39 @@
 .wp-block-bu-collapsible {
 
 	.bu-collapsible-heading {
-		margin-top: 0;
+		margin: 0;
 	}
 
 	.bu-block-collapsible-content {
+
 	}
 
+	&.is-style-preview {
+		border: none;
+		position: relative;
+		margin-bottom: $margin;
+
+		// Don't show any icons to open/collapse.
+		> .bu-collapsible-heading::after {
+			display: none;
+		}
+
+		.bu-block-collapsible-content {
+			padding: 0;
+			display: block;
+			height: 100px;
+			overflow: hidden;
+			position: relative;
+
+			&:after {
+				content:'';
+				height: 50%;
+				position: absolute;
+				bottom:0;
+				left: 0;
+				right: 0;
+				background-image: linear-gradient(to bottom, transparent, #fff);
+			}
+		}
+	}
 }
