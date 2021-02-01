@@ -738,6 +738,8 @@ const bu_blocks = {};
 	var collapsibleBlocks = [];
 	var collapsibleOpenClass = 'is-open';
 	var collapsibleClosedClass = 'is-closed';
+	var eventOpen = new CustomEvent('bu-blocks-collapsible-open');
+	var eventClose = new CustomEvent('bu-blocks-collapsible-close');
 
 
 
@@ -793,6 +795,8 @@ const bu_blocks = {};
 		if ( container.classList.contains( 'is-style-preview' ) ) {
 			toggle.innerHTML = toggle.getAttribute("data-close-text");
 		}
+		//dispatch the event on the dom element
+		container.dispatchEvent( eventOpen );
 	};
 
 	/**
@@ -813,6 +817,8 @@ const bu_blocks = {};
 		if ( container.classList.contains( 'is-style-preview' ) ) {
 			toggle.innerHTML = toggle.getAttribute("data-open-text");
 		}
+		//dispatch the event on the dom element
+		container.dispatchEvent( eventClose );
 	};
 
 	/**
@@ -901,6 +907,17 @@ const bu_blocks = {};
 	document.addEventListener( "DOMContentLoaded", function() {
 		collapsibleInit();
 	});
+
+	return {
+		getcollapsibleBlocks: function() {
+			return collapsibleBlocks;
+		},
+		toggleCollapsible: function( collapsible ) {
+			if( collapsible ) {
+				toggleCollapsible( collapsible );
+			}
+		}
+	};
 
 } )();
 ;bu_blocks.drawer = ( function() {
