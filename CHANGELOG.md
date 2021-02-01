@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.4
+- Add icons for each block to improve UI and accessibility.
+- Add Collapsible Block
+
 ## 0.3.3
 - Fixes: #294 Related Stories block displays wrong list of stories in card layout in some cases.
 - fix KSS at 3 beta 23 for now to prevent newer versions from installing and breaking build tools on our older node versions.
