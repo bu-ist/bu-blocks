@@ -4,6 +4,8 @@ bu_blocks.collapsible = ( function() {
 	var collapsibleBlocks = [];
 	var collapsibleOpenClass = 'is-open';
 	var collapsibleClosedClass = 'is-closed';
+	var eventOpen = new CustomEvent('bu-blocks-collapsible-open');
+	var eventClose = new CustomEvent('bu-blocks-collapsible-close');
 
 
 
@@ -59,6 +61,8 @@ bu_blocks.collapsible = ( function() {
 		if ( container.classList.contains( 'is-style-preview' ) ) {
 			toggle.innerHTML = toggle.getAttribute("data-close-text");
 		}
+		//dispatch the event on the dom element
+		container.dispatchEvent( eventOpen );
 	};
 
 	/**
@@ -79,6 +83,8 @@ bu_blocks.collapsible = ( function() {
 		if ( container.classList.contains( 'is-style-preview' ) ) {
 			toggle.innerHTML = toggle.getAttribute("data-open-text");
 		}
+		//dispatch the event on the dom element
+		container.dispatchEvent( eventClose );
 	};
 
 	/**
@@ -167,5 +173,16 @@ bu_blocks.collapsible = ( function() {
 	document.addEventListener( "DOMContentLoaded", function() {
 		collapsibleInit();
 	});
+
+	return {
+		getcollapsibleBlocks: function() {
+			return collapsibleBlocks;
+		},
+		toggleCollapsible: function( collapsible ) {
+			if( collapsible ) {
+				toggleCollapsible( collapsible );
+			}
+		}
+	};
 
 } )();
