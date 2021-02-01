@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.4
 - Add icons for each block to improve UI and accessibility.
 - Add Collapsible Block
 
