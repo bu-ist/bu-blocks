@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Update JS for Collapsible Control Block to account for .is-closed class being present on pageload.
+
 ## 0.3.4
 - Add icons for each block to improve UI and accessibility.
 - Add Collapsible Block
@@ -153,4 +156,3 @@ stylesheet via the child theme. This fixes the block styling when BU-Blocks is a
 
 Updates the master branch with the currently released codebase in production that had been developed on the #develop branch initially.
 
-## Unreleased
