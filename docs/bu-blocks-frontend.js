@@ -549,6 +549,7 @@ const bu_blocks = {};
 	var allCollapsibleBlocks = [];
 	var allBlocksOpen = false;
 	var collapsibleOpenClass = 'is-open';
+	var collapsibleCloseClass = 'is-closed';
 
 	/**
 	 * Open or close a group of collapsible blocks
@@ -569,10 +570,12 @@ const bu_blocks = {};
 
 			if ( open ) {
 				container.classList.add( collapsibleOpenClass );
+				container.classList.remove( collapsibleCloseClass );
 				toggle.setAttribute( 'aria-expanded', true );
 				panel.setAttribute( 'aria-hidden', false );
 			} else {
 				container.classList.remove( collapsibleOpenClass );
+				container.classList.add( collapsibleCloseClass );
 				toggle.setAttribute( 'aria-expanded', false );
 				panel.setAttribute( 'aria-hidden', true );
 			}
