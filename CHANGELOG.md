@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Move border styles in Collapsible block to inner child elements instead of block container element.
+
 ## 0.3.4
 - Add icons for each block to improve UI and accessibility.
 - Add Collapsible Block
