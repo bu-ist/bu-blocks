@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.3.5
 - Update JS for Collapsible Control Block to account for .is-closed class being present on pageload.
 - Move border styles in Collapsible block to inner child elements instead of block container element.
 
