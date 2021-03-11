@@ -9,12 +9,13 @@
 //
 
 .wp-block-bu-collapsible {
-	border: 1px solid #ccc;
 	margin-top: -1px;
 
 	.bu-block-collapsible-content {
 		display: none;
 		padding: 20px;
+		border: 1px solid #ccc;
+		border-top: 0;
 	}
 
 	.bu-block-collapsible-toggle {
@@ -33,6 +34,7 @@
 	.bu-collapsible-heading {
 		padding: 0;
 		position: relative;
+		border: 1px solid #ccc;
 		@include icon( 'plus', 'after' );
 
 		&:after {
@@ -113,10 +115,17 @@
 
 	// Outline Style.
 	&.is-style-outline {
-		border: 3px solid #000;
+		.bu-collapsible-heading {
+			border: 3px solid #000;
+		}
 
 		// Remove top border when collapsible is adjacent.
-		& + .is-style-outline {
+		& + .is-style-outline .bu-collapsible-heading {
+			border-top: 0;
+		}
+
+		.bu-block-collapsible-content {
+			border: 3px solid #000;
 			border-top: 0;
 		}
 
@@ -142,12 +151,14 @@
 		}
 
 		.bu-collapsible-heading {
+			border: none;
 			position: static;
 			flex: 0 1 auto;
 			align-self: stretch;
 		}
 
 		.bu-block-collapsible-content {
+			border: none;
 			padding: 0;
 			flex: 0 1 auto;
 			align-self: stretch;
