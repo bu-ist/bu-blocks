@@ -261,6 +261,8 @@ registerBlockType( 'bu/buniverse', {
 			autoplay,
 			start,
 			className,
+			schemaDataVideoDisabled,
+			schemaJSON,
 		} = attributes;
 
 		// Build out the full url.
@@ -287,6 +289,11 @@ registerBlockType( 'bu/buniverse', {
 							</p>
 						</figcaption>
 					)}
+					{ ! schemaDataVideoDisabled && (
+						<script className="wp-blocks-components-schema-data-video-tools" type="application/ld+json">
+							{ JSON.stringify( schemaJSON ) }
+						</script>
+					) }
 
 			</figure>
 		);
