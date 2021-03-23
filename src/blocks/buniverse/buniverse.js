@@ -10,6 +10,7 @@ import classnames from 'classnames';
 // Internal dependencies.
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
+import SchemaDataVideoTools, { SchemaDataVideoAttributes } from '../../components/schema-data-video';
 
 //  Import CSS.
 import './style.scss';
@@ -93,6 +94,7 @@ registerBlockType( 'bu/buniverse', {
 			type: 'string',
 			default: '',
 		},
+		...SchemaDataVideoAttributes,
 	},
 	supports: {
 		align: true,
@@ -243,6 +245,9 @@ registerBlockType( 'bu/buniverse', {
 						</figcaption>
 					) }
 				</figure>
+				<SchemaDataVideoTools
+					blockProps={ props }
+				/>
 			</Fragment>
 		);
 	},
@@ -256,6 +261,8 @@ registerBlockType( 'bu/buniverse', {
 			autoplay,
 			start,
 			className,
+			schemaDataVideoDisabled,
+			schemaJSON,
 		} = attributes;
 
 		// Build out the full url.
@@ -282,6 +289,11 @@ registerBlockType( 'bu/buniverse', {
 							</p>
 						</figcaption>
 					)}
+					{ ! schemaDataVideoDisabled && (
+						<script className="wp-blocks-components-schema-data-video-tools" type="application/ld+json">
+							{ JSON.stringify( schemaJSON ) }
+						</script>
+					) }
 
 			</figure>
 		);
