@@ -10,7 +10,8 @@ import classnames from 'classnames';
 // Internal dependencies.
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
-import SchemaDataVideoTools, { SchemaDataVideoAttributes } from '../../components/schema-data-video';
+import SchemaDataVideoTools, { SchemaDataVideoAttributes,SchemaDataVideoJSON } from '../../components/schema-data-video';
+
 
 //  Import CSS.
 import './style.scss';
@@ -261,7 +262,7 @@ registerBlockType( 'bu/buniverse', {
 			autoplay,
 			start,
 			className,
-			schemaDataVideoDisabled,
+			schemaDataVideoShow,
 			schemaJSON,
 		} = attributes;
 
@@ -289,11 +290,11 @@ registerBlockType( 'bu/buniverse', {
 							</p>
 						</figcaption>
 					)}
-					{ ! schemaDataVideoDisabled && (
-						<script className="wp-blocks-components-schema-data-video-tools" type="application/ld+json">
-							{ JSON.stringify( schemaJSON ) }
-						</script>
-					) }
+				{ schemaDataVideoShow && (
+					<SchemaDataVideoJSON
+						json={ schemaJSON }
+					/>
+				) }
 
 			</figure>
 		);
