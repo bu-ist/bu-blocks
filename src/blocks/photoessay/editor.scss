@@ -47,6 +47,9 @@
 	}
 
 	// Remove float on single image row layouts.
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-f"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-1"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-2"],
 	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-3"],
 	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-4"] {
 		max-width: none;
