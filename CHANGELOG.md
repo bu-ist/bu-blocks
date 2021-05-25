@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- add tall 2 by 2 image layout and full frame single layouts for photo essay
 
 ## 0.3.5
 - Update JS for Collapsible Control Block to account for .is-closed class being present on pageload.
