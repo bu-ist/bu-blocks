@@ -95,6 +95,10 @@ const blockAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	metabardate: {
+		type: 'boolean',
+		default: false,
+	},
 	boxOpacity: {
 		type: 'number',
 		default: 100,
@@ -176,6 +180,7 @@ registerBlockType( 'bu/leadin', {
 				box,
 				flip,
 				metabar,
+				metabardate,
 				boxOpacity,
 				videoUncropped,
 				url,
@@ -400,7 +405,7 @@ registerBlockType( 'bu/leadin', {
 					) }
 				</div>
 
-				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar ) }
+				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar, metabardate ) }
 
 				<InspectorControls>
 					{ mediaPositioningControls() }
