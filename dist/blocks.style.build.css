@@ -23814,6 +23814,10 @@ img.has-background-opacity-100 {
     .wp-block-editorial-photoessay .photo-s .wp-block-photoessay-media-wrapper::after {
       padding-top: calc(100% - 30px); } }
 
+.wp-block-editorial-photoessay .photo-f::after,
+.wp-block-editorial-photoessay .photo-f .wp-block-photoessay-media-wrapper::after {
+  padding-top: 66.66667%; }
+
 .wp-block-editorial-photoessay [class*="photo-row-short"] .photo-2 {
   width: 50%; }
 
@@ -23873,6 +23877,20 @@ img.has-background-opacity-100 {
     width: 66.66667%; }
   .wp-block-editorial-photoessay [class*="photo-row-thirds"] .photo-4 {
     width: 66.66667%; } }
+
+.wp-block-editorial-photoessay .photo-row-full-f .photo-f {
+  width: 100%; }
+
+@media (min-width: 500px) {
+  .wp-block-editorial-photoessay .photo-row-full-f .photo-f {
+    width: 100%; } }
+
+.wp-block-editorial-photoessay .photo-row-tall-1-1 .photo-1 {
+  width: 50%; }
+
+@media (min-width: 500px) {
+  .wp-block-editorial-photoessay .photo-row-tall-1-1 .photo-1 {
+    width: 50%; } }
 
 .wp-block-editorial-photoessay .photo-row-square-s-s-s .photo-s {
   width: 100%; }

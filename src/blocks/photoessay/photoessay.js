@@ -136,10 +136,12 @@ registerBlockType( 'editorial/photoessay', {
 							selected={ layout }
 							options={ [
 								// Single column layouts.
+								{ label: 'Single full-frame image', value: 'photo-row-full-f' },
 								{ label: 'Single wide image', value: 'photo-row-thirds-3' },
 								{ label: 'Single ultra-wide image', value: 'photo-row-fourths-4' },
 								// Two column layouts.
 								{ label: 'Two landscape images', value: 'photo-row-fourths-2-2' },
+								{ label: 'Two portrait images', value: 'photo-row-tall-1-1' },
 								{ label: 'One square, one portrait image', value: 'photo-row-square-s-1' },
 								{ label: 'One square, one landscape image', value: 'photo-row-square-s-2' },
 								{ label: 'One square, one wide image', value: 'photo-row-square-s-3' },
