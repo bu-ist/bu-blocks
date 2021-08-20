@@ -10,7 +10,7 @@
  *
  * Runs once the dom is loaded in order to avoid a race condition.
  */
-wp.domReady( function() {
+ $(document).ready(function(){
 
 	// Bail if the default support has been filtered off.
 	if ( wp.hooks.applyFilters( 'buBlocks.blockSupport.disableDefault', false ) ) {
