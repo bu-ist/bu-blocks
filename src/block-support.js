@@ -18,15 +18,40 @@ wp.domReady( function() {
 	}
 
 	// Create a filterable array of post types to restrict the blocks to.
-	const postTypes = wp.hooks.applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );
+	const postTypes = wp.hooks.applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );		
 
 	// Get the current post type.
-	const currentPostType = wp.data.select( 'core/editor' ).getCurrentPost().type;
+	const currentPostType = () => wp.data.select('core/editor').getCurrentPost().type;	
 
-	// Bail if the current post type is in the array of post types to restrict the blocks to.
-	if ( postTypes.includes( currentPostType ) ) {
-		return;
+	let thisPostsType = currentPostType();	
+
+	wp.data.subscribe(() => {
+
+		const thisPostsNewType = currentPostType();
+		// console.log(thisPostsType);
+
+		if( thisPostsType !== thisPostsNewType ) {
+			// console.log('WE FOUND A POST TYPE:' + thisPostsNewType);
+			thisPostsType = thisPostsNewType;
+			hasPostType(thisPostsNewType);
+		}	
+	});
+
+
+	function hasPostType(postType){	
+
+		// Bail if the current post type is in the array of post types to restrict the blocks to.
+		// console.log(postTypes);
+		if ( postTypes.includes( postType ) ) {
+			return;
+		}else{
+			buBlocks.forEach( block => {
+				wp.blocks.unregisterBlockType( block );
+			} );
+		}
+
 	}
+
 
 	// A filterable list of the blocks registered by this plugin.
 	// Alternatively, a setting added to each block could be used
@@ -50,10 +75,7 @@ wp.domReady( function() {
 		'editorial/relatedstories',
 		//'editorial/slideshow',
 		'bu/stats',
-	] );
-
-	// Unregister the blocks.
-	buBlocks.forEach( block => {
-		wp.blocks.unregisterBlockType( block );
-	} );
+	] );	
+	
 } );
+	
