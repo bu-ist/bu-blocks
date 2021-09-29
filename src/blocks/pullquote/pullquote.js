@@ -21,12 +21,15 @@ import blockIcons from '../../components/block-icons/';
 const {
 	__,
 } = wp.i18n;
+
 const {
 	registerBlockType,
 } = wp.blocks;
+
 const {
 	Fragment,
 } = wp.element;
+
 const {
 	PanelBody,
 	Path,
@@ -34,6 +37,7 @@ const {
 	TextControl,
 	SVG,
 } = wp.components;
+
 const {
 	InspectorControls,
 	PanelColorSettings,
@@ -301,7 +305,8 @@ registerBlockType( 'bu/pullquote', {
 			imageFocus,
 			photoCredit,
 			backgroundId,
-			className = '', // Assign default in case the unpacked value is `undefined`.
+			// className = '', // Assign default in case the unpacked value is `undefined`.
+			className, // Assign default in case the unpacked value is `undefined`.
 			themeColor,
 			textColor,
 		} = attributes;
