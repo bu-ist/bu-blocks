@@ -29,7 +29,7 @@ For example, let's say I cloned the BU Blocks demo site to my sandbox. Here,
 I am grabbing a list of all the pages that are on that demo site in my sandbox. 
 
 ```
-wp post list --post_type=page --url=https://id-ashley.cms-devl.bu.edu/bu-blocks/ --fields=url
+wp post list --post_type=page --url=https://id-ashley.cms-devl.bu.edu/bu-blocks/ --fields=url --format=csv
 ```
 
 From here, you could copy and paste the URLs into a text file and use the [npm instructions](https://github.com/bu-ist/bu-webdiff/blob/master/npm-instructions.md) to run visual regression testing locally.
