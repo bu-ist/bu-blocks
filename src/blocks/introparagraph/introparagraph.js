@@ -9,6 +9,7 @@ import './style.scss';
 import './editor.scss';
 
 import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
@@ -82,7 +83,7 @@ registerBlockType( 'editorial/introparagraph', {
 
 	title: __( 'Intro Paragraph' ),
 	description: __( 'Add an introduction with a bulleted list and styled paragraph.' ),
-	icon: <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path fill="#c00" d="M11 5v7H9.5C7.6 12 6 10.4 6 8.5S7.6 5 9.5 5H11m8-2H9.5C6.5 3 4 5.5 4 8.5S6.5 14 9.5 14H11v7h2V5h2v16h2V5h2V3z"></path></svg>,
+	icon: blockIcons('introparagraph'),
 	category: 'bu-editorial',
 	supports: {
 		anchor: true,
@@ -205,9 +206,9 @@ registerBlockType( 'editorial/introparagraph', {
 				return;
 			}
 
-			// Try to set a sensible image size to avoid full size images being loaded. 
+			// Try to set a sensible image size to avoid full size images being loaded.
 			let selectedMediaURL = media.url;
-			
+
 			// The first check is for images already in the media library.
 			// The second is for newly uploaded images.
 			if ( media.sizes ) {
@@ -228,12 +229,12 @@ registerBlockType( 'editorial/introparagraph', {
 				}
 			}
 
-			
-			setAttributes( { 
-				dropCapImageURL: selectedMediaURL, 
-				dropCapImageId: media.id 
+
+			setAttributes( {
+				dropCapImageURL: selectedMediaURL,
+				dropCapImageId: media.id
 			} );
-			
+
 		};
 
 		// When an image is removed, reset the URL and ID attributes on the block.

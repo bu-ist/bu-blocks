@@ -13,6 +13,7 @@ import HeadingToolbar from './heading-toolbar';
 import './pretext-format.js'
 import './posttext-format.js'
 import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -41,7 +42,7 @@ registerBlockType( 'editorial/headline', {
 
 	title: __( 'Headline' ),
 	description: __( 'Add a section heading with an anchor and pre- and post-text formatting options.' ),
-	icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#c00" d="M5 4v3h5.5v12h3V7H19V4z" /><path fill="none" d="M0 0h24v24H0V0z" /></svg>,
+	icon: blockIcons('headline'),
 	category: 'bu-editorial',
 	supports: {
 		anchor: true,

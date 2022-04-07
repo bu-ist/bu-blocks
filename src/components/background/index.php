@@ -70,7 +70,7 @@ function display_background( $attributes, $image_size = false ) {
 
 		// Build the iframe `src` value for BUniverse videos.
 		if ( 'www.bu.edu' === $host ) {
-			$src  = '//www.bu.edu/buniverse/interface/embed/embed.html?v=' . substr( $parsed_url['query'], 2 ) . '&jsapi=1';
+			$src  = 'https://www.bu.edu/buniverse/interface/embed/embed.html?v=' . substr( $parsed_url['query'], 2 ) . '&jsapi=1';
 			$src .= ( $autoplay ) ? '&autoplay=true&controls=0' : '';
 		}
 

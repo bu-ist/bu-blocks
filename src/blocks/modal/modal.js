@@ -14,6 +14,7 @@ import './editor.scss';
 // Internal dependencies.
 import edit from './edit.js';
 import Background, { BackgroundAttributes } from '../../components/background';
+import blockIcons from '../../components/block-icons';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
@@ -38,7 +39,7 @@ registerBlockType( 'editorial/modal', {
 
 	title: __( 'Modal' ),
 	description: __( 'A block with a callout for opening a modal with supplemental or complementary information.' ),
-	icon: 'admin-page',
+	icon: blockIcons('modal'),
 	category: 'bu-editorial',
 	supports: {
 		align: true,

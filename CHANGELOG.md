@@ -1,5 +1,38 @@
 # Changelog
 
+## Unreleased
+
+## 0.3.7
+- Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
+- Leadin/metabar: add metabardate boolean attribute for showing/hiding publish date (used in BU Prepress)
+
+## 0.3.6
+- IS&T: Always use HTTPS for www.bu.edu/buniverse URLs
+
+## 0.3.5
+- Update JS for Collapsible Control Block to account for .is-closed class being present on pageload.
+- Move border styles in Collapsible block to inner child elements instead of block container element.
+
+## 0.3.4
+- Add icons for each block to improve UI and accessibility.
+- Add Collapsible Block
+
+## 0.3.3
+- Fixes: #294 Related Stories block displays wrong list of stories in card layout in some cases.
+- fix KSS at 3 beta 23 for now to prevent newer versions from installing and breaking build tools on our older node versions.
+- Fix bug #291 in Media & Text block caused by Featured Tweet's strip html markup function.
+
+## 0.3.2
+- fix stylesheet loading in WP 5.x. This wasn't noticed earlier as the current implementations of the plugin load the plugin
+stylesheet via the child theme. This fixes the block styling when BU-Blocks is activated on a Responsive Framework site. 
+
+## 0.3.1
+- Photo Essay Block Improvements: 
+  - Puts captions blocks closer to photo essay blocks. fixes: bu-ist/r-editorial#984
+  - Adds hover effect to photo essay images to denote click-ability. fixes:bu-ist/r-editorial#896
+
+
+
 ## 0.3.0
 - Official support for WordPress 5.4, including:
 - Compatibility for the the listicle block https://github.com/bu-ist/bu-blocks/pull/271
@@ -133,4 +166,3 @@
 
 Updates the master branch with the currently released codebase in production that had been developed on the #develop branch initially.
 
-## Unreleased

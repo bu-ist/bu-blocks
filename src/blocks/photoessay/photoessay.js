@@ -10,6 +10,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import './photoessay-image';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
@@ -53,7 +54,7 @@ const {
 registerBlockType( 'editorial/photoessay', {
 	title: __( 'Photo Essay' ),
 	description: __( 'Insert a row of photos with optional layouts.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('photoessay'),
 	category: 'bu-editorial',
 	attributes: {
 		layout: {
@@ -135,10 +136,12 @@ registerBlockType( 'editorial/photoessay', {
 							selected={ layout }
 							options={ [
 								// Single column layouts.
+								{ label: 'Single full-frame image', value: 'photo-row-full-f' },
 								{ label: 'Single wide image', value: 'photo-row-thirds-3' },
 								{ label: 'Single ultra-wide image', value: 'photo-row-fourths-4' },
 								// Two column layouts.
 								{ label: 'Two landscape images', value: 'photo-row-fourths-2-2' },
+								{ label: 'Two portrait images', value: 'photo-row-tall-1-1' },
 								{ label: 'One square, one portrait image', value: 'photo-row-square-s-1' },
 								{ label: 'One square, one landscape image', value: 'photo-row-square-s-2' },
 								{ label: 'One square, one wide image', value: 'photo-row-square-s-3' },
