@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Fixes #285 by removing a duplicative reference to the responsive foundation grid package.
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
