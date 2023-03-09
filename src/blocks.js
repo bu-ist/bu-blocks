@@ -9,6 +9,12 @@
  * Webpack is compiling as the input file.
  */
 
+// this block is causing issues with being able to add ANY blocks to a post
+// trying to determine why
+// import './blocks/pullquote/pullquote.js';
+
+
+
 import './blocks/headline/headline.js';
 import './blocks/aside/aside.js';
 import './blocks/drawer/drawer.js';
@@ -17,7 +23,7 @@ import './blocks/introparagraph/introparagraph.js';
 import './blocks/leadin/leadin.js';
 import './blocks/slideshow/slideshow.js';
 import './blocks/buniverse/buniverse.js';
-import './blocks/pullquote/pullquote.js';
+
 import './blocks/photoessay/photoessay.js';
 import './blocks/button/button.js';
 import './blocks/relatedstories/relatedstories.js';
