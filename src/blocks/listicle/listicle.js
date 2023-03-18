@@ -13,7 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
-import ShareTools, { ShareToolsAttributes } from '../../components/share-tools';
+import ShareTools, { ShareToolsAttributes, ShareToolsControls } from '../../components/share-tools';
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons';
 
@@ -193,6 +193,9 @@ registerBlockType( 'editorial/listicle', {
 					setIsUploading={ setIsUploading }
 					options={ [] }
 				/>
+				<ShareToolsControls
+					blockProps={ props }
+				/>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
@@ -268,6 +271,9 @@ registerBlockType( 'editorial/listicle', {
 									/>
 								</aside>
 							) }
+							<ShareTools
+								blockProps={ props }
+							/>
 						</div>
 					</section>
 					{ ( hasRelatedLinks( related ) || isSelected ) && (
@@ -367,6 +373,9 @@ registerBlockType( 'editorial/listicle', {
 									/>
 								</aside>
 							) }
+							<ShareTools
+								blockProps={ props }
+							/>
 						</div>
 					</section>
 					{ hasRelatedLinks( related ) && (
