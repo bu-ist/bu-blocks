@@ -327,7 +327,6 @@ registerBlockType( 'editorial/listicle', {
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
 							blockProps={ props }
-							isUploading={ false }
 						/>
 						<RichText.Content
 							tagName="figcaption"

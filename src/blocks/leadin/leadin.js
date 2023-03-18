@@ -15,7 +15,7 @@ import './editor.scss';
 import themeOptions from '../../global/theme-options';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
@@ -46,6 +46,8 @@ const {
 const {
 	applyFilters,
 } = wp.hooks;
+
+const { useState } = wp.element;
 
 // Block attributes.
 const blockAttributes = {
@@ -191,6 +193,8 @@ registerBlockType( 'bu/leadin', {
 			className,
 			isSelected,
 		} = props;
+
+		const [ isUploading, setIsUploading ] = useState( false );
 
 		const isStyleEmphasisOnText = className.includes( 'is-style-emphasis-on-text' );
 		const isStyleTextOverImage = className.includes( 'is-style-text-over-image' );
@@ -357,11 +361,16 @@ registerBlockType( 'bu/leadin', {
 		// Return the block editing interface.
 		return (
 			<Fragment>
+				<BackgroundControls
+					blockProps={ props }
+					setIsUploading={ setIsUploading }
+				/>
 				<div className={ classes }>
 					<div className="container-lockup">
 						<div className="wp-block-leadin-media">
 							<Background
 								blockProps={ props }
+								isUploading={ isUploading }
 							/>
 						</div>
 						<div className="container-words-outer">

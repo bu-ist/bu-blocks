@@ -52,7 +52,7 @@ function Background( props ) {
 	const {
 		blockProps,
 		className = 'bu-blocks-background',
-		isUploading,
+		isUploading = false,
 	} = props;
 
 	// Get the properties of the block using this component.

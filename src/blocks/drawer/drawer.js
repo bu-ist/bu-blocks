@@ -307,7 +307,7 @@ registerBlockType( 'editorial/drawer', {
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
-							<Background blockProps={ props } isUploading={ false } />
+							<Background blockProps={ props } />
 						</figure>
 					}
 					{ ! RichText.isEmpty( hed ) &&
