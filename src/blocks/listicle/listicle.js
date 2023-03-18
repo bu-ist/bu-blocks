@@ -12,7 +12,7 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
 import ShareTools, { ShareToolsAttributes } from '../../components/share-tools';
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons';
@@ -33,7 +33,7 @@ const {
 	RichText,
 	PlainText,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const { useEffect } = wp.element;
+const { useEffect, useState } = wp.element;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -134,7 +134,7 @@ registerBlockType( 'editorial/listicle', {
 			className,
 			isSelected,
 		} = props;
-	
+
 		// Get the block attributes.
 		const {
 			hed,
@@ -149,7 +149,9 @@ registerBlockType( 'editorial/listicle', {
 			backgroundCaption,
 			divider,
 		} = attributes;
-	
+
+		const [ isUploading, setIsUploading ] = useState( false );
+
 		/**
 		 * Update credit attribute with the caption of the selected image.
 		 *
@@ -160,19 +162,19 @@ registerBlockType( 'editorial/listicle', {
 			if ( backgroundCaption === backgroundCaption ) {
 				return;
 			}
-	
+
 			// Stop here if the `credit` attribute is already set.
 			if ( !! credit || ! backgroundCaption ) {
 				return;
 			}
-	
+
 			// Update the `credit` attribute using the caption from the selected image.
 			setAttributes( { credit: backgroundCaption } );
 		}, [] );
-	
+
 		// Check if the block has aside content (extra condition due to use of multiline).
 		const hasAsideContent = ! RichText.isEmpty( aside ) && aside !== '<br>';
-	
+
 		/**
 		 * Get a value to use for the inline width of the number input.
 		 *
@@ -181,15 +183,22 @@ registerBlockType( 'editorial/listicle', {
 		 *
 		 */
 		const getNumberInputWidth = ( number ) ? number.length + 'ch' : '100%';
-	
+
 		// Return the block editing interface.
 		return (
 			<section className={ getClasses( className, number, hasAsideContent, backgroundUrl, backgroundAutoplay, divider ) }>
+				<BackgroundControls
+					blockProps={ props }
+					inlinePlaceholder={ true }
+					setIsUploading={ setIsUploading }
+					options={ [] }
+				/>
 				<article className="wp-block-editorial-listicle-article">
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
 							blockProps={ props }
 							inlinePlaceholder={ true }
+							isUploading={ isUploading }
 							options={ [] }
 						/>
 						<RichText
@@ -261,9 +270,6 @@ registerBlockType( 'editorial/listicle', {
 									/>
 								</aside>
 							) }
-							<ShareTools
-								blockProps={ props }
-							/>
 						</div>
 					</section>
 					{ ( hasRelatedLinks( related ) || isSelected ) && (
@@ -287,7 +293,7 @@ registerBlockType( 'editorial/listicle', {
 						<ToggleControl
 							label={ __( 'Show Bottom Divider' ) }
 							checked={ divider }
-							onChange={ () => setAttributes( { divider: !divider } ) }
+							onChange={ () => setAttributes( { divider: ! divider } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -298,7 +304,7 @@ registerBlockType( 'editorial/listicle', {
 	save( props ) {
 		// Get the block properties we need.
 		const {
-			attributes
+			attributes,
 		} = props;
 
 		// Get the block attributes.
@@ -323,6 +329,7 @@ registerBlockType( 'editorial/listicle', {
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
 							blockProps={ props }
+							isUploading={ false }
 						/>
 						<RichText.Content
 							tagName="figcaption"
@@ -363,9 +370,6 @@ registerBlockType( 'editorial/listicle', {
 									/>
 								</aside>
 							) }
-							<ShareTools
-								blockProps={ props }
-							/>
 						</div>
 					</section>
 					{ hasRelatedLinks( related ) && (
