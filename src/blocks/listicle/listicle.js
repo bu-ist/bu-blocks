@@ -197,9 +197,7 @@ registerBlockType( 'editorial/listicle', {
 					<figure className="wp-block-editorial-listicle-figure">
 						<Background
 							blockProps={ props }
-							inlinePlaceholder={ true }
 							isUploading={ isUploading }
-							options={ [] }
 						/>
 						<RichText
 							tagName="figcaption"

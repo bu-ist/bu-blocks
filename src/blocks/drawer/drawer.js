@@ -12,7 +12,7 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
@@ -42,6 +42,8 @@ const {
 const {
 	select
 } = wp.data;
+
+const { useState } = wp.element;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
@@ -157,22 +159,29 @@ registerBlockType( 'editorial/drawer', {
 			themeColor,
 		} = props;
 
+		const [ isUploading, setIsUploading ] = useState( false );
+
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
 			setAttributes( { clientId: clientId } );
 		}
 
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+			<aside BackgroundControls={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+				<BackgroundControls
+					allowedMediaTypes={ [ 'image' ] }
+					blockProps={ props }
+					inlinePlaceholder={ true }
+					options={ [] }
+					placeholderText={ __( 'Add Image' ) }
+					setIsUploading={ setIsUploading }
+				/>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
 							<Background
-								allowedMediaTypes={ [ 'image' ] }
 								blockProps={ props }
-								inlinePlaceholder={ true }
-								options={ [] }
-								placeholderText={ __( 'Add Image' ) }
+								isUploading={ isUploading }
 							/>
 						</figure>
 					}
@@ -298,7 +307,7 @@ registerBlockType( 'editorial/drawer', {
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
-							<Background blockProps={ props } />
+							<Background blockProps={ props } isUploading={ false } />
 						</figure>
 					}
 					{ ! RichText.isEmpty( hed ) &&
