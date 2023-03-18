@@ -26,7 +26,8 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
-	Fragment
+	Fragment,
+	useState,
 } = wp.element;
 const {
 	PanelBody,
@@ -46,8 +47,6 @@ const {
 const {
 	applyFilters,
 } = wp.hooks;
-
-const { useState } = wp.element;
 
 // Block attributes.
 const blockAttributes = {
