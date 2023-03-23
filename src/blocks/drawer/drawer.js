@@ -167,7 +167,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 
 		return (
-			<aside BackgroundControls={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
 				<BackgroundControls
 					allowedMediaTypes={ [ 'image' ] }
 					blockProps={ props }
