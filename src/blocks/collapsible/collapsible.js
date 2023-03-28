@@ -122,7 +122,7 @@ registerBlockType( 'bu/collapsible', {
 
 		const isPreviewStyle = className.includes( 'is-style-preview' );
 
-		const allowedBlockList = allowedBlocks().filter( block => undefined !== block );
+		const allowedBlockList = allowedBlocks.filter( block => undefined !== block );
 		allowedBlockList.push( 'bu/collapsible' );
 
 		// Add an offset to the bottom margin in the editor to account for the container element padding

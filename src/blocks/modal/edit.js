@@ -147,7 +147,7 @@ const BUEditorialModalEdit = ( props ) => {
 						<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
 						<article>
 							<InnerBlocks
-								allowedBlocks={ allowedBlocks() }
+								allowedBlocks={ allowedBlocks }
 							/>
 						</article>
 					</div>
