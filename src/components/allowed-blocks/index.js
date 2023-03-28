@@ -21,10 +21,11 @@ let excludeBlocks = [
 	'core/nextpage',
 	'core/separator',
 	'core/spacer',
-	'editorial/aside',
+	/* 'editorial/aside',
 	'editorial/drawer',
 	'editorial/modal',
-	'editorial-preset/aside',
+	'editorial-preset/aside', */
+	// Note: These ^ lines can be uncommitted after migrating from WP 5.7 to the next version
 ];
 
 // Returns a list of all block namess except those in the excludeBlocks array.
