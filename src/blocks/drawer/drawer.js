@@ -219,7 +219,7 @@ registerBlockType( 'editorial/drawer', {
 				<section className="wp-block-editorial-drawer-content js-bu-block-drawer-content">
 					<div className="wp-block-editorial-drawer-wrapper">
 						<InnerBlocks
-							allowedBlocks={ allowedBlocks }
+							allowedBlocks={ allowedBlocks() }
 						/>
 						<div className="wp-block-editorial-drawer-close">
 							<button className="wp-block-editorial-drawer-close-button js-bu-block-drawer-close">Close</button>

@@ -28,13 +28,18 @@ let excludeBlocks = [
 ];
 
 // Returns a list of all block namess except those in the excludeBlocks array.
-const allowedBlocks = [];
-excludeBlocks = applyFilters( 'buBlocks.layoutBlockTypes.excludeBlocks', excludeBlocks );
-getBlockTypes().forEach( ( { name } ) => {
-	if ( name && ! excludeBlocks.includes( name ) ) {
-		allowedBlocks.push( name );
-	}
-} );
+const allowedBlocks = () => {
+	excludeBlocks = applyFilters( 'buBlocks.layoutBlockTypes.excludeBlocks', excludeBlocks );
+
+	const allowed = [];
+	getBlockTypes().forEach( ( { name } ) => {
+		if ( name && ! excludeBlocks.includes( name ) ) {
+			allowed.push( name );
+		}
+	} );
+
+	return allowed;
+};
 
 // Export the allowedBlocks function.
 export default allowedBlocks;

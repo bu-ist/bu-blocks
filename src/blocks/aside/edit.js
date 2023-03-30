@@ -56,7 +56,7 @@ class BUAsideEdit extends Component {
 				</InspectorControls>
 				<aside className={ classes }>
 					<InnerBlocks
-						allowedBlocks={ allowedBlocks }
+						allowedBlocks={ allowedBlocks() }
 						template={ presetTemplate }
 					/>
 				</aside>
