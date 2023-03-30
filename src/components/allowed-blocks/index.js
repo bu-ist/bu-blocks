@@ -31,14 +31,15 @@ let excludeBlocks = [
 const allowedBlocks = () => {
 	excludeBlocks = applyFilters( 'buBlocks.layoutBlockTypes.excludeBlocks', excludeBlocks );
 
-	const allowed = getBlockTypes().map( ( { name } ) => {
-		if ( name && !excludeBlocks.includes( name ) ) {
-			return name;
+	const allowed = [];
+	getBlockTypes().forEach( ( { name } ) => {
+		if ( name && ! excludeBlocks.includes( name ) ) {
+			allowed.push( name );
 		}
 	} );
 
 	return allowed;
-}
+};
 
 // Export the allowedBlocks function.
 export default allowedBlocks;
