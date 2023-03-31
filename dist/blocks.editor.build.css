@@ -21695,14 +21695,41 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
  */
 [data-type="editorial/photoessay"] {
   padding-bottom: 15px;
-  padding-top: 15px; }
+  padding-top: 15px;
+  /**
+	* Added this shim element for WP 5.7 as the :after element
+	* that was used before has now been taken over by the
+	* editor to use for an outline border around the block
+	* when selected.
+	**/ }
   [data-type="editorial/photoessay"][data-align="full"] div[class*="photo-row-"] {
     margin: 0; }
+  [data-type="editorial/photoessay"] [class*="photo-"] .wp-block-photoessay-media-editorshim {
+    position: relative; }
+  [data-type="editorial/photoessay"] .photo-1 .wp-block-photoessay-media-editorshim {
+    padding-top: 120%; }
+  [data-type="editorial/photoessay"] .photo-2 .wp-block-photoessay-media-editorshim {
+    padding-top: 60%; }
+  [data-type="editorial/photoessay"] .photo-3 .wp-block-photoessay-media-editorshim {
+    padding-top: 40%; }
+  [data-type="editorial/photoessay"] .photo-4 .wp-block-photoessay-media-editorshim {
+    padding-top: 30%; }
+  [data-type="editorial/photoessay"] .photo-s .wp-block-photoessay-media-editorshim {
+    padding-top: calc(100% - 30px); }
+    @media (min-width: 1500px) {
+      [data-type="editorial/photoessay"] .photo-s .wp-block-photoessay-media-editorshim {
+        padding-top: calc(100% - 30px); } }
+  [data-type="editorial/photoessay"] .photo-f .wp-block-photoessay-media-editorshim {
+    padding-top: 66.66667%; }
+  [data-type="editorial/photoessay"] .wp-block-photoessay-media {
+    z-index: 2; }
+    [data-type="editorial/photoessay"] .wp-block-photoessay-media figure {
+      position: relative; }
   [data-type="editorial/photoessay"] .wp-block-photoessay-media-caption-editor-wrapper {
     position: absolute;
     bottom: 0;
-    left: 30px;
-    right: 30px;
+    left: 0;
+    right: 0;
     max-height: 100%;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(black));
     background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), black);
@@ -21711,7 +21738,8 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
     color: #fff !important;
     overflow-y: auto;
     padding: 1em;
-    margin: 0; }
+    margin: 0;
+    z-index: 3; }
   [data-type="editorial/photoessay"] .block-editor-media-placeholder {
     min-height: 100%;
     margin-bottom: 0; }
