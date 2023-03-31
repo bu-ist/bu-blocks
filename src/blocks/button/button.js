@@ -178,7 +178,7 @@ registerBlockType( 'bu/button', {
 						</PanelBody>
 
 						<PanelBody
-							className="components-panel__body-bu-button-block-url"
+							className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
 							title={ __( 'URL' ) }
 						>
 							<p className="description">Add link to the button</p>

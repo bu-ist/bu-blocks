@@ -433,7 +433,7 @@ registerBlockType( 'bu/leadin', {
 						] }
 					/>
 					<PanelBody
-						className="components-panel__body-bu-leadin-block-url"
+						className="components-panel__body-bu-leadin-block-url bu-blocks-leadin-block-url-input"
 						title={ __( 'URL' ) }
 					>
 						<p className="description">Link the leadin block to a story. (Optional)</p>
