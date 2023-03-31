@@ -13771,9 +13771,9 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
     padding-left: 14px;
     padding-right: 14px; }
 
-.components-panel__body-bu-leadin-block-url .editor-url-input input[type="text"],
-.components-panel__body-bu-leadin-block-url .block-editor-url-input input[type="text"] {
-  max-width: 100%; }
+.bu-blocks-leadin-block-url-input input[type=text] {
+  max-width: 100%;
+  border: 1px solid var(--wp-admin-theme-color); }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -23814,8 +23814,9 @@ input[value="photo-row-tall-1-1"] + label {
   display: inline-block;
   position: relative; }
 
-.components-panel__body-bu-button-block-url input {
-  max-width: 100%; }
+.bu-blocks-button-block-url-input input[type=text] {
+  max-width: 100%;
+  border: 1px solid var(--wp-admin-theme-color); }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -25800,21 +25801,11 @@ figure.wp-block-editorial-relatedstories-article-image {
   list-style-type: circle;
   padding-left: 1.5em; }
 
-.panelbody-related-stories .editor-url-input input::-webkit-input-placeholder,
-.panelbody-related-stories .block-editor-url-input input::-webkit-input-placeholder {
-  color: #fff; }
-
-.panelbody-related-stories .editor-url-input input::-moz-placeholder,
-.panelbody-related-stories .block-editor-url-input input::-moz-placeholder {
-  color: #fff; }
-
-.panelbody-related-stories .editor-url-input input:-ms-input-placeholder,
-.panelbody-related-stories .block-editor-url-input input:-ms-input-placeholder {
-  color: #fff; }
-
-.panelbody-related-stories .editor-url-input input:-moz-placeholder,
-.panelbody-related-stories .block-editor-url-input input:-moz-placeholder {
-  color: #fff; }
+.panelbody-related-stories .bu-blocks-related-stories-block-url-input-field {
+  margin-bottom: 0; }
+  .panelbody-related-stories .bu-blocks-related-stories-block-url-input-field input {
+    max-width: 100%;
+    border: 1px solid var(--wp-admin-theme-color); }
 @charset "UTF-8";
 /**
  * #.# Common SCSS

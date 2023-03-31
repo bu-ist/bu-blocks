@@ -447,6 +447,7 @@ registerBlockType( 'editorial/relatedstories', {
 							<URLInput
 								value={ URLInputEntry }
 								onChange={ handleSelectPost }
+								className='bu-blocks-related-stories-block-url-input-field'
 							/>
 						) }
 						{ relatedManual && posts && posts.length > 0 && (
