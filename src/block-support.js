@@ -8,6 +8,7 @@
 const { select } = wp.data;
 const { applyFilters } = wp.hooks;
 const { registerPlugin } = wp.plugins;
+const { getBlockTypes } = wp.blocks;
 
 /**
  * Disables support for the blocks in this plugin for all but the `post` and `page` post types.
@@ -57,9 +58,13 @@ const UnregisterBlocks = () => {
 		'bu/stats',
 	] );
 
+	const registeredBlocks = getBlockTypes().map( item => item.name );
+
 	// Unregister the blocks.
 	buBlocks.forEach( block => {
-		wp.blocks.unregisterBlockType( block );
+		if ( registeredBlocks.includes( block ) ) {
+			wp.blocks.unregisterBlockType( block );
+		}
 	} );
 
 	// Return null to avoid rendering anything.
