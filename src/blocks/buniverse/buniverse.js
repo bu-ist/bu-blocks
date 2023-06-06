@@ -61,7 +61,7 @@ const getClasses = ( className, aspectRatio ) => {
 registerBlockType( 'bu/buniverse', {
 	apiVersion: 2,
 	title: __( 'BUniverse Video' ),
-	description: __( '' ),
+	description: __( 'Insert videos from bu.edu/buniverse. BUniverse videos allow for a high resolution cover image and better control over Youtube embeds.' ),
 	icon: blockIcons('buniverse'),
 	category: 'bu',
 	attributes: {
