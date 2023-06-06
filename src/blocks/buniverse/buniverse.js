@@ -168,7 +168,7 @@ registerBlockType( 'bu/buniverse', {
 								className="buniverse-set-video-id"
 								value={ id }
 								onChange={ ( value ) => setAttributes( { id: value } ) }
-								help={ __()}
+								help={ __( 'Enter the ID portion of a BUniverse video URL.' )}
 							/>
 						<RadioControl
 							className="buniverse-aspect-ratio-options"
