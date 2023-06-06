@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Update Buniverse Block to Block API 2 for 5.7 compatibility
+
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
 - Leadin/metabar: add metabardate boolean attribute for showing/hiding publish date (used in BU Prepress)
