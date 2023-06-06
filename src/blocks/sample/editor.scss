@@ -1,0 +1,20 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+[data-type="bu/sample"] {
+	.wp-block-sample-inner {
+		background: lightblue;
+		color: #000;
+		font-weight: bold;
+		display: flex;
+		text-align: center;
+		padding:40px;
+		align-items: center;
+    	justify-content: center;
+	}
+}
+
