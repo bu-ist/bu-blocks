@@ -36,6 +36,7 @@ const {
 const {
 	InspectorControls,
 	RichText,
+	useBlockProps
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
@@ -58,6 +59,7 @@ const getClasses = ( className, aspectRatio ) => {
 
 // Register the block.
 registerBlockType( 'bu/buniverse', {
+	apiVersion: 2,
 	title: __( 'BUniverse Video' ),
 	description: __( '' ),
 	icon: blockIcons('buniverse'),
@@ -114,6 +116,10 @@ registerBlockType( 'bu/buniverse', {
 			setAttributes,
 		} = props;
 
+		const blockProps = useBlockProps( {
+			className: getClasses( className, aspectRatio ),
+		} );
+
 		/**
 		 * Sets the value for the `minutes` attribute and
 		 * calculates a new value to set for the `start` attribute.
@@ -157,6 +163,13 @@ registerBlockType( 'bu/buniverse', {
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Video Settings' ) }>
+						<TextControl
+								label={ __( 'Video ID:' ) }
+								className="buniverse-set-video-id"
+								value={ id }
+								onChange={ ( value ) => setAttributes( { id: value } ) }
+								help={ __()}
+							/>
 						<RadioControl
 							className="buniverse-aspect-ratio-options"
 							label={ __( 'Aspect Ratio' ) }
@@ -198,15 +211,9 @@ registerBlockType( 'bu/buniverse', {
 						</div>
 					</PanelBody>
 				</InspectorControls>
-				{ ( id && isSelected ) && (
-					<TextControl
-						label={ __( 'Video ID:' ) }
-						className="buniverse-set-video-id"
-						value={ id }
-						onChange={ ( value ) => setAttributes( { id: value } ) }
-					/>
-				) }
-				<figure className={ getClasses( className, aspectRatio ) }>
+
+				<figure { ...blockProps }>
+
 					<div className="wp-block-global-buniverse-wrapper">
 						{ ! id && (
 							<div className="wp-block-global-buinverse-placeholder">
@@ -258,6 +265,10 @@ registerBlockType( 'bu/buniverse', {
 			className,
 		} = attributes;
 
+		const blockProps = useBlockProps.save( {
+			className: getClasses( className, aspectRatio ),
+		  } );
+
 		// Build out the full url.
 		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
 		url += ( controls !== 1 ) ? '&controls=0' : '';
@@ -265,7 +276,7 @@ registerBlockType( 'bu/buniverse', {
 		url += ( start ) ? `&start=${start}` : '';
 
 		return(
-			<figure className={ getClasses( className, aspectRatio ) }>
+			<figure { ...blockProps }>
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
