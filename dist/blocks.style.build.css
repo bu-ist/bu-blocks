@@ -1942,41 +1942,6 @@
   or object-fit and object-position:
   @include object-fit(cover, top);
 */
-.wp-block-global-buniverse.alignleft, .wp-block-global-buniverse.alignright {
-  width: 100%; }
-  @media (min-width: 768px) {
-    .wp-block-global-buniverse.alignleft, .wp-block-global-buniverse.alignright {
-      width: 50%; } }
-
-.wp-block-global-buniverse-wrapper {
-  position: relative; }
-  .wp-block-global-buniverse-wrapper::before {
-    content: "";
-    display: block;
-    width: 1px;
-    padding-top: 56.25%;
-    position: relative; }
-  .wp-block-global-buniverse-wrapper iframe {
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100% !important;
-    height: 100% !important; }
-
-.has-aspectratio-16by9 .wp-block-global-buniverse-wrapper::before {
-  padding-top: 56.25%; }
-
-.has-aspectratio-4by3 .wp-block-global-buniverse-wrapper::before {
-  padding-top: 75%; }
-
-.has-aspectratio-1by1 .wp-block-global-buniverse-wrapper::before {
-  padding-top: 100%; }
-
-.has-aspectratio-3by4 .wp-block-global-buniverse-wrapper::before {
-  padding-top: 133.33333%; }
-
-.has-aspectratio-9by16 .wp-block-global-buniverse-wrapper::before {
-  padding-top: 177.77778%; }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
