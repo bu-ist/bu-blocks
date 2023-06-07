@@ -3903,33 +3903,25 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.editor-block-list__block[data-align="right"][data-type="editorial/aside"] > .editor-block-list__block-edit,
-.editor-block-list__block[data-align="left"][data-type="editorial/aside"] > .editor-block-list__block-edit,
-.editor-block-list__block[data-align="right"][data-type="editorial-preset/aside"] > .editor-block-list__block-edit,
-.editor-block-list__block[data-align="left"][data-type="editorial-preset/aside"] > .editor-block-list__block-edit,
-.block-editor-block-list__block[data-align="right"][data-type="editorial/aside"] > .block-editor-block-list__block-edit,
-.block-editor-block-list__block[data-align="left"][data-type="editorial/aside"] > .block-editor-block-list__block-edit,
-.block-editor-block-list__block[data-align="right"][data-type="editorial-preset/aside"] > .block-editor-block-list__block-edit,
-.block-editor-block-list__block[data-align="left"][data-type="editorial-preset/aside"] > .block-editor-block-list__block-edit {
-  width: calc(100% / 3); }
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+  --bu_blocks-block-bu-aside-editor-floated-width: calc(100% / 3); }
 
-div[data-type="editorial/aside"] .wp-block-editorial-aside {
+aside[data-type="editorial/aside"].wp-block-editorial-aside {
   float: none; }
 
-.editor-block-list__block[data-align="right"] .wp-block-editorial-aside .editor-block-list__block-edit,
-.editor-block-list__block[data-align="left"] .wp-block-editorial-aside .editor-block-list__block-edit,
-.block-editor-block-list__block[data-align="right"] .wp-block-editorial-aside .block-editor-block-list__block-edit,
-.block-editor-block-list__block[data-align="left"] .wp-block-editorial-aside .block-editor-block-list__block-edit {
-  float: none;
-  margin-left: 0;
-  margin-right: 0; }
+[data-align="right"] > [data-type="editorial/aside"].wp-block-editorial-aside,
+[data-align="left"] > [data-type="editorial/aside"].wp-block-editorial-aside {
+  width: var(--bu_blocks-block-bu-aside-editor-floated-width); }
 
-.editor-block-list__block[data-align="left"] .wp-block-editorial-aside .editor-block-list__block,
-.editor-block-list__block[data-align="right"] .wp-block-editorial-aside .editor-block-list__block,
-.block-editor-block-list__block[data-align="left"] .wp-block-editorial-aside .block-editor-block-list__block,
-.block-editor-block-list__block[data-align="right"] .wp-block-editorial-aside .block-editor-block-list__block {
-  padding-left: 16px;
-  padding-right: 16px; }
+[data-align="right"] > [data-type="editorial/aside"].wp-block-editorial-aside {
+  float: right; }
+
+[data-align="left"] > [data-type="editorial/aside"].wp-block-editorial-aside {
+  float: left; }
 
 .wp-block-editorial-aside.has-dark-background .wp-block-heading h2 {
   color: #fff; }
