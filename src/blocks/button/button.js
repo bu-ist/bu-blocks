@@ -194,9 +194,9 @@ registerBlockType( 'bu/button', {
 							/>
 						</PanelBody>
 					</InspectorControls>
-				<Fragment>
 					<p
-						className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}>
+						className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}
+					>
 						<RichText
 							{ ...blockProps}
 							tagName="div"
@@ -209,9 +209,6 @@ registerBlockType( 'bu/button', {
 
 						/>
 					</p>
-
-				</Fragment>
-
 			</Fragment>
 		);
 	} ),
