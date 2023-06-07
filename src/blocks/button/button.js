@@ -193,22 +193,22 @@ registerBlockType( 'bu/button', {
 								onChange={ ( value ) => setAttributes( { url: value } ) }
 							/>
 						</PanelBody>
-					</InspectorControls>
-					<p
-						className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}
-					>
-						<RichText
-							{ ...blockProps}
-							tagName="div"
-							placeholder={ __( 'Add text…' ) }
-							value={ text }
-							onChange={ ( value ) => setAttributes( { text: value } ) }
-							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
-							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
-							keepPlaceholderOnFocus
+				</InspectorControls>
+				<p
+					className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}
+				>
+					<RichText
+						{ ...blockProps}
+						tagName="div"
+						placeholder={ __( 'Add text…' ) }
+						value={ text }
+						onChange={ ( value ) => setAttributes( { text: value } ) }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
+						keepPlaceholderOnFocus
 
-						/>
-					</p>
+					/>
+				</p>
 			</Fragment>
 		);
 	} ),
