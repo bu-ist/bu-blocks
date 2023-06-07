@@ -45,6 +45,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // The current publication owner.
@@ -70,7 +71,7 @@ const getClasses = ( className, themeColor, icon ) => classnames(
 
 // Register the block.
 registerBlockType( 'bu/button', {
-
+	apiVersion: 2,
 	title: __( 'Button' ),
 	description: __( 'Prompt visitors to take action with a custom button.' ),
 	icon: blockIcons('button'),
@@ -134,6 +135,7 @@ registerBlockType( 'bu/button', {
 				text,
 				url,
 				icon,
+				align
 			},
 			themeColor,
 			setThemeColor,
@@ -141,6 +143,10 @@ registerBlockType( 'bu/button', {
 			isSelected,
 			className,
 		} = props;
+
+		const blockProps = useBlockProps( {
+			className: getClasses( className, themeColor.slug, icon ),
+		} );
 
 		return (
 			<Fragment>
@@ -188,17 +194,23 @@ registerBlockType( 'bu/button', {
 							/>
 						</PanelBody>
 					</InspectorControls>
-				<p>
-					<RichText
-						placeholder={ __( 'Add text…' ) }
-						value={ text }
-						onChange={ ( value ) => setAttributes( { text: value } ) }
-						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
-						className={ getClasses( className, themeColor.slug, icon ) }
-						keepPlaceholderOnFocus
-					/>
-				</p>
+				<Fragment>
+					<p
+						className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}>
+						<RichText
+							{ ...blockProps}
+							tagName="div"
+							placeholder={ __( 'Add text…' ) }
+							value={ text }
+							onChange={ ( value ) => setAttributes( { text: value } ) }
+							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
+							keepPlaceholderOnFocus
+
+						/>
+					</p>
+
+				</Fragment>
 
 			</Fragment>
 		);
@@ -213,11 +225,15 @@ registerBlockType( 'bu/button', {
 			className,
 		} = attributes;
 
+		const blockProps = useBlockProps.save( {
+			className: getClasses( className, themeColor, icon ),
+		} );
+
 		return (
 			<p>
 				<RichText.Content
+					{ ...blockProps}
 					tagName="a"
-					className={ getClasses( className, themeColor, icon ) }
 					href={ url }
 					value={ text }
 				/>

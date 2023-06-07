@@ -5,8 +5,17 @@
  * which makes it higher in priority.
  */
 
+ .wp-block-bu-button-container {
+	position: relative;
+}
+
 [data-type="bu/button"] {
-	.wp-block-button.wp-block-bu-button {
+	&.wp-block-bu-button {
+		display:inline-block;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	&.wp-block-button.wp-block-bu-button {
 		color: inherit;
 
 		[data-rich-text-placeholder]:after {
