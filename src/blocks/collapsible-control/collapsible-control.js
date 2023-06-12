@@ -7,6 +7,10 @@
 // Internal dependencies.
 import blockIcons from '../../components/block-icons';
 
+// Import CSS.
+import './style.scss';
+import './editor.scss';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
