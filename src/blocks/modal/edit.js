@@ -27,6 +27,7 @@ const {
 	PanelColorSettings,
 	RichText,
 	withColors,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const {
@@ -70,6 +71,21 @@ const BUEditorialModalEdit = ( props ) => {
 		}
 	);
 
+	// ToDo: explore removing this and using just the CSS classes .is-selected and .has-selected-child.
+	const modalSelected = (clientId) => {
+		if ( clientId ) {
+			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
+			return ( modalHasSelectedBlock ) ? 'true' : 'false';
+		} else {
+			return 'false';
+		}
+	}
+
+	const blockProps = useBlockProps({
+		className: classes,
+		'data-selected-modal': modalSelected(clientId),
+	});
+
 	useEffect( () => {
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
@@ -100,7 +116,7 @@ const BUEditorialModalEdit = ( props ) => {
 				placeholderText={ __( 'Add Image' ) }
 				setIsUploading={ setIsUploading }
 			/>
-			<aside className={ classes }>
+			<aside { ...blockProps }>
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
