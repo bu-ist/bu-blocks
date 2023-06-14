@@ -37,16 +37,12 @@
 
 
 	>[data-type="editorial/drawer"] {
-		float: none;
-		margin-left: 0;
-		margin-right: 0;
-
-		// .editor-block-list__block-edit,
-		// .block-editor-block-list__block-edit {
-		// 	width: 50%;
-		// }
 
 		&.wp-block-editorial-drawer {
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
+			overflow: unset;
 
 			&.is-size-narrow,
 			&.is-size-small,
@@ -90,16 +86,37 @@
 // Float the Teaser left and right instead of the
 // <aside> element that wraps around the entire block. This mimics the frontend styles
 // better.
+// To-do: reduce the specificity of these styles. To do so, the existing themes will need updates
+// to reduce the specificty of the frontend styles.
 [data-align="right"] {
-	>[data-type="editorial/drawer"] .wp-block-editorial-drawer-teaser {
-		float: right;
-		margin-left: 2em;
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+
+		&.is-size-default,
+		&.is-size-narrow,
+		&.is-size-small,
+		&.is-size-medium,
+		&.is-size-wide {
+
+			.wp-block-editorial-drawer-teaser {
+				float: right;
+				margin-left: 2em;
+			}
+		}
 	}
 }
 
 [data-align="left"] {
-	>[data-type="editorial/drawer"] .wp-block-editorial-drawer-teaser {
-		float: left;
-		margin-right: 2em;
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+		&.is-size-default,
+		&.is-size-narrow,
+		&.is-size-small,
+		&.is-size-medium,
+		&.is-size-wide {
+
+			.wp-block-editorial-drawer-teaser {
+				float: left;
+				margin-right: 2em;
+			}
+		}
 	}
 }

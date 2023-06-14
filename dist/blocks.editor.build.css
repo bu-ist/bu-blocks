@@ -5897,26 +5897,29 @@ div[data-type="editorial/aside"] .wp-block-editorial-aside {
   .wp-block-editorial-drawer .wp-block-editorial-drawer-open-wrapper p[role="textbox"]:not(:only-child) {
     height: 28px; }
 
-[data-align="left"] > [data-type="editorial/drawer"],
-[data-align="right"] > [data-type="editorial/drawer"] {
+[data-align="left"] > [data-type="editorial/drawer"].wp-block-editorial-drawer,
+[data-align="right"] > [data-type="editorial/drawer"].wp-block-editorial-drawer {
   float: none;
   margin-left: 0;
-  margin-right: 0; }
-  [data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content,
-  [data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content {
-    float: left; }
-    [data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content .editor-block-list__block-edit .block-editor-block-list__block-edit,
-    [data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content .editor-block-list__block-edit .block-editor-block-list__block-edit {
-      width: 100%; }
-  [data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-clearfix,
-  [data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-clearfix {
-    clear: both; }
+  margin-right: 0;
+  overflow: unset; }
 
-[data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-teaser {
+[data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content,
+[data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content {
+  float: left; }
+  [data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content .editor-block-list__block-edit .block-editor-block-list__block-edit,
+  [data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-content .editor-block-list__block-edit .block-editor-block-list__block-edit {
+    width: 100%; }
+
+[data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-clearfix,
+[data-align="right"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-clearfix {
+  clear: both; }
+
+[data-align="right"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-default .wp-block-editorial-drawer-teaser, [data-align="right"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-narrow .wp-block-editorial-drawer-teaser, [data-align="right"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-small .wp-block-editorial-drawer-teaser, [data-align="right"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-medium .wp-block-editorial-drawer-teaser, [data-align="right"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-wide .wp-block-editorial-drawer-teaser {
   float: right;
   margin-left: 2em; }
 
-[data-align="left"] > [data-type="editorial/drawer"] .wp-block-editorial-drawer-teaser {
+[data-align="left"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-default .wp-block-editorial-drawer-teaser, [data-align="left"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-narrow .wp-block-editorial-drawer-teaser, [data-align="left"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-small .wp-block-editorial-drawer-teaser, [data-align="left"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-medium .wp-block-editorial-drawer-teaser, [data-align="left"] > [data-type="editorial/drawer"].wp-block-editorial-drawer.is-size-wide .wp-block-editorial-drawer-teaser {
   float: left;
   margin-right: 2em; }
 @charset "UTF-8";
