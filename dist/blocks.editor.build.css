@@ -25792,11 +25792,6 @@ input[value="photo-row-tall-1-1"] + label {
 .wp-block[data-type="editorial/relatedstories"] a {
   pointer-events: none; }
 
-aside.wp-block-editorial-relatedstories:after {
-  content: "";
-  display: table;
-  clear: both; }
-
 figure.wp-block-editorial-relatedstories-article-image {
   margin: 0; }
 
