@@ -167,8 +167,6 @@ registerBlockType( 'editorial/relatedstories', {
 				cardCount,
 			} = props.attributes;
 
-			console.log(props);
-
 			let query;
 			let isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
 			let perPage = isCardStyle && cardCount ? cardCount : 3;
