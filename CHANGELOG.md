@@ -3,6 +3,7 @@
 ## Unreleased
 - Update Modal block to Block API 2 and fix alignment issues.
 - Update Related Stories block to Block API 2 and fix alignment issues.
+  - Related Stories Block: invert "Manual Selection" to true for new blocks since most sites don't use YARPP for the automatic related posts feature.
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
