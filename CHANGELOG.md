@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Update Modal block to Block API 2 and fix alignment issues.
+- Update Related Stories block to Block API 2 and fix alignment issues.
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
