@@ -34884,9 +34884,11 @@ svg.wp-block-bu-stat-svg {
 .wp-block-bu-stats .wp-block-stats-caption {
   color: #444; }
 
-.wp-block-bu-stats .wp-block-bu-stat-circle1,
+.wp-block-bu-stats .wp-block-bu-stat-circle1 {
+  stroke: #eee; }
+
 .wp-block-bu-stats .wp-block-bu-stat-circle2 {
-  stroke: #fff; }
+  stroke: #000; }
 
 .wp-block-bu-stats .has-circle1-color-dark .wp-block-bu-stat-circle1 {
   stroke: #000; }
