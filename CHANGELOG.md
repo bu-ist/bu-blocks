@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- 5.7 fixes: change default light & dark color values to be slightly off color to avoid conflicts with new `white` and `black` colors. See: https://github.com/WordPress/gutenberg/issues/9357
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
