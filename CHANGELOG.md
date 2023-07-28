@@ -6,6 +6,7 @@
   - Change how modalHasSelectedBlock value is determined and move from getEditWrapperProps into the edit function as it wasn't working with Block API 2. 
   - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
   - Editor Styles: add a new CSS4 Variable `--bu_blocks-block-bu-modal-editor-floated-width` for theme styling
+
 - Related Stories Block 5.7 updates:
   - Update block to Block API 2 and fix alignment issues.
   - Related Stories Block: invert "Manual Selection" to true for new blocks since most sites don't use YARPP for the automatic related posts feature and this makes the default state of the block appear functional instead of broken without YARPP.
