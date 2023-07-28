@@ -1,9 +1,13 @@
 # Changelog
 
 ## Unreleased
-
-- Collapsible Block: Update to Block API 2, styling fixes for 5.7
-- Collapsible Control Block: Update to Block API 2, styling fixes for 5.7, fix center aligned styles.
+- Collapsible Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - Adjust how `is-style-preview` class is checked as `props.attributes.classname` is sometimes undefined.
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+- Collapsible Control Block: 
+  - Update to Block API 2, styling fixes for 5.7, fix center aligned styles.
+  - add Editor.scss and Style.scss files that were missing and better styling for the block
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
