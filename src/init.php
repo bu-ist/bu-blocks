@@ -226,6 +226,9 @@ function filter_block_categories( $categories ) {
 /**
  * Sets the default `light` and `dark` color objects for use as theme options.
  *
+ * Note: avoid colors with duplicate hex values of core colors WP provides, see:
+ * https://github.com/WordPress/gutenberg/issues/9357
+ *
  * @param array   $editor_settings Editor settings.
  * @param WP_Post $post            The current post.
  */
@@ -242,12 +245,12 @@ function default_theme_colors( $editor_settings, $post ) {
 		array(
 			'name'  => esc_html__( 'Light', 'r-editorial' ),
 			'slug'  => 'light',
-			'color' => '#ffffff',
+			'color' => '#fffffe', // Slightly off-white value to avoid conflicts with default white color.
 		),
 		array(
 			'name'  => esc_html__( 'Dark', 'r-editorial' ),
 			'slug'  => 'dark',
-			'color' => '#000000',
+			'color' => '#000001', // Slightly off-black value to avoid conflicts with default black color.
 		),
 	);
 
