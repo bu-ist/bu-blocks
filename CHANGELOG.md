@@ -1,6 +1,12 @@
 # Changelog
 
 ## Unreleased
+- Button Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - Adjust editor markup to add a proper classname to the wrapping `<p>` tag around the button itself. 
+    - This block still has issues and conflicts with the core button block due to clashing block names. A later fix is needed to address that and carefully update it.
+  - Editor Styles: adjust editor styles to match new markup classnames
+
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
