@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- Update Buniverse Block to Block API 2 for 5.7 compatibility
+- BUniverse Block 5.7 updates:
+  - Update Buniverse Block to Block API 2 for 5.7 compatibility
+  - Move TextControl for video id from editor to sidebar to aid in styling block when floated
+  - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-buniverse-editor-floated-width` so themes can adjust floated width easily
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
