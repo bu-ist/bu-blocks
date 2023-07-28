@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Aside Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - It was necessary to refactor the edit function from a class structure to a function component as useBlockProps and Block API 2 won't work with class based components (https://make.wordpress.org/core/2020/11/18/block-api-version-2/#comment-40855)
+  - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-aside-editor-floated-width` so themes can adjust floated width easily
+  - Editor Styles: Adjust how align left/right styles in the editor are targeted as Block API 2 markup is different from Block API 1 and the previous selectors no longer work.
+
+
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
 - Leadin/metabar: add metabardate boolean attribute for showing/hiding publish date (used in BU Prepress)
