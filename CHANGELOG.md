@@ -1,9 +1,16 @@
 # Changelog
 
 ## Unreleased
-- Update Modal block to Block API 2 and fix alignment issues.
-- Update Related Stories block to Block API 2 and fix alignment issues.
-  - Related Stories Block: invert "Manual Selection" to true for new blocks since most sites don't use YARPP for the automatic related posts feature.
+- Modal Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+  - Change how modalHasSelectedBlock value is determined and move from getEditWrapperProps into the edit function as it wasn't working with Block API 2. 
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+  - Editor Styles: add a new CSS4 Variable `--bu_blocks-block-bu-modal-editor-floated-width` for theme styling
+- Related Stories Block 5.7 updates:
+  - Update block to Block API 2 and fix alignment issues.
+  - Related Stories Block: invert "Manual Selection" to true for new blocks since most sites don't use YARPP for the automatic related posts feature and this makes the default state of the block appear functional instead of broken without YARPP.
+  - Refactor how the `isCardStyle` is determined as `className` prop is sometimes undefined in Block API 2 when the block loads.
+  - Editor Styles: remove a clearfix style on an `:after` psuedo element that the Block Editor needs for it's own core styling. 
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
