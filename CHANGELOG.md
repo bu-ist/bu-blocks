@@ -1,9 +1,11 @@
 # Changelog
 
 ## Unreleased
-
-- Stats Block: update to block api 2 and fix alignment issues for WP 5.7
-  - Change default fill / stroke color of the stats block svg donut chart so it isn't white on white background.
+- Stats Block: 
+  - Update to block api 2 and fix alignment issues for WP 5.7
+    - Change default fill / stroke color of the stats block svg donut chart so it isn't white on white background.
+  - Editor Styles: Add CSS4 Variable for theme styling: `--bu_blocks-block-bu-stats-editor-floated-width`
+  - Frontend Styles: Fix issue where stat bar is invisible in themes by default using light/dark color themes. The SVG circle paths needed darker colors so they are visible on a white background like Responsive Framework defaults to. 
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
