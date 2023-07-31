@@ -23812,9 +23812,17 @@ input[value="photo-row-tall-1-1"] + label {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-[data-type="bu/button"] .wp-block-button.wp-block-bu-button {
+.wp-block-bu-button-container {
+  position: relative; }
+
+[data-type="bu/button"].wp-block-bu-button {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0; }
+
+[data-type="bu/button"].wp-block-button.wp-block-bu-button {
   color: inherit; }
-  [data-type="bu/button"] .wp-block-button.wp-block-bu-button [data-rich-text-placeholder]:after {
+  [data-type="bu/button"].wp-block-button.wp-block-bu-button [data-rich-text-placeholder]:after {
     color: inherit; }
 
 [data-type="bu/button"] .components-autocomplete {
