@@ -1,18 +1,21 @@
 # Changelog
 
 ## Unreleased
+- Stats Block: 
+  - Update to block api 2 and fix alignment issues for WP 5.7
+    - Change default fill / stroke color of the stats block svg donut chart so it isn't white on white background.
+  - Editor Styles: Add CSS4 Variable for theme styling: `--bu_blocks-block-bu-stats-editor-floated-width`
+  - Frontend Styles: Fix issue where stat bar is invisible in themes by default using light/dark color themes. The SVG circle paths needed darker colors so they are visible on a white background like Responsive Framework defaults to. 
 - Modal Block 5.7 updates:
   - Update Block to Block API 2 for 5.7 compatibility
   - Change how modalHasSelectedBlock value is determined and move from getEditWrapperProps into the edit function as it wasn't working with Block API 2. 
   - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
   - Editor Styles: add a new CSS4 Variable `--bu_blocks-block-bu-modal-editor-floated-width` for theme styling
-
 - Related Stories Block 5.7 updates:
   - Update block to Block API 2 and fix alignment issues.
   - Related Stories Block: invert "Manual Selection" to true for new blocks since most sites don't use YARPP for the automatic related posts feature and this makes the default state of the block appear functional instead of broken without YARPP.
   - Refactor how the `isCardStyle` is determined as `className` prop is sometimes undefined in Block API 2 when the block loads.
   - Editor Styles: remove a clearfix style on an `:after` psuedo element that the Block Editor needs for it's own core styling. 
-
 - Drawer Block 5.7 updates:
   - Update Block to Block API 2 for 5.7 compatibility
   - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
@@ -38,6 +41,7 @@
   - Update Buniverse Block to Block API 2 for 5.7 compatibility
   - Move TextControl for video id from editor to sidebar to aid in styling block when floated
   - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-buniverse-editor-floated-width` so themes can adjust floated width easily
+
 
 
 ## 0.3.7

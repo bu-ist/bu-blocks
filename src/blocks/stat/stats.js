@@ -27,6 +27,7 @@ const {
 const {
 	InnerBlocks,
 	RichText,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
@@ -50,6 +51,7 @@ const getBlockClasses = ( className, stats ) => {
 
 // Register the block.
 registerBlockType( 'bu/stats', {
+	apiVersion: 2,
 	title: __( 'Stats' ),
 	description: __( 'Add one to four statistics to your content.' ),
 	icon: blockIcons('stat'),
@@ -87,8 +89,12 @@ registerBlockType( 'bu/stats', {
 			stats,
 		} = attributes;
 
+		const blockProps = useBlockProps.save({
+			className: getBlockClasses( className, stats ),
+		});
+
 		return (
-			<div className={ getBlockClasses( className, stats ) }>
+			<div { ...blockProps }>
 				<figure className="wp-block-bu-stats-figure">
 					<div className="wp-block-bu-stats-row">
 						<InnerBlocks.Content />

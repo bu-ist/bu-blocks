@@ -31739,17 +31739,21 @@ figure.wp-block-editorial-relatedstories-article-image {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+  --bu_blocks-block-bu-stats-editor-floated-width: 50%; }
+
 .wp-block-bu-stats {
   padding: 20px 0; }
   .wp-block-bu-stats .editor-inner-blocks,
   .wp-block-bu-stats .block-editor-inner-blocks {
     width: 100%; }
-  .wp-block-bu-stats .editor-block-list__layout > div,
-  .wp-block-bu-stats .block-editor-block-list__layout > div {
-    width: 50%; }
-    .wp-block-bu-stats .editor-block-list__layout > div .wp-block-bu-stat,
-    .wp-block-bu-stats .block-editor-block-list__layout > div .wp-block-bu-stat {
-      width: 100%; }
+  .wp-block-bu-stats .editor-block-list__layout > div .wp-block-bu-stat,
+  .wp-block-bu-stats .block-editor-block-list__layout > div .wp-block-bu-stat {
+    width: 100%; }
   .wp-block-bu-stats.has-2-stats .editor-block-list__layout > div,
   .wp-block-bu-stats.has-2-stats .block-editor-block-list__layout > div, .wp-block-bu-stats.has-3-stats .editor-block-list__layout > div,
   .wp-block-bu-stats.has-3-stats .block-editor-block-list__layout > div, .wp-block-bu-stats.has-4-stats .editor-block-list__layout > div,
@@ -31776,7 +31780,8 @@ figure.wp-block-editorial-relatedstories-article-image {
 
 div[data-align="left"] .wp-block-bu-stats,
 div[data-align="right"] .wp-block-bu-stats {
-  min-width: 230px; }
+  min-width: 230px;
+  width: var(--bu_blocks-block-bu-stats-editor-floated-width); }
   div[data-align="left"] .wp-block-bu-stats .editor-inner-blocks .editor-block-list__layout > div,
   div[data-align="left"] .wp-block-bu-stats .block-editor-inner-blocks .block-editor-block-list__layout > div,
   div[data-align="right"] .wp-block-bu-stats .editor-inner-blocks .editor-block-list__layout > div,

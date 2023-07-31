@@ -15,6 +15,7 @@ const {
 	InnerBlocks,
 	InspectorControls,
 	RichText,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const { compose } = wp.compose;
@@ -57,6 +58,10 @@ const Edit = props => {
 	// Determine whether the block is aligned left or right.
 	const isAlignedLeftOrRight = ( align === 'left' || align === 'right' );
 
+	const blockProps = useBlockProps({
+		className: getBlockClasses( className, stats ),
+	});
+
 	/**
 	 * Updates the stats attribute and handles innerBlock insertions or removals.
 	 *
@@ -86,7 +91,7 @@ const Edit = props => {
 	}
 
 	return (
-		<div className={ getBlockClasses( className, stats ) }>
+		<div { ...blockProps }>
 			<figure className="wp-block-bu-stats-figure">
 				<div className="wp-block-bu-stats-row">
 					<InnerBlocks
