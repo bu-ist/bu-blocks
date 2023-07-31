@@ -6,6 +6,43 @@
     - Change default fill / stroke color of the stats block svg donut chart so it isn't white on white background.
   - Editor Styles: Add CSS4 Variable for theme styling: `--bu_blocks-block-bu-stats-editor-floated-width`
   - Frontend Styles: Fix issue where stat bar is invisible in themes by default using light/dark color themes. The SVG circle paths needed darker colors so they are visible on a white background like Responsive Framework defaults to. 
+- Modal Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+  - Change how modalHasSelectedBlock value is determined and move from getEditWrapperProps into the edit function as it wasn't working with Block API 2. 
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+  - Editor Styles: add a new CSS4 Variable `--bu_blocks-block-bu-modal-editor-floated-width` for theme styling
+- Related Stories Block 5.7 updates:
+  - Update block to Block API 2 and fix alignment issues.
+  - Related Stories Block: invert "Manual Selection" to true for new blocks since most sites don't use YARPP for the automatic related posts feature and this makes the default state of the block appear functional instead of broken without YARPP.
+  - Refactor how the `isCardStyle` is determined as `className` prop is sometimes undefined in Block API 2 when the block loads.
+  - Editor Styles: remove a clearfix style on an `:after` psuedo element that the Block Editor needs for it's own core styling. 
+- Drawer Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+- Collapsible Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - Adjust how `is-style-preview` class is checked as `props.attributes.classname` is sometimes undefined.
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+- Collapsible Control Block: 
+  - Update to Block API 2, styling fixes for 5.7, fix center aligned styles.
+  - add Editor.scss and Style.scss files that were missing and better styling for the block
+- Aside Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - It was necessary to refactor the edit function from a class structure to a function component as useBlockProps and Block API 2 won't work with class based components (https://make.wordpress.org/core/2020/11/18/block-api-version-2/#comment-40855)
+  - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-aside-editor-floated-width` so themes can adjust floated width easily
+  - Editor Styles: Adjust how align left/right styles in the editor are targeted as Block API 2 markup is different from Block API 1 and the previous selectors no longer work.
+- Button Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - Adjust editor markup to add a proper classname to the wrapping `<p>` tag around the button itself. 
+    - This block still has issues and conflicts with the core button block due to clashing block names. A later fix is needed to address that and carefully update it.
+  - Editor Styles: adjust editor styles to match new markup classnames
+- 5.7 fixes: change default light & dark color values to be slightly off color to avoid conflicts with new `white` and `black` colors. See: https://github.com/WordPress/gutenberg/issues/9357
+- BUniverse Block 5.7 updates:
+  - Update Buniverse Block to Block API 2 for 5.7 compatibility
+  - Move TextControl for video id from editor to sidebar to aid in styling block when floated
+  - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-buniverse-editor-floated-width` so themes can adjust floated width easily
+
+
 
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay

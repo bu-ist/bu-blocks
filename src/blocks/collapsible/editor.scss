@@ -14,13 +14,15 @@
 	font-style: normal;
 }
 
-.icon-style-button button {
+// Sidebar custom Icon Style Panel. Load BU icons
+// so buttons are styled with correct icons.
+.bu-collapsible-icon-style-button button {
 	font-family: "bu-default-icons";
 }
 
 // Open state, when block is selected or has a child block selected
-.wp-block.is-selected > .wp-block-bu-collapsible,
-.wp-block.has-child-selected > .wp-block-bu-collapsible {
+.wp-block-bu-collapsible.is-selected,
+.wp-block-bu-collapsible.has-child-selected {
 
 	& > .bu-block-collapsible-content {
 		display: block;
@@ -41,9 +43,7 @@
 	&.icon-style-arrows > .bu-collapsible-heading::after {
 		content: '\F500';
 	}
-}
-.is-selected > .wp-block-bu-collapsible,
-.has-child-selected > .wp-block-bu-collapsible {
+
 	& > .bu-collapsible-heading {
 		display: block;
 		border-bottom: 1px solid #ccc;

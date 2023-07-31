@@ -22,6 +22,7 @@ const { registerBlockType } = wp.blocks;
 const {
 	getColorClassName,
 	InnerBlocks,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select,
@@ -36,7 +37,7 @@ const {
 
 // Register the block.
 registerBlockType( 'editorial/modal', {
-
+	apiVersion: 2,
 	title: __( 'Modal' ),
 	description: __( 'A block with a callout for opening a modal with supplemental or complementary information.' ),
 	icon: blockIcons('modal'),
@@ -69,15 +70,6 @@ registerBlockType( 'editorial/modal', {
 		...BackgroundAttributes,
 	},
 
-	// Add the `selected-modal` data attribute when this block or its descendants are selected.
-	getEditWrapperProps( { clientId } ) {
-		if ( clientId ) {
-			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
-
-			return { 'data-selected-modal': ( modalHasSelectedBlock ) ? 'true' : undefined }
-		}
-	},
-
 	edit,
 
 	save( props ) {
@@ -91,9 +83,12 @@ registerBlockType( 'editorial/modal', {
 				'has-media': backgroundId,
 			}
 		);
+		const blockProps = useBlockProps.save({
+			className: classes,
+		});
 
 		return (
-			<aside className={ classes }>
+			<aside { ...blockProps }>
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">
