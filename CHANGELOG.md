@@ -1,20 +1,22 @@
 # Changelog
 
 ## Unreleased
-
+- Aside Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - It was necessary to refactor the edit function from a class structure to a function component as useBlockProps and Block API 2 won't work with class based components (https://make.wordpress.org/core/2020/11/18/block-api-version-2/#comment-40855)
+  - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-aside-editor-floated-width` so themes can adjust floated width easily
+  - Editor Styles: Adjust how align left/right styles in the editor are targeted as Block API 2 markup is different from Block API 1 and the previous selectors no longer work.
 - Button Block 5.7 updates:
   - Update Block to Block API 2 for 5.7 compatibility
     - Adjust editor markup to add a proper classname to the wrapping `<p>` tag around the button itself. 
     - This block still has issues and conflicts with the core button block due to clashing block names. A later fix is needed to address that and carefully update it.
   - Editor Styles: adjust editor styles to match new markup classnames
-
-
 - 5.7 fixes: change default light & dark color values to be slightly off color to avoid conflicts with new `white` and `black` colors. See: https://github.com/WordPress/gutenberg/issues/9357
-
 - BUniverse Block 5.7 updates:
   - Update Buniverse Block to Block API 2 for 5.7 compatibility
   - Move TextControl for video id from editor to sidebar to aid in styling block when floated
   - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-buniverse-editor-floated-width` so themes can adjust floated width easily
+
 
 
 ## 0.3.7

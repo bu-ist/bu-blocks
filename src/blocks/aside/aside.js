@@ -22,6 +22,7 @@ const { registerBlockType } = wp.blocks;
 const {
 	getColorClassName,
 	InnerBlocks,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Internal dependencies.
@@ -29,7 +30,7 @@ import edit from './edit.js';
 
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
-
+	apiVersion: 2,
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
 	icon: blockIcons('aside'),
@@ -53,8 +54,12 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 			{ [ getColorClassName( 'background', themeColor ) ]: getColorClassName( 'background', themeColor ) }
 		);
 
+		const blockProps = useBlockProps.save( {
+			className: classes,
+		});
+
 		return (
-			<aside className={ classes }>
+			<aside {...blockProps}>
 				<InnerBlocks.Content />
 			</aside>
 		);
