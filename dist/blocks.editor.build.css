@@ -17770,14 +17770,21 @@ aside[data-type="editorial/aside"].wp-block-editorial-aside {
   margin-left: 1ch;
   width: 100px; }
 
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+  --bu_blocks-block-bu-buniverse-editor-floated-width: 50%; }
+
 .wp-block-global-buniverse {
   margin: 0; }
   .wp-block-global-buniverse iframe {
     pointer-events: none; }
 
-.block-editor-block-list__layout .block-editor-block-list__block[data-align=right] > .is-block-content,
-.block-editor-block-list__layout .block-editor-block-list__block[data-align=left] > .is-block-content {
-  width: 50%; }
+.wp-block[data-align=right] > .wp-block-bu-buniverse,
+.wp-block[data-align=left] > .wp-block-bu-buniverse {
+  width: var(--bu_blocks-block-bu-buniverse-editor-floated-width); }
 @charset "UTF-8";
 /**
  * #.# Common SCSS
@@ -23797,9 +23804,17 @@ input[value="photo-row-tall-1-1"] + label {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-[data-type="bu/button"] .wp-block-button.wp-block-bu-button {
+.wp-block-bu-button-container {
+  position: relative; }
+
+[data-type="bu/button"].wp-block-bu-button {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0; }
+
+[data-type="bu/button"].wp-block-button.wp-block-bu-button {
   color: inherit; }
-  [data-type="bu/button"] .wp-block-button.wp-block-bu-button [data-rich-text-placeholder]:after {
+  [data-type="bu/button"].wp-block-button.wp-block-bu-button [data-rich-text-placeholder]:after {
     color: inherit; }
 
 [data-type="bu/button"] .components-autocomplete {
