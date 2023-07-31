@@ -1,6 +1,13 @@
 # Changelog
 
 ## Unreleased
+- Collapsible Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+    - Adjust how `is-style-preview` class is checked as `props.attributes.classname` is sometimes undefined.
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+- Collapsible Control Block: 
+  - Update to Block API 2, styling fixes for 5.7, fix center aligned styles.
+  - add Editor.scss and Style.scss files that were missing and better styling for the block
 - Aside Block 5.7 updates:
   - Update Block to Block API 2 for 5.7 compatibility
     - It was necessary to refactor the edit function from a class structure to a function component as useBlockProps and Block API 2 won't work with class based components (https://make.wordpress.org/core/2020/11/18/block-api-version-2/#comment-40855)
@@ -16,7 +23,6 @@
   - Update Buniverse Block to Block API 2 for 5.7 compatibility
   - Move TextControl for video id from editor to sidebar to aid in styling block when floated
   - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-buniverse-editor-floated-width` so themes can adjust floated width easily
-
 
 
 ## 0.3.7
