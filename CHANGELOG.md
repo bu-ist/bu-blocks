@@ -1,6 +1,10 @@
 # Changelog
 
 ## Unreleased
+
+- Drawer Block 5.7 updates:
+  - Update Block to Block API 2 for 5.7 compatibility
+  - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
 - Collapsible Block 5.7 updates:
   - Update Block to Block API 2 for 5.7 compatibility
     - Adjust how `is-style-preview` class is checked as `props.attributes.classname` is sometimes undefined.

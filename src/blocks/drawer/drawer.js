@@ -38,6 +38,7 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select
@@ -79,6 +80,7 @@ const getClasses = ( background, className, hideTeaser, round, size, themeColor 
 
 // Register the block.
 registerBlockType( 'editorial/drawer', {
+	apiVersion: 2,
 	title: __( 'Drawer' ),
 	description: __( 'Add content that can be toggled.' ),
 	icon: blockIcons('drawer'),
@@ -159,6 +161,10 @@ registerBlockType( 'editorial/drawer', {
 			themeColor,
 		} = props;
 
+		const blockProps = useBlockProps( {
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ),
+		});
+
 		const [ isUploading, setIsUploading ] = useState( false );
 
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
@@ -167,7 +173,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+			<aside {...blockProps}>
 				<BackgroundControls
 					allowedMediaTypes={ [ 'image' ] }
 					blockProps={ props }
@@ -226,6 +232,7 @@ registerBlockType( 'editorial/drawer', {
 						</div>
 					</div>
 				</section>
+				<div class="wp-block-editorial-drawer-clearfix"></div>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
@@ -302,8 +309,12 @@ registerBlockType( 'editorial/drawer', {
 			},
 		} = props;
 
+		const blockProps = useBlockProps.save( {
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor ),
+		});
+
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor ) }>
+			<aside {...blockProps}>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
