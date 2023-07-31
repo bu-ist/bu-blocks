@@ -9832,6 +9832,21 @@ aside[data-type="editorial/aside"].wp-block-editorial-aside {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+  --bu_blocks-block-bu-modal-editor-floated-width: 50%; }
+
+.wp-block[data-align=right] > .wp-block-editorial-modal,
+.wp-block[data-align=left] > .wp-block-editorial-modal {
+  width: var(--bu_blocks-block-bu-modal-editor-floated-width); }
+
+.wp-block-editorial-modal:after {
+  clear: none !important;
+  display: block !important; }
+
 [data-selected-modal="true"] .wp-block-editorial-modal-content {
   display: block !important; }
 
@@ -25794,11 +25809,6 @@ input[value="photo-row-tall-1-1"] + label {
 
 .wp-block[data-type="editorial/relatedstories"] a {
   pointer-events: none; }
-
-aside.wp-block-editorial-relatedstories:after {
-  content: "";
-  display: table;
-  clear: both; }
 
 figure.wp-block-editorial-relatedstories-article-image {
   margin: 0; }
