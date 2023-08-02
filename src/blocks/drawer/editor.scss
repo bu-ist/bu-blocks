@@ -31,6 +31,14 @@
 	}
 }
 
+// Set a default width when floated in the editor.
+// ToDo: this needs to be improved and rethought.
+.wp-block-editorial-drawer-teaser {
+	[data-align="left"] &,
+	[data-align="right"] & {
+		width: 50%;
+	}
+}
 
 [data-align="left"],
 [data-align="right"] {
@@ -88,6 +96,7 @@
 // better.
 // To-do: reduce the specificity of these styles. To do so, the existing themes will need updates
 // to reduce the specificty of the frontend styles.
+
 [data-align="right"] {
 	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
 
@@ -101,6 +110,18 @@
 				float: right;
 				margin-left: 2em;
 			}
+		}
+	}
+}
+
+// Ugly quick fix to ensure floated teaser element (for is-default-size)
+// in themes with CSS that is too specfic.
+// ToDo: remove this later and edit all child themes to reduce specificity there.
+[data-align="right"] {
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+		.wp-block-editorial-drawer-teaser {
+			float: right;
+			margin-left: 2em;
 		}
 	}
 }
@@ -120,3 +141,16 @@
 		}
 	}
 }
+
+// Ugly quick fix to ensure floated teaser element (for is-default-size)
+// in themes with CSS that is too specfic.
+// ToDo: remove this later and edit all child themes to reduce specificity there.
+[data-align="left"] {
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+		.wp-block-editorial-drawer-teaser {
+			float: left;
+			margin-right: 2em;
+		}
+	}
+}
+
