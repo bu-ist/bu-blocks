@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Click to Tweet style fixes. Closes #320. Updates the styles to restore the styling for the Click to Tweet feature on Paragraph blocks.
 - Stats Block: 
   - Update to block api 2 and fix alignment issues for WP 5.7
     - Change default fill / stroke color of the stats block svg donut chart so it isn't white on white background.
