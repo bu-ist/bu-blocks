@@ -7,6 +7,7 @@
 
 
 .wp-block-bu-clicktotweet.has-format-highlight .wp-block-bu-clicktotweet-highlight {
+	background: #def0f6;
 	&::after {
 		color: #0587B8;
 		content: "\f301";
@@ -14,10 +15,10 @@
 	}
 }
 
-[data-type="core/paragraph"]:not(.is-selected) {
-	.wp-block-paragraph.wp-block-bu-clicktotweet:not(.has-format-highlight) {
+[data-type="core/paragraph"]:not(.is-selected).wp-block-bu-clicktotweet:not(.has-format-highlight) {
 
-		.wp-block-bu-clicktotweet-content::before {
+	.wp-block-bu-clicktotweet-content {
+		&::before {
 			content: '';
 			border: 1px dashed gray;
 			display: block;
@@ -26,8 +27,8 @@
 			top: -15px;
 			bottom: -15px;
 			right: -15px;
-
 		}
+
 		&::after {
 			background: gray;
 			bottom: -15px;
@@ -41,4 +42,5 @@
 			right: -15px;
 		}
 	}
+
 }
