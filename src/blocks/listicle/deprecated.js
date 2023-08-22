@@ -17,8 +17,6 @@ import ShareTools, { ShareToolsAttributes, ShareToolsControls } from '../../comp
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons';
 
-import deprecated from './deprecated';
-
 // WordPress dependencies.
 const {
 	__,
@@ -74,8 +72,8 @@ const hasRelatedLinks = ( related ) => {
 	return true;
 }
 
-// Register the block.
-registerBlockType( 'editorial/listicle', {
+const deprecated = [
+	{
 	title: __( 'Listicle' ),
 	description: __( 'An individual item for an article that uses a list as its thematic structure.' ),
 	icon: blockIcons('listicle'),
@@ -395,7 +393,7 @@ registerBlockType( 'editorial/listicle', {
 			</section>
 		);
 	},
+}
+];
 
-	deprecated,
-
-});
+export default deprecated;
