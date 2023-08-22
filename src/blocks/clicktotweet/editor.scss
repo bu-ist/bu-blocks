@@ -6,10 +6,21 @@
  */
 
 
-.wp-block-bu-clicktotweet.has-format-highlight .wp-block-bu-clicktotweet-highlight {
-	background: #def0f6;
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+	--bu_blocks-block-click-tweet-color-highlight: #def0f6;
+	--bu_blocks-block-click-tweet-color-icon: #0587B8;
+	--bu_blocks-block-click-tweet-color-button: #0587B8;
+}
+
+[data-type="core/paragraph"].wp-block-bu-clicktotweet.has-format-highlight .wp-block-bu-clicktotweet-highlight {
+	background: var(--bu_blocks-block-click-tweet-color-highlight);
+
 	&::after {
-		color: #0587B8;
+		color: var(--bu_blocks-block-click-tweet-color-icon);
 		content: "\f301";
 		font-family: "dashicons";
 	}
@@ -21,6 +32,7 @@
 		&::before {
 			content: '';
 			border: 1px dashed gray;
+			border-color: var(--bu_blocks-block-click-tweet-color-button);
 			display: block;
 			position: absolute;
 			left: -15px;
@@ -30,7 +42,7 @@
 		}
 
 		&::after {
-			background: gray;
+			background: var(--bu_blocks-block-click-tweet-color-button);
 			bottom: -15px;
 			color: #fff;
 			content: "tweet this";
