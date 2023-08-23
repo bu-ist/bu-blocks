@@ -36,6 +36,7 @@ const {
 	PlainText,
 	RichText,
 	withColors,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
@@ -93,6 +94,7 @@ const statSVG = ( circleOneFill, circleTwoFill ) => (
 
 // Register the block.
 registerBlockType( 'bu/stat', {
+	apiVersion: 2,
 	parent: [ 'bu/stats' ],
 	title: __( 'Stat' ),
 	description: __( 'Display statistical information.' ),
@@ -165,8 +167,12 @@ registerBlockType( 'bu/stat', {
 			setCircleTwoColor,
 		} = props;
 
+		const blockProps = useBlockProps({
+			className: getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ),
+		});
+
 		return (
-			<div className={ getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ) }>
+			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
 
@@ -272,8 +278,12 @@ registerBlockType( 'bu/stat', {
 			preText,
 		} = attributes;
 
+		const blockProps = useBlockProps.save({
+			className: getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ),
+		});
+
 		return (
-			<div className={ getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ) }>
+			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
 						{ !RichText.isEmpty( preText ) &&

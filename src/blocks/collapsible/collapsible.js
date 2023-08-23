@@ -33,7 +33,8 @@ const {
 	InnerBlocks,
 	BlockControls,
 	InspectorControls,
-	RichText
+	RichText,
+	useBlockProps,
 } = wp.blockEditor;
 const { select } = wp.data;
 const { getBlocks } = select( 'core/block-editor' );
@@ -42,6 +43,7 @@ import HeadingToolbar from '../headline/heading-toolbar';
 
 // Register the block.
 registerBlockType( 'bu/collapsible', {
+	apiVersion: 2,
 	name: 'bu/collapsible',
 	title: __( 'Collapsible' ),
 	description: __( 'A collapsible content block.' ),
@@ -120,7 +122,11 @@ registerBlockType( 'bu/collapsible', {
 		} = attributes;
 		const TagName = `h${level}`;
 
-		const isPreviewStyle = className.includes( 'is-style-preview' );
+
+		let isPreviewStyle = false;
+		if ( props.attributes.className ) {
+			isPreviewStyle = props.attributes.className.includes( 'is-style-preview' );
+		}
 
 		const allowedBlockList = allowedBlocks().filter( block => undefined !== block );
 		allowedBlockList.push( 'bu/collapsible' );
@@ -137,15 +143,24 @@ registerBlockType( 'bu/collapsible', {
 			marginBottom: ( customMarginBottom ? marginBottom : 0 ) + editorContainerPaddingOffset
 		};
 
+		const blockProps = useBlockProps( {
+			className: classnames(
+				className,
+				{ 'is-open': isOpen },
+				`icon-style-${ iconStyle }`
+			),
+			style: styles,
+		} );
+
 		return (
 
-			<div className={ classnames( className, { 'is-open': isOpen }, `icon-style-${ iconStyle }` ) } style={ styles }>
+			<div {...blockProps}>
 
 				<InspectorControls>
 
 					{ ! isPreviewStyle && (
 						<PanelBody title={ __( 'Icon Style' ) }>
-							<ButtonGroup className="icon-style-button">
+							<ButtonGroup className="bu-collapsible-icon-style-button">
 								<Button
 									isPrimary={ 'plus-minus' === iconStyle }
 									isSecondary={ 'plus-minus' !== iconStyle }

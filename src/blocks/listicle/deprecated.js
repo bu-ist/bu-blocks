@@ -17,8 +17,6 @@ import ShareTools, { ShareToolsAttributes, ShareToolsControls } from '../../comp
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons';
 
-import deprecated from './deprecated';
-
 // WordPress dependencies.
 const {
 	__,
@@ -74,8 +72,8 @@ const hasRelatedLinks = ( related ) => {
 	return true;
 }
 
-// Register the block.
-registerBlockType( 'editorial/listicle', {
+const deprecated = [
+	{
 	title: __( 'Listicle' ),
 	description: __( 'An individual item for an article that uses a list as its thematic structure.' ),
 	icon: blockIcons('listicle'),
@@ -332,50 +330,40 @@ registerBlockType( 'editorial/listicle', {
 		return (
 			<section className={ getClasses( className, number, aside, backgroundUrl, backgroundAutoplay, divider ) }>
 				<article className="wp-block-editorial-listicle-article">
-					{ ( backgroundUrl || credit ) && (
-						<figure className="wp-block-editorial-listicle-figure">
-							<Background
-								blockProps={ props }
-							/>
-							{ credit && (
-								<RichText.Content
-									tagName="figcaption"
-									className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption"
-									value={ credit }
-								/>
-							)}
-						</figure>
-					)}
+					<figure className="wp-block-editorial-listicle-figure">
+						<Background
+							blockProps={ props }
+						/>
+						<RichText.Content
+							tagName="figcaption"
+							className="wp-caption-text wp-block-editorial-listicle-caption wp-prepress-component-caption"
+							value={ credit }
+						/>
+					</figure>
 					<header className="wp-block-editorial-listicle-header">
 						{ number && (
 							<h2 className="wp-block-editorial-listicle-header-number">{ number }</h2>
 						) }
 						<div className="wp-block-editorial-listicle-header-content">
-							{ hed && (
-								<RichText.Content
-									tagName="h3"
-									className="wp-block-editorial-listicle-header-content-hed"
-									value={ hed }
-								/>
-							)}
-							{ dek && (
-								<RichText.Content
-									tagName="h4"
-									className="wp-block-editorial-listicle-header-content-dek"
-									value={ dek }
-								/>
-							)}
+							<RichText.Content
+								tagName="h3"
+								className="wp-block-editorial-listicle-header-content-hed"
+								value={ hed }
+							/>
+							<RichText.Content
+								tagName="h4"
+								className="wp-block-editorial-listicle-header-content-dek"
+								value={ dek }
+							/>
 						</div>
 					</header>
 					<section className="wp-block-editorial-listicle-section">
-						{ ! RichText.isEmpty( content ) && (
-							<RichText.Content
-								tagName="div"
-								className="wp-block-editorial-listicle-section-content"
-								value={ content }
-								multiline="p"
-							/>
-						)}
+						<RichText.Content
+							tagName="div"
+							className="wp-block-editorial-listicle-section-content"
+							value={ content }
+							multiline="p"
+						/>
 						<div className="wp-block-editorial-listicle-section-meta">
 							{ ! RichText.isEmpty( aside ) && (
 								<aside className="wp-block-editorial-listicle-section-aside">
@@ -405,7 +393,7 @@ registerBlockType( 'editorial/listicle', {
 			</section>
 		);
 	},
+}
+];
 
-	deprecated,
-
-});
+export default deprecated;

@@ -5,6 +5,14 @@
  * which makes it higher in priority.
  */
 
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+	--bu_blocks-block-bu-stats-editor-floated-width: 50%;
+}
+
 .wp-block-bu-stats {
 	padding: 20px 0; // Make parent block easier to select in editor.
 	.editor-inner-blocks,
@@ -14,7 +22,6 @@
 
 	.editor-block-list__layout > div,
 	.block-editor-block-list__layout > div {
-		width: 50%;
 
 		.wp-block-bu-stat {
 			width: 100%;
@@ -60,6 +67,7 @@ div[data-align="left"],
 div[data-align="right"] {
 	.wp-block-bu-stats {
 		min-width: 230px;
+		width: var(--bu_blocks-block-bu-stats-editor-floated-width);
 
 		.editor-inner-blocks .editor-block-list__layout > div,
 		.block-editor-inner-blocks .block-editor-block-list__layout > div {

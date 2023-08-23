@@ -105,9 +105,12 @@ $scope: blocks-get( 'scope' );
 		}
 	}
 
-	.wp-block-bu-stat-circle1,
+	.wp-block-bu-stat-circle1 {
+		stroke: blocks-get( 'color-gray-e' );
+	}
+
 	.wp-block-bu-stat-circle2 {
-		stroke: blocks-get( 'background-color-light' );
+		stroke: blocks-get( 'background-color-dark' );
 	}
 
 	.has-circle1-color-dark .wp-block-bu-stat-circle1 {

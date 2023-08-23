@@ -138,6 +138,14 @@
 	}
 }
 
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+	--bu_blocks-block-bu-buniverse-editor-floated-width: 50%;
+}
+
 // Remove default margin on figure.
 // Disable interactions on video iframe.
 .wp-block-global-buniverse {
@@ -148,11 +156,12 @@
 	}
 }
 
-// Align option fixes.
-.block-editor-block-list__layout .block-editor-block-list__block[data-align=right],
-.block-editor-block-list__layout .block-editor-block-list__block[data-align=left] {
-	>.is-block-content {
-		width: 50%;
+// Buniverse block has no width by default when floated
+// as it's content is absolutley positioned in order to scale intrinsicially.
+.wp-block[data-align=right],
+.wp-block[data-align=left] {
+	>.wp-block-bu-buniverse {
+		width: var(--bu_blocks-block-bu-buniverse-editor-floated-width);
 	}
 }
 
