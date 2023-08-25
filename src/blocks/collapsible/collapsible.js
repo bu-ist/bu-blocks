@@ -319,7 +319,6 @@ registerBlockType( 'bu/collapsible', {
 				</BlockControls>
 
 				<TagName className="bu-collapsible-heading">
-					<h5>{ clientId }</h5>
 					{/* Using div because button cause issue in editor */}
 					{ ! isPreviewStyle && (
 						<RichText
