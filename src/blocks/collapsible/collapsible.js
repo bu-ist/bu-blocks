@@ -293,6 +293,8 @@ registerBlockType( 'bu/collapsible', {
 							checked={ autoAnchor }
 							onChange={ () => setAttributes( { autoAnchor: !autoAnchor } ) }
 						/>
+						<p><strong>Note:</strong> The anchor id <em>must</em> be unique and cannot be duplicated in this post.
+						Duplicate ID's are an accessibility issue and cause errors with interactions with the blocks. Do not use spaces.</p>
 						{ autoAnchor && (
 							<TextControl
 								label={ __( 'Unique HTML ID' ) }
