@@ -44,7 +44,7 @@ import HeadingToolbar from '../headline/heading-toolbar';
 /**
  * Internal dependencies
  */
- import { generateAnchor, getSlug, isDuplicateblockAnchor } from './generated-anchors';
+ import { generateAnchor, isDuplicateblockAnchor } from './generated-anchors';
 
 // Register the block.
 registerBlockType( 'bu/collapsible', {
@@ -173,6 +173,8 @@ registerBlockType( 'bu/collapsible', {
 			// existing collapsible block in this post.
 			if ( ! id && title || isDuplicateblockAnchor(clientId, id ) ) {
 				let newAnchor = generateAnchor( title );
+
+				// Append part of the clientId to the new Anchor to make it unique.
 				setAttributes( {
 					id: newAnchor + `-${clientId.split( '-', 1 )}`,
 				} );
@@ -194,7 +196,6 @@ registerBlockType( 'bu/collapsible', {
 			}
 			setAttributes( newAttrs );
 		};
-
 
 		const styles = {
 			marginBottom: ( customMarginBottom ? marginBottom : 0 ) + editorContainerPaddingOffset
@@ -296,7 +297,6 @@ registerBlockType( 'bu/collapsible', {
 							<TextControl
 								label={ __( 'Unique HTML ID' ) }
 								value={ id }
-								onChange={ ( value ) => setAttributes( { id: value } ) }
 								disabled={true}
 							/>
 						)}
@@ -324,7 +324,6 @@ registerBlockType( 'bu/collapsible', {
 							tagName={ 'div' }
 							className="bu-block-collapsible-toggle"
 							value={ title }
-							//onChange={ value => setAttributes( { title: value } ) }
 							onChange={ onTitleChange }
 							placeholder={ __( 'Heading...' ) }
 							formattingControls={ [ 'bold', 'italic' ] }

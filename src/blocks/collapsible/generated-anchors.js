@@ -11,6 +11,7 @@ const getTextWithoutMarkup = ( text ) => {
 	return dummyElement.innerText;
 };
 
+
 /**
  * Function to turn a string into a slug by stripping characters, adding hyphens, etc.
  * @param {*} str
@@ -27,16 +28,18 @@ const slugify = ( str ) => {
 		.replace(/-+/g, '-'); // remove consecutive hyphens
 };
 
+
 /**
  * Function to generate a slug from a given text string.
  * @param {str} text The original text string.
  * @returns str The formatted slug.
  */
-export const getSlug = ( text ) => {
+const getSlug = ( text ) => {
 	let slug = getTextWithoutMarkup( text );
 	slug = 'bu-collapsible-anchor-'+ slugify( slug );
 	return slug;
 };
+
 
 /**
  * Function to get the editor's Document Root to be used with querySelector to find
@@ -61,7 +64,8 @@ const getBlockDocumentRoot = (props) => {
 	}
 
 	return _document;
-}
+};
+
 
 /**
  * Function to Search the block editor for blocks with a duplicate anchor.
@@ -82,6 +86,7 @@ export const isDuplicateblockAnchor = ( props, id ) => {
 
 	return duplicate;
 };
+
 
 /**
  * Function to generate an Anchor from a given title value.
