@@ -37,9 +37,14 @@ const {
 	useBlockProps,
 } = wp.blockEditor;
 const { select } = wp.data;
-const { getBlocks } = select( 'core/block-editor' );
+const { useEffect } = wp.element;
 
 import HeadingToolbar from '../headline/heading-toolbar';
+
+/**
+ * Internal dependencies
+ */
+ import { generateAnchor, getSlug, isDuplicateblockAnchor } from './generated-anchors';
 
 // Register the block.
 registerBlockType( 'bu/collapsible', {
@@ -81,6 +86,10 @@ registerBlockType( 'bu/collapsible', {
 			type: 'string',
 			default: '',
 		},
+		autoAnchor: {
+			type: 'boolean',
+			default: true,
+		},
 		buttonOpenLabel: {
 			type: 'string',
 			default: 'Read More',
@@ -119,6 +128,7 @@ registerBlockType( 'bu/collapsible', {
 			id,
 			buttonCloseLabel,
 			buttonOpenLabel,
+			autoAnchor,
 		} = attributes;
 		const TagName = `h${level}`;
 
@@ -134,10 +144,57 @@ registerBlockType( 'bu/collapsible', {
 		// Add an offset to the bottom margin in the editor to account for the container element padding
 		const editorContainerPaddingOffset = 28;
 
-		// Generate anchor if not set
-		if ( ! id ) {
-			setAttributes( { id: `bu-collapsible-${clientId.split( '-', 1 )}` } );
-		}
+		/**
+		 * Are Auto Generated Anchors enabled for this block?
+		 * Returns true if toggle control is enabled.
+		 * @returns boolean
+		 */
+		const canGenerateAnchor = () => {
+			return autoAnchor;
+		};
+
+
+		/**
+		 * Generate and set an Anchor ID for Blocks that have no anchor set but have a title
+		 * or if the block's anchor is a duplicate of an existing block found in the editor.
+		 *
+		 * useEffect() is triggered when the `title`, `clientId`, or `id` changes on the block.
+		 *
+		 * This should cover block duplication events in the editor and is based on a technique used
+		 * in core for the Heading block to generate anchors.
+		 */
+		useEffect( () => {
+			// Check if we can generate anchors for this block.
+			if ( ! canGenerateAnchor() ) {
+				return;
+			}
+
+			// If no ID is set, but there is a title value OR if this anchor ID is a duplicate of an
+			// existing collapsible block in this post.
+			if ( ! id && title || isDuplicateblockAnchor(clientId, id ) ) {
+				let newAnchor = generateAnchor( title );
+				setAttributes( {
+					id: newAnchor + `-${clientId.split( '-', 1 )}`,
+				} );
+			}
+
+		}, [ title, clientId, id ] );
+
+
+		/**
+		 * When the title attribute changes we save the new title, and check if the anchor id
+		 * can and should be regenerated.
+		 * @param {*} value The new value of the title field.
+		 */
+		const onTitleChange = ( value ) => {
+			const newAttrs = { title: value };
+			if ( canGenerateAnchor() && ( generateAnchor( value ) !== generateAnchor( title ) ) ) {
+				// Generate a new anchor and save it as the ID.
+				newAttrs.id = generateAnchor( value );
+			}
+			setAttributes( newAttrs );
+		};
+
 
 		const styles = {
 			marginBottom: ( customMarginBottom ? marginBottom : 0 ) + editorContainerPaddingOffset
@@ -147,9 +204,10 @@ registerBlockType( 'bu/collapsible', {
 			className: classnames(
 				className,
 				{ 'is-open': isOpen },
-				`icon-style-${ iconStyle }`
+				`icon-style-${ iconStyle }`,
 			),
 			style: styles,
+			'data-anchor': id
 		} );
 
 		return (
@@ -229,11 +287,27 @@ registerBlockType( 'bu/collapsible', {
 					</PanelBody>
 
 					<PanelBody title={ __( 'Anchor ID' ) }>
-						<TextControl
-							label={ __( 'Unique HTML ID' ) }
-							value={ id }
-							onChange={ ( value ) => setAttributes( { id: value } ) }
+						<ToggleControl
+							label={ __( 'Automatically Generated' ) }
+							checked={ autoAnchor }
+							onChange={ () => setAttributes( { autoAnchor: !autoAnchor } ) }
 						/>
+						{ autoAnchor && (
+							<TextControl
+								label={ __( 'Unique HTML ID' ) }
+								value={ id }
+								onChange={ ( value ) => setAttributes( { id: value } ) }
+								disabled={true}
+							/>
+						)}
+						{ ! autoAnchor && (
+							<TextControl
+								label={ __( 'Unique HTML ID' ) }
+								value={ id }
+								onChange={ ( value ) => setAttributes( { id: value } ) }
+							/>
+						)}
+
 					</PanelBody>
 
 				</InspectorControls>
@@ -243,13 +317,15 @@ registerBlockType( 'bu/collapsible', {
 				</BlockControls>
 
 				<TagName className="bu-collapsible-heading">
+					<h5>{ clientId }</h5>
 					{/* Using div because button cause issue in editor */}
 					{ ! isPreviewStyle && (
 						<RichText
 							tagName={ 'div' }
 							className="bu-block-collapsible-toggle"
 							value={ title }
-							onChange={ value => setAttributes( { title: value } ) }
+							//onChange={ value => setAttributes( { title: value } ) }
+							onChange={ onTitleChange }
 							placeholder={ __( 'Heading...' ) }
 							formattingControls={ [ 'bold', 'italic' ] }
 						/>
@@ -260,7 +336,8 @@ registerBlockType( 'bu/collapsible', {
 							tagName={ 'div' }
 							className=""
 							value={ title }
-							onChange={ value => setAttributes( { title: value } ) }
+							//onChange={ value => setAttributes( { title: value } ) }
+							onChange={ onTitleChange }
 							placeholder={ __( 'Heading...' ) }
 							formattingControls={ [ 'bold', 'italic' ] }
 						/>
