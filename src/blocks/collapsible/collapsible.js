@@ -171,7 +171,7 @@ registerBlockType( 'bu/collapsible', {
 
 			// If no ID is set, but there is a title value OR if this ID is a duplicate of an
 			// existing collapsible block in this post.
-			if ( ! id && title || isDuplicateblockID(clientId, id ) ) {
+			if ( ! id && title || isDuplicateblockID( props, id ) ) {
 				let newUniqueID = generateID( title );
 
 				// Append part of the clientId to the new ID to make it unique.
