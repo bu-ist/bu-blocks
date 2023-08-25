@@ -36,7 +36,7 @@ const slugify = ( str ) => {
  */
 const getSlug = ( text ) => {
 	let slug = getTextWithoutMarkup( text );
-	slug = 'bu-collapsible-anchor-'+ slugify( slug );
+	slug = 'bu-collapsible-id-'+ slugify( slug );
 	return slug;
 };
 
@@ -68,17 +68,17 @@ const getBlockDocumentRoot = (props) => {
 
 
 /**
- * Function to Search the block editor for blocks with a duplicate anchor.
+ * Function to Search the block editor for blocks with a duplicate id.
  *
  * Based on: https://github.com/WordPress/gutenberg/issues/17246#issuecomment-1492074695
  * @param {*} props
- * @param {str} id The anchor ID to check for.
+ * @param {str} id The ID to check for.
  * @returns boolean
  */
-export const isDuplicateblockAnchor = ( props, id ) => {
+export const isDuplicateblockID = ( props, id ) => {
 	let duplicate = false;
 	const _document = getBlockDocumentRoot(props);
-	const elements = _document.querySelectorAll( '.block-editor-writing-flow [data-anchor="' + id + '"]' );
+	const elements = _document.querySelectorAll( '.block-editor-writing-flow [data-uniqueid="' + id + '"]' );
 
 	if ( elements.length > 1 ) {
 		duplicate = true;
@@ -89,11 +89,11 @@ export const isDuplicateblockAnchor = ( props, id ) => {
 
 
 /**
- * Function to generate an Anchor from a given title value.
- * @param {str} title The title value to generate the anchor from.
- * @returns str The new anchor string.
+ * Function to generate an ID from a given title value.
+ * @param {str} title The title value to generate the id from.
+ * @returns str The new id string.
  */
-export const generateAnchor = ( title ) => {
+export const generateID = ( title ) => {
 	const slug = getSlug( title );
 	if ( '' === slug ) {
 		return null;

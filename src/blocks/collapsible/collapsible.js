@@ -44,7 +44,7 @@ import HeadingToolbar from '../headline/heading-toolbar';
 /**
  * Internal dependencies
  */
- import { generateAnchor, isDuplicateblockAnchor } from './generated-anchors';
+ import { generateID, isDuplicateblockID } from './generated-ids';
 
 // Register the block.
 registerBlockType( 'bu/collapsible', {
@@ -86,7 +86,7 @@ registerBlockType( 'bu/collapsible', {
 			type: 'string',
 			default: '',
 		},
-		autoAnchor: {
+		autoID: {
 			type: 'boolean',
 			default: true,
 		},
@@ -128,7 +128,7 @@ registerBlockType( 'bu/collapsible', {
 			id,
 			buttonCloseLabel,
 			buttonOpenLabel,
-			autoAnchor,
+			autoID,
 		} = attributes;
 		const TagName = `h${level}`;
 
@@ -145,18 +145,18 @@ registerBlockType( 'bu/collapsible', {
 		const editorContainerPaddingOffset = 28;
 
 		/**
-		 * Are Auto Generated Anchors enabled for this block?
+		 * Are Auto Generated IDs enabled for this block?
 		 * Returns true if toggle control is enabled.
 		 * @returns boolean
 		 */
-		const canGenerateAnchor = () => {
-			return autoAnchor;
+		const canGenerateID = () => {
+			return autoID;
 		};
 
 
 		/**
-		 * Generate and set an Anchor ID for Blocks that have no anchor set but have a title
-		 * or if the block's anchor is a duplicate of an existing block found in the editor.
+		 * Generate and set an ID for Blocks that have no ID set but have a title
+		 * or if the block's ID is a duplicate of an existing block found in the editor.
 		 *
 		 * useEffect() is triggered when the `title`, `clientId`, or `id` changes on the block.
 		 *
@@ -164,19 +164,19 @@ registerBlockType( 'bu/collapsible', {
 		 * in core for the Heading block to generate anchors.
 		 */
 		useEffect( () => {
-			// Check if we can generate anchors for this block.
-			if ( ! canGenerateAnchor() ) {
+			// Check if we can generate IDs for this block.
+			if ( ! canGenerateID() ) {
 				return;
 			}
 
-			// If no ID is set, but there is a title value OR if this anchor ID is a duplicate of an
+			// If no ID is set, but there is a title value OR if this ID is a duplicate of an
 			// existing collapsible block in this post.
-			if ( ! id && title || isDuplicateblockAnchor(clientId, id ) ) {
-				let newAnchor = generateAnchor( title );
+			if ( ! id && title || isDuplicateblockID(clientId, id ) ) {
+				let newUniqueID = generateID( title );
 
-				// Append part of the clientId to the new Anchor to make it unique.
+				// Append part of the clientId to the new ID to make it unique.
 				setAttributes( {
-					id: newAnchor + `-${clientId.split( '-', 1 )}`,
+					id: newUniqueID + `-${clientId.split( '-', 1 )}`,
 				} );
 			}
 
@@ -184,15 +184,15 @@ registerBlockType( 'bu/collapsible', {
 
 
 		/**
-		 * When the title attribute changes we save the new title, and check if the anchor id
+		 * When the title attribute changes we save the new title, and check if the id
 		 * can and should be regenerated.
 		 * @param {*} value The new value of the title field.
 		 */
 		const onTitleChange = ( value ) => {
 			const newAttrs = { title: value };
-			if ( canGenerateAnchor() && ( generateAnchor( value ) !== generateAnchor( title ) ) ) {
-				// Generate a new anchor and save it as the ID.
-				newAttrs.id = generateAnchor( value );
+			if ( canGenerateID() && ( generateID( value ) !== generateID( title ) ) ) {
+				// Generate a new id and save it as the ID.
+				newAttrs.id = generateID( value );
 			}
 			setAttributes( newAttrs );
 		};
@@ -208,7 +208,7 @@ registerBlockType( 'bu/collapsible', {
 				`icon-style-${ iconStyle }`,
 			),
 			style: styles,
-			'data-anchor': id
+			'data-uniqueid': id
 		} );
 
 		return (
@@ -290,19 +290,20 @@ registerBlockType( 'bu/collapsible', {
 					<PanelBody title={ __( 'Anchor ID' ) }>
 						<ToggleControl
 							label={ __( 'Automatically Generated' ) }
-							checked={ autoAnchor }
-							onChange={ () => setAttributes( { autoAnchor: !autoAnchor } ) }
+							checked={ autoID }
+							onChange={ () => setAttributes( { autoID: !autoID } ) }
 						/>
-						<p><strong>Note:</strong> The anchor id <em>must</em> be unique and cannot be duplicated in this post.
+						<p><strong>Note:</strong> The id <em>must</em> be unique and cannot be duplicated in this post. Unique ID's are needed on each instance of this block so that the
+						aria labels properly document the button and interactive state of the block for accessibility.
 						Duplicate ID's are an accessibility issue and cause errors with interactions with the blocks. Do not use spaces.</p>
-						{ autoAnchor && (
+						{ autoID && (
 							<TextControl
 								label={ __( 'Unique HTML ID' ) }
 								value={ id }
 								disabled={true}
 							/>
 						)}
-						{ ! autoAnchor && (
+						{ ! autoID && (
 							<TextControl
 								label={ __( 'Unique HTML ID' ) }
 								value={ id }
