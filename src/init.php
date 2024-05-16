@@ -253,12 +253,12 @@ function default_theme_colors( $editor_settings, $post )
 
     $editor_settings['buDefaultThemes'] = array(
     array(
-    'name'  => esc_html__('Light', 'r-editorial'),
+    'name'  => esc_html__('Light', 'bu-blocks'),
     'slug'  => 'light',
     'color' => '#fffffe', // Slightly off-white value to avoid conflicts with default white color.
     ),
     array(
-    'name'  => esc_html__('Dark', 'r-editorial'),
+    'name'  => esc_html__('Dark', 'bu-blocks'),
     'slug'  => 'dark',
     'color' => '#000001', // Slightly off-black value to avoid conflicts with default black color.
     ),

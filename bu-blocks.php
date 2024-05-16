@@ -2,12 +2,12 @@
 /**
  * Plugin Name:     BU Blocks
  * Plugin URI:      https://github.com/bu-ist/bu-blocks
- * Description:     A WordPress plugin that registers additional blocks for the new WordPress editor.
+ * Description:     A repository for storing all BU WordPress blocks.
  * Author:          Boston University: Interactive Design
  * Author URI:      http://www.bu.edu/interactive-design/
  * Text Domain:     bu-blocks
  * Domain Path:     /languages
- * Version:         0.3.7
+ * Version:         2.0.0-alpha
  *
  * @package BU_Blocks
  */
