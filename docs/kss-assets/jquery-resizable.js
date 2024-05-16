@@ -6,189 +6,195 @@ Version 0.32 - 5/5/2018
 www.west-wind.com
 Licensed under MIT License
 */
-(function(factory, undefined) {
-	if (typeof define === 'function' && define.amd) {
+( function ( factory, undefined ) {
+	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define(['jquery'], factory);
-	} else if (typeof module === 'object' && typeof module.exports === 'object') {
+		define( [ 'jquery' ], factory );
+	} else if (
+		typeof module === 'object' &&
+		typeof module.exports === 'object'
+	) {
 		// CommonJS
-		module.exports = factory(require('jquery'));
+		module.exports = factory( require( 'jquery' ) );
 	} else {
 		// Global jQuery
-		factory(jQuery);
+		factory( jQuery );
 	}
-}(function($, undefined) {
-    
-    if ($.fn.resizable)
-        return;
+} )( function ( $, undefined ) {
+	if ( $.fn.resizable ) return;
 
-    $.fn.resizable = function fnResizable(options) {
-        var defaultOptions = {
-            // selector for handle that starts dragging
-            handleSelector: null,
-            // resize the width
-            resizeWidth: true,
-            // resize the height
-            resizeHeight: true,
-            // the side that the width resizing is relative to
-            resizeWidthFrom: 'right',
-            // the side that the height resizing is relative to
-            resizeHeightFrom: 'bottom',
-            // hook into start drag operation (event passed)
-            onDragStart: null,
-            // hook into stop drag operation (event passed)
-            onDragEnd: null,
-            // hook into each drag operation (event passed)
-            onDrag: null,
-            // disable touch-action on $handle
-            // prevents browser level actions like forward back gestures
-            touchActionNone: true,
-            // instance id
-            instanceId: null
-    };
-        if (typeof options == "object")
-            defaultOptions = $.extend(defaultOptions, options);
+	$.fn.resizable = function fnResizable( options ) {
+		var defaultOptions = {
+			// selector for handle that starts dragging
+			handleSelector: null,
+			// resize the width
+			resizeWidth: true,
+			// resize the height
+			resizeHeight: true,
+			// the side that the width resizing is relative to
+			resizeWidthFrom: 'right',
+			// the side that the height resizing is relative to
+			resizeHeightFrom: 'bottom',
+			// hook into start drag operation (event passed)
+			onDragStart: null,
+			// hook into stop drag operation (event passed)
+			onDragEnd: null,
+			// hook into each drag operation (event passed)
+			onDrag: null,
+			// disable touch-action on $handle
+			// prevents browser level actions like forward back gestures
+			touchActionNone: true,
+			// instance id
+			instanceId: null,
+		};
+		if ( typeof options == 'object' )
+			defaultOptions = $.extend( defaultOptions, options );
 
-        return this.each(function () {
-            var opt = $.extend({}, defaultOptions);
-            if (!opt.instanceId)
-                opt.instanceId = "rsz_" + new Date().getTime();            
+		return this.each( function () {
+			var opt = $.extend( {}, defaultOptions );
+			if ( ! opt.instanceId )
+				opt.instanceId = 'rsz_' + new Date().getTime();
 
-            var startPos, startTransition;
+			var startPos, startTransition;
 
-            // get the element to resize 
-            var $el = $(this);
-            var $handle;
+			// get the element to resize
+			var $el = $( this );
+			var $handle;
 
-            if (options === 'destroy') {            
-                opt = $el.data('resizable');
-                if (!opt)
-                    return;
+			if ( options === 'destroy' ) {
+				opt = $el.data( 'resizable' );
+				if ( ! opt ) return;
 
-                $handle = getHandle(opt.handleSelector, $el);
-                $handle.off("mousedown." + opt.instanceId + " touchstart." + opt.instanceId);
-                if (opt.touchActionNone)
-                    $handle.css("touch-action", "");
-                $el.removeClass("resizable");
-                return;
-            }
-          
-            $el.data('resizable', opt);
+				$handle = getHandle( opt.handleSelector, $el );
+				$handle.off(
+					'mousedown.' +
+						opt.instanceId +
+						' touchstart.' +
+						opt.instanceId
+				);
+				if ( opt.touchActionNone ) $handle.css( 'touch-action', '' );
+				$el.removeClass( 'resizable' );
+				return;
+			}
 
-            // get the drag handle
+			$el.data( 'resizable', opt );
 
-            $handle = getHandle(opt.handleSelector, $el);
+			// get the drag handle
 
-            if (opt.touchActionNone)
-                $handle.css("touch-action", "none");
+			$handle = getHandle( opt.handleSelector, $el );
 
-            $el.addClass("resizable");
-            $handle.on("mousedown." + opt.instanceId + " touchstart." + opt.instanceId, startDragging);
+			if ( opt.touchActionNone ) $handle.css( 'touch-action', 'none' );
 
-            function noop(e) {
-                e.stopPropagation();
-                e.preventDefault();
-            };
+			$el.addClass( 'resizable' );
+			$handle.on(
+				'mousedown.' + opt.instanceId + ' touchstart.' + opt.instanceId,
+				startDragging
+			);
 
-            function startDragging(e) {
-                // Prevent dragging a ghost image in HTML5 / Firefox and maybe others    
-                if ( e.preventDefault ) {
-                  e.preventDefault();
-                }
-                
-                startPos = getMousePos(e);
-                startPos.width = parseInt($el.width(), 10);
-                startPos.height = parseInt($el.height(), 10);
+			function noop( e ) {
+				e.stopPropagation();
+				e.preventDefault();
+			}
 
-                startTransition = $el.css("transition");
-                $el.css("transition", "none");
+			function startDragging( e ) {
+				// Prevent dragging a ghost image in HTML5 / Firefox and maybe others
+				if ( e.preventDefault ) {
+					e.preventDefault();
+				}
 
-                if (opt.onDragStart) {
-                    if (opt.onDragStart(e, $el, opt) === false)
-                        return;
-                }
-                
-                $(document).on('mousemove.' + opt.instanceId, doDrag);
-                $(document).on('mouseup.' + opt.instanceId, stopDragging);
-                if (window.Touch || navigator.maxTouchPoints) {
-                    $(document).on('touchmove.' + opt.instanceId, doDrag);
-                    $(document).on('touchend.' + opt.instanceId, stopDragging);
-                }
-                $(document).on('selectstart.' + opt.instanceId, noop); // disable selection
-                $("iframe").css("pointer-events","none");
-            }
+				startPos = getMousePos( e );
+				startPos.width = parseInt( $el.width(), 10 );
+				startPos.height = parseInt( $el.height(), 10 );
 
-            function doDrag(e) {
-                
-                var pos = getMousePos(e), newWidth, newHeight;
+				startTransition = $el.css( 'transition' );
+				$el.css( 'transition', 'none' );
 
-                if (opt.resizeWidthFrom === 'left')
-                    newWidth = startPos.width - pos.x + startPos.x;
-                else
-                    newWidth = startPos.width + pos.x - startPos.x;
+				if ( opt.onDragStart ) {
+					if ( opt.onDragStart( e, $el, opt ) === false ) return;
+				}
 
-                if (opt.resizeHeightFrom === 'top')
-                    newHeight = startPos.height - pos.y + startPos.y;
-                else
-                    newHeight = startPos.height + pos.y - startPos.y;
+				$( document ).on( 'mousemove.' + opt.instanceId, doDrag );
+				$( document ).on( 'mouseup.' + opt.instanceId, stopDragging );
+				if ( window.Touch || navigator.maxTouchPoints ) {
+					$( document ).on( 'touchmove.' + opt.instanceId, doDrag );
+					$( document ).on(
+						'touchend.' + opt.instanceId,
+						stopDragging
+					);
+				}
+				$( document ).on( 'selectstart.' + opt.instanceId, noop ); // disable selection
+				$( 'iframe' ).css( 'pointer-events', 'none' );
+			}
 
-                if (!opt.onDrag || opt.onDrag(e, $el, newWidth, newHeight, opt) !== false) {
-                    if (opt.resizeHeight)
-                        $el.height(newHeight);                    
+			function doDrag( e ) {
+				var pos = getMousePos( e ),
+					newWidth,
+					newHeight;
 
-                    if (opt.resizeWidth)
-                        $el.width(newWidth);                    
-                }
-            }
+				if ( opt.resizeWidthFrom === 'left' )
+					newWidth = startPos.width - pos.x + startPos.x;
+				else newWidth = startPos.width + pos.x - startPos.x;
 
-            function stopDragging(e) {
-                e.stopPropagation();
-                e.preventDefault();
+				if ( opt.resizeHeightFrom === 'top' )
+					newHeight = startPos.height - pos.y + startPos.y;
+				else newHeight = startPos.height + pos.y - startPos.y;
 
-                $(document).off('mousemove.' + opt.instanceId);
-                $(document).off('mouseup.' + opt.instanceId);
+				if (
+					! opt.onDrag ||
+					opt.onDrag( e, $el, newWidth, newHeight, opt ) !== false
+				) {
+					if ( opt.resizeHeight ) $el.height( newHeight );
 
-                if (window.Touch || navigator.maxTouchPoints) {
-                    $(document).off('touchmove.' + opt.instanceId);
-                    $(document).off('touchend.' + opt.instanceId);
-                }
-                $(document).off('selectstart.' + opt.instanceId, noop);                
+					if ( opt.resizeWidth ) $el.width( newWidth );
+				}
+			}
 
-                // reset changed values
-                $el.css("transition", startTransition);
-                $("iframe").css("pointer-events","auto");
+			function stopDragging( e ) {
+				e.stopPropagation();
+				e.preventDefault();
 
-                if (opt.onDragEnd)
-                    opt.onDragEnd(e, $el, opt);
+				$( document ).off( 'mousemove.' + opt.instanceId );
+				$( document ).off( 'mouseup.' + opt.instanceId );
 
-                return false;
-            }
+				if ( window.Touch || navigator.maxTouchPoints ) {
+					$( document ).off( 'touchmove.' + opt.instanceId );
+					$( document ).off( 'touchend.' + opt.instanceId );
+				}
+				$( document ).off( 'selectstart.' + opt.instanceId, noop );
 
-            function getMousePos(e) {
-                var pos = { x: 0, y: 0, width: 0, height: 0 };
-                if (typeof e.clientX === "number") {
-                    pos.x = e.clientX;
-                    pos.y = e.clientY;
-                } else if (e.originalEvent.touches) {
-                    pos.x = e.originalEvent.touches[0].clientX;
-                    pos.y = e.originalEvent.touches[0].clientY;
-                } else
-                    return null;
+				// reset changed values
+				$el.css( 'transition', startTransition );
+				$( 'iframe' ).css( 'pointer-events', 'auto' );
 
-                return pos;
-            }
+				if ( opt.onDragEnd ) opt.onDragEnd( e, $el, opt );
 
-            function getHandle(selector, $el) {
-                if (selector && selector.trim()[0] === ">") {
-                    selector = selector.trim().replace(/^>\s*/, "");
-                    return $el.find(selector);
-                }
+				return false;
+			}
 
-                // Search for the selector, but only in the parent element to limit the scope
-                // This works for multiple objects on a page (using .class syntax most likely)
-                // as long as each has a separate parent container. 
-                return selector ? $el.parent().find(selector) : $el;
-            } 
-        });
-    };
-}));
+			function getMousePos( e ) {
+				var pos = { x: 0, y: 0, width: 0, height: 0 };
+				if ( typeof e.clientX === 'number' ) {
+					pos.x = e.clientX;
+					pos.y = e.clientY;
+				} else if ( e.originalEvent.touches ) {
+					pos.x = e.originalEvent.touches[ 0 ].clientX;
+					pos.y = e.originalEvent.touches[ 0 ].clientY;
+				} else return null;
+
+				return pos;
+			}
+
+			function getHandle( selector, $el ) {
+				if ( selector && selector.trim()[ 0 ] === '>' ) {
+					selector = selector.trim().replace( /^>\s*/, '' );
+					return $el.find( selector );
+				}
+
+				// Search for the selector, but only in the parent element to limit the scope
+				// This works for multiple objects on a page (using .class syntax most likely)
+				// as long as each has a separate parent container.
+				return selector ? $el.parent().find( selector ) : $el;
+			}
+		} );
+	};
+} );

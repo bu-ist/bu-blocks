@@ -1,147 +1,213 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-function ScrollSpy (wrapper, opt) {
+( function e( t, n, r ) {
+	function s( o, u ) {
+		if ( ! n[ o ] ) {
+			if ( ! t[ o ] ) {
+				var a = typeof require == 'function' && require;
+				if ( ! u && a ) return a( o, ! 0 );
+				if ( i ) return i( o, ! 0 );
+				var f = new Error( "Cannot find module '" + o + "'" );
+				throw ( ( f.code = 'MODULE_NOT_FOUND' ), f );
+			}
+			var l = ( n[ o ] = { exports: {} } );
+			t[ o ][ 0 ].call(
+				l.exports,
+				function ( e ) {
+					var n = t[ o ][ 1 ][ e ];
+					return s( n ? n : e );
+				},
+				l,
+				l.exports,
+				e,
+				t,
+				n,
+				r
+			);
+		}
+		return n[ o ].exports;
+	}
+	var i = typeof require == 'function' && require;
+	for ( var o = 0; o < r.length; o++ ) s( r[ o ] );
+	return s;
+} )(
+	{
+		1: [
+			function ( require, module, exports ) {
+				function ScrollSpy( wrapper, opt ) {
+					this.doc = document;
+					this.wrapper =
+						typeof wrapper === 'string'
+							? this.doc.querySelector( wrapper )
+							: wrapper;
+					this.nav = this.wrapper.querySelectorAll( opt.nav );
 
-  this.doc = document;
-  this.wrapper = (typeof wrapper === 'string') ? this.doc.querySelector(wrapper) : wrapper;
-  this.nav = this.wrapper.querySelectorAll(opt.nav);
+					this.contents = [];
+					this.win = window;
 
-  this.contents = [];
-  this.win = window;
+					this.winH = this.win.innerHeight;
 
-  this.winH = this.win.innerHeight;
+					this.className = opt.className;
 
-  this.className = opt.className;
+					this.callback = opt.callback;
 
-  this.callback = opt.callback;
+					this.init();
+				}
 
-  this.init();
-}
+				ScrollSpy.prototype.init = function () {
+					this.contents = this.getContents();
+					this.attachEvent();
+				};
 
-ScrollSpy.prototype.init = function () {
-  this.contents = this.getContents();
-  this.attachEvent();
-};
+				ScrollSpy.prototype.getContents = function () {
+					var targetList = [];
 
-ScrollSpy.prototype.getContents = function () {
-  var targetList = [];
+					for ( var i = 0, max = this.nav.length; i < max; i++ ) {
+						var href = this.nav[ i ].href;
 
-  for (var i = 0, max = this.nav.length; i < max; i++) {
-    var href = this.nav[i].href;
+						targetList.push(
+							this.doc.getElementById( href.split( '#' )[ 1 ] )
+						);
+					}
 
-    targetList.push(this.doc.getElementById(href.split('#')[1]));
-  }
+					return targetList;
+				};
 
-  return targetList;
-};
+				ScrollSpy.prototype.attachEvent = function () {
+					this.win.addEventListener(
+						'load',
+						function () {
+							this.spy( this.callback );
+						}.bind( this )
+					);
 
-ScrollSpy.prototype.attachEvent = function () {
-  this.win.addEventListener('load', (function () {
-    this.spy(this.callback);
-  }).bind(this));
+					var scrollingTimer;
 
+					this.win.addEventListener(
+						'scroll',
+						function () {
+							if ( scrollingTimer ) {
+								clearTimeout( scrollingTimer );
+							}
 
-  var scrollingTimer;
+							var _this = this;
 
-  this.win.addEventListener('scroll', (function () {
-    if (scrollingTimer) {
-      clearTimeout(scrollingTimer);
-    }
+							scrollingTimer = setTimeout( function () {
+								_this.spy( _this.callback );
+							}, 10 );
+						}.bind( this )
+					);
 
-    var _this = this;
+					var resizingTimer;
 
-    scrollingTimer = setTimeout(function () {
-      _this.spy(_this.callback);
-    }, 10);
-  }).bind(this));
+					this.win.addEventListener(
+						'resize',
+						function () {
+							if ( resizingTimer ) {
+								clearTimeout( resizingTimer );
+							}
 
+							var _this = this;
 
-  var resizingTimer;
+							resizingTimer = setTimeout( function () {
+								_this.spy( _this.callback );
+							}, 10 );
+						}.bind( this )
+					);
+				};
 
-  this.win.addEventListener('resize', (function () {
-    if (resizingTimer) {
-      clearTimeout(resizingTimer);
-    }
+				ScrollSpy.prototype.spy = function ( cb ) {
+					var elems = this.getElemsViewState();
 
-    var _this = this;
+					this.markNav( elems );
 
-    resizingTimer = setTimeout(function () {
-      _this.spy(_this.callback);
-    }, 10);
-  }).bind(this));
-};
+					if ( typeof cb === 'function' ) {
+						cb( elems );
+					}
+				};
 
-ScrollSpy.prototype.spy = function (cb) {
-  var elems = this.getElemsViewState();
+				ScrollSpy.prototype.getElemsViewState = function () {
+					var elemsInView = [],
+						elemsOutView = [],
+						viewStatusList = [];
 
-  this.markNav(elems);
+					for (
+						var i = 0, max = this.contents.length;
+						i < max;
+						i++
+					) {
+						var currentContent = this.contents[ i ],
+							isInView = this.isInView( currentContent );
 
-  if (typeof cb === 'function') {
-    cb(elems);
-  }
-};
+						if ( isInView ) {
+							elemsInView.push( currentContent );
+						} else {
+							elemsOutView.push( currentContent );
+						}
+						viewStatusList.push( isInView );
+					}
 
-ScrollSpy.prototype.getElemsViewState = function () {
-  var elemsInView = [],
-    elemsOutView = [],
-    viewStatusList = [];
+					return {
+						inView: elemsInView,
+						outView: elemsOutView,
+						viewStatusList: viewStatusList,
+					};
+				};
 
-  for (var i = 0, max = this.contents.length; i < max; i++) {
-    var currentContent = this.contents[i],
-      isInView = this.isInView(currentContent);
+				ScrollSpy.prototype.isInView = function ( el ) {
+					var winH = this.winH,
+						scrollTop =
+							this.doc.documentElement.scrollTop ||
+							this.doc.body.scrollTop,
+						scrollBottom = scrollTop + winH,
+						rect = el.getBoundingClientRect(),
+						elTop = rect.top + scrollTop,
+						elBottom = elTop + el.offsetHeight;
 
-    if (isInView) {
-      elemsInView.push(currentContent);
-    } else {
-      elemsOutView.push(currentContent);
-    }
-    viewStatusList.push(isInView);
-  }
+					return elTop < scrollBottom && elBottom > scrollTop;
+				};
 
-  return {
-    inView: elemsInView,
-    outView: elemsOutView,
-    viewStatusList: viewStatusList
-  };
-};
+				ScrollSpy.prototype.markNav = function ( elems ) {
+					var navItems = this.nav,
+						isAlreadyMarked = false;
 
-ScrollSpy.prototype.isInView = function (el) {
-  var winH = this.winH,
-    scrollTop = this.doc.documentElement.scrollTop || this.doc.body.scrollTop,
-    scrollBottom = scrollTop + winH,
-    rect = el.getBoundingClientRect(),
-    elTop = rect.top + scrollTop,
-    elBottom = elTop + el.offsetHeight;
+					for ( var i = 0, max = navItems.length; i < max; i++ ) {
+						if ( elems.viewStatusList[ i ] && ! isAlreadyMarked ) {
+							isAlreadyMarked = true;
+							navItems[ i ].classList.add( this.className );
+						} else {
+							navItems[ i ].classList.remove( this.className );
+						}
+					}
+				};
 
-  return (elTop < scrollBottom) && (elBottom > scrollTop);
-};
+				module.exports = ScrollSpy;
+			},
+			{},
+		],
+		2: [
+			function ( require, module, exports ) {
+				( function ( global ) {
+					/**
+					 * ScrollSpy
+					 *
+					 */
 
-ScrollSpy.prototype.markNav = function (elems) {
-  var navItems = this.nav,
-    isAlreadyMarked = false;
+					var ScrollSpy = require( './modules/scrollspy' );
 
-  for (var i = 0, max = navItems.length; i < max; i++) {
-    if (elems.viewStatusList[i] && !isAlreadyMarked) {
-      isAlreadyMarked = true;
-      navItems[i].classList.add(this.className);
-    } else {
-      navItems[i].classList.remove(this.className);
-    }
-  }
-};
-
-
-module.exports = ScrollSpy;
-
-},{}],2:[function(require,module,exports){
-(function (global){
-/**
- * ScrollSpy
- *
- */
-
-var ScrollSpy = require('./modules/scrollspy');
-
-global.ScrollSpy = module.exports = ScrollSpy;
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./modules/scrollspy":1}]},{},[2]);
+					global.ScrollSpy = module.exports = ScrollSpy;
+				} ).call(
+					this,
+					typeof global !== 'undefined'
+						? global
+						: typeof self !== 'undefined'
+						? self
+						: typeof window !== 'undefined'
+						? window
+						: {}
+				);
+			},
+			{ './modules/scrollspy': 1 },
+		],
+	},
+	{},
+	[ 2 ]
+);

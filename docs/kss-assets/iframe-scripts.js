@@ -1,6 +1,5 @@
 var setHeight;
-$( document ).ready(function() {
-
+$( document ).ready( function () {
 	//this is a hack for id-kss-builder iframes to simulate a
 	//dom load event for frontend JS. Because the iframes in the
 	//styleguide are created dynamically theis dom event has already
@@ -8,32 +7,25 @@ $( document ).ready(function() {
 	//so lets fake it for now
 	//
 	//
-	window.document.dispatchEvent(new Event("DOMContentLoaded", {
-		bubbles: true,
-		cancelable: true
-	}));
+	window.document.dispatchEvent(
+		new Event( 'DOMContentLoaded', {
+			bubbles: true,
+			cancelable: true,
+		} )
+	);
 
-
-
-	var $wrapper = $('.iframe-wrapper');
+	var $wrapper = $( '.iframe-wrapper' );
 	var height;
 
-	var id = $wrapper.attr("id");
+	var id = $wrapper.attr( 'id' );
 
-	setHeight = function(){
+	setHeight = function () {
 		height = $wrapper.outerHeight();
-		var $parent = $(window.parent.document).find('#'+id);//find iframe parent div by id
+		var $parent = $( window.parent.document ).find( '#' + id ); //find iframe parent div by id
 		$parent.height( Math.ceil( height ) ); //set the new height;
-	}
+	};
 
-
-
-
-
-	$(window).on('resize', function(e){
+	$( window ).on( 'resize', function ( e ) {
 		setHeight();
-
-	});
-
-
-});
+	} );
+} );

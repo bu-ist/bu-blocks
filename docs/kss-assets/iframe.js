@@ -1,16 +1,12 @@
+// create unique ids
+function uniqId() {
+	return Math.round( new Date().getTime() + Math.random() * 100 );
+}
 
+$( document ).ready( function () {
+	var kssStorage = window.localStorage;
 
-	// create unique ids
-	function uniqId() {
-		return Math.round(new Date().getTime() + (Math.random() * 100));
-	}
-
-
-	$( document ).ready(function() {
-
-		var kssStorage = window.localStorage;
-
-		/*
+	/*
 
 		Loop through all example markup blocks
 		and copy the example markup into a dynamically
@@ -20,131 +16,132 @@
 
 		*/
 
+	$( '.id-kss-example-wrapper' ).each( function () {
+		var newID = uniqId();
 
-		$('.id-kss-example-wrapper').each(function(){
+		$( this ).attr( 'id', newID ); // add a unique ID
 
-			var newID = uniqId();
+		var $iframe = $( this ).find( '.id-kss-example-iframe' );
+		var $iframeWindow = $iframe.contents();
+		var $markup = $( this ).find( '.template-iframe' );
+		var markup = $markup.html(); // get the current markup and store
 
-			$(this).attr("id", newID ); // add a unique ID
+		$markup.remove(); //now remove the current (old) markup example
 
-			var $iframe = $(this).find('.id-kss-example-iframe');
-			var $iframeWindow = $iframe.contents();
-			var $markup = $(this).find('.template-iframe');
-			var markup = $markup.html(); // get the current markup and store
+		//add jquery to the iframe
+		var jquery =
+			$iframe[ 0 ].contentWindow.document.createElement( 'script' );
+		jquery.type = 'text/javascript';
+		jquery.src = 'kss-assets/jquery.js';
+		$iframe[ 0 ].contentWindow.document.head.appendChild( jquery );
 
-			$markup.remove(); //now remove the current (old) markup example
+		jquery.onload = function () {
+			//after jquery is loaded add the iframe scripts js file
+			var script =
+				$iframe[ 0 ].contentWindow.document.createElement( 'script' );
+			script.type = 'text/javascript';
+			script.src = 'kss-assets/iframe-scripts.js';
+			$iframe[ 0 ].contentWindow.document.head.appendChild( script );
 
-			//add jquery to the iframe
-			var jquery = $iframe[0].contentWindow.document.createElement("script");
-				jquery.type = "text/javascript";
-				jquery.src = "kss-assets/jquery.js";
-				$iframe[0].contentWindow.document.head.appendChild(jquery);
-
-
-			jquery.onload = function() {
-
-				//after jquery is loaded add the iframe scripts js file
-				var script = $iframe[0].contentWindow.document.createElement("script");
-				script.type = "text/javascript";
-				script.src = "kss-assets/iframe-scripts.js";
-				$iframe[0].contentWindow.document.head.appendChild(script);
-
-
-				if( themeScriptsURL ) {
-					//lets add the theme scripts js file
-					var themescript = $iframe[0].contentWindow.document.createElement("script");
-					themescript.type = "text/javascript";
-					themescript.src = themeScriptsURL;
-					themescript.defer = "defer";
-					$iframe[0].contentWindow.document.head.appendChild(themescript);
-				}
-
-			};
-
-			if( exampleStylesheetURL ) {
-				//lets add the stylesheet from gruntfile options paramter
-				var examplestyles = $iframe[0].contentWindow.document.createElement("link");
-				examplestyles.rel = "stylesheet";
-				examplestyles.href = exampleStylesheetURL;
-				examplestyles.type = "text/css";
-				$iframe[0].contentWindow.document.head.appendChild(examplestyles);
+			if ( themeScriptsURL ) {
+				//lets add the theme scripts js file
+				var themescript =
+					$iframe[ 0 ].contentWindow.document.createElement(
+						'script'
+					);
+				themescript.type = 'text/javascript';
+				themescript.src = themeScriptsURL;
+				themescript.defer = 'defer';
+				$iframe[ 0 ].contentWindow.document.head.appendChild(
+					themescript
+				);
 			}
+		};
 
-			//lets add the stylesheet from the WordPress Theme to each iframe
-			var styles = $iframe[0].contentWindow.document.createElement("link");
-			styles.rel = "stylesheet";
-			styles.href = themeStylesheetURL;
-			styles.type = "text/css";
-			$iframe[0].contentWindow.document.head.appendChild(styles);
+		if ( exampleStylesheetURL ) {
+			//lets add the stylesheet from gruntfile options paramter
+			var examplestyles =
+				$iframe[ 0 ].contentWindow.document.createElement( 'link' );
+			examplestyles.rel = 'stylesheet';
+			examplestyles.href = exampleStylesheetURL;
+			examplestyles.type = 'text/css';
+			$iframe[ 0 ].contentWindow.document.head.appendChild(
+				examplestyles
+			);
+		}
 
+		//lets add the stylesheet from the WordPress Theme to each iframe
+		var styles =
+			$iframe[ 0 ].contentWindow.document.createElement( 'link' );
+		styles.rel = 'stylesheet';
+		styles.href = themeStylesheetURL;
+		styles.type = 'text/css';
+		$iframe[ 0 ].contentWindow.document.head.appendChild( styles );
 
-			//inject the example markup into the iframe body
-			$iframeWindow
-				.contents()
-				.find( 'body' )
-				.append( markup )
-				.find('.iframe-wrapper').attr("id", newID );
+		//inject the example markup into the iframe body
+		$iframeWindow
+			.contents()
+			.find( 'body' )
+			.append( markup )
+			.find( '.iframe-wrapper' )
+			.attr( 'id', newID );
 
+		setTimeout( function () {
+			$iframe[ 0 ].contentWindow.setHeight();
+		}, 1000 );
 
+		$( this ).resizable( {
+			handleSelector: '.id-kss-example-iframe-handle',
+			resizeHeight: false,
+			onDrag: function ( e, $el, newWidth, newHeight, opt ) {
+				// set all example wrappers to the new width on drag
+				$( '.id-kss-example-wrapper' ).width( newWidth );
+			},
+		} );
+	} );
 
+	//
+	// Theme (publication) Tabs for iFrame Examples
+	// sets up the event handlers and loads the last
+	// state from local storage for the tabbed controller
+	// that displays iframe examples of a block for
+	// a specific theme (defined in the Gruntfile)
+	//
 
-			setTimeout(function(){
-				$iframe[0].contentWindow.setHeight();
-			}, 1000);
+	$( '.id-kss-example-tabs' ).each( function () {
+		var tabs = $( this );
 
-			$(this).resizable({
-				handleSelector: ".id-kss-example-iframe-handle",
-				resizeHeight: false,
-				onDrag: function (e, $el, newWidth, newHeight, opt) {
-					// set all example wrappers to the new width on drag
-					$('.id-kss-example-wrapper').width( newWidth );
+		tabs.children( 'nav' )
+			.children( 'a' )
+			.each( function () {
+				var slug = $( this ).attr( 'href' ).split( '#' )[ 1 ];
+				$( this ).on( 'click', function ( e ) {
+					e.preventDefault();
 
-				}
-			});
+					//remove active class from previous and add to new button
+					tabs.children( 'nav' )
+						.children( 'a.active' )
+						.removeClass( 'active' );
+					$( this ).addClass( 'active' );
 
-		});
+					tabs.find( '.id-kss-example-tab:visible' ).hide();
+					tabs.find( '.id-kss-example-tab#' + slug ).show();
 
+					kssStorage.setItem( 'activetheme', slug );
+				} );
+			} );
+	} );
 
-
-
-
-  		//
-  		// Theme (publication) Tabs for iFrame Examples
-  		// sets up the event handlers and loads the last
-  		// state from local storage for the tabbed controller
-  		// that displays iframe examples of a block for
-  		// a specific theme (defined in the Gruntfile)
-  		//
-
-
-	    $('.id-kss-example-tabs').each(function(){
-	    	var tabs = $(this);
-
-	    	tabs.children('nav').children('a').each(function(){
-	    		var slug = $(this).attr("href").split('#')[1];
-	    		$(this).on('click', function(e){
-	    			e.preventDefault();
-
-	    			//remove active class from previous and add to new button
-	    			tabs.children('nav').children('a.active').removeClass("active");
-	    			$(this).addClass('active');
-
-	    			tabs.find('.id-kss-example-tab:visible').hide();
-	    			tabs.find('.id-kss-example-tab#'+slug).show();
-
-	    			kssStorage.setItem( 'activetheme', slug );
-	    		});
-	    	});
-
-	    });
-
-
-	    //check localstorage for a saved active theme
-	    if( kssStorage.getItem( 'activetheme' ) ) {
-	      $('.id-kss-example-tabs > nav a.'+kssStorage.getItem( 'activetheme' ) ).trigger('click');
-	    } else {
-	      $('.id-kss-example-tabs > nav').children('a').first().trigger("click");
-	    }
-
-
-	});
+	//check localstorage for a saved active theme
+	if ( kssStorage.getItem( 'activetheme' ) ) {
+		$(
+			'.id-kss-example-tabs > nav a.' +
+				kssStorage.getItem( 'activetheme' )
+		).trigger( 'click' );
+	} else {
+		$( '.id-kss-example-tabs > nav' )
+			.children( 'a' )
+			.first()
+			.trigger( 'click' );
+	}
+} );

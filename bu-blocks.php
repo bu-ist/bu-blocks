@@ -9,18 +9,18 @@
  * Domain Path:     /languages
  * Version:         0.3.7
  *
- * @package         BU_Blocks
+ * @package BU_Blocks
  */
 
 namespace BU\Plugins\BU_Blocks;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH') ) {
+    exit;
 }
 
 // Defines the plugin version.
-define( 'BU_BLOCKS_VERSION', '0.3.7' );
+define('BU_BLOCKS_VERSION', '0.3.7');
 
 /**
  * Displays admin notice and prevents activation.
@@ -29,21 +29,22 @@ define( 'BU_BLOCKS_VERSION', '0.3.7' );
  * (meaning this is not a WP 5.0.0 install, or the site does not have the
  * Gutenberg plugin activated.
  *
- * @since    0.1.0
+ * @since 0.1.0
  */
-function gutenberg_notice() {
-	?>
-		<div class="notice notice-error is-dismissible">
-			<p>
-				<?php esc_html_e( 'BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks', 'r-editorial' ); ?>
-			</p>
-			<p>
-				<?php esc_html_e( 'Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks', 'r-editorial' ); ?>
-			</p>
-			<p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e( 'Get Gutenberg', 'bu-blocks', 'r-editorial' ); ?></a></p>
-		</div>
-	<?php
-	deactivate_plugins( plugin_basename( __FILE__ ) );
+function gutenberg_notice()
+{
+    ?>
+        <div class="notice notice-error is-dismissible">
+            <p>
+                <?php esc_html_e('BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks', 'r-editorial'); ?>
+            </p>
+            <p>
+                <?php esc_html_e('Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks', 'r-editorial'); ?>
+            </p>
+            <p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e('Get Gutenberg', 'bu-blocks', 'r-editorial'); ?></a></p>
+        </div>
+    <?php
+    deactivate_plugins(plugin_basename(__FILE__));
 }
 
 
@@ -52,18 +53,19 @@ function gutenberg_notice() {
  *
  * Waits for plugins_loaded hook to properly call function_exists.
  *
- * @since    0.1.0
+ * @since 0.1.0
  */
-function init_plugin() {
+function init_plugin()
+{
 
-	// Only targets WordPress versions before 5.0, that don't have gutenberg activated.
-	if ( ! function_exists( 'register_block_type' ) ) {
-		add_action( 'admin_notices', __NAMESPACE__ . '\\gutenberg_notice' );
-		return;
-	}
+    // Only targets WordPress versions before 5.0, that don't have gutenberg activated.
+    if (! function_exists('register_block_type') ) {
+        add_action('admin_notices', __NAMESPACE__ . '\\gutenberg_notice');
+        return;
+    }
 
-	// Initialize plugin by including init file, which kicks off hooks.
-	require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
+    // Initialize plugin by including init file, which kicks off hooks.
+    include_once plugin_dir_path(__FILE__) . 'src/init.php';
 
 }
-add_action( 'plugins_loaded', __NAMESPACE__ . '\\init_plugin' );
+add_action('plugins_loaded', __NAMESPACE__ . '\\init_plugin');

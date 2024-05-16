@@ -1,5 +1,4 @@
-bu_blocks.collapsibleControl = ( function() {
-
+bu_blocks.collapsibleControl = ( function () {
 	// Store all Control blocks
 	var collapsibleControlBlocks = [];
 	var allCollapsibleBlocks = [];
@@ -13,13 +12,12 @@ bu_blocks.collapsibleControl = ( function() {
 	 * @param array collapsible blocks
 	 * @param bool true to open set of collapsible blocks, false to close
 	 */
-	var controlCollapsibleBlocks = function( collapsibleBlocks, open ) {
-
+	var controlCollapsibleBlocks = function ( collapsibleBlocks, open ) {
 		if ( open === undefined ) {
 			open = true;
 		}
 
-		collapsibleBlocks.forEach( function( collapsible, i ) {
+		collapsibleBlocks.forEach( function ( collapsible, i ) {
 			const container = collapsible.container;
 			const toggle = collapsible.toggle;
 			const panel = collapsible.panel;
@@ -35,55 +33,57 @@ bu_blocks.collapsibleControl = ( function() {
 				toggle.setAttribute( 'aria-expanded', false );
 				panel.setAttribute( 'aria-hidden', true );
 			}
-
 		} );
-
-	}
+	};
 
 	/**
 	 * Toggle all Collapsible blocks
 	 */
-	var toggleAll = function( control ) {
-
+	var toggleAll = function ( control ) {
 		if ( 0 === allCollapsibleBlocks.length ) {
 			return;
 		}
 
-		controlCollapsibleBlocks( allCollapsibleBlocks, !allBlocksOpen );
-		allBlocksOpen = ( allBlocksOpen ) ? false : true;
+		controlCollapsibleBlocks( allCollapsibleBlocks, ! allBlocksOpen );
+		allBlocksOpen = allBlocksOpen ? false : true;
 	};
 
 	/**
 	 * Toggle Collapsible blocks in control's group
 	 */
-	var toggleGroup = function( control ) {
+	var toggleGroup = function ( control ) {
 		const groupIsOpen = control.groupIsOpen;
-		const collapsibleBlocks = control.collapsibleBlocks
+		const collapsibleBlocks = control.collapsibleBlocks;
 
-		controlCollapsibleBlocks( collapsibleBlocks, !groupIsOpen );
-		control.groupIsOpen = ( groupIsOpen ) ? false : true;
+		controlCollapsibleBlocks( collapsibleBlocks, ! groupIsOpen );
+		control.groupIsOpen = groupIsOpen ? false : true;
 	};
 
 	/**
 	 * Find all Collapsible blocks on a page
 	 */
-	var findAllCollapsibleBlocks = function() {
-		var containers = document.querySelectorAll( '.js-wp-block-bu-collapsible' );
+	var findAllCollapsibleBlocks = function () {
+		var containers = document.querySelectorAll(
+			'.js-wp-block-bu-collapsible'
+		);
 
 		// Don't coninue if no Collapsible blocks exist
 		if ( containers.length === 0 ) {
 			return;
 		}
 
-		containers.forEach( function( element, i ) {
+		containers.forEach( function ( element, i ) {
 			var block = {};
 
 			block.container = element;
-			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
-			block.panel = element.querySelector( '.js-bu-block-collapsible-content' );
+			block.toggle = element.querySelector(
+				'.js-bu-block-collapsible-toggle'
+			);
+			block.panel = element.querySelector(
+				'.js-bu-block-collapsible-content'
+			);
 			allCollapsibleBlocks.push( block );
 		} );
-
 	};
 
 	/**
@@ -93,33 +93,39 @@ bu_blocks.collapsibleControl = ( function() {
 	 *
 	 * @return array list of all collapsible blocks in group
 	 */
-	var getGroupCollapsibleBlocks = function( control ) {
-
+	var getGroupCollapsibleBlocks = function ( control ) {
 		var blocks = [];
 		var group = control.closest( '.wp-block-group' );
 		if ( ! group ) {
 			return blocks;
 		}
-		var containers = group.querySelectorAll( '.js-wp-block-bu-collapsible' );
+		var containers = group.querySelectorAll(
+			'.js-wp-block-bu-collapsible'
+		);
 
-		containers.forEach( function( element, i ) {
+		containers.forEach( function ( element, i ) {
 			var block = {};
 
 			block.container = element;
-			block.toggle = element.querySelector( '.js-bu-block-collapsible-toggle' );
-			block.panel = element.querySelector( '.js-bu-block-collapsible-content' );
+			block.toggle = element.querySelector(
+				'.js-bu-block-collapsible-toggle'
+			);
+			block.panel = element.querySelector(
+				'.js-bu-block-collapsible-content'
+			);
 			blocks.push( block );
 		} );
 
 		return blocks;
-	}
+	};
 
 	/**
 	 * Find all Controls and Collapsible blocks
 	 */
-	var findElements = function() {
-
-		var controls = document.querySelectorAll( '.bu-collapsible-control-toggle' );
+	var findElements = function () {
+		var controls = document.querySelectorAll(
+			'.bu-collapsible-control-toggle'
+		);
 		var allCollapsibleBlocksFound = false;
 
 		// Don't coninue if no Controls are found
@@ -128,13 +134,17 @@ bu_blocks.collapsibleControl = ( function() {
 		}
 
 		// Store all controls
-		controls.forEach( function( control, i ) {
+		controls.forEach( function ( control, i ) {
 			var block = {};
 
 			block.toggle = control;
 
 			// Check if Control targets all blocks or blocks in its group
-			if ( control.classList.contains( 'js-bu-collapsible-control-target-group' ) ) {
+			if (
+				control.classList.contains(
+					'js-bu-collapsible-control-target-group'
+				)
+			) {
 				block.targetGroup = true;
 				block.collapsibleBlocks = getGroupCollapsibleBlocks( control );
 				block.groupIsOpen = false;
@@ -150,22 +160,21 @@ bu_blocks.collapsibleControl = ( function() {
 
 			collapsibleControlBlocks.push( block );
 		} );
-
 	};
 
 	/**
 	 * Set up handlers, aria, and other functionality
 	 */
-	var setupCollapsibleControlBlocks = function() {
+	var setupCollapsibleControlBlocks = function () {
 		if ( collapsibleControlBlocks.length === 0 ) {
 			return;
 		}
 
-		collapsibleControlBlocks.forEach( function( control, i ) {
+		collapsibleControlBlocks.forEach( function ( control, i ) {
 			const toggle = control.toggle;
 			const targetGroup = control.targetGroup;
 
-			toggle.addEventListener( 'click', function( e ) {
+			toggle.addEventListener( 'click', function ( e ) {
 				e.preventDefault();
 				if ( targetGroup ) {
 					toggleGroup( control );
@@ -174,20 +183,18 @@ bu_blocks.collapsibleControl = ( function() {
 				}
 			} );
 		} );
-
 	};
 
 	/**
 	 * Init
 	 */
-	var collapsibleControlInit = function() {
+	var collapsibleControlInit = function () {
 		findElements();
 		setupCollapsibleControlBlocks();
 	};
 
 	// Start things on dom ready.
-	document.addEventListener( "DOMContentLoaded", function() {
+	document.addEventListener( 'DOMContentLoaded', function () {
 		collapsibleControlInit();
 	} );
-
 } )();

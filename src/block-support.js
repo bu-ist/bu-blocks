@@ -24,7 +24,10 @@ const UnregisterBlocks = () => {
 	}
 
 	// Create a filterable array of post types to restrict the blocks to.
-	const postTypes = applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );
+	const postTypes = applyFilters( 'buBlocks.blockSupport.postTypes', [
+		'post',
+		'page',
+	] );
 
 	// Get the current post type.
 	const currentPostType = select( 'core/editor' ).getCurrentPostType();
@@ -58,10 +61,10 @@ const UnregisterBlocks = () => {
 		'bu/stats',
 	] );
 
-	const registeredBlocks = getBlockTypes().map( item => item.name );
+	const registeredBlocks = getBlockTypes().map( ( item ) => item.name );
 
 	// Unregister the blocks.
-	buBlocks.forEach( block => {
+	buBlocks.forEach( ( block ) => {
 		if ( registeredBlocks.includes( block ) ) {
 			wp.blocks.unregisterBlockType( block );
 		}

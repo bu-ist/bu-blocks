@@ -1,35 +1,86 @@
 {
-  "name": "bu-blocks",
-  "version": "0.3.7",
-  "private": true,
-  "main": "Gruntfile.js",
-  "author": "Boston University: Interactive Design",
-  "contributors": [
-    "Jeremy Felt <jfelt@bu.edu>",
-    "Ashley Kolodziej <kolodz10@bu.edu>",
-    "Dakota Chichester <acketon@bu.edu>"
-  ],
-  "scripts": {
-    "start": "cgb-scripts start",
-    "build": "cgb-scripts build",
-    "eject": "cgb-scripts eject"
-  },
-  "dependencies": {
-    "cgb-scripts": "^1.17.0",
-    "classnames": "^2.2.6",
-    "object-fit-images": "^3.2.4"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.4",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-kss": "^5.0.1",
-    "kss": "3.0.0-beta.23",
-    "grunt-wp-i18n": "^1.0.2",
-    "grunt-wp-readme-to-markdown": "~1.0.0",
-    "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#1.0.0",
-    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1"
-  }
+	"name": "bu-blocks",
+	"version": "2.0.0-alpha",
+	"private": true,
+	"description": "A repository for storing all BU WordPress blocks.",
+	"author": {
+		"name": "Boston University",
+		"url": "https://www.bu.edu/marcom/"
+	},
+	"contributors": [
+		"Jeremy Felt <jfelt@bu.edu>",
+		"Ashley Kolodziej <kolodz10@bu.edu>",
+		"Dakota Chichester <acketon@bu.edu>",
+		"Tim King <timking@bu.edu>"
+	],
+	"license": "GPL-3.0-or-later",
+	"keywords": [],
+	"homepage": "https://github.com/bu-ist/bu-blocks/wiki",
+	"repository": "https://github.com/bu-ist/bu-blocks",
+	"bugs": {
+		"url": "https://github.com/bu-ist/bu-blocks/issues"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	],
+	"browserify-shim": {
+		"jquery": "global:jQuery"
+	},
+	"browserify": {
+		"transform": [
+			"browserify-shim"
+		]
+	},
+	"main": "build/index.js",
+	"devDependencies": {
+		"@linthtml/linthtml": "^0.9.5",
+		"@wordpress/scripts": "^27.1.0",
+		"@wordpress/stylelint-config": "^21.33.0",
+		"browserify": "^17.0.0",
+		"browserify-shim": "^3.8.16",
+		"copy-webpack-plugin": "^12.0.2",
+		"grunt-contrib-watch": "^1.1.0",
+		"html-linter": "^1.1.1",
+		"node-wp-i18n": "^1.2.7",
+		"npm-run-all": "^4.1.5",
+		"object-fit-images": "^3.2.4",
+		"responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1",
+		"rimraf": "^5.0.5",
+		"sass-embedded": "^1.72.0",
+		"webpack-merge": "^5.10.0",
+		"webpack-remove-empty-scripts": "^1.0.4",
+		"classnames": "^2.5.1"
+	},
+	"scripts": {
+		"__SETUP__": "=========================================================================",
+		"postinstall": "composer install",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"__DEVELOPMENT__": "===================================================================",
+		"start": "wp-scripts start",
+		"__CLEANUP__": "=======================================================================",
+		"format": "wp-scripts format",
+		"lint": "npm-run-all lint:css lint:html lint:js lint:md lint:php lint:pkg",
+		"lint:css": "wp-scripts lint-style",
+		"lint:html": "linthtml '**!(node_modules|build|vendor)/*.php'",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js:fix": "wp-scripts lint-js --fix",
+		"lint:md": "wp-scripts lint-md-docs",
+		"lint:php": "dev/phpcs/lint-modified.sh",
+		"lint:php:all": "dev/phpcs/lint-all.sh",
+		"lint:pkg": "wp-scripts lint-pkg-json",
+		"__TESTING__": "=======================================================================",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js",
+		"__BUILD__": "=========================================================================",
+		"build": "npm-run-all build:scripts build:i18n build:version",
+		"build:clean": "rimraf languages/*",
+		"build:wpi18n": "wpi18n addtextdomain",
+		"build:wpmakepot": "wpi18n makepot --domain-path languages",
+		"build:i18n": "npm-run-all build:clean build:wpi18n build:wpmakepot",
+		"build:scripts": "wp-scripts build",
+		"build:version": "node dev/version.js"
+	}
 }

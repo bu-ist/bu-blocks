@@ -12,50 +12,32 @@ import './editor.scss';
 import blockIcons from '../../components/block-icons';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
+const { __ } = wp.i18n;
 
-const {
-	registerBlockType,
-} = wp.blocks;
+const { registerBlockType } = wp.blocks;
 
-const {
-	withState,
-	compose,
-} = wp.compose;
+const { withState, compose } = wp.compose;
 
-const {
-	withSelect,
-	select,
-	subscribe,
-} = wp.data;
+const { withSelect, select, subscribe } = wp.data;
 
-const {
-	PlainText,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const { PlainText } =
+	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
 
-const {
-	addQueryArgs,
-} = wp.url;
+const { addQueryArgs } = wp.url;
 
-const {
-	apiFetch,
-} = wp;
+const { apiFetch } = wp;
 
 // Register the block.
 registerBlockType( 'editorial/custom-html', {
-
 	title: __( 'BU Custom HTML' ),
 
 	description: __( 'Enter arbitrary custom HTML.' ),
 
-	icon: blockIcons('html'),
+	icon: blockIcons( 'html' ),
 
 	category: 'bu-editorial',
 
 	attributes: {
-
 		// This block ID is used when storing individual block content as post meta.
 		customBlockID: {
 			type: 'string',
@@ -79,9 +61,7 @@ registerBlockType( 'editorial/custom-html', {
 				errorMessage,
 			} = props;
 
-			const {
-				customBlockID,
-			} = props.attributes;
+			const { customBlockID } = props.attributes;
 
 			// Do an initial load of the block's stored data from meta.
 			if ( '' !== customBlockID && ! doingHTMLFetch && ! hasLoaded ) {
@@ -89,52 +69,42 @@ registerBlockType( 'editorial/custom-html', {
 					doingHTMLFetch: true, // Prevent concurrent API calls for the same data.
 				} );
 
-				apiFetch(
-					{
-						path: addQueryArgs(
-							'/bu-blocks/v1/customhtml',
-							{
-								post_id: select( 'core/editor' ).getCurrentPostId(),
-								custom_block_id: customBlockID,
-							}
-						)
-					}
-				).then( html => {
-					setState( {
-						customHTML: html,
-						doingHTMLFetch: false,
-						hasLoaded: true,
+				apiFetch( {
+					path: addQueryArgs( '/bu-blocks/v1/customhtml', {
+						post_id: select( 'core/editor' ).getCurrentPostId(),
+						custom_block_id: customBlockID,
+					} ),
+				} )
+					.then( ( html ) => {
+						setState( {
+							customHTML: html,
+							doingHTMLFetch: false,
+							hasLoaded: true,
+						} );
+					} )
+					.catch( ( error ) => {
+						setState( {
+							doingHTMLFetch: false,
+							errorMessage: error.message,
+							hasLoaded: true,
+						} );
 					} );
-				} ).catch( error => {
-					setState( {
-						doingHTMLFetch: false,
-						errorMessage: error.message,
-						hasLoaded: true,
-					} );
-				} );
 			}
 
 			return {
-				hasLoaded: hasLoaded,       // Whether the initial load is complete.
-				customHTML: customHTML,     // HTML to display in the block.
+				hasLoaded: hasLoaded, // Whether the initial load is complete.
+				customHTML: customHTML, // HTML to display in the block.
 				errorMessage: errorMessage, // A string to display in the block if an API request failed.
 			};
 		} ),
 	] )( ( { hasLoaded, customHTML, errorMessage, attributes, ...props } ) => {
-		const {
-			className,
-			setState,
-			setAttributes,
-		} = props;
+		const { className, setState, setAttributes } = props;
 
-		const {
-			customBlockID,
-		} = attributes;
+		const { customBlockID } = attributes;
 
 		// Update the block's content state whenever content in this block
 		// is changed.
-		const updateBlockValue = updatedHTML => {
-
+		const updateBlockValue = ( updatedHTML ) => {
 			// HTML is passed around as a state rather than an attribute
 			// because it is stored in meta rather than in content.
 			setState( {
@@ -143,8 +113,7 @@ registerBlockType( 'editorial/custom-html', {
 		};
 
 		// Save post meta via REST Endpoint.
-		const savePostMeta = function() {
-
+		const savePostMeta = function () {
 			let postID = select( 'core/editor' ).getCurrentPostId();
 
 			// This may be true on the first load of some posts.
@@ -152,7 +121,9 @@ registerBlockType( 'editorial/custom-html', {
 				return;
 			}
 
-			let customTextArea = document.querySelector( '#block-' + customBlockID + ' textarea' );
+			let customTextArea = document.querySelector(
+				'#block-' + customBlockID + ' textarea'
+			);
 
 			// This may be true on the first load of some posts.
 			if ( null === customTextArea ) {
@@ -163,7 +134,7 @@ registerBlockType( 'editorial/custom-html', {
 				post_id: postID,
 				custom_block_id: customBlockID,
 				html: customTextArea.value,
-			}
+			};
 
 			// Save the data for this block using a custom endpoint.
 			//
@@ -186,17 +157,17 @@ registerBlockType( 'editorial/custom-html', {
 			// It's the responsiblity of the user to make sure to close the tags in those
 			// situations but it is important to have that ability.
 			if ( '' !== customBlockID ) {
-				apiFetch(
-					{
-						path: '/bu-blocks/v1/customhtml',
-						method: 'POST',
-						data: post,
-					}
-				).then( html => {
-					// Success!
-				} ).catch( error => {
-					// How to handle this error?
-				} );
+				apiFetch( {
+					path: '/bu-blocks/v1/customhtml',
+					method: 'POST',
+					data: post,
+				} )
+					.then( ( html ) => {
+						// Success!
+					} )
+					.catch( ( error ) => {
+						// How to handle this error?
+					} );
 			}
 		};
 
@@ -216,7 +187,11 @@ registerBlockType( 'editorial/custom-html', {
 		var saving = false;
 
 		subscribe( () => {
-			if ( isSavingPost() && ! isAutosavingPost() && didPostSaveRequestSucceed() ) {
+			if (
+				isSavingPost() &&
+				! isAutosavingPost() &&
+				didPostSaveRequestSucceed()
+			) {
 				saving = true;
 			} else {
 				if ( saving ) {
@@ -226,16 +201,14 @@ registerBlockType( 'editorial/custom-html', {
 			}
 		} );
 
-
-
-
-
 		// Set a timestamp based block ID if it does not yet exist. It is okay
 		// for multiple posts to share similar block IDs, but not okay for multiple
 		// blocks on the same post. Using `Date().getTime()` here provides a unique
 		// enough identifier at a low cost.
 		if ( '' === customBlockID ) {
-			setAttributes( { customBlockID: 'manual-' + new Date().getTime() } );
+			setAttributes( {
+				customBlockID: 'manual-' + new Date().getTime(),
+			} );
 		}
 
 		// Selectors technically can't start with a number, so prepend a string to
@@ -243,10 +216,8 @@ registerBlockType( 'editorial/custom-html', {
 		let containerID = 'block-' + customBlockID;
 
 		return (
-			<div id={ containerID } className={ className } >
-				{ ! hasLoaded && (
-					<span>Looking for existing content...</span>
-				) }
+			<div id={ containerID } className={ className }>
+				{ ! hasLoaded && <span>Looking for existing content...</span> }
 				{ hasLoaded && (
 					<PlainText
 						label="Enter custom HTML"
