@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the BU Blocks package.
 msgid ""
 msgstr ""
-"Project-Id-Version: BU Blocks 0.3.7\n"
+"Project-Id-Version: BU Blocks 2.0.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bu-blocks\n"
-"POT-Creation-Date: 2024-05-16 19:06:48+00:00\n"
+"POT-Creation-Date: 2024-05-23 20:54:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,9 +57,7 @@ msgid "https://github.com/bu-ist/bu-blocks"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"A WordPress plugin that registers additional blocks for the new WordPress "
-"editor."
+msgid "A repository for storing all BU WordPress blocks."
 msgstr ""
 
 #. Author of the plugin/theme

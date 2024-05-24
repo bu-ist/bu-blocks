@@ -28,7 +28,10 @@ const customIncludePaths = [
 // Block Common Styles are those shared between blocks (such as a title, label, or button class)
 // Any other non-block block editor features such as a sidebar plugin can have an entry point and stylesheet.
 const blockEntryPoints = {
-	// 'css/common.scss': './src/common.scss', // All decorative styles for blocks
+	// 'build/blocks.editor.build.css': './src/index.js', // @todo doc
+	// 'build/blocks.style.build.css': './src/styles.scss', // @todo doc
+	// 'docs/blocks.style.build.css': './src/styles.scss', // @todo doc
+	// 'js/blocks.build': './src/index.js', // Editor scripts
 };
 
 // Example below is for plugin styles.
@@ -36,10 +39,10 @@ const blockEntryPoints = {
 // non-block features that need styles (templates, shortcodes, etc). It should not
 // contain any block styles.
 const pluginEntryPoints = {
-	'css/common': './src/common.scss', // A stylesheet for the plugin
-	'js/blocks-frontend': './src/blocks-frontend.js',
-	'css/styles': './src/styles.scss', // A stylesheet for the plugin
-	'js/index': './src/index.js',
+	'bu-blocks-frontend': './src/bu-blocks-frontend.scss', // Frontend stylesheet
+	'bu-blocks-frontend': './src/bu-blocks-frontend.js', // Frontend scripts
+	// 'css/bu-blocks-editor': './src/index.scss', // Editor stylesheet
+	// 'js/bu-blocks-editor': './src/index.js', // Editor scripts
 };
 
 // Set SASS compiler to use the faster embedded version. Default is `sass`.

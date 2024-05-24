@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     BU Blocks
+ * Plugin Name:     BU Blockdonkadonk
  * Plugin URI:      https://github.com/bu-ist/bu-blocks
  * Description:     A repository for storing all BU WordPress blocks.
  * Author:          Boston University: Interactive Design
@@ -20,7 +20,7 @@ if (! defined('ABSPATH') ) {
 }
 
 // Defines the plugin version.
-define('BU_BLOCKS_VERSION', '0.3.7');
+define('BU_BLOCKS_VERSION', '2.0.0-alpha');
 
 /**
  * Displays admin notice and prevents activation.
@@ -34,16 +34,16 @@ define('BU_BLOCKS_VERSION', '0.3.7');
 function gutenberg_notice()
 {
     ?>
-        <div class="notice notice-error is-dismissible">
-            <p>
-                <?php esc_html_e('BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks', 'r-editorial'); ?>
-            </p>
-            <p>
-                <?php esc_html_e('Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks', 'r-editorial'); ?>
-            </p>
-            <p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e('Get Gutenberg', 'bu-blocks', 'r-editorial'); ?></a></p>
-        </div>
-    <?php
+<div class="notice notice-error is-dismissible">
+	<p>
+		<?php esc_html_e('BU Blocks Error: BU Blocks requires either WordPress 5.0.0, or the Gutenberg plugin to be installed and activated on any version previous to 5.0.0.', 'bu-blocks', 'r-editorial'); ?>
+	</p>
+	<p>
+		<?php esc_html_e('Please install and activate the Gutenberg plugin to use BU Blocks.', 'bu-blocks', 'r-editorial'); ?>
+	</p>
+	<p><a class="button" href="https://wordpress.org/plugins/gutenberg/" target="_blank" rel="noopener noreferrer"><?php _e('Get Gutenberg', 'bu-blocks', 'r-editorial'); ?></a></p>
+</div>
+<?php
     deactivate_plugins(plugin_basename(__FILE__));
 }
 
@@ -64,6 +64,7 @@ function init_plugin()
         return;
     }
 
+// @todo nothing should be running from the src folder
     // Initialize plugin by including init file, which kicks off hooks.
     include_once plugin_dir_path(__FILE__) . 'src/init.php';
 

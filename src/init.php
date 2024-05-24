@@ -15,7 +15,7 @@ namespace BU\Plugins\BU_Blocks;
 if (! defined('ABSPATH') ) {
     exit;
 }
-
+// echo 'init is in it';
 /**
  * Initializes all WordPress hooks used in the plugin.
  *
@@ -49,10 +49,10 @@ function define_i18n_hooks()
  */
 function define_editor_hooks()
 {
-
+// echo 'define_editor_hooks';
     // Enqueue block scripts and styles for admin and front-end.
-    add_action('enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets');
-    add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets');
+    add_action('enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets'); // Fires after enqueuing block assets for both editor and front-end.
+    add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets'); // Fires after block assets have been enqueued for the editing interface.
     add_action('bu_blocks_enqueue_block_stylesheet', __NAMESPACE__ . '\\enqueue_bu_blocks_general_stylesheet', 10);
 
     // Add block categories.
@@ -99,9 +99,9 @@ function enqueue_bu_blocks_general_stylesheet()
     // Styles.
     wp_enqueue_style(
         'bu-blocks-css', // Handle.
-        plugins_url('dist/blocks.style.build.css', dirname(__FILE__)), // Block style CSS.
+        plugins_url('build/style-index.css', dirname(__FILE__)), // Block style CSS.
         array(), // Dependency to include the CSS after it.
-        filemtime(plugin_dir_path(__DIR__) . 'dist/blocks.style.build.css') // Version: filemtime — Gets file modification time.
+        filemtime(plugin_dir_path(__DIR__) . 'build/style-index.css') // Version: filemtime — Gets file modification time.
     );
 }
 
@@ -139,9 +139,9 @@ function enqueue_block_assets()
     if (! is_admin() ) {
         wp_enqueue_script(
             'bu-blocks-frontend-js', // Handle.
-            plugins_url('/dist/bu-blocks-frontend.js', dirname(__FILE__)), // Bu-blocks-frontend.js: Frontend scripts. Built with Webpack.
+            plugins_url('/build/bu-blocks-frontend.js', dirname(__FILE__)), // bu-blocks-frontend.js: Frontend scripts. Built with Webpack.
             array(), // Dependencies.
-            filemtime(plugin_dir_path(__DIR__) . '/dist/bu-blocks-frontend.js'), // Version: filemtime — Gets file modification time.
+            filemtime(plugin_dir_path(__DIR__) . '/build/bu-blocks-frontend.js'), // Version: filemtime — Gets file modification time.
             true // Enqueue the script in the footer.
         );
     }
@@ -161,9 +161,9 @@ function enqueue_block_editor_assets()
     // Scripts.
     wp_enqueue_script(
         'bu-blocks-js', // Handle.
-        plugins_url('/dist/blocks.build.js', dirname(__FILE__)), // Block.build.js: We register the block here. Built with Webpack.
+        plugins_url('/build/index.js', dirname(__FILE__)), // Block.build.js: We register the block here. Built with Webpack.
         array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
-        filemtime(plugin_dir_path(__DIR__) . 'dist/blocks.build.js'), // Version: filemtime — Gets file modification time.
+        filemtime(plugin_dir_path(__DIR__) . 'build/index.js'), // Version: filemtime — Gets file modification time.
         true // Enqueue the script in the footer.
     );
 
@@ -179,9 +179,9 @@ function enqueue_block_editor_assets()
     // Styles.
     wp_enqueue_style(
         'bu-blocks-editor-css', // Handle.
-        plugins_url('dist/blocks.editor.build.css', dirname(__FILE__)), // Block editor CSS.
+        plugins_url('build/style-index.css', dirname(__FILE__)), // Block editor CSS.
         array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-        filemtime(plugin_dir_path(__DIR__) . 'dist/blocks.editor.build.css') // Version: filemtime — Gets file modification time.
+        filemtime(plugin_dir_path(__DIR__) . 'build/style-index.css') // Version: filemtime — Gets file modification time.
     );
 
     // Enqueue handling of block support for post types.

@@ -55,6 +55,7 @@ module.exports = function ( grunt ) {
 					reload: true,
 				},
 			},
+			// watch all these css files and if changed, do styles (build without the js part)
 			styles: {
 				files: [ 'dist/**/**/*.css' ],
 				tasks: [ 'styles' ],
@@ -62,6 +63,7 @@ module.exports = function ( grunt ) {
 					spawn: false,
 				},
 			},
+			// watch all these js files and if changed, build
 			js: {
 				files: [ 'src/blocks-frontend.js', 'src/**/**/frontend.js' ],
 				tasks: [ 'build' ],
@@ -158,14 +160,28 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'install', [ 'build' ] );
 	grunt.registerTask( 'styles', [ 'kss', 'copy:css', 'copy:kssassets' ] );
 	grunt.registerTask( 'build', [
-		'styles',
-		'kss',
-		'concat',
-		'copy:css',
-		'copy:js',
-		'copy:kssassets',
+		'styles', // probably not needed as they are below...
+		'kss', // makes style guide
+		'concat', // merges all *frontend.js files into one
+		'copy:css', // docs
+		'copy:js', // docs
+		'copy:kssassets', // docs
 	] );
 	grunt.registerTask( 'default', [ 'kss', 'browserSync', 'watch' ] );
 
 	grunt.util.linefeed = '\n';
 };
+
+
+
+
+
+// what dist has
+src/blocks.js WAS src/blocks.js -> dist/blocks.style.build.scss NOW build/index.css -- FRONTEND CSS (F+E)
+√ src/bu-blocks-frontend.js WAS src/blocks-frontend.js -> dist/bu-blocks-frontend.js NOW build/bu-blocks-frontend.js -- FRONTEND JS (F+E)
+
+src/blocks.js WAS src/blocks.js -> dist/blocks.editor.build.scss NOW build/index.css -- EDITOR CSS (E)
+√ src/index.js WAS src/index.js -> dist/blocks.build.js NOW build/index.js -- EDITOR JS (E)
+
+
+are blocks.style.build.css & blocks.editor.build.css diff? YES SLIGHTLY
