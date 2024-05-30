@@ -10,22 +10,37 @@
  * the modal functionality of the photo essay block.
  */
 
-import getAllowedFormats from '../../global/allowed-formats';
+ import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { IconButton, PanelBody, Toolbar } = wp.components;
-const { Fragment } = wp.element;
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+	IconButton,
+	PanelBody,
+	Toolbar,
+} = wp.components;
+const {
+	Fragment,
+} = wp.element;
 const {
 	BlockControls,
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
-const { addFilter } = wp.hooks;
-const { createHigherOrderComponent } = wp.compose;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	addFilter
+} = wp.hooks;
+const {
+	createHigherOrderComponent
+} = wp.compose;
+
 
 // Register the block.
 registerBlockType( 'editorial/photoessay-image', {
@@ -67,15 +82,17 @@ registerBlockType( 'editorial/photoessay-image', {
 	},
 
 	getEditWrapperProps( { columnClass } ) {
-		return {
-			className:
-				'wp-block editor-block-list__block block-editor-block-list__block ' +
-				columnClass,
-		};
+		return { className: 'wp-block editor-block-list__block block-editor-block-list__block ' + columnClass };
 	},
 
 	edit( { attributes, setAttributes, isSelected } ) {
-		const { id, url, alt, columnClass, caption } = attributes;
+		const {
+			id,
+			url,
+			alt,
+			columnClass,
+			caption,
+		} = attributes;
 
 		// Set attributes when an image is selected.
 		const onSelectImage = ( media ) => {
@@ -87,9 +104,7 @@ registerBlockType( 'editorial/photoessay-image', {
 
 			setAttributes( {
 				id: media.id,
-				url: media.sizes[ 'large' ]
-					? media.sizes[ 'large' ].url
-					: media.url,
+				url: ( media.sizes['large'] ) ? media.sizes['large'].url : media.url,
 				alt: media.alt,
 			} );
 		};
@@ -122,31 +137,29 @@ registerBlockType( 'editorial/photoessay-image', {
 						{ url && (
 							<BlockControls>
 								{ isSelected && (
-									<Toolbar>
-										<MediaUpload
-											onSelect={ onSelectImage }
-											value={ id }
-											allowedTypes={ [ 'image' ] }
-											render={ ( { open } ) => (
-												<div>
-													<IconButton
-														className="components-toolbar__control"
-														label="Edit image"
-														icon="edit"
-														onClick={ open }
-													/>
-													<IconButton
-														icon="no-alt"
-														onClick={
-															onRemoveImage
-														}
-														className="blocks-gallery-image__remove"
-														label="Remove image"
-													/>
-												</div>
-											) }
-										/>
-									</Toolbar>
+								<Toolbar>
+									<MediaUpload
+										onSelect={ onSelectImage }
+										value={ id }
+										allowedTypes={ [ 'image' ] }
+										render={ ( { open } ) => (
+											<div>
+												<IconButton
+													className="components-toolbar__control"
+													label="Edit image"
+													icon="edit"
+													onClick={ open }
+												/>
+												<IconButton
+													icon="no-alt"
+													onClick={ onRemoveImage }
+													className="blocks-gallery-image__remove"
+													label="Remove image"
+												/>
+											</div>
+										) }
+									/>
+								</Toolbar>
 								) }
 							</BlockControls>
 						) }
@@ -159,39 +172,24 @@ registerBlockType( 'editorial/photoessay-image', {
 								className={ id ? `wp-image-${ id }` : null }
 							/>
 
-							{ ( ! RichText.isEmpty( caption ) || isSelected ) &&
-								url && (
-									<div className="wp-block-photoessay-media-caption-editor-wrapper">
-										<RichText
-											tagName="p"
-											className="wp-block-photoessay-media-caption wp-prepress-component-caption"
-											placeholder={ __(
-												'Add a caption and/or media credit...'
-											) }
-											value={ caption }
-											onChange={ ( value ) =>
-												setAttributes( {
-													caption: value,
-												} )
-											}
-											formattingControls={ getAllowedFormats(
-												'formattingControls',
-												[ 'bold', 'italic', 'link' ]
-											) }
-											allowedFormats={ getAllowedFormats(
-												'allowedFormats',
-												[
-													'core/bold',
-													'core/italic',
-													'core/link',
-												]
-											) }
-											keepPlaceholderOnFocus
-										/>
-									</div>
-								) }
+							{ ( ( ! RichText.isEmpty( caption ) || isSelected ) && url ) && (
+								<div className="wp-block-photoessay-media-caption-editor-wrapper">
+									<RichText
+										tagName="p"
+										className="wp-block-photoessay-media-caption wp-prepress-component-caption"
+										placeholder={ __( 'Add a caption and/or media credit...' ) }
+										value={ caption }
+										onChange={ value => setAttributes( { caption: value } ) }
+										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+										keepPlaceholderOnFocus
+									/>
+								</div>
+							) }
 						</figure>
 					) }
+
+
 				</div>
 				<div class="wp-block-photoessay-media-editorshim"></div>
 			</Fragment>
@@ -199,7 +197,13 @@ registerBlockType( 'editorial/photoessay-image', {
 	},
 
 	save( { attributes } ) {
-		const { id, url, alt, columnClass, caption } = attributes;
+		const {
+			id,
+			url,
+			alt,
+			columnClass,
+			caption,
+		} = attributes;
 
 		return (
 			<div className={ columnClass }>
@@ -210,15 +214,15 @@ registerBlockType( 'editorial/photoessay-image', {
 							alt={ alt }
 							className={ id ? `wp-image-${ id }` : null }
 						/>
-						{ ! RichText.isEmpty( caption ) && (
+						{ !RichText.isEmpty( caption ) &&
 							<figcaption>
-								<RichText.Content
-									tagName="p"
-									className="wp-block-photoessay-media-caption wp-prepress-component-caption"
-									value={ caption }
-								/>
+							<RichText.Content
+								tagName="p"
+								className="wp-block-photoessay-media-caption wp-prepress-component-caption"
+								value={ caption }
+							/>
 							</figcaption>
-						) }
+						}
 					</figure>
 				</div>
 			</div>

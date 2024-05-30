@@ -47,7 +47,7 @@ registerBlockType( 'bu/collapsible', {
 	name: 'bu/collapsible',
 	title: __( 'Collapsible' ),
 	description: __( 'A collapsible content block.' ),
-	icon: blockIcons( 'collapsible' ),
+	icon: blockIcons('collapsible'),
 	category: 'bu',
 	supports: {
 		align: [ 'wide', 'full' ],
@@ -88,7 +88,7 @@ registerBlockType( 'bu/collapsible', {
 		buttonCloseLabel: {
 			type: 'string',
 			default: 'Close',
-		},
+		}
 	},
 	styles: [
 		{
@@ -98,15 +98,16 @@ registerBlockType( 'bu/collapsible', {
 		},
 		{
 			name: 'outline',
-			label: __( 'Outline' ),
+			label: __( 'Outline' )
 		},
 		{
 			name: 'preview',
-			label: __( 'Preview' ),
-		},
+			label: __( 'Preview' )
+		}
 	],
 
 	edit( props ) {
+
 		const { attributes, setAttributes, clientId, className } = props;
 		const {
 			title,
@@ -119,17 +120,15 @@ registerBlockType( 'bu/collapsible', {
 			buttonCloseLabel,
 			buttonOpenLabel,
 		} = attributes;
-		const TagName = `h${ level }`;
+		const TagName = `h${level}`;
+
 
 		let isPreviewStyle = false;
 		if ( props.attributes.className ) {
-			isPreviewStyle =
-				props.attributes.className.includes( 'is-style-preview' );
+			isPreviewStyle = props.attributes.className.includes( 'is-style-preview' );
 		}
 
-		const allowedBlockList = allowedBlocks().filter(
-			( block ) => undefined !== block
-		);
+		const allowedBlockList = allowedBlocks().filter( block => undefined !== block );
 		allowedBlockList.push( 'bu/collapsible' );
 
 		// Add an offset to the bottom margin in the editor to account for the container element padding
@@ -137,15 +136,11 @@ registerBlockType( 'bu/collapsible', {
 
 		// Generate anchor if not set
 		if ( ! id ) {
-			setAttributes( {
-				id: `bu-collapsible-${ clientId.split( '-', 1 ) }`,
-			} );
+			setAttributes( { id: `bu-collapsible-${clientId.split( '-', 1 )}` } );
 		}
 
 		const styles = {
-			marginBottom:
-				( customMarginBottom ? marginBottom : 0 ) +
-				editorContainerPaddingOffset,
+			marginBottom: ( customMarginBottom ? marginBottom : 0 ) + editorContainerPaddingOffset
 		};
 
 		const blockProps = useBlockProps( {
@@ -158,8 +153,11 @@ registerBlockType( 'bu/collapsible', {
 		} );
 
 		return (
-			<div { ...blockProps }>
+
+			<div {...blockProps}>
+
 				<InspectorControls>
+
 					{ ! isPreviewStyle && (
 						<PanelBody title={ __( 'Icon Style' ) }>
 							<ButtonGroup className="bu-collapsible-icon-style-button">
@@ -168,11 +166,7 @@ registerBlockType( 'bu/collapsible', {
 									isSecondary={ 'plus-minus' !== iconStyle }
 									showTooltip={ true }
 									label={ __( 'Plus/Minus' ) }
-									onClick={ ( value ) =>
-										setAttributes( {
-											iconStyle: 'plus-minus',
-										} )
-									}
+									onClick={ ( value ) => setAttributes( { iconStyle: 'plus-minus' } ) }
 								>
 									+ -
 								</Button>
@@ -181,9 +175,7 @@ registerBlockType( 'bu/collapsible', {
 									isSecondary={ 'arrows' !== iconStyle }
 									showTooltip={ true }
 									label={ __( 'Arrows' ) }
-									onClick={ ( value ) =>
-										setAttributes( { iconStyle: 'arrows' } )
-									}
+									onClick={ ( value ) => setAttributes( { iconStyle: 'arrows' } ) }
 								>
 									&#62721; &#62720;
 								</Button>
@@ -196,16 +188,12 @@ registerBlockType( 'bu/collapsible', {
 							<TextControl
 								label={ __( 'Open Button Label' ) }
 								value={ buttonOpenLabel }
-								onChange={ ( value ) =>
-									setAttributes( { buttonOpenLabel: value } )
-								}
+								onChange={ ( value ) => setAttributes( { buttonOpenLabel: value } ) }
 							/>
 							<TextControl
 								label={ __( 'Close Button Label' ) }
 								value={ buttonCloseLabel }
-								onChange={ ( value ) =>
-									setAttributes( { buttonCloseLabel: value } )
-								}
+								onChange={ ( value ) => setAttributes( { buttonCloseLabel: value } ) }
 							/>
 						</PanelBody>
 					) }
@@ -215,9 +203,7 @@ registerBlockType( 'bu/collapsible', {
 							<ToggleControl
 								label={ __( 'Open' ) }
 								checked={ isOpen }
-								onChange={ () =>
-									setAttributes( { isOpen: ! isOpen } )
-								}
+								onChange={ () => setAttributes( { isOpen: !isOpen } ) }
 							/>
 						</PanelBody>
 					) }
@@ -226,59 +212,44 @@ registerBlockType( 'bu/collapsible', {
 						<ToggleControl
 							label={ __( 'Custom spacing' ) }
 							checked={ customMarginBottom }
-							onChange={ () =>
-								setAttributes( {
-									customMarginBottom: ! customMarginBottom,
-								} )
-							}
+							onChange={ () => setAttributes( { customMarginBottom: !customMarginBottom } ) }
 						/>
 
 						{ customMarginBottom && (
 							<RangeControl
 								label={ __( 'Bottom Margin (px)' ) }
 								value={ marginBottom }
-								onChange={ ( value ) =>
-									setAttributes( { marginBottom: value } )
-								}
+								onChange={ ( value ) => setAttributes( { marginBottom: value } ) }
 								min={ 0 }
 								max={ 200 }
 								step={ 1 }
 							/>
 						) }
+
 					</PanelBody>
 
 					<PanelBody title={ __( 'Anchor ID' ) }>
 						<TextControl
 							label={ __( 'Unique HTML ID' ) }
 							value={ id }
-							onChange={ ( value ) =>
-								setAttributes( { id: value } )
-							}
+							onChange={ ( value ) => setAttributes( { id: value } ) }
 						/>
 					</PanelBody>
+
 				</InspectorControls>
 
 				<BlockControls>
-					<HeadingToolbar
-						minLevel={ 2 }
-						maxLevel={ 7 }
-						selectedLevel={ level }
-						onChange={ ( newLevel ) =>
-							setAttributes( { level: newLevel } )
-						}
-					/>
+					<HeadingToolbar minLevel={ 2 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 
 				<TagName className="bu-collapsible-heading">
-					{ /* Using div because button cause issue in editor */ }
+					{/* Using div because button cause issue in editor */}
 					{ ! isPreviewStyle && (
 						<RichText
 							tagName={ 'div' }
 							className="bu-block-collapsible-toggle"
 							value={ title }
-							onChange={ ( value ) =>
-								setAttributes( { title: value } )
-							}
+							onChange={ value => setAttributes( { title: value } ) }
 							placeholder={ __( 'Heading...' ) }
 							formattingControls={ [ 'bold', 'italic' ] }
 						/>
@@ -289,27 +260,32 @@ registerBlockType( 'bu/collapsible', {
 							tagName={ 'div' }
 							className=""
 							value={ title }
-							onChange={ ( value ) =>
-								setAttributes( { title: value } )
-							}
+							onChange={ value => setAttributes( { title: value } ) }
 							placeholder={ __( 'Heading...' ) }
 							formattingControls={ [ 'bold', 'italic' ] }
 						/>
 					) }
+
 				</TagName>
 
 				<div className="bu-block-collapsible-content">
-					<InnerBlocks allowedBlocks={ allowedBlockList } />
+					<InnerBlocks allowedBlocks={ allowedBlockList }/>
 				</div>
 
 				{ isPreviewStyle && (
-					<div className="button">{ buttonOpenLabel }</div>
+					<div className="button">
+						{ buttonOpenLabel }
+					</div>
 				) }
+
 			</div>
+
 		);
+
 	},
 
 	save( { attributes } ) {
 		return <InnerBlocks.Content />;
-	},
+	}
+
 } );

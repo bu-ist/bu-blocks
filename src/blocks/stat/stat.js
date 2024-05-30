@@ -17,9 +17,19 @@ import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Circle, PanelBody, Path, RangeControl, SVG } = wp.components;
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
+const {
+	Circle,
+	PanelBody,
+	Path,
+	RangeControl,
+	SVG,
+} = wp.components;
 const {
 	InspectorControls,
 	PanelColorSettings,
@@ -27,7 +37,7 @@ const {
 	RichText,
 	withColors,
 	useBlockProps,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -37,17 +47,17 @@ const {
  * @param {string} className      Default classes assigned to the block.
  * @param {number} numberSize     The size at which to display the stat number.
  */
-const getBlockClasses = (
-	circleOneColor,
-	circleTwoColor,
-	className,
-	numberSize
-) => {
-	return classnames( className, {
-		[ `has-circle1-color-${ circleOneColor }` ]: circleOneColor,
-		[ `has-circle2-color-${ circleTwoColor }` ]: circleTwoColor,
-		[ `has-number-size-${ numberSize }` ]: numberSize,
-	} );
+const getBlockClasses = ( circleOneColor, circleTwoColor, className, numberSize ) => {
+	return (
+		classnames(
+			className,
+			{
+				[ `has-circle1-color-${circleOneColor}` ]: circleOneColor,
+				[ `has-circle2-color-${circleTwoColor}` ]: circleTwoColor,
+				[ `has-number-size-${numberSize}` ]: numberSize,
+			}
+		)
+	);
 };
 
 /**
@@ -70,18 +80,14 @@ const statSVG = ( circleOneFill, circleTwoFill ) => (
 			cx="50"
 			cy="50"
 			r="47"
-			style={ {
-				strokeDashoffset: `${ 302 * ( 1 - circleOneFill * 0.01 ) }`,
-			} }
+			style={ { strokeDashoffset: `${ 302 * ( 1 - ( circleOneFill * 0.01 ) ) }` } }
 		/>
 		<Circle
 			className="wp-block-bu-stat-circle2"
 			cx="50"
 			cy="50"
 			r="47"
-			style={ {
-				strokeDashoffset: `${ 302 * ( 1 - circleTwoFill * 0.01 ) }`,
-			} }
+			style={ { strokeDashoffset: `${ 302 * ( 1 - ( circleTwoFill * 0.01 ) ) }` } }
 		/>
 	</SVG>
 );
@@ -92,7 +98,7 @@ registerBlockType( 'bu/stat', {
 	parent: [ 'bu/stats' ],
 	title: __( 'Stat' ),
 	description: __( 'Display statistical information.' ),
-	icon: blockIcons( 'stat' ),
+	icon: blockIcons('stat'),
 	category: 'bu',
 	attributes: {
 		circleOneColor: {
@@ -142,10 +148,7 @@ registerBlockType( 'bu/stat', {
 		inserter: false,
 	},
 
-	edit: withColors(
-		'circleOneColor',
-		'circleTwoColor'
-	)( ( props ) => {
+	edit: withColors( 'circleOneColor', 'circleTwoColor' )( props => {
 		const {
 			attributes: {
 				circleOneFill,
@@ -164,81 +167,58 @@ registerBlockType( 'bu/stat', {
 			setCircleTwoColor,
 		} = props;
 
-		const blockProps = useBlockProps( {
-			className: getBlockClasses(
-				circleOneColor.slug,
-				circleTwoColor.slug,
-				className,
-				numberSize
-			),
-		} );
+		const blockProps = useBlockProps({
+			className: getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ),
+		});
 
 		return (
 			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
-						{ ( isSelected || ! RichText.isEmpty( preText ) ) && (
+
+						{ ( isSelected || !RichText.isEmpty( preText ) ) &&
 							<RichText
 								tagName="div"
 								className="wp-block-bu-stat-text-pre"
 								placeholder={ __( 'Opening text…' ) }
 								value={ preText }
-								onChange={ ( value ) =>
-									setAttributes( { preText: value } )
-								}
-								formattingControls={ getAllowedFormats(
-									'formattingControls',
-									[ 'bold', 'italic' ]
-								) }
-								allowedFormats={ getAllowedFormats(
-									'allowedFormats',
-									[ 'core/bold', 'core/italic' ]
-								) }
+								onChange={ value => setAttributes( { preText: value } ) }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							/>
-						) }
+						}
 
 						<div className="wp-block-bu-stat-number">
 							<PlainText
 								placeholder={ __( 'Number…' ) }
 								value={ number }
-								onChange={ ( number ) =>
-									setAttributes( { number } )
-								}
+								onChange={ number => setAttributes( { number } ) }
 							/>
 						</div>
 
-						{ ( isSelected || ! RichText.isEmpty( postText ) ) && (
+						{ ( isSelected || !RichText.isEmpty( postText ) ) &&
 							<RichText
 								tagName="div"
 								className="wp-block-bu-stat-text-post"
 								placeholder={ __( 'Closing text…' ) }
 								value={ postText }
-								onChange={ ( value ) =>
-									setAttributes( { postText: value } )
-								}
-								formattingControls={ getAllowedFormats(
-									'formattingControls',
-									[ 'bold', 'italic' ]
-								) }
-								allowedFormats={ getAllowedFormats(
-									'allowedFormats',
-									[ 'core/bold', 'core/italic' ]
-								) }
+								onChange={ value => setAttributes( { postText: value } ) }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							/>
-						) }
+						}
 
 						{ statSVG( circleOneFill, circleTwoFill ) }
+
 					</div>
 				</div>
 
 				<InspectorControls>
-					<PanelBody title={ __( 'Display Options' ) }>
+					<PanelBody title={ __( 'Display Options' ) } >
 						<RangeControl
 							label={ __( 'Number Size' ) }
 							value={ numberSize }
-							onChange={ ( value ) =>
-								setAttributes( { numberSize: value } )
-							}
+							onChange={ value => setAttributes( { numberSize: value } ) }
 							min={ 1 }
 							max={ 4 }
 							step={ 1 }
@@ -246,9 +226,7 @@ registerBlockType( 'bu/stat', {
 						<RangeControl
 							label={ __( 'Bottom Circle Fill' ) }
 							value={ circleOneFill }
-							onChange={ ( circleOneFill ) =>
-								setAttributes( { circleOneFill } )
-							}
+							onChange={ circleOneFill => setAttributes( { circleOneFill } ) }
 							min={ 0 }
 							max={ 100 }
 							step={ 1 }
@@ -256,9 +234,7 @@ registerBlockType( 'bu/stat', {
 						<RangeControl
 							label={ __( 'Top Circle Fill' ) }
 							value={ circleTwoFill }
-							onChange={ ( circleTwoFill ) =>
-								setAttributes( { circleTwoFill } )
-							}
+							onChange={ circleTwoFill => setAttributes( { circleTwoFill } ) }
 							min={ 0 }
 							max={ 100 }
 							step={ 1 }
@@ -284,11 +260,12 @@ registerBlockType( 'bu/stat', {
 						] }
 					/>
 				</InspectorControls>
+
 			</div>
 		);
 	} ),
 
-	save( { attributes } ) {
+	save( { attributes }) {
 		const {
 			circleOneColor,
 			circleOneFill,
@@ -301,36 +278,29 @@ registerBlockType( 'bu/stat', {
 			preText,
 		} = attributes;
 
-		const blockProps = useBlockProps.save( {
-			className: getBlockClasses(
-				circleOneColor,
-				circleTwoColor,
-				className,
-				numberSize
-			),
-		} );
+		const blockProps = useBlockProps.save({
+			className: getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ),
+		});
 
 		return (
 			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
-						{ ! RichText.isEmpty( preText ) && (
+						{ !RichText.isEmpty( preText ) &&
 							<RichText.Content
 								tagName="div"
 								className="wp-block-bu-stat-text-pre"
 								value={ preText }
 							/>
-						) }
-						<div className="wp-block-bu-stat-number">
-							{ number }
-						</div>
-						{ ! RichText.isEmpty( postText ) && (
+						}
+						<div className="wp-block-bu-stat-number">{ number }</div>
+						{ !RichText.isEmpty( postText ) &&
 							<RichText.Content
 								tagName="div"
 								className="wp-block-bu-stat-text-post"
 								value={ postText }
 							/>
-						) }
+						}
 						{ statSVG( circleOneFill, circleTwoFill ) }
 					</div>
 				</div>

@@ -8,11 +8,19 @@
  */
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { Fragment } = wp.element;
-const { PanelBody, ToggleControl } = wp.components;
-const { InspectorControls } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const {
+	__,
+} = wp.i18n;
+const {
+	Fragment,
+} = wp.element;
+const {
+	PanelBody,
+	ToggleControl,
+} = wp.components;
+const {
+	InspectorControls,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Share tools attributes.
 const ShareToolsAttributes = {
@@ -25,11 +33,15 @@ const ShareToolsAttributes = {
 // Share tools controls.
 const ShareToolsControls = ( props ) => {
 	// Get the properties of this component.
-	const { blockProps } = props;
+	const {
+		blockProps,
+	} = props;
 
 	// Get the properties of the block using this component.
 	const {
-		attributes: { shareToolsDisabled },
+		attributes: {
+			shareToolsDisabled,
+		},
 		setAttributes,
 	} = blockProps;
 
@@ -40,11 +52,7 @@ const ShareToolsControls = ( props ) => {
 				<ToggleControl
 					label={ __( 'Disable Share Tools' ) }
 					checked={ shareToolsDisabled }
-					onChange={ () =>
-						setAttributes( {
-							shareToolsDisabled: ! shareToolsDisabled,
-						} )
-					}
+					onChange={ () => setAttributes( { shareToolsDisabled: ! shareToolsDisabled } ) }
 				/>
 			</PanelBody>
 		</InspectorControls>
@@ -58,11 +66,15 @@ const ShareToolsControls = ( props ) => {
  */
 function ShareTools( props ) {
 	// Get the properties of this component.
-	const { blockProps } = props;
+	const {
+		blockProps,
+	} = props;
 
 	// Get the properties of the block using this component.
 	const {
-		attributes: { shareToolsDisabled },
+		attributes: {
+			shareToolsDisabled,
+		},
 	} = blockProps;
 
 	// Return the interface for the background component.
@@ -70,9 +82,7 @@ function ShareTools( props ) {
 		<Fragment>
 			{ ! shareToolsDisabled && (
 				<p className="wp-blocks-components-share-tools">
-					<a href="#" className="icon-action">
-						{ __( 'Share this' ) }
-					</a>
+					<a href="#" className="icon-action">{ __( 'Share this' ) }</a>
 				</p>
 			) }
 		</Fragment>
@@ -80,7 +90,10 @@ function ShareTools( props ) {
 }
 
 // Export attributes for easy importing in blocks.
-export { ShareToolsAttributes, ShareToolsControls };
+export {
+	ShareToolsAttributes,
+	ShareToolsControls,
+};
 
 // Export the share tools control panel.
 export default ShareTools;

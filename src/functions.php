@@ -2,8 +2,8 @@
 /**
  * Plugin functions available in the global namespace.
  *
- * @link  www.bu.edu/interactive-design/
- * @since 0.2.2
+ * @link       www.bu.edu/interactive-design/
+ * @since      0.2.2
  *
  * @package    bu-blocks
  * @subpackage bu-blocks/src
@@ -14,14 +14,13 @@
  *
  * @return array Array of allowed html tags and attributes.
  */
-function bu_blocks_kses_title()
-{
-    return array(
-    'strong' => array(),
-    'em'     => array(),
-    'b'      => array(),
-    'i'      => array(),
-    );
+function bu_blocks_kses_title() {
+	return array(
+		'strong' => array(),
+		'em'     => array(),
+		'b'      => array(),
+		'i'      => array(),
+	);
 }
 
 /**
@@ -36,23 +35,22 @@ function bu_blocks_kses_title()
  *
  * @return array $content Parsed content.
  */
-function bu_blocks_parse_blocks( $content = '' )
-{
-    // Sanitize parameters.
-    $content = (string) $content;
+function bu_blocks_parse_blocks( $content = '' ) {
+	// Sanitize parameters.
+	$content = (string) $content;
 
-    // Bails if empty.
-    if (empty($content) ) {
-        return array();
-    }
+	// Bails if empty.
+	if ( empty( $content ) ) {
+		return array();
+	}
 
-    // Determines if native WP 5.x function exists, fallsback to gutenberg.
-    if (function_exists('parse_blocks') ) {
-        return parse_blocks($content);
-    } elseif (function_exists('gutenberg_parse_blocks') ) {
-        return gutenberg_parse_blocks($content);
-    }
+	// Determines if native WP 5.x function exists, fallsback to gutenberg.
+	if ( function_exists( 'parse_blocks' ) ) {
+		return parse_blocks( $content );
+	} elseif ( function_exists( 'gutenberg_parse_blocks' ) ) {
+		return gutenberg_parse_blocks( $content );
+	}
 
-    // Return an empty array if somehow neither function exists.
-    return array();
+	// Return an empty array if somehow neither function exists.
+	return array();
 }

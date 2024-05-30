@@ -15,7 +15,11 @@ import getAllowedFormats from '../../global/allowed-formats';
 const { __ } = wp.i18n;
 const { compose } = wp.compose;
 
-const { Fragment, useState, useEffect } = wp.element;
+const {
+	Fragment,
+	useState,
+	useEffect,
+} = wp.element;
 
 const {
 	InspectorControls,
@@ -24,16 +28,18 @@ const {
 	RichText,
 	withColors,
 	useBlockProps,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
-const { select } = wp.data;
+const {
+	select,
+} = wp.data;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
-const { hasSelectedInnerBlock, isBlockSelected } =
-	'undefined' === typeof select( 'core/block-editor' )
-		? select( 'core/editor' )
-		: select( 'core/block-editor' );
+const {
+	hasSelectedInnerBlock,
+	isBlockSelected,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
@@ -48,38 +54,41 @@ const BUEditorialModalEdit = ( props ) => {
 		clientId,
 	} = props;
 
-	const { backgroundId, calloutHeading, calloutText, trigger } = attributes;
+	const {
+		backgroundId,
+		calloutHeading,
+		calloutText,
+		trigger,
+	} = attributes;
 
 	const [ isUploading, setIsUploading ] = useState( false );
 
-	const classes = classnames( className, {
-		[ `has-${ themeColor.slug }-theme` ]: themeColor.slug,
-		'has-media': backgroundId,
-	} );
+	const classes = classnames(
+		className,
+		{
+			[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+			'has-media': backgroundId,
+		}
+	);
 
 	// ToDo: explore removing this and using just the CSS classes .is-selected and .has-selected-child.
-	const modalSelected = ( clientId ) => {
+	const modalSelected = (clientId) => {
 		if ( clientId ) {
-			const modalHasSelectedBlock =
-				hasSelectedInnerBlock( clientId, true ) ||
-				isBlockSelected( clientId );
-			return modalHasSelectedBlock ? 'true' : 'false';
+			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
+			return ( modalHasSelectedBlock ) ? 'true' : 'false';
 		} else {
 			return 'false';
 		}
-	};
+	}
 
-	const blockProps = useBlockProps( {
+	const blockProps = useBlockProps({
 		className: classes,
-		'data-selected-modal': modalSelected( clientId ),
-	} );
+		'data-selected-modal': modalSelected(clientId),
+	});
 
 	useEffect( () => {
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
-		if (
-			hasSelectedInnerBlock( clientId, true ) ||
-			isBlockSelected( clientId )
-		) {
+		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
 			setAttributes( { clientId: clientId } );
 		}
 	}, [] );
@@ -121,53 +130,29 @@ const BUEditorialModalEdit = ( props ) => {
 						<div className="modal-valign">
 							<RichText
 								tagName="h1"
-								onChange={ ( value ) =>
-									setAttributes( { calloutHeading: value } )
-								}
+								onChange={ value => setAttributes( { calloutHeading: value } ) }
 								value={ calloutHeading }
 								placeholder={ __( 'Enter heading…' ) }
-								formattingControls={ getAllowedFormats(
-									'formattingControls',
-									[]
-								) }
-								allowedFormats={ getAllowedFormats(
-									'allowedFormats',
-									[]
-								) }
+								formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 							/>
 							<RichText
 								tagName="p"
-								onChange={ ( value ) =>
-									setAttributes( { calloutText: value } )
-								}
+								onChange={ value => setAttributes( { calloutText: value } ) }
 								value={ calloutText }
 								placeholder={ __( 'Enter text…' ) }
-								formattingControls={ getAllowedFormats(
-									'formattingControls',
-									[ 'bold', 'italic', 'link' ]
-								) }
-								allowedFormats={ getAllowedFormats(
-									'allowedFormats',
-									[ 'core/bold', 'core/italic', 'core/link' ]
-								) }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 							/>
 							<div className="wp-block-editorial-modal-trigger-wrapper">
 								<RichText
 									tagName="p"
 									className="js-bu-block-modal-trigger-overlay button"
-									onChange={ ( value ) =>
-										setAttributes( { trigger: value } )
-									}
+									onChange={ value => setAttributes( { trigger: value } ) }
 									value={ trigger }
 									placeholder={ __( 'Enter trigger label…' ) }
-									formattingControls={ getAllowedFormats(
-										'formattingControls',
-										[]
-									) }
-									allowedFormats={ getAllowedFormats(
-										'allowedFormats',
-										[]
-									) }
+									formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 								/>
 							</div>
 						</div>
@@ -175,14 +160,11 @@ const BUEditorialModalEdit = ( props ) => {
 				</div>
 				<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
 					<div className="overlay overlay-scale">
-						<a
-							href="#"
-							class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close"
-						>
-							Close
-						</a>
+						<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
 						<article>
-							<InnerBlocks allowedBlocks={ allowedBlocks() } />
+							<InnerBlocks
+								allowedBlocks={ allowedBlocks() }
+							/>
 						</article>
 					</div>
 				</div>
@@ -191,6 +173,6 @@ const BUEditorialModalEdit = ( props ) => {
 	);
 };
 
-export default compose( [ withColors( 'themeColor' ) ] )(
-	BUEditorialModalEdit
-);
+export default compose( [
+	withColors( 'themeColor' ),
+] )( BUEditorialModalEdit );

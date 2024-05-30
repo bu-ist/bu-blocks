@@ -15,10 +15,6 @@
  * paths that Dart Sass checks to find SASS partials for @import instances.
  */
 const customIncludePaths = [
-	// './node_modules/normalize-scss/sass',
-	// './node_modules/mathsass/dist/',
-	// './node_modules/responsive-foundation',
-	// './node_modules/object-fit-images',
 	'./node_modules',
 ];
 
@@ -28,10 +24,9 @@ const customIncludePaths = [
 // Block Common Styles are those shared between blocks (such as a title, label, or button class)
 // Any other non-block block editor features such as a sidebar plugin can have an entry point and stylesheet.
 const blockEntryPoints = {
-	// 'build/blocks.editor.build.css': './src/index.js', // @todo doc
-	// 'build/blocks.style.build.css': './src/styles.scss', // @todo doc
-	// 'docs/blocks.style.build.css': './src/styles.scss', // @todo doc
-	// 'js/blocks.build': './src/index.js', // Editor scripts
+	// 'css/blocks/decorative/blocks_decorative': './src/blocks/blocks-decorative.scss', // All decorative styles for blocks
+	// 'css/blocks/all_blocks/all_block_styles': './src/blocks/blocks-all.scss', // All individual block base styles combined in one stylesheet.
+	// 'css/blocks/common/blocks_common_styles': './src/blocks/blocks-common.scss', // Common shared styles for these blocks.
 };
 
 // Example below is for plugin styles.
@@ -39,10 +34,10 @@ const blockEntryPoints = {
 // non-block features that need styles (templates, shortcodes, etc). It should not
 // contain any block styles.
 const pluginEntryPoints = {
-	'bu-blocks-frontend': './src/bu-blocks-frontend.scss', // Frontend stylesheet
-	'bu-blocks-frontend': './src/bu-blocks-frontend.js', // Frontend scripts
-	// 'css/bu-blocks-editor': './src/index.scss', // Editor stylesheet
-	// 'js/bu-blocks-editor': './src/index.js', // Editor scripts
+	// 'blocks.style.build.css': './src/blocks.js', // Frontend stylesheet
+	// 'bu-blocks-frontend.js': './src/bu-blocks-frontend.js', // Frontend scripts
+	// 'blocks.editor.build.css': './src/blocks.js', // Editor stylesheet
+	// 'blocks.build.js': './src/blocks.js', // Editor scripts
 };
 
 // Set SASS compiler to use the faster embedded version. Default is `sass`.

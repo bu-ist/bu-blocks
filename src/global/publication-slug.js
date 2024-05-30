@@ -4,7 +4,9 @@
  * Returns a filterable string representing the current content's publication.
  */
 
-const { applyFilters } = wp.hooks;
+const {
+	applyFilters,
+} = wp.hooks;
 
 // Return the publication owner for a block if
 // one is available in the DOM.
@@ -17,6 +19,6 @@ const publicationSlug = () => {
 	}
 
 	return applyFilters( 'buBlocks.global.publicationSlug', publicationSlug );
-};
+}
 
 export default publicationSlug;

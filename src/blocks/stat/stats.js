@@ -17,11 +17,18 @@ import blockIcons from '../../components/block-icons/';
 import edit from './edit';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+const {
+	__,
+} = wp.i18n;
+const {
+	registerBlockType,
+} = wp.blocks;
 
-const { InnerBlocks, RichText, useBlockProps } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const {
+	InnerBlocks,
+	RichText,
+	useBlockProps,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -32,9 +39,14 @@ const { InnerBlocks, RichText, useBlockProps } =
  * @return {string} block classnames
  */
 const getBlockClasses = ( className, stats ) => {
-	return classnames( className, {
-		[ `has-${ stats }-stats` ]: stats,
-	} );
+	return (
+		classnames(
+			className,
+			{
+				[ `has-${stats}-stats` ]: stats,
+			}
+		)
+	);
 };
 
 // Register the block.
@@ -42,7 +54,7 @@ registerBlockType( 'bu/stats', {
 	apiVersion: 2,
 	title: __( 'Stats' ),
 	description: __( 'Add one to four statistics to your content.' ),
-	icon: blockIcons( 'stat' ),
+	icon: blockIcons('stat'),
 	category: 'bu',
 	attributes: {
 		align: {
@@ -71,11 +83,15 @@ registerBlockType( 'bu/stats', {
 	edit,
 
 	save( { attributes } ) {
-		const { caption, className, stats } = attributes;
+		const {
+			caption,
+			className,
+			stats,
+		} = attributes;
 
-		const blockProps = useBlockProps.save( {
+		const blockProps = useBlockProps.save({
 			className: getBlockClasses( className, stats ),
-		} );
+		});
 
 		return (
 			<div { ...blockProps }>
