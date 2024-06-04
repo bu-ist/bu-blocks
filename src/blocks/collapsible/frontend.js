@@ -1,3 +1,12 @@
+/**
+ * BLOCK: Collapsible
+ *
+ * An accordian block to display content
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.collapsible = ( function() {
 
 	// Store all collapsible block

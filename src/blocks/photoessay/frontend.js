@@ -1,3 +1,12 @@
+/**
+ * BLOCK: Photoessay
+ *
+ * A photo layout row block.
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.photoessay = (function() {
 	var scrollTop = 0;
 	var photoEssayBlocks = []; //stores all of our found blocks
