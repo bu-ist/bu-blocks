@@ -93,9 +93,9 @@ function enqueue_bu_blocks_general_stylesheet() {
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
+		plugins_url( 'dist/style-blocks.css', dirname( __FILE__ ) ), // Block style CSS.
 		array(), // Dependency to include the CSS after it.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/style-blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
 }
 
@@ -153,9 +153,9 @@ function enqueue_block_editor_assets() {
 	// Scripts.
 	wp_enqueue_script(
 		'bu-blocks-js', // Handle.
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
+		plugins_url( '/dist/blocks.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.js' ), // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
 	);
 
@@ -171,9 +171,9 @@ function enqueue_block_editor_assets() {
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
+		plugins_url( 'dist/blocks.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
 
 	// Enqueue handling of block support for post types.
@@ -243,12 +243,12 @@ function default_theme_colors( $editor_settings, $post ) {
 
 	$editor_settings['buDefaultThemes'] = array(
 		array(
-			'name'  => esc_html__( 'Light', 'r-editorial' ),
+			'name'  => esc_html__( 'Light', 'bu-blocks' ),
 			'slug'  => 'light',
 			'color' => '#fffffe', // Slightly off-white value to avoid conflicts with default white color.
 		),
 		array(
-			'name'  => esc_html__( 'Dark', 'r-editorial' ),
+			'name'  => esc_html__( 'Dark', 'bu-blocks' ),
 			'slug'  => 'dark',
 			'color' => '#000001', // Slightly off-black value to avoid conflicts with default black color.
 		),
