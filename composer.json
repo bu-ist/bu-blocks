@@ -1,5 +1,5 @@
 {
-	"name": "bu/responsive-child-starter-blocks",
+	"name": "bu/bu-blocks",
 	"description": "PHP utils needed for the project",
 	"type": "project",
 	"require-dev": {
