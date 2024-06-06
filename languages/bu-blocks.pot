@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BU Blockdonkadonk 2.0.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bu-blocks\n"
-"POT-Creation-Date: 2024-05-30 14:37:45+00:00\n"
+"POT-Creation-Date: 2024-05-30 18:28:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,27 +28,27 @@ msgstr ""
 msgid "Get Gutenberg"
 msgstr ""
 
-#: src/blocks/relatedstories/index.php:241
+#: src/blocks/relatedstories/index.php:235
 msgid "Related"
 msgstr ""
 
-#: src/init.php:209
+#: src/init.php:200
 msgid "BU Blocks"
 msgstr ""
 
-#: src/init.php:216
+#: src/init.php:207
 msgid "Editorial Blocks"
 msgstr ""
 
-#: src/init.php:223
+#: src/init.php:214
 msgid "Preset Editorial Blocks"
 msgstr ""
 
-#: src/init.php:256
+#: src/init.php:246
 msgid "Light"
 msgstr ""
 
-#: src/init.php:261
+#: src/init.php:251
 msgid "Dark"
 msgstr ""
 

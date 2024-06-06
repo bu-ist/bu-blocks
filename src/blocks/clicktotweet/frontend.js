@@ -1,3 +1,16 @@
+/**
+ * BLOCK: ClicktoTweet
+ *
+ * A modification of Paragraph blocks to add a click to tweet feature.
+ * If applied to the entire block the whole paragraph is tweetable.
+ * If text is highlighted and the click to tweet format is applied, only that
+ * highlighted text will recieve a tweetable link.
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
+
 bu_blocks.clicktotweet = ( function() {
 	var tweetBlocks = []; //stores all of our found blocks
 	var tweetLabel = "Tweet this";

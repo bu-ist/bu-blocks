@@ -9,6 +9,8 @@
  * Webpack is compiling as the input file.
  */
 
+import './style.scss';
+
 import './blocks/aside/aside.js';
 import './blocks/buniverse/buniverse.js';
 import './blocks/button/button.js';
