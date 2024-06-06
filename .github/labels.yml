@@ -1,85 +1,85 @@
 - color: D33336
-  description: ""
+  description: ''
   name: '⏰ Priority: Critical'
 - color: DE6668
-  description: ""
+  description: ''
   name: '⏰ Priority: High'
 - color: FBD7D8
-  description: ""
+  description: ''
   name: '⏰ Priority: Low'
 - color: EE5D5F
-  description: ""
+  description: ''
   name: '⏰ Priority: Medium'
 - color: FEF2F2
-  description: ""
+  description: ''
   name: '⏰ Priority: Not Addressing'
   from_name: 'wontfix'
 - color: F0FBE4
-  description: ""
+  description: ''
   name: '✅ To Do: Design'
 - color: C1EF93
-  description: ""
+  description: ''
   name: '✅ To Do: Documentation'
 - color: E0F7C9
-  description: ""
+  description: ''
   name: '✅ To Do: HTML/CSS'
 - color: E0F7C9
-  description: ""
+  description: ''
   name: '✅ To Do: JavaScript'
 - color: E0F7C9
-  description: ""
+  description: ''
   name: '✅ To Do: PHP'
 - color: D0F3AE
-  description: ""
+  description: ''
   name: '✅ To Do: Release'
 - color: D0F3AE
-  description: ""
+  description: ''
   name: '✅ To Do: Testing'
 - color: F0FBE4
-  description: ""
+  description: ''
   name: '✅ To Do: Wireframe'
 - color: 9BF7FF
-  description: ""
+  description: ''
   name: "\U0001F4A1 Type: Bug"
   from_name: 'bug'
 - color: ffffff
-  description: ""
+  description: ''
   name: "\U0001F4A1 Type: Duplicate"
   from_name: 'duplicate'
 - color: 39F0FF
-  description: ""
+  description: ''
   name: "\U0001F4A1 Type: Enhancement"
   from_name: 'enhancement'
 - color: 9BF7FF
-  description: ""
+  description: ''
   name: "\U0001F4A1 Type: Feature"
 - color: CDFBFF
-  description: ""
+  description: ''
   name: "\U0001F4A1 Type: Idea"
 - color: D33336
-  description: ""
+  description: ''
   name: "\U0001F6A6Status: Blocked"
 - color: F5B404
-  description: ""
+  description: ''
   name: "\U0001F6A6Status: Needs Review"
 - color: A5E367
-  description: ""
+  description: ''
   name: "\U0001F6A6Status: Ready for Work"
 - color: FFE8A9
-  description: ""
+  description: ''
   name: "\U0001F9D0 Needs: Client"
 - color: FFE8A9
-  description: ""
+  description: ''
   name: "\U0001F9D0 Needs: Creative Director"
 - color: FFE8A9
-  description: ""
+  description: ''
   name: "\U0001F9D0 Needs: Designer"
 - color: FFE8A9
-  description: ""
+  description: ''
   name: "\U0001F9D0 Needs: Developer"
 - color: FFE8A9
-  description: ""
+  description: ''
   name: "\U0001F9D0 Needs: Producer"
 - color: FFE8A9
-  description: ""
+  description: ''
   name: "\U0001F9D0 Needs: Strategist"

@@ -8,3 +8,7 @@ node_modules/
 /_styleguide
 /sftp-config.json
 sftp-config-alt.json
+
+.DS_Store
+dev/phpcs/vendor/
+.vscode
