@@ -1,3 +1,13 @@
+/**
+ * BLOCK: Modal
+ *
+ * A modal block that provides a callout and expandable
+ * overlay content section that opens on top of the page content.
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.modal = (function() {
 	var modalBlocks = [];
 	var $body = document.getElementsByTagName('body')[0];

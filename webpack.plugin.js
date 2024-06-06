@@ -35,7 +35,7 @@ const blockEntryPoints = {
 // contain any block styles.
 const pluginEntryPoints = {
 	// 'blocks.style.build.css': './src/blocks.js', // Frontend stylesheet
-	// 'bu-blocks-frontend.js': './src/bu-blocks-frontend.js', // Frontend scripts
+	'bu-blocks-frontend': './src/blocks-frontend.js', // Frontend scripts
 	// 'blocks.editor.build.css': './src/blocks.js', // Editor stylesheet
 	// 'blocks.build.js': './src/blocks.js', // Editor scripts
 };

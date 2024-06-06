@@ -1,3 +1,12 @@
+/**
+ * BLOCK: collapsible-control
+ *
+ * A block to toggle collapsible blocks on the page
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.collapsibleControl = ( function() {
 
 	// Store all Control blocks
