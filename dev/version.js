@@ -1,8 +1,9 @@
 // Load the library and specify options
 // @link https://attacomsian.com/blog/nodejs-replace-string-in-file
-const version = require( '../package.json' ).version;
-const description = require( '../package.json' ).description;
-const name = require( '../package.json' ).name;
+const package = require( '../package.json' );
+const version = package.version;
+const description = package.description;
+const name = package.name;
 const file = name + '.php';
 
 console.log(
