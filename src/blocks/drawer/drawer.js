@@ -12,7 +12,7 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
@@ -38,10 +38,13 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select
 } = wp.data;
+
+const { useState } = wp.element;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
@@ -77,6 +80,7 @@ const getClasses = ( background, className, hideTeaser, round, size, themeColor 
 
 // Register the block.
 registerBlockType( 'editorial/drawer', {
+	apiVersion: 2,
 	title: __( 'Drawer' ),
 	description: __( 'Add content that can be toggled.' ),
 	icon: blockIcons('drawer'),
@@ -157,22 +161,33 @@ registerBlockType( 'editorial/drawer', {
 			themeColor,
 		} = props;
 
+		const blockProps = useBlockProps( {
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ),
+		});
+
+		const [ isUploading, setIsUploading ] = useState( false );
+
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
 			setAttributes( { clientId: clientId } );
 		}
 
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+			<aside {...blockProps}>
+				<BackgroundControls
+					allowedMediaTypes={ [ 'image' ] }
+					blockProps={ props }
+					inlinePlaceholder={ true }
+					options={ [] }
+					placeholderText={ __( 'Add Image' ) }
+					setIsUploading={ setIsUploading }
+				/>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
 							<Background
-								allowedMediaTypes={ [ 'image' ] }
 								blockProps={ props }
-								inlinePlaceholder={ true }
-								options={ [] }
-								placeholderText={ __( 'Add Image' ) }
+								isUploading={ isUploading }
 							/>
 						</figure>
 					}
@@ -217,6 +232,7 @@ registerBlockType( 'editorial/drawer', {
 						</div>
 					</div>
 				</section>
+				<div class="wp-block-editorial-drawer-clearfix"></div>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
@@ -293,8 +309,12 @@ registerBlockType( 'editorial/drawer', {
 			},
 		} = props;
 
+		const blockProps = useBlockProps.save( {
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor ),
+		});
+
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor ) }>
+			<aside {...blockProps}>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>

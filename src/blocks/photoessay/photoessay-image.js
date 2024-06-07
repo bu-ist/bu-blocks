@@ -171,25 +171,27 @@ registerBlockType( 'editorial/photoessay-image', {
 								alt={ alt }
 								className={ id ? `wp-image-${ id }` : null }
 							/>
+
+							{ ( ( ! RichText.isEmpty( caption ) || isSelected ) && url ) && (
+								<div className="wp-block-photoessay-media-caption-editor-wrapper">
+									<RichText
+										tagName="p"
+										className="wp-block-photoessay-media-caption wp-prepress-component-caption"
+										placeholder={ __( 'Add a caption and/or media credit...' ) }
+										value={ caption }
+										onChange={ value => setAttributes( { caption: value } ) }
+										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+										keepPlaceholderOnFocus
+									/>
+								</div>
+							) }
 						</figure>
 					) }
 
-					{ ( ( ! RichText.isEmpty( caption ) || isSelected ) && url ) && (
-						<div className="wp-block-photoessay-media-caption-editor-wrapper">
-							<RichText
-								tagName="p"
-								className="wp-block-photoessay-media-caption wp-prepress-component-caption"
-								placeholder={ __( 'Add a caption and/or media credit...' ) }
-								value={ caption }
-								onChange={ value => setAttributes( { caption: value } ) }
-								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
-								keepPlaceholderOnFocus
-							/>
-						</div>
-					) }
-				</div>
 
+				</div>
+				<div class="wp-block-photoessay-media-editorshim"></div>
 			</Fragment>
 		);
 	},

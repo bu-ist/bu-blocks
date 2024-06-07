@@ -5,6 +5,9 @@
  * which makes it higher in priority.
  */
 
+$photo-padding: $padding/2 !default;
+$photo-padding-xl: $padding/2 !default;
+
 [data-type="editorial/photoessay"] {
 	// Adds some padding to the block just to make
 	// it a bit easier to select the parent block in the editor.
@@ -18,19 +21,81 @@
 		margin: 0;
 	}
 
+
+	/**
+	* Added this shim element for WP 5.7 as the :after element
+	* that was used before has now been taken over by the
+	* editor to use for an outline border around the block
+	* when selected.
+	**/
+
+	[class*="photo-"] {
+		.wp-block-photoessay-media-editorshim {
+			position: relative;
+		}
+	}
+
+	.photo-1 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 120%;
+		}
+	}
+
+	.photo-2 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 60%;
+		}
+	}
+
+	.photo-3 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 40%;
+		}
+	}
+
+	.photo-4 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 30%;
+		}
+	}
+
+	.photo-s {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: calc(100% - #{$photo-padding*2});
+			@include breakpoint( $xl ) {
+				padding-top: calc(100% - #{$photo-padding-xl*2});
+			}
+		}
+	}
+
+	.photo-f {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 2 / 3 * 100%;
+		}
+	}
+
+	.wp-block-photoessay-media {
+		z-index: 2;
+
+		figure {
+			position: relative;
+		}
+	}
+
 	// This element only exists in the editor and is used
 	// to allow easier input of the caption for each photo.
 	.wp-block-photoessay-media-caption-editor-wrapper {
 		position: absolute;
 		bottom: 0;
-		left: 30px;
-		right: 30px;
+		left: 0;
+		right: 0;
 		max-height: 100%;
 		background-image: linear-gradient( rgba( 0, 0, 0, 0 ), rgba( 0, 0, 0, 1 ) );
 		color: #fff !important;
 		overflow-y: auto;
 		padding: 1em;
 		margin: 0;
+		z-index: 3; // raise it above the other elements so it can be selected
 	}
 
 	// Make media placeholder same size as photo essay block.
