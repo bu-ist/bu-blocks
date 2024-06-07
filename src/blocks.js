@@ -27,7 +27,7 @@ import './blocks/modal/modal.js';
 import './blocks/photoessay/photoessay.js';
 import './blocks/pullquote/pullquote.js';
 import './blocks/relatedstories/relatedstories.js';
-// import './blocks/slideshow/slideshow.js'; // unfinished
+import './blocks/slideshow/slideshow.js'; // unfinished
 import './blocks/stat/stats.js';
 
 // Add the 'Caption' style to the core paragraph block.

@@ -15,6 +15,7 @@ import './blocks/collapsible-control/frontend';
 import './blocks/drawer/frontend';
 import './blocks/modal/frontend';
 import './blocks/photoessay/frontend';
+import './blocks/slideshow/frontend';
 
 // Export bu_blocks object to the window so it's accessible easily for
 // child themes to call public functions or debug.

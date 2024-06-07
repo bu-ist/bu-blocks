@@ -1,3 +1,12 @@
+/**
+ * BLOCK: Slideshow
+ *
+ * An slideshow block to display content
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.slideshow = (function() {
 	var slideshowBlocks = [];
 	var $body = document.getElementsByTagName('body')[0];
@@ -44,7 +53,7 @@ bu_blocks.slideshow = (function() {
 
 				//for each one found store as object in the array
 				slideshowBlocks.push(block);
-			} 
+			}
 
 			// set active states on items and captions
 			for ( i = 0; i < block.mediatrackitems.length; i++) {
@@ -69,7 +78,7 @@ bu_blocks.slideshow = (function() {
 
 	var setupHandlers = function() {
 		if (slideshowBlocks.length > 0) {
-			for ( i = 0; i < slideshowBlocks.length; i++ ) {
+			for ( let i = 0; i < slideshowBlocks.length; i++ ) {
 				var block = slideshowBlocks[i];
 
 				block.backBtn.addEventListener("click", function(e){
