@@ -63,16 +63,18 @@ registerBlockType( 'bu/collapsible-control', {
 
 			<Fragment>
 				<p {...blockProps}>
-					<RichText
-						tagName="button"
-						className={togglebuttonclasses}
-						placeholder={ __( 'Toggle Text' ) }
-						value={ text }
-						onChange={ ( value ) => setAttributes( { text: value } ) }
-						formattingControls={ [ 'bold', 'italic' ] }
-						withoutInteractiveFormatting
-						keepPlaceholderOnFocus
-					/>
+					<button>
+						<RichText
+							tagName="span"
+							className={togglebuttonclasses}
+							placeholder={ __( 'Toggle Text' ) }
+							value={ text }
+							onChange={ ( value ) => setAttributes( { text: value } ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+							withoutInteractiveFormatting
+							keepPlaceholderOnFocus
+						/>
+					</button>
 				</p>
 				<InspectorControls>
 					<PanelBody title={ __( 'Control Options' ) }>
