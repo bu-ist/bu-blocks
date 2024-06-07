@@ -180,7 +180,7 @@ registerBlockType( 'bu/collapsible', {
 				} );
 			}
 
-		}, [ title, clientId, id ] );
+		}, [ title, clientId, id, autoID ] );
 
 
 		/**
