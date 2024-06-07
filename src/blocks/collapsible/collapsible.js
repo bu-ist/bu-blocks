@@ -158,7 +158,7 @@ registerBlockType( 'bu/collapsible', {
 		 * Generate and set an ID for Blocks that have no ID set but have a title
 		 * or if the block's ID is a duplicate of an existing block found in the editor.
 		 *
-		 * useEffect() is triggered when the `title`, `clientId`, or `id` changes on the block.
+		 * useEffect() is triggered when the `title`, `clientId`, `autoID`, or `id` changes on the block.
 		 *
 		 * This should cover block duplication events in the editor and is based on a technique used
 		 * in core for the Heading block to generate anchors.
@@ -180,7 +180,7 @@ registerBlockType( 'bu/collapsible', {
 				} );
 			}
 
-		}, [ title, clientId, id ] );
+		}, [ title, clientId, id, autoID ] );
 
 
 		/**
