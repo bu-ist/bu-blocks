@@ -1348,8 +1348,8 @@ registerBlockType('bu/collapsible-control', {
     const blockProps = useBlockProps();
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
       ...blockProps
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
-      tagName: "button",
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
+      tagName: "span",
       className: togglebuttonclasses,
       placeholder: __('Toggle Text'),
       value: text,
@@ -1359,7 +1359,7 @@ registerBlockType('bu/collapsible-control', {
       formattingControls: ['bold', 'italic'],
       withoutInteractiveFormatting: true,
       keepPlaceholderOnFocus: true
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
+    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __('Control Options')
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RadioControl, {
       label: __('Target'),
@@ -1415,6 +1415,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_allowed_blocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/allowed-blocks */ "./src/components/allowed-blocks/index.js");
 /* harmony import */ var _components_block_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/block-icons */ "./src/components/block-icons/index.js");
 /* harmony import */ var _headline_heading_toolbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../headline/heading-toolbar */ "./src/blocks/headline/heading-toolbar.js");
+/* harmony import */ var _generated_ids__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./generated-ids */ "./src/blocks/collapsible/generated-ids.js");
 
 /**
  * BLOCK: collapsible
@@ -1462,8 +1463,13 @@ const {
   select
 } = wp.data;
 const {
-  getBlocks
-} = select('core/block-editor');
+  useEffect
+} = wp.element;
+
+
+/**
+ * Internal dependencies
+ */
 
 
 // Register the block.
@@ -1506,6 +1512,10 @@ registerBlockType('bu/collapsible', {
       type: 'string',
       default: ''
     },
+    autoID: {
+      type: 'boolean',
+      default: true
+    },
     buttonOpenLabel: {
       type: 'string',
       default: 'Read More'
@@ -1542,7 +1552,8 @@ registerBlockType('bu/collapsible', {
       marginBottom,
       id,
       buttonCloseLabel,
-      buttonOpenLabel
+      buttonOpenLabel,
+      autoID
     } = attributes;
     const TagName = `h${level}`;
     let isPreviewStyle = false;
@@ -1555,12 +1566,57 @@ registerBlockType('bu/collapsible', {
     // Add an offset to the bottom margin in the editor to account for the container element padding
     const editorContainerPaddingOffset = 28;
 
-    // Generate anchor if not set
-    if (!id) {
-      setAttributes({
-        id: `bu-collapsible-${clientId.split('-', 1)}`
-      });
-    }
+    /**
+     * Are Auto Generated IDs enabled for this block?
+     * Returns true if toggle control is enabled.
+     * @returns boolean
+     */
+    const canGenerateID = () => {
+      return autoID;
+    };
+
+    /**
+     * Generate and set an ID for Blocks that have no ID set but have a title
+     * or if the block's ID is a duplicate of an existing block found in the editor.
+     *
+     * useEffect() is triggered when the `title`, `clientId`, `autoID`, or `id` changes on the block.
+     *
+     * This should cover block duplication events in the editor and is based on a technique used
+     * in core for the Heading block to generate anchors.
+     */
+    useEffect(() => {
+      // Check if we can generate IDs for this block.
+      if (!canGenerateID()) {
+        return;
+      }
+
+      // If no ID is set, but there is a title value OR if this ID is a duplicate of an
+      // existing collapsible block in this post.
+      if (!id && title || (0,_generated_ids__WEBPACK_IMPORTED_MODULE_7__.isDuplicateblockID)(props, id)) {
+        let newUniqueID = (0,_generated_ids__WEBPACK_IMPORTED_MODULE_7__.generateID)(title);
+
+        // Append part of the clientId to the new ID to make it unique.
+        setAttributes({
+          id: newUniqueID + `-${clientId.split('-', 1)}`
+        });
+      }
+    }, [title, clientId, id, autoID]);
+
+    /**
+     * When the title attribute changes we save the new title, and check if the id
+     * can and should be regenerated.
+     * @param {*} value The new value of the title field.
+     */
+    const onTitleChange = value => {
+      const newAttrs = {
+        title: value
+      };
+      if (canGenerateID() && (0,_generated_ids__WEBPACK_IMPORTED_MODULE_7__.generateID)(value) !== (0,_generated_ids__WEBPACK_IMPORTED_MODULE_7__.generateID)(title)) {
+        // Generate a new id and save it as the ID.
+        newAttrs.id = (0,_generated_ids__WEBPACK_IMPORTED_MODULE_7__.generateID)(value);
+      }
+      setAttributes(newAttrs);
+    };
     const styles = {
       marginBottom: (customMarginBottom ? marginBottom : 0) + editorContainerPaddingOffset
     };
@@ -1568,7 +1624,8 @@ registerBlockType('bu/collapsible', {
       className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, {
         'is-open': isOpen
       }, `icon-style-${iconStyle}`),
-      style: styles
+      style: styles,
+      'data-uniqueid': id
     });
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...blockProps
@@ -1633,7 +1690,17 @@ registerBlockType('bu/collapsible', {
       step: 1
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __('Anchor ID')
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+      label: __('Automatically Generated'),
+      checked: autoID,
+      onChange: () => setAttributes({
+        autoID: !autoID
+      })
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Note:"), " The id ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "must"), " be unique and cannot be duplicated in this post. Unique ID's are needed on each instance of this block so that the aria labels properly document the button and interactive state of the block for accessibility. Duplicate ID's are an accessibility issue and cause errors with interactions with the blocks. Do not use spaces."), autoID && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+      label: __('Unique HTML ID'),
+      value: id,
+      disabled: true
+    }), !autoID && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
       label: __('Unique HTML ID'),
       value: id,
       onChange: value => setAttributes({
@@ -1652,18 +1719,16 @@ registerBlockType('bu/collapsible', {
       tagName: 'div',
       className: "bu-block-collapsible-toggle",
       value: title,
-      onChange: value => setAttributes({
-        title: value
-      }),
+      onChange: onTitleChange,
       placeholder: __('Heading...'),
       formattingControls: ['bold', 'italic']
     }), isPreviewStyle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
       tagName: 'div',
       className: "",
-      value: title,
-      onChange: value => setAttributes({
-        title: value
-      }),
+      value: title
+      //onChange={ value => setAttributes( { title: value } ) }
+      ,
+      onChange: onTitleChange,
       placeholder: __('Heading...'),
       formattingControls: ['bold', 'italic']
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1680,6 +1745,113 @@ registerBlockType('bu/collapsible', {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null);
   }
 });
+
+/***/ }),
+
+/***/ "./src/blocks/collapsible/generated-ids.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/collapsible/generated-ids.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   generateID: function() { return /* binding */ generateID; },
+/* harmony export */   isDuplicateblockID: function() { return /* binding */ isDuplicateblockID; }
+/* harmony export */ });
+/**
+ * Strip any markup from the text.
+ *
+ * based on: https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/heading/autogenerate-anchors.js#L20
+ * @param {*} text
+ * @returns
+ */
+const getTextWithoutMarkup = text => {
+  const dummyElement = document.createElement('div');
+  dummyElement.innerHTML = text;
+  return dummyElement.innerText;
+};
+
+/**
+ * Function to turn a string into a slug by stripping characters, adding hyphens, etc.
+ * @param {*} str
+ * @returns str The formatted slug.
+ */
+const slugify = str => {
+  return String(str).normalize('NFKD') // split accented characters into their base characters and diacritical marks
+  .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+  .trim() // trim leading or trailing whitespace
+  .toLowerCase() // convert to lowercase
+  .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+  .replace(/\s+/g, '-') // replace spaces with hyphens
+  .replace(/-+/g, '-'); // remove consecutive hyphens
+};
+
+/**
+ * Function to generate a slug from a given text string.
+ * @param {str} text The original text string.
+ * @returns str The formatted slug.
+ */
+const getSlug = text => {
+  let slug = getTextWithoutMarkup(text);
+  slug = 'bu-collapsible-id-' + slugify(slug);
+  return slug;
+};
+
+/**
+ * Function to get the editor's Document Root to be used with querySelector to find
+ * blocks and elements in the editor view.
+ *
+ * Based on: https://github.com/WordPress/gutenberg/issues/17246#issuecomment-1216528269
+ * @param {*} props
+ * @returns
+ */
+const getBlockDocumentRoot = props => {
+  const iframes = document.querySelectorAll('.edit-site-visual-editor__editor-canvas');
+  let _document = document;
+
+  // check for block editor iframes
+  for (let i = 0; i < iframes.length; i++) {
+    let block = iframes[i].contentDocument.getElementById('block-' + props.clientId);
+    if (block !== null) {
+      _document = iframes[i].contentDocument;
+      break;
+    }
+  }
+  return _document;
+};
+
+/**
+ * Function to Search the block editor for blocks with a duplicate id.
+ *
+ * Based on: https://github.com/WordPress/gutenberg/issues/17246#issuecomment-1492074695
+ * @param {*} props
+ * @param {str} id The ID to check for.
+ * @returns boolean
+ */
+const isDuplicateblockID = (props, id) => {
+  let duplicate = false;
+  const _document = getBlockDocumentRoot(props);
+  const elements = _document.querySelectorAll('.block-editor-writing-flow [data-uniqueid="' + id + '"]');
+  if (elements.length > 1) {
+    duplicate = true;
+  }
+  return duplicate;
+};
+
+/**
+ * Function to generate an ID from a given title value.
+ * @param {str} title The title value to generate the id from.
+ * @returns str The new id string.
+ */
+const generateID = title => {
+  const slug = getSlug(title);
+  if ('' === slug) {
+    return null;
+  }
+  return slug;
+};
 
 /***/ }),
 
