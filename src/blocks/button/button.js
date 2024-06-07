@@ -35,6 +35,9 @@ const {
 	Path,
 	RadioControl,
 	SVG,
+	ToolbarGroup,
+	ToolbarButton,
+	Popover,
 } = wp.components;
 const {
 	Fragment,
@@ -42,11 +45,16 @@ const {
 const {
 	InspectorControls,
 	PanelColorSettings,
+	BlockControls,
 	RichText,
 	URLInput,
 	withColors,
 	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	withState,
+	compose,
+} = wp.compose;
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -129,7 +137,13 @@ registerBlockType( 'bu/button', {
 		align: [ 'left', 'center', 'right' ],
 	},
 
-	edit: withColors( 'themeColor' )( props => {
+	//edit: withColors( 'themeColor' )( props => {
+	edit: compose( [
+		withState( {
+			isLinkPopoverOpen: false,
+		} ),
+		withColors( 'themeColor' )
+	] )( props => {
 		const {
 			attributes: {
 				text,
@@ -141,6 +155,8 @@ registerBlockType( 'bu/button', {
 			setThemeColor,
 			setAttributes,
 			isSelected,
+			isLinkPopoverOpen,
+			setState,
 			className,
 		} = props;
 
@@ -150,6 +166,30 @@ registerBlockType( 'bu/button', {
 
 		return (
 			<Fragment>
+				<BlockControls>
+					<ToolbarGroup>
+						<ToolbarButton
+							name="link"
+							icon="admin-links"
+							title={ __( 'Link' ) }
+							isActive={ isLinkPopoverOpen }
+							onClick={ () => {
+								setState( ( state ) => ( { isLinkPopoverOpen: ! state.isLinkPopoverOpen } ) );
+							} }
+						/>
+
+						{ isLinkPopoverOpen && (
+							<Popover position="top center">
+								<URLInput
+									value={ url }
+									onChange={ ( value ) => setAttributes( { url: value } ) }
+								/>
+							</Popover>
+						) }
+
+					</ToolbarGroup>
+				</BlockControls>
+
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
@@ -182,6 +222,7 @@ registerBlockType( 'bu/button', {
 								{ __( 'Clear' ) }
 							</Button>
 						</PanelBody>
+
 
 						<PanelBody
 							className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
