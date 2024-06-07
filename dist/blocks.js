@@ -26,9 +26,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_photoessay_photoessay_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./blocks/photoessay/photoessay.js */ "./src/blocks/photoessay/photoessay.js");
 /* harmony import */ var _blocks_pullquote_pullquote_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./blocks/pullquote/pullquote.js */ "./src/blocks/pullquote/pullquote.js");
 /* harmony import */ var _blocks_relatedstories_relatedstories_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./blocks/relatedstories/relatedstories.js */ "./src/blocks/relatedstories/relatedstories.js");
-/* harmony import */ var _blocks_stat_stats_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/stat/stats.js */ "./src/blocks/stat/stats.js");
-/* harmony import */ var _components_paragraph_caption_style_paragraph_caption_style_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/paragraph-caption-style/paragraph-caption-style.js */ "./src/components/paragraph-caption-style/paragraph-caption-style.js");
-/* harmony import */ var _components_paragraph_end_of_article_style_paragraph_end_of_article_style_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/paragraph-end-of-article-style/paragraph-end-of-article-style.js */ "./src/components/paragraph-end-of-article-style/paragraph-end-of-article-style.js");
+/* harmony import */ var _blocks_slideshow_slideshow_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/slideshow/slideshow.js */ "./src/blocks/slideshow/slideshow.js");
+/* harmony import */ var _blocks_stat_stats_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./blocks/stat/stats.js */ "./src/blocks/stat/stats.js");
+/* harmony import */ var _components_paragraph_caption_style_paragraph_caption_style_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/paragraph-caption-style/paragraph-caption-style.js */ "./src/components/paragraph-caption-style/paragraph-caption-style.js");
+/* harmony import */ var _components_paragraph_end_of_article_style_paragraph_end_of_article_style_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/paragraph-end-of-article-style/paragraph-end-of-article-style.js */ "./src/components/paragraph-end-of-article-style/paragraph-end-of-article-style.js");
 /**
  * Gutenberg Blocks
  *
@@ -57,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import './blocks/slideshow/slideshow.js'; // unfinished
+ // unfinished
 
 
 // Add the 'Caption' style to the core paragraph block.
@@ -6186,6 +6187,444 @@ registerBlockType('editorial/relatedstories', {
 
 /***/ }),
 
+/***/ "./src/blocks/slideshow/slideshow.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/slideshow/slideshow.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/slideshow/style.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/slideshow/editor.scss");
+
+/**
+ * BLOCK: bu-button-cgb
+ *
+ * Registering a basic block with Gutenberg.
+ * Simple block, renders and saves the same content without any interactivity.
+ */
+
+// External dependencies.
+
+
+// Import CSS.
+
+
+
+// WordPress dependencies.
+const {
+  __
+} = wp.i18n;
+const {
+  registerBlockType
+} = wp.blocks;
+const {
+  IconButton,
+  PanelBody,
+  Path,
+  RadioControl,
+  SelectControl,
+  SVG,
+  ToggleControl
+} = wp.components;
+const {
+  Fragment
+} = wp.element;
+const {
+  InspectorControls,
+  MediaPlaceholder,
+  MediaUpload,
+  MediaUploadCheck,
+  RichText
+} = wp.editor;
+
+/**
+ * Returns the class list for the block based on the current settings.
+ *
+ * @param {string}  aspectRatio The value of the aspect ratio option.
+ * @param {string}  className   Default and additional classes applied to the block.
+ * @param {boolean} crop        Whether the Crop option is toggled on.
+ * @param {boolean} showNextUp  Whether the Show Next Up option is toggled on.
+ */
+const getClasses = (aspectRatio, className, crop, showNextUp) => {
+  return classnames__WEBPACK_IMPORTED_MODULE_1___default()('js-bu-blocks-slideshow', className, {
+    'has-crop': crop,
+    'has-shownextup': showNextUp,
+    [`has-aspectratio-${aspectRatio}`]: aspectRatio
+  });
+};
+
+/**
+ * Return a string for use in slide classes using the provided index.
+ *
+ * @param {number} index The zero-indexed position of the slide.
+ */
+const slideIndex = index => {
+  const oneIndexed = index + 1;
+  return oneIndexed.toString().padStart(3, '0');
+};
+
+/**
+ * Return the image markup for a slide.
+ *
+ * @param {object} slide Object with slide data.
+ */
+const imageMarkup = slide => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-media-backfill",
+    style: {
+      backgroundImage: `url(${slide.imageUrl})`
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('bu-blocks-slideshow-media-actual', {
+      [`wp-image-${slide.imageId}`]: slide.imageId
+    }),
+    src: slide.imageUrl
+  }));
+};
+
+/**
+ * Return the block markup.
+ *
+ * @param {array} slides Array of objects containing slide data.
+ */
+const blockMarkup = slides => {
+  // Define widths for the `ul` and `li` elements based on the number of slides.
+  const ulWidth = `${slides.length}00%`;
+  const liWidth = `calc(${100 / slides.length}% - 2px)`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-media-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "back js-bu-blocks-slideshow-back-onmedia-btn"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "forward js-bu-blocks-slideshow-forward-onmedia-btn"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+    className: "bu-blocks-slideshow-media-track js-bu-blocks-slideshow-media-track js-bu-blocks-slideshow-forward-ontrack-btn",
+    style: {
+      width: ulWidth
+    }
+  }, slides.map((slide, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+    className: `js-bu-blocks-slideshow-media-track-item bu-blocks-slideshow-media bu-blocks-slideshow-media-${slideIndex(index)} has-mediafocus-${slide.imageFocus}`,
+    style: {
+      width: liWidth
+    }
+  }, imageMarkup(slide))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-caption-container bu-blocks-slideshow-caption-container-collapsed js-bu-blocks-slideshow-caption-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+    className: "bu-blocks-slideshow-caption-track js-bu-blocks-slideshow-caption-track",
+    style: {
+      width: ulWidth
+    }
+  }, slides.map((slide, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+    className: `bu-blocks-slideshow-caption bu-blocks-slideshow-caption-${slideIndex(index)} js-bu-blocks-slideshow-caption-item`,
+    style: {
+      width: liWidth
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, slide.caption)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-caption-expander js-bu-blocks-slideshow-caption-btn"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "icon-navigatedown"
+  }), " ", __('read full caption'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-controls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-controls-previous js-bu-blocks-slideshow-back-btn"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "icon-navigateleft"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bu-blocks-slideshow-controls-next js-bu-blocks-slideshow-forward-btn"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "icon-navigateright"
+  }))));
+};
+
+// Empty slide object.
+const emptySlide = {
+  caption: '',
+  imageFocus: 'center-middle',
+  imageId: '',
+  imageUrl: ''
+};
+
+// Register the block.
+registerBlockType('editorial/slideshow', {
+  title: __('Slideshow'),
+  description: __('Feature multiple photos in a slideshow carousel.'),
+  icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SVG, {
+    viewBox: "0 0 24 24",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Path, {
+    fill: "#c00",
+    d: "M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"
+  })),
+  category: 'bu-editorial',
+  attributes: {
+    aspectRatio: {
+      type: 'string',
+      default: '16by9'
+    },
+    className: {
+      type: 'string',
+      default: ''
+    },
+    crop: {
+      type: 'boolean',
+      default: false
+    },
+    showNextUp: {
+      type: 'boolean',
+      default: false
+    },
+    slides: {
+      type: 'array',
+      default: [emptySlide, emptySlide]
+    }
+  },
+  edit(props) {
+    const {
+      attributes: {
+        aspectRatio,
+        crop,
+        showNextUp,
+        slides
+      },
+      className,
+      isSelected,
+      setAttributes
+    } = props;
+
+    /**
+     * Display the editing interface for the provided slide.
+     *
+     * @param {array}  slide Array of values for the provided slide.
+     * @param {number} index The index of the provided slide.
+     */
+    const slideEdit = (slide, index) => {
+      /**
+       * Removes the slide image.
+       */
+      const onRemoveImage = () => {
+        const newSlides = Object.values({
+          ...slides,
+          [index]: {
+            ...slides[index],
+            imageId: '',
+            imageUrl: ''
+          }
+        });
+        setAttributes({
+          slides: newSlides
+        });
+      };
+
+      /**
+       * Sets the slide image.
+       *
+       * @param {object} image The selected image.
+       */
+      const onSelectImage = image => {
+        if (!image || !image.url) {
+          onRemoveImage();
+          return;
+        }
+        const newSlides = Object.values({
+          ...slides,
+          [index]: {
+            ...slides[index],
+            imageId: image.id,
+            imageUrl: image.url
+          }
+        });
+        setAttributes({
+          slides: newSlides
+        });
+      };
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "wp-block-editorial-slideshow-edit-slide"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconButton, {
+        className: "wp-block-editorial-slideshow-edit-slide__remove-slide",
+        icon: "no-alt",
+        isButton: true,
+        isDefault: true,
+        isLarge: true,
+        label: __('Remove Slide'),
+        onClick: () => {
+          slides.splice(index, 1);
+          setAttributes({
+            slides: [...slides]
+          });
+        }
+      }, __('Remove Slide')), slide.imageId ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('wp-block-editorial-slideshow-edit-slide-image', {
+          'has-image': slide.imageId
+        })
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
+        onSelect: onSelectImage,
+        allowedTypes: ['image'],
+        value: slide.imageId,
+        render: ({
+          open
+        }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+          className: "wp-block-editorial-slideshow-edit-slide-image-controls"
+        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconButton, {
+          className: "wp-block-editorial-slideshow-edit-slide-image-controls__edit",
+          icon: "edit",
+          label: __('Edit Image'),
+          onClick: open
+        }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconButton, {
+          className: "wp-block-editorial-slideshow-edit-slide-image-controls__remove",
+          icon: "no",
+          label: __('Remove Image'),
+          onClick: onRemoveImage
+        }))
+      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "bu-blocks-slideshow-media"
+      }, imageMarkup(slide)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "wp-block-editorial-slideshow-edit-slide-image-controls__focus"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectControl, {
+        className: "wp-block-editorial-slideshow-edit-slide-image-controls__focus",
+        label: __('Crop Media to:'),
+        value: slide.imageFocus,
+        onChange: value => {
+          const newSlides = Object.values({
+            ...slides,
+            [index]: {
+              ...slides[index],
+              imageFocus: value
+            }
+          });
+          setAttributes({
+            slides: newSlides
+          });
+        },
+        options: [{
+          value: 'left-top',
+          label: __('Left Top')
+        }, {
+          value: 'left-middle',
+          label: __('Left Middle')
+        }, {
+          value: 'left-bottom',
+          label: __('Left Bottom')
+        }, {
+          value: 'center-top',
+          label: __('Center Top')
+        }, {
+          value: 'center-middle',
+          label: __('Center Middle')
+        }, {
+          value: 'center-bottom',
+          label: __('Center Bottom')
+        }, {
+          value: 'right-top',
+          label: __('Right Top')
+        }, {
+          value: 'right-middle',
+          label: __('Right Middle')
+        }, {
+          value: 'right-bottom',
+          label: __('Right Bottom')
+        }]
+      })))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaPlaceholder, {
+        icon: "format-image",
+        labels: {
+          title: __('Add an Image'),
+          instructions: __('Drag, upload, or select a file from your library.')
+        },
+        onSelect: onSelectImage,
+        allowedTypes: ['image']
+      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
+        tagName: "p",
+        placeholder: __('Add a caption…'),
+        value: slide.caption,
+        onChange: value => {
+          const newSlides = Object.values({
+            ...slides,
+            [index]: {
+              ...slides[index],
+              caption: value
+            }
+          });
+          setAttributes({
+            slides: newSlides
+          });
+        },
+        formattingControls: ['bold', 'italic', 'link'],
+        keepPlaceholderOnFocus: true
+      }));
+    };
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: getClasses(aspectRatio, className, crop, showNextUp)
+    }, isSelected || !slides[0].imageId ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, slides.map((slide, index) => slideEdit(slide, index)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconButton, {
+      onClick: () => setAttributes({
+        slides: slides.concat([emptySlide])
+      }),
+      icon: "plus",
+      isButton: true,
+      isDefault: true,
+      isLarge: true,
+      label: __('Add a Slide')
+    }, __('Add New Slide')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
+      title: __('Display Settings')
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(RadioControl, {
+      className: "bu-block-editorial-slideshow-aspect-ratio-options",
+      label: __('Aspect Ratio'),
+      selected: aspectRatio,
+      options: [{
+        label: '16:9',
+        value: '16by9'
+      }, {
+        label: '4:3',
+        value: '4by3'
+      }, {
+        label: '1:1',
+        value: '1by1'
+      }, {
+        label: '3:4',
+        value: '3by4'
+      }, {
+        label: '9:16',
+        value: '9by16'
+      }],
+      onChange: option => setAttributes({
+        aspectRatio: option
+      })
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+      label: __('Crop Images to Fit Slideshow'),
+      checked: crop,
+      onChange: () => setAttributes({
+        crop: !crop
+      })
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+      label: __('Preview Next Image'),
+      checked: showNextUp,
+      onChange: () => setAttributes({
+        showNextUp: !showNextUp
+      })
+    })))) : blockMarkup(slides));
+  },
+  save({
+    attributes
+  }) {
+    const {
+      aspectRatio,
+      className,
+      crop,
+      showNextUp,
+      slides
+    } = attributes;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: getClasses(aspectRatio, className, crop, showNextUp)
+    }, blockMarkup(slides));
+  }
+});
+
+/***/ }),
+
 /***/ "./src/blocks/stat/edit.js":
 /*!*********************************!*\
   !*** ./src/blocks/stat/edit.js ***!
@@ -8449,6 +8888,32 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./src/blocks/relatedstories/style.scss ***!
   \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/slideshow/editor.scss":
+/*!******************************************!*\
+  !*** ./src/blocks/slideshow/editor.scss ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/slideshow/style.scss":
+/*!*****************************************!*\
+  !*** ./src/blocks/slideshow/style.scss ***!
+  \*****************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -4350,6 +4350,309 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-relatedstories .wp-block-editorial-relatedstories-article-category span {
   background: #666;
 }
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/slideshow/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+.bu-blocks-slideshow-media-track::after, .bu-blocks-editorial-slideshow::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
+.bu-blocks-editorial-slideshow {
+  margin-bottom: 1em;
+}
+
+.bu-blocks-slideshow-media-container {
+  overflow-x: hidden;
+  position: relative;
+}
+.bu-blocks-slideshow-media-container .back,
+.bu-blocks-slideshow-media-container .forward {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  z-index: 1;
+}
+.bu-blocks-slideshow-media-container .back {
+  right: 0;
+}
+.bu-blocks-slideshow-media-container .forward {
+  left: 0;
+}
+
+.bu-blocks-slideshow-media-track {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1em;
+  display: flex;
+  transition-property: transform, right;
+  transition-duration: 750ms;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* easeOutBack */
+}
+
+.bu-blocks-slideshow-media-container:hover .bu-blocks-slideshow-media-track {
+  transform: translateX(50px);
+}
+.bu-blocks-slideshow-media-container .back:hover ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(-50px);
+}
+.bu-blocks-slideshow-media-container .forward:hover ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(50px);
+}
+.bu-blocks-slideshow-media-container:active .bu-blocks-slideshow-media-track {
+  transform: translateX(0px);
+}
+.bu-blocks-slideshow-media-container .back:active ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(0px);
+}
+.bu-blocks-slideshow-media-container .forward:active ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(0px);
+}
+
+.bu-blocks-slideshow-media {
+  display: flex;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  float: right;
+  margin: 0 1px;
+}
+.bu-blocks-slideshow-media:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  right: 0%;
+  background: #000;
+}
+.bu-blocks-slideshow-media:after {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.bu-blocks-slideshow-media-backfill {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0%;
+  right: 1px;
+  left: 1px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.75;
+  filter: blur(10px);
+  transform: scale(1.25);
+}
+
+.bu-blocks-slideshow-media-actual {
+  -o-object-fit: contain;
+  object-fit: contain;
+  font-family: "object-fit: contain";
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.has-shownextup .bu-blocks-slideshow-media-track {
+  transform: translateX(50px);
+}
+.has-shownextup .bu-blocks-slideshow-media-container:hover .bu-blocks-slideshow-media-track {
+  transform: translateX(0px);
+}
+.has-shownextup .bu-blocks-slideshow-media-container .back:hover ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(-50px);
+}
+.has-shownextup .bu-blocks-slideshow-media-container .forward:hover ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(50px);
+}
+.has-shownextup .bu-blocks-slideshow-media-container:active .bu-blocks-slideshow-media-track {
+  transform: translateX(50px);
+}
+.has-shownextup .bu-blocks-slideshow-media-container .back:active ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(50px);
+}
+.has-shownextup .bu-blocks-slideshow-media-container .forward:active ~ .bu-blocks-slideshow-media-track {
+  transform: translateX(0px);
+}
+
+.bu-blocks-slideshow-caption-track {
+  overflow: hidden;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: start;
+  position: relative;
+  transition-property: max-height;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+}
+.bu-blocks-slideshow-caption-track p {
+  margin: 0;
+}
+
+.bu-blocks-slideshow-caption-container {
+  float: left;
+  width: calc(85% - 30px / 2);
+  overflow-x: hidden;
+  margin-right: 15px;
+}
+@media (min-width: 500px) {
+  .bu-blocks-slideshow-caption-container {
+    width: calc(90% - 30px / 2);
+  }
+}
+
+.bu-blocks-slideshow-controls {
+  float: right;
+  width: 15%;
+}
+@media (min-width: 500px) {
+  .bu-blocks-slideshow-controls {
+    width: 10%;
+  }
+}
+
+.bu-blocks-slideshow-controls-previous,
+.bu-blocks-slideshow-controls-next {
+  display: block;
+  width: 50%;
+  float: right;
+  text-align: center;
+  padding: 0.25em 0;
+}
+.bu-blocks-slideshow-controls-previous > span:before,
+.bu-blocks-slideshow-controls-next > span:before {
+  margin: 0;
+}
+
+.bu-blocks-slideshow-caption-container-collapsed .bu-blocks-slideshow-caption-track {
+  max-height: 1.6em;
+  background: linear-gradient(to bottom, #444 0%, transparent 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bu-blocks-slideshow-caption-expander {
+  display: inline-block;
+  font-size: 0.75em;
+}
+
+.has-crop .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.has-crop .has-mediafocus-left-top .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 75% 25%;
+     object-position: 75% 25%;
+  font-family: "object-fit: cover; object-position: 25% 25%;";
+}
+.has-crop .has-mediafocus-left-middle .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 75% 50%;
+     object-position: 75% 50%;
+  font-family: "object-fit: cover; object-position: 25% 50%;";
+}
+.has-crop .has-mediafocus-left-bottom .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 75% 75%;
+     object-position: 75% 75%;
+  font-family: "object-fit: cover; object-position: 25% 75%;";
+}
+.has-crop .has-mediafocus-center-top .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 25%;
+     object-position: 50% 25%;
+  font-family: "object-fit: cover; object-position: 50% 25%;";
+}
+.has-crop .has-mediafocus-center-middle .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+  font-family: "object-fit: cover; object-position: 50% 50%;";
+}
+.has-crop .has-mediafocus-center-bottom .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 75%;
+     object-position: 50% 75%;
+  font-family: "object-fit: cover; object-position: 50% 75%;";
+}
+.has-crop .has-mediafocus-right-top .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 25% 25%;
+     object-position: 25% 25%;
+  font-family: "object-fit: cover; object-position: 75% 25%;";
+}
+.has-crop .has-mediafocus-right-middle .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 25% 50%;
+     object-position: 25% 50%;
+  font-family: "object-fit: cover; object-position: 75% 50%;";
+}
+.has-crop .has-mediafocus-right-bottom .bu-blocks-slideshow-media-actual {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 25% 75%;
+     object-position: 25% 75%;
+  font-family: "object-fit: cover; object-position: 75% 75%;";
+}
+
+.has-aspectratio-4by3 .bu-blocks-slideshow-media:after {
+  padding-top: 75%;
+}
+
+.has-aspectratio-1by1 .bu-blocks-slideshow-media:after {
+  padding-top: 100%;
+}
+
+.has-aspectratio-3by4 .bu-blocks-slideshow-media:after {
+  padding-top: 133.3333333333%;
+}
+
+.has-aspectratio-9by16 .bu-blocks-slideshow-media:after {
+  padding-top: 177.7777777778%;
+}
+
+.wp-block-editorial-slideshow .bu-blocks-slideshow-caption-track {
+  color: #444;
+}
+.wp-block-editorial-slideshow .bu-blocks-slideshow-controls-previous,
+.wp-block-editorial-slideshow .bu-blocks-slideshow-controls-next,
+.wp-block-editorial-slideshow .bu-blocks-slideshow-caption-expander {
+  color: #666;
+}
+.wp-block-editorial-slideshow .bu-blocks-slideshow-caption-container-collapsed .bu-blocks-slideshow-caption-track {
+  background: linear-gradient(to bottom, #444 0%, transparent 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/stat/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************/

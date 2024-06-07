@@ -941,6 +941,90 @@ figure.wp-block-editorial-relatedstories-article-image {
   max-width: 100%;
   border: 1px solid var(--wp-admin-theme-color);
 }
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/slideshow/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image {
+  position: relative;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image:not(.has-image) {
+  display: block;
+  margin: 0;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image:not(.has-image):before, .wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image:not(.has-image):after {
+  content: none;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image .bu-blocks-slideshow-media {
+  float: none;
+  width: 100%;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image .wp-block-editorial-slideshow-edit-slide-image-controls {
+  display: flex;
+  right: 50%;
+  position: absolute;
+  top: 0;
+  transform: translateX(50%);
+  z-index: 1;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image .wp-block-editorial-slideshow-edit-slide-image-controls__focus {
+  text-align: left;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image .wp-block-editorial-slideshow-edit-slide-image-controls__focus .components-base-control__label {
+  display: inline;
+}
+.wp-block-editorial-slideshow .wp-block-editorial-slideshow-edit-slide-image .wp-block-editorial-slideshow-edit-slide-image-controls__focus .components-select-control__input {
+  width: auto;
+}
+.wp-block-editorial-slideshow .bu-blocks-slideshow-caption {
+  list-style: none;
+}
+.wp-block-editorial-slideshow::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5em;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field .components-base-control__label {
+  padding-bottom: 1em;
+  width: 100%;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field input {
+  display: none;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field .components-radio-control__option label {
+  background-color: #fff;
+  border: 1px solid #e2e4e7;
+  padding: 8px 10px;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field .components-radio-control__option input:checked + label {
+  color: #fff;
+  background-color: #1e8cbe;
+  border-color: #1e8cbe;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field > div:first-of-type label {
+  border-radius: 0 5px 5px 0;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field > div:last-of-type label {
+  border-radius: 5px 0 0 5px;
+}
+.bu-block-editorial-slideshow-aspect-ratio-options .components-base-control__field > div:not(:last-of-type) label {
+  border-left: 0;
+}
+
+.block-editor__container .bu-blocks-slideshow-media-actual {
+  height: 100%;
+}
 /*!****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/stat/editor.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************/
