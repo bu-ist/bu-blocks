@@ -13,25 +13,32 @@ import allowedBlocks from '../../components/allowed-blocks';
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 const { compose } = wp.compose;
-const { InnerBlocks, InspectorControls, PanelColorSettings, withColors } = wp.editor;
+const {
+	InnerBlocks,
+	InspectorControls,
+	PanelColorSettings,
+	withColors,
+	useBlockProps
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
-class BUAsideEdit extends Component {
-	constructor() {
-		super( ...arguments );
-	}
+const BUAsideEdit = ( props ) => {
 
-	render() {
 		const {
+			attributes,
 			className,
 			themeColor,
 			setThemeColor,
 			presetTemplate,
-		} = this.props;
+		} = props;
 
 		const classes = classnames(
 			className,
 			{ [ `has-${themeColor.slug}-background` ]: themeColor.slug }
 		);
+
+		const blockProps = useBlockProps( {
+			className: classes,
+		});
 
 		return (
 			<Fragment>
@@ -49,7 +56,7 @@ class BUAsideEdit extends Component {
 						] }
 					/>
 				</InspectorControls>
-				<aside className={ classes }>
+				<aside {...blockProps}>
 					<InnerBlocks
 						allowedBlocks={ allowedBlocks() }
 						template={ presetTemplate }
@@ -57,7 +64,6 @@ class BUAsideEdit extends Component {
 				</aside>
 			</Fragment>
 		);
-	}
 }
 
 export default compose( [

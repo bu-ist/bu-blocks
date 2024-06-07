@@ -6,8 +6,17 @@
 import './style.scss';
 import './editor.scss';
 
+wp.domReady( () => {
 
-wp.blocks.registerBlockStyle( 'core/paragraph', {
-	name: 'caption',
-	label: 'Caption'
+	wp.blocks.registerBlockStyle( 'core/paragraph', [
+		{
+			name: 'default',
+			label: 'Default',
+			isDefault: true,
+		},
+		{
+			name: 'caption',
+			label: 'Caption'
+		}
+	]);
 } );

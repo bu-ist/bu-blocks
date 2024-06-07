@@ -10,13 +10,13 @@ import './editor.scss';
 
 // Internal dependencies.
 import './photoessay-image';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
 	__,
 } = wp.i18n;
 const {
-	createBlock,
 	registerBlockType,
 } = wp.blocks;
 const {
@@ -31,17 +31,30 @@ const {
 const {
 	InnerBlocks,
 	InspectorControls,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	dispatch,
 	select,
 } = wp.data;
 
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getBlocksByClientId,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+
+// Populate actions that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	updateBlockAttributes,
+	removeBlock,
+} = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
+
 // Register the block.
 registerBlockType( 'editorial/photoessay', {
 	title: __( 'Photo Essay' ),
 	description: __( 'Insert a row of photos with optional layouts.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('photoessay'),
 	category: 'bu-editorial',
 	attributes: {
 		layout: {
@@ -57,8 +70,7 @@ registerBlockType( 'editorial/photoessay', {
 		const { layout } = attributes;
 
 		/**
-		 * Updates the layout attribute and handles any necessary block updates,
-		 * insertions, or removals.
+		 * Updates the layout attribute and handles any necessary block updates or removals.
 		 *
 		 * @param {string} newLayout Currently selected layout option.
 		 */
@@ -69,21 +81,19 @@ registerBlockType( 'editorial/photoessay', {
 			const blockClasses = newLayout.split( '-' ).splice( 3 );
 
 			// Get any existing image blocks.
-			const currentBlocks = select( 'core/editor' ).getBlocksByClientId( clientId )[ 0 ].innerBlocks;
+			const currentBlocks = getBlocksByClientId( clientId )[ 0 ].innerBlocks;
 
-			// Update or insert new blocks accordingly.
+			// Update any existing photoessay-image blocks with the correct class name when
+			// the layout changes. A template applied to the photoessay block provides default
+			// columnClass values for the inner photoessay-image blocks, but will not override
+			// attributes previously assigned to the block.
 			blockClasses.forEach( ( blockClass, i ) => {
 				const existingBlock = currentBlocks[ i ];
 				const newColumnClass = { columnClass: `photo-${blockClass}` };
 
 				if ( existingBlock ) {
 					// Update the `columnClass` attribute of the existing block at this index.
-					dispatch( 'core/editor' ).updateBlockAttributes( existingBlock.clientId, newColumnClass );
-				} else {
-					// Otherwise, create and insert a new block.
-					const newBlock = createBlock( 'editorial/photoessay-image', newColumnClass );
-
-					dispatch( 'core/editor' ).insertBlock( newBlock, i, clientId );
+					updateBlockAttributes( existingBlock.clientId, newColumnClass );
 				}
 			} );
 
@@ -93,13 +103,27 @@ registerBlockType( 'editorial/photoessay', {
 					return;
 				}
 
-				dispatch( 'core/editor' ).removeBlock( block.clientId, false );
+				removeBlock( block.clientId, false );
 			} );
 		};
 
-		// Set a default layout when the block is first inserted.
+		// Assume an empty template that will be populated based on the number
+		// of blocks expected by the selected layout.
+		let photoTemplate = [];
+
+		// Set a default layout when the block is first inserted and
+		// ensure one photoessay-image block is added to the template.
 		if ( layout === '' ) {
-			onChangeLayout( 'photo-row-thirds-3' );
+			setAttributes( { layout: 'photo-row-thirds-3' } );
+			photoTemplate.push( [ 'editorial/photoessay-image', { columnClass: 'photo-3' } ] );
+		} else {
+			const blockClasses = layout.split( '-' ).splice( 3 );
+
+			// Ensure the photoessay template for this block contains enough
+			// room for the number of expected photoessay-image blocks.
+			blockClasses.forEach( ( blockClass, i ) => {
+				photoTemplate.push( [ 'editorial/photoessay-image', { columnClass: `photo-${blockClass}` } ] );
+			} );
 		}
 
 		return(
@@ -112,10 +136,12 @@ registerBlockType( 'editorial/photoessay', {
 							selected={ layout }
 							options={ [
 								// Single column layouts.
+								{ label: 'Single full-frame image', value: 'photo-row-full-f' },
 								{ label: 'Single wide image', value: 'photo-row-thirds-3' },
 								{ label: 'Single ultra-wide image', value: 'photo-row-fourths-4' },
 								// Two column layouts.
 								{ label: 'Two landscape images', value: 'photo-row-fourths-2-2' },
+								{ label: 'Two portrait images', value: 'photo-row-tall-1-1' },
 								{ label: 'One square, one portrait image', value: 'photo-row-square-s-1' },
 								{ label: 'One square, one landscape image', value: 'photo-row-square-s-2' },
 								{ label: 'One square, one wide image', value: 'photo-row-square-s-3' },
@@ -147,6 +173,7 @@ registerBlockType( 'editorial/photoessay', {
 				<div className="wp-block-editorial-photoessay">
 					<div className={ layout }>
 						<InnerBlocks
+							template={ photoTemplate }
 							templateLock="all"
 							allowedBlocks={ [ 'editorial/photoessay-image' ] }
 							templateInsertUpdatesSelection={ false }

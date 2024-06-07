@@ -32,7 +32,7 @@ const {
 const {
 	RichTextShortcut,
 	RichTextToolbarButton,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	createHigherOrderComponent
 } = wp.compose;
@@ -56,8 +56,10 @@ registerFormatType( name, {
 	className: 'wp-block-bu-clicktotweet-highlight',
 	edit: compose(
 		withSelect( select => {
+			let getSelectedBlock = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ).getSelectedBlock : select( 'core/block-editor' ).getSelectedBlock;
+
 			return {
-				selectedBlock: select( 'core/editor' ).getSelectedBlock()
+				selectedBlock: getSelectedBlock()
 			}
 		} ),
 		ifCondition( props => {
@@ -194,7 +196,7 @@ const registerFields = createHigherOrderComponent( BlockEdit => {
 			}
 		}
 
-		if ( !clickToTweet && ( !content || content.includes( clickToTweetContainer ) ) ) {
+		if ( !clickToTweet && content.includes( clickToTweetContainer ) ) {
 			const strippedContent = content.slice( clickToTweetContainer.length, -7 );
 			const strippedClassName = !className
 				? undefined

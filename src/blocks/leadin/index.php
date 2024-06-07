@@ -72,6 +72,7 @@ function render_block( $attributes ) {
 		'head'               => '',
 		'imageFocus'         => 'center-middle',
 		'metabar'            => true,
+		'metabardate'        => false,
 		'primaryTerm'        => '',
 		'textPositionX'      => 'x-center',
 		'textPositionY'      => '',
@@ -116,7 +117,7 @@ function render_block( $attributes ) {
 				<?php endif; ?>
 			</div>
 
-			<?php if ( $attributes['caption'] && ( $style_default || $style_image_to_text || $style_side_by_side ) ) : ?>
+			<?php if ( $attributes['caption'] && ( $style_default || $style_image_to_text || $style_side_by_side || $style_text_over_image ) ) : ?>
 				<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 			<?php endif; ?>
 
@@ -154,13 +155,13 @@ function render_block( $attributes ) {
 
 		</div>
 
-		<?php if ( $attributes['caption'] && $style_text_to_image || $style_text_over_image ) : ?>
+		<?php if ( $attributes['caption'] && $style_text_to_image ) : ?>
 			<p class="wp-block-editorial-leadin-caption wp-prepress-component-caption"><?php echo wp_kses_post( $attributes['caption'] ); ?></p>
 		<?php endif; ?>
 
 	</div>
 
-	<?php do_action( 'bu_blocks_leadin_meta_bar', $attributes['metabar'] ); ?>
+	<?php do_action( 'bu_blocks_leadin_meta_bar', $attributes['metabar'], $attributes['metabardate'] ); ?>
 
 	<?php
 	$html = ob_get_clean();
@@ -215,6 +216,10 @@ function register_block() {
 				'metabar'            => array(
 					'type'    => 'boolean',
 					'default' => true,
+				),
+				'metabardate'            => array(
+					'type'    => 'boolean',
+					'default' => false,
 				),
 				'primaryTerm'        => $shared_args,
 				'textPositionX'      => array(

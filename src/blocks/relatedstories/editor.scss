@@ -5,13 +5,24 @@
  * which makes it higher in priority.
  */
 
-// Add a clearfix so that the wrapping container added by Gutenberg
-// knows what to contain.
-aside.wp-block-editorial-relatedstories:after {
-	content: "";
-	display: table;
-	clear: both;
+.wp-block[data-type="editorial/relatedstories"] {
+
+	// Increase max width for Card style layout only.
+	&[data-style="card"] {
+		max-width: 80%;
+
+		aside.wp-block-editorial-relatedstories.is-style-card {
+			width: 100%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+	// Disable links in the editor so user doesn't click and go to story.
+	a {
+		pointer-events: none;
+	}
 }
+
 
 figure.wp-block-editorial-relatedstories-article-image {
 	margin: 0;
@@ -22,11 +33,13 @@ figure.wp-block-editorial-relatedstories-article-image {
 }
 
 .panelbody-related-stories {
-	.editor-url-input input {
+	.editor-url-input input,
+	.block-editor-url-input input {
 		max-width: 95%;
 	}
 
-	.editor-url-input ~ h3 {
+	.editor-url-input ~ h3,
+	.block-editor-url-input ~ h3 {
 		margin: 1em 0;
 		padding-left: .25em;
 	}
@@ -36,30 +49,13 @@ figure.wp-block-editorial-relatedstories-article-image {
 		padding-left: 1.5em;
 	}
 
-	.editor-url-input input {
-		&::-webkit-input-placeholder {
-			color: #fff;
-		}
+	.bu-blocks-related-stories-block-url-input-field {
+		margin-bottom: 0;
 
-		&::-moz-placeholder {
-			color: #fff;
-		}
-
-		&:-ms-input-placeholder {
-			color: #fff;
-		}
-
-		&:-moz-placeholder {
-			color: #fff;
+		input {
+			max-width: 100%;
+			border: 1px solid var(--wp-admin-theme-color);
 		}
 	}
 }
 
-.editor-block-list__block {
-
-	.wp-block-editorial-relatedstories.is-style-card:not(.alignwide):not(.alignfull) {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-	}
-}

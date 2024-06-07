@@ -20,7 +20,7 @@ const {
 } = wp.components;
 const {
 	InspectorControls,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Share tools attributes.
 const ShareToolsAttributes = {
@@ -28,6 +28,35 @@ const ShareToolsAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+};
+
+// Share tools controls.
+const ShareToolsControls = ( props ) => {
+	// Get the properties of this component.
+	const {
+		blockProps,
+	} = props;
+
+	// Get the properties of the block using this component.
+	const {
+		attributes: {
+			shareToolsDisabled,
+		},
+		setAttributes,
+	} = blockProps;
+
+	// Return the interface for the background component.
+	return (
+		<InspectorControls>
+			<PanelBody title={ __( 'Sharing Options' ) }>
+				<ToggleControl
+					label={ __( 'Disable Share Tools' ) }
+					checked={ shareToolsDisabled }
+					onChange={ () => setAttributes( { shareToolsDisabled: ! shareToolsDisabled } ) }
+				/>
+			</PanelBody>
+		</InspectorControls>
+	);
 };
 
 /**
@@ -43,27 +72,14 @@ function ShareTools( props ) {
 
 	// Get the properties of the block using this component.
 	const {
-		attributes,
-		setAttributes,
+		attributes: {
+			shareToolsDisabled,
+		},
 	} = blockProps;
-
-	// Get the attributes for handling the background data.
-	const {
-		shareToolsDisabled,
-	} = attributes;
 
 	// Return the interface for the background component.
 	return (
 		<Fragment>
-			<InspectorControls>
-				<PanelBody title={ __( 'Sharing Options' ) }>
-					<ToggleControl
-						label={ __( 'Disable Share Tools' ) }
-						checked={ shareToolsDisabled }
-						onChange={ () => setAttributes( { shareToolsDisabled: !shareToolsDisabled } ) }
-					/>
-				</PanelBody>
-			</InspectorControls>
 			{ ! shareToolsDisabled && (
 				<p className="wp-blocks-components-share-tools">
 					<a href="#" className="icon-action">{ __( 'Share this' ) }</a>
@@ -76,6 +92,7 @@ function ShareTools( props ) {
 // Export attributes for easy importing in blocks.
 export {
 	ShareToolsAttributes,
+	ShareToolsControls,
 };
 
 // Export the share tools control panel.

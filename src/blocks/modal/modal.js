@@ -14,21 +14,33 @@ import './editor.scss';
 // Internal dependencies.
 import edit from './edit.js';
 import Background, { BackgroundAttributes } from '../../components/background';
+import blockIcons from '../../components/block-icons';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { getColorClassName } = wp.editor;
-const { InnerBlocks } = wp.editor;
-const { select } = wp.data;
-const { hasSelectedInnerBlock, isBlockSelected } = select( 'core/editor' );
+const {
+	getColorClassName,
+	InnerBlocks,
+	useBlockProps,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	select,
+} = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	hasSelectedInnerBlock,
+	isBlockSelected
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 // Register the block.
 registerBlockType( 'editorial/modal', {
-
+	apiVersion: 2,
 	title: __( 'Modal' ),
 	description: __( 'A block with a callout for opening a modal with supplemental or complementary information.' ),
-	icon: 'admin-page',
+	icon: blockIcons('modal'),
 	category: 'bu-editorial',
 	supports: {
 		align: true,
@@ -58,15 +70,6 @@ registerBlockType( 'editorial/modal', {
 		...BackgroundAttributes,
 	},
 
-	// Add the `selected-modal` data attribute when this block or its descendants are selected.
-	getEditWrapperProps( { clientId } ) {
-		if ( clientId ) {
-			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
-
-			return { 'data-selected-modal': ( modalHasSelectedBlock ) ? 'true' : undefined }
-		}
-	},
-
 	edit,
 
 	save( props ) {
@@ -80,9 +83,12 @@ registerBlockType( 'editorial/modal', {
 				'has-media': backgroundId,
 			}
 		);
+		const blockProps = useBlockProps.save({
+			className: classes,
+		});
 
 		return (
-			<aside className={ classes }>
+			<aside { ...blockProps }>
 				<div className="wp-block-editorial-modal-callout">
 					<div className="wp-block-editorial-modal-media">
 						<figure className="wp-block-editorial-modal-image">

@@ -1,3 +1,12 @@
+/**
+ * BLOCK: Photoessay
+ *
+ * A photo layout row block.
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.photoessay = (function() {
 	var scrollTop = 0;
 	var photoEssayBlocks = []; //stores all of our found blocks
@@ -165,19 +174,39 @@ bu_blocks.photoessay = (function() {
 			overlayToggle();
 		});
 
-		photoEssayOverlay.nextBtn.addEventListener( 'click', function(e) {
-			e.preventDefault();
+		function nextSharedAction() {
 			var next = nextPhoto();
 			removeActiveFigure();
 			overlayAddContent( overlayActiveGroup[next] );
+		}
+
+		photoEssayOverlay.nextBtn.addEventListener( 'click', function(e) {
+			e.preventDefault();
+			nextSharedAction();
 		});
 
-		photoEssayOverlay.prevBtn.addEventListener( 'click', function(e) {
-			e.preventDefault();
+		function prevSharedAction() {
 			var prev = prevPhoto();
 			removeActiveFigure();
 			overlayAddContent( overlayActiveGroup[prev] );
+		}
+
+		photoEssayOverlay.prevBtn.addEventListener( 'click', function(e) {
+			e.preventDefault();
+			prevSharedAction();
 		});
+
+		document.onkeydown = checkKey;
+
+		function checkKey(e) {
+			e = e || window.event;
+			if (e.keyCode == '39') {
+				nextSharedAction();
+			}
+			else if (e.keyCode == '37') {
+				prevSharedAction();
+			}
+		}
 
 	};
 

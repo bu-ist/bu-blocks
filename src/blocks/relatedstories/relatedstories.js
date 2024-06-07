@@ -9,6 +9,9 @@
 import './style.scss';
 import './editor.scss';
 
+// Internal dependencies.
+import blockIcons from '../../components/block-icons';
+
 // WordPress dependencies.
 const {
 	__,
@@ -43,16 +46,12 @@ const {
 	BlockAlignmentToolbar,
 	BlockControls,
 	URLInput,
-} = wp.editor;
+	useBlockProps,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const {
 	addQueryArgs,
 } = wp.url;
-
-const {
-	format,
-	__experimentalGetSettings, // Used to retrieve date format, watch for deprecation.
-} = wp.date;
 
 const {
 	apiFetch,
@@ -70,15 +69,11 @@ import classnames from 'classnames';
 
 // Register the block.
 registerBlockType( 'editorial/relatedstories', {
-
+	apiVersion: 2,
 	title: __( 'Related Stories' ),
-
 	description: __( 'A list of related stories to embed in an article.' ),
-
-	icon: <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false"><path d="M0,0h24v24H0V0z" fill="none"></path><rect x="11" y="7" width="6" height="2"></rect><rect x="11" y="11" width="6" height="2"></rect><rect x="11" y="15" width="6" height="2"></rect><rect x="7" y="7" width="2" height="2"></rect><rect x="7" y="11" width="2" height="2"></rect><rect x="7" y="15" width="2" height="2"></rect><path d="M20.1,3H3.9C3.4,3,3,3.4,3,3.9v16.2C3,20.5,3.4,21,3.9,21h16.2c0.4,0,0.9-0.5,0.9-0.9V3.9C21,3.4,20.5,3,20.1,3z M19,19H5V5h14V19z" fill="#c00"></path></svg>,
-
+	icon: blockIcons('related'),
 	category: 'bu-editorial',
-
 	attributes: {
 		align: {
 			type: 'string',
@@ -98,7 +93,7 @@ registerBlockType( 'editorial/relatedstories', {
 		// Whether posts are selected manually or via YARPP.
 		relatedManual: {
 			type: 'boolean',
-			default: false,
+			default: true,
 		},
 
 		// Store the post IDs used when a related stories list is manual.
@@ -113,7 +108,6 @@ registerBlockType( 'editorial/relatedstories', {
 			default: '',
 		},
 	},
-
 	styles: [
 		{
 			name: 'list',
@@ -132,6 +126,9 @@ registerBlockType( 'editorial/relatedstories', {
 
 		if ( [ 'left', 'right' ].includes( align ) && ( 'undefined' === typeof className || className.includes( 'is-style-list' ) ) ) {
 			return { 'data-align': align };
+		}
+		if ( className.includes( 'is-style-card' ) ) {
+				return { 'data-style': 'card' }
 		}
 
 		return { 'data-align': 'none' };
@@ -171,7 +168,7 @@ registerBlockType( 'editorial/relatedstories', {
 			} = props.attributes;
 
 			let query;
-			let isCardStyle = className && className.includes( 'is-style-card' );
+			let isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
 			let perPage = isCardStyle && cardCount ? cardCount : 3;
 
 			if ( relatedManual ) {
@@ -273,7 +270,6 @@ registerBlockType( 'editorial/relatedstories', {
 		} ),
 	] )( ( { posts, errorMessage, attributes, ...props } ) => {
 		const {
-			className,
 			setAttributes,
 			setState,
 		} = props;
@@ -284,12 +280,33 @@ registerBlockType( 'editorial/relatedstories', {
 			relatedManual,
 			URLInputEntry,
 			includePosts,
+			className,
 		} = attributes;
+
+		let isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
+		let cardCountClass = '';
+
+
+		if ( isCardStyle && cardCount === 2 ) {
+			cardCountClass = 'has-two';
+		} else if ( isCardStyle ) {
+			cardCountClass = ' has-three';
+		}
+
+		const classes = classnames(
+			className,
+			cardCountClass,
+		);
+
+		const blockProps = useBlockProps({
+			className: classes,
+			'data-style': ( isCardStyle ? 'card' : 'list' )
+		});
 
 		let displayPosts;
 
 		// If only 2 cards are being displayed, ensure the displayed posts in the block are limited to 2.
-		if ( posts.length > 2 && className.includes( 'is-style-card' ) && cardCount === 2 ) {
+		if ( posts.length > 2 && isCardStyle && cardCount === 2 ) {
 			displayPosts = posts.slice( 0, 2 );
 		} else {
 			displayPosts = posts;
@@ -301,19 +318,19 @@ registerBlockType( 'editorial/relatedstories', {
 			return (
 				<li className="wp-block-editorial-relatedstories-list-item">
 					<article className="wp-block-editorial-relatedstories-article">
-						{ className.includes( 'is-style-card' ) && post.media_url && (
+						{ isCardStyle && post.media_url && (
 							<figure className="wp-block-editorial-relatedstories-article-image">
 								<img src={ post.media_url } alt="placeholder" />
 							</figure>
 						) }
 						<div className="wp-block-editorial-relatedstories-article-content">
-							{ className.includes( 'is-style-card' ) && post.primary_term && (
+							{ isCardStyle && post.primary_term && (
 								<p className="wp-block-editorial-relatedstories-article-category"><span>{ decodeEntities( post.primary_term ) }</span></p>
 							) }
 							<h4 className="wp-block-editorial-relatedstories-article-title">
 								<a href={ post.link } className="wp-block-editorial-relatedstories-article-title-link">{ decodeEntities( post.title ) }</a>
 							</h4>
-							<p className="wp-block-editorial-relatedstories-article-date">{ format( __experimentalGetSettings().formats.date, post.date_gmt ) }</p>
+							<p className="wp-block-editorial-relatedstories-article-date">{ post.date_gmt }</p>
 							{ applyFilters( 'buBlocks.relatedStories.displayListItem', '', post, currentPost ) }
 						</div>
 					</article>
@@ -406,18 +423,7 @@ registerBlockType( 'editorial/relatedstories', {
 			resetRelatedState();
 		};
 
-		let cardCountClass = '';
 
-		if ( className.includes( 'is-style-card' ) && cardCount === 2 ) {
-			cardCountClass = 'has-two';
-		} else if ( className.includes( 'is-style-card' ) ) {
-			cardCountClass = ' has-three';
-		}
-
-		const classes = classnames(
-			className,
-			cardCountClass,
-		);
 
 		return (
 			<Fragment>
@@ -426,7 +432,7 @@ registerBlockType( 'editorial/relatedstories', {
 						title={ __( 'Settings' ) }
 						className="panelbody-related-stories"
 					>
-						{ className.includes( 'is-style-card' ) && (
+						{ isCardStyle && (
 							<RangeControl
 								label={ __( 'Cards' ) }
 								value={ cardCount }
@@ -438,7 +444,7 @@ registerBlockType( 'editorial/relatedstories', {
 						) }
 						<ToggleControl
 							label="Enable manual selection"
-							help={ relatedManual ? 'Display manually selected related stories' : 'Display related stories automatically.' }
+							help={ relatedManual ? 'Display manually selected related stories. If the YARPP plugin is available disable manual selection to find related posts automatically.' : 'Display related stories automatically via YARPP.' }
 							checked={ relatedManual }
 							onChange={ toggleRelatedManual }
 						/>
@@ -446,19 +452,22 @@ registerBlockType( 'editorial/relatedstories', {
 							<URLInput
 								value={ URLInputEntry }
 								onChange={ handleSelectPost }
+								className='bu-blocks-related-stories-block-url-input-field'
 							/>
 						) }
-						{ relatedManual && posts && posts.length > 0 && (
+						{ relatedManual && (
 							<Fragment>
 								<h3>Manually selected posts:</h3>
-								<ul className="panelbody-related-stories-list">
-									{ posts.map( post => displaySelectedPost( post ) ) }
-								</ul>
+								{ posts && posts.length > 0 && (
+									<ul className="panelbody-related-stories-list">
+										{ posts.map( post => displaySelectedPost( post ) ) }
+									</ul>
+								) }
 							</Fragment>
 						) }
 					</PanelBody>
 				</InspectorControls>
-				{ ! className.includes( 'is-style-card' ) && (
+				{ ! isCardStyle && (
 					<BlockControls>
 						<BlockAlignmentToolbar
 							value={ align }
@@ -467,7 +476,7 @@ registerBlockType( 'editorial/relatedstories', {
 						/>
 					</BlockControls>
 				) }
-				<aside className={ classes }>
+				<aside {...blockProps}>
 					<h3 className="wp-block-editorial-relatedstories-title">Related</h3>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">

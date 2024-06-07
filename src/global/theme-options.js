@@ -4,19 +4,49 @@
  */
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { select, dispatch } = wp.data;
-const { getEditorSettings } = select( 'core/editor' );
-const { updateEditorSettings } = dispatch( 'core/editor' );
+const {
+	select,
+	dispatch,
+} = wp.data;
+
+const {
+	getEditorSettings,
+} = select( 'core/editor' );
+
+const {
+	updateEditorSettings,
+} = dispatch( 'core/editor' );
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getSettings, // Note that getSettings is _not_ available until WordPress 5.2 and will be undefined otherwise.
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+
+// Populate actions that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	updateSettings, // Note that updateSettings is _not_ available until WordPress 5.2 and will be undefined otherwise.
+} = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
 
 import publicationSlug from './publication-slug';
 
 const themeOptions = () => {
-	// Get the default colors as set by the editor or theme.
-	const defaultColors = getEditorSettings().colors;
+	let defaultColors;
 
-	// Get the default theme color options as set by the `default_theme_colors`
-	// function in `../init.php`. (Defined via PHP for the comparison below.)
+	// Get the default colors as set by the block editor and in the theme
+	// through `add_theme_support()`.
+	//
+	// getSettings is used in WordPress 5.2 and later.
+	// getEditorSettings is used in WordPress 4.9 + Gutenberg.
+	if ( 'undefined' === typeof getSettings ) {
+		defaultColors = getEditorSettings().colors;
+	} else {
+		defaultColors = getSettings().colors;
+	}
+
+	// Get default theme color options set by the active theme through the
+	// `block_editor_settings` filter in PHP.
 	const defaultThemes = getEditorSettings().buDefaultThemes;
 
 	// Get publication specific color options set by the active theme through
@@ -41,7 +71,15 @@ const themeOptions = () => {
 	if ( themeOptions && ! themeOptions.some( v => defaultColors.includes( v ) ) ) {
 		const newColors = defaultColors.concat( themeOptions );
 
+		// Update both the editor settings and general settings so that when a color
+		// is chosen, the value is one of those expected by the component.
 		updateEditorSettings( { colors: newColors } );
+
+		// In WordPress 5.2 and alter, the settings should be updated outside of the
+		// editor too, through updateSettings.
+		if ( 'undefined' !== typeof updateSettings ) {
+			updateSettings( { colors: newColors } );
+		}
 	}
 
 	// Return the array of custom color objects for passing to the `colors` prop.

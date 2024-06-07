@@ -5,16 +5,41 @@
  * which makes it higher in priority.
  */
 
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+	--bu_blocks-block-bu-modal-editor-floated-width: 50%;
+}
+
+// BU modal block has no width by default when floated.
+.wp-block[data-align=right],
+.wp-block[data-align=left] {
+	>.wp-block-editorial-modal {
+		width: var(--bu_blocks-block-bu-modal-editor-floated-width);
+	}
+}
+
+
+// undo clearfix from frontend styles.
+.wp-block-editorial-modal:after {
+	clear: none !important;
+	display:block !important;
+}
+
+
 [data-selected-modal="true"] .wp-block-editorial-modal-content {
-	display: block;
+	display: block !important;
 }
 
 .wp-block-editorial-modal-callout,
 .wp-block-editorial-modal-content {
-	float: none;
+	float: none !important;
 }
 
-.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce {
+.wp-block-editorial-modal-callout .editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .editor-rich-text__tinymce,
+.wp-block-editorial-modal-callout .block-editor-rich-text__tinymce[data-is-placeholder-visible="true"] + .block-editor-rich-text__tinymce {
 	padding-right: 0;
 }
 

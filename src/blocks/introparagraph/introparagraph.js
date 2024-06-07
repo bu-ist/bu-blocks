@@ -8,6 +8,9 @@
 import './style.scss';
 import './editor.scss';
 
+import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
+
 // WordPress dependencies.
 const {
 	__,
@@ -23,6 +26,7 @@ const {
 	IconButton,
 	PanelBody,
 	Toolbar,
+	SVG,
 } = wp.components;
 const {
 	RichText,
@@ -33,13 +37,15 @@ const {
 	MediaUploadCheck,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Import a library used to manage multiple class names.
 import classnames from 'classnames';
 
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
+
+import deprecated from './deprecated';
 
 /**
  * Render the SVG used for a drop cap when the drop cap has an
@@ -48,25 +54,26 @@ import themeOptions from '../../global/theme-options';
  * This is used in the block editor and stored in post content
  * as part of the block markup.
  *
+ *
  * @param {string} character The character to display in the drop cap.
  * @param {string} imageURL  The background image for the drop cap character.
  */
 const renderDropCapSVG = ( character, imageURL ) => {
+	let randomID = 'dropcap-text-' + character;
+	let clipPathURL = 'url(#' + randomID + ')';
+	let xlinkurlAttr = {'xlink:href': imageURL };
 	return (
 		<svg>
-			<pattern
-				id="dropcap-texture"
-				viewBox="0 0 1024 1024"
-				patternUnits="userSpaceOnUse"
-				width="100%" height="100%"
-				x="0%" y="0%">
-				<image href={ imageURL } width="1024" height="1024"/>
-			</pattern>
-			<text textAnchor="start"
-				x="0"
-				y="50%"
-				dy=".404em"
-				className="dropcap-filltext">{ character }</text>
+			<clipPath id={ randomID }>
+				<text textAnchor="start"
+					x="0"
+					y="50%"
+					dy=".404em"
+					className="dropcap-filltext">{ character }</text>
+			</clipPath>
+			<g clip-path={ clipPathURL }>
+				<image {...xlinkurlAttr} href={ imageURL } width="100%" height="100%" preserveAspectRatio="none" />
+			</g>
 		</svg>
 	);
 };
@@ -76,7 +83,7 @@ registerBlockType( 'editorial/introparagraph', {
 
 	title: __( 'Intro Paragraph' ),
 	description: __( 'Add an introduction with a bulleted list and styled paragraph.' ),
-	icon: <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path fill="#c00" d="M11 5v7H9.5C7.6 12 6 10.4 6 8.5S7.6 5 9.5 5H11m8-2H9.5C6.5 3 4 5.5 4 8.5S6.5 14 9.5 14H11v7h2V5h2v16h2V5h2V3z"></path></svg>,
+	icon: blockIcons('introparagraph'),
 	category: 'bu-editorial',
 	supports: {
 		anchor: true,
@@ -198,7 +205,36 @@ registerBlockType( 'editorial/introparagraph', {
 				setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
 				return;
 			}
-			setAttributes( { dropCapImageURL: media.url, dropCapImageId: media.id } );
+
+			// Try to set a sensible image size to avoid full size images being loaded.
+			let selectedMediaURL = media.url;
+
+			// The first check is for images already in the media library.
+			// The second is for newly uploaded images.
+			if ( media.sizes ) {
+				if ( media.sizes['bu_prepress_3x2_xs'] ) {
+					selectedMediaURL = media.sizes['bu_prepress_3x2_xs'].url
+				} else if ( media.sizes['thumbnail'] ) {
+					selectedMediaURL = media.sizes['thumbnail'].url
+				} else if ( media.sizes['medium'] ) {
+					selectedMediaURL = media.sizes['medium'].url
+				}
+			} else if ( media.media_details ) {
+				if ( media.media_details.sizes['bu_prepress_3x2_xs'] ) {
+					selectedMediaURL = media.media_details.sizes['bu_prepress_3x2_xs'].source_url
+				} else if ( media.media_details.sizes['thumbnail'] ) {
+					selectedMediaURL = media.media_details.sizes['thumbnail'].source_url
+				} else if ( media.media_details.sizes['medium'] ) {
+					selectedMediaURL = media.media_details.sizes['medium'].source_url
+				}
+			}
+
+
+			setAttributes( {
+				dropCapImageURL: selectedMediaURL,
+				dropCapImageId: media.id
+			} );
+
 		};
 
 		// When an image is removed, reset the URL and ID attributes on the block.
@@ -317,7 +353,8 @@ registerBlockType( 'editorial/introparagraph', {
 						value={ list }
 						wrapperClassName="wp-block-editorial-introparagraph-toc"
 						placeholder={ __( 'Enter Teaser Intro List (optional)' ) }
-						formattingControls={ [ 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/link' ] ) }
 					/>
 					<div className="wp-block-editorial-introparagraph-content">
 						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
@@ -326,7 +363,8 @@ registerBlockType( 'editorial/introparagraph', {
 							value= { content }
 							onChange={ content => setAttributes( { content: content } ) }
 							placeholder={ __( 'Write paragraph…' ) }
-							formattingControls={ [ 'bold', 'italic' ] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							unstableOnSplit={
 								insertBlocksAfter ?
 									( before, after, ...blocks ) => {
@@ -411,4 +449,7 @@ registerBlockType( 'editorial/introparagraph', {
 			</div>
 		);
 	},
+
+	deprecated,
+
 } );

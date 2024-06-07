@@ -56,7 +56,56 @@ $current-map: $blocks-block-pullquote-config;
 $scope: blocks-get( 'scope' );
 
 .#{$scope}-block-bu-pullquote {
+	&.has-light-theme-text blockquote,
+	&.has-light-theme-text.has-image blockquote,
+	&.has-light-theme-text blockquote .caption,
+	&.has-light-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'background-color-light' );
+	}
+
+	&.has-dark-theme-text blockquote,
+	&.has-dark-theme-text.has-image blockquote,
+	&.has-dark-theme-text blockquote .caption,
+	&.has-dark-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'background-color-dark' );
+	}
+
+	&.has-primary-theme-text blockquote,
+	&.has-primary-theme-text.has-image blockquote,
+	&.has-primary-theme-text blockquote .caption,
+	&.has-primary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-primary-text' );
+	}
+
+	&.has-secondary-theme-text blockquote,
+	&.has-secondary-theme-text.has-image blockquote,
+	&.has-secondary-theme-text blockquote .caption,
+	&.has-secondary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-secondary-text' );
+	}
+
+	&.has-tertiary-theme-text blockquote,
+	&.has-tertiary-theme-text.has-image blockquote,
+	&.has-tertiary-theme-text blockquote .caption,
+	&.has-tertiary-theme-text.has-image blockquote .container-text .caption{
+		color: blocks-get( 'color-tertiary-text' );
+	}
+
+	&.has-quaternary-theme-text blockquote,
+	&.has-quaternary-theme-text.has-image blockquote,
+	&.has-quaternary-theme-text blockquote .caption,
+	&.has-quaternary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-quaternary-text' );
+	}
+
+	&.has-quinary-theme-text blockquote,
+	&.has-quinary-theme-text.has-image blockquote,
+	&.has-quinary-theme-text blockquote .caption,
+	&.has-quinary-theme-text.has-image blockquote .container-text .caption {
+		color: blocks-get( 'color-quinary-text' );
+	}
 	&:not(.is-style-modern):not(.is-style-pop) {
+
 		blockquote {
 			&::before,
 			&::after {
@@ -64,38 +113,101 @@ $scope: blocks-get( 'scope' );
 				font-family: blocks-get( 'font-family-secondary');
 			}
 		}
+
 		&.has-image {
-			color: blocks-get( 'color-page');
+
 			hr::before,
 			hr::after {
 				background-color: blocks-get( 'color-page');
 			}
+
 			blockquote::before,
 			blockquote::after {
 				color: blocks-get( 'color-page');
 			}
 
-			.caption {
-				color: blocks-get( 'color-page');
+			figure {
+				background: $color-grayscale-3;
+				margin: 0;
 			}
 		}
+
+		&.has-light-theme,
+		&.has-light-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'background-color-light');
+				}
+			}
+		}
+
+		&.has-dark-theme,
+		&.has-dark-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'background-color-dark');
+				}
+			}
+		}
+
+		&.has-primary-theme,
+		&.has-primary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-primary');
+				}
+			}
+		}
+
+		&.has-secondary-theme,
+		&.has-secondary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-secondary');
+				}
+			}
+		}
+
+		&.has-tertiary-theme,
+		&.has-light-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-tertiary');
+				}
+			}
+		}
+
+		&.has-quaternary-theme,
+		&.has-quaternary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-quaternary');
+				}
+			}
+		}
+
+		&.has-quinary-theme,
+		&.has-quinary-theme.has-image {
+			blockquote {
+				&::before,
+				&::after {
+					color: blocks-get( 'color-quinary');
+				}
+			}
+		}
+
 		&.alignfull {
 			background-color: blocks-get( 'background-color-light');
+
 			&.has-image {
-				background-color: blocks-get( 'background-color-dark');
+				background-color: transparent;
 			}
-			// &.has-tint-dark {
-			// }
-			// &.has-tint-primary {
-			// 	&.has-image {
-			// 		background-color: blocks-get( 'color-primary');
-			// 	}
-			// }
-			// &.has-tint-secondary {
-			// 	&.has-image {
-			// 		background-color: blocks-get( 'color-secondary');
-			// 	}
-			// }
 		}
 	}
 	&.is-style-modern {
@@ -104,65 +216,146 @@ $scope: blocks-get( 'scope' );
 				background-color: blocks-get( 'background-color-light');
 			}
 		}
+
 		&.alignfull {
 			background-color: blocks-get( 'background-color-light');
 		}
+
 		.container-icon-inner {
 			background-color: blocks-get( 'color-primary');
 			color: blocks-get( 'color-page');
 		}
+
 		&.has-image {
 			.container-icon-inner {
 				background-color: blocks-get( 'background-color-dark');
 			}
 		}
-		// &.has-tint-dark {
-		// }
-		// &.has-tint-primary {
-		// 	&.has-image {
-		// 		.container-icon-inner {
-		// 			background-color: blocks-get( 'color-primary');
-		// 		}
-		// 	}
-		// }
-		// &.has-tint-secondary {
-		// 	&.has-image {
-		// 		.container-icon-inner {
-		// 			background-color: blocks-get( 'color-secondary');
-		// 		}
-		// 	}
-		// }
+
+		&.has-light-theme,
+		&.has-light-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'background-color-light');
+			}
+		}
+
+		&.has-dark-theme,
+		&.has-dark-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'background-color-dark');
+			}
+		}
+
+		&.has-primary-theme,
+		&.has-primary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-primary');
+			}
+		}
+
+		&.has-secondary-theme,
+		&.has-secondary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-secondary');
+			}
+		}
+
+		&.has-tertiary-theme,
+		&.has-light-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-tertiary');
+			}
+		}
+
+		&.has-quaternary-theme,
+		&.has-quaternary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-quaternary');
+			}
+		}
+
+		&.has-quinary-theme,
+		&.has-quinary-theme.has-image {
+			.container-icon-inner {
+				background-color: blocks-get( 'color-quinary');
+			}
+		}
 	}
 	&.is-style-pop {
 		background-color: blocks-get( 'background-color-light');
+
 		.container-icon-inner {
 			color: blocks-get( 'color-primary');
 		}
+
 		&.has-image {
 			color: blocks-get( 'color-page');
 			background-color: blocks-get( 'background-color-dark');
+
 			hr {
 				background-color: blocks-get( 'color-page');
 			}
+
 			.container-icon-inner {
 				color: blocks-get( 'color-page');
 			}
 		}
-		// &.has-tint-dark {
-		// 	&.has-image {
-				
-		// 	}
-		// }
-		// &.has-tint-primary {
-		// 	&.has-image {
-		// 		background-color: blocks-get( 'color-primary');
-		// 	}
-		// }
-		// &.has-tint-secondary {
-		// 	&.has-image {
-		// 		background-color: blocks-get( 'color-secondary');
-		// 	}
-		// }
+
+		&.has-light-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'background-color-light');
+				}
+			}
+		}
+
+		&.has-dark-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'background-color-dark');
+				}
+			}
+		}
+
+		&.has-primary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-primary');
+				}
+			}
+		}
+
+		&.has-secondary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-secondary');
+				}
+			}
+		}
+
+		&.has-tertiary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-tertiary');
+				}
+			}
+		}
+
+		&.has-quaternary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-quaternary');
+				}
+			}
+		}
+
+		&.has-quinary-theme {
+			.container-icon-inner {
+				&::before {
+					color: blocks-get( 'color-quinary');
+				}
+			}
+		}
 	}
 }
 

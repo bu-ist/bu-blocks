@@ -50,6 +50,7 @@ function define_editor_hooks() {
 	// Enqueue block scripts and styles for admin and front-end.
 	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+	add_action( 'bu_blocks_enqueue_block_stylesheet', __NAMESPACE__ . '\\enqueue_bu_blocks_general_stylesheet', 10 );
 
 	// Add block categories.
 	add_filter( 'block_categories', __NAMESPACE__ . '\\filter_block_categories' );
@@ -72,6 +73,33 @@ function bu_blocks_load_textdomain() {
 }
 
 /**
+ * Fire an action used by this plugin and others to enqueue
+ * general block stylesheets in the desired order.
+ *
+ * This function is called at two different points in the load process
+ * depending on whether this is WordPress 4.9 or 5.x.
+ */
+function enqueue_blocks_stylesheet() {
+	do_action( 'bu_blocks_enqueue_block_stylesheet' );
+}
+
+/**
+ * Enqueue the general block styles added by this plugin.
+ *
+ * These styles are not editor specific and are enqueued in both the
+ * front-end and back-end views.
+ */
+function enqueue_bu_blocks_general_stylesheet() {
+	// Styles.
+	wp_enqueue_style(
+		'bu-blocks-css', // Handle.
+		plugins_url( 'dist/style-blocks.css', dirname( __FILE__ ) ), // Block style CSS.
+		array(), // Dependency to include the CSS after it.
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/style-blocks.css' ) // Version: filemtime — Gets file modification time.
+	);
+}
+
+/**
  * Enqueue Gutenberg block assets for both frontend + backend.
  *
  * `wp-blocks`: includes block type registration and related functions.
@@ -79,13 +107,18 @@ function bu_blocks_load_textdomain() {
  * @since    0.1.0
  */
 function enqueue_block_assets() {
-	// Styles.
-	wp_enqueue_style(
-		'bu-blocks-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-blocks' ), // Dependency to include the CSS after it.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: filemtime — Gets file modification time.
-	);
+
+	// If a pre-5.0 version of WordPress, enqueue general block styles from
+	// this plugin whenever block assets are enqueued.
+	//
+	// If a 5.0+ version of WordPress, only enqueue general block styles in
+	// this function on non-admin requests. See `enqueue_block_editor_assets()`
+	// for when styles are used in the editor context.
+	if ( ! function_exists( 'wp_common_block_scripts_and_styles' ) ) {
+		enqueue_blocks_stylesheet();
+	} else if ( ! is_admin() ) {
+		enqueue_blocks_stylesheet();
+	}
 
 	// Enqueue object-fit-images.
 	wp_enqueue_script(
@@ -120,18 +153,36 @@ function enqueue_block_editor_assets() {
 	// Scripts.
 	wp_enqueue_script(
 		'bu-blocks-js', // Handle.
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
+		plugins_url( '/dist/blocks.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.js' ), // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
 	);
+
+	// If a pre-5.0 version of WordPress, general block styles are always loaded
+	// via `enqueue_block_assets` and they are not needed here.
+	//
+	// If a 5.0+ version of WordPress, enqueue general styles here—before the styles
+	// for the editor are loaded.
+	if ( function_exists( 'wp_common_block_scripts_and_styles' ) && is_admin() ) {
+		enqueue_blocks_stylesheet();
+	}
 
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
+		plugins_url( 'dist/blocks.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.css' ) // Version: filemtime — Gets file modification time.
+	);
+
+	// Enqueue handling of block support for post types.
+	wp_enqueue_script(
+		'bu-blocks-block-support',
+		plugins_url( 'block-support.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
+		true
 	);
 }
 
@@ -175,6 +226,9 @@ function filter_block_categories( $categories ) {
 /**
  * Sets the default `light` and `dark` color objects for use as theme options.
  *
+ * Note: avoid colors with duplicate hex values of core colors WP provides, see:
+ * https://github.com/WordPress/gutenberg/issues/9357
+ *
  * @param array   $editor_settings Editor settings.
  * @param WP_Post $post            The current post.
  */
@@ -189,14 +243,14 @@ function default_theme_colors( $editor_settings, $post ) {
 
 	$editor_settings['buDefaultThemes'] = array(
 		array(
-			'name'  => esc_html__( 'Light', 'r-editorial' ),
+			'name'  => esc_html__( 'Light', 'bu-blocks' ),
 			'slug'  => 'light',
-			'color' => '#ffffff',
+			'color' => '#fffffe', // Slightly off-white value to avoid conflicts with default white color.
 		),
 		array(
-			'name'  => esc_html__( 'Dark', 'r-editorial' ),
+			'name'  => esc_html__( 'Dark', 'bu-blocks' ),
 			'slug'  => 'dark',
-			'color' => '#000000',
+			'color' => '#000001', // Slightly off-black value to avoid conflicts with default black color.
 		),
 	);
 
@@ -220,6 +274,7 @@ require_once $path_to_src . 'blocks/relatedstories/index.php';
 require_once $path_to_src . 'blocks/relatedstories/yarpprelated-endpoint.php';
 require_once $path_to_src . 'blocks/relatedstories/collection-endpoint.php';
 require_once $path_to_src . 'blocks/leadin/index.php';
+require_once $path_to_src . 'blocks/collapsible/index.php';
 require_once $path_to_src . 'components/background/index.php';
 
 // Kicks off all hooks.

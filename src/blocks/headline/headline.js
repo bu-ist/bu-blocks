@@ -12,20 +12,37 @@ import './editor.scss';
 import HeadingToolbar from './heading-toolbar';
 import './pretext-format.js'
 import './posttext-format.js'
+import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { RichText, BlockControls } = wp.editor;
-const { select } = wp.data;
+const {
+	PanelBody
+} = wp.components;
+const {
+	RichText,
+	BlockControls,
+	InspectorControls
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	select,
+} = wp.data;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
+const {
+	getBlocks,
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 // Register the block.
 registerBlockType( 'editorial/headline', {
 
 	title: __( 'Headline' ),
 	description: __( 'Add a section heading with an anchor and pre- and post-text formatting options.' ),
-	icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#c00" d="M5 4v3h5.5v12h3V7H19V4z" /><path fill="none" d="M0 0h24v24H0V0z" /></svg>,
+	icon: blockIcons('headline'),
 	category: 'bu-editorial',
 	supports: {
 		anchor: true,
@@ -64,24 +81,44 @@ registerBlockType( 'editorial/headline', {
 	],
 
 	edit( props ) {
-		const { attributes, setAttributes, className, clientId } = props;
+		const { attributes, setAttributes, className } = props;
 		const { content, level, anchor } = attributes;
 		const tagName = 'h' + level;
 
+		/**
+		 * August 2023: Disabling this Anchor ID Generator as it is creating duplicate anchor ids on all headings if:
+		 * - Headline blocks are duplicated, resulting in duplicate anchors
+		 * - When Headline blocks are child blocks of other blocks they aren't included in the count using the current getBlocks() method.
+		 * - Duplicate anchors are a problem for SiteImprove and cause us to fail accessibility checks. Better to force users to manually insert ids.
+		 * - Core Gutenberg is considering a new feature to support unique non-duplicatable attributes: https://github.com/WordPress/gutenberg/issues/29693
+		 */
 		// Generate an index-based value for the anchor attribute if it is not set.
-		if ( ! anchor ) {
-			const allBlocks = select( 'core/editor' ).getBlocks();
-			const headlineBlocks = allBlocks.filter( e => e.name === 'editorial/headline' );
-			const HeadlineIndex = headlineBlocks.findIndex( e => e.clientId === clientId );
-			const id = 'headline-' + ( HeadlineIndex + 1 );
+		// if ( ! anchor ) {
+		// 	const headlineBlocks = getBlocks().filter( e => e.name === 'editorial/headline' );
+		// 	const id = 'headline-' + ( headlineBlocks.length );
 
-			setAttributes( { anchor: id } );
-		}
+		// 	setAttributes( { anchor: id } );
+		// }
 
 		return (
 			<Fragment>
+				<InspectorControls>
+					<PanelBody title={ __( 'Help' ) } initialOpen={ false }>
+						<Fragment>
+							<p><strong>PreText and PostText Formats</strong><br />
+							These formats are intended to style text such as "Chapter 3:" as part
+							of a headline text either before or after the main Headline text. Enter
+							the Headline and then select text in the headline and apply a pre or post text
+							format from the Format Control Toolbar on the block.</p>
+							<p><strong>Emphasis Color & Weight</strong><br />
+							Emphasis Color and Emphasis weight can be selectively applied to a word(s)
+							by selecting those characters and applying a <strong>Bold</strong> style. The
+							color or weight change will apply to any bold text inside the Headline tag.</p>
+						</Fragment>
+					</PanelBody>
+				</InspectorControls>
 				<BlockControls>
-					<HeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+					<HeadingToolbar minLevel={ 1 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
 				</BlockControls>
 				<RichText
 					tagName={ tagName }
@@ -89,7 +126,9 @@ registerBlockType( 'editorial/headline', {
 					value={ content }
 					onChange={ content => setAttributes( { content } ) }
 					placeholder={ __( 'Write headline…' ) }
-					formattingControls={ [ 'pretext', 'posttext', 'bold', 'italic' ] }
+					formattingControls={ getAllowedFormats( 'formattingControls', [ 'pretext', 'posttext', 'bold', 'italic' ] ) }
+					allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'editorial/pretext', 'editorial/posttext', 'core/bold', 'core/italic' ] ) }
+					withoutInteractiveFormats={ true }
 				/>
 			</Fragment>
 		);

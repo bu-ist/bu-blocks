@@ -2,7 +2,7 @@
 // Headline Block Base Styles
 // TODO: Should this be in Responsive Foundation?
 // =================================================================
-
+@import '../../tools';
 @import 'src/global/bu-blocks-config';
 @import 'src/blocks/headline/bu-blocks-block-headline-base';
 @import 'src/blocks/headline/bu-blocks-block-headline-themeable';

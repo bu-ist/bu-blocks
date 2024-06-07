@@ -13,6 +13,8 @@ import './editor.scss';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
+import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
@@ -34,7 +36,8 @@ const {
 	PlainText,
 	RichText,
 	withColors,
-} = wp.editor;
+	useBlockProps,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -91,10 +94,11 @@ const statSVG = ( circleOneFill, circleTwoFill ) => (
 
 // Register the block.
 registerBlockType( 'bu/stat', {
+	apiVersion: 2,
 	parent: [ 'bu/stats' ],
 	title: __( 'Stat' ),
 	description: __( 'Display statistical information.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('stat'),
 	category: 'bu',
 	attributes: {
 		circleOneColor: {
@@ -140,6 +144,9 @@ registerBlockType( 'bu/stat', {
 			selector: '.wp-block-bu-stat-text-pre',
 		},
 	},
+	supports: {
+		inserter: false,
+	},
 
 	edit: withColors( 'circleOneColor', 'circleTwoColor' )( props => {
 		const {
@@ -160,8 +167,12 @@ registerBlockType( 'bu/stat', {
 			setCircleTwoColor,
 		} = props;
 
+		const blockProps = useBlockProps({
+			className: getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ),
+		});
+
 		return (
-			<div className={ getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ) }>
+			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
 
@@ -172,7 +183,8 @@ registerBlockType( 'bu/stat', {
 								placeholder={ __( 'Opening text…' ) }
 								value={ preText }
 								onChange={ value => setAttributes( { preText: value } ) }
-								formattingControls={ [ 'bold', 'italic' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							/>
 						}
 
@@ -191,7 +203,8 @@ registerBlockType( 'bu/stat', {
 								placeholder={ __( 'Closing text…' ) }
 								value={ postText }
 								onChange={ value => setAttributes( { postText: value } ) }
-								formattingControls={ [ 'bold', 'italic' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 							/>
 						}
 
@@ -265,8 +278,12 @@ registerBlockType( 'bu/stat', {
 			preText,
 		} = attributes;
 
+		const blockProps = useBlockProps.save({
+			className: getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ),
+		});
+
 		return (
-			<div className={ getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ) }>
+			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
 						{ !RichText.isEmpty( preText ) &&

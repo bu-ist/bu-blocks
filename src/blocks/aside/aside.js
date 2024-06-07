@@ -14,21 +14,26 @@ import './editor.scss';
 
 // Internal dependencies.
 import RegisterBlockPreset from '../../global/register-block-preset.js';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { getColorClassName, InnerBlocks } = wp.editor;
+const {
+	getColorClassName,
+	InnerBlocks,
+	useBlockProps,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Internal dependencies.
 import edit from './edit.js';
 
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
-
+	apiVersion: 2,
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
-	icon: 'format-aside',
+	icon: blockIcons('aside'),
 	category: 'bu-editorial',
 	supports: {
 		align: [ 'left', 'right' ],
@@ -49,8 +54,12 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 			{ [ getColorClassName( 'background', themeColor ) ]: getColorClassName( 'background', themeColor ) }
 		);
 
+		const blockProps = useBlockProps.save( {
+			className: classes,
+		});
+
 		return (
-			<aside className={ classes }>
+			<aside {...blockProps}>
 				<InnerBlocks.Content />
 			</aside>
 		);

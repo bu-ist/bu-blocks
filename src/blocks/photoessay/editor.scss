@@ -4,95 +4,132 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.block-editor__container {
-	.wp-block-editorial-photoessay [class*="photo-row-"] {
-		margin-left: 0;
-		margin-right: 0;
-	}
-}
+ @import '../../tools';
 
-.wp-block-editorial-photoessay {
-	padding-bottom: 32px;
-	padding-top: 32px;
+$photo-padding: $padding/2 !default;
+$photo-padding-xl: $padding/2 !default;
 
-	.editor-block-list__insertion-point {
-		top: 0;
-	}
+[data-type="editorial/photoessay"] {
+	// Adds some padding to the block just to make
+	// it a bit easier to select the parent block in the editor.
+	padding-bottom: 15px;
+	padding-top: 15px;
 
-	.editor-block-list__layout > .editor-block-list__block > .editor-block-list__block-edit {
-		margin-bottom: 0;
-		margin-top: 0;
+	// Removes negative margin from front-end css to
+	// make toolbar for child blocks visible when parent
+	// is set to full width.
+	&[data-align="full"] div[class*="photo-row-"] {
+		margin: 0;
 	}
 
-	.editor-block-list__block .editor-block-list__layout {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.wp-block {
-		float: left;
-		max-width: none;
-	}
-}
 
-.wp-block-photoessay .editor-block-list__layout {
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 15px;
-	padding-right: 15px;
+	/**
+	* Added this shim element for WP 5.7 as the :after element
+	* that was used before has now been taken over by the
+	* editor to use for an outline border around the block
+	* when selected.
+	**/
 
-	> div {
-		float: left;
-		margin: 0 0 30px;
-		position: relative;
-	}
-}
-
-.wp-block-photoessay-media-wrapper {
-	position: relative;
-
-	&::before {
-		content: "";
-		display: inline-block;
+	[class*="photo-"] {
+		.wp-block-photoessay-media-editorshim {
+			position: relative;
+		}
 	}
 
-	.wp-block-photoessay-media {
-		height: 100%;
-		position: absolute;
-		top: 0;
-		width: 100%;
+	.photo-1 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 120%;
+		}
+	}
 
-		figure {
-			margin: 0;
+	.photo-2 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 60%;
+		}
+	}
 
-			img {
-				height: 100%;
+	.photo-3 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 40%;
+		}
+	}
+
+	.photo-4 {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 30%;
+		}
+	}
+
+	.photo-s {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: calc(100% - #{$photo-padding*2});
+			@include breakpoint( $xl ) {
+				padding-top: calc(100% - #{$photo-padding-xl*2});
 			}
 		}
 	}
 
-	.editor-rich-text {
-		color: #fff;
-		left: 0;
-		max-height: 100%;
-		overflow-y: auto;
-		padding: 1em;
+	.photo-f {
+		.wp-block-photoessay-media-editorshim {
+			padding-top: 2 / 3 * 100%;
+		}
+	}
+
+	.wp-block-photoessay-media {
+		z-index: 2;
+
+		figure {
+			position: relative;
+		}
+	}
+
+	// This element only exists in the editor and is used
+	// to allow easier input of the caption for each photo.
+	.wp-block-photoessay-media-caption-editor-wrapper {
 		position: absolute;
 		bottom: 0;
-		width: 100%;
-		background-image: linear-gradient( rgba( 0, 0, 0, 0 ), rgba( 0, 0, 0, 1 ) );
-	}
-
-	.editor-rich-text__tinymce[data-is-placeholder-visible=true] {
 		left: 0;
 		right: 0;
+		max-height: 100%;
+		background-image: linear-gradient( rgba( 0, 0, 0, 0 ), rgba( 0, 0, 0, 1 ) );
+		color: #fff !important;
+		overflow-y: auto;
+		padding: 1em;
 		margin: 0;
-		width: auto;
+		z-index: 3; // raise it above the other elements so it can be selected
 	}
+
+	// Make media placeholder same size as photo essay block.
+	.block-editor-media-placeholder {
+		min-height: 100%;
+		margin-bottom: 0;
+	}
+
+	// Set cursor to default in editor.
+	figure {
+		&:hover {
+			cursor: default;
+		}
+	}
+
+	// Remove float on single image row layouts.
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-f"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-1"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-2"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-3"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-4"] {
+		max-width: none;
+	}
+
+
 }
 
-.wp-block-photoessay-media {
-	padding: 0;
-}
+
+/*
+* Styles for the Block Inspector to
+* insert images as a replacement for the
+* radio buttons to select a row layout.
+*/
 
 // Layout options styles.
 .bu-photoessay-layout-options {
@@ -123,93 +160,109 @@
 }
 
 input[value="photo-row-fourths-1-1-1-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-1-1-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-1-1-1-1.png' );
 }
 
 input[value="photo-row-fourths-1-1-2"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-1-2.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-1-1-2.png' );
 }
 
 input[value="photo-row-fourths-1-2-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-2-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-1-2-1.png' );
+}
+
+input[value="photo-row-fourths-2-2"] + label {
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-2-2.png' );
 }
 
 input[value="photo-row-fourths-1-3"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-3.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-1-3.png' );
 }
 
 input[value="photo-row-fourths-2-1-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-2-1-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-2-1-1.png' );
 }
 
 input[value="photo-row-fourths-3-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-3-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-3-1.png' );
 }
 
 input[value="photo-row-fourths-4"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-4.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_fourths-4.png' );
 }
 
-input[value="photo-row-short-2-2-2"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-2.png' );
+input[value="photo-row-short-2-2-2-2"] + label {
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_short-2-2-2-2.png' );
 }
+
+// input[value="photo-row-short-2-2-2"] + label {
+// 	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_short-2-2-2.png' );
+// }
 
 input[value="photo-row-short-2-2-4"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-4.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_short-2-2-4.png' );
 }
 
 input[value="photo-row-short-2-4-2"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-4-2.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_short-2-4-2.png' );
 }
 
 input[value="photo-row-short-4-2-2"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-4-2-2.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_short-4-2-2.png' );
 }
 
 input[value="photo-row-square-1-s"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-1-s.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-1-s.png' );
 }
 
 input[value="photo-row-square-2-s"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-2-s.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-2-s.png' );
 }
 
 input[value="photo-row-square-3-s"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-3-s.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-3-s.png' );
 }
 
 input[value="photo-row-square-s-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-s-1.png' );
 }
 
 input[value="photo-row-square-s-2"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-2.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-s-2.png' );
 }
 
 input[value="photo-row-square-s-3"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-3.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-s-3.png' );
 }
 
 input[value="photo-row-square-s-s-s-s"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-s-s-s.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-s-s-s-s.png' );
 }
 
 input[value="photo-row-square-s-s-s"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-s-s.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_square-s-s-s.png' );
 }
 
 input[value="photo-row-thirds-1-1-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-1-1-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_thirds-1-1-1.png' );
 }
 
 input[value="photo-row-thirds-1-2"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-1-2.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_thirds-1-2.png' );
 }
 
 input[value="photo-row-thirds-2-1"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-2-1.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_thirds-2-1.png' );
 }
 
 input[value="photo-row-thirds-3"] + label {
-	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-3.png' );
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_thirds-3.png' );
+}
+
+input[value="photo-row-full-f"] + label {
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_full-f.png' );
+}
+
+input[value="photo-row-tall-1-1"] + label {
+	background-image: url( '../../../images/photoessay-row-types/photoessay-row-types_tall-1-1.png' );
 }

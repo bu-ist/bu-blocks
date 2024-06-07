@@ -6,7 +6,8 @@
  */
 
 
-.wp-block.editor-block-list__block[data-type="bu/leadin"] {
+.wp-block.editor-block-list__block[data-type="bu/leadin"],
+.wp-block.block-editor-block-list__block[data-type="bu/leadin"] {
 	max-width: none;
 
 	.metabar-outter {
@@ -18,8 +19,10 @@
 	}
 }
 
-.components-panel__body-bu-leadin-block-url {
-	.editor-url-input input[type="text"] {
-		max-width: 100%;;
+
+.bu-blocks-leadin-block-url-input {
+	input[type=text] {
+		max-width: 100%;
+		border: 1px solid var(--wp-admin-theme-color);
 	}
 }

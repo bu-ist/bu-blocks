@@ -12,9 +12,11 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
+import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
@@ -36,14 +38,20 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	withColors,
-} = wp.editor;
+	useBlockProps,
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	select
 } = wp.data;
+
+const { useState } = wp.element;
+
+// Populate selectors that were in core/editor until WordPress 5.2 and are
+// now located in core/block-editor.
 const {
 	hasSelectedInnerBlock,
 	isBlockSelected,
-} = select( 'core/editor' );
+} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -72,9 +80,10 @@ const getClasses = ( background, className, hideTeaser, round, size, themeColor 
 
 // Register the block.
 registerBlockType( 'editorial/drawer', {
+	apiVersion: 2,
 	title: __( 'Drawer' ),
 	description: __( 'Add content that can be toggled.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('drawer'),
 	category: 'bu-editorial',
 	attributes: {
 		button: {
@@ -152,27 +161,39 @@ registerBlockType( 'editorial/drawer', {
 			themeColor,
 		} = props;
 
+		const blockProps = useBlockProps( {
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ),
+		});
+
+		const [ isUploading, setIsUploading ] = useState( false );
+
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
 		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
 			setAttributes( { clientId: clientId } );
 		}
 
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ) }>
+			<aside {...blockProps}>
+				<BackgroundControls
+					allowedMediaTypes={ [ 'image' ] }
+					blockProps={ props }
+					inlinePlaceholder={ true }
+					options={ [] }
+					placeholderText={ __( 'Add Image' ) }
+					setIsUploading={ setIsUploading }
+				/>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
 						<figure>
 							<Background
-								allowedMediaTypes={ [ 'image' ] }
 								blockProps={ props }
-								inlinePlaceholder={ true }
-								options={ [] }
-								placeholderText={ __( 'Add Image' ) }
+								isUploading={ isUploading }
 							/>
 						</figure>
 					}
 					<RichText
-						formattingControls={ [] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { hed: value } ) }
 						placeholder={ __( 'Enter heading…' ) }
@@ -180,7 +201,8 @@ registerBlockType( 'editorial/drawer', {
 						value={ hed }
 					/>
 					<RichText
-						formattingControls={ [ 'bold', 'italic', 'link' ] }
+						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 						keepPlaceholderOnFocus={ true }
 						onChange={ value => setAttributes( { lede: value } ) }
 						placeholder={ __( 'Enter text…' ) }
@@ -189,7 +211,8 @@ registerBlockType( 'editorial/drawer', {
 					/>
 					<div className="wp-block-editorial-drawer-open-wrapper">
 						<RichText
-							formattingControls={ [] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
 							keepPlaceholderOnFocus={ true }
 							className="button js-bu-block-drawer-open"
 							onChange={ value => setAttributes( { button: value } ) }
@@ -209,6 +232,7 @@ registerBlockType( 'editorial/drawer', {
 						</div>
 					</div>
 				</section>
+				<div class="wp-block-editorial-drawer-clearfix"></div>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
@@ -285,8 +309,12 @@ registerBlockType( 'editorial/drawer', {
 			},
 		} = props;
 
+		const blockProps = useBlockProps.save( {
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor ),
+		});
+
 		return (
-			<aside className={ getClasses( backgroundId, className, hideTeaser, round, size, themeColor ) }>
+			<aside {...blockProps}>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>

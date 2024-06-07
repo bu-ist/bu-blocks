@@ -5,13 +5,23 @@
  * which makes it higher in priority.
  */
 
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+	--bu_blocks-block-bu-stats-editor-floated-width: 50%;
+}
+
 .wp-block-bu-stats {
-	.editor-inner-blocks {
+	padding: 20px 0; // Make parent block easier to select in editor.
+	.editor-inner-blocks,
+	.block-editor-inner-blocks {
 		width: 100%;
 	}
 
-	.editor-block-list__layout > div {
-		width: 50%;
+	.editor-block-list__layout > div,
+	.block-editor-block-list__layout > div {
 
 		.wp-block-bu-stat {
 			width: 100%;
@@ -21,20 +31,23 @@
 	&.has-2-stats,
 	&.has-3-stats,
 	&.has-4-stats {
-		.editor-block-list__layout > div {
+		.editor-block-list__layout > div,
+		.block-editor-block-list__layout > div {
 			float: left;
 			margin: 0;
 		}
 	}
 
 	&.has-3-stats {
-		.editor-block-list__layout > div {
+		.editor-block-list__layout > div,
+		.block-editor-block-list__layout > div {
 			width: calc(100% / 3);
 		}
 	}
 
 	&.has-4-stats {
-		.editor-block-list__layout > div {
+		.editor-block-list__layout > div,
+		.block-editor-block-list__layout > div {
 			width: 25%;
 		}
 	}
@@ -54,11 +67,14 @@ div[data-align="left"],
 div[data-align="right"] {
 	.wp-block-bu-stats {
 		min-width: 230px;
+		width: var(--bu_blocks-block-bu-stats-editor-floated-width);
 
-		.editor-inner-blocks .editor-block-list__layout > div {
+		.editor-inner-blocks .editor-block-list__layout > div,
+		.block-editor-inner-blocks .block-editor-block-list__layout > div {
 			width: 100%;
 
-			.editor-block-list__block-edit {
+			.editor-block-list__block-edit,
+			.block-editor-block-list__block-edit {
 				float: none;
 				margin: 0;
 			}

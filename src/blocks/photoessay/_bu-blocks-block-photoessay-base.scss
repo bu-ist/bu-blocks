@@ -16,26 +16,82 @@ $photo-padding-xl: $padding/2 !default;
 	[class*="photo-row-"] {
 		margin: 0 -#{$photo-padding};
 		// @extend %clearfix;
-		> [class*="photo-"] {
+		[class*="photo-"] {
 			position: relative;
 			float: left;
 			// background: #f66;
-			margin-bottom: $photo-padding*2;
-			> * {
+			margin-bottom: $photo-padding * 2;
+			.wp-block-photoessay-media {
 				position: absolute;
 				top: 0;
 				width: 100%;
 				height: 100%;
 				padding: 0 $photo-padding;
 			}
-			&::before {
+			&::after {
 				content: "";
 				display: inline-block;
 			}
+
+			&:first-child {
+				figure {
+					@media (hover: none) and (pointer: coarse) {
+						position: relative;
+
+						&::before {
+							opacity: 1;
+						}
+					}
+				}
+			}
 		}
 	}
+
+	+ .is-style-caption {
+		float: left;
+		margin-bottom: $photo-padding * 2;
+		margin-top: $photo-padding * -1.5;
+	}
+
 	figure {
 		height: 100%;
+		margin: 0; // needed for editor side in cases where Normalize.scss isn't included.
+		overflow: hidden;
+
+		img {
+			transition: transform 1000ms ease-out;
+
+			&:hover,
+			&:focus {
+				transform: scale( 1.125 );
+			}
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		@media (hover: none) and (pointer: coarse) {
+			position: relative;
+
+			&::before {
+				content: "\2922";
+				display: block;
+				font-family: "BU-Default-Icons";
+				position: absolute;
+				right: 3px;
+				top: 3px;
+				color: $color-grayscale-f;
+				font-size: 14px;
+				line-height: 14px;
+				width: 14px;
+				background: rgba( $color-grayscale-0, 0.5 );
+				padding: 5px;
+				box-sizing: content-box;
+				border-radius: 4px;
+				opacity: 0.5;
+			}
+		}
 
 		figcaption {
 			display: none;
@@ -49,35 +105,41 @@ $photo-padding-xl: $padding/2 !default;
 	}
 	.photo-1,
 	.photo-1 .wp-block-photoessay-media-wrapper {
-		&::before {
+		&::after {
 			padding-top: 120%;
 		}
 	}
 	.photo-2,
 	.photo-2 .wp-block-photoessay-media-wrapper {
-		&::before {
+		&::after {
 			padding-top: 60%;
 		}
 	}
 	.photo-3,
 	.photo-3 .wp-block-photoessay-media-wrapper {
-		&::before {
+		&::after {
 			padding-top: 40%;
 		}
 	}
 	.photo-4,
 	.photo-4 .wp-block-photoessay-media-wrapper {
-		&::before {
+		&::after {
 			padding-top: 30%;
 		}
 	}
 	.photo-s,
 	.photo-s .wp-block-photoessay-media-wrapper {
-		&::before {
+		&::after {
 			padding-top: calc(100% - #{$photo-padding*2});
 			@include breakpoint( $xl ) {
 				padding-top: calc(100% - #{$photo-padding-xl*2});
 			}
+		}
+	}
+	.photo-f,
+	.photo-f .wp-block-photoessay-media-wrapper {
+		&::after {
+			padding-top: 2 / 3 * 100%;
 		}
 	}
 	[class*="photo-row-short"] {
@@ -166,6 +228,26 @@ $photo-padding-xl: $padding/2 !default;
 			}
 			.photo-4 {
 				width: 2/3 * 100%;
+			}
+		}
+	}
+	.photo-row-full-f {
+		.photo-f {
+			width: 2/2 * 100%;
+		}
+		@include breakpoint( $xs ) {
+			.photo-f {
+				width: 2/2 * 100%;
+			}
+		}
+	}
+	.photo-row-tall-1-1 {
+		.photo-1 {
+			width: 1/2 * 100%;
+		}
+		@include breakpoint( $xs ) {
+			.photo-1 {
+				width: 1/2 * 100%;
 			}
 		}
 	}
@@ -338,13 +420,20 @@ $photo-padding-xl: $padding/2 !default;
 		[class*="photo-row-"] {
 			margin: 0 -#{$photo-padding-xl};
 			// @extend %clearfix;
-			> [class*="photo-"] {
-				margin-bottom: $photo-padding-xl*2;
-				> * {
+			[class*="photo-"] {
+				margin-bottom: $photo-padding-xl * 2;
+				.wp-block-photoessay-media {
 					padding: 0 $photo-padding-xl;
 				}
 			}
 		}
+
+		+ .is-style-caption {
+			float: left;
+			margin-bottom: $photo-padding-xl * 2;
+			margin-top: $photo-padding-xl * -1.5;
+		}
+
 		[class*="photo-row-square-1"] {
 			@include breakpoint( $xs ) {
 				.photo-1 {

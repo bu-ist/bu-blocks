@@ -13,8 +13,10 @@ import './editor.scss';
 
 // Internal dependencies
 import themeOptions from '../../global/theme-options';
+import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
+import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
 const {
@@ -24,7 +26,8 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
-	Fragment
+	Fragment,
+	useState,
 } = wp.element;
 const {
 	PanelBody,
@@ -40,7 +43,7 @@ const {
 	RichText,
 	URLInput,
 	withColors,
-} = wp.editor;
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	applyFilters,
 } = wp.hooks;
@@ -92,6 +95,10 @@ const blockAttributes = {
 	metabar: {
 		type: 'boolean',
 		default: true,
+	},
+	metabardate: {
+		type: 'boolean',
+		default: false,
 	},
 	boxOpacity: {
 		type: 'number',
@@ -151,7 +158,7 @@ const blockSupports = {
 registerBlockType( 'bu/leadin', {
 	title: __( 'Leadin' ),
 	description: __( 'The opening headline and image of an article.' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	icon: blockIcons('leadin'),
 	category: 'bu',
 	attributes: blockAttributes,
 	styles: blockStyles,
@@ -174,6 +181,7 @@ registerBlockType( 'bu/leadin', {
 				box,
 				flip,
 				metabar,
+				metabardate,
 				boxOpacity,
 				videoUncropped,
 				url,
@@ -184,6 +192,8 @@ registerBlockType( 'bu/leadin', {
 			className,
 			isSelected,
 		} = props;
+
+		const [ isUploading, setIsUploading ] = useState( false );
 
 		const isStyleEmphasisOnText = className.includes( 'is-style-emphasis-on-text' );
 		const isStyleTextOverImage = className.includes( 'is-style-text-over-image' );
@@ -350,11 +360,16 @@ registerBlockType( 'bu/leadin', {
 		// Return the block editing interface.
 		return (
 			<Fragment>
+				<BackgroundControls
+					blockProps={ props }
+					setIsUploading={ setIsUploading }
+				/>
 				<div className={ classes }>
 					<div className="container-lockup">
 						<div className="wp-block-leadin-media">
 							<Background
 								blockProps={ props }
+								isUploading={ isUploading }
 							/>
 						</div>
 						<div className="container-words-outer">
@@ -366,7 +381,8 @@ registerBlockType( 'bu/leadin', {
 									placeholder={ __( 'Add headline' ) }
 									value={ head }
 									onChange={ value => setAttributes( { head: value } ) }
-									formattingControls={ [ 'bold', 'italic' ] }
+									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 									keepPlaceholderOnFocus
 								/>
 								{ ( ! RichText.isEmpty( deck ) || isSelected ) && (
@@ -376,7 +392,8 @@ registerBlockType( 'bu/leadin', {
 										placeholder={ __( 'Add subheader (optional)' ) }
 										value={ deck }
 										onChange={ value => setAttributes( { deck: value } ) }
-										formattingControls={ [ 'bold', 'italic' ] }
+										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
+										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 									/>
 								) }
 							</div>
@@ -389,13 +406,14 @@ registerBlockType( 'bu/leadin', {
 							placeholder={ __( 'Add a caption and/or media credit...' ) }
 							value={ caption }
 							onChange={ value => setAttributes( { caption: value } ) }
-							formattingControls={ [ 'bold', 'italic', 'link' ] }
+							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 							keepPlaceholderOnFocus
 						/>
 					) }
 				</div>
 
-				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar ) }
+				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar, metabardate ) }
 
 				<InspectorControls>
 					{ mediaPositioningControls() }
@@ -415,7 +433,7 @@ registerBlockType( 'bu/leadin', {
 						] }
 					/>
 					<PanelBody
-						className="components-panel__body-bu-leadin-block-url"
+						className="components-panel__body-bu-leadin-block-url bu-blocks-leadin-block-url-input"
 						title={ __( 'URL' ) }
 					>
 						<p className="description">Link the leadin block to a story. (Optional)</p>

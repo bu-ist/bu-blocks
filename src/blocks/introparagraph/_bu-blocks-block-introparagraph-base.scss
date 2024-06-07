@@ -8,9 +8,14 @@
 //
 //
 
-$dropcap-size:		4em;
+$dropcap-size:		5em;
 
 .wp-block-editorial-introparagraph {
+
+	.wp-block-editorial-introparagraph-content {
+		@extend %clearfix;
+	}
+
 	p {
 		background-size: 0%;
 	}
@@ -20,6 +25,7 @@ $dropcap-size:		4em;
 
 	&.is-style-large {
 		.wp-block-editorial-introparagraph-content .editor-rich-text,
+		.wp-block-editorial-introparagraph-content .rich-text,
 		p:first-of-type {
 			font-size: 1.25em;
 		}
@@ -30,8 +36,9 @@ $dropcap-size:		4em;
 			column-gap: 2em;
 		}
 	}
-	&.has-dropcap:not( :focus-within ) {
-		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+	&.has-dropcap {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
 		p:first-of-type:first-letter,
 		svg text {
 			font-weight: 700;
@@ -40,24 +47,69 @@ $dropcap-size:		4em;
 			font-size: $dropcap-size;
 			line-height: 1em;
 			margin: 0 0.25em .125em 0;
+			margin-bottom: -0.25em;
 		}
 	}
-	&.is-style-dropcap-boxed:not( :focus-within ) {
-		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+
+	@-moz-document url-prefix() {
+		&.has-dropcap {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+			.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+			p:first-of-type:first-letter,
+			svg text {
+				margin: 0 0.25em 0 0;
+				padding: 8px 0;
+			}
+		}
+	}
+
+
+	&.has-dropcap {
+		svg text {
+			transform: translateY(-5px);
+		}
+	}
+
+	&.is-style-dropcap-boxed {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
 		p:first-of-type:first-letter {
 			color: white;
+			background: black;
+			font-size: 4.25em;
 			padding: 0.125em 0.25em;
+			margin-top: 0.1em;
+			margin-bottom: 0;
 		}
 	}
-	&.is-style-dropcap-outlined:not( :focus-within ) {
-		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+	&.is-style-dropcap-outlined {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
 		p:first-of-type:first-letter {
 			border-width: 2px;
 			border-style: solid;
 			padding: 0.125em 0.25em;
+			margin-top: 0.1em;
+			margin-bottom: 0;
+			font-size: 4.25em;
 		}
 	}
-	&.is-style-dropcap-image:not( :focus-within ) {
+
+
+	@-moz-document url-prefix() {
+		&.is-style-dropcap-boxed,
+		&.is-style-dropcap-outlined {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+			.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+			p:first-of-type:first-letter {
+				padding: 20px;
+			}
+		}
+	}
+
+
+
+	&.is-style-dropcap-image {
 		.wp-block-editorial-introparagraph-content {
 			position: relative;
 		}
@@ -73,13 +125,15 @@ $dropcap-size:		4em;
 		.dropcap-filltext {
 			fill: url(#dropcap-texture);
 		}
-		.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
 		p:first-of-type:first-letter {
 			color: transparent;
 		}
 		.has-dropcap-color-primary,
 		.has-dropcap-color-secondary {
-			.wp-block-editorial-introparagraph-content .editor-rich-text:first-letter,
+			.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+			.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
 			p:first-of-type:first-letter {
 				color: transparent;
 			}

@@ -5,10 +5,21 @@
  * which makes it higher in priority.
  */
 
- .wp-block-editorial-introparagraph textarea {
-	font-size: 1.18169em;
-	line-height: 1.25887;
-	color: #3f2f39;
-	font-family: "Tiempos-Headline";
-	font-weight: 700;
- }
+ *[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph {
+ 	textarea {
+		font-size: 1.18169em;
+		line-height: 1.25887;
+		color: #3f2f39;
+		font-family: "Tiempos-Headline";
+		font-weight: 700;
+	}
+
+	&.has-dropcap:focus-within,
+	&.has-dropcap:focus {
+		
+		svg {
+			display: none !important;
+		}
+	}
+
+}

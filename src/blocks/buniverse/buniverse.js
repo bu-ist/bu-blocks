@@ -7,6 +7,10 @@
 // External dependencies.
 import classnames from 'classnames';
 
+// Internal dependencies.
+import getAllowedFormats from '../../global/allowed-formats';
+import blockIcons from '../../components/block-icons/';
+
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
@@ -32,7 +36,8 @@ const {
 const {
 	InspectorControls,
 	RichText,
-} = wp.editor;
+	useBlockProps
+} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -54,9 +59,10 @@ const getClasses = ( className, aspectRatio ) => {
 
 // Register the block.
 registerBlockType( 'bu/buniverse', {
+	apiVersion: 2,
 	title: __( 'BUniverse Video' ),
-	description: __( '' ),
-	icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="#c00" d="M19 7h-1V5h-4v2h-4V5H6v2H5c-1.1 0-2 .9-2 2v10h18V9c0-1.1-.9-2-2-2zm0 10H5V9h14v8z"></Path></SVG>,
+	description: __( 'Insert videos from bu.edu/buniverse. BUniverse videos allow for a high resolution cover image and better control over Youtube embeds.' ),
+	icon: blockIcons('buniverse'),
 	category: 'bu',
 	attributes: {
 		id: {
@@ -110,6 +116,10 @@ registerBlockType( 'bu/buniverse', {
 			setAttributes,
 		} = props;
 
+		const blockProps = useBlockProps( {
+			className: getClasses( className, aspectRatio ),
+		} );
+
 		/**
 		 * Sets the value for the `minutes` attribute and
 		 * calculates a new value to set for the `start` attribute.
@@ -153,6 +163,13 @@ registerBlockType( 'bu/buniverse', {
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Video Settings' ) }>
+						<TextControl
+								label={ __( 'Video ID:' ) }
+								className="buniverse-set-video-id"
+								value={ id }
+								onChange={ ( value ) => setAttributes( { id: value } ) }
+								help={ __( 'Enter the ID portion of a BUniverse video URL.' )}
+							/>
 						<RadioControl
 							className="buniverse-aspect-ratio-options"
 							label={ __( 'Aspect Ratio' ) }
@@ -194,15 +211,9 @@ registerBlockType( 'bu/buniverse', {
 						</div>
 					</PanelBody>
 				</InspectorControls>
-				{ ( id && isSelected ) && (
-					<TextControl
-						label={ __( 'Video ID:' ) }
-						className="buniverse-set-video-id"
-						value={ id }
-						onChange={ ( value ) => setAttributes( { id: value } ) }
-					/>
-				) }
-				<figure className={ getClasses( className, aspectRatio ) }>
+
+				<figure { ...blockProps }>
+
 					<div className="wp-block-global-buniverse-wrapper">
 						{ ! id && (
 							<div className="wp-block-global-buinverse-placeholder">
@@ -232,7 +243,8 @@ registerBlockType( 'bu/buniverse', {
 								placeholder={ __( 'Add a caption and/or media credit...' ) }
 								value={ caption }
 								onChange={ value => setAttributes( { caption: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'link' ] }
+								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
+								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 								keepPlaceholderOnFocus
 							/>
 						</figcaption>
@@ -253,6 +265,10 @@ registerBlockType( 'bu/buniverse', {
 			className,
 		} = attributes;
 
+		const blockProps = useBlockProps.save( {
+			className: getClasses( className, aspectRatio ),
+		  } );
+
 		// Build out the full url.
 		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
 		url += ( controls !== 1 ) ? '&controls=0' : '';
@@ -260,7 +276,7 @@ registerBlockType( 'bu/buniverse', {
 		url += ( start ) ? `&start=${start}` : '';
 
 		return(
-			<figure className={ getClasses( className, aspectRatio ) }>
+			<figure { ...blockProps }>
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
