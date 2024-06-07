@@ -56,3 +56,18 @@
 	}
 
 }
+
+[data-type="core/paragraph"].is-selected.wp-block-bu-clicktotweet:not(.has-format-highlight) {
+
+	.wp-block-bu-clicktotweet-content {
+		pointer-events: none;
+		&::before {
+			pointer-events: none;
+		}
+
+		&::after {
+			pointer-events:none;
+		}
+	}
+
+}

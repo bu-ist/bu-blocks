@@ -1,3 +1,13 @@
+/**
+ * BLOCK: Drawer
+ *
+ * A drawer block that provides a callout and expandable
+ * content section that opens within the flow of the page.
+ */
+
+// Internal dependencies.
+import bu_blocks from '../../blocks-frontend-tools';
+
 bu_blocks.drawer = ( function() {
 	var drawerBlocks = []; //stores all of our found blocks
 	var $body = document.getElementsByTagName( 'body' )[0]; //target body tag
