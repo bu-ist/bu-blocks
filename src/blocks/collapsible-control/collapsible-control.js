@@ -14,18 +14,9 @@ import './editor.scss';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const {
-	PanelBody,
-	RadioControl,
-	Path,
-	SVG
-} = wp.components;
+const { PanelBody, RadioControl, Path, SVG } = wp.components;
 const { Fragment } = wp.element;
-const {
-	InspectorControls,
-	RichText,
-	useBlockProps
-} = wp.blockEditor;
+const { InspectorControls, RichText, useBlockProps } = wp.blockEditor;
 
 // Register the block.
 registerBlockType( 'bu/collapsible-control', {
@@ -33,25 +24,24 @@ registerBlockType( 'bu/collapsible-control', {
 	title: __( 'Collapsible Control' ),
 	description: __( 'Toggle Collapsible blocks on the page' ),
 	keywords: [ __( 'collapsible' ), __( 'control' ), __( 'toggle' ) ],
-	icon: blockIcons('collapsiblecontrol'),
+	icon: blockIcons( 'collapsiblecontrol' ),
 	category: 'bu',
 	attributes: {
 		text: {
 			type: 'string',
 			source: 'html',
-			selector: 'button'
+			selector: 'button',
 		},
 		target: {
 			type: 'string',
-			default: 'all'
-		}
+			default: 'all',
+		},
 	},
 	supports: {
-		align: [ 'left', 'center', 'right' ]
+		align: [ 'left', 'center', 'right' ],
 	},
 
 	edit( props ) {
-
 		const { attributes, setAttributes } = props;
 		const { text, target } = attributes;
 
@@ -60,16 +50,17 @@ registerBlockType( 'bu/collapsible-control', {
 		const blockProps = useBlockProps();
 
 		return (
-
 			<Fragment>
-				<p {...blockProps}>
+				<p { ...blockProps }>
 					<button>
 						<RichText
 							tagName="span"
-							className={togglebuttonclasses}
+							className={ togglebuttonclasses }
 							placeholder={ __( 'Toggle Text' ) }
 							value={ text }
-							onChange={ ( value ) => setAttributes( { text: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { text: value } )
+							}
 							formattingControls={ [ 'bold', 'italic' ] }
 							withoutInteractiveFormatting
 							keepPlaceholderOnFocus
@@ -80,49 +71,51 @@ registerBlockType( 'bu/collapsible-control', {
 					<PanelBody title={ __( 'Control Options' ) }>
 						<RadioControl
 							label={ __( 'Target' ) }
-							help={ __( 'To control expanding/collapsing a select number of collapsible blocks on the page, place the collapsible blocks AND this control block inside a Group block.' ) }
+							help={ __(
+								'To control expanding/collapsing a select number of collapsible blocks on the page, place the collapsible blocks AND this control block inside a Group block.'
+							) }
 							selected={ target }
-							onChange={ ( value ) => setAttributes( { target: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { target: value } )
+							}
 							options={ [
 								{
-									label: __( 'All Collapsible blocks on this page' ),
-									value: 'all'
+									label: __(
+										'All Collapsible blocks on this page'
+									),
+									value: 'all',
 								},
 								{
-									label: __( 'All Collapsible blocks in this group' ),
-									value: 'group'
-								}
+									label: __(
+										'All Collapsible blocks in this group'
+									),
+									value: 'group',
+								},
 							] }
 						/>
 					</PanelBody>
 				</InspectorControls>
-
 			</Fragment>
-
 		);
-
 	},
 
 	save( { attributes } ) {
-
 		const { text, target } = attributes;
 
-		const togglebuttonclasses = 'bu-collapsible-control-toggle js-bu-collapsible-control-target-' + target;
+		const togglebuttonclasses =
+			'bu-collapsible-control-toggle js-bu-collapsible-control-target-' +
+			target;
 
 		const blockProps = useBlockProps.save();
 
-		return(
-
-			<p {...blockProps}>
+		return (
+			<p { ...blockProps }>
 				<RichText.Content
 					tagName="button"
 					value={ text }
 					className={ togglebuttonclasses }
 				/>
 			</p>
-
 		);
-
-	}
-
+	},
 } );

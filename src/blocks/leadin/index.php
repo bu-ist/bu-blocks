@@ -217,7 +217,7 @@ function register_block() {
 					'type'    => 'boolean',
 					'default' => true,
 				),
-				'metabardate'            => array(
+				'metabardate'        => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),

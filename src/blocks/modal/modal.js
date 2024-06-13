@@ -19,28 +19,25 @@ import blockIcons from '../../components/block-icons';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const {
-	getColorClassName,
-	InnerBlocks,
-	useBlockProps,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const {
-	select,
-} = wp.data;
+const { getColorClassName, InnerBlocks, useBlockProps } =
+	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { select } = wp.data;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
-const {
-	hasSelectedInnerBlock,
-	isBlockSelected
-} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+const { hasSelectedInnerBlock, isBlockSelected } =
+	'undefined' === typeof select( 'core/block-editor' )
+		? select( 'core/editor' )
+		: select( 'core/block-editor' );
 
 // Register the block.
 registerBlockType( 'editorial/modal', {
 	apiVersion: 2,
 	title: __( 'Modal' ),
-	description: __( 'A block with a callout for opening a modal with supplemental or complementary information.' ),
-	icon: blockIcons('modal'),
+	description: __(
+		'A block with a callout for opening a modal with supplemental or complementary information.'
+	),
+	icon: blockIcons( 'modal' ),
 	category: 'bu-editorial',
 	supports: {
 		align: true,
@@ -55,17 +52,17 @@ registerBlockType( 'editorial/modal', {
 		calloutHeading: {
 			type: 'array',
 			source: 'children',
-			selector: 'h1'
+			selector: 'h1',
 		},
 		calloutText: {
 			type: 'array',
 			source: 'children',
-			selector: '.editorial-modal-callout-text'
+			selector: '.editorial-modal-callout-text',
 		},
 		trigger: {
 			type: 'array',
 			source: 'children',
-			selector: '.js-bu-block-modal-trigger-overlay'
+			selector: '.js-bu-block-modal-trigger-overlay',
 		},
 		...BackgroundAttributes,
 	},
@@ -74,18 +71,23 @@ registerBlockType( 'editorial/modal', {
 
 	save( props ) {
 		const { attributes, className } = props;
-		const { themeColor, calloutHeading, calloutText, trigger, backgroundId } = attributes;
-		const classes = classnames(
-			className,
-			'js-bu-block-modal',
-			{
-				[ getColorClassName( 'theme', themeColor ) ]: getColorClassName( 'theme', themeColor ),
-				'has-media': backgroundId,
-			}
-		);
-		const blockProps = useBlockProps.save({
+		const {
+			themeColor,
+			calloutHeading,
+			calloutText,
+			trigger,
+			backgroundId,
+		} = attributes;
+		const classes = classnames( className, 'js-bu-block-modal', {
+			[ getColorClassName( 'theme', themeColor ) ]: getColorClassName(
+				'theme',
+				themeColor
+			),
+			'has-media': backgroundId,
+		} );
+		const blockProps = useBlockProps.save( {
 			className: classes,
-		});
+		} );
 
 		return (
 			<aside { ...blockProps }>
@@ -101,16 +103,28 @@ registerBlockType( 'editorial/modal', {
 					<div className="wp-block-editorial-modal-callout-content">
 						<div className="modal-valign">
 							<h1>{ calloutHeading }</h1>
-							<p className="editorial-modal-callout-text">{ calloutText }</p>
+							<p className="editorial-modal-callout-text">
+								{ calloutText }
+							</p>
 							<p>
-								<a href="#" className="js-bu-block-modal-trigger-overlay button">{ trigger }</a>
+								<a
+									href="#"
+									className="js-bu-block-modal-trigger-overlay button"
+								>
+									{ trigger }
+								</a>
 							</p>
 						</div>
 					</div>
 				</div>
 				<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
 					<div className="overlay overlay-scale">
-						<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+						<a
+							href="#"
+							className="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close"
+						>
+							Close
+						</a>
 						<article>
 							<InnerBlocks.Content />
 						</article>

@@ -5,7 +5,7 @@
  *
  * Import this component and its attributes into a block with:
  * 	`import Background, { BackgroundAttributes } from '../../components/background';`
-*/
+ */
 
 // External dependencies.
 import classnames from 'classnames';
@@ -19,33 +19,25 @@ import BackgroundAttributes from './attributes.js';
 import BackgroundControls from './controls';
 
 // WordPress dependencies.
-const {
-	Fragment,
-} = wp.element;
-const {
-	Spinner,
-} = wp.components;
-const {
-	getAuthority,
-	getPath,
-	getQueryString,
-} = wp.url;
+const { Fragment } = wp.element;
+const { Spinner } = wp.components;
+const { getAuthority, getPath, getQueryString } = wp.url;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
  *
  * @param {number} ratio The value of the 'Background Opacity' setting.
-*/
+ */
 const BackgroundOpacityToClass = ( ratio ) => {
-	return ( ratio === 100 ) ?
-		null :
-		'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
-}
+	return ratio === 100
+		? null
+		: 'has-background-opacity-' + 10 * Math.round( ratio / 10 );
+};
 
 /**
  * The background component.
  *
- * @param {array} props The properties passed to the component.
+ * @param {Array} props The properties passed to the component.
  */
 function Background( props ) {
 	// Destructure properties of this component with defaults.
@@ -56,9 +48,7 @@ function Background( props ) {
 	} = props;
 
 	// Get the properties of the block using this component.
-	const {
-		attributes,
-	} = blockProps;
+	const { attributes } = blockProps;
 
 	// Get the attributes for handling the background data.
 	const {
@@ -71,14 +61,13 @@ function Background( props ) {
 	} = attributes;
 
 	// Build the classes to apply to the background element.
-	const classes = classnames(
-		className,
-		{
-			'has-background-opacity': backgroundOpacity !== 100,
-			[ BackgroundOpacityToClass( backgroundOpacity ) ]: BackgroundOpacityToClass( backgroundOpacity ),
-			[ `wp-image-${backgroundId }` ]: backgroundId && 'image' === backgroundType,
-		}
-	);
+	const classes = classnames( className, {
+		'has-background-opacity': backgroundOpacity !== 100,
+		[ BackgroundOpacityToClass( backgroundOpacity ) ]:
+			BackgroundOpacityToClass( backgroundOpacity ),
+		[ `wp-image-${ backgroundId }` ]:
+			backgroundId && 'image' === backgroundType,
+	} );
 
 	// Return an image element for use as the background.
 	const backgroundImage = (
@@ -106,29 +95,36 @@ function Background( props ) {
 		let url = '';
 
 		if ( authority === 'www.youtube.com' || authority === 'youtu.be' ) {
-			const videoId = ( authority === 'youtu.be' ) ?
-				getPath( backgroundUrl ) :
-				getQueryString( backgroundUrl ).split( '?' )[0].substr(2);
+			const videoId =
+				authority === 'youtu.be'
+					? getPath( backgroundUrl )
+					: getQueryString( backgroundUrl )
+							.split( '?' )[ 0 ]
+							.substr( 2 );
 
 			// Build the url, adding autoplay parameters if appropriate.
-			url = `//www.youtube.com/embed/${videoId}`;
-			url += ( backgroundAutoplay ) ? `?controls=0&autoplay=1&mute=1&origin=http://bu.edu&version=3&loop=1&playlist=${videoId}` : '';
+			url = `//www.youtube.com/embed/${ videoId }`;
+			url += backgroundAutoplay
+				? `?controls=0&autoplay=1&mute=1&origin=http://bu.edu&version=3&loop=1&playlist=${ videoId }`
+				: '';
 		}
 
 		if ( authority === 'vimeo.com' ) {
 			const videoId = getPath( backgroundUrl );
 
 			// Build the url, adding the background parameter for autoplaying if appropriate.
-			url = `//player.vimeo.com/video/${videoId}`;
-			url += ( backgroundAutoplay ) ? '?background=1' : '';
+			url = `//player.vimeo.com/video/${ videoId }`;
+			url += backgroundAutoplay ? '?background=1' : '';
 		}
 
 		if ( authority === 'www.bu.edu' ) {
-			const videoId = getQueryString( backgroundUrl ).split( '?' )[0].substr(2);
+			const videoId = getQueryString( backgroundUrl )
+				.split( '?' )[ 0 ]
+				.substr( 2 );
 
 			// Build the URL, adding the autoplay parameter if appropriate.
-			url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${videoId}&jsapi=1`;
-			url += ( backgroundAutoplay ) ? '&autoplay=true&controls=0' : '';
+			url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ videoId }&jsapi=1`;
+			url += backgroundAutoplay ? '&autoplay=true&controls=0' : '';
 		}
 
 		if ( url !== '' ) {
@@ -146,9 +142,9 @@ function Background( props ) {
 	// Return the interface for the background component.
 	return (
 		<Fragment>
-			{ ( 'image' === backgroundType ) && ( backgroundImage ) }
-			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
-			{ ( 'url' === backgroundType ) && (
+			{ 'image' === backgroundType && backgroundImage }
+			{ 'video' === backgroundType && backgroundVideo }
+			{ 'url' === backgroundType && (
 				<div className="wp-block-background-video">
 					<div className="wp-block-background-video-ratio">
 						<div className="wp-block-background-video-iframe">
@@ -162,17 +158,12 @@ function Background( props ) {
 					<img src={ backgroundUrl } alt={ backgroundAlt } />
 					<Spinner />
 				</div>
-
 			) }
 		</Fragment>
 	);
 }
 
 // Export dependencies for easy importing in blocks.
-export {
-	BackgroundAttributes,
-	BackgroundOpacityToClass,
-	BackgroundControls,
-};
+export { BackgroundAttributes, BackgroundOpacityToClass, BackgroundControls };
 
 export default Background;

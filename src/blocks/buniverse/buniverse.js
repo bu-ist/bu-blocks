@@ -16,53 +16,36 @@ import './style.scss';
 import './editor.scss';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	registerBlockType,
-} = wp.blocks;
-const {
-	Fragment,
-} = wp.element;
-const {
-	PanelBody,
-	Path,
-	RadioControl,
-	SVG,
-	TextControl,
-	ToggleControl,
-} = wp.components;
-const {
-	InspectorControls,
-	RichText,
-	useBlockProps
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
+const { PanelBody, Path, RadioControl, SVG, TextControl, ToggleControl } =
+	wp.components;
+const { InspectorControls, RichText, useBlockProps } =
+	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
  *
  * @param {string} className     Default classes assigned to the block.
  * @param {string} stylizedTitle If the block has a stylized title.
+ * @param          aspectRatio
  */
 const getClasses = ( className, aspectRatio ) => {
-	return (
-		classnames(
-			'wp-block-global-buniverse',
-			{
-				[ aspectRatio ]: aspectRatio,
-				[ className ]: className,
-			}
-		)
-	);
+	return classnames( 'wp-block-global-buniverse', {
+		[ aspectRatio ]: aspectRatio,
+		[ className ]: className,
+	} );
 };
 
 // Register the block.
 registerBlockType( 'bu/buniverse', {
 	apiVersion: 2,
 	title: __( 'BUniverse Video' ),
-	description: __( 'Insert videos from bu.edu/buniverse. BUniverse videos allow for a high resolution cover image and better control over Youtube embeds.' ),
-	icon: blockIcons('buniverse'),
+	description: __(
+		'Insert videos from bu.edu/buniverse. BUniverse videos allow for a high resolution cover image and better control over Youtube embeds.'
+	),
+	icon: blockIcons( 'buniverse' ),
 	category: 'bu',
 	attributes: {
 		id: {
@@ -133,7 +116,7 @@ registerBlockType( 'bu/buniverse', {
 		 */
 		const onChangeMinutes = ( value ) => {
 			const newValue = Number( value );
-			const newStart = newValue * 60 + ( ( seconds ) ? seconds : 0 );
+			const newStart = newValue * 60 + ( seconds ? seconds : 0 );
 
 			setAttributes( { minutes: newValue } );
 			setAttributes( { start: newStart } );
@@ -149,7 +132,7 @@ registerBlockType( 'bu/buniverse', {
 		 */
 		const onChangeSeconds = ( value ) => {
 			const newValue = Number( value );
-			const newStart = newValue + ( ( minutes ) ? minutes * 60 : 0 );
+			const newStart = newValue + ( minutes ? minutes * 60 : 0 );
 
 			setAttributes( { seconds: newValue } );
 			setAttributes( { start: newStart } );
@@ -157,43 +140,65 @@ registerBlockType( 'bu/buniverse', {
 
 		// Build out the basic url, intentionally leaving off the extra parameters
 		// because they cause the iframe to reload every time they're changed.
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
+		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ id }&jsapi=1`;
 
-		return(
+		return (
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Video Settings' ) }>
 						<TextControl
-								label={ __( 'Video ID:' ) }
-								className="buniverse-set-video-id"
-								value={ id }
-								onChange={ ( value ) => setAttributes( { id: value } ) }
-								help={ __( 'Enter the ID portion of a BUniverse video URL.' )}
-							/>
+							label={ __( 'Video ID:' ) }
+							className="buniverse-set-video-id"
+							value={ id }
+							onChange={ ( value ) =>
+								setAttributes( { id: value } )
+							}
+							help={ __(
+								'Enter the ID portion of a BUniverse video URL.'
+							) }
+						/>
 						<RadioControl
 							className="buniverse-aspect-ratio-options"
 							label={ __( 'Aspect Ratio' ) }
 							selected={ aspectRatio }
-							help={ __( '16:9 is typically used on widescreen video. 4:3 is often used for older fullscreen video. 1:1 is square. 9:16 and 3:4 are used for vertical video.' ) }
+							help={ __(
+								'16:9 is typically used on widescreen video. 4:3 is often used for older fullscreen video. 1:1 is square. 9:16 and 3:4 are used for vertical video.'
+							) }
 							options={ [
-								{ label: '16:9', value: 'has-aspectratio-16by9' },
+								{
+									label: '16:9',
+									value: 'has-aspectratio-16by9',
+								},
 								{ label: '4:3', value: 'has-aspectratio-4by3' },
 								{ label: '1:1', value: 'has-aspectratio-1by1' },
 								{ label: '3:4', value: 'has-aspectratio-3by4' },
-								{ label: '9:16', value: 'has-aspectratio-9by16' },
+								{
+									label: '9:16',
+									value: 'has-aspectratio-9by16',
+								},
 							] }
-							onChange={ option => setAttributes( { aspectRatio: option } ) }
+							onChange={ ( option ) =>
+								setAttributes( { aspectRatio: option } )
+							}
 						/>
 						<div className="buniverse-parameter-toggles">
 							<ToggleControl
 								label={ __( 'Hide Player Controls' ) }
 								checked={ controls === 0 }
-								onChange={ () => setAttributes( { controls: ( controls === 0 ) ? 1 : 0 } ) }
+								onChange={ () =>
+									setAttributes( {
+										controls: controls === 0 ? 1 : 0,
+									} )
+								}
 							/>
 							<ToggleControl
 								label={ __( 'Auto Start (muted)' ) }
 								checked={ autoplay === 1 }
-								onChange={ () => setAttributes( { autoplay: ( autoplay === 0 ) ? 1 : 0 } ) }
+								onChange={ () =>
+									setAttributes( {
+										autoplay: autoplay === 0 ? 1 : 0,
+									} )
+								}
 							/>
 						</div>
 						<div className="buniverse-start-time">
@@ -202,7 +207,8 @@ registerBlockType( 'bu/buniverse', {
 								type="number"
 								value={ minutes }
 								onChange={ onChangeMinutes }
-							/>:
+							/>
+							:
 							<TextControl
 								type="number"
 								value={ seconds }
@@ -213,15 +219,18 @@ registerBlockType( 'bu/buniverse', {
 				</InspectorControls>
 
 				<figure { ...blockProps }>
-
 					<div className="wp-block-global-buniverse-wrapper">
 						{ ! id && (
 							<div className="wp-block-global-buinverse-placeholder">
 								<div className="buniverse-logo"></div>
 								<TextControl
-									placeholder={ __( 'Enter BUniverse video ID here…' ) }
+									placeholder={ __(
+										'Enter BUniverse video ID here…'
+									) }
 									value={ id }
-									onChange={ ( value ) => setAttributes( { id: value } ) }
+									onChange={ ( value ) =>
+										setAttributes( { id: value } )
+									}
 								/>
 								<div className="buniverse-video-id-screenshot"></div>
 							</div>
@@ -229,7 +238,7 @@ registerBlockType( 'bu/buniverse', {
 						{ id && (
 							<iframe
 								src={ url }
-								frameborder="0"
+								frameBorder="0"
 								allow="autoplay; fullscreen"
 							></iframe>
 						) }
@@ -240,11 +249,21 @@ registerBlockType( 'bu/buniverse', {
 							<RichText
 								tagName="p"
 								className="wp-block-global-buniverse-caption wp-prepress-component-caption"
-								placeholder={ __( 'Add a caption and/or media credit...' ) }
+								placeholder={ __(
+									'Add a caption and/or media credit…'
+								) }
 								value={ caption }
-								onChange={ value => setAttributes( { caption: value } ) }
-								formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-								allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+								onChange={ ( value ) =>
+									setAttributes( { caption: value } )
+								}
+								formattingControls={ getAllowedFormats(
+									'formattingControls',
+									[ 'bold', 'italic', 'link' ]
+								) }
+								allowedFormats={ getAllowedFormats(
+									'allowedFormats',
+									[ 'core/bold', 'core/italic', 'core/link' ]
+								) }
 								keepPlaceholderOnFocus
 							/>
 						</figcaption>
@@ -267,33 +286,32 @@ registerBlockType( 'bu/buniverse', {
 
 		const blockProps = useBlockProps.save( {
 			className: getClasses( className, aspectRatio ),
-		  } );
+		} );
 
 		// Build out the full url.
-		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
-		url += ( controls !== 1 ) ? '&controls=0' : '';
-		url += ( autoplay === 1 ) ? '&autoplay=true' : '';
-		url += ( start ) ? `&start=${start}` : '';
+		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ id }&jsapi=1`;
+		url += controls !== 1 ? '&controls=0' : '';
+		url += autoplay === 1 ? '&autoplay=true' : '';
+		url += start ? `&start=${ start }` : '';
 
-		return(
+		return (
 			<figure { ...blockProps }>
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
 							src={ encodeURI( url ) }
-							frameborder="0"
+							frameBorder="0"
 							allow="autoplay; fullscreen"
 						></iframe>
 					) }
 				</div>
-					{ caption && (
-						<figcaption>
-							<p class="wp-block-global-buniverse-caption wp-prepress-component-caption">
-								{ caption }
-							</p>
-						</figcaption>
-					)}
-
+				{ caption && (
+					<figcaption>
+						<p className="wp-block-global-buniverse-caption wp-prepress-component-caption">
+							{ caption }
+						</p>
+					</figcaption>
+				) }
 			</figure>
 		);
 	},
