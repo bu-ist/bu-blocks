@@ -36,6 +36,8 @@
 	"main": "build/index.js",
 	"devDependencies": {
 		"@linthtml/linthtml": "^0.9.5",
+		"@wordpress/eslint-plugin": "^19.0.0",
+		"@wordpress/prettier-config": "^4.0.0",
 		"@wordpress/scripts": "^27.1.0",
 		"@wordpress/stylelint-config": "^21.33.0",
 		"browserify": "^17.0.0",
@@ -47,6 +49,7 @@
 		"node-wp-i18n": "^1.2.7",
 		"npm-run-all": "^4.1.5",
 		"object-fit-images": "^3.2.4",
+		"prettier": "npm:wp-prettier@^3.0.3",
 		"responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1",
 		"rimraf": "^5.0.5",
 		"sass-embedded": "^1.72.0",
