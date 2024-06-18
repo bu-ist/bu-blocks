@@ -12,6 +12,8 @@ import themeOptions from '../../global/theme-options';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 import blockIcons from '../../components/block-icons/';
+import { URLPicker } from './editor-partials/url-picker-popover';
+import { InspectorControlsPartial as InspectorControls } from './editor-partials/inspector-controls';
 
 import deprecated from './deprecated';
 
@@ -27,32 +29,14 @@ const {
 	registerBlockType,
 } = wp.blocks;
 const {
-	Button,
-	Dashicon,
-	G,
-	IconButton,
-	PanelBody,
-	Path,
-	RadioControl,
-	SVG,
-	ToolbarGroup,
-	ToolbarButton,
-	Popover,
-} = wp.components;
-const {
-	Fragment,
+	useRef
 } = wp.element;
 const {
-	InspectorControls,
-	PanelColorSettings,
-	BlockControls,
 	RichText,
-	URLInput,
 	withColors,
 	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
-	withState,
 	compose,
 } = wp.compose;
 
@@ -110,6 +94,9 @@ registerBlockType( 'bu/button', {
 		},
 		className: {
 			type: 'string',
+		},
+		urlTarget: {
+			type: 'boolean',
 		}
 	},
 	styles: [
@@ -133,15 +120,12 @@ registerBlockType( 'bu/button', {
 	],
 	supports: {
 		className: false,
-		customClassName: false,
+		customClassName: true,
 		align: [ 'left', 'center', 'right' ],
 	},
 
 	//edit: withColors( 'themeColor' )( props => {
 	edit: compose( [
-		withState( {
-			isLinkPopoverOpen: false,
-		} ),
 		withColors( 'themeColor' )
 	] )( props => {
 		const {
@@ -149,92 +133,41 @@ registerBlockType( 'bu/button', {
 				text,
 				url,
 				icon,
-				align
+				align,
+				urlTarget
 			},
 			themeColor,
 			setThemeColor,
 			setAttributes,
 			isSelected,
-			isLinkPopoverOpen,
-			setState,
 			className,
 		} = props;
 
+		// Use useRef to store a reference to the block.
+		const ref = useRef();
+
 		const blockProps = useBlockProps( {
+			ref, // A reference to the block used by URLPicker to anchor popover.
 			className: getClasses( className, themeColor.slug, icon ),
 		} );
 
 		return (
-			<Fragment>
-				<BlockControls>
-					<ToolbarGroup>
-						<ToolbarButton
-							name="link"
-							icon="admin-links"
-							title={ __( 'Link' ) }
-							isActive={ isLinkPopoverOpen }
-							onClick={ () => {
-								setState( ( state ) => ( { isLinkPopoverOpen: ! state.isLinkPopoverOpen } ) );
-							} }
-						/>
+			<>
+				<URLPicker
+					anchorRef={ ref }
+					isSelected={ isSelected }
+					link={ { attribute: 'url', value: url } }
+					setAttributes={ setAttributes }
+					target={ { attribute: 'urlTarget', value: urlTarget } }
+				/>
+				<InspectorControls
+					themeOptions={ themeOptions }
+					themeColor={ themeColor }
+					setThemeColor={ setThemeColor }
+					icon={ icon }
+					setAttributes={ setAttributes }
+				/>
 
-						{ isLinkPopoverOpen && (
-							<Popover position="top center">
-								<URLInput
-									value={ url }
-									onChange={ ( value ) => setAttributes( { url: value } ) }
-								/>
-							</Popover>
-						) }
-
-					</ToolbarGroup>
-				</BlockControls>
-
-				<InspectorControls>
-					<PanelColorSettings
-						title={ __( 'Color Settings' ) }
-						colorSettings={ [
-							{
-								value: themeColor.color,
-								onChange: setThemeColor,
-								label: __( 'Theme' ),
-								disableCustomColors: true,
-								colors: themeOptions(),
-							},
-						] }
-					/>
-						<PanelBody title={ __( 'Icon Settings' ) }>
-							<RadioControl
-								label='Placement'
-								selected={ icon }
-								options={ [
-									{ label: 'Before text', value: 'align-icon-left' },
-									{ label: 'After text', value: 'align-icon-right' },
-								] }
-								onChange={ ( value ) => { setAttributes( { icon: value } ) } }
-							/>
-							<Button
-								onClick={ () => setAttributes( { icon: undefined } ) }
-								label={ ( 'Clear icon settings' ) }
-								isDefault
-								isSmall
-							>
-								{ __( 'Clear' ) }
-							</Button>
-						</PanelBody>
-
-
-						<PanelBody
-							className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
-							title={ __( 'URL' ) }
-						>
-							<p className="description">Add link to the button</p>
-							<URLInput
-								value={ url }
-								onChange={ ( value ) => setAttributes( { url: value } ) }
-							/>
-						</PanelBody>
-				</InspectorControls>
 				<p
 					className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}
 				>
@@ -247,10 +180,9 @@ registerBlockType( 'bu/button', {
 						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
 						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
 						keepPlaceholderOnFocus
-
 					/>
 				</p>
-			</Fragment>
+			</>
 		);
 	} ),
 
@@ -261,6 +193,7 @@ registerBlockType( 'bu/button', {
 			themeColor,
 			icon,
 			className,
+			urlTarget,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( {
@@ -274,6 +207,8 @@ registerBlockType( 'bu/button', {
 					tagName="a"
 					href={ url }
 					value={ text }
+					target={ urlTarget && '_blank' }
+					rel={ urlTarget && 'noopener' }
 				/>
 			</p>
 		);
