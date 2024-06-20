@@ -28,7 +28,6 @@ function init_hooks() {
 
 	// Defines all editor hooks.
 	namespace\define_editor_hooks();
-
 }
 
 /**
@@ -93,7 +92,7 @@ function enqueue_bu_blocks_general_stylesheet() {
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-css', // Handle.
-		plugins_url( 'dist/style-blocks.css', dirname( __FILE__ ) ), // Block style CSS.
+		plugins_url( 'dist/style-blocks.css', __DIR__ ), // Block style CSS.
 		array(), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/style-blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
@@ -116,7 +115,7 @@ function enqueue_block_assets() {
 	// for when styles are used in the editor context.
 	if ( ! function_exists( 'wp_common_block_scripts_and_styles' ) ) {
 		enqueue_blocks_stylesheet();
-	} else if ( ! is_admin() ) {
+	} elseif ( ! is_admin() ) {
 		enqueue_blocks_stylesheet();
 	}
 
@@ -132,7 +131,7 @@ function enqueue_block_assets() {
 	if ( ! is_admin() ) {
 		wp_enqueue_script(
 			'bu-blocks-frontend-js', // Handle.
-			plugins_url( '/dist/bu-blocks-frontend.js', dirname( __FILE__ ) ), // Bu-blocks-frontend.js: Frontend scripts. Built with Webpack.
+			plugins_url( '/dist/bu-blocks-frontend.js', __DIR__ ), // Bu-blocks-frontend.js: Frontend scripts. Built with Webpack.
 			array(), // Dependencies.
 			filemtime( plugin_dir_path( __DIR__ ) . '/dist/bu-blocks-frontend.js' ), // Version: filemtime — Gets file modification time.
 			true // Enqueue the script in the footer.
@@ -153,7 +152,7 @@ function enqueue_block_editor_assets() {
 	// Scripts.
 	wp_enqueue_script(
 		'bu-blocks-js', // Handle.
-		plugins_url( '/dist/blocks.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
+		plugins_url( '/dist/blocks.js', __DIR__ ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.js' ), // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
@@ -171,7 +170,7 @@ function enqueue_block_editor_assets() {
 	// Styles.
 	wp_enqueue_style(
 		'bu-blocks-editor-css', // Handle.
-		plugins_url( 'dist/blocks.css', dirname( __FILE__ ) ), // Block editor CSS.
+		plugins_url( 'dist/blocks.css', __DIR__ ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
@@ -179,9 +178,9 @@ function enqueue_block_editor_assets() {
 	// Enqueue handling of block support for post types.
 	wp_enqueue_script(
 		'bu-blocks-block-support',
-		plugins_url( 'block-support.js', __FILE__ ),
+		plugins_url( 'dist/block-support.js', __DIR__ ),
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __DIR__ ) . 'src/block-support.js' ),
+		filemtime( plugin_dir_path( __DIR__ ) . 'dist/block-support.js' ),
 		true
 	);
 }
@@ -265,10 +264,12 @@ function default_theme_colors( $editor_settings, $post ) {
  * which was included in this repo, but has since been removed for performance
  * reasons. Please manually include all files in the /src/ directory below.
  *
+ * With the advent of block.json, these would become render.php files.
+ *
  * @since 0.2.6
  */
 $path_to_src = plugin_dir_path( __DIR__ ) . 'src/';
-require_once $path_to_src . 'functions.php';
+require_once 'functions.php';
 require_once $path_to_src . 'blocks/custom-html/index.php';
 require_once $path_to_src . 'blocks/relatedstories/index.php';
 require_once $path_to_src . 'blocks/relatedstories/yarpprelated-endpoint.php';

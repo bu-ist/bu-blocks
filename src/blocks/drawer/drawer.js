@@ -12,26 +12,19 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
+import Background, {
+	BackgroundAttributes,
+	BackgroundControls,
+} from '../../components/background';
 import themeOptions from '../../global/theme-options';
 import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	registerBlockType,
-} = wp.blocks;
-const {
-	PanelBody,
-	Path,
-	RadioControl,
-	SVG,
-	ToggleControl,
-} = wp.components;
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { PanelBody, Path, RadioControl, SVG, ToggleControl } = wp.components;
 const {
 	RichText,
 	InnerBlocks,
@@ -39,19 +32,17 @@ const {
 	PanelColorSettings,
 	withColors,
 	useBlockProps,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const {
-	select
-} = wp.data;
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { select } = wp.data;
 
 const { useState } = wp.element;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
-const {
-	hasSelectedInnerBlock,
-	isBlockSelected,
-} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+const { hasSelectedInnerBlock, isBlockSelected } =
+	'undefined' === typeof select( 'core/block-editor' )
+		? select( 'core/editor' )
+		: select( 'core/block-editor' );
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -60,22 +51,25 @@ const {
  * @param {string}  className  Default classes assigned to the block.
  * @param {boolean} round      Whether to display round images.
  * @param {boolean} hideTeaser Whether to display the teaser.
+ * @param           size
  * @param {string}  themeColor The assigned background color.
  */
-const getClasses = ( background, className, hideTeaser, round, size, themeColor ) => {
-	return (
-		classnames(
-			'js-bu-block-drawer',
-			{
-				'has-hide-teaser': hideTeaser,
-				'is-style-round': round,
-				[ className ]: className,
-				[ `has-${themeColor}-background` ]: themeColor,
-				[ size ]: size && size !== '',
-				'has-media': background,
-			}
-		)
-	);
+const getClasses = (
+	background,
+	className,
+	hideTeaser,
+	round,
+	size,
+	themeColor
+) => {
+	return classnames( 'js-bu-block-drawer', {
+		'has-hide-teaser': hideTeaser,
+		'is-style-round': round,
+		[ className ]: className,
+		[ `has-${ themeColor }-background` ]: themeColor,
+		[ size ]: size && size !== '',
+		'has-media': background,
+	} );
 };
 
 // Register the block.
@@ -83,14 +77,14 @@ registerBlockType( 'editorial/drawer', {
 	apiVersion: 2,
 	title: __( 'Drawer' ),
 	description: __( 'Add content that can be toggled.' ),
-	icon: blockIcons('drawer'),
+	icon: blockIcons( 'drawer' ),
 	category: 'bu-editorial',
 	attributes: {
 		button: {
 			type: 'string',
 			default: 'Read More',
 			source: 'text',
-			selector: '.button.js-bu-block-drawer-open'
+			selector: '.button.js-bu-block-drawer-open',
 		},
 		className: {
 			type: 'string',
@@ -102,7 +96,7 @@ registerBlockType( 'editorial/drawer', {
 			type: 'string',
 			default: '',
 			source: 'html',
-			selector: 'h2'
+			selector: 'h2',
 		},
 		hideTeaser: {
 			type: 'boolean',
@@ -112,7 +106,7 @@ registerBlockType( 'editorial/drawer', {
 			type: 'string',
 			default: '',
 			source: 'html',
-			selector: 'p'
+			selector: 'p',
 		},
 		round: {
 			type: 'boolean',
@@ -135,13 +129,19 @@ registerBlockType( 'editorial/drawer', {
 	// Add the `selected-drawer` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {
 		if ( clientId ) {
-			const drawerHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
+			const drawerHasSelectedBlock =
+				hasSelectedInnerBlock( clientId, true ) ||
+				isBlockSelected( clientId );
 
-			return { 'data-selected-drawer': ( drawerHasSelectedBlock ) ? 'true' : undefined }
+			return {
+				'data-selected-drawer': drawerHasSelectedBlock
+					? 'true'
+					: undefined,
+			};
 		}
 	},
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: withColors( 'themeColor' )( ( props ) => {
 		// Get the properties and attributes we'll need.
 		const {
 			attributes: {
@@ -162,18 +162,28 @@ registerBlockType( 'editorial/drawer', {
 		} = props;
 
 		const blockProps = useBlockProps( {
-			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ),
-		});
+			className: getClasses(
+				backgroundId,
+				className,
+				hideTeaser,
+				round,
+				size,
+				themeColor.slug
+			),
+		} );
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
-		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
-			setAttributes( { clientId: clientId } );
+		if (
+			hasSelectedInnerBlock( clientId, true ) ||
+			isBlockSelected( clientId )
+		) {
+			setAttributes( { clientId } );
 		}
 
 		return (
-			<aside {...blockProps}>
+			<aside { ...blockProps }>
 				<BackgroundControls
 					allowedMediaTypes={ [ 'image' ] }
 					blockProps={ props }
@@ -183,39 +193,66 @@ registerBlockType( 'editorial/drawer', {
 					setIsUploading={ setIsUploading }
 				/>
 				<div className="wp-block-editorial-drawer-teaser">
-					{ ( backgroundId || isSelected || hasSelectedInnerBlock( clientId, true ) ) &&
+					{ ( backgroundId ||
+						isSelected ||
+						hasSelectedInnerBlock( clientId, true ) ) && (
 						<figure>
 							<Background
 								blockProps={ props }
 								isUploading={ isUploading }
 							/>
 						</figure>
-					}
+					) }
 					<RichText
-						formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
+						formattingControls={ getAllowedFormats(
+							'formattingControls',
+							[]
+						) }
+						allowedFormats={ getAllowedFormats(
+							'allowedFormats',
+							[]
+						) }
 						keepPlaceholderOnFocus={ true }
-						onChange={ value => setAttributes( { hed: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { hed: value } )
+						}
 						placeholder={ __( 'Enter heading…' ) }
 						tagName="h2"
 						value={ hed }
 					/>
 					<RichText
-						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+						formattingControls={ getAllowedFormats(
+							'formattingControls',
+							[ 'bold', 'italic', 'link' ]
+						) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [
+							'core/bold',
+							'core/italic',
+							'core/link',
+						] ) }
 						keepPlaceholderOnFocus={ true }
-						onChange={ value => setAttributes( { lede: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { lede: value } )
+						}
 						placeholder={ __( 'Enter text…' ) }
 						tagName="p"
 						value={ lede }
 					/>
 					<div className="wp-block-editorial-drawer-open-wrapper">
 						<RichText
-							formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
-							allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
+							formattingControls={ getAllowedFormats(
+								'formattingControls',
+								[]
+							) }
+							allowedFormats={ getAllowedFormats(
+								'allowedFormats',
+								[]
+							) }
 							keepPlaceholderOnFocus={ true }
 							className="button js-bu-block-drawer-open"
-							onChange={ value => setAttributes( { button: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { button: value } )
+							}
 							placeholder={ __( 'Enter button label…' ) }
 							tagName="p"
 							value={ button }
@@ -224,15 +261,15 @@ registerBlockType( 'editorial/drawer', {
 				</div>
 				<section className="wp-block-editorial-drawer-content js-bu-block-drawer-content">
 					<div className="wp-block-editorial-drawer-wrapper">
-						<InnerBlocks
-							allowedBlocks={ allowedBlocks() }
-						/>
+						<InnerBlocks allowedBlocks={ allowedBlocks() } />
 						<div className="wp-block-editorial-drawer-close">
-							<button className="wp-block-editorial-drawer-close-button js-bu-block-drawer-close">Close</button>
+							<button className="wp-block-editorial-drawer-close-button js-bu-block-drawer-close">
+								Close
+							</button>
 						</div>
 					</div>
 				</section>
-				<div class="wp-block-editorial-drawer-clearfix"></div>
+				<div className="wp-block-editorial-drawer-clearfix"></div>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
@@ -247,19 +284,23 @@ registerBlockType( 'editorial/drawer', {
 							},
 						] }
 					/>
-					<PanelBody title={ __( 'Display Options' ) } >
+					<PanelBody title={ __( 'Display Options' ) }>
 						<ToggleControl
 							label={ __( 'Hide teaser when drawer is open' ) }
 							checked={ hideTeaser }
-							onChange={ () => setAttributes( { hideTeaser: !hideTeaser } ) }
+							onChange={ () =>
+								setAttributes( { hideTeaser: ! hideTeaser } )
+							}
 						/>
-						{ backgroundId &&
+						{ backgroundId && (
 							<ToggleControl
 								label={ __( 'Round photos' ) }
 								checked={ round }
-								onChange={ () => setAttributes( { round: !round } ) }
+								onChange={ () =>
+									setAttributes( { round: ! round } )
+								}
 							/>
-						}
+						) }
 						<RadioControl
 							label={ __( 'Size' ) }
 							selected={ size }
@@ -270,7 +311,7 @@ registerBlockType( 'editorial/drawer', {
 								},
 								{
 									label: 'Narrow',
-									value: 'is-size-narrow'
+									value: 'is-size-narrow',
 								},
 								{
 									label: 'Small',
@@ -285,7 +326,9 @@ registerBlockType( 'editorial/drawer', {
 									value: 'is-size-wide',
 								},
 							] }
-							onChange={ option => setAttributes( { size: option } ) }
+							onChange={ ( option ) =>
+								setAttributes( { size: option } )
+							}
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -310,36 +353,43 @@ registerBlockType( 'editorial/drawer', {
 		} = props;
 
 		const blockProps = useBlockProps.save( {
-			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor ),
-		});
+			className: getClasses(
+				backgroundId,
+				className,
+				hideTeaser,
+				round,
+				size,
+				themeColor
+			),
+		} );
 
 		return (
-			<aside {...blockProps}>
+			<aside { ...blockProps }>
 				<div className="wp-block-editorial-drawer-teaser">
-					{ backgroundId &&
+					{ backgroundId && (
 						<figure>
 							<Background blockProps={ props } />
 						</figure>
-					}
-					{ ! RichText.isEmpty( hed ) &&
-						<RichText.Content
-							tagName="h2"
-							value={ hed }
-						/>
-					}
-					{ ! RichText.isEmpty( lede ) &&
-						<RichText.Content
-							tagName="p"
-							value={ lede }
-						/>
-					}
-					{ button && <a href="#" className="button js-bu-block-drawer-open">{ button }</a> }
+					) }
+					{ ! RichText.isEmpty( hed ) && (
+						<RichText.Content tagName="h2" value={ hed } />
+					) }
+					{ ! RichText.isEmpty( lede ) && (
+						<RichText.Content tagName="p" value={ lede } />
+					) }
+					{ button && (
+						<a href="#" className="button js-bu-block-drawer-open">
+							{ button }
+						</a>
+					) }
 				</div>
 				<section className="wp-block-editorial-drawer-content js-bu-block-drawer-content">
 					<div className="wp-block-editorial-drawer-wrapper">
 						<InnerBlocks.Content />
 						<div className="wp-block-editorial-drawer-close">
-							<button className="wp-block-editorial-drawer-close-button js-bu-block-drawer-close">Close</button>
+							<button className="wp-block-editorial-drawer-close-button js-bu-block-drawer-close">
+								Close
+							</button>
 						</div>
 					</div>
 				</section>

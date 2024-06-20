@@ -71,7 +71,6 @@ function get_block_classes( $attributes ) {
 function build_cache_key( $post_id, $post_ids, $card_style ) {
 	if ( $card_style ) {
 		$card_style = 'card';
-
 	} else {
 		$card_style = 'list';
 	}
@@ -218,8 +217,8 @@ function render_block( $attributes ) {
 		$attributes['relatedManual'],
 		$attributes['includePosts'],
 		array(
-			'post_type' => $post_types,
-			'per_page'  => $per_page,
+			'post_type'  => $post_types,
+			'per_page'   => $per_page,
 			'card_style' => strpos( $classes, 'is-style-card' ),
 		)
 	);

@@ -21,31 +21,31 @@ function register_block() {
 		'bu/collapsible',
 		array(
 			'attributes'      => [
-				'title' => [
-					'type'     => 'string',
+				'title'              => [
+					'type' => 'string',
 				],
-				'level' => [
-					'type'     => 'number',
-					'default'  => 2,
+				'level'              => [
+					'type'    => 'number',
+					'default' => 2,
 				],
-				'isOpen' => [
-					'type'     => 'boolean',
-					'default'  => false,
+				'isOpen'             => [
+					'type'    => 'boolean',
+					'default' => false,
 				],
-				'iconStyle' => [
-					'type'     => 'string',
-					'default'  => 'plus-minus',
+				'iconStyle'          => [
+					'type'    => 'string',
+					'default' => 'plus-minus',
 				],
 				'customMarginBottom' => [
-					'type'     => 'boolean',
-					'default'  => false,
+					'type'    => 'boolean',
+					'default' => false,
 				],
-				'marginBottom' => [
-					'type'     => 'number',
-					'default'  => 0,
+				'marginBottom'       => [
+					'type'    => 'number',
+					'default' => 0,
 				],
-				'id' => [
-					'type'     => 'string',
+				'id'                 => [
+					'type' => 'string',
 				],
 			],
 			'render_callback' => __NAMESPACE__ . '\\render_block',
@@ -91,7 +91,7 @@ function render_block( $attributes, $content ) {
 	];
 
 	// Loop through the $styles list and output inline style rules if they have a value.
-	$get_styles = function( $styles ) {
+	$get_styles = function ( $styles ) {
 		$out = '';
 		foreach ( $styles as $k => $v ) {
 			if ( $v ) {

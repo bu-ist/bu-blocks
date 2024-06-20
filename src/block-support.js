@@ -15,7 +15,7 @@ const { getBlockTypes } = wp.blocks;
  *
  * Runs once the dom is loaded in order to avoid a race condition.
  *
- * @returns {null} Nothing to return
+ * @return {null} Nothing to return
  */
 const UnregisterBlocks = () => {
 	// Bail if the default support has been filtered off.
@@ -24,7 +24,10 @@ const UnregisterBlocks = () => {
 	}
 
 	// Create a filterable array of post types to restrict the blocks to.
-	const postTypes = applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );
+	const postTypes = applyFilters( 'buBlocks.blockSupport.postTypes', [
+		'post',
+		'page',
+	] );
 
 	// Get the current post type.
 	const currentPostType = select( 'core/editor' ).getCurrentPostType();
@@ -54,14 +57,13 @@ const UnregisterBlocks = () => {
 		'editorial/photoessay',
 		'bu/pullquote',
 		'editorial/relatedstories',
-		//'editorial/slideshow',
 		'bu/stats',
 	] );
 
-	const registeredBlocks = getBlockTypes().map( item => item.name );
+	const registeredBlocks = getBlockTypes().map( ( item ) => item.name );
 
 	// Unregister the blocks.
-	buBlocks.forEach( block => {
+	buBlocks.forEach( ( block ) => {
 		if ( registeredBlocks.includes( block ) ) {
 			wp.blocks.unregisterBlockType( block );
 		}

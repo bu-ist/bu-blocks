@@ -10,27 +10,29 @@
 // Internal dependencies.
 import bu_blocks from '../../blocks-frontend-tools';
 
+bu_blocks.clicktotweet = ( function () {
+	const tweetBlocks = []; //stores all of our found blocks
+	let tweetLabel = 'Tweet this';
 
-bu_blocks.clicktotweet = ( function() {
-	var tweetBlocks = []; //stores all of our found blocks
-	var tweetLabel = "Tweet this";
-
-	var findElements = function() {
+	const findElements = function () {
 		//find all the blocks
-		var elements = document.querySelectorAll( '.wp-block-bu-clicktotweet' );
+		const elements = document.querySelectorAll(
+			'.wp-block-bu-clicktotweet'
+		);
 		//if found
 		if ( elements.length > 0 ) {
 			//for each found block do stuff
-			elements.forEach( function( theBlock, item ) {
-
-				var block = {};
+			elements.forEach( function ( theBlock, item ) {
+				const block = {};
 
 				// Get DOM element.
 				block.element = theBlock;
 
 				// Check if this block has a highlight subsection of text
-				if ( theBlock.classList.contains('has-format-highlight') ) {
-					block.highlight = theBlock.querySelector( '.wp-block-bu-clicktotweet-highlight');
+				if ( theBlock.classList.contains( 'has-format-highlight' ) ) {
+					block.highlight = theBlock.querySelector(
+						'.wp-block-bu-clicktotweet-highlight'
+					);
 
 					// Get and store the highlighted text as our text to tweet.
 					block.tweet_text = block.highlight.innerText;
@@ -41,19 +43,18 @@ bu_blocks.clicktotweet = ( function() {
 
 				//for each one found store as object in the array
 				tweetBlocks.push( block );
-			});
+			} );
 		}
 	};
 
 	/*
 	Setup click handlers for these blocks
 	*/
-	var setupHandlers = function() {
+	const setupHandlers = function () {
 		if ( tweetBlocks.length > 0 ) {
-
 			// Loop through all found Tweet Blocks
-			tweetBlocks.forEach( function( theBlock, item ) {
-				var btn;
+			tweetBlocks.forEach( function ( theBlock, item ) {
+				let btn;
 
 				// If has subtext highlighted to tweet use that.
 				if ( theBlock.highlight ) {
@@ -73,13 +74,12 @@ bu_blocks.clicktotweet = ( function() {
 				// If we have a button element, setup click handler
 				// to open Tweet window.
 				if ( btn ) {
-					btn.addEventListener( "click", function(e) {
+					btn.addEventListener( 'click', function ( e ) {
 						e.preventDefault();
 						openTweet( theBlock.tweet_text );
-					});
+					} );
 				}
-
-			});
+			} );
 		}
 	};
 
@@ -89,34 +89,35 @@ bu_blocks.clicktotweet = ( function() {
 	passes the text of the tweet and url
 	of the post	to Twitter.
 	*/
-	var openTweet = function( text ) {
-		var tweetedLink = window.location.href;
+	var openTweet = function ( text ) {
+		const tweetedLink = window.location.href;
 
-  		window.open(
-  			"http://twitter.com/intent/tweet?url=" + tweetedLink +
-  			"&text=" + text +
-  			"&",
-  			"twitterwindow",
-  			"height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0"
-  		);
-
+		window.open(
+			'http://twitter.com/intent/tweet?url=' +
+				tweetedLink +
+				'&text=' +
+				text +
+				'&',
+			'twitterwindow',
+			'height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0'
+		);
 	};
 
 	/*
 	Helper function to set the Button text
 	to a new value on new and existing blocks.
 	 */
-	var setButtonText = function( str ) {
+	const setButtonText = function ( str ) {
 		tweetLabel = str;
 
-		tweetBlocks.forEach( function( theBlock, item ) {
-			if( theBlock.btn ) {
+		tweetBlocks.forEach( function ( theBlock, item ) {
+			if ( theBlock.btn ) {
 				theBlock.btn.innerText = tweetLabel;
 			}
-		});
+		} );
 	};
 
-	var tweetInit = function() {
+	const tweetInit = function () {
 		//find the elements
 		findElements();
 
@@ -125,17 +126,16 @@ bu_blocks.clicktotweet = ( function() {
 	};
 
 	//start on dom ready (ie8+)
-	document.addEventListener( "DOMContentLoaded", function() {
-  		tweetInit();
-
-	});
+	document.addEventListener( 'DOMContentLoaded', function () {
+		tweetInit();
+	} );
 
 	return {
-		gettweetBlocks: function() {
+		gettweetBlocks() {
 			return tweetBlocks;
 		},
-		settweetButtonText: function( str ) {
+		settweetButtonText( str ) {
 			setButtonText( str );
-		}
+		},
 	};
-})();
+} )();

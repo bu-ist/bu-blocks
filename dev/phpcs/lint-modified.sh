@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-phpfiles=$(git ls-files -om --exclude-standard '*.php' '**/*.php' ':!:*.asset.php' ':!:build/*')
+phpfiles=$(git ls-files -om --exclude-standard '*.php' '**/*.php' ':!:*.asset.php' ':!:dist/*')
 
 if [ ! -z "$phpfiles" ]
 then

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-phpfiles=$(find . -name '*.php' -and -not -path './node_modules/*' -and -not -path './dev/*' -and -not -path './build/*')
+phpfiles=$(find . -name '*.php' -and -not -path './node_modules/*' -and -not -path './dev/*' -and -not -path './dist/*')
 
 if [ ! -z "$phpfiles" ]
 then
