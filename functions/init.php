@@ -175,14 +175,6 @@ function enqueue_block_editor_assets() {
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
 
-	// Enqueue handling of block support for post types.
-	wp_enqueue_script(
-		'bu-blocks-block-support',
-		plugins_url( 'dist/block-support.js', __DIR__ ),
-		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/block-support.js' ),
-		true
-	);
 }
 
 /**
