@@ -14,7 +14,10 @@
  * New paths can be added to this array in this file and will be added as
  * paths that Dart Sass checks to find SASS partials for @import instances.
  */
-const customIncludePaths = [ './node_modules' ];
+const customIncludePaths = [ 
+	'./node_modules',
+	'./node_modules/@bostonuniversity'
+];
 
 // Example below is for block styles.
 // This concats all of the block base styles together so we have the option
