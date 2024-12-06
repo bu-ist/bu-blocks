@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     BU Blockdonkadonk
+ * Plugin Name:     BU Blocks
  * Plugin URI:      https://github.com/bu-ist/bu-blocks
  * Description:     A repository for storing all BU WordPress blocks.
  * Author:          Boston University: Interactive Design
