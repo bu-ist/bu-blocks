@@ -3160,7 +3160,7 @@ const renderDropCapSVG = (character, imageURL) => {
     dy: ".404em",
     className: "dropcap-filltext"
   }, character)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
-    clipPath: clipPathURL
+    "clip-path": clipPathURL
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("image", {
     ...xlinkurlAttr,
     href: imageURL,

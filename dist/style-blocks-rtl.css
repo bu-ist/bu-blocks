@@ -979,6 +979,11 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
     padding: 20px;
   }
 }
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional .wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional .wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional p:first-of-type:first-letter {
+  text-shadow: -1px 1px lightgray, -2px 2px lightgray, -3px 3px lightgray, -4px 4px lightgray, -5px 5px lightgray, -6px 6px lightgray, -7px 7px lightgray, -8px 8px lightgray, -9px 9px lightgray, -10px 10px lightgray;
+}
 .wp-block-editorial-introparagraph.is-style-dropcap-image .wp-block-editorial-introparagraph-content {
   position: relative;
 }
