@@ -63,7 +63,7 @@ const renderDropCapSVG = ( character, imageURL ) => {
 					{ character }
 				</text>
 			</clipPath>
-			<g clipPath={ clipPathURL }>
+			<g clip-path={ clipPathURL }>
 				<image
 					{ ...xlinkurlAttr }
 					href={ imageURL }
