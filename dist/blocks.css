@@ -899,13 +899,11 @@ input[value=photo-row-tall-1-1] + label {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.wp-block-editorial-pullquote {
-  border-bottom: none;
-  border-top: none;
-  padding: 0;
+.wp-block-bu-pullquote {
   position: relative;
 }
-.block-editor__container .wp-block-editorial-pullquote img {
+.wp-block-bu-pullquote .wp-block-bu-pullquote-inner figure,
+.wp-block-bu-pullquote .wp-block-bu-pullquote-inner figure img {
   height: 100%;
 }
 /*!**************************************************************************************************************************************************************************************************************************************************************!*\
