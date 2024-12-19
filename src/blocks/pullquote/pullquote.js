@@ -69,12 +69,18 @@ const getClasses = (
  * @returns
  */
 const getColorSlug = ( color ) => {
-	const colorObject = getColorObjectByColorValue( themeOptions(), color );
-
-	if ( colorObject.slug ) {
-		return colorObject.slug;	
+	if ( color ) {
+		const colorObject = getColorObjectByColorValue( themeOptions(), color );
+		
+		if ( colorObject.slug ) {
+			return colorObject.slug;	
+		} else {
+			console.error( "Error: no color.slug value found in color object.");
+			return undefined;
+		}
+	
 	} else {
-		console.log( "Error: no color slug found.");
+		return undefined;
 	}
 	
 }
@@ -229,7 +235,9 @@ registerBlockType( 'bu/pullquote', {
 						colorSettings={ [
 							{
 								value: themeColor,
-								onChange: (value) => setAttributes({ themeColor: getColorSlug( value ) }),
+								onChange: (value) => setAttributes({ 
+									themeColor: ( value ) ? getColorSlug( value ) : undefined 
+								}),
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
@@ -246,7 +254,9 @@ registerBlockType( 'bu/pullquote', {
 						colorSettings={ [
 							{
 								value: textColor,
-								onChange: (value) => setAttributes({ textColor: getColorSlug( value ) }),
+								onChange: (value) => setAttributes({ 
+									textColor: ( value ) ? getColorSlug( value ) : undefined 
+								}),
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
