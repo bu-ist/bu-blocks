@@ -24,9 +24,8 @@ import blockIcons from '../../components/block-icons/';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Fragment, useState } = wp.element;
-const { PanelBody, Path, SelectControl, TextControl, SVG } = wp.components;
-const { InspectorControls, PanelColorSettings, RichText, withColors } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { PanelBody, PanelRow, SelectControl, TextControl, SVG } = wp.components;
+const { InspectorControls, PanelColorSettings, RichText, getColorObjectByColorValue } = wp.blockEditor;
 
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {
@@ -62,14 +61,32 @@ const getClasses = (
 	} );
 };
 
+/**
+ * When given a color it gets the Color Slug from the themeoptions() color
+ * palette defined for the theme.
+ *
+ * @param {*} color
+ * @returns
+ */
+const getColorSlug = ( color ) => {
+	const colorObject = getColorObjectByColorValue( themeOptions(), color );
+
+	if ( colorObject.slug ) {
+		return colorObject.slug;	
+	} else {
+		console.log( "Error: no color slug found.");
+	}
+	
+}
+
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
 
 // Register the block.
 registerBlockType( 'bu/pullquote', {
 	title: __( 'BU Pullquote' ),
-	description: __( '' ),
-	icon: blockIcons( 'pullquote' ),
+	description: __( 'Add a styled Pullquote' ),
+	icon: blockIcons('pullquote'),
 	category: 'bu',
 	supports: {
 		align: [ 'full', 'wide' ],
@@ -112,6 +129,7 @@ registerBlockType( 'bu/pullquote', {
 			name: '',
 			label: __( 'Default' ),
 			default: true,
+			isDefault: true,
 		},
 		{
 			name: 'modern',
@@ -122,24 +140,23 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
+	example: {
+		attributes: {
+			quote: "Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.",
+			cite: "Tellus Dolor Purus"
+		}
+	},
 
-	edit: withColors(
-		'themeColor',
-		'textColor'
-	)( ( props ) => {
+	edit:( props => {
 		// Get the block properties.
 		const {
 			attributes,
 			setAttributes,
 			className,
-			setThemeColor,
-			themeColor,
-			textColor,
-			setTextColor,
 		} = props;
 
 		// Get the block attributes.
-		const { quote, cite, photoCredit, imageFocus, backgroundId } =
+		const { quote, cite, photoCredit, imageFocus, backgroundId, textColor, themeColor } =
 			attributes;
 
 		const [ isUploading, setIsUploading ] = useState( false );
@@ -211,26 +228,36 @@ registerBlockType( 'bu/pullquote', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColor,
+								onChange: (value) => setAttributes({ themeColor: getColorSlug( value ) }),
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+						>
+						{ !themeOptions() &&
+							<PanelRow><em>No Color Palette available for this site.</em></PanelRow>
+						}
+					</PanelColorSettings>
 					<PanelColorSettings
 						title={ __( 'Text Color' ) }
+						description={ __( 'Description' ) }
 						colorSettings={ [
 							{
-								value: textColor.color,
-								onChange: setTextColor,
+								value: textColor,
+								onChange: (value) => setAttributes({ textColor: getColorSlug( value ) }),
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+
+					>
+						{ !themeOptions() &&
+							<PanelRow><em>No Color Palette available for this site.</em></PanelRow>
+						}
+					</PanelColorSettings>
 					{ mediaPositioningControls() }
 				</InspectorControls>
 				<BackgroundControls
@@ -244,8 +271,8 @@ registerBlockType( 'bu/pullquote', {
 						className,
 						backgroundId,
 						imageFocus,
-						themeColor.slug,
-						textColor.slug
+						themeColor,
+						textColor
 					) }
 				>
 					<div className="wp-block-bu-pullquote-inner">

@@ -1,6 +1,10 @@
 # Changelog
 
 ## Unreleased
+- Block Color Palette Options WP 5.8 bug fixes: 
+  - **Pullquote block** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code
+  - 
 - Removed Block Support.js and all filters (buBlocks.blockSupport) that allowed for unregistering blocks in the plugin. The previous approach
  disabled the blocks by default on all post types except `posts` and `pages` but now that the plugin has matured we are flipping this to a
  new default of allowing the blocks on all post types. A theme can then choose to disable blocks as needed using: https://github.com/bu-ist/bu-id-block-utils/blob/develop/js-dev/disable-blocks.js
