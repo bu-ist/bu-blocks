@@ -1,14 +1,14 @@
-# Copyright (C) 2024 Boston University: Interactive Design
+# Copyright (C) 2025 Boston University: Interactive Design
 # This file is distributed under the same license as the BU Blocks package.
 msgid ""
 msgstr ""
 "Project-Id-Version: BU Blocks 2.0.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bu-blocks\n"
-"POT-Creation-Date: 2024-12-19 16:45:10+00:00\n"
+"POT-Creation-Date: 2025-01-23 16:51:38+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: node-wp-i18n 1.2.7\n"
