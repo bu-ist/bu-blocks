@@ -12,92 +12,94 @@ import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { compose } = wp.compose;
+import { __ } from '@wordpress/i18n';
 
-const { Fragment, useState, useEffect } = wp.element;
+import { useState } from '@wordpress/element';
 
-const {
+import { PanelRow } from '@wordpress/components';
+
+import {
 	InspectorControls,
 	InnerBlocks,
 	PanelColorSettings,
 	RichText,
-	withColors,
+	getColorObjectByColorValue,
+	getColorObjectByAttributeValues,
 	useBlockProps,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
-
-const { select } = wp.data;
-
-// Populate selectors that were in core/editor until WordPress 5.2 and are
-// now located in core/block-editor.
-const { hasSelectedInnerBlock, isBlockSelected } =
-	'undefined' === typeof select( 'core/block-editor' )
-		? select( 'core/editor' )
-		: select( 'core/block-editor' );
+} from '@wordpress/block-editor';
 
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
 
-const BUEditorialModalEdit = ( props ) => {
-	const {
-		attributes,
-		themeColor,
-		setThemeColor,
-		setAttributes,
-		className,
-		clientId,
-	} = props;
+/**
+ * When given a color it gets the Color Slug from the themeoptions() color
+ * palette defined for the theme.
+ *
+ * @param {*} color
+ * @return {string} The slug of the color.
+ */
+const getColorSlug = ( color ) => {
+	if ( color ) {
+		const colorObject = getColorObjectByColorValue( themeOptions(), color );
 
-	const { backgroundId, calloutHeading, calloutText, trigger } = attributes;
+		if ( colorObject.slug ) {
+			return colorObject.slug;
+		}
+	} else {
+		console.error( 'Error: no color.slug value found in color object.' ); // eslint-disable-line no-console
+	}
+	return undefined;
+};
+
+//const BUEditorialModalEdit = ( props ) => {
+export default function Edit( props ) {
+	const { attributes, setAttributes, className } = props;
+
+	const { backgroundId, calloutHeading, calloutText, trigger, themeColor } =
+		attributes;
 
 	const [ isUploading, setIsUploading ] = useState( false );
 
 	const classes = classnames( className, {
-		[ `has-${ themeColor.slug }-theme` ]: themeColor.slug,
+		[ `has-${ themeColor }-theme` ]: themeColor,
 		'has-media': backgroundId,
 	} );
 
-	// ToDo: explore removing this and using just the CSS classes .is-selected and .has-selected-child.
-	const modalSelected = ( clientId ) => {
-		if ( clientId ) {
-			const modalHasSelectedBlock =
-				hasSelectedInnerBlock( clientId, true ) ||
-				isBlockSelected( clientId );
-			return modalHasSelectedBlock ? 'true' : 'false';
-		}
-		return 'false';
-	};
+	const themeColorObject = getColorObjectByAttributeValues(
+		themeOptions(),
+		themeColor
+	);
 
 	const blockProps = useBlockProps( {
 		className: classes,
-		'data-selected-modal': modalSelected( clientId ),
 	} );
 
-	useEffect( () => {
-		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
-		if (
-			hasSelectedInnerBlock( clientId, true ) ||
-			isBlockSelected( clientId )
-		) {
-			setAttributes( { clientId } );
-		}
-	}, [] );
-
 	return (
-		<Fragment>
+		<>
 			<InspectorControls>
 				<PanelColorSettings
 					title={ __( 'Theme Settings' ) }
 					colorSettings={ [
 						{
-							value: themeColor.color,
-							onChange: setThemeColor,
+							value: themeColorObject?.color,
+							onChange: ( value ) =>
+								setAttributes( {
+									themeColor: value
+										? getColorSlug( value )
+										: undefined,
+								} ),
 							label: __( 'Theme' ),
 							disableCustomColors: true,
 							colors: themeOptions(),
 						},
 					] }
-				/>
+				>
+					{ ! themeOptions() && (
+						<PanelRow>
+							<em>No Color Palette available for this site.</em>
+						</PanelRow>
+					) }
+				</PanelColorSettings>
 			</InspectorControls>
 			<BackgroundControls
 				allowedMediaTypes={ allowedMedia }
@@ -105,6 +107,7 @@ const BUEditorialModalEdit = ( props ) => {
 				className="banner-placeholder"
 				placeholderText={ __( 'Add Image' ) }
 				setIsUploading={ setIsUploading }
+				imageSize="large"
 			/>
 			<aside { ...blockProps }>
 				<div className="wp-block-editorial-modal-callout">
@@ -186,10 +189,6 @@ const BUEditorialModalEdit = ( props ) => {
 					</div>
 				</div>
 			</aside>
-		</Fragment>
+		</>
 	);
-};
-
-export default compose( [ withColors( 'themeColor' ) ] )(
-	BUEditorialModalEdit
-);
+}

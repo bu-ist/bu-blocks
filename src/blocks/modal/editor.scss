@@ -29,7 +29,8 @@
 }
 
 
-[data-selected-modal="true"] .wp-block-editorial-modal-content {
+.wp-block-editorial-modal.is-selected .wp-block-editorial-modal-content,
+.wp-block-editorial-modal.has-child-selected .wp-block-editorial-modal-content {
 	display: block !important;
 }
 

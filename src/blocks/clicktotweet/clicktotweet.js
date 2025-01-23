@@ -197,8 +197,8 @@ const registerFields = createHigherOrderComponent( ( BlockEdit ) => {
 				} );
 			}
 		}
-
-		if ( ! clickToTweet && content.includes( clickToTweetContainer ) ) {
+		
+		if ( ! clickToTweet && content && Array.isArray(content) && content.includes( clickToTweetContainer ) ) {
 			const strippedContent = content.slice(
 				clickToTweetContainer.length,
 				-7

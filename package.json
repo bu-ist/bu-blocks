@@ -35,6 +35,7 @@
 	},
 	"main": "build/index.js",
 	"devDependencies": {
+		"@bostonuniversity/burf-tools": "^5.0.0-alpha.10",
 		"@linthtml/linthtml": "^0.9.5",
 		"@wordpress/eslint-plugin": "^19.0.0",
 		"@wordpress/prettier-config": "^4.0.0",
@@ -50,7 +51,6 @@
 		"npm-run-all": "^4.1.5",
 		"object-fit-images": "^3.2.4",
 		"prettier": "npm:wp-prettier@^3.0.3",
-		"responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1",
 		"rimraf": "^5.0.5",
 		"sass-embedded": "^1.72.0",
 		"webpack-merge": "^5.10.0",

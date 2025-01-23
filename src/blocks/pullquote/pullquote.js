@@ -21,12 +21,22 @@ import themeOptions from '../../global/theme-options';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Fragment, useState } = wp.element;
-const { PanelBody, Path, SelectControl, TextControl, SVG } = wp.components;
-const { InspectorControls, PanelColorSettings, RichText, withColors } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { useState } from '@wordpress/element';
+import {
+	PanelBody,
+	PanelRow,
+	SelectControl,
+	TextControl,
+} from '@wordpress/components';
+import {
+	InspectorControls,
+	PanelColorSettings,
+	RichText,
+	getColorObjectByColorValue,
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
 
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {
@@ -43,7 +53,7 @@ const isStyleDefault = ( className ) => {
  * @param {number} backgroundId ID of the background media, if set.
  * @param {string} imageFocus   Value of the "Crop Media To" setting.
  * @param {string} themeColor   Value of the "Theme Color" setting.
- * @param          textColor
+ * @param {string} textColor
  */
 const getClasses = (
 	className,
@@ -62,13 +72,33 @@ const getClasses = (
 	} );
 };
 
+/**
+ * When given a color it gets the Color Slug from the themeoptions() color
+ * palette defined for the theme.
+ *
+ * @param {*} color
+ * @return {string} The slug of the color.
+ */
+const getColorSlug = ( color ) => {
+	if ( color ) {
+		const colorObject = getColorObjectByColorValue( themeOptions(), color );
+
+		if ( colorObject.slug ) {
+			return colorObject.slug;
+		}
+	} else {
+		console.error( 'Error: no color.slug value found in color object.' ); // eslint-disable-line no-console
+	}
+	return undefined;
+};
+
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
 
 // Register the block.
 registerBlockType( 'bu/pullquote', {
 	title: __( 'BU Pullquote' ),
-	description: __( '' ),
+	description: __( 'Add a styled Pullquote' ),
 	icon: blockIcons( 'pullquote' ),
 	category: 'bu',
 	supports: {
@@ -112,6 +142,7 @@ registerBlockType( 'bu/pullquote', {
 			name: '',
 			label: __( 'Default' ),
 			default: true,
+			isDefault: true,
 		},
 		{
 			name: 'modern',
@@ -122,25 +153,27 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
+	example: {
+		attributes: {
+			quote: 'Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
+			cite: 'Tellus Dolor Purus',
+		},
+	},
 
-	edit: withColors(
-		'themeColor',
-		'textColor'
-	)( ( props ) => {
+	edit: function Edit( props ) {
 		// Get the block properties.
-		const {
-			attributes,
-			setAttributes,
-			className,
-			setThemeColor,
-			themeColor,
-			textColor,
-			setTextColor,
-		} = props;
+		const { attributes, setAttributes, className } = props;
 
 		// Get the block attributes.
-		const { quote, cite, photoCredit, imageFocus, backgroundId } =
-			attributes;
+		const {
+			quote,
+			cite,
+			photoCredit,
+			imageFocus,
+			backgroundId,
+			textColor,
+			themeColor,
+		} = attributes;
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
@@ -193,16 +226,23 @@ registerBlockType( 'bu/pullquote', {
 			);
 		};
 
+		const themeColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			themeColor
+		);
+		const textColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			textColor
+		);
+
 		// Return the block editing interface.
 		return (
-			<Fragment>
+			<>
 				<InspectorControls>
 					<PanelBody title={ __( 'Media Options' ) }>
 						<TextControl
 							label={ __( 'Media Credit' ) }
-							onChange={ ( photoCredit ) =>
-								setAttributes( { photoCredit } )
-							}
+							onChange={ ( value ) => setAttributes( { value } ) }
 							value={ photoCredit }
 						/>
 					</PanelBody>
@@ -211,26 +251,53 @@ registerBlockType( 'bu/pullquote', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										themeColor: value
+											? getColorSlug( value )
+											: undefined,
+									} ),
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					<PanelColorSettings
 						title={ __( 'Text Color' ) }
+						description={ __( 'Description' ) }
 						colorSettings={ [
 							{
-								value: textColor.color,
-								onChange: setTextColor,
+								value: textColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										textColor: value
+											? getColorSlug( value )
+											: undefined,
+									} ),
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					{ mediaPositioningControls() }
 				</InspectorControls>
 				<BackgroundControls
@@ -238,26 +305,27 @@ registerBlockType( 'bu/pullquote', {
 					blockProps={ props }
 					placeholderText={ __( 'Add Image' ) }
 					setIsUploading={ setIsUploading }
+					imageSize="large"
 				/>
 				<div
 					className={ getClasses(
 						className,
 						backgroundId,
 						imageFocus,
-						themeColor.slug,
-						textColor.slug
+						themeColor,
+						textColor
 					) }
 				>
 					<div className="wp-block-bu-pullquote-inner">
 						{ isStyleDefault( className ) && (
-							<Fragment>
+							<>
 								<figure>
 									<Background
 										blockProps={ props }
 										isUploading={ isUploading }
 									/>
 								</figure>
-							</Fragment>
+							</>
 						) }
 						<blockquote>
 							<div className="container-lockup">
@@ -337,9 +405,9 @@ registerBlockType( 'bu/pullquote', {
 						</div>
 					) }
 				</div>
-			</Fragment>
+			</>
 		);
-	} ),
+	},
 
 	save( props ) {
 		// Get the block properties.

@@ -16,13 +16,19 @@ import './style.scss';
 import './editor.scss';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { PanelBody, Path, RadioControl, SVG, TextControl, ToggleControl } =
-	wp.components;
-const { InspectorControls, RichText, useBlockProps } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import {
+	PanelBody,
+	RadioControl,
+	TextControl,
+	ToggleControl,
+} from '@wordpress/components';
+import {
+	InspectorControls,
+	RichText,
+	useBlockProps,
+} from '@wordpress/block-editor';
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -82,7 +88,11 @@ registerBlockType( 'bu/buniverse', {
 	supports: {
 		align: true,
 	},
-
+	example: {
+		attributes: {
+			id: '',
+		},
+	},
 	edit( props ) {
 		const {
 			attributes: {
@@ -143,7 +153,7 @@ registerBlockType( 'bu/buniverse', {
 		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ id }&jsapi=1`;
 
 		return (
-			<Fragment>
+			<>
 				<InspectorControls>
 					<PanelBody title={ __( 'Video Settings' ) }>
 						<TextControl
@@ -269,7 +279,7 @@ registerBlockType( 'bu/buniverse', {
 						</figcaption>
 					) }
 				</figure>
-			</Fragment>
+			</>
 		);
 	},
 

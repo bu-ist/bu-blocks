@@ -5,13 +5,11 @@
  * which makes it higher in priority.
  */
 
-.wp-block-editorial-pullquote {
-	border-bottom: none;
-	border-top: none;
-	padding: 0;
+.wp-block-bu-pullquote {
 	position: relative;
 
-	.block-editor__container & img {
-		height: 100%;
+	.wp-block-bu-pullquote-inner figure, 
+	.wp-block-bu-pullquote-inner figure img {
+		height: 100%; // Fix bg image height in editor due to normalize from foundation overriding. @todo: remove this eventually.
 	}
 }
