@@ -8,10 +8,10 @@
 //
 //
 
-// a:active,
-// a:visited { // TO DO: move to global location
-// 	color: inherit;
-// }
+a:active,
+a:visited { // TO DO: move to global location
+	color: inherit;
+}
 
 .wp-block-button {
 	@include transition( all 0.2s ease-in-out 0s);

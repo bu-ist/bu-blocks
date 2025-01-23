@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Remove each block's themeable SCSS file from being compiled as these aren't needed in the rep, but instead are used by other themes importing this repo via node.
 - Bug fix: Intro Paragraph block's onSplit function wasn't working to add a paragraph block when the user hits enter. 
 - Bug Fix: Intro Paragraph block was retaining the dropcap when switching Block Styles. Had to change how className was used since the old approach from the beta version of Gutenberg conflicts with current attribute and property usage of `className`. 
 - Multiple blocks were using the "full" image size in the Background component. This has been changed now to the `large` size instead. This should be a safe change for most blocks but may result in some layout bugs. Loading the `full` size however is not acceptable as the files sizes can be extreme.
