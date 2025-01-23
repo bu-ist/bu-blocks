@@ -5,15 +5,19 @@ import classnames from 'classnames';
 import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
+import { __ } from '@wordpress/i18n';
 
-const { createBlock } = wp.blocks;
-const { PanelBody, RangeControl } = wp.components;
-const { InnerBlocks, InspectorControls, RichText, useBlockProps } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+import { createBlock } from '@wordpress/blocks';
+import { PanelBody, RangeControl } from '@wordpress/components';
+import {
+	InnerBlocks,
+	InspectorControls,
+	RichText,
+	useBlockProps,
+} from '@wordpress/block-editor';
 
-const { compose } = wp.compose;
-const { withDispatch, withSelect } = wp.data;
+import { compose } from '@wordpress/compose';
+import { withDispatch, withSelect } from '@wordpress/data';
 
 /**
  * Returns the class list for the block based on the current settings.

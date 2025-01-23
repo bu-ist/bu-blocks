@@ -203,6 +203,7 @@ registerBlockType( 'editorial/listicle', {
 					inlinePlaceholder={ true }
 					setIsUploading={ setIsUploading }
 					options={ [] }
+					imageSize="large"
 				/>
 				<ShareToolsControls blockProps={ props } />
 				<article className="wp-block-editorial-listicle-article">

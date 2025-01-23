@@ -17,17 +17,44 @@ import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Circle, PanelBody, Path, RangeControl, SVG } = wp.components;
-const {
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import {
+	Circle,
+	PanelBody,
+	RangeControl,
+	SVG,
+	PanelRow,
+} from '@wordpress/components';
+import {
 	InspectorControls,
 	PanelColorSettings,
 	PlainText,
 	RichText,
-	withColors,
 	useBlockProps,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+	getColorObjectByColorValue,
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
+
+/**
+ * When given a color it gets the Color Slug from the themeoptions() color
+ * palette defined for the theme.
+ *
+ * @param {*} color
+ * @return {string} The slug of the color.
+ */
+const getColorSlug = ( color ) => {
+	if ( color ) {
+		const colorObject = getColorObjectByColorValue( themeOptions(), color );
+
+		if ( colorObject.slug ) {
+			return colorObject.slug;
+		}
+	} else {
+		console.error( 'Error: no color.slug value found in color object.' ); // eslint-disable-line no-console
+	}
+	return undefined;
+};
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -142,10 +169,7 @@ registerBlockType( 'bu/stat', {
 		inserter: false,
 	},
 
-	edit: withColors(
-		'circleOneColor',
-		'circleTwoColor'
-	)( ( props ) => {
+	edit: function Edit( props ) {
 		const {
 			attributes: {
 				circleOneFill,
@@ -154,24 +178,31 @@ registerBlockType( 'bu/stat', {
 				number,
 				postText,
 				preText,
+				circleOneColor,
+				circleTwoColor,
 			},
-			circleOneColor,
-			circleTwoColor,
 			className,
 			isSelected,
 			setAttributes,
-			setCircleOneColor,
-			setCircleTwoColor,
 		} = props;
 
 		const blockProps = useBlockProps( {
 			className: getBlockClasses(
-				circleOneColor.slug,
-				circleTwoColor.slug,
+				circleOneColor,
+				circleTwoColor,
 				className,
 				numberSize
 			),
 		} );
+
+		const circleOneColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			circleOneColor
+		);
+		const circleTwoColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			circleTwoColor
+		);
 
 		return (
 			<div { ...blockProps }>
@@ -201,8 +232,8 @@ registerBlockType( 'bu/stat', {
 							<PlainText
 								placeholder={ __( 'Number…' ) }
 								value={ number }
-								onChange={ ( number ) =>
-									setAttributes( { number } )
+								onChange={ ( value ) =>
+									setAttributes( { number: value } )
 								}
 							/>
 						</div>
@@ -246,8 +277,8 @@ registerBlockType( 'bu/stat', {
 						<RangeControl
 							label={ __( 'Bottom Circle Fill' ) }
 							value={ circleOneFill }
-							onChange={ ( circleOneFill ) =>
-								setAttributes( { circleOneFill } )
+							onChange={ ( value ) =>
+								setAttributes( { circleOneFill: value } )
 							}
 							min={ 0 }
 							max={ 100 }
@@ -256,8 +287,8 @@ registerBlockType( 'bu/stat', {
 						<RangeControl
 							label={ __( 'Top Circle Fill' ) }
 							value={ circleTwoFill }
-							onChange={ ( circleTwoFill ) =>
-								setAttributes( { circleTwoFill } )
+							onChange={ ( value ) =>
+								setAttributes( { circleTwoFill: value } )
 							}
 							min={ 0 }
 							max={ 100 }
@@ -268,25 +299,43 @@ registerBlockType( 'bu/stat', {
 						title={ __( 'Color Options' ) }
 						colorSettings={ [
 							{
-								value: circleOneColor.color,
-								onChange: setCircleOneColor,
+								value: circleOneColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										circleOneColor: value
+											? getColorSlug( value )
+											: undefined,
+									} ),
 								label: __( 'Bottom Circle' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 							{
-								value: circleTwoColor.color,
-								onChange: setCircleTwoColor,
+								value: circleTwoColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										circleTwoColor: value
+											? getColorSlug( value )
+											: undefined,
+									} ),
 								label: __( 'Top Circle' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 				</InspectorControls>
 			</div>
 		);
-	} ),
+	},
 
 	save( { attributes } ) {
 		const {
