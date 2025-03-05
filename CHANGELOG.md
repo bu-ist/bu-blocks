@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.3.8
+- Add nvmrc file at node 10
+- Moves cgb-scripts and classnames from the package file's dependencies list to the devdependencies to help address node requirement issues in child themes that import bu-blocks.
+
 ## 0.3.7
 - Photo Essay: add tall 2 by 2 image layout and full frame single layouts for photo essay
 - Leadin/metabar: add metabardate boolean attribute for showing/hiding publish date (used in BU Prepress)
