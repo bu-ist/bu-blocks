@@ -1,6 +1,6 @@
 {
   "name": "bu-blocks",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
@@ -15,8 +15,6 @@
     "eject": "cgb-scripts eject"
   },
   "dependencies": {
-    "cgb-scripts": "^1.17.0",
-    "classnames": "^2.2.6",
     "object-fit-images": "^3.2.4"
   },
   "devDependencies": {
@@ -30,6 +28,8 @@
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "~1.0.0",
     "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#1.0.0",
-    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1"
+    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1",
+    "cgb-scripts": "^1.17.0",
+    "classnames": "^2.2.6"
   }
 }

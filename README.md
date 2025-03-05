@@ -3,7 +3,7 @@
 **Contributors:** toddmilliken  
 **Tags:** gutenberg, blocks  
 **Requires at least:** 4.9.8  
-**Tested up to:** 4.9.8  
+**Tested up to:** 5.4  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -17,6 +17,25 @@ BU Blocks provides content editors with additional blocks for the new
 WordPress editor. These blocks were built for various sites within the
 BU WordPress ecosystem and have been tested and designed to be re-used
 for any project.
+
+## How to run Visual Regression Testing ##
+To make testing changes to this plugin easier, you may wish to test your
+sandbox against an existing website. This is possible to do using wp-cli
+and the [bu-webdiff library](https://github.com/bu-ist/bu-webdiff),
+which allows you to pull a list of URLs to test, and then test the differences
+locally in npm. This is just like you do during a WordPress upgrade.
+
+For example, let's say I cloned the BU Blocks demo site to my sandbox. Here,
+I am grabbing a list of all the pages that are on that demo site in my sandbox. 
+
+```
+wp post list --post_type=page --url=https://id-ashley.cms-devl.bu.edu/bu-blocks/ --fields=url --format=csv
+```
+
+From here, you could copy and paste the URLs into a text file and use the [npm instructions](https://github.com/bu-ist/bu-webdiff/blob/master/npm-instructions.md) to run visual regression testing locally.
+
+You'll need to ssh into your sandbox to do this, just like if you were looking
+for PHP error logs.
 
 ## Dependencies ##
 * [Gutenberg plugin 3.8](https://wordpress.org/plugins/gutenberg/)
