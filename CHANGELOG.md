@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.3.9
+- Add NPM publishing
+
 ## 0.3.8
 - Add nvmrc file at node 10
 - Moves cgb-scripts and classnames from the package file's dependencies list to the devdependencies to help address node requirement issues in child themes that import bu-blocks.
