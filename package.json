@@ -1,7 +1,6 @@
 {
   "name": "@bostonuniversity/bu-blocks",
   "version": "0.3.8",
-  "private": true,
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
   "contributors": [
@@ -9,6 +8,9 @@
     "Ashley Kolodziej <kolodz10@bu.edu>",
     "Dakota Chichester <acketon@bu.edu>"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "cgb-scripts start",
     "build": "cgb-scripts build",
