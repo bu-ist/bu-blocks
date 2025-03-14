@@ -74,22 +74,21 @@ function bu_blocks_load_textdomain() {
 /**
  * Fire an action used by this plugin and others to enqueue
  * general block stylesheets in the desired order.
- *
- * This function is called at two different points in the load process
- * depending on whether this is WordPress 4.9 or 5.x.
+ * 
+ * @todo: we should remove this function that calls this custom action but r2-com and bu-prepress both use it.
  */
 function enqueue_blocks_stylesheet() {
 	do_action( 'bu_blocks_enqueue_block_stylesheet' );
 }
 
 /**
- * Enqueue the general block styles added by this plugin.
+ * Enqueue the general frontend block styles added by this plugin.
  *
  * These styles are not editor specific and are enqueued in both the
  * front-end and back-end views.
  */
 function enqueue_bu_blocks_general_stylesheet() {
-	// Styles.
+	// Frontend Block Styles for all blocks in the plugin.
 	wp_enqueue_style(
 		'bu-blocks-css', // Handle.
 		plugins_url( 'dist/style-blocks.css', __DIR__ ), // Block style CSS.
@@ -107,16 +106,11 @@ function enqueue_bu_blocks_general_stylesheet() {
  */
 function enqueue_block_assets() {
 
-	// If a pre-5.0 version of WordPress, enqueue general block styles from
-	// this plugin whenever block assets are enqueued.
-	//
-	// If a 5.0+ version of WordPress, only enqueue general block styles in
+	// Only enqueue general block styles in
 	// this function on non-admin requests. See `enqueue_block_editor_assets()`
 	// for when styles are used in the editor context.
-	if ( ! function_exists( 'wp_common_block_scripts_and_styles' ) ) {
-		enqueue_blocks_stylesheet();
-	} elseif ( ! is_admin() ) {
-		enqueue_blocks_stylesheet();
+	if ( ! is_admin() ) {
+		enqueue_blocks_stylesheet(); 
 	}
 
 	// Enqueue object-fit-images.
@@ -149,7 +143,7 @@ function enqueue_block_assets() {
  * @since    0.1.0
  */
 function enqueue_block_editor_assets() {
-	// Scripts.
+	// Editor Scripts containing block functions.
 	wp_enqueue_script(
 		'bu-blocks-js', // Handle.
 		plugins_url( '/dist/blocks.js', __DIR__ ), // Block.build.js: We register the block here. Built with Webpack.
@@ -158,16 +152,13 @@ function enqueue_block_editor_assets() {
 		true // Enqueue the script in the footer.
 	);
 
-	// If a pre-5.0 version of WordPress, general block styles are always loaded
-	// via `enqueue_block_assets` and they are not needed here.
-	//
 	// If a 5.0+ version of WordPress, enqueue general styles here—before the styles
 	// for the editor are loaded.
 	if ( function_exists( 'wp_common_block_scripts_and_styles' ) && is_admin() ) {
 		enqueue_blocks_stylesheet();
 	}
 
-	// Styles.
+	// Editor Styles.
 	wp_enqueue_style(
 		'bu-blocks-editor-css', // Handle.
 		plugins_url( 'dist/blocks.css', __DIR__ ), // Block editor CSS.
@@ -175,14 +166,6 @@ function enqueue_block_editor_assets() {
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
 
-	// Enqueue handling of block support for post types.
-	wp_enqueue_script(
-		'bu-blocks-block-support',
-		plugins_url( 'dist/block-support.js', __DIR__ ),
-		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/block-support.js' ),
-		true
-	);
 }
 
 /**

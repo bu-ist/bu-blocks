@@ -9,6 +9,7 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 import blockIcons from '../../components/block-icons/';
@@ -20,19 +21,22 @@ import './style.scss';
 import './editor.scss';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Button, Dashicon, G, IconButton, PanelBody, Path, RadioControl, SVG } =
-	wp.components;
-const { Fragment } = wp.element;
-const {
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import {
+	Button,
+	PanelBody,
+	RadioControl,
+	PanelRow,
+} from '@wordpress/components';
+import {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
 	URLInput,
-	withColors,
 	useBlockProps,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -112,35 +116,54 @@ registerBlockType( 'bu/button', {
 		align: [ 'left', 'center', 'right' ],
 	},
 
-	edit: withColors( 'themeColor' )( ( props ) => {
+	edit: function Edit( props ) {
 		const {
-			attributes: { text, url, icon, align },
-			themeColor,
-			setThemeColor,
+			attributes: { text, url, icon, align, themeColor },
 			setAttributes,
-			isSelected,
+			//isSelected,
 			className,
 		} = props;
 
 		const blockProps = useBlockProps( {
-			className: getClasses( className, themeColor.slug, icon ),
+			className: getClasses( className, themeColor, icon ),
 		} );
 
+		const themeColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			themeColor
+		);
+
 		return (
-			<Fragment>
+			<>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										themeColor: value
+											? getColorSlug(
+													value,
+													themeOptions()
+											  )
+											: undefined,
+									} ),
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					<PanelBody title={ __( 'Icon Settings' ) }>
 						<RadioControl
 							label="Placement"
@@ -164,7 +187,7 @@ registerBlockType( 'bu/button', {
 								setAttributes( { icon: undefined } )
 							}
 							label={ 'Clear icon settings' }
-							isDefault
+							isSecondary
 							isSmall
 						>
 							{ __( 'Clear' ) }
@@ -208,9 +231,9 @@ registerBlockType( 'bu/button', {
 						keepPlaceholderOnFocus
 					/>
 				</p>
-			</Fragment>
+			</>
 		);
-	} ),
+	},
 
 	save( { attributes } ) {
 		const { url, text, themeColor, icon, className } = attributes;

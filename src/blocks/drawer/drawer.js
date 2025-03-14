@@ -17,25 +17,32 @@ import Background, {
 	BackgroundControls,
 } from '../../components/background';
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { PanelBody, Path, RadioControl, SVG, ToggleControl } = wp.components;
-const {
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import {
+	PanelBody,
+	RadioControl,
+	ToggleControl,
+	PanelRow,
+} from '@wordpress/components';
+import {
 	RichText,
 	InnerBlocks,
 	InspectorControls,
 	PanelColorSettings,
-	withColors,
 	useBlockProps,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
-const { select } = wp.data;
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
 
-const { useState } = wp.element;
+import { select } from '@wordpress/data';
+
+import { useState } from '@wordpress/element';
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
@@ -49,9 +56,9 @@ const { hasSelectedInnerBlock, isBlockSelected } =
  *
  * @param {number}  background Whether the block has background media assigned.
  * @param {string}  className  Default classes assigned to the block.
- * @param {boolean} round      Whether to display round images.
  * @param {boolean} hideTeaser Whether to display the teaser.
- * @param           size
+ * @param {boolean} round      Whether to display round images.
+ * @param {string}  size       The size attribute.
  * @param {string}  themeColor The assigned background color.
  */
 const getClasses = (
@@ -125,7 +132,12 @@ registerBlockType( 'editorial/drawer', {
 	supports: {
 		align: [ 'left', 'right', 'full' ],
 	},
-
+	example: {
+		attributes: {
+			hed: 'Tellus Dolor Purus',
+			lede: 'Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
+		},
+	},
 	// Add the `selected-drawer` data attribute when this block or its descendants are selected.
 	getEditWrapperProps( { clientId } ) {
 		if ( clientId ) {
@@ -141,7 +153,7 @@ registerBlockType( 'editorial/drawer', {
 		}
 	},
 
-	edit: withColors( 'themeColor' )( ( props ) => {
+	edit: function Edit( props ) {
 		// Get the properties and attributes we'll need.
 		const {
 			attributes: {
@@ -152,13 +164,12 @@ registerBlockType( 'editorial/drawer', {
 				lede,
 				round,
 				size,
+				themeColor,
 			},
 			className,
 			clientId,
 			isSelected,
 			setAttributes,
-			setThemeColor,
-			themeColor,
 		} = props;
 
 		const blockProps = useBlockProps( {
@@ -168,7 +179,7 @@ registerBlockType( 'editorial/drawer', {
 				hideTeaser,
 				round,
 				size,
-				themeColor.slug
+				themeColor
 			),
 		} );
 
@@ -182,6 +193,11 @@ registerBlockType( 'editorial/drawer', {
 			setAttributes( { clientId } );
 		}
 
+		const themeColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			themeColor
+		);
+
 		return (
 			<aside { ...blockProps }>
 				<BackgroundControls
@@ -191,6 +207,7 @@ registerBlockType( 'editorial/drawer', {
 					options={ [] }
 					placeholderText={ __( 'Add Image' ) }
 					setIsUploading={ setIsUploading }
+					imageSize="large"
 				/>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ ( backgroundId ||
@@ -276,14 +293,30 @@ registerBlockType( 'editorial/drawer', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										themeColor: value
+											? getColorSlug(
+													value,
+													themeOptions()
+											  )
+											: undefined,
+									} ),
 								label: __( 'Background' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					<PanelBody title={ __( 'Display Options' ) }>
 						<ToggleControl
 							label={ __( 'Hide teaser when drawer is open' ) }
@@ -334,7 +367,7 @@ registerBlockType( 'editorial/drawer', {
 				</InspectorControls>
 			</aside>
 		);
-	} ),
+	},
 
 	save( props ) {
 		// Get the properties and attributes we'll need.
@@ -378,6 +411,8 @@ registerBlockType( 'editorial/drawer', {
 						<RichText.Content tagName="p" value={ lede } />
 					) }
 					{ button && (
+						// @ToDo: need to replace this <a> tag with a button.
+						// eslint-disable-next-line jsx-a11y/anchor-is-valid
 						<a href="#" className="button js-bu-block-drawer-open">
 							{ button }
 						</a>

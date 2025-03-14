@@ -17,20 +17,23 @@ import RegisterBlockPreset from '../../global/register-block-preset.js';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { getColorClassName, InnerBlocks, useBlockProps } =
-	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import {
+	getColorClassName,
+	InnerBlocks,
+	useBlockProps,
+} from '@wordpress/block-editor';
 
 // Internal dependencies.
-import edit from './edit.js';
+import Edit from './edit.js';
 
 // Register the block.
 const asideBlock = registerBlockType( 'editorial/aside', {
 	apiVersion: 2,
 	title: __( 'Aside' ),
 	description: __(
-		'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.'
+		'Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.'
 	),
 	icon: blockIcons( 'aside' ),
 	category: 'bu-editorial',
@@ -42,8 +45,28 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 			type: 'string',
 		},
 	},
-
-	edit,
+	example: {
+		innerBlocks: [
+			{
+				name: 'core/heading',
+				attributes: {
+					content: __(
+						'Aside Block Example'
+					),
+				},
+			},
+			{
+				name: 'core/paragraph',
+				attributes: {
+					content: __( 'The Aside block allows you to add a variety of content blocks such as paragraphs and images.' ),
+				},
+			},
+		],
+	},
+	/**
+	 * @see ./edit.js
+	 */
+	edit: Edit,
 
 	save( { attributes, className } ) {
 		const { themeColor } = attributes;

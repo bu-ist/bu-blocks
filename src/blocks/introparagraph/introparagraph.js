@@ -12,11 +12,15 @@ import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { createBlock, registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { IconButton, PanelBody, Toolbar, SVG } = wp.components;
-const {
+import { __ } from '@wordpress/i18n';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
+import {
+	IconButton,
+	PanelBody,
+	Toolbar,
+	PanelRow,
+} from '@wordpress/components';
+import {
 	RichText,
 	PlainText,
 	InspectorControls,
@@ -24,14 +28,16 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	PanelColorSettings,
-	withColors,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+	getColorObjectByAttributeValues,
+	useBlockProps,
+} from '@wordpress/block-editor';
 
 // Import a library used to manage multiple class names.
 import classnames from 'classnames';
 
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 
 import deprecated from './deprecated';
 
@@ -63,7 +69,7 @@ const renderDropCapSVG = ( character, imageURL ) => {
 					{ character }
 				</text>
 			</clipPath>
-			<g clipPath={ clipPathURL }>
+			<g clip-path={ clipPathURL }>
 				<image
 					{ ...xlinkurlAttr }
 					href={ imageURL }
@@ -75,6 +81,7 @@ const renderDropCapSVG = ( character, imageURL ) => {
 		</svg>
 	);
 };
+
 
 // Register the block.
 registerBlockType( 'editorial/introparagraph', {
@@ -108,10 +115,6 @@ registerBlockType( 'editorial/introparagraph', {
 			default: '',
 		},
 		paragraphColor: {
-			type: 'string',
-			default: '',
-		},
-		className: {
 			type: 'string',
 			default: '',
 		},
@@ -158,27 +161,33 @@ registerBlockType( 'editorial/introparagraph', {
 			label: __( 'Image dropcap' ),
 		},
 	],
+	example: {
+		attributes: {
+			content:
+				'Maecenas faucibus mollis interdum. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
+			heading: 'Tellus Dolor Purus ',
+			dropCapColor: 'primary',
+			className: 'is-style-dropcap-default',
+		},
+	},
 
-	edit: withColors(
-		'paragraphColor',
-		'dropCapColor'
-	)( ( props ) => {
+	edit: function Edit( props ) {
+		const { attributes, className, setAttributes, onReplace, clientId } =
+			props;
+
 		const {
-			attributes,
-			className,
-			insertBlocksAfter,
-			setAttributes,
+			heading,
+			content,
+			list,
+			dropCapImageURL,
+			dropCapImageId,
 			paragraphColor,
-			setParagraphColor,
 			dropCapColor,
-			setDropCapColor,
-		} = props;
-
-		const { heading, content, list, dropCapImageURL, dropCapImageId } =
-			attributes;
+		} = attributes;
 
 		// Determine if a sepecific dropcap style has been selected.
-		const hasDropCapStyle = className.includes( 'is-style-dropcap' );
+		const hasDropCapStyle =
+			className && className.includes( 'is-style-dropcap' );
 
 		// Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
 		if ( hasDropCapStyle ) {
@@ -188,7 +197,8 @@ registerBlockType( 'editorial/introparagraph', {
 		}
 
 		// Determine if the drop cap SVG should be included in content.
-		const isImageDropCap = className.includes( 'is-style-dropcap-image' );
+		const isImageDropCap =
+			className && className?.includes( 'is-style-dropcap-image' );
 
 		// Pull the first character from the article content use in the drop cap SVG.
 		let dropCapCharacter = '';
@@ -240,6 +250,11 @@ registerBlockType( 'editorial/introparagraph', {
 			setAttributes( { dropCapImageURL: '', dropCapImageId: null } );
 		};
 
+		const paragraphColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			paragraphColor
+		);
+
 		// Render the settings panel used to assign color to a paragraph.
 		const renderParagraphSettings = () => {
 			return (
@@ -247,16 +262,32 @@ registerBlockType( 'editorial/introparagraph', {
 					title={ __( 'Paragraph color' ) }
 					colorSettings={ [
 						{
-							value: paragraphColor.color,
-							onChange: setParagraphColor,
+							value: paragraphColorObject?.color,
+							onChange: ( value ) =>
+								setAttributes( {
+									paragraphColor: value
+										? getColorSlug( value, themeOptions() )
+										: undefined,
+								} ),
 							label: __( 'Paragraph' ),
 							disableCustomColors: true,
 							colors: themeOptions(),
 						},
 					] }
-				/>
+				>
+					{ ! themeOptions() && (
+						<PanelRow>
+							<em>No Color Palette available for this site.</em>
+						</PanelRow>
+					) }
+				</PanelColorSettings>
 			);
 		};
+
+		const dropCapColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			dropCapColor
+		);
 
 		// Render the settings panel used to assign color to a drop cap character.
 		const renderDropCapColorSettings = () => {
@@ -265,14 +296,25 @@ registerBlockType( 'editorial/introparagraph', {
 					title={ __( 'Drop cap color' ) }
 					colorSettings={ [
 						{
-							value: dropCapColor.color,
-							onChange: setDropCapColor,
+							value: dropCapColorObject?.color,
+							onChange: ( value ) =>
+								setAttributes( {
+									dropCapColor: value
+										? getColorSlug( value, themeOptions() )
+										: undefined,
+								} ),
 							label: __( 'Drop cap' ),
 							disableCustomColors: true,
 							colors: themeOptions(),
 						},
 					] }
-				/>
+				>
+					{ ! themeOptions() && (
+						<PanelRow>
+							<em>No Color Palette available for this site.</em>
+						</PanelRow>
+					) }
+				</PanelColorSettings>
 			);
 		};
 
@@ -304,7 +346,7 @@ registerBlockType( 'editorial/introparagraph', {
 									) }
 								/>
 							</Toolbar>
-							<img src={ dropCapImageURL } />
+							<img alt="" src={ dropCapImageURL } />
 						</MediaUploadCheck>
 					) }
 					<MediaPlaceholder
@@ -323,14 +365,18 @@ registerBlockType( 'editorial/introparagraph', {
 
 		const classes = classnames( className, {
 			'has-dropcap': hasDropCapStyle,
-			[ `has-dropcap-color-${ dropCapColor.slug }` ]:
-				hasDropCapStyle && dropCapColor && dropCapColor.slug,
-			[ `has-paragraph-color-${ paragraphColor.slug }` ]:
-				! hasDropCapStyle && paragraphColor && paragraphColor.slug,
+			[ `has-dropcap-color-${ dropCapColor }` ]:
+				hasDropCapStyle && dropCapColor,
+			[ `has-paragraph-color-${ paragraphColor }` ]:
+				! hasDropCapStyle && paragraphColor,
+		} );
+
+		const blockProps = useBlockProps( {
+			className: classes,
 		} );
 
 		return (
-			<Fragment>
+			<>
 				<InspectorControls>
 					{ ! hasDropCapStyle && renderParagraphSettings() }
 					{ hasDropCapStyle &&
@@ -340,11 +386,13 @@ registerBlockType( 'editorial/introparagraph', {
 						isImageDropCap &&
 						renderDropCapImageSettings() }
 				</InspectorControls>
-				<div className={ classes }>
+				<div { ...blockProps }>
 					<PlainText
 						tagname="h4"
 						value={ heading }
-						onChange={ ( heading ) => setAttributes( { heading } ) }
+						onChange={ ( value ) =>
+							setAttributes( { heading: value } )
+						}
 						placeholder={ __( 'Enter Teaser Headline (optional)' ) }
 					/>
 					<RichText
@@ -375,8 +423,8 @@ registerBlockType( 'editorial/introparagraph', {
 						<RichText
 							tagname="p"
 							value={ content }
-							onChange={ ( content ) =>
-								setAttributes( { content } )
+							onChange={ ( value ) =>
+								setAttributes( { content: value } )
 							}
 							placeholder={ __( 'Write paragraph…' ) }
 							formattingControls={ getAllowedFormats(
@@ -387,29 +435,50 @@ registerBlockType( 'editorial/introparagraph', {
 								'allowedFormats',
 								[ 'core/bold', 'core/italic' ]
 							) }
-							unstableOnSplit={
-								insertBlocksAfter
-									? ( before, after, ...blocks ) => {
-											setAttributes( {
-												content: before,
-											} );
-											insertBlocksAfter( [
-												...blocks,
-												createBlock( 'core/paragraph', {
-													content: after,
-												} ),
-											] );
-									  }
-									: undefined
-							}
+							/**
+							 * On "enter" split the block at the cursor to put the
+							 * text into a new <p> tag block.
+							 * onSplit replace the current block with a duplicate
+							 * and at the split point pass the 2nd part of the text
+							 * into a new regular paragraph block.
+							 * This fires twice, once for the first string, once for the 2nd.
+							 * after the split point.
+							 * @param value      {string} The text string of the block
+							 * @param isOriginal {boolean} If it's the original block or the new one.
+							 */
+							onSplit={ ( value, isOriginal ) => {
+								let block;
+
+								if ( isOriginal ) {
+									block = createBlock(
+										'editorial/introparagraph',
+										{
+											...attributes,
+											content: value,
+										}
+									);
+								} else {
+									block = createBlock( 'core/paragraph', {
+										content: value,
+									} );
+								}
+
+								if ( isOriginal ) {
+									block.clientId = clientId;
+								}
+
+								return block;
+							} }
+							// onReplace is needed to be passed for onSplit to work.
+							onReplace={ onReplace }
 						/>
 					</div>
 				</div>
-			</Fragment>
+			</>
 		);
-	} ),
+	},
 
-	save( { attributes } ) {
+	save( { attributes, className } ) {
 		const {
 			heading,
 			list,
@@ -417,13 +486,13 @@ registerBlockType( 'editorial/introparagraph', {
 			dropCapColor,
 			dropCapImageURL,
 			paragraphColor,
-			className,
 		} = attributes;
 
 		let isImageDropCap = false;
-		if ( 'undefined' !== typeof className ) {
+		if ( 'undefined' !== typeof attributes.className ) {
 			// Determine if the drop cap SVG should be included in content.
-			isImageDropCap = className.includes( 'is-style-dropcap-image' );
+			isImageDropCap =
+				className && className?.includes( 'is-style-dropcap-image' );
 		}
 
 		// Pull the first character from the article content use in the drop cap SVG.
@@ -442,7 +511,7 @@ registerBlockType( 'editorial/introparagraph', {
 			saveList = false;
 		}
 
-		// Determine if a sepecific dropcap style has been selected.
+		//Determine if a sepecific dropcap style has been selected.
 		const hasDropCapStyle =
 			className && className.includes( 'is-style-dropcap' );
 
@@ -454,8 +523,12 @@ registerBlockType( 'editorial/introparagraph', {
 				! hasDropCapStyle && paragraphColor,
 		} );
 
+		const blockProps = useBlockProps.save( {
+			className: classes,
+		} );
+
 		return (
-			<div className={ classes }>
+			<div { ...blockProps }>
 				{ ! RichText.isEmpty( heading ) && (
 					<RichText.Content tagName="h4" value={ heading } />
 				) }

@@ -13,6 +13,7 @@ import './editor.scss';
 
 // Internal dependencies
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 import Background, {
@@ -22,19 +23,24 @@ import Background, {
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { Fragment, useState } = wp.element;
-const { PanelBody, Path, RangeControl, SelectControl, SVG, ToggleControl } =
-	wp.components;
-const {
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { useState } from '@wordpress/element';
+import {
+	PanelBody,
+	RangeControl,
+	SelectControl,
+	ToggleControl,
+	PanelRow,
+} from '@wordpress/components';
+import {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
 	URLInput,
-	withColors,
-} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
-const { applyFilters } = wp.hooks;
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
+import { applyFilters } from '@wordpress/hooks';
 
 // Block attributes.
 const blockAttributes = {
@@ -151,8 +157,18 @@ registerBlockType( 'bu/leadin', {
 	attributes: blockAttributes,
 	styles: blockStyles,
 	supports: blockSupports,
-
-	edit: withColors( 'themeColor' )( ( props ) => {
+	example: {
+		attributes: {
+			head: 'Porta Justo Sollicitudin',
+			deck: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
+			metabar: false,
+			className: 'is-style-text-over-image',
+			backgroundType: 'image',
+			backgroundUrl:
+				'https://www.bu.edu/brand/files/2019/09/10-3084-BUCITYIII-029.jpg',
+		},
+	},
+	edit: function Edit( props ) {
 		// Get the block properties and attributes.
 		const {
 			attributes: {
@@ -173,9 +189,8 @@ registerBlockType( 'bu/leadin', {
 				boxOpacity,
 				videoUncropped,
 				url,
+				themeColor,
 			},
-			themeColor,
-			setThemeColor,
 			setAttributes,
 			className,
 			isSelected,
@@ -221,7 +236,7 @@ registerBlockType( 'bu/leadin', {
 					textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${ textPositionY }` ]:
 					textPositionY && isStyleTextOverImage,
-				[ `has-${ themeColor.slug }-theme` ]: themeColor.slug,
+				[ `has-${ themeColor }-theme` ]: themeColor,
 			}
 		);
 
@@ -287,7 +302,7 @@ registerBlockType( 'bu/leadin', {
 			}
 
 			return (
-				<Fragment>
+				<>
 					<SelectControl
 						label={ __( 'Horizontal Text Positioning' ) }
 						value={ textPositionX }
@@ -312,7 +327,7 @@ registerBlockType( 'bu/leadin', {
 							{ value: 'y-bottom', label: __( 'Bottom' ) },
 						] }
 					/>
-				</Fragment>
+				</>
 			);
 		};
 
@@ -323,7 +338,7 @@ registerBlockType( 'bu/leadin', {
 			}
 
 			return (
-				<Fragment>
+				<>
 					<ToggleControl
 						label={ __( 'Flip Order' ) }
 						checked={ flip }
@@ -334,7 +349,7 @@ registerBlockType( 'bu/leadin', {
 						checked={ wide }
 						onChange={ () => setAttributes( { wide: ! wide } ) }
 					/>
-				</Fragment>
+				</>
 			);
 		};
 
@@ -397,9 +412,14 @@ registerBlockType( 'bu/leadin', {
 			);
 		};
 
+		const themeColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			themeColor
+		);
+
 		// Return the block editing interface.
 		return (
-			<Fragment>
+			<>
 				<BackgroundControls
 					blockProps={ props }
 					setIsUploading={ setIsUploading }
@@ -502,14 +522,30 @@ registerBlockType( 'bu/leadin', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										themeColor: value
+											? getColorSlug(
+													value,
+													themeOptions()
+											  )
+											: undefined,
+									} ),
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					<PanelBody
 						className="components-panel__body-bu-leadin-block-url bu-blocks-leadin-block-url-input"
 						title={ __( 'URL' ) }
@@ -525,9 +561,9 @@ registerBlockType( 'bu/leadin', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-			</Fragment>
+			</>
 		);
-	} ),
+	},
 
 	save() {
 		// Rendering handled in PHP.
