@@ -28,7 +28,6 @@ import {
 	MediaUpload,
 	MediaUploadCheck,
 	PanelColorSettings,
-	getColorObjectByColorValue,
 	getColorObjectByAttributeValues,
 	useBlockProps,
 } from '@wordpress/block-editor';
@@ -38,6 +37,7 @@ import classnames from 'classnames';
 
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 
 import deprecated from './deprecated';
 
@@ -82,25 +82,6 @@ const renderDropCapSVG = ( character, imageURL ) => {
 	);
 };
 
-/**
- * When given a color it gets the Color Slug from the themeoptions() color
- * palette defined for the theme.
- *
- * @param {*} color
- * @return {string} The slug of the color.
- */
-const getColorSlug = ( color ) => {
-	if ( color ) {
-		const colorObject = getColorObjectByColorValue( themeOptions(), color );
-
-		if ( colorObject.slug ) {
-			return colorObject.slug;
-		}
-	} else {
-		console.error( 'Error: no color.slug value found in color object.' ); // eslint-disable-line no-console
-	}
-	return undefined;
-};
 
 // Register the block.
 registerBlockType( 'editorial/introparagraph', {
@@ -285,7 +266,7 @@ registerBlockType( 'editorial/introparagraph', {
 							onChange: ( value ) =>
 								setAttributes( {
 									paragraphColor: value
-										? getColorSlug( value )
+										? getColorSlug( value, themeOptions() )
 										: undefined,
 								} ),
 							label: __( 'Paragraph' ),
@@ -319,7 +300,7 @@ registerBlockType( 'editorial/introparagraph', {
 							onChange: ( value ) =>
 								setAttributes( {
 									dropCapColor: value
-										? getColorSlug( value )
+										? getColorSlug( value, themeOptions() )
 										: undefined,
 								} ),
 							label: __( 'Drop cap' ),

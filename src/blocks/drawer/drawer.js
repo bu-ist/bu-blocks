@@ -17,6 +17,7 @@ import Background, {
 	BackgroundControls,
 } from '../../components/background';
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 import allowedBlocks from '../../components/allowed-blocks';
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
@@ -36,7 +37,6 @@ import {
 	InspectorControls,
 	PanelColorSettings,
 	useBlockProps,
-	getColorObjectByColorValue,
 	getColorObjectByAttributeValues,
 } from '@wordpress/block-editor';
 
@@ -77,26 +77,6 @@ const getClasses = (
 		[ size ]: size && size !== '',
 		'has-media': background,
 	} );
-};
-
-/**
- * When given a color it gets the Color Slug from the themeoptions() color
- * palette defined for the theme.
- *
- * @param {*} color
- * @return {string} The slug of the color.
- */
-const getColorSlug = ( color ) => {
-	if ( color ) {
-		const colorObject = getColorObjectByColorValue( themeOptions(), color );
-
-		if ( colorObject.slug ) {
-			return colorObject.slug;
-		}
-	} else {
-		console.error( 'Error: no color.slug value found in color object.' ); // eslint-disable-line no-console
-	}
-	return undefined;
 };
 
 // Register the block.
@@ -317,7 +297,10 @@ registerBlockType( 'editorial/drawer', {
 								onChange: ( value ) =>
 									setAttributes( {
 										themeColor: value
-											? getColorSlug( value )
+											? getColorSlug(
+													value,
+													themeOptions()
+											  )
 											: undefined,
 									} ),
 								label: __( 'Background' ),

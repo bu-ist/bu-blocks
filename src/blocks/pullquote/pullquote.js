@@ -18,6 +18,7 @@ import Background, {
 } from '../../components/background';
 import getAllowedFormats from '../../global/allowed-formats';
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
@@ -70,26 +71,6 @@ const getClasses = (
 		[ `has-${ themeColor }-theme` ]: themeColor,
 		[ `has-${ textColor }-theme-text` ]: textColor,
 	} );
-};
-
-/**
- * When given a color it gets the Color Slug from the themeoptions() color
- * palette defined for the theme.
- *
- * @param {*} color
- * @return {string} The slug of the color.
- */
-const getColorSlug = ( color ) => {
-	if ( color ) {
-		const colorObject = getColorObjectByColorValue( themeOptions(), color );
-
-		if ( colorObject.slug ) {
-			return colorObject.slug;
-		}
-	} else {
-		console.error( 'Error: no color.slug value found in color object.' ); // eslint-disable-line no-console
-	}
-	return undefined;
 };
 
 // Only allow images in the background component for this block.
@@ -255,7 +236,7 @@ registerBlockType( 'bu/pullquote', {
 								onChange: ( value ) =>
 									setAttributes( {
 										themeColor: value
-											? getColorSlug( value )
+											? getColorSlug( value, themeOptions() )
 											: undefined,
 									} ),
 								label: __( 'Theme' ),
@@ -281,7 +262,7 @@ registerBlockType( 'bu/pullquote', {
 								onChange: ( value ) =>
 									setAttributes( {
 										textColor: value
-											? getColorSlug( value )
+											? getColorSlug( value, themeOptions() )
 											: undefined,
 									} ),
 								label: __( 'Text Color' ),

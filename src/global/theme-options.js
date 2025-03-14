@@ -4,7 +4,7 @@
  */
 
 // WordPress dependencies.
-const { select, dispatch } = wp.data;
+import { select, dispatch } from '@wordpress/data';
 
 const { getEditorSettings } = select( 'core/editor' );
 
