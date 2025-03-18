@@ -23,11 +23,11 @@ class BlockEnqueues {
 	public function __construct() {
 		// Enqueue front-end scripts & styles.
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'block_decorative_styles' ) );
+		// add_action( 'wp_enqueue_scripts', array( $this, 'block_decorative_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_scripts' ) );
 		// Enqueue block editor scripts & styles.
-		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_styles' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'block_decorative_styles' ) );
+		// add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_styles' ) );
+		// add_action( 'enqueue_block_editor_assets', array( $this, 'block_decorative_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_scripts' ) );
 	}
 
@@ -53,15 +53,15 @@ class BlockEnqueues {
 		 * Dependency: The Block Common Styles so common/shared styles are enqueued before
 		 * the styles for the block, allowing the block styles to override the common styles.
 		 */
-		if ( plugin_slug_decorative_block_styles() ) {
-			wp_enqueue_style(
-				PLUGIN_SLUG . '-decorative-styles',
-				PLUGIN_SLUG_URL . 'build/css/blocks/blocks-decorative.css',
-				array(),
-				filemtime( PLUGIN_SLUG_DIR . 'build/css/blocks/blocks-decorative.css' ),
-				'all'
-			);
-		}
+		// if ( BU_BLOCKS_decorative_block_styles() ) {
+		// 	wp_enqueue_style(
+		// 		PLUGIN_SLUG . '-decorative-styles',
+		// 		BU_BLOCKS_BLOCKS_BUILD_URL . '/css/blocks/blocks-decorative.css',
+		// 		array(),
+		// 		filemtime( BU_BLOCKS_BLOCKS_BUILD_DIR . 'css/blocks/blocks-decorative.css' ),
+		// 		'all'
+		// 	);
+		// }
 	}
 
 	/**
@@ -73,7 +73,7 @@ class BlockEnqueues {
 	 */
 	public function frontend_block_scripts() {
 
-		$block_jsons = glob( PLUGIN_SLUG_BLOCKS_BUILD_DIR . '/*/view.js' );
+		$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/*/view.js' );
 
 		foreach ( $block_jsons as $path ) {
 
@@ -88,7 +88,7 @@ class BlockEnqueues {
 			// Enqueue frontend `view.js` files for each block.
 			wp_enqueue_script(
 				PLUGIN_SLUG . '-' . $block_folder_name . '-frontend',
-				PLUGIN_SLUG_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/view.js',
+				BU_BLOCKS_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/view.js',
 				$asset_file['dependencies'],
 				$asset_file['version'],
 				array(
@@ -103,16 +103,16 @@ class BlockEnqueues {
 	 *
 	 * @since 0.2.0
 	 */
-	public function block_editor_styles() {
+	// public function block_editor_styles() {
 
-		// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
-		wp_enqueue_style(
-			PLUGIN_SLUG . '-block-editor',
-			PLUGIN_SLUG_BLOCKS_BUILD_URL . '/build/css/block-editor.css',
-			array(),
-			filemtime( PLUGIN_SLUG_DIR . 'build/css/block-editor.css' ),
-		);
-	}
+	// 	// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
+	// 	wp_enqueue_style(
+	// 		PLUGIN_SLUG . '-block-editor',
+	// 		BU_BLOCKS_BLOCKS_BUILD_URL . '/css/block-editor.css',
+	// 		array(),
+	// 		filemtime( BU_BLOCKS_BLOCKS_BUILD_URL . '/css/block-editor.css' ),
+	// 	);
+	// }
 
 	/**
 	 * Enqueue editor javascript
@@ -120,7 +120,7 @@ class BlockEnqueues {
 	 * @since 0.2.0
 	 */
 	public function block_editor_scripts() {
-		$block_jsons = glob( PLUGIN_SLUG_BLOCKS_BUILD_DIR . '/*/index.js' );
+		$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/*/index.js' );
 
 		foreach ( $block_jsons as $path ) {
 
@@ -135,7 +135,7 @@ class BlockEnqueues {
 			// Enqueue block editor `index.js` files for each block.
 			wp_enqueue_script(
 				PLUGIN_SLUG . '-' . $block_folder_name . '-editor',
-				PLUGIN_SLUG_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/index.js',
+				BU_BLOCKS_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/index.js',
 				$asset_file['dependencies'],
 				$asset_file['version'],
 				array(

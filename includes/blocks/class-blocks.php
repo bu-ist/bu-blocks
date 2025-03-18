@@ -33,9 +33,9 @@ class Blocks {
 		// Register Shared / Common styles.
 		wp_register_style(
 			BU_BLOCKS . '-common-styles',
-			BU_BLOCKS_URL . 'dist/css/blocks/blocks-common.css',
+			BU_BLOCKS_BLOCKS_BUILD_URL . '/css/blocks/blocks-common.css',
 			array(),
-			filemtime( BU_BLOCKS_DIR . 'dist/css/blocks/blocks-common.css' ),
+			filemtime( BU_BLOCKS_BLOCKS_BUILD_DIR . '/css/blocks/blocks-common.css' ),
 			'all'
 		);
 
@@ -48,9 +48,9 @@ class Blocks {
 		if ( bu_blocks_bundle_block_styles() ) {
 			wp_register_style(
 				BU_BLOCKS . '-bundled-styles',
-				BU_BLOCKS_URL . 'dist/css/blocks/blocks-bundled.css',
+				BU_BLOCKS_BLOCKS_BUILD_URL . '/css/blocks/blocks-bundled.css',
 				array( BU_BLOCKS . '-common-styles' ),
-				filemtime( BU_BLOCKS_DIR . 'dist/css/blocks/blocks-bundled.css' ),
+				filemtime( BU_BLOCKS_BLOCKS_BUILD_DIR . '/css/blocks/blocks-bundled.css' ),
 				'all'
 			);
 		}
@@ -131,10 +131,10 @@ class Blocks {
 					// Add the individual block's stylesheet to the arguments so WP registers.
 					$block_options['style'] = $block_folder_name . '-styles';
 				}
-				
+
 				$result = register_block_type_from_metadata( $block_folder_path, $block_options );
 				var_dump($result);
-				
+
 			}
 		}
 	}
