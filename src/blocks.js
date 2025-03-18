@@ -11,7 +11,7 @@
 
 import './style.scss';
 
-import './blocks/aside/aside.js';
+import './blocks/aside/index.js';
 import './blocks/buniverse/buniverse.js';
 import './blocks/button/button.js';
 import './blocks/clicktotweet/clicktotweet.js'; // no longer twitter

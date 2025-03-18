@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "editorial/aside",
+  "version": "0.0.0",
+  "title": "Aside",
+  "category": "bu-blocks-block-category",
+  "icon": "block-default",
+  "textdomain": "testblock",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "viewStyle": "file:./style.css",
+  "render": "file:./render.php"
+}

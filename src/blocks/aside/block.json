@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "editorial/aside",
+	"version": "0.0.0",
+	"title": "Aside",
+    "description": "Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.",
+	"category": "bu-blocks-block-category",
+	"icon": "block-default",
+	"textdomain": "testblock",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"viewStyle": "file:./style.css",
+	"render": "file:./render.php"
+ 
+}

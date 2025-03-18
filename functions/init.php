@@ -135,13 +135,13 @@ function enqueue_block_assets() {
  */
 function enqueue_block_editor_assets() {
 	// Editor Scripts containing block functions.
-	wp_enqueue_script(
-		'bu-blocks-js', // Handle.
-		plugins_url( '/dist/blocks.js', __DIR__ ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.js' ), // Version: filemtime — Gets file modification time.
-		true // Enqueue the script in the footer.
-	);
+	// wp_enqueue_script(
+	// 	'bu-blocks-js', // Handle.
+	// 	plugins_url( '/dist/blocks.js', __DIR__ ), // Block.build.js: We register the block here. Built with Webpack.
+	// 	array( 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
+	// 	filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.js' ), // Version: filemtime — Gets file modification time.
+	// 	true // Enqueue the script in the footer.
+	// );
 
 	// If a 5.0+ version of WordPress, enqueue general styles here—before the styles
 	// for the editor are loaded.
