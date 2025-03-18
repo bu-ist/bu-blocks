@@ -11,13 +11,6 @@
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 /**
 * Define CSS variables to allow child themes
 * to alter these values easily if needed.
@@ -304,13 +297,6 @@ aside[data-type="editorial/aside"].wp-block-editorial-aside {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 @font-face {
   font-family: "bu-default-icons";
   src: url("//www.bu.edu/cdn/fonts/icons/bu-default-icons/bu-default-icons.eot?") format("embedded-opentype");
@@ -394,13 +380,6 @@ aside[data-type="editorial/aside"].wp-block-editorial-aside {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-custom-html {
   border-radius: 4px;
   border: 1px solid #e2e4e7;
@@ -681,13 +660,6 @@ aside[data-type="editorial/aside"].wp-block-editorial-aside {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 [data-type="editorial/photoessay"] {
   padding-bottom: 15px;
   padding-top: 15px;

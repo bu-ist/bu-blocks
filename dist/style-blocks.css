@@ -44,17 +44,6 @@
 .icon-navigateleft::before {
   content: "\f053";
 }
-
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
-.test5301 {
-  color: blue;
-}
 /*!****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/aside/style.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************/
@@ -88,13 +77,6 @@
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-aside {
   border: 1px solid #ddd;
   border-top: 3px solid #111;
@@ -163,13 +145,6 @@
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-global-buniverse.alignleft, .wp-block-global-buniverse.alignright {
   width: 100%;
 }
@@ -223,13 +198,6 @@
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 a:active,
 a:visited {
   color: inherit;
@@ -317,13 +285,6 @@ a:visited {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-bu-clicktotweet:hover {
   cursor: pointer;
 }
@@ -447,13 +408,6 @@ a:visited {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-bu-collapsible {
   margin-top: -1px;
 }
@@ -649,13 +603,6 @@ a:visited {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-drawer.is-style-round .wp-block-editorial-drawer-teaser figure {
   border-radius: 50%;
   height: 150px;
@@ -665,8 +612,7 @@ a:visited {
 }
 .wp-block-editorial-drawer.is-style-round .wp-block-editorial-drawer-teaser figure img {
   -o-object-fit: cover;
-  object-fit: cover;
-  font-family: "object-fit: cover";
+     object-fit: cover;
   height: 100%;
 }
 .wp-block-editorial-drawer.is-size-narrow .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer.is-size-small .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer.is-size-medium .wp-block-editorial-drawer-teaser, .wp-block-editorial-drawer.is-size-wide .wp-block-editorial-drawer-teaser {
@@ -851,13 +797,6 @@ img.has-background-opacity-100 {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-headline {
   display: block;
 }
@@ -907,13 +846,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-introparagraph p {
   background-size: 0%;
 }
@@ -1035,92 +967,75 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 25%;
-  object-position: 25% 25%;
-  font-family: "object-fit: cover; object-position: 25% 25%";
+     object-position: 25% 25%;
 }
 .has-media-focus-left-top.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-left-top.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 25%;
-  object-position: 25% 25%;
-  font-family: "object-fit: cover; object-position: 25% 25%";
+     object-position: 25% 25%;
 }
 .has-media-focus-left-middle.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-left-middle.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 50%;
-  object-position: 25% 50%;
-  font-family: "object-fit: cover; object-position: 25% 50%";
+     object-position: 25% 50%;
 }
 .has-media-focus-left-bottom.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-left-bottom.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 75%;
-  object-position: 25% 75%;
-  font-family: "object-fit: cover; object-position: 25% 75%";
+     object-position: 25% 75%;
 }
 .has-media-focus-center-top.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-center-top.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 25%;
-  object-position: 50% 25%;
-  font-family: "object-fit: cover; object-position: 50% 25%";
+     object-position: 50% 25%;
 }
 .has-media-focus-center-middle.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-center-middle.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 50%;
-  object-position: 50% 50%;
-  font-family: "object-fit: cover; object-position: 50% 50%";
+     object-position: 50% 50%;
 }
 .has-media-focus-center-bottom.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-center-bottom.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 75%;
-  object-position: 50% 75%;
-  font-family: "object-fit: cover; object-position: 50% 75%";
+     object-position: 50% 75%;
 }
 .has-media-focus-right-top.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-right-top.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 75% 25%;
-  object-position: 75% 25%;
-  font-family: "object-fit: cover; object-position: 75% 25%";
+     object-position: 75% 25%;
 }
 .has-media-focus-right-middle.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-right-middle.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 75% 50%;
-  object-position: 75% 50%;
-  font-family: "object-fit: cover; object-position: 75% 50%";
+     object-position: 75% 50%;
 }
 .has-media-focus-right-bottom.wp-block-editorial-leadin [class*=wp-block-][class*=-media] img,
 .has-media-focus-right-bottom.wp-block-editorial-leadin [class*=wp-block-][class*=-media] video {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 75% 75%;
-  object-position: 75% 75%;
-  font-family: "object-fit: cover; object-position: 75% 75%";
+     object-position: 75% 75%;
 }
 
 @media (min-width: 500px) {
@@ -1728,13 +1643,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   }
 }
 
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-listicle {
   max-width: 975px;
   margin-bottom: 35px;
@@ -1763,8 +1671,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 @media (min-width: 500px) {
   .wp-block-editorial-listicle-figure img {
     -o-object-fit: cover;
-    object-fit: cover;
-    font-family: "object-fit: cover";
+       object-fit: cover;
     height: 350px;
   }
 }
@@ -1978,13 +1885,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   content: "\f00d";
 }
 
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .bu-blocks-modal-noscroll {
   overflow: hidden;
 }
@@ -2059,8 +1959,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 }
 .wp-block-editorial-modal-callout .wp-block-editorial-modal-media img {
   -o-object-fit: cover;
-  object-fit: cover;
-  font-family: "object-fit: cover";
+     object-fit: cover;
   height: 100%;
   width: 100%;
   max-height: 100%;
@@ -2210,13 +2109,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   content: "\f053";
 }
 
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-photoessay [class*=photo-row-] {
   margin: 0 -15px;
 }
@@ -2291,8 +2183,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 .wp-block-editorial-photoessay img,
 .wp-block-editorial-photoessay video {
   -o-object-fit: cover;
-  object-fit: cover;
-  font-family: "object-fit: cover";
+     object-fit: cover;
   width: 100%;
   height: 100%;
 }
@@ -2703,7 +2594,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
   opacity: 0;
   -o-object-fit: contain;
      object-fit: contain;
-  font-family: "object-fit: contain";
   width: auto;
   position: absolute;
   top: 0;
@@ -2822,13 +2712,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 #main .wp-block-bu-pullquote {
   position: relative;
 }
@@ -2858,8 +2741,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 }
 .wp-block-bu-pullquote img {
   -o-object-fit: cover;
-  object-fit: cover;
-  font-family: "object-fit: cover";
+     object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -3016,66 +2898,57 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 }
 .wp-block-bu-pullquote.has-image-focus-left-top img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 25%;
-  object-position: 25% 25%;
-  font-family: "object-fit: cover; object-position: 25% 25%";
+     object-position: 25% 25%;
 }
 .wp-block-bu-pullquote.has-image-focus-left-middle img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 50%;
-  object-position: 25% 50%;
-  font-family: "object-fit: cover; object-position: 25% 50%";
+     object-position: 25% 50%;
 }
 .wp-block-bu-pullquote.has-image-focus-left-bottom img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 25% 75%;
-  object-position: 25% 75%;
-  font-family: "object-fit: cover; object-position: 25% 75%";
+     object-position: 25% 75%;
 }
 .wp-block-bu-pullquote.has-image-focus-center-top img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 25%;
-  object-position: 50% 25%;
-  font-family: "object-fit: cover; object-position: 50% 25%";
+     object-position: 50% 25%;
 }
 .wp-block-bu-pullquote.has-image-focus-center-middle img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 50%;
-  object-position: 50% 50%;
-  font-family: "object-fit: cover; object-position: 50% 50%";
+     object-position: 50% 50%;
 }
 .wp-block-bu-pullquote.has-image-focus-center-bottom img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 75%;
-  object-position: 50% 75%;
-  font-family: "object-fit: cover; object-position: 50% 75%";
+     object-position: 50% 75%;
 }
 .wp-block-bu-pullquote.has-image-focus-right-top img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 75% 25%;
-  object-position: 75% 25%;
-  font-family: "object-fit: cover; object-position: 75% 25%";
+     object-position: 75% 25%;
 }
 .wp-block-bu-pullquote.has-image-focus-right-middle img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 75% 50%;
-  object-position: 75% 50%;
-  font-family: "object-fit: cover; object-position: 75% 50%";
+     object-position: 75% 50%;
 }
 .wp-block-bu-pullquote.has-image-focus-right-bottom img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 75% 75%;
-  object-position: 75% 75%;
-  font-family: "object-fit: cover; object-position: 75% 75%";
+     object-position: 75% 75%;
 }
 .wp-block-bu-pullquote .wp-block-background-video {
   position: relative;
@@ -3159,13 +3032,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-editorial-relatedstories {
   text-align: left;
 }
@@ -3257,8 +3123,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 }
 .wp-block-editorial-relatedstories.is-style-card .wp-block-editorial-relatedstories-article-image img {
   -o-object-fit: cover;
-  object-fit: cover;
-  font-family: "object-fit: cover";
+     object-fit: cover;
   height: 250px;
   width: 100%;
 }
@@ -3350,8 +3215,7 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
 @media (min-width: 768px) {
   .wp-block-editorial-relatedstories.is-style-card.has-three .wp-block-editorial-relatedstories-article-image img {
     -o-object-fit: cover;
-    object-fit: cover;
-    font-family: "object-fit: cover";
+       object-fit: cover;
     height: 165px;
   }
 }
@@ -3435,13 +3299,6 @@ h4.wp-block-editorial-headline .wp-block-editorial-headline-posttext {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .wp-block-bu-stats {
   margin-bottom: 2em;
   clear: both;
@@ -3863,13 +3720,6 @@ svg.wp-block-bu-stat-svg {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .is-style-caption {
   font-size: 0.8em;
   padding: 1em 0;
@@ -3906,13 +3756,6 @@ svg.wp-block-bu-stat-svg {
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
 .is-style-end-of-article span {
   display: none;
 }

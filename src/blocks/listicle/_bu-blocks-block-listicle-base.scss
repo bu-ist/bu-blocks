@@ -34,7 +34,7 @@
 		width: 100%;
 
 		@include breakpoint( $xs ) {
-			@include object-fit( cover );
+			object-fit: cover;
 			height: 350px;
 		}
 
