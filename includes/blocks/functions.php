@@ -40,7 +40,7 @@ function bu_blocks_decorative_block_styles() {
  * Include Blocks & Assets
  */
 require_once 'class-blocks.php';
-//require_once 'class-blockenqueues.php';
+require_once 'class-blockenqueues.php';
 
 // Load Gutenberg Patterns.
 //require 'class-blockpatterns.php';

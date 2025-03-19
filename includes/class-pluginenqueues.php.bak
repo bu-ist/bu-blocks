@@ -39,9 +39,9 @@ class PluginEnqueues {
 		// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
 		wp_enqueue_style(
 			PLUGIN_SLUG . '-css-main',
-			PLUGIN_SLUG_URL . 'build/css/plugin.css',
+			BU_BLOCKS_URL . 'build/css/plugin.css',
 			array(),
-			filemtime( PLUGIN_SLUG_DIR . 'build/css/plugin.css' ),
+			filemtime( BU_BLOCKS_DIR . 'build/css/plugin.css' ),
 			'all'
 		);
 	}
@@ -53,11 +53,11 @@ class PluginEnqueues {
 	 */
 	public function frontend_scripts() {
 
-		$asset_file = include PLUGIN_SLUG_DIR . '/build/js/plugin.asset.php';
+		$asset_file = include BU_BLOCKS_DIR . '/build/js/plugin.asset.php';
 
 		wp_enqueue_script(
 			PLUGIN_SLUG . '-frontend',
-			PLUGIN_SLUG_URL . 'build/js/plugin.js',
+			BU_BLOCKS_URL . 'build/js/plugin.js',
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			array(
@@ -76,9 +76,9 @@ class PluginEnqueues {
 		// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
 		wp_enqueue_style(
 			PLUGIN_SLUG . '-admin',
-			PLUGIN_SLUG_URL . 'build/css/admin.css',
+			BU_BLOCKS_URL . 'build/css/admin.css',
 			array(),
-			filemtime( PLUGIN_SLUG_DIR . 'build/css/admin.css' ),
+			filemtime( BU_BLOCKS_DIR . 'build/css/admin.css' ),
 			'all'
 		);
 	}
@@ -90,11 +90,11 @@ class PluginEnqueues {
 	 */
 	public function admin_scripts() {
 
-		$asset_file = include PLUGIN_SLUG_DIR . '/build/js/admin.asset.php';
+		$asset_file = include BU_BLOCKS_DIR . '/build/js/admin.asset.php';
 
 		wp_enqueue_script(
 			PLUGIN_SLUG . '-admin',
-			PLUGIN_SLUG_URL . 'build/js/admin.js',
+			BU_BLOCKS_URL . 'build/js/admin.js',
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			array(
@@ -110,12 +110,12 @@ class PluginEnqueues {
 	 */
 	public function variations_scripts() {
 
-		$asset_file = include PLUGIN_SLUG_DIR . '/build/js/variations.asset.php';
+		$asset_file = include BU_BLOCKS_DIR . '/build/js/variations.asset.php';
 
-		if ( file_exists( PLUGIN_SLUG_DIR . '/build/js/variations.js' ) ) {
+		if ( file_exists( BU_BLOCKS_DIR . '/build/js/variations.js' ) ) {
 			wp_enqueue_script(
 				PLUGIN_SLUG . '-variations',
-				PLUGIN_SLUG_URL . '/build/js/variations.js',
+				BU_BLOCKS_URL . '/build/js/variations.js',
 				$asset_file['dependencies'],
 				$asset_file['version'],
 				true
