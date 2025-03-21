@@ -14,9 +14,9 @@
  * New paths can be added to this array in this file and will be added as
  * paths that Dart Sass checks to find SASS partials for @import instances.
  */
-const customIncludePaths = [ 
+const customIncludePaths = [
 	'./node_modules',
-	'./node_modules/@bostonuniversity'
+	'./node_modules/@bostonuniversity',
 ];
 
 // Example below is for block styles.
@@ -39,6 +39,7 @@ const pluginEntryPoints = {
 	'bu-blocks-frontend': './src/blocks-frontend.js', // Frontend scripts
 	// 'blocks.editor.build.css': './src/blocks.js', // Editor stylesheet
 	// 'blocks.build.js': './src/blocks.js', // Editor scripts
+	'js/block-editor': './src/block-editor.js',
 };
 
 // Set SASS compiler to use the faster embedded version. Default is `sass`.
