@@ -10,8 +10,8 @@ namespace BU\Plugins\BU_Blocks;
 /**
  * Constants.
  */
-define( 'BU_BLOCKS_BLOCKS_BUILD_DIR', BU_BLOCKS_DIR . 'dist/blocks' );
-define( 'BU_BLOCKS_BLOCKS_BUILD_URL', BU_BLOCKS_URL . 'dist/blocks' );
+define( 'BU_BLOCKS_BLOCKS_BUILD_DIR', BU_BLOCKS_DIR . 'dist' );
+define( 'BU_BLOCKS_BLOCKS_BUILD_URL', BU_BLOCKS_URL . 'dist' );
 
 /**
  * Block Stylesheet Handling

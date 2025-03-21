@@ -157,6 +157,21 @@ function enqueue_block_editor_assets() {
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.css' ) // Version: filemtime — Gets file modification time.
 	);
 
+	if ( file_exists( BU_BLOCKS_BLOCKS_BUILD_DIR . '/js/block-editor.js' ) ) {
+		$asset_file = include BU_BLOCKS_BLOCKS_BUILD_DIR . '/js/block-editor.asset.php';
+
+		wp_enqueue_script(
+			BU_BLOCKS . '-block-editor',
+			BU_BLOCKS_BLOCKS_BUILD_URL . '/js/block-editor.js',
+			array_merge( $asset_file['dependencies'], ['wp-edit-post'] ),
+			$asset_file['version'],
+			array(
+				'strategy' => 'defer',
+			),
+		);
+	}
+	
+
 }
 
 /**

@@ -81,7 +81,7 @@ class Blocks {
 	 */
 	public function register_blocks() {
 		if ( file_exists( BU_BLOCKS_BLOCKS_BUILD_DIR ) ) {
-			$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/*/block.json' );
+			$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/blocks/*/block.json' );
 
 			foreach ( $block_jsons as $path ) {
 
@@ -123,17 +123,17 @@ class Blocks {
 				} else {
 					wp_register_style(
 						$block_folder_name . '-styles',
-						BU_BLOCKS_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/style-index.css',
+						BU_BLOCKS_BLOCKS_BUILD_URL . '/blocks/' . $block_folder_name . '/style-index.css',
 						array( BU_BLOCKS . '-common-styles' ),
-						filemtime( BU_BLOCKS_BLOCKS_BUILD_DIR . '/' . $block_folder_name . '/style-index.css' )
+						filemtime( BU_BLOCKS_BLOCKS_BUILD_DIR . '/blocks/' . $block_folder_name . '/style-index.css' )
 					);
 
 					// Add the individual block's stylesheet to the arguments so WP registers.
 					$block_options['style'] = $block_folder_name . '-styles';
 				}
 
-				$result = register_block_type_from_metadata( $block_folder_path, $block_options );
-				var_dump($result);
+				register_block_type_from_metadata( $block_folder_path, $block_options );
+				
 
 			}
 		}

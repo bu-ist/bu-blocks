@@ -73,7 +73,7 @@ class BlockEnqueues {
 	 */
 	public function frontend_block_scripts() {
 
-		$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/*/view.js' );
+		$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/blocks/*/view.js' );
 
 		foreach ( $block_jsons as $path ) {
 
@@ -88,7 +88,7 @@ class BlockEnqueues {
 			// Enqueue frontend `view.js` files for each block.
 			wp_enqueue_script(
 				PLUGIN_SLUG . '-' . $block_folder_name . '-frontend',
-				BU_BLOCKS_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/view.js',
+				BU_BLOCKS_BLOCKS_BUILD_URL . '/blocks/' . $block_folder_name . '/view.js',
 				$asset_file['dependencies'],
 				$asset_file['version'],
 				array(
@@ -120,7 +120,7 @@ class BlockEnqueues {
 	 * @since 0.2.0
 	 */
 	public function block_editor_scripts() {
-		$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/*/index.js' );
+		$block_jsons = glob( BU_BLOCKS_BLOCKS_BUILD_DIR . '/blocks/*/index.js' );
 
 		foreach ( $block_jsons as $path ) {
 
@@ -135,7 +135,7 @@ class BlockEnqueues {
 			// Enqueue block editor `index.js` files for each block.
 			wp_enqueue_script(
 				PLUGIN_SLUG . '-' . $block_folder_name . '-editor',
-				BU_BLOCKS_BLOCKS_BUILD_URL . '/' . $block_folder_name . '/index.js',
+				BU_BLOCKS_BLOCKS_BUILD_URL . '/blocks/' . $block_folder_name . '/index.js',
 				$asset_file['dependencies'],
 				$asset_file['version'],
 				array(
