@@ -1,6 +1,166 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/blocks/aside/deprecated/deprecated.js":
+/*!***************************************************!*\
+  !*** ./src/blocks/aside/deprecated/deprecated.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _v1_v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1/v1.js */ "./src/blocks/aside/deprecated/v1/v1.js");
+// Import earlier versions of the block.
+
+const deprecated = [_v1_v1_js__WEBPACK_IMPORTED_MODULE_0__.config];
+/* harmony default export */ __webpack_exports__["default"] = (deprecated);
+
+/***/ }),
+
+/***/ "./src/blocks/aside/deprecated/v1/edit.js":
+/*!************************************************!*\
+  !*** ./src/blocks/aside/deprecated/v1/edit.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Edit; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../global/theme-options.js */ "./src/global/theme-options.js");
+/* harmony import */ var _components_allowed_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/allowed-blocks */ "./src/components/allowed-blocks/index.js");
+/* harmony import */ var _global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../global/color-utils.mjs */ "./src/global/color-utils.mjs");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__);
+
+/**
+ * Edit function for the aside block.
+ */
+
+// External dependencies.
+
+
+// Internal dependencies.
+
+
+
+
+// WordPress dependencies.
+
+
+
+function Edit(props) {
+  const {
+    attributes,
+    setAttributes,
+    className,
+    presetTemplate
+  } = props;
+  const {
+    themeColor
+  } = attributes;
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, {
+    [`has-${themeColor}-background`]: themeColor
+  });
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.useBlockProps)({
+    className: classes
+  });
+  const themeColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.getColorObjectByAttributeValues)((0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])(), themeColor);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.PanelColorSettings, {
+    __experimentalIsRenderedInSidebar: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Color Settings'),
+    colorSettings: [{
+      value: themeColorObject?.color,
+      onChange: value => setAttributes({
+        themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_4__.getColorSlug)(value, (0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])()) : undefined
+      }),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Theme'),
+      disableCustomColors: true,
+      colors: (0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])()
+    }]
+  }, !(0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])() && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this site.")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InnerBlocks, {
+    allowedBlocks: (0,_components_allowed_blocks__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+    template: presetTemplate
+  })));
+}
+
+/***/ }),
+
+/***/ "./src/blocks/aside/deprecated/v1/v1.js":
+/*!**********************************************!*\
+  !*** ./src/blocks/aside/deprecated/v1/v1.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   config: function() { return /* binding */ config; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit.js */ "./src/blocks/aside/deprecated/v1/edit.js");
+/* harmony import */ var _components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/block-icons/index.js */ "./src/components/block-icons/index.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+
+// External dependencies.
+
+
+// Internal dependencies.
+
+
+
+// WordPress dependencies.
+
+const config = {
+  attributes: {
+    themeColor: {
+      type: 'string'
+    }
+  },
+  supports: {
+    align: ['left', 'right']
+  },
+  icon: (0,_components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('aside'),
+  /**
+   * @see ./edit.js
+   */
+  edit: _edit_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save({
+    attributes,
+    className
+  }) {
+    const {
+      themeColor
+    } = attributes;
+    const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, {
+      [(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.getColorClassName)('background', themeColor)]: (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.getColorClassName)('background', themeColor)
+    });
+    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps.save({
+      className: classes
+    });
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
+      ...blockProps
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.Content, null));
+  }
+};
+
+/***/ }),
+
 /***/ "./src/blocks/aside/edit.js":
 /*!**********************************!*\
   !*** ./src/blocks/aside/edit.js ***!
@@ -91,30 +251,24 @@ function Edit(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/aside/style.scss");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/aside/editor.scss");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/aside/block.json");
-/* harmony import */ var _global_register_block_preset_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../global/register-block-preset.js */ "./src/global/register-block-preset.js");
-/* harmony import */ var _components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/block-icons/index.js */ "./src/components/block-icons/index.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./edit.js */ "./src/blocks/aside/edit.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/aside/style.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/aside/editor.scss");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/blocks/aside/block.json");
+/* harmony import */ var _global_register_block_preset_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../global/register-block-preset.js */ "./src/global/register-block-preset.js");
+/* harmony import */ var _components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/block-icons/index.js */ "./src/components/block-icons/index.js");
+/* harmony import */ var _deprecated_deprecated_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./deprecated/deprecated.js */ "./src/blocks/aside/deprecated/deprecated.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./edit.js */ "./src/blocks/aside/edit.js");
 
 /**
- * BLOCK: bu-aside-cgb
+ * BLOCK: Aside Block
  *
  * A container for related information that accepts image,
  * headline, paragraph, and button blocks as children.
  */
-
-// External dependencies.
-
 
 // Import CSS.
 
@@ -129,8 +283,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// WordPress dependencies.
 
+// WordPress dependencies.
 
 
 
@@ -138,39 +292,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Register the block.
-const asideBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  title: _block_json__WEBPACK_IMPORTED_MODULE_4__.title,
-  //description: metadata.description,
-  example: _block_json__WEBPACK_IMPORTED_MODULE_4__.example,
-  icon: (0,_components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_6__["default"])('aside'),
+const asideBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  title: _block_json__WEBPACK_IMPORTED_MODULE_3__.title,
+  icon: (0,_components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_5__["default"])('aside'),
   /**
    * @see ./edit.js
    */
-  edit: _edit_js__WEBPACK_IMPORTED_MODULE_10__["default"],
-  save({
-    attributes,
-    className
-  }) {
-    const {
-      themeColor
-    } = attributes;
-    const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, {
-      [(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.getColorClassName)('background', themeColor)]: (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.getColorClassName)('background', themeColor)
-    });
-    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.useBlockProps.save({
-      className: classes
-    });
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
-      ...blockProps
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.InnerBlocks.Content, null));
-  }
+  edit: _edit_js__WEBPACK_IMPORTED_MODULE_9__["default"],
+  save() {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InnerBlocks.Content, null);
+  },
+  deprecated: _deprecated_deprecated_js__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 const presetTemplate = [['core/image'], ['core/heading', {
   placeholder: 'Enter aside title…'
 }], ['core/paragraph', {
   placeholder: 'Enter aside content…'
 }], ['core/button']];
-(0,_global_register_block_preset_js__WEBPACK_IMPORTED_MODULE_5__["default"])(asideBlock, presetTemplate);
+(0,_global_register_block_preset_js__WEBPACK_IMPORTED_MODULE_4__["default"])(asideBlock, presetTemplate);
 
 /***/ }),
 
@@ -1006,7 +1145,7 @@ const getColorSlug = (color, palette) => {
 /***/ (function(module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"editorial/aside","version":"0.0.0","title":"Aside","description":"Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.","category":"bu-blocks-block-category","icon":"block-default","textdomain":"testblock","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"editorial/aside","version":"0.0.0","title":"Aside","description":"Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.","category":"bu-editorial","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php","attributes":{"anchor":{"type":"string","default":""},"themeColor":{"type":"string"}},"example":{"innerBlocks":[{"name":"core/heading","attributes":{"content":"Aside Block Example1"}},{"name":"core/paragraph","attributes":{"content":"The Aside block allows you to add a variety of content blocks such as paragraphs and images."}}]},"supports":{"align":true,"anchor":true}}');
 
 /***/ })
 
