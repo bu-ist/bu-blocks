@@ -44,3 +44,6 @@ require_once 'class-blockenqueues.php';
 
 // Load Gutenberg Patterns.
 //require 'class-blockpatterns.php';
+
+
+require_once BU_BLOCKS_DIR . 'src/blocks/button/deprecated/deprecated.php';

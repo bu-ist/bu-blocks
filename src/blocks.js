@@ -13,7 +13,7 @@ import './style.scss';
 
 //import './blocks/aside/index.js';
 //import './blocks/buniverse/edit.js';
-import './blocks/button/button.js';
+import './blocks/button/index.js';
 import './blocks/clicktotweet/clicktotweet.js'; // no longer twitter
 import './blocks/collapsible-control/collapsible-control.js';
 import './blocks/collapsible/collapsible.js';
