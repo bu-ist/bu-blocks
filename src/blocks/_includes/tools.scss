@@ -1,0 +1,11 @@
+/**
+* This Tools partial should ONLY contain global non-printing
+* SCSS such as variables, mixins, etc. It is imported
+* into each block and ends up in the compiled stylesheets
+* multiple times so if any CSS prints it will be duplicated
+* many times.
+*/
+
+// Loads variables from the main stylesheet for this plugin or theme.
+@import 'burf-tools/tools-webpack';
+
