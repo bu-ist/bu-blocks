@@ -25,9 +25,7 @@ const customIncludePaths = [
 // Block Common Styles are those shared between blocks (such as a title, label, or button class)
 // Any other non-block block editor features such as a sidebar plugin can have an entry point and stylesheet.
 const blockEntryPoints = {
-	// 'css/blocks/decorative/blocks_decorative': './src/blocks/blocks-decorative.scss', // All decorative styles for blocks
-	// 'css/blocks/all_blocks/all_block_styles': './src/blocks/blocks-all.scss', // All individual block base styles combined in one stylesheet.
-	// 'css/blocks/common/blocks_common_styles': './src/blocks/blocks-common.scss', // Common shared styles for these blocks.
+	'css/blocks/blocks-bundled': './src/blocks/blocks-bundled.scss', // All individual block base styles combined in one stylesheet.
 };
 
 // Example below is for plugin styles.
