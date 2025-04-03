@@ -39,7 +39,7 @@
 		height: 100%;
 	}
 	img {
-		@include object-fit( cover );
+		object-fit: cover;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -237,47 +237,56 @@
 	}
 	&.has-image-focus-left-top {
 		img {
-			@include object-fit( cover, 25% 25% );
+			object-fit: cover;
+			object-position: 25% 25%;
 		}
 	}
 	&.has-image-focus-left-middle {
 		img {
-			@include object-fit( cover, 25% 50% );
+			object-fit: cover;
+			object-position: 25% 50%;
 		}
 	}
 	&.has-image-focus-left-bottom {
 		img {
-			@include object-fit( cover, 25% 75% );
+			object-fit: cover;
+			object-position: 25% 75%;
 		}
 	}
 	&.has-image-focus-center-top {
 		img {
-			@include object-fit( cover, 50% 25% );
+			object-fit: cover;
+			object-position: 50% 25%;
 		}
 	}
 	&.has-image-focus-center-middle {
 		img {
-			@include object-fit( cover, 50% 50% );
+			object-fit: cover;
+			object-position: 50% 50%;
 		}
 	}
 	&.has-image-focus-center-bottom {
 		img {
-			@include object-fit( cover, 50% 75% );
+			object-fit: cover;
+			object-position: 50% 75%;
 		}
 	}
 	&.has-image-focus-right-top {
 		img {
-			@include object-fit( cover, 75% 25% );
+			object-fit: cover;
+			object-position: 75% 25%;
 		}
 	}
 	&.has-image-focus-right-middle {
 		img {
-			@include object-fit( cover, 75% 50% );
+			object-fit: cover;
+			object-position: 75% 50%;
 		}
 	}
 	&.has-image-focus-right-bottom {
 		img {
-			@include object-fit( cover, 75% 75% );
+			object-fit: cover;
+			object-position: 75% 75%;
 		}
 	}
 

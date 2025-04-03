@@ -117,7 +117,7 @@
 		.wp-block-editorial-relatedstories-article-image {
 
 			img {
-				@include object-fit( cover );
+				object-fit: cover;
 				height: 250px;
 				width: 100%;
 
@@ -227,7 +227,7 @@
 
 			img {
 				@include breakpoint( $sm ) {
-					@include object-fit( cover );
+					object-fit: cover;
 					height: 165px;
 				}
 

@@ -2,7 +2,8 @@
 	[class*="wp-block-"][class*="-media"] {
 		img,
 		video {
-			@include object-fit( cover, 25% 25% );
+			object-fit: cover;
+			object-position: 25% 25%;
 		}
 	}
 
@@ -10,7 +11,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 25% 25% );
+				object-fit: cover;
+				object-position: 25% 25%;
 			}
 		}
 	}
@@ -19,7 +21,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 25% 50% );
+				object-fit: cover;
+				object-position: 25% 50%;
 			}
 		}
 	}
@@ -28,7 +31,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 25% 75% );
+				object-fit: cover;
+				object-position: 25% 75%;
 			}
 		}
 	}
@@ -37,7 +41,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 50% 25% );
+				object-fit: cover;
+				object-position: 50% 25%;
 			}
 		}
 	}
@@ -46,7 +51,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 50% 50% );
+				object-fit: cover;
+				object-position: 50% 50%;
 			}
 		}
 	}
@@ -55,7 +61,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 50% 75% );
+				object-fit: cover;
+				object-position: 50% 75%;
 			}
 		}
 	}
@@ -64,7 +71,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 75% 25% );
+				object-fit: cover;
+				object-position: 75% 25%;
 			}
 		}
 	}
@@ -73,7 +81,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 75% 50% );
+				object-fit: cover;
+				object-position: 75% 50%;
 			}
 		}
 	}
@@ -82,7 +91,8 @@
 		[class*="wp-block-"][class*="-media"] {
 			img,
 			video {
-				@include object-fit( cover, 75% 75% );
+				object-fit: cover;
+				object-position: 75% 75%;
 			}
 		}
 	}

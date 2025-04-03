@@ -113,15 +113,6 @@ function enqueue_block_assets() {
 		enqueue_blocks_stylesheet(); 
 	}
 
-	// Enqueue object-fit-images.
-	wp_enqueue_script(
-		'object-fit-images',
-		'https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.4/ofi.min.js',
-		array(),
-		BU_BLOCKS_VERSION,
-		true
-	);
-
 	if ( ! is_admin() ) {
 		wp_enqueue_script(
 			'bu-blocks-frontend-js', // Handle.
