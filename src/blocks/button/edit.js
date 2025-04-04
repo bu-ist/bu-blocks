@@ -9,7 +9,10 @@ import classnames from 'classnames';
 
 // Internal dependencies.
 import themeOptions from '../../global/theme-options';
-import { getColorSlug } from '../../global/color-utils.mjs';
+import {
+	getColorSlug,
+	getColorThemesSupportsByBlock,
+} from '../../global/color-utils.mjs';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
 
@@ -52,16 +55,30 @@ export default function Edit( props ) {
 	const {
 		attributes: { text, url, icon, align, themeColor },
 		setAttributes,
-		//isSelected,
 		className,
+		name,
 	} = props;
 
 	const blockProps = useBlockProps( {
 		className: getClasses( className, themeColor, icon ),
 	} );
 
+	// themOptions() returns the full color palette added to editor settings.
+	// Set the ThemeOptions() color Palette to a variable so we can clear
+	// it if disabled by filter.
+	let themeOptionsPalette = themeOptions();
+
+	// Get any block specific color themes palette set
+	// in block.json `supports.__bublocks.colorthemes`
+	themeOptionsPalette = getColorThemesSupportsByBlock(
+		name,
+		themeOptionsPalette
+	);
+
+	// Create a color object from the palette for themeColor attribute
+	//  to pass into the component.
 	const themeColorObject = getColorObjectByAttributeValues(
-		themeOptions(),
+		themeOptionsPalette,
 		themeColor
 	);
 
@@ -76,18 +93,21 @@ export default function Edit( props ) {
 							onChange: ( value ) =>
 								setAttributes( {
 									themeColor: value
-										? getColorSlug( value, themeOptions() )
+										? getColorSlug(
+												value,
+												themeOptionsPalette
+										  )
 										: undefined,
 								} ),
 							label: __( 'Theme' ),
 							disableCustomColors: true,
-							colors: themeOptions(),
+							colors: themeOptionsPalette,
 						},
 					] }
 				>
-					{ ! themeOptions() && (
+					{ themeOptionsPalette?.length < 1 && (
 						<PanelRow>
-							<em>No Color Palette available for this site.</em>
+							<em>No Color Palette available for this block.</em>
 						</PanelRow>
 					) }
 				</PanelColorSettings>
@@ -132,28 +152,22 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<p
-				className={ `wp-block-bu-button-container ${
-					align ? '' : 'wp-block'
-				}` }
-			>
-				<RichText
-					{ ...blockProps }
-					tagName="div"
-					placeholder={ __( 'Add text…' ) }
-					value={ text }
-					onChange={ ( value ) => setAttributes( { text: value } ) }
-					formattingControls={ getAllowedFormats(
-						'formattingControls',
-						[ 'bold', 'italic' ]
-					) }
-					allowedFormats={ getAllowedFormats( 'allowedFormats', [
-						'core/bold',
-						'core/italic',
-					] ) }
-					keepPlaceholderOnFocus
-				/>
-			</p>
+			<RichText
+				{ ...blockProps }
+				tagName="div"
+				placeholder={ __( 'Add text…' ) }
+				value={ text }
+				onChange={ ( value ) => setAttributes( { text: value } ) }
+				formattingControls={ getAllowedFormats(
+					'formattingControls',
+					[ 'bold', 'italic' ]
+				) }
+				allowedFormats={ getAllowedFormats( 'allowedFormats', [
+					'core/bold',
+					'core/italic',
+				] ) }
+				keepPlaceholderOnFocus
+			/>
 		</>
 	);
 }

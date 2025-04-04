@@ -15,7 +15,7 @@
 
 .wp-block-bu-button {
 	@include transition( all 0.2s ease-in-out 0s);
-	display: inline-block;
+	//display: inline-block;
 	background: transparent;
 	border-radius: 6px;
 	text-decoration: none;
@@ -23,6 +23,9 @@
 	text-align: center;
 	text-transform: uppercase;
 	padding: 0.5em 0;
+	display: flex;
+	width: max-content;
+	margin-inline: auto;
 
 	&[class*="icon-"] {
 		&::before {
