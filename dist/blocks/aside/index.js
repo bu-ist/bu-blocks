@@ -1107,12 +1107,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getColorSlug: function() { return /* binding */ getColorSlug; }
+/* harmony export */   getColorSlug: function() { return /* binding */ getColorSlug; },
+/* harmony export */   getColorThemesSupportsByBlock: function() { return /* binding */ getColorThemesSupportsByBlock; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /**
  * Adds Color Utility functions.
  */
+
 
 
 
@@ -1134,6 +1137,26 @@ const getColorSlug = (color, palette) => {
     console.error('Error: no color.slug value found in color object.'); // eslint-disable-line no-console
   }
   return undefined;
+};
+
+/**
+ * Get ColorThemes setting from the block's Supports array in block.json
+ * and override the site-wide color palette set in the theme. 
+ * @param {*} name 
+ * @param {*} palette
+ * @returns
+ */
+const getColorThemesSupportsByBlock = (name, palette) => {
+  const hasThemOptionsColorThemesSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.hasBlockSupport)(name, '__bublocks.colorthemes');
+  console.log("existing palette:", palette);
+  if (hasThemOptionsColorThemesSupport) {
+    const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks.colorthemes');
+    console.log(BlockColorThemesPalette);
+    if (Array.isArray(BlockColorThemesPalette)) {
+      palette = BlockColorThemesPalette;
+    }
+  }
+  return palette;
 };
 
 /***/ }),

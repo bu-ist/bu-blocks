@@ -7,7 +7,6 @@
  */
 .wp-block-bu-button {
   transition: all 0.2s ease-in-out 0s;
-  display: inline-block;
   background: transparent;
   border-radius: 6px;
   text-decoration: none;
@@ -15,6 +14,10 @@
   text-align: center;
   text-transform: uppercase;
   padding: 0.5em 0;
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  margin-inline: auto;
 }
 .wp-block-bu-button[class*=icon-]::before {
   transition: all 0.2s ease-in-out 0s;

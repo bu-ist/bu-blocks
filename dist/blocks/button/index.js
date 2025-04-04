@@ -433,25 +433,37 @@ function Edit(props) {
       themeColor
     },
     setAttributes,
-    //isSelected,
-    className
+    className,
+    name
   } = props;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.useBlockProps)({
     className: getClasses(className, themeColor, icon)
   });
-  const themeColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.getColorObjectByAttributeValues)((0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])(), themeColor);
+
+  // themOptions() returns the full color palette added to editor settings.
+  // Set the ThemeOptions() color Palette to a variable so we can clear
+  // it if disabled by filter.
+  let themeOptionsPalette = (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
+  // Get any block specific color themes palette set
+  // in block.json `supports.__bublocks.colorthemes`
+  themeOptionsPalette = (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorThemesSupportsByBlock)(name, themeOptionsPalette);
+
+  // Create a color object from the palette for themeColor attribute
+  //  to pass into the component.
+  const themeColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.getColorObjectByAttributeValues)(themeOptionsPalette, themeColor);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.PanelColorSettings, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Color Settings'),
     colorSettings: [{
       value: themeColorObject?.color,
       onChange: value => setAttributes({
-        themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorSlug)(value, (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])()) : undefined
+        themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorSlug)(value, themeOptionsPalette) : undefined
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Theme'),
       disableCustomColors: true,
-      colors: (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])()
+      colors: themeOptionsPalette
     }]
-  }, !(0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])() && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this site."))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+  }, themeOptionsPalette?.length < 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this block."))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Icon Settings')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RadioControl, {
     label: "Placement",
@@ -485,9 +497,7 @@ function Edit(props) {
     onChange: value => setAttributes({
       url: value
     })
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: `wp-block-bu-button-container ${align ? '' : 'wp-block'}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.RichText, {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.RichText, {
     ...blockProps,
     tagName: "div",
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Add text…'),
@@ -498,7 +508,7 @@ function Edit(props) {
     formattingControls: (0,_global_allowed_formats__WEBPACK_IMPORTED_MODULE_4__["default"])('formattingControls', ['bold', 'italic']),
     allowedFormats: (0,_global_allowed_formats__WEBPACK_IMPORTED_MODULE_4__["default"])('allowedFormats', ['core/bold', 'core/italic']),
     keepPlaceholderOnFocus: true
-  })));
+  }));
 }
 
 /***/ }),
@@ -1280,12 +1290,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getColorSlug: function() { return /* binding */ getColorSlug; }
+/* harmony export */   getColorSlug: function() { return /* binding */ getColorSlug; },
+/* harmony export */   getColorThemesSupportsByBlock: function() { return /* binding */ getColorThemesSupportsByBlock; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /**
  * Adds Color Utility functions.
  */
+
 
 
 
@@ -1309,6 +1322,26 @@ const getColorSlug = (color, palette) => {
   return undefined;
 };
 
+/**
+ * Get ColorThemes setting from the block's Supports array in block.json
+ * and override the site-wide color palette set in the theme. 
+ * @param {*} name 
+ * @param {*} palette
+ * @returns
+ */
+const getColorThemesSupportsByBlock = (name, palette) => {
+  const hasThemOptionsColorThemesSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.hasBlockSupport)(name, '__bublocks.colorthemes');
+  console.log("existing palette:", palette);
+  if (hasThemOptionsColorThemesSupport) {
+    const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks.colorthemes');
+    console.log(BlockColorThemesPalette);
+    if (Array.isArray(BlockColorThemesPalette)) {
+      palette = BlockColorThemesPalette;
+    }
+  }
+  return palette;
+};
+
 /***/ }),
 
 /***/ "./src/blocks/button/block.json":
@@ -1318,7 +1351,7 @@ const getColorSlug = (color, palette) => {
 /***/ (function(module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"bu/button","version":"0.0.3","title":"Button","description":"Prompt visitors to take action with a custom button.","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php","attributes":{"url":{"type":"string"},"text":{"type":"string"},"themeColor":{"type":"string"},"icon":{"type":"string"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"outline","label":"Outline"},{"name":"text","label":"Text"},{"name":"accent","label":"Accent"}],"supports":{"align":true,"anchor":true}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/button","version":"0.0.3","title":"Button","description":"Prompt visitors to take action with a custom button.","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php","attributes":{"url":{"type":"string"},"text":{"type":"string"},"themeColor":{"type":"string"},"icon":{"type":"string"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"outline","label":"Outline"},{"name":"text","label":"Text"},{"name":"accent","label":"Accent"}],"supports":{"align":true,"anchor":true,"spacing":{"margin":true,"padding":true},"color":true,"__bublocks":{"colorthemes":[]}}}');
 
 /***/ })
 
