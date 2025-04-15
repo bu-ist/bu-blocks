@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "$schema": "https://schemas.wp.org/wp/5.8/block.json",
   "apiVersion": 2,
   "name": "editorial/aside",
   "version": "0.0.0",
@@ -10,7 +10,7 @@
   "textdomain": "bu-blocks",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "viewStyle": "file:./style.css",
+  "style": "file:./style.css",
   "render": "file:./render.php",
   "attributes": {
     "anchor": {
@@ -39,6 +39,8 @@
   },
   "supports": {
     "align": true,
-    "anchor": true
+    "anchor": true,
+    "color": true,
+    "__bublocks_colorthemes": true
   }
 }

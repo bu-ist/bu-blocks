@@ -10,7 +10,7 @@
   "textdomain": "bu-blocks",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "viewStyle": "file:./style.css",
+  "style": "file:./style.css",
   "render": "file:./render.php",
   "attributes": {
     "url": {
@@ -52,9 +52,12 @@
       "margin": true,
       "padding": true
     },
-    "color": true,
-    "__bublocks": {
-      "colorthemes": []
-    }
+    "color": {
+      "text": true,
+      "background": true,
+      "link": true,
+      "gradients": true
+    },
+    "__bublocks_colorthemes": true
   }
 }

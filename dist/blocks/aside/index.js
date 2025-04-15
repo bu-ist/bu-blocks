@@ -1142,19 +1142,14 @@ const getColorSlug = (color, palette) => {
 /**
  * Get ColorThemes setting from the block's Supports array in block.json
  * and override the site-wide color palette set in the theme. 
- * @param {*} name 
+ * @param {*} name
  * @param {*} palette
- * @returns
+ * @return {Array} A color palette array.
  */
 const getColorThemesSupportsByBlock = (name, palette) => {
-  const hasThemOptionsColorThemesSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.hasBlockSupport)(name, '__bublocks.colorthemes');
-  console.log("existing palette:", palette);
-  if (hasThemOptionsColorThemesSupport) {
-    const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks.colorthemes');
-    console.log(BlockColorThemesPalette);
-    if (Array.isArray(BlockColorThemesPalette)) {
-      palette = BlockColorThemesPalette;
-    }
+  const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks_colorthemes');
+  if (Array.isArray(BlockColorThemesPalette)) {
+    palette = BlockColorThemesPalette;
   }
   return palette;
 };
@@ -1168,7 +1163,7 @@ const getColorThemesSupportsByBlock = (name, palette) => {
 /***/ (function(module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"editorial/aside","version":"0.0.0","title":"Aside","description":"Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.","category":"bu-editorial","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php","attributes":{"anchor":{"type":"string","default":""},"themeColor":{"type":"string"}},"example":{"innerBlocks":[{"name":"core/heading","attributes":{"content":"Aside Block Example1"}},{"name":"core/paragraph","attributes":{"content":"The Aside block allows you to add a variety of content blocks such as paragraphs and images."}}]},"supports":{"align":true,"anchor":true}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"editorial/aside","version":"0.0.0","title":"Aside","description":"Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.","category":"bu-editorial","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"anchor":{"type":"string","default":""},"themeColor":{"type":"string"}},"example":{"innerBlocks":[{"name":"core/heading","attributes":{"content":"Aside Block Example1"}},{"name":"core/paragraph","attributes":{"content":"The Aside block allows you to add a variety of content blocks such as paragraphs and images."}}]},"supports":{"align":true,"anchor":true,"color":true,"__bublocks_colorthemes":true}}');
 
 /***/ })
 

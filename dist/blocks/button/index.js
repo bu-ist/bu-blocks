@@ -386,6 +386,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__);
 
 /**
  * BLOCK: bu-button
@@ -403,6 +405,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // WordPress dependencies.
+
 
 
 
@@ -445,15 +448,22 @@ function Edit(props) {
   // it if disabled by filter.
   let themeOptionsPalette = (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
-  // Get any block specific color themes palette set
-  // in block.json `supports.__bublocks.colorthemes`
-  themeOptionsPalette = (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorThemesSupportsByBlock)(name, themeOptionsPalette);
+  // Check if block's metadata from block.json has an entry for __bublocks_colorthemes.
+  const hasThemOptionsColorThemesSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__.hasBlockSupport)(name, '__bublocks_colorthemes');
+  if (hasThemOptionsColorThemesSupport) {
+    // Get any block specific color themes palette set
+    // in block.json `supports.__bublocks_colorthemes`
+    themeOptionsPalette = (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorThemesSupportsByBlock)(name, themeOptionsPalette);
+  }
 
   // Create a color object from the palette for themeColor attribute
   //  to pass into the component.
   const themeColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.getColorObjectByAttributeValues)(themeOptionsPalette, themeColor);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.PanelColorSettings, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Color Settings'),
+
+  // Check if palette is an array and has any values.
+  const hasThemeOptionsPalette = Array.isArray(themeOptionsPalette) && themeOptionsPalette.length > 0;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InspectorControls, null, hasThemOptionsColorThemesSupport && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.PanelColorSettings, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Color Theme'),
     colorSettings: [{
       value: themeColorObject?.color,
       onChange: value => setAttributes({
@@ -463,7 +473,7 @@ function Edit(props) {
       disableCustomColors: true,
       colors: themeOptionsPalette
     }]
-  }, themeOptionsPalette?.length < 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this block."))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+  }, !hasThemeOptionsPalette && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this block."))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Icon Settings')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RadioControl, {
     label: "Placement",
@@ -1325,19 +1335,14 @@ const getColorSlug = (color, palette) => {
 /**
  * Get ColorThemes setting from the block's Supports array in block.json
  * and override the site-wide color palette set in the theme. 
- * @param {*} name 
+ * @param {*} name
  * @param {*} palette
- * @returns
+ * @return {Array} A color palette array.
  */
 const getColorThemesSupportsByBlock = (name, palette) => {
-  const hasThemOptionsColorThemesSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.hasBlockSupport)(name, '__bublocks.colorthemes');
-  console.log("existing palette:", palette);
-  if (hasThemOptionsColorThemesSupport) {
-    const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks.colorthemes');
-    console.log(BlockColorThemesPalette);
-    if (Array.isArray(BlockColorThemesPalette)) {
-      palette = BlockColorThemesPalette;
-    }
+  const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks_colorthemes');
+  if (Array.isArray(BlockColorThemesPalette)) {
+    palette = BlockColorThemesPalette;
   }
   return palette;
 };
@@ -1351,7 +1356,7 @@ const getColorThemesSupportsByBlock = (name, palette) => {
 /***/ (function(module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/button","version":"0.0.3","title":"Button","description":"Prompt visitors to take action with a custom button.","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php","attributes":{"url":{"type":"string"},"text":{"type":"string"},"themeColor":{"type":"string"},"icon":{"type":"string"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"outline","label":"Outline"},{"name":"text","label":"Text"},{"name":"accent","label":"Accent"}],"supports":{"align":true,"anchor":true,"spacing":{"margin":true,"padding":true},"color":true,"__bublocks":{"colorthemes":[]}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/button","version":"0.0.3","title":"Button","description":"Prompt visitors to take action with a custom button.","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"url":{"type":"string"},"text":{"type":"string"},"themeColor":{"type":"string"},"icon":{"type":"string"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"outline","label":"Outline"},{"name":"text","label":"Text"},{"name":"accent","label":"Accent"}],"supports":{"align":true,"anchor":true,"spacing":{"margin":true,"padding":true},"color":{"text":true,"background":true,"link":true,"gradients":true},"__bublocks_colorthemes":true}}');
 
 /***/ })
 
