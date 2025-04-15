@@ -32,6 +32,7 @@ import {
 	useBlockProps,
 	getColorObjectByAttributeValues,
 } from '@wordpress/block-editor';
+import { hasBlockSupport } from '@wordpress/blocks';
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -68,12 +69,20 @@ export default function Edit( props ) {
 	// it if disabled by filter.
 	let themeOptionsPalette = themeOptions();
 
-	// Get any block specific color themes palette set
-	// in block.json `supports.__bublocks.colorthemes`
-	themeOptionsPalette = getColorThemesSupportsByBlock(
+	// Check if block's metadata from block.json has an entry for __bublocks_colorthemes.
+	const hasThemOptionsColorThemesSupport = hasBlockSupport(
 		name,
-		themeOptionsPalette
+		'__bublocks_colorthemes'
 	);
+
+	if ( hasThemOptionsColorThemesSupport ) {
+		// Get any block specific color themes palette set
+		// in block.json `supports.__bublocks_colorthemes`
+		themeOptionsPalette = getColorThemesSupportsByBlock(
+			name,
+			themeOptionsPalette
+		);
+	}
 
 	// Create a color object from the palette for themeColor attribute
 	//  to pass into the component.
@@ -82,35 +91,43 @@ export default function Edit( props ) {
 		themeColor
 	);
 
+	// Check if palette is an array and has any values.
+	const hasThemeOptionsPalette =
+		Array.isArray( themeOptionsPalette ) && themeOptionsPalette.length > 0;
+
 	return (
 		<>
 			<InspectorControls>
-				<PanelColorSettings
-					title={ __( 'Color Settings' ) }
-					colorSettings={ [
-						{
-							value: themeColorObject?.color,
-							onChange: ( value ) =>
-								setAttributes( {
-									themeColor: value
-										? getColorSlug(
-												value,
-												themeOptionsPalette
-										  )
-										: undefined,
-								} ),
-							label: __( 'Theme' ),
-							disableCustomColors: true,
-							colors: themeOptionsPalette,
-						},
-					] }
-				>
-					{ themeOptionsPalette?.length < 1 && (
-						<PanelRow>
-							<em>No Color Palette available for this block.</em>
-						</PanelRow>
-					) }
-				</PanelColorSettings>
+				{ hasThemOptionsColorThemesSupport && (
+					<PanelColorSettings
+						title={ __( 'Color Theme' ) }
+						colorSettings={ [
+							{
+								value: themeColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										themeColor: value
+											? getColorSlug(
+													value,
+													themeOptionsPalette
+											  )
+											: undefined,
+									} ),
+								label: __( 'Theme' ),
+								disableCustomColors: true,
+								colors: themeOptionsPalette,
+							},
+						] }
+					>
+						{ ! hasThemeOptionsPalette && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this block.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
+				) }
 				<PanelBody title={ __( 'Icon Settings' ) }>
 					<RadioControl
 						label="Placement"
