@@ -39,6 +39,8 @@
 	},
     "supports": {
         "align": true,
-        "anchor": true
+        "anchor": true,
+        "color": true,
+        "__bublocks_colorthemes": true
 	}
 }
