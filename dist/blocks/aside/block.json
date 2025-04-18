@@ -40,7 +40,12 @@
   "supports": {
     "align": true,
     "anchor": true,
-    "color": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "link": true,
+      "gradients": true
+    },
     "__bublocks_colorthemes": true
   }
 }
