@@ -4,7 +4,7 @@
 	"name": "bu/button",
 	"version": "0.0.3",
 	"title": "Button",
-    "description": "Prompt visitors to take action with a custom button.",
+	"description": "Prompt visitors to take action with a custom button.",
 	"category": "bu",
 	"icon": "block-default",
 	"textdomain": "bu-blocks",
@@ -12,7 +12,7 @@
 	"editorStyle": "file:./index.css",
 	"style": "file:./style.css",
 	"render": "file:./render.php",
-    "attributes": {
+	"attributes": {
 		"url": {
 			"type": "string"
 		},
@@ -26,7 +26,7 @@
 			"type": "string"
 		}
 	},
-    "styles": [
+	"styles": [
 		{
 			"name": "default",
 			"label": "Default",
@@ -45,20 +45,20 @@
 			"label": "Accent"
 		}
 	],
-    "supports": {
-        "align": true,
-        "anchor": true,
-        "spacing": {
-            "margin": true,
-            "padding": true
-        },
-        "color": {
-            "text": true,
-            "background": true,
-            "link": true,
-            "gradients": true
-        },
-        "__bublocks_colorthemes": true
+	"supports": {
+		"align": true,
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"text": true,
+			"background": true,
+			"link": true,
+			"gradients": true
+		},
+		"__bublocks_colorthemes": true
 	}
 }
 
