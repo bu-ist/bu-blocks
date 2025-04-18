@@ -4,7 +4,6 @@
 
 import { getColorObjectByColorValue } from '@wordpress/block-editor';
 
-
 /**
  * When given a color it gets the Color Slug from the themeoptions() color
  * palette defined for the theme.
@@ -14,12 +13,10 @@ import { getColorObjectByColorValue } from '@wordpress/block-editor';
  * @return {string} The slug of the color.
  */
 export const getColorSlug = ( color, palette ) => {
-	console.log("getcolorslug ", color, palette );
 	if ( color ) {
 		const colorObject = getColorObjectByColorValue( palette, color );
 
 		if ( colorObject.slug ) {
-			console.log("getcolorslug", colorObject.slug);
 			return colorObject.slug;
 		}
 	} else {

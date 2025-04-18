@@ -1386,11 +1386,9 @@ __webpack_require__.r(__webpack_exports__);
  * @return {string} The slug of the color.
  */
 const getColorSlug = (color, palette) => {
-  console.log("getcolorslug ", color, palette);
   if (color) {
     const colorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.getColorObjectByColorValue)(palette, color);
     if (colorObject.slug) {
-      console.log("getcolorslug", colorObject.slug);
       return colorObject.slug;
     }
   } else {
