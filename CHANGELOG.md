@@ -1,7 +1,9 @@
 # Changelog
 
 ## Unreleased
-- Add color-utils module with getColorSlug() utility function. Used in all blocks with themeOptions() support. 
+- Refactor Button Block to support Colors, Spacing, and Color Themes
+- Refactor Aside Block to support Colors
+- Add <ThemeColorPanel/> component to handle existing Color Themes functionality and support block level overrides in child themes by using a custom Block Supports entry. 
 - Remove each block's themeable SCSS file from being compiled as these aren't needed in the rep, but instead are used by other themes importing this repo via node.
 - Bug fix: Intro Paragraph block's onSplit function wasn't working to add a paragraph block when the user hits enter. 
 - Bug Fix: Intro Paragraph block was retaining the dropcap when switching Block Styles. Had to change how className was used since the old approach from the beta version of Gutenberg conflicts with current attribute and property usage of `className`. 
