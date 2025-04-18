@@ -380,14 +380,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../global/color-utils.mjs */ "./src/global/color-utils.mjs");
 /* harmony import */ var _global_allowed_formats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../global/allowed-formats */ "./src/global/allowed-formats.js");
 /* harmony import */ var _global_publication_slug__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../global/publication-slug */ "./src/global/publication-slug.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_colorthemes_panel_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/colorthemes-panel/index.js */ "./src/components/colorthemes-panel/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__);
 
 /**
  * BLOCK: bu-button
@@ -404,8 +403,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// WordPress dependencies.
 
+// WordPress dependencies.
 
 
 
@@ -439,43 +438,22 @@ function Edit(props) {
     className,
     name
   } = props;
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.useBlockProps)({
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.useBlockProps)({
     className: getClasses(className, themeColor, icon)
   });
 
-  // themOptions() returns the full color palette added to editor settings.
-  // Set the ThemeOptions() color Palette to a variable so we can clear
-  // it if disabled by filter.
-  let themeOptionsPalette = (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])();
-
-  // Check if block's metadata from block.json has an entry for __bublocks_colorthemes.
-  const hasThemOptionsColorThemesSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__.hasBlockSupport)(name, '__bublocks_colorthemes');
-  if (hasThemOptionsColorThemesSupport) {
-    // Get any block specific color themes palette set
-    // in block.json `supports.__bublocks_colorthemes`
-    themeOptionsPalette = (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorThemesSupportsByBlock)(name, themeOptionsPalette);
-  }
-
-  // Create a color object from the palette for themeColor attribute
-  //  to pass into the component.
-  const themeColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.getColorObjectByAttributeValues)(themeOptionsPalette, themeColor);
-
-  // Check if palette is an array and has any values.
-  const hasThemeOptionsPalette = Array.isArray(themeOptionsPalette) && themeOptionsPalette.length > 0;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InspectorControls, null, hasThemOptionsColorThemesSupport && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.PanelColorSettings, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Color Theme'),
-    colorSettings: [{
-      value: themeColorObject?.color,
-      onChange: value => setAttributes({
-        themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorSlug)(value, themeOptionsPalette) : undefined
-      }),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Theme'),
-      disableCustomColors: true,
-      colors: themeOptionsPalette
-    }]
-  }, !hasThemeOptionsPalette && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this block."))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Icon Settings')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RadioControl, {
+  // themOptions() returns the full/global color palette added to editor settings.
+  const themeOptionsPalette = (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_colorthemes_panel_index_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    blockname: name,
+    value: themeColor,
+    themepalette: themeOptionsPalette,
+    onChange: (value, palette) => setAttributes({
+      themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorSlug)(value, palette) : undefined
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Icon Settings')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.RadioControl, {
     label: "Placement",
     selected: icon,
     options: [{
@@ -490,27 +468,27 @@ function Edit(props) {
         icon: value
       });
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Button, {
     onClick: () => setAttributes({
       icon: undefined
     }),
     label: 'Clear icon settings',
     isSecondary: true,
     isSmall: true
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Clear'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Clear'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.PanelBody, {
     className: "components-panel__body-bu-button-block-url bu-blocks-button-block-url-input",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('URL')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('URL')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "description"
-  }, "Add link to the button"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.URLInput, {
+  }, "Add link to the button"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.URLInput, {
     value: url,
     onChange: value => setAttributes({
       url: value
     })
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.RichText, {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.RichText, {
     ...blockProps,
     tagName: "div",
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Add text…'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Add text…'),
     value: text,
     onChange: value => setAttributes({
       text: value
@@ -937,6 +915,96 @@ const blockIcons = function (name) {
 
 /***/ }),
 
+/***/ "./src/components/colorthemes-panel/index.js":
+/*!***************************************************!*\
+  !*** ./src/components/colorthemes-panel/index.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ ThemeColorPanel; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+/**
+ * Get ColorThemes setting from the block's Supports array in block.json
+ * and override the site-wide color palette set in the theme.
+ * @param {*}      name
+ * @param {*}      palette
+ * @param {string} key
+ * @return {Array} A color palette array.
+ */
+const getColorThemesSupportsByBlock = (name, palette, key) => {
+  const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getBlockSupport)(name, key);
+  if (Array.isArray(BlockColorThemesPalette)) {
+    palette = BlockColorThemesPalette;
+  }
+  return palette;
+};
+
+/**
+ * Returns a `<PanelColorSettings>` component to allow the
+ * user to select a color theme. The global color theme if available
+ * should be passed to the component. The component will also check if
+ * the block supports a specific colortheme in block.json and if a
+ * block specific color palette has been overridden in the theme.
+ * @param {*} props
+ * @return {Component} A Color Panel component.
+ */
+function ThemeColorPanel(props) {
+  const {
+    blockname,
+    title = 'Color Theme',
+    themepalette,
+    label = 'Theme',
+    onChange,
+    value,
+    supportkey = '__bublocks_colorthemes'
+  } = props;
+  let palette = themepalette;
+
+  // Check if block's metadata from block.json has an entry for __bublocks_colorthemes.
+  const hasSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.hasBlockSupport)(blockname, supportkey);
+  if (hasSupport) {
+    // Get any block specific color themes palette set
+    // in block.json `supports.__bublocks_colorthemes`
+    palette = getColorThemesSupportsByBlock(blockname, palette, supportkey);
+  }
+
+  // Create a color object from the palette for themeColor attribute
+  //  to pass into the component.
+  const paletteColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.getColorObjectByAttributeValues)(palette, value);
+
+  // Check if palette is an array and has any values.
+  const hasPalette = Array.isArray(palette) && palette.length > 0;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hasSupport && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PanelColorSettings, {
+    __experimentalIsRenderedInSidebar: true,
+    title: title,
+    colorSettings: [{
+      value: paletteColorObject?.color,
+      onChange: newValue => onChange(newValue, palette),
+      label,
+      colors: palette,
+      disableCustomColors: true
+    }]
+  }, !hasPalette && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this block."))));
+}
+
+/***/ }),
+
 /***/ "./src/global/allowed-formats.js":
 /*!***************************************!*\
   !*** ./src/global/allowed-formats.js ***!
@@ -1300,15 +1368,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getColorSlug: function() { return /* binding */ getColorSlug; },
-/* harmony export */   getColorThemesSupportsByBlock: function() { return /* binding */ getColorThemesSupportsByBlock; }
+/* harmony export */   getColorSlug: function() { return /* binding */ getColorSlug; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /**
  * Adds Color Utility functions.
  */
-
 
 
 
@@ -1321,30 +1386,17 @@ __webpack_require__.r(__webpack_exports__);
  * @return {string} The slug of the color.
  */
 const getColorSlug = (color, palette) => {
+  console.log("getcolorslug ", color, palette);
   if (color) {
     const colorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.getColorObjectByColorValue)(palette, color);
     if (colorObject.slug) {
+      console.log("getcolorslug", colorObject.slug);
       return colorObject.slug;
     }
   } else {
     console.error('Error: no color.slug value found in color object.'); // eslint-disable-line no-console
   }
   return undefined;
-};
-
-/**
- * Get ColorThemes setting from the block's Supports array in block.json
- * and override the site-wide color palette set in the theme. 
- * @param {*} name
- * @param {*} palette
- * @return {Array} A color palette array.
- */
-const getColorThemesSupportsByBlock = (name, palette) => {
-  const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.getBlockSupport)(name, '__bublocks_colorthemes');
-  if (Array.isArray(BlockColorThemesPalette)) {
-    palette = BlockColorThemesPalette;
-  }
-  return palette;
 };
 
 /***/ }),
