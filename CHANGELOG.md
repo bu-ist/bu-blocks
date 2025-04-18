@@ -1,9 +1,19 @@
 # Changelog
 
 ## Unreleased
-- Refactor Button Block to support Colors, Spacing, and Color Themes
+- Refactor Button Block:
+  - Add Block Supports: Colors, Spacing, and Color Themes
+  - Breaking changes?: 
+    - Rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
+    - Remove wrapping `<p>` tag the previous version of the block had
+    - Move Attributes from static markup locations to default (html comment)
+    - Add Deprecations for the markup and attribute changes.
+  - Convert block to Dynamic Block
+    - Add `src/blocks/button/deprecated/deprecated.php`  function using DOMDocument to parse old block instances to scrape attributes out of the saved markup of existing static blocks. This is called in Render.php but could/should be moved to child themes that need it such as r-editorial, law, cfa, etc. 
 - Refactor Aside Block to support Colors
 - Add <ThemeColorPanel/> component to handle existing Color Themes functionality and support block level overrides in child themes by using a custom Block Supports entry. 
+- Adds a `class-block-supports.php` that adds an easy way for existing themes such as r-editorial that rely on Color Themes to disable the new Block Supports features such as Color and Spacing for all blocks via a filter. 
+- Adds a new helper function `bu_blocks_get_registered_block_names()` that returns a list of registered block names in the plugin.
 - Remove each block's themeable SCSS file from being compiled as these aren't needed in the rep, but instead are used by other themes importing this repo via node.
 - Bug fix: Intro Paragraph block's onSplit function wasn't working to add a paragraph block when the user hits enter. 
 - Bug Fix: Intro Paragraph block was retaining the dropcap when switching Block Styles. Had to change how className was used since the old approach from the beta version of Gutenberg conflicts with current attribute and property usage of `className`. 
