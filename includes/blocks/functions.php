@@ -2,7 +2,7 @@
 /**
  * Block functions
  *
- * @package plugin-slug
+ * @package    bu-blocks
  */
 
 namespace BU\Plugins\BU_Blocks;
@@ -17,14 +17,14 @@ define( 'BU_BLOCKS_BLOCKS_BUILD_URL', BU_BLOCKS_URL . 'dist' );
  * Array of Block Names
  *
  * @return Array of block names in this plugin.
- * 
+ *
  * @since 2.0.0
  */
 function bu_blocks_get_registered_block_names() {
 	$blocks = array(
 		'editorial/aside',
 		'bu/buniverse',
-		'bu/button'
+		'bu/button',
 	);
 
 	return apply_filters( 'bu_blocks_registered_block_names', $blocks );
@@ -60,7 +60,7 @@ require_once 'class-blocks.php';
 require_once 'class-blockenqueues.php';
 
 // Load Gutenberg Patterns.
-//require 'class-blockpatterns.php';
+// require 'class-blockpatterns.php';.
 
 /**
  * Include Deprecated functions for old versions of blocks.

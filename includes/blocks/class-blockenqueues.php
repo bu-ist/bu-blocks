@@ -4,7 +4,7 @@
  *
  * This was just quickly copied from BU Stats so the assets in this prototype could be enqueued for now.
  *
- * @package BU
+ * @package    bu-blocks
  */
 
 namespace BU\Plugins\BU_Blocks;
@@ -23,11 +23,8 @@ class BlockEnqueues {
 	public function __construct() {
 		// Enqueue front-end scripts & styles.
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_styles' ) );
-		// add_action( 'wp_enqueue_scripts', array( $this, 'block_decorative_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_scripts' ) );
 		// Enqueue block editor scripts & styles.
-		// add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_styles' ) );
-		// add_action( 'enqueue_block_editor_assets', array( $this, 'block_decorative_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_scripts' ) );
 	}
 
@@ -40,29 +37,6 @@ class BlockEnqueues {
 		// Enqueue any other frontend styles or scripts needed related to blocks specifically.
 	}
 
-	/**
-	 * Enqueue Decorative Block styles.
-	 *
-	 * @since 0.1.0
-	 */
-	public function block_decorative_styles() {
-
-		/**
-		 * Register Decorative Block styles.
-		 *
-		 * Dependency: The Block Common Styles so common/shared styles are enqueued before
-		 * the styles for the block, allowing the block styles to override the common styles.
-		 */
-		// if ( BU_BLOCKS_decorative_block_styles() ) {
-		// 	wp_enqueue_style(
-		// 		PLUGIN_SLUG . '-decorative-styles',
-		// 		BU_BLOCKS_BLOCKS_BUILD_URL . '/css/blocks/blocks-decorative.css',
-		// 		array(),
-		// 		filemtime( BU_BLOCKS_BLOCKS_BUILD_DIR . 'css/blocks/blocks-decorative.css' ),
-		// 		'all'
-		// 	);
-		// }
-	}
 
 	/**
 	 * Enqueue Frontend Javascript.
@@ -97,22 +71,6 @@ class BlockEnqueues {
 			);
 		}
 	}
-
-	/**
-	 * Enqueue editor styles
-	 *
-	 * @since 0.2.0
-	 */
-	// public function block_editor_styles() {
-
-	// 	// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
-	// 	wp_enqueue_style(
-	// 		PLUGIN_SLUG . '-block-editor',
-	// 		BU_BLOCKS_BLOCKS_BUILD_URL . '/css/block-editor.css',
-	// 		array(),
-	// 		filemtime( BU_BLOCKS_BLOCKS_BUILD_URL . '/css/block-editor.css' ),
-	// 	);
-	// }
 
 	/**
 	 * Enqueue editor javascript

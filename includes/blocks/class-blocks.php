@@ -2,10 +2,10 @@
 /**
  * Class to manage registration of blocks and assets within the editor.
  *
- * @package plugin-slug
+ * @package    bu-blocks
  */
 
- namespace BU\Plugins\BU_Blocks;
+namespace BU\Plugins\BU_Blocks;
 
 /**
  * Class Assets
@@ -61,6 +61,8 @@ class Blocks {
 	 *
 	 * @link https://developer.wordpress.org/reference/hooks/block_categories_all/
 	 * @since 0.1.0
+	 *
+	 * @param array $categories The categories array.
 	 */
 	public function custom_block_category( $categories ) {
 		array_unshift(
@@ -92,7 +94,7 @@ class Blocks {
 				$block_folder_name = basename( $block_folder_path );
 
 				// Register Block Arguments Array.
-				$block_options = [];
+				$block_options = array();
 
 				// Standard path to a block's render template.
 				$block_render_file_path = $block_folder_path . '/render.php';
@@ -133,7 +135,6 @@ class Blocks {
 				}
 
 				register_block_type_from_metadata( $block_folder_path, $block_options );
-				
 
 			}
 		}

@@ -3,6 +3,8 @@
  * Button Block Deprecated Version Functions
  *
  * PHP functions for use with old versions of the block in the render.php template.
+ *
+ * @package    bu-blocks
  */
 
 /**
@@ -25,12 +27,12 @@ function bu_blocks_button_v2_get_attributes( $content, $attributes ) {
 	$doc = new DOMDocument();
 	$doc->loadHTML( $content );
 
-	// Find the button in the saved $content;
+	// Find the button in the saved $content.
 	$button_node = $doc->getElementsByTagName( 'a' )->item( 0 );
 	// Get the url from the href if the attribute exists.
 	$url = $button_node->getAttribute( 'href' );
 	// Get the text cotnent from the <a> tag if it exists.
-	$text = $button_node->textContent;
+	$text = $button_node->textContent; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	// Get the button classes.
 	$classes = $button_node->getAttribute( 'class' );
 	// Strip out old `wp-block-button` class.
