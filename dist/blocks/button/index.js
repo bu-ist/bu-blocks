@@ -942,9 +942,10 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Get ColorThemes setting from the block's Supports array in block.json
  * and override the site-wide color palette set in the theme.
- * @param {*}      name
- * @param {*}      palette
- * @param {string} key
+ *
+ * @param {string} name    The name of the block
+ * @param {Object} palette A color palette object.
+ * @param {string} key     The key in block-supports in block.json such as __bublocks_colorthemes.
  * @return {Array} A color palette array.
  */
 const getColorThemesSupportsByBlock = (name, palette, key) => {

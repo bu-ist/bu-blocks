@@ -23,6 +23,6 @@ if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( subs
 ?>
 <a 
 	<?php echo wp_kses_data( get_block_wrapper_attributes( [ 'class' => $classes ] ) ); ?> 
-	href="<?php echo $attributes['url']; ?>" 
-><?php echo $attributes['text']; ?></a>
+	href="<?php echo esc_url( $attributes['url'] ); ?>" 
+><?php echo esc_html( $attributes['text'] ); ?></a>
 
