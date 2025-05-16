@@ -13,7 +13,6 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-//var_dump($attributes);
 
 // @todo: move this into a template override in each child theme?
 // Check if $content starts with <p><a tag from older static version of this block.
