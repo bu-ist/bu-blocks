@@ -15,6 +15,11 @@ Theme.json can be used to control the core color block support settings globally
 },
 ```
 
+## ToDo:
+- Replace URL Input for link with better LinkControl component and/or ours: https://github.com/bu-ist/id-gutenberg/issues/217
+- Add support for "Open in New Window"
+- Add field for `rel` parameter. (see core block)
+
 ## Changelog
 
 ### 2.0.0
