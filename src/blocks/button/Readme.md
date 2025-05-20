@@ -18,6 +18,7 @@ Theme.json can be used to control the core color block support settings globally
 ## Changelog
 
 ### 2.0.0
+ - Remove old and incorrect `wp-block-button` class. This is a breaking change for themes. 
  - Refactor block structure to modernize
  - Convert block from Static to Dynamic using render.php.
  - Add Block Supports: Colors, Spacing, and Color Themes
