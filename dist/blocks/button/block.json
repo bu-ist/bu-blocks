@@ -13,6 +13,9 @@
   "style": "file:./style.css",
   "render": "file:./render.php",
   "attributes": {
+    "anchor": {
+      "type": "string"
+    },
     "url": {
       "type": "string"
     },

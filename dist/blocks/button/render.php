@@ -37,6 +37,7 @@ if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( $con
 }
 ?>
 <a 
+	<?php echo esc_attr( $attributes['anchor'] ? 'id="' . $attributes['anchor'] . '"' : '' ); ?>
 	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?> 
 	href="<?php echo esc_url( $attributes['url'] ); ?>" 
 >
