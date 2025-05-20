@@ -43,7 +43,7 @@ if ( strpos( substr( $content, 0, 10 ), '<aside' ) ) {
 
 <aside 
 	<?php echo esc_attr( $attributes['anchor'] ? 'id="' . $attributes['anchor'] . '"' : '' ); ?> 
-	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
+	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?>
 >
 	<?php echo wp_kses_post( $aside_content ? $aside_content : $content ); ?>
 </aside>
