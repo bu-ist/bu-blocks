@@ -14,10 +14,13 @@ Theme.json can be used to control the core color block support settings globally
     "gradients": true
 },
 ```
+## ToDo:
 
 ## Changelog
 
 ### 2.0.0
+ - Breaking Changes: 
+   - Removed Text-Align: Center from block's default styles.
  - Added support for core `Color` Block Support
  - Added support for custom `__bublocks_colorthemes` Block Support
  - Refactor block structure to modernize
