@@ -39,10 +39,6 @@
     {
       "name": "text",
       "label": "Text"
-    },
-    {
-      "name": "accent",
-      "label": "Accent"
     }
   ],
   "supports": {

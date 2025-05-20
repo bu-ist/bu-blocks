@@ -1,8 +1,7 @@
 <?php
 /**
  * Button Block Dynamic Template
- * 
- * 
+ *
  * PHP file to use when rendering the block type on the server to show on the front end.
  *
  * The following variables are exposed to the file:
@@ -11,18 +10,37 @@
  *     $block (WP_Block): The block instance.
  *
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
+ * @package    bu-blocks
  */
 
+// Create an array to store classnames for the block.
+$classes = array();
+
+if ( $attributes['icon'] ) {
+	$clasess[] = 'has-icon';
+	$classes[] = 'icon-navigateright'; // Old classname for icon in Foundation < v5.
+	$classes[] = $attributes['icon']; // Icon Alignment value.
+}
+
+if ( $attributes['themeColor'] ) {
+	$classes[] = 'has-' . $attributes['themeColor'] . '-theme';
+}
 
 // @todo: move this into a template override in each child theme?
-// Check if $content starts with <p><a tag from older static version of this block.
-if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( substr( $content, 0, 10 ) , '<p><a') ) {
+// Check if $content contains 'wp-block-button wp-block-bu-button' string
+// from older static version of this block.
+if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( $content, 'wp-block-button wp-block-bu-button' ) ) {
 	$attributes = bu_blocks_button_v2_get_attributes( $content, $attributes );
-	$classes = $attributes['classes_old'];
+	$classes[]  = $attributes['classes_old'];
+	$classes[]  = 'wp-block-button'; // Add old incorrect class. This should be removed as CSS is fixed.
+	$classes    = array_unique( $classes ); // Deduplicate any repeated class names.
 }
 ?>
 <a 
-	<?php echo wp_kses_data( get_block_wrapper_attributes( [ 'class' => $classes ] ) ); ?> 
+	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?> 
 	href="<?php echo esc_url( $attributes['url'] ); ?>" 
-><?php echo esc_html( $attributes['text'] ); ?></a>
+>
+	<?php echo esc_html( $attributes['text'] ); ?>
+
+</a>
 

@@ -419,7 +419,7 @@ const publication = (0,_global_publication_slug__WEBPACK_IMPORTED_MODULE_5__["de
  * @param {string} themeColor The theme color assigned to the block.
  * @param {string} icon       The icon placement.
  */
-const getClasses = (className, themeColor, icon) => classnames__WEBPACK_IMPORTED_MODULE_1___default()('wp-block-button', 'wp-block-bu-button', {
+const getClasses = (className, themeColor, icon) => classnames__WEBPACK_IMPORTED_MODULE_1___default()('wp-block-bu-button', {
   [`${publication}-block-button`]: publication && publication !== '',
   [`has-${themeColor}-theme`]: themeColor,
   [`icon-navigateright ${icon}`]: icon,
@@ -444,7 +444,17 @@ function Edit(props) {
 
   // themOptions() returns the full/global color palette added to editor settings.
   const themeOptionsPalette = (0,_global_theme_options__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_colorthemes_panel_index_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.PanelBody, {
+    className: "components-panel__body-bu-button-block-url bu-blocks-button-block-url-input",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('URL')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "description"
+  }, "Add link to the button"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.URLInput, {
+    value: url,
+    onChange: value => setAttributes({
+      url: value
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_colorthemes_panel_index_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
     blockname: name,
     value: themeColor,
     themepalette: themeOptionsPalette,
@@ -452,7 +462,7 @@ function Edit(props) {
       themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_3__.getColorSlug)(value, palette) : undefined
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Icon Settings')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Arrow Icon Settings')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.RadioControl, {
     label: "Placement",
     selected: icon,
@@ -475,17 +485,7 @@ function Edit(props) {
     label: 'Clear icon settings',
     isSecondary: true,
     isSmall: true
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Clear'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.PanelBody, {
-    className: "components-panel__body-bu-button-block-url bu-blocks-button-block-url-input",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('URL')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "description"
-  }, "Add link to the button"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.URLInput, {
-    value: url,
-    onChange: value => setAttributes({
-      url: value
-    })
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.RichText, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Clear')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_9__.RichText, {
     ...blockProps,
     tagName: "div",
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Add text…'),
@@ -493,7 +493,7 @@ function Edit(props) {
     onChange: value => setAttributes({
       text: value
     }),
-    formattingControls: (0,_global_allowed_formats__WEBPACK_IMPORTED_MODULE_4__["default"])('formattingControls', ['bold', 'italic']),
+    formattingControls: (0,_global_allowed_formats__WEBPACK_IMPORTED_MODULE_4__["default"])('formattingControls', 'bold', 'italic'),
     allowedFormats: (0,_global_allowed_formats__WEBPACK_IMPORTED_MODULE_4__["default"])('allowedFormats', ['core/bold', 'core/italic']),
     keepPlaceholderOnFocus: true
   }));
@@ -1407,7 +1407,7 @@ const getColorSlug = (color, palette) => {
 /***/ (function(module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/button","version":"0.0.3","title":"Button","description":"Prompt visitors to take action with a custom button.","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"url":{"type":"string"},"text":{"type":"string"},"themeColor":{"type":"string"},"icon":{"type":"string"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"outline","label":"Outline"},{"name":"text","label":"Text"},{"name":"accent","label":"Accent"}],"supports":{"align":true,"anchor":true,"spacing":{"margin":true,"padding":true},"color":{"text":true,"background":true,"link":true,"gradients":true},"__bublocks_colorthemes":true}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/button","version":"0.0.3","title":"Button","description":"Prompt visitors to take action with a custom button.","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"url":{"type":"string"},"text":{"type":"string"},"themeColor":{"type":"string"},"icon":{"type":"string"}},"styles":[{"name":"default","label":"Default","isDefault":true},{"name":"outline","label":"Outline"},{"name":"text","label":"Text"}],"supports":{"align":true,"anchor":true,"spacing":{"margin":true,"padding":true},"color":{"text":true,"background":true,"link":true,"gradients":true},"__bublocks_colorthemes":true}}');
 
 /***/ })
 
