@@ -60,6 +60,19 @@ export default function Edit( props ) {
 	return (
 		<>
 			<InspectorControls>
+				{ /* @ToDo: replace this with LinkToolbar component https://github.com/bu-ist/id-gutenberg/issues/217 */ }
+				<PanelBody
+					className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
+					title={ __( 'URL' ) }
+				>
+					<p className="description">Add link to the button</p>
+					<URLInput
+						value={ url }
+						onChange={ ( value ) =>
+							setAttributes( { url: value } )
+						}
+					/>
+				</PanelBody>
 				<ThemeColorPanel
 					blockname={ name }
 					value={ themeColor }
@@ -72,7 +85,7 @@ export default function Edit( props ) {
 						} )
 					}
 				/>
-				<PanelBody title={ __( 'Icon Settings' ) }>
+				<PanelBody title={ __( 'Arrow Icon Settings' ) }>
 					<RadioControl
 						label="Placement"
 						selected={ icon }
@@ -99,19 +112,6 @@ export default function Edit( props ) {
 						{ __( 'Clear' ) }
 					</Button>
 				</PanelBody>
-
-				<PanelBody
-					className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
-					title={ __( 'URL' ) }
-				>
-					<p className="description">Add link to the button</p>
-					<URLInput
-						value={ url }
-						onChange={ ( value ) =>
-							setAttributes( { url: value } )
-						}
-					/>
-				</PanelBody>
 			</InspectorControls>
 			<RichText
 				{ ...blockProps }
@@ -121,7 +121,8 @@ export default function Edit( props ) {
 				onChange={ ( value ) => setAttributes( { text: value } ) }
 				formattingControls={ getAllowedFormats(
 					'formattingControls',
-					[ 'bold', 'italic' ]
+					'bold',
+					'italic'
 				) }
 				allowedFormats={ getAllowedFormats( 'allowedFormats', [
 					'core/bold',
