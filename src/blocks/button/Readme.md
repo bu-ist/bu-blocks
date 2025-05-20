@@ -18,15 +18,16 @@ Theme.json can be used to control the core color block support settings globally
 ## Changelog
 
 ### 2.0.0
- - Remove old and incorrect `wp-block-button` class. This is a breaking change for themes. 
+ - Breaking Changes: 
+   - Remove "Accent" style option. Themes can add it back if needed.
+   - Remove old and incorrect `wp-block-button` class. This is a breaking change for themes.
+   - In SCSS partials rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
+   - Remove wrapping `<p>` tag the previous version of the block had
  - Refactor block structure to modernize
+   - Move Attributes from static markup locations to default (html comment)
+   - Add Deprecations for the markup and attribute changes.
  - Convert block from Static to Dynamic using render.php.
  - Add Block Supports: Colors, Spacing, and Color Themes
-   - Added support for custom `__bublocks_colorthemes` Block Support
-  - Breaking changes?: 
-    - Rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
-    - Remove wrapping `<p>` tag the previous version of the block had
-    - Move Attributes from static markup locations to default (html comment)
-    - Add Deprecations for the markup and attribute changes.
+   - Added support for custom `__bublocks_colorthemes` Block Support  
   - Convert block to Dynamic Block
     - Add `src/blocks/button/deprecated/deprecated.php`  function using DOMDocument to parse old block instances to scrape attributes out of the saved markup of existing static blocks. This is called in Render.php but could/should be moved to child themes that need it such as r-editorial, law, cfa, etc. 
