@@ -13,6 +13,14 @@
  * @package bu-blocks
  */
 
+// Create an array to store classnames for the block.
+$classes = array();
+
+if ( $attributes['themeColor'] ) {
+	$classes[] = 'has-' . $attributes['themeColor'] . '-background';
+}
+
+
 // Check if $content starts with <aside tag from older static version of this block.
 if ( strpos( substr( $content, 0, 10 ), '<aside' ) ) {
 	$doc = new DOMDocument();
