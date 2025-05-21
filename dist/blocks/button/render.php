@@ -41,7 +41,16 @@ if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( $con
 	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?> 
 	href="<?php echo esc_url( $attributes['url'] ); ?>" 
 >
-	<?php echo esc_html( $attributes['text'] ); ?>
-
+	<span class="wp-block-bu-button-text">
+	<?php
+		$button_text_html_allowed = array(
+			'strong' => array(),
+			'bold'   => array(),
+			'em'     => array(),
+			'i'      => array(),
+		);
+		echo wp_kses( $attributes['text'], $button_text_html_allowed );
+		?>
+	</span>
 </a>
 
