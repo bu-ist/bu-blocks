@@ -2,15 +2,27 @@
 
 ## Unreleased
 - Refactor Button Block:
-  - Add Block Supports: Colors, Spacing, and Color Themes
-  - Breaking changes?: 
-    - Rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
+  - Breaking Changes: 
+    - Remove "Accent" style option. Themes can add it back if needed.
+    - Remove old and incorrect `wp-block-button` class. This is a breaking change for themes.
+    - In SCSS partials rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
     - Remove wrapping `<p>` tag the previous version of the block had
+    - Removed `text-transform:uppercase` from the block. Themes should set this.
+  - Refactor Button block structure to modernize
     - Move Attributes from static markup locations to default (html comment)
     - Add Deprecations for the markup and attribute changes.
+  - Convert block from Static to Dynamic using render.php.
+  - Add Block Supports: Colors, Spacing, and Color Themes
+    - Added support for custom `__bublocks_colorthemes` Block Support  
   - Convert block to Dynamic Block
     - Add `src/blocks/button/deprecated/deprecated.php`  function using DOMDocument to parse old block instances to scrape attributes out of the saved markup of existing static blocks. This is called in Render.php but could/should be moved to child themes that need it such as r-editorial, law, cfa, etc. 
-- Refactor Aside Block to support Colors
+- Refactor Aside Block:
+  - Breaking Changes: 
+    - Removed Text-Align: Center from block's default styles.
+  - Added support for core `Color` Block Support
+  - Added support for custom `__bublocks_colorthemes` Block Support
+  - Refactor block structure to modernize
+  - Convert block from Static to Dynamic using render.php.
 - Add <ThemeColorPanel/> component to handle existing Color Themes functionality and support block level overrides in child themes by using a custom Block Supports entry. 
 - Adds a `class-block-supports.php` that adds an easy way for existing themes such as r-editorial that rely on Color Themes to disable the new Block Supports features such as Color and Spacing for all blocks via a filter. 
 - Adds a new helper function `bu_blocks_get_registered_block_names()` that returns a list of registered block names in the plugin.
