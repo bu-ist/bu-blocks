@@ -1,0 +1,228 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/blocks-bundled.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/**
+* This file imports all of the base frontend styles for each block
+* in order to create a final compiled stylesheet that contains all
+* non-shared block frontend CSS. This lets us enqueue all of the block
+* styles together when desired.
+*
+* Note: each block also compiles it's block styles into a block specific
+* stylesheet for the frontend. This allows us to have the option to instead
+* load block styles as separate stylesheets for each block. A use case would
+* be for a project where most of the blocks are disabled, or in the future
+* when we support HTTP/2 and decide to switch to multiple small stylesheets
+* instead of a large one. Future versions of WordPress are also adding the ability
+* to inline CSS as well as load core blocks as individual stylesheets when they
+* are used on the page.
+*/
+.wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright, .wp-block-editorial-aside {
+  float: right;
+  position: relative;
+  min-height: 1px;
+}
+
+.wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright, .wp-block-editorial-aside {
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright {
+    float: right;
+    position: relative;
+    min-height: 1px;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright {
+    float: right;
+    position: relative;
+    min-height: 1px;
+    width: 33.3333333333%;
+  }
+}
+/*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.wp-block-editorial-aside {
+  border: 1px solid #ddd;
+  border-top: 3px solid #111;
+  clear: both;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  padding: 30px;
+}
+.wp-block-editorial-aside figure {
+  margin-bottom: 0.7em;
+}
+.wp-block-editorial-aside p {
+  color: #666;
+  line-height: 1.5;
+  margin: 0 0 1em 0;
+  font-size: 16px;
+}
+.wp-block-editorial-aside.alignleft, .wp-block-editorial-aside.alignright {
+  max-width: 100%;
+  margin-right: 8.3333%;
+  margin-left: 8.3333%;
+}
+.wp-block-editorial-aside.alignleft {
+  margin: 20px auto;
+  margin-right: 8.3333%;
+  margin-left: 8.3333%;
+}
+@media (min-width: 768px) {
+  .wp-block-editorial-aside.alignleft {
+    float: right;
+    margin: 0 -40px 20px 30px;
+  }
+}
+.wp-block-editorial-aside.alignright {
+  margin: 20px auto;
+}
+@media (min-width: 768px) {
+  .wp-block-editorial-aside.alignright {
+    margin: 0 30px 20px -10px;
+    float: left;
+  }
+}
+.wp-block-editorial-aside.has-dark-background, .wp-block-editorial-aside.has-light-background, .wp-block-editorial-aside.has-primary-background, .wp-block-editorial-aside.has-secondary-background, .wp-block-editorial-aside.has-tertiary-background, .wp-block-editorial-aside.has-quaternary-background, .wp-block-editorial-aside.has-quinary-background {
+  border: none;
+}
+.wp-block-editorial-aside.has-dark-background {
+  background: #444;
+}
+.wp-block-editorial-aside.has-dark-background h2 {
+  color: #fff;
+}
+.wp-block-editorial-aside.has-dark-background p {
+  color: #f0f0f0;
+}
+.wp-block-editorial-aside.has-light-background {
+  background: #eee;
+}
+.wp-block-editorial-aside.has-primary-background h2 {
+  color: #fff;
+}
+
+.wp-block-global-buniverse.alignleft, .wp-block-global-buniverse.alignright {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .wp-block-global-buniverse.alignleft, .wp-block-global-buniverse.alignright {
+    width: 50%;
+  }
+}
+
+.wp-block-global-buniverse-wrapper {
+  position: relative;
+}
+.wp-block-global-buniverse-wrapper::before {
+  content: "";
+  display: block;
+  width: 1px;
+  padding-top: 56.25%;
+  position: relative;
+}
+.wp-block-global-buniverse-wrapper iframe {
+  right: 0;
+  top: 0;
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.has-aspectratio-16by9 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 56.25%;
+}
+
+.has-aspectratio-4by3 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 75%;
+}
+
+.has-aspectratio-1by1 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 100%;
+}
+
+.has-aspectratio-3by4 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 133.3333333333%;
+}
+
+.has-aspectratio-9by16 .wp-block-global-buniverse-wrapper::before {
+  padding-top: 177.7777777778%;
+}
+
+.wp-block-bu-button {
+  transition: all 0.2s ease-in-out 0s;
+  background: #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em 1em;
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  margin-inline: auto;
+}
+.wp-block-bu-button:hover {
+  background: #ccc;
+}
+.wp-block-bu-button[class*=icon-]::before {
+  content: ">";
+  display: block;
+  transition: all 0.2s ease-in-out 0s;
+  font-weight: bold;
+}
+.wp-block-bu-button.align-icon-right::before {
+  margin-inline-start: 0.5em;
+  order: 2;
+}
+.wp-block-bu-button.align-icon-left::before {
+  margin-inline-end: 0.5em;
+}
+.wp-block-bu-button.is-style-default.has-dark-theme {
+  background: #333;
+  color: #fff !important;
+}
+.wp-block-bu-button.is-style-default.has-dark-theme:hover {
+  background: #222;
+}
+.wp-block-bu-button.is-style-default.has-light-theme {
+  background: #eee;
+}
+.wp-block-bu-button.is-style-default.has-light-theme:hover {
+  background: #ddd;
+}
+.wp-block-bu-button.is-style-outline, .wp-block-bu-button.is-style-accent, .wp-block-bu-button.is-style-text {
+  background: transparent;
+}
+.wp-block-bu-button.is-style-outline:hover, .wp-block-bu-button.is-style-accent:hover, .wp-block-bu-button.is-style-text:hover {
+  background: transparent;
+}
+.wp-block-bu-button.is-style-outline {
+  border: 2px solid #ddd;
+}
+.wp-block-bu-button.is-style-outline:hover {
+  border-color: #ccc;
+}
+.wp-block-bu-button.is-style-outline.has-dark-theme {
+  border-color: #444;
+}
+.wp-block-bu-button.is-style-outline.has-dark-theme:hover {
+  border-color: #000;
+}
+.wp-block-bu-button.is-style-outline.has-light-theme {
+  border-color: #eee;
+}
+.wp-block-bu-button.is-style-outline.has-light-theme:hover {
+  border-color: #ddd;
+}
+.wp-block-bu-button.is-style-text {
+  text-decoration: underline;
+}
+.wp-block-bu-button.is-style-text:hover {
+  text-decoration: none;
+}

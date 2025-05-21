@@ -179,12 +179,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../global/theme-options.js */ "./src/global/theme-options.js");
 /* harmony import */ var _components_allowed_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/allowed-blocks */ "./src/components/allowed-blocks/index.js");
 /* harmony import */ var _global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../global/color-utils.mjs */ "./src/global/color-utils.mjs");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_colorthemes_panel_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/colorthemes-panel/index.js */ "./src/components/colorthemes-panel/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_9__);
 
 /**
  * Edit function for the aside block.
@@ -198,7 +201,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // WordPress dependencies.
+
 
 
 
@@ -207,7 +212,8 @@ function Edit(props) {
     attributes,
     setAttributes,
     className,
-    presetTemplate
+    presetTemplate,
+    name
   } = props;
   const {
     themeColor
@@ -215,25 +221,22 @@ function Edit(props) {
   const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, {
     [`has-${themeColor}-background`]: themeColor
   });
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.useBlockProps)({
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.useBlockProps)({
     className: classes
   });
-  const themeColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.getColorObjectByAttributeValues)((0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])(), themeColor);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.PanelColorSettings, {
-    __experimentalIsRenderedInSidebar: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Color Settings'),
-    colorSettings: [{
-      value: themeColorObject?.color,
-      onChange: value => setAttributes({
-        themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_4__.getColorSlug)(value, (0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])()) : undefined
-      }),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Theme'),
-      disableCustomColors: true,
-      colors: (0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])()
-    }]
-  }, !(0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])() && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this site.")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
+
+  // themOptions() returns the full/global color palette added to editor settings.
+  const themeOptionsPalette = (0,_global_theme_options_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_colorthemes_panel_index_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    blockname: name,
+    value: themeColor,
+    themepalette: themeOptionsPalette,
+    onChange: (value, palette) => setAttributes({
+      themeColor: value ? (0,_global_color_utils_mjs__WEBPACK_IMPORTED_MODULE_4__.getColorSlug)(value, palette) : undefined
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__.InnerBlocks, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__.InnerBlocks, {
     allowedBlocks: (0,_components_allowed_blocks__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     template: presetTemplate
   })));
@@ -719,6 +722,97 @@ const blockIcons = function (name) {
 
 /***/ }),
 
+/***/ "./src/components/colorthemes-panel/index.js":
+/*!***************************************************!*\
+  !*** ./src/components/colorthemes-panel/index.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ ThemeColorPanel; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+/**
+ * Get ColorThemes setting from the block's Supports array in block.json
+ * and override the site-wide color palette set in the theme.
+ *
+ * @param {string} name    The name of the block
+ * @param {Object} palette A color palette object.
+ * @param {string} key     The key in block-supports in block.json such as __bublocks_colorthemes.
+ * @return {Array} A color palette array.
+ */
+const getColorThemesSupportsByBlock = (name, palette, key) => {
+  const BlockColorThemesPalette = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getBlockSupport)(name, key);
+  if (Array.isArray(BlockColorThemesPalette)) {
+    palette = BlockColorThemesPalette;
+  }
+  return palette;
+};
+
+/**
+ * Returns a `<PanelColorSettings>` component to allow the
+ * user to select a color theme. The global color theme if available
+ * should be passed to the component. The component will also check if
+ * the block supports a specific colortheme in block.json and if a
+ * block specific color palette has been overridden in the theme.
+ * @param {*} props
+ * @return {Component} A Color Panel component.
+ */
+function ThemeColorPanel(props) {
+  const {
+    blockname,
+    title = 'Color Theme',
+    themepalette,
+    label = 'Theme',
+    onChange,
+    value,
+    supportkey = '__bublocks_colorthemes'
+  } = props;
+  let palette = themepalette;
+
+  // Check if block's metadata from block.json has an entry for __bublocks_colorthemes.
+  const hasSupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.hasBlockSupport)(blockname, supportkey);
+  if (hasSupport) {
+    // Get any block specific color themes palette set
+    // in block.json `supports.__bublocks_colorthemes`
+    palette = getColorThemesSupportsByBlock(blockname, palette, supportkey);
+  }
+
+  // Create a color object from the palette for themeColor attribute
+  //  to pass into the component.
+  const paletteColorObject = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.getColorObjectByAttributeValues)(palette, value);
+
+  // Check if palette is an array and has any values.
+  const hasPalette = Array.isArray(palette) && palette.length > 0;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hasSupport && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PanelColorSettings, {
+    __experimentalIsRenderedInSidebar: true,
+    title: title,
+    colorSettings: [{
+      value: paletteColorObject?.color,
+      onChange: newValue => onChange(newValue, palette),
+      label,
+      colors: palette,
+      disableCustomColors: true
+    }]
+  }, !hasPalette && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, "No Color Palette available for this block."))));
+}
+
+/***/ }),
+
 /***/ "./src/global/publication-slug.js":
 /*!****************************************!*\
   !*** ./src/global/publication-slug.js ***!
@@ -1145,7 +1239,7 @@ const getColorSlug = (color, palette) => {
 /***/ (function(module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"editorial/aside","version":"0.0.0","title":"Aside","description":"Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.","category":"bu-editorial","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","viewStyle":"file:./style.css","render":"file:./render.php","attributes":{"anchor":{"type":"string","default":""},"themeColor":{"type":"string"}},"example":{"innerBlocks":[{"name":"core/heading","attributes":{"content":"Aside Block Example1"}},{"name":"core/paragraph","attributes":{"content":"The Aside block allows you to add a variety of content blocks such as paragraphs and images."}}]},"supports":{"align":true,"anchor":true}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"editorial/aside","version":"0.0.0","title":"Aside","description":"Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.","category":"bu-editorial","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"anchor":{"type":"string","default":""},"themeColor":{"type":"string"}},"example":{"innerBlocks":[{"name":"core/heading","attributes":{"content":"Aside Block Example1"}},{"name":"core/paragraph","attributes":{"content":"The Aside block allows you to add a variety of content blocks such as paragraphs and images."}}]},"supports":{"align":true,"anchor":true,"color":{"text":true,"background":true,"link":true,"gradients":true},"__bublocks_colorthemes":true}}');
 
 /***/ })
 

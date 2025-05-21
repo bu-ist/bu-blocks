@@ -8,35 +8,23 @@
 import classnames from 'classnames';
 
 // Internal dependencies.
-import themeOptions from '../../global/theme-options';
-import { getColorSlug } from '../../global/color-utils.mjs';
-import getAllowedFormats from '../../global/allowed-formats';
-import publicationSlug from '../../global/publication-slug';
-import blockIcons from '../../components/block-icons/';
-
-import deprecated from './deprecated';
-
-//  Import CSS.
-import './style.scss';
-import './editor.scss';
+import themeOptions from '../../../../global/theme-options.js';
+import getAllowedFormats from '../../../../global/allowed-formats.js';
+import publicationSlug from '../../../../global/publication-slug.js';
 
 // WordPress dependencies.
-import { __ } from '@wordpress/i18n';
-import { registerBlockType } from '@wordpress/blocks';
-import {
-	Button,
-	PanelBody,
-	RadioControl,
-	PanelRow,
-} from '@wordpress/components';
-import {
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { Button, Dashicon, G, IconButton, PanelBody, Path, RadioControl, SVG } =
+	wp.components;
+const { Fragment } = wp.element;
+const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
 	URLInput,
-	useBlockProps,
-	getColorObjectByAttributeValues,
-} from '@wordpress/block-editor';
+	withColors,
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -49,19 +37,27 @@ const publication = publicationSlug();
  * @param {string} icon       The icon placement.
  */
 const getClasses = ( className, themeColor, icon ) =>
-	classnames( 'wp-block-button', 'wp-block-bu-button', {
+	classnames( 'wp-block-button', {
 		[ `${ publication }-block-button` ]: publication && publication !== '',
 		[ `has-${ themeColor }-theme` ]: themeColor,
 		[ `icon-navigateright ${ icon }` ]: icon,
 		[ className ]: className,
 	} );
 
-// Register the block.
-registerBlockType( 'bu/button', {
-	apiVersion: 2,
+export const config = {
 	title: __( 'Button' ),
 	description: __( 'Prompt visitors to take action with a custom button.' ),
-	icon: blockIcons( 'button' ),
+	icon: (
+		<SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<Path fill="none" d="M0 0h24v24H0V0z" />
+			<G>
+				<Path
+					fill="#c00"
+					d="M19 6H5L3 8v8l2 2h14l2-2V8l-2-2zm0 10H5V8h14v8z"
+				/>
+			</G>
+		</SVG>
+	),
 	category: 'bu',
 	attributes: {
 		url: {
@@ -116,54 +112,31 @@ registerBlockType( 'bu/button', {
 		align: [ 'left', 'center', 'right' ],
 	},
 
-	edit: function Edit( props ) {
+	edit: withColors( 'themeColor' )( ( props ) => {
 		const {
-			attributes: { text, url, icon, align, themeColor },
+			attributes: { text, url, icon },
+			themeColor,
+			setThemeColor,
 			setAttributes,
-			//isSelected,
+			isSelected,
 			className,
 		} = props;
 
-		const blockProps = useBlockProps( {
-			className: getClasses( className, themeColor, icon ),
-		} );
-
-		const themeColorObject = getColorObjectByAttributeValues(
-			themeOptions(),
-			themeColor
-		);
-
 		return (
-			<>
+			<Fragment>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
 						colorSettings={ [
 							{
-								value: themeColorObject?.color,
-								onChange: ( value ) =>
-									setAttributes( {
-										themeColor: value
-											? getColorSlug(
-													value,
-													themeOptions()
-											  )
-											: undefined,
-									} ),
+								value: themeColor.color,
+								onChange: setThemeColor,
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					>
-						{ ! themeOptions() && (
-							<PanelRow>
-								<em>
-									No Color Palette available for this site.
-								</em>
-							</PanelRow>
-						) }
-					</PanelColorSettings>
+					/>
 					<PanelBody title={ __( 'Icon Settings' ) }>
 						<RadioControl
 							label="Placement"
@@ -187,34 +160,15 @@ registerBlockType( 'bu/button', {
 								setAttributes( { icon: undefined } )
 							}
 							label={ 'Clear icon settings' }
-							isSecondary
+							isDefault
 							isSmall
 						>
 							{ __( 'Clear' ) }
 						</Button>
 					</PanelBody>
-
-					<PanelBody
-						className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
-						title={ __( 'URL' ) }
-					>
-						<p className="description">Add link to the button</p>
-						<URLInput
-							value={ url }
-							onChange={ ( value ) =>
-								setAttributes( { url: value } )
-							}
-						/>
-					</PanelBody>
 				</InspectorControls>
-				<p
-					className={ `wp-block-bu-button-container ${
-						align ? '' : 'wp-block'
-					}` }
-				>
+				<p>
 					<RichText
-						{ ...blockProps }
-						tagName="div"
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
 						onChange={ ( value ) =>
@@ -224,35 +178,53 @@ registerBlockType( 'bu/button', {
 							'formattingControls',
 							[ 'bold', 'italic' ]
 						) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [
-							'core/bold',
-							'core/italic',
-						] ) }
+						allowedFormats={ getAllowedFormats(
+							'allowedFormats',
+							[ 'core/bold', 'core/italic' ]
+						) }
+						className={ getClasses(
+							className,
+							themeColor.slug,
+							icon
+						) }
 						keepPlaceholderOnFocus
 					/>
 				</p>
-			</>
+				{ isSelected && (
+					<form
+						className="block-library-button__inline-link"
+						onSubmit={ ( event ) => event.preventDefault() }
+					>
+						<Dashicon icon="admin-links" />
+						<URLInput
+							value={ url }
+							onChange={ ( value ) =>
+								setAttributes( { url: value } )
+							}
+						/>
+						<IconButton
+							icon="editor-break"
+							label={ __( 'Apply' ) }
+							type="submit"
+						/>
+					</form>
+				) }
+			</Fragment>
 		);
-	},
+	} ),
 
 	save( { attributes } ) {
 		const { url, text, themeColor, icon, className } = attributes;
 
-		const blockProps = useBlockProps.save( {
-			className: getClasses( className, themeColor, icon ),
-		} );
-
 		return (
 			<p>
 				<RichText.Content
-					{ ...blockProps }
 					tagName="a"
+					className={ getClasses( className, themeColor, icon ) }
 					href={ url }
 					value={ text }
 				/>
 			</p>
 		);
 	},
-
-	deprecated,
-} );
+};

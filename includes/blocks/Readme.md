@@ -1,3 +1,21 @@
+# Block Supports
+
+In v2.0.0 of BU Blocks we've added support for several custom Block Supports features. This includes the core `Color` Block Support feature and `Spacing` on a number of blocks. This is enabled by default with the intention that custom themes can disable it via theme.json for individual blocks. 
+
+However older themes that don't have theme.json may need to disable this for all blocks in BU blocks in order to keep their existing functionality as-is. To make this easier the BlockSupports class provides a set of filters that can let a child theme disable this for all blocks in a single filter call. 
+
+## Disable Color or Spacing Block Supports: 
+```
+add_filter( 'bu_blocks_supports_color', function() {
+	return false;
+} );
+
+add_filter( 'bu_blocks_supports_spacing', function() {
+	return false;
+} );
+```
+
+
 # Block Registration Server Functions
 
 A quick example of block registration... this is just enough to get it working and will need more thought.

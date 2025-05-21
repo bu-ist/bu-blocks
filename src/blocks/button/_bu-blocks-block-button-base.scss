@@ -8,59 +8,55 @@
 //
 //
 
-a:active,
-a:visited { // TO DO: move to global location
-	color: inherit;
-}
+// a:active,
+// a:visited { // TO DO: move to global location
+// 	color: inherit;
+// }
 
-.wp-block-button {
+.wp-block-bu-button {
 	@include transition( all 0.2s ease-in-out 0s);
-	display: inline-block;
-	background: transparent;
+	background: $color-grayscale-d;
 	border-radius: 6px;
 	text-decoration: none;
 	color: inherit;
 	text-align: center;
-	text-transform: uppercase;
-	padding: 0.5em 0;
+	padding: 0.5em 1em;
+	display: flex;
+	width: max-content;
+	margin-inline: auto;
+	
+	&:hover {
+		background: $color-grayscale-c;
+	}
 
 	&[class*="icon-"] {
 		&::before {
+			content: '>';
+			display: block;
 			@include transition( all 0.2s ease-in-out 0s);
-			font-size: 0.7em;
-			color: $color-grayscale-a;
+			//font-size: 0.7em;
+			font-weight: bold;
+			//color: $color-grayscale-a;
+			
 		}
 	}
 
-	&.is-style-default,
-	&.is-style-outline,
-	&.is-style-squared,
-	&.is-style-text {
-		padding: 0.5em 1em;
-
-		&.align-icon-right {
-			&::before {
-				float: right;
-				display: block;
-				padding-top: 7px;
-				margin-left: 0.5em;
-				margin-right: 0;
-			}
+	&.align-icon-right {
+		&::before {
+			//float: right;
+			//padding-top: 7px;
+			margin-inline-start: 0.5em;
+			order: 2;
 		}
+	}
 
-		&.align-icon-left {
-			&::before {
-				padding-top: -2px;
-			}
+	&.align-icon-left {
+		&::before {
+			margin-inline-end: 0.5em;
 		}
 	}
 
 	&.is-style-default {
-		background: $color-grayscale-d;
-
-		&:hover {
-			background: $color-grayscale-c;
-		}
 
 		&.has-dark-theme {
 			background: $color-grayscale-3;
@@ -80,9 +76,19 @@ a:visited { // TO DO: move to global location
 		}
 	}
 
+	&.is-style-outline,
+	&.is-style-accent,
+	&.is-style-text {
+		background: transparent;
+
+		&:hover {
+			background: transparent
+		}
+	}
+
 	&.is-style-outline {
 		border: 2px solid $color-grayscale-d;
-
+		
 		&:hover {
 			border-color: $color-grayscale-c;
 		}
@@ -102,10 +108,6 @@ a:visited { // TO DO: move to global location
 				border-color: $color-grayscale-d;
 			}
 		}
-	}
-
-	&.is-style-squared {
-		border-radius: 0;
 	}
 
 	&.is-style-text {
