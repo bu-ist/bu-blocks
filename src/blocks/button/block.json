@@ -57,6 +57,7 @@
 			"link": true,
 			"gradients": true
 		},
+		"html": false,
 		"__bublocks_colorthemes": true
 	}
 }
