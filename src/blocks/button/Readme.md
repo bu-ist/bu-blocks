@@ -28,6 +28,7 @@ Theme.json can be used to control the core color block support settings globally
    - Remove old and incorrect `wp-block-button` class. This is a breaking change for themes.
    - In SCSS partials rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
    - Remove wrapping `<p>` tag the previous version of the block had
+   - Removed `text-transform:uppercase` from the block. Themes should set this.
  - Refactor block structure to modernize
    - Move Attributes from static markup locations to default (html comment)
    - Add Deprecations for the markup and attribute changes.
