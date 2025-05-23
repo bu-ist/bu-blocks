@@ -1,0 +1,87 @@
+{
+	"$schema": "https://schemas.wp.org/wp/5.8/block.json",
+	"apiVersion": 2,
+	"name": "bu/collapsible",
+	"version": "0.0.0",
+	"title": "Collapsible",
+	"description": "A collapsible content block.",
+	"category": "bu",
+	"icon": "block-default",
+	"textdomain": "bu-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 2
+		},
+		"isOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconStyle": {
+			"type": "string",
+			"default": "plus-minus"
+		},
+		"customMarginBottom": {
+			"type": "boolean",
+			"default": false
+		},
+		"marginBottom": {
+			"type": "number",
+			"default": 0
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"autoID": {
+			"type": "boolean",
+			"default": true
+		},
+		"buttonOpenLabel": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"buttonCloseLabel": {
+			"type": "string",
+			"default": "Close"
+		}
+	},
+	"styles": [
+		{
+			"name": "plain",
+			"label": "Plain",
+			"isDefault": true
+		},
+		{
+			"name": "outline",
+			"label": "Outline"
+		},
+		{
+			"name": "preview",
+			"label": "Preview"
+		}
+	],
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": false,
+		"color": {
+			"text": true,
+			"background": true,
+			"link": true,
+			"gradients": true
+		},
+		"html": true
+	}
+}
+
