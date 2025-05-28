@@ -72,6 +72,27 @@
 			"label": "Preview"
 		}
 	],
+	"example": {
+		"attributes": {
+			"title": "Collapsible Heading",
+			"isOpen": true
+		},
+		"innerBlocks": [
+			{
+				"name": "core/heading",
+				"attributes": {
+					"content":"Subheading",
+					"level": "3"
+				}
+			},
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "The collapsible block allows you to add a variety of content blocks such as paragraphs and images."
+				}
+			}
+		]
+	},
 	"supports": {
 		"align": [ "wide", "full" ],
 		"anchor": false,
