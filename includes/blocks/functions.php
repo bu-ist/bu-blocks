@@ -66,3 +66,4 @@ require_once 'class-blockenqueues.php';
  * Include Deprecated functions for old versions of blocks.
  */
 require_once BU_BLOCKS_DIR . 'src/blocks/button/deprecated/deprecated.php';
+require_once BU_BLOCKS_DIR . 'src/blocks/collapsible-control/deprecated/deprecated.php';
