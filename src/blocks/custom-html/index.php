@@ -33,7 +33,8 @@ function register_block() {
  */
 function render_block( $attributes ) {
 	$html = get_post_meta( get_the_ID(), '_bu_custom_html_block_' . sanitize_key( $attributes['customBlockID'] ), true );
-
+	var_dump("rendering");
+	var_dump($html);
 	// @todo - run through kses of some kind?
 	return apply_filters( 'bu_blocks_custom_html', $html, $attributes );
 }

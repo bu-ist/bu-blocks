@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/wp/5.8/block.json",
+  "apiVersion": 2,
+  "name": "editorial/custom-html",
+  "version": "0.0.0",
+  "title": "BU Custom HTML",
+  "description": "Enter arbitrary custom HTML. This block stores the HTML in meta and does not enforce validation on the markup.",
+  "category": "bu-editorial",
+  "icon": "block-default",
+  "textdomain": "bu-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "customBlockID": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}
