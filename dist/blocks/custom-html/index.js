@@ -31,10 +31,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 function Edit(props) {
   const {
-    className,
     attributes,
     setAttributes
   } = props;
@@ -44,9 +42,14 @@ function Edit(props) {
   const [customHTML, setCustomHTML] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)('');
   const [hasLoaded, setHasLoaded] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
   const [errorMessage, setErrorMessage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
+
+  /**
+   * Get the current post ID for use in calling
+   * apiFetch() to get the saved HTML from the endpoint.
+   */
   const {
     postID
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(() => {
     if (!customBlockID) {
       return {
         postID: null
@@ -54,12 +57,17 @@ function Edit(props) {
     }
     const {
       getCurrentPostId
-    } = select('core/editor');
+    } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.select)('core/editor');
     const currentPostID = getCurrentPostId();
     return {
       postID: currentPostID
     };
   }, [customBlockID]);
+
+  /**
+   * When postID or customBlockID changes, call apiFetch()
+   * to get the saved HTML from the custom endpoint.
+   */
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
       path: (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_3__.addQueryArgs)('/bu-blocks/v1/customhtml', {
@@ -83,13 +91,11 @@ function Edit(props) {
 
   // Save post meta via REST Endpoint.
   const savePostMeta = function () {
-    //const postID = select( 'core/editor' ).getCurrentPostId();
-
     // This may be true on the first load of some posts.
     if (null === postID) {
       return;
     }
-    const customTextArea = document.querySelector('#block-' + customBlockID + ' textarea');
+    const customTextArea = document.querySelector('textarea#block-' + customBlockID);
 
     // This may be true on the first load of some posts.
     if (null === customTextArea) {
@@ -175,13 +181,14 @@ function Edit(props) {
   // Selectors technically can't start with a number, so prepend a string to
   // build the ID attribute of the wrapping container.
   const containerID = 'block-' + customBlockID;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    id: containerID,
-    className: className
+    ...blockProps
   }, !hasLoaded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Looking for existing content..."), hasLoaded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PlainText, {
     placeholder: "Enter custom HTML",
     value: customHTML ? customHTML : '',
-    onChange: updateBlockValue
+    onChange: updatedHTML => setCustomHTML(updatedHTML),
+    id: containerID
   }));
 }
 

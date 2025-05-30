@@ -14,9 +14,8 @@
  */
 
 $html = get_post_meta( get_the_ID(), '_bu_custom_html_block_' . sanitize_key( $attributes['customBlockID'] ), true );
-var_dump("rendering");
-var_dump($html);
+
 // @todo - run through kses of some kind?
 $html = apply_filters( 'bu_blocks_custom_html', $html, $attributes );
-?>
-<?php echo $html; ?>
+
+echo $html;

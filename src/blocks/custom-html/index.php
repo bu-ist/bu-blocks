@@ -7,37 +7,7 @@
 
 namespace BU\Plugins\BU_Blocks\Blocks\CustomHTML;
 
-add_action( 'init', __NAMESPACE__ . '\\register_block' );
 add_action( 'rest_api_init', __NAMESPACE__ . '\register_route' );
-
-/**
- * Registers the `editorial/custom-html` block on the server.
- */
-function register_block() {
-	register_block_type(
-		'editorial/custom-html',
-		array(
-			'attributes'      => apply_filters( 'bu_blocks_custom_html_attributes', array() ),
-			'render_callback' => __NAMESPACE__ . '\\render_block',
-		)
-	);
-}
-
-/**
- * Renders the `editorial/custom-html` block on the front-end as part of
- * article content.
- *
- * @param array $attributes The block attributes.
- *
- * @return string Returns the post content with latest posts added.
- */
-function render_block( $attributes ) {
-	$html = get_post_meta( get_the_ID(), '_bu_custom_html_block_' . sanitize_key( $attributes['customBlockID'] ), true );
-	var_dump("rendering");
-	var_dump($html);
-	// @todo - run through kses of some kind?
-	return apply_filters( 'bu_blocks_custom_html', $html, $attributes );
-}
 
 /**
  * Register the REST API route used to retrieve and store custom HTML meta

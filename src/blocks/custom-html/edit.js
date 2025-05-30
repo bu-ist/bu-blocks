@@ -1,17 +1,12 @@
 // WordPress dependencies.
-
 import { subscribe, useSelect, select } from '@wordpress/data';
-
-import { PlainText } from '@wordpress/block-editor';
-
+import { PlainText, useBlockProps } from '@wordpress/block-editor';
 import { addQueryArgs } from '@wordpress/url';
-
 import apiFetch from '@wordpress/api-fetch';
-
 import { useState, useEffect } from '@wordpress/element';
 
 export default function Edit( props ) {
-	const { className, attributes, setAttributes } = props;
+	const { attributes, setAttributes } = props;
 
 	const { customBlockID } = attributes;
 
@@ -19,21 +14,26 @@ export default function Edit( props ) {
 	const [ hasLoaded, setHasLoaded ] = useState( false );
 	const [ errorMessage, setErrorMessage ] = useState( false );
 
-	const { postID } = useSelect(
-		( select ) => {
-			if ( ! customBlockID ) {
-				return { postID: null };
-			}
-			const { getCurrentPostId } = select( 'core/editor' );
-			const currentPostID = getCurrentPostId();
+	/**
+	 * Get the current post ID for use in calling
+	 * apiFetch() to get the saved HTML from the endpoint.
+	 */
+	const { postID } = useSelect( () => {
+		if ( ! customBlockID ) {
+			return { postID: null };
+		}
+		const { getCurrentPostId } = select( 'core/editor' );
+		const currentPostID = getCurrentPostId();
 
-			return {
-				postID: currentPostID,
-			};
-		},
-		[ customBlockID ]
-	);
+		return {
+			postID: currentPostID,
+		};
+	}, [ customBlockID ] );
 
+	/**
+	 * When postID or customBlockID changes, call apiFetch()
+	 * to get the saved HTML from the custom endpoint.
+	 */
 	useEffect( () => {
 		apiFetch( {
 			path: addQueryArgs( '/bu-blocks/v1/customhtml', {
@@ -59,15 +59,13 @@ export default function Edit( props ) {
 
 	// Save post meta via REST Endpoint.
 	const savePostMeta = function () {
-		//const postID = select( 'core/editor' ).getCurrentPostId();
-
 		// This may be true on the first load of some posts.
 		if ( null === postID ) {
 			return;
 		}
 
 		const customTextArea = document.querySelector(
-			'#block-' + customBlockID + ' textarea'
+			'textarea#block-' + customBlockID
 		);
 
 		// This may be true on the first load of some posts.
@@ -158,14 +156,17 @@ export default function Edit( props ) {
 	// build the ID attribute of the wrapping container.
 	const containerID = 'block-' + customBlockID;
 
+	const blockProps = useBlockProps();
+
 	return (
-		<div id={ containerID } className={ className }>
+		<div { ...blockProps }>
 			{ ! hasLoaded && <span>Looking for existing content...</span> }
 			{ hasLoaded && (
 				<PlainText
 					placeholder="Enter custom HTML"
 					value={ customHTML ? customHTML : '' }
-					onChange={ updateBlockValue }
+					onChange={ ( updatedHTML ) => setCustomHTML( updatedHTML ) }
+					id={ containerID }
 				></PlainText>
 			) }
 		</div>
