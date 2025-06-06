@@ -24,8 +24,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
 
 // WordPress dependencies.
+
 
 
 
@@ -83,12 +86,6 @@ function Edit(props) {
     });
   }, [postID, customBlockID]);
 
-  // Update the block's content state whenever content in this block
-  // is changed.
-  const updateBlockValue = updatedHTML => {
-    setCustomHTML(updatedHTML);
-  };
-
   // Save post meta via REST Endpoint.
   const savePostMeta = function () {
     // This may be true on the first load of some posts.
@@ -136,6 +133,7 @@ function Edit(props) {
         // Success!
       }).catch(error => {
         // How to handle this error?
+        setErrorMessage('An error occured when saving the block:' + error.message);
       });
     }
   };
@@ -184,7 +182,10 @@ function Edit(props) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, !hasLoaded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Looking for existing content..."), hasLoaded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PlainText, {
+  }, !hasLoaded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Looking for existing content..."), errorMessage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
+    status: "error",
+    isDismissible: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "An error occurred: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, errorMessage))), hasLoaded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PlainText, {
     placeholder: "Enter custom HTML",
     value: customHTML ? customHTML : '',
     onChange: updatedHTML => setCustomHTML(updatedHTML),
@@ -603,6 +604,16 @@ module.exports = window["wp"]["blockEditor"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["components"];
 
 /***/ }),
 
