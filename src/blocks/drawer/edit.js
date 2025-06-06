@@ -10,9 +10,6 @@ import { EditorPartialsInspectorControls } from './editor-partials/InspectorCont
 // WordPress dependencies.
 import { __ } from '@wordpress/i18n';
 import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-
-import { select } from '@wordpress/data';
-
 import { useState } from '@wordpress/element';
 
 /**

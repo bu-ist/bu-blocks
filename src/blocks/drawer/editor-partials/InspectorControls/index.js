@@ -56,7 +56,9 @@ export const EditorPartialsInspectorControls = ( props ) => {
 				<ToggleControl
 					label={ __( 'Hide teaser when drawer is open' ) }
 					checked={ hideTeaser }
-					onChange={ () => setAttributes( { hideTeaser: ! hideTeaser } ) }
+					onChange={ () =>
+						setAttributes( { hideTeaser: ! hideTeaser } )
+					}
 				/>
 				{ backgroundId && (
 					<ToggleControl
