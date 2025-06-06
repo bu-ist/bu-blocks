@@ -1,0 +1,47 @@
+
+%bu-collapsible-icon-style-button-svg {
+	display: block;
+    width: 15px;
+	margin: 3px;
+
+	svg {
+		g {
+			display: none;
+		}
+
+		path {
+			fill: currentColor;
+		}
+	}
+
+}
+
+// Sidebar custom Icon Style Panel. Load SVG Icon
+// so buttons are styled with correct icons.
+.bu-collapsible-icon-style-button {
+
+    .bu-collapsible-icon-style-button-plus {
+        @extend %bu-collapsible-icon-style-button-svg;
+        .wp-block-bu-collapsible-icon-plus {
+            display: block;
+        }
+    }
+    .bu-collapsible-icon-style-button-minus {
+        @extend %bu-collapsible-icon-style-button-svg;
+        .wp-block-bu-collapsible-icon-minus {
+            display: block;
+        }
+    }
+    .bu-collapsible-icon-style-button-down {
+        @extend %bu-collapsible-icon-style-button-svg;
+        .wp-block-bu-collapsible-icon-down {
+            display: block;
+        }
+    }
+    .bu-collapsible-icon-style-button-up {
+        @extend %bu-collapsible-icon-style-button-svg;
+        .wp-block-bu-collapsible-icon-up {
+            display: block;
+        }
+    }
+}

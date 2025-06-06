@@ -6,6 +6,12 @@
      - `bu_blocks_custom_html_attributes` Filter removed, existing themes/plugins will need a different method. BU Prepress will need an update: https://github.com/bu-ist/bu-prepress/blob/8f42214963733b36ea800c5d5aab9e90d4b25896/src/blocks/edition/custom-html/index.php#L10
    - Refactor block structure to modernize
      - Convert block from Static to Dynamic using render.php.
+- Refactor Collapsible Control Block:
+  - Refactor block structure to modernize
+   - Move Attributes from static markup locations to default (html comment)
+   - Add Deprecations for the attribute changes.
+  - Convert block from Static to Dynamic using render.php.
+    - Add `src/blocks/collapsible-control/deprecated/deprecated.php`  function using DOMDocument to parse old block instances to scrape attributes out of the saved markup of existing static blocks. This is called in Render.php but could/should be moved to child themes that need it such as r-editorial, law, cfa, etc. 
 - Refactor Button Block:
   - Breaking Changes: 
     - Remove "Accent" style option. Themes can add it back if needed.

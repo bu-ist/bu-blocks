@@ -226,3 +226,146 @@
 .wp-block-bu-button.is-style-text:hover {
   text-decoration: none;
 }
+
+.wp-block-bu-collapsible {
+  margin-bottom: var(--bu_blocks-block-bu-collapsible-margin-bottom);
+  margin-top: -1px;
+}
+.wp-block-bu-collapsible .bu-block-collapsible-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-top: 0;
+}
+.wp-block-bu-collapsible .bu-block-collapsible-toggle {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  display: block;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 20px;
+  position: relative;
+  text-align: right;
+  width: 100%;
+  z-index: 1;
+}
+.wp-block-bu-collapsible .bu-collapsible-heading {
+  padding: 0;
+  position: relative;
+  border: 1px solid #ccc;
+}
+.wp-block-bu-collapsible .bu-collapsible-heading button {
+  padding-left: 50px;
+  white-space: normal;
+  color: inherit;
+}
+.wp-block-bu-collapsible .bu-collapsible-heading button:hover {
+  background-image: none;
+  filter: none;
+}
+.wp-block-bu-collapsible.is-open > .bu-collapsible-heading {
+  display: block;
+}
+.wp-block-bu-collapsible.is-open > .bu-block-collapsible-content {
+  display: block;
+}
+.wp-block-bu-collapsible.is-style-plain .bu-collapsible-heading, .wp-block-bu-collapsible.is-style-outline .bu-collapsible-heading {
+  margin: 0;
+}
+.wp-block-bu-collapsible.is-style-plain.is-open .bu-collapsible-heading, .wp-block-bu-collapsible.is-style-outline.is-open .bu-collapsible-heading {
+  border-bottom: 1px solid #ccc;
+}
+.wp-block-bu-collapsible.is-style-plain .bu-block-collapsible-content p:last-child, .wp-block-bu-collapsible.is-style-outline .bu-block-collapsible-content p:last-child {
+  margin-bottom: 0;
+}
+.wp-block-bu-collapsible.is-style-outline .bu-collapsible-heading {
+  border: 3px solid #000;
+}
+.wp-block-bu-collapsible.is-style-outline + .is-style-outline .bu-collapsible-heading {
+  border-top: 0;
+}
+.wp-block-bu-collapsible.is-style-outline .bu-block-collapsible-content {
+  border: 3px solid #000;
+  border-top: 0;
+}
+.wp-block-bu-collapsible.is-style-preview {
+  border: none;
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  align-content: start;
+}
+.wp-block-bu-collapsible.is-style-preview > .bu-collapsible-heading::after {
+  display: none;
+}
+.wp-block-bu-collapsible.is-style-preview .bu-collapsible-heading {
+  border: none;
+  position: static;
+  flex: 0 1 auto;
+  align-self: stretch;
+}
+.wp-block-bu-collapsible.is-style-preview .bu-block-collapsible-content {
+  border: none;
+  padding: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+}
+.wp-block-bu-collapsible.is-style-preview .button {
+  order: 3;
+  flex: 0 0 auto;
+}
+.wp-block-bu-collapsible.is-style-preview.is-closed .bu-block-collapsible-content {
+  display: block;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+}
+.wp-block-bu-collapsible.is-style-preview.is-closed .bu-block-collapsible-content:after {
+  content: "";
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff);
+}
+
+.wp-block-bu-collapsible-icon {
+  display: block;
+  width: 0.75em;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.wp-block-bu-collapsible-icon svg g {
+  display: none;
+}
+.wp-block-bu-collapsible-icon svg path {
+  fill: currentColor;
+}
+
+.icon-style-plus-minus.is-closed .wp-block-bu-collapsible-icon-plus {
+  display: block;
+}
+.icon-style-plus-minus.is-open .wp-block-bu-collapsible-icon-minus {
+  display: block;
+}
+
+.icon-style-arrows.is-closed .wp-block-bu-collapsible-icon-down {
+  display: block;
+}
+.icon-style-arrows.is-open .wp-block-bu-collapsible-icon-up {
+  display: block;
+}
+
+.wp-block-bu-collapsible-control.aligncenter {
+  text-align: center;
+}
