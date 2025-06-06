@@ -13,13 +13,22 @@
  * @package bu-blocks
  */
 
+// Create an array to store classnames for the block.
+$btn_classes = array(
+	'bu-collapsible-control-toggle',
+	'js-bu-collapsible-control-target-' . $attributes['target'],
+);
+
+// Trim values of the classes array after filtering out empty values.
+$btn_classes = array_map( 'trim', array_filter( $btn_classes ) );
+
 // Check if $content starts with <p tag from older static version of this block.
 if ( empty( $attributes['text'] ) && strpos( substr( $content, 0, 42 ), '<p class="wp-block-bu-collapsible-control' ) ) {
 	$attributes = bu_blocks_collapsible_control_v1_get_attributes( $content, $attributes );
 }
 ?>
 <p <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
-	<button class="bu-collapsible-control-toggle js-bu-collapsible-control-target-<?php echo esc_attr( $attributes['target'] ); ?>">
-		<?php echo wp_kses_data( $attributes['text'] ); ?>
-	</button>
+	<button 
+		class="<?php echo esc_attr( implode( ' ', $btn_classes ) ); ?>"
+		><?php echo wp_kses_data( $attributes['text'] ); ?></button>
 </p>

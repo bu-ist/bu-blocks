@@ -366,4 +366,8 @@
   display: block;
 }
 
+.wp-block-bu-collapsible-control.aligncenter {
+  text-align: center;
+}
+
 /*# sourceMappingURL=blocks-bundled.css.map*/

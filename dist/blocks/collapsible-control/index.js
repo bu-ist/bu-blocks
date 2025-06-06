@@ -706,7 +706,7 @@ module.exports = window["wp"]["i18n"];
   \***************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/collapsible-control","version":"0.0.0","title":"Collapsible Control","description":"Toggle Collapsible blocks on the page","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"text":{"type":"string","default":""},"target":{"type":"string","default":"all"}},"example":{"attributes":{"text":"Expand"}},"supports":{"align":["left","center","right"]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"bu/collapsible-control","version":"0.0.0","title":"Collapsible Control","description":"Toggle Collapsible blocks on the page","category":"bu","icon":"block-default","textdomain":"bu-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style.css","render":"file:./render.php","attributes":{"text":{"type":"string","default":""},"target":{"type":"string","default":"all"}},"example":{"attributes":{"text":"Expand"}},"supports":{"align":["left","center","right"],"html":false}}');
 
 /***/ })
 

@@ -32,6 +32,7 @@
       "left",
       "center",
       "right"
-    ]
+    ],
+    "html": false
   }
 }
