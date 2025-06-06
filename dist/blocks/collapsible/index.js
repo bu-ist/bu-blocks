@@ -106,7 +106,6 @@ function Edit(props) {
     customMarginBottom,
     marginBottom,
     id,
-    buttonCloseLabel,
     buttonOpenLabel,
     autoID
   } = attributes;

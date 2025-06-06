@@ -62,7 +62,10 @@ $is_preview_style = in_array( 'is-style-preview', $classes ) ? true : false;
 				<?php echo wp_kses_post( $attributes['title'] ); ?>
 			</button>
 			<span class="wp-block-bu-collapsible-icon">
-				<?php echo get_icon_markup(); ?>
+				<?php
+					// @todo Add some SVG specific escaping here.
+					echo get_icon_markup(); // phpcs:ignore
+				?>
 			</span>
 		<?php endif; ?>
 	</<?php echo esc_html( "h{$attributes['level']}" ); ?>>
@@ -76,6 +79,6 @@ $is_preview_style = in_array( 'is-style-preview', $classes ) ? true : false;
 		><?php echo esc_html( "{$attributes['buttonOpenLabel']}" ); ?></button>
 	<?php endif; ?>
 	<div class="bu-block-collapsible-content js-bu-block-collapsible-content" id="<?php echo esc_attr( "{$attributes['id']}-panel" ); ?>">
-		<?php echo $content; ?>
+		<?php echo $content; // phpcs:ignore ?>
 	</div>
 </div>

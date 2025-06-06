@@ -3,19 +3,10 @@ import classnames from 'classnames';
 
 // WordPress dependencies.
 import { __ } from '@wordpress/i18n';
-import {
-	PanelBody,
-	ToggleControl,
-	TextControl,
-	RangeControl,
-	Button,
-	ButtonGroup,
-	Icon,
-} from '@wordpress/components';
+import { Icon } from '@wordpress/components';
 import {
 	InnerBlocks,
 	BlockControls,
-	InspectorControls,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
@@ -26,7 +17,6 @@ import HeadingToolbar from '../headline/heading-toolbar';
 // Load SVG icon for collapsible heading buttons.
 import { ReactComponent as CollapsibleIcon } from './icon-collapsible.svg';
 
-
 /**
  * Internal dependencies
  */
@@ -35,7 +25,9 @@ import { generateID, isDuplicateblockID } from './generated-ids';
 import { EditorPartialsInspectorControls } from './editor-partials/InspectorControls';
 
 export default function Edit( props ) {
-	const { attributes, setAttributes, clientId, className, isSelected } = props;
+	const { attributes, setAttributes, clientId, className, isSelected } =
+		props;
+
 	const {
 		title,
 		level,
@@ -44,7 +36,6 @@ export default function Edit( props ) {
 		customMarginBottom,
 		marginBottom,
 		id,
-		buttonCloseLabel,
 		buttonOpenLabel,
 		autoID,
 	} = attributes;
@@ -108,10 +99,7 @@ export default function Edit( props ) {
 	 */
 	const onTitleChange = ( value ) => {
 		const newAttrs = { title: value };
-		if (
-			canGenerateID() &&
-			generateID( value ) !== generateID( title )
-		) {
+		if ( canGenerateID() && generateID( value ) !== generateID( title ) ) {
 			// Generate a new id and save it as the ID.
 			newAttrs.id = generateID( value );
 		}
