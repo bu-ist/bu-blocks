@@ -207,7 +207,6 @@ function Edit(props) {
     }]
   }))));
 }
-;
 
 /***/ }),
 
@@ -228,8 +227,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_8__);
 /**
  * BLOCK: collapsible-control
  *
@@ -254,10 +251,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 // Register the block.
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
-  apiVersion: 2,
   title: _block_json__WEBPACK_IMPORTED_MODULE_5__.title,
   keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('collapsible'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('control'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('toggle')],
   icon: (0,_components_block_icons_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])('collapsiblecontrol'),
@@ -265,25 +260,6 @@ __webpack_require__.r(__webpack_exports__);
    * @see ./edit.js
    */
   edit: _edit_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  // save( { attributes } ) {
-  // 	const { text, target } = attributes;
-
-  // 	const togglebuttonclasses =
-  // 		'bu-collapsible-control-toggle js-bu-collapsible-control-target-' +
-  // 		target;
-
-  // 	const blockProps = useBlockProps.save();
-
-  // 	return (
-  // 		<p { ...blockProps }>
-  // 			<RichText.Content
-  // 				tagName="button"
-  // 				value={ text }
-  // 				className={ togglebuttonclasses }
-  // 			/>
-  // 		</p>
-  // 	);
-  // },
   save: () => null,
   deprecated: _deprecated_deprecated_js__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
