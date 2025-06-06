@@ -18,6 +18,7 @@ Theme.json can be used to control the core color block support settings globally
 ## ToDo:
 - Migrate frontend.js to use the new viewScript setup
 - Consider removing the is-style-preview layout if it's usage is limited in production. 
+  - Only 3 instances of this were found in Production and all were in wpdocs sites. This should be removed.
 
 ## Changelog
 
