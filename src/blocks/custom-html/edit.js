@@ -51,12 +51,6 @@ export default function Edit( props ) {
 			} );
 	}, [ postID, customBlockID ] );
 
-	// Update the block's content state whenever content in this block
-	// is changed.
-	const updateBlockValue = ( updatedHTML ) => {
-		setCustomHTML( updatedHTML );
-	};
-
 	// Save post meta via REST Endpoint.
 	const savePostMeta = function () {
 		// This may be true on the first load of some posts.
