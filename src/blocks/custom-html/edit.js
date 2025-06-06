@@ -4,6 +4,7 @@ import { PlainText, useBlockProps } from '@wordpress/block-editor';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 import { useState, useEffect } from '@wordpress/element';
+import { Notice } from '@wordpress/components';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes } = props;
@@ -104,6 +105,10 @@ export default function Edit( props ) {
 				} )
 				.catch( ( error ) => {
 					// How to handle this error?
+					setErrorMessage(
+						'An error occured when saving the block:' +
+							error.message
+					);
 				} );
 		}
 	};
@@ -155,6 +160,13 @@ export default function Edit( props ) {
 	return (
 		<div { ...blockProps }>
 			{ ! hasLoaded && <span>Looking for existing content...</span> }
+			{ errorMessage && (
+				<Notice status="error" isDismissible={ false }>
+					<p>
+						An error occurred: <code>{ errorMessage }</code>
+					</p>
+				</Notice>
+			) }
 			{ hasLoaded && (
 				<PlainText
 					placeholder="Enter custom HTML"
