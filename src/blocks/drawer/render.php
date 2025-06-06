@@ -14,32 +14,21 @@
  */
 
 // Create an array to store classnames for the block.
-$classes = array( 'js-bu-block-drawer' );
+$classes = array(
+	'js-bu-block-drawer',
+	( $attributes['themeColor'] ) ? 'has-' . $attributes['themeColor'] . '-background' : '',
+	( $attributes['backgroundId'] ) ? 'has-media' : '',
+	( $attributes['hideTeaser'] ) ? 'has-hide-teaser' : '',
+	( $attributes['round'] ) ? 'is-style-round' : '',
+	( $attributes['size'] ) ? $attributes['size'] : '',
+);
 
-if ( $attributes['themeColor'] ) {
-	$classes[] = 'has-' . $attributes['themeColor'] . '-background';
-}
-
-if ( $attributes['backgroundId'] ) {
-	$classes[] = 'has-media';
-}
-
-if ( $attributes['hideTeaser'] ) {
-	$classes[] = 'has-hide-teaser';
-}
-
-if ( $attributes['round'] ) {
-	$classes[] = 'is-style-round';
-}
-
-if ( $attributes['size'] ) {
-	$classes[] = $attributes['size'];
-}
+// Trim values of the classes array after filtering out empty values.
+$classes = array_map( 'trim', array_filter( $classes ) );
 
 // Set Publication slug.
 $publication_slug = apply_filters( 'bu_blocks_publication_slug', 'bu-blocks' );
 $classes[]        = $publication_slug . '-block-editorial-drawer';
-
 
 // Determine if this is a static or dynamic block.
 $is_static_block = false;
@@ -59,8 +48,6 @@ if ( $is_static_block ) {
 }
 
 ?>
-
-
 <aside 
 	<?php echo $attributes['anchor'] ? 'id="' . esc_attr( $attributes['anchor'] ) . '"' : ''; ?> 
 	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?>
