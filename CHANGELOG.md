@@ -1,6 +1,15 @@
 # Changelog
 
 ## Unreleased
+- Refactor Drawer Block:
+- Breaking Changes: 
+   - none
+ - Added support for core `Color` Block Support
+ - Added support for custom `__bublocks_colorthemes` Block Support
+ - Added anchor support
+ - Expanded default alignment support
+ - Refactor block structure to modernize
+ - Convert block from Static to Dynamic using render.php.
 - Refactor Button Block:
   - Breaking Changes: 
     - Remove "Accent" style option. Themes can add it back if needed.
