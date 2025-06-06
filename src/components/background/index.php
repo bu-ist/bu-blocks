@@ -20,8 +20,19 @@ function display_background( $attributes, $image_size = false ) {
 	$url     = $attributes['backgroundUrl'];
 	$type    = $attributes['backgroundType'];
 	$opacity = $attributes['backgroundOpacity'];
-	$classes = ( 100 !== $opacity ) ? "has-background-opacity has-background-opacity-$opacity" : '';
 	$size    = ( $image_size ) ? $image_size : 'full';
+
+	$classes = array(
+		'bu-blocks-background',
+		( ! empty( $opacity ) && 100 !== $opacity ) ? "has-background-opacity has-background-opacity-$opacity" : '',
+		( $id && 'image' === $type ) ? 'wp-image-' . $id : '',
+	);
+
+	// Trim values of the classes array after filtering out empty values.
+	$classes = array_map( 'trim', array_filter( $classes ) );
+
+	// Turn classes array into a space delimited string before returning.
+	$classes = implode( ' ', $classes );
 
 	// Build out an image for the background.
 	if ( 'image' === $type && $id ) :

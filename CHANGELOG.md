@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Background Component: 
+  - Update PHP render of Background Component for all blocks to include same class names as the static blocks were outputting.
 - Refactor Drawer Block:
 - Breaking Changes: 
    - none
