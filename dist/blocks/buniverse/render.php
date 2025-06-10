@@ -26,7 +26,7 @@ if ( $attributes['id'] ) {
 
 
 <figure 
-	<?php echo esc_attr( $attributes['anchor'] ? 'id="' . $attributes['anchor'] . '"' : '' ); ?> 
+	<?php echo $attributes['anchor'] ? 'id="' . esc_attr( $attributes['anchor'] ) . '"' : ''; ?> 
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 >
 	<div class="wp-block-global-buniverse-wrapper">

@@ -6,7 +6,9 @@
  */
 
  // Mimic the 'show-drawer' class behavior when the block or its inner blocks are selected.
-[data-selected-drawer="true"] {
+[data-selected-drawer="true"],
+.wp-block-editorial-drawer.is-selected,
+.wp-block-editorial-drawer.has-child-selected {
 
 	.wp-block-editorial-drawer-content {
 		display: block !important;

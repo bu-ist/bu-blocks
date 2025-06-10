@@ -16,6 +16,10 @@
 // Create an array to store classnames for the block.
 $classes = array();
 
+// Set Publication slug.
+$publication_slug = apply_filters( 'bu_blocks_publication_slug', 'bu-blocks' );
+$classes[]        = $publication_slug . '-block-button';
+
 if ( $attributes['icon'] ) {
 	$clasess[] = 'has-icon';
 	$classes[] = 'icon-navigateright'; // Old classname for icon in Foundation < v5.
@@ -37,7 +41,7 @@ if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( $con
 }
 ?>
 <a 
-	<?php echo esc_attr( $attributes['anchor'] ? 'id="' . $attributes['anchor'] . '"' : '' ); ?>
+	<?php echo $attributes['anchor'] ? 'id="' . esc_attr( $attributes['anchor'] ) . '"' : ''; ?>
 	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?> 
 	href="<?php echo esc_url( $attributes['url'] ); ?>" 
 >

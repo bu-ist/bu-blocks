@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schemas.wp.org/wp/5.8/block.json",
+  "apiVersion": 2,
+  "name": "editorial/drawer",
+  "version": "0.0.0",
+  "title": "Drawer",
+  "description": "Add content that can be toggled.",
+  "category": "bu-editorial",
+  "icon": "block-default",
+  "textdomain": "bu-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "anchor": {
+      "type": "string"
+    },
+    "button": {
+      "type": "string",
+      "default": "Read More"
+    },
+    "className": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "number"
+    },
+    "hed": {
+      "type": "string",
+      "default": ""
+    },
+    "hideTeaser": {
+      "type": "boolean",
+      "default": false
+    },
+    "lede": {
+      "type": "string",
+      "default": ""
+    },
+    "round": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "string",
+      "default": ""
+    },
+    "themeColor": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "example": {
+    "attributes": {
+      "hed": "Tellus Dolor Purus",
+      "lede": "Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+    }
+  },
+  "supports": {
+    "align": true,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "link": true,
+      "gradients": true
+    },
+    "__bublocks_colorthemes": true
+  }
+}

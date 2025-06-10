@@ -16,6 +16,10 @@
 // Create an array to store classnames for the block.
 $classes = array();
 
+// Set Publication slug.
+$publication_slug = apply_filters( 'bu_blocks_publication_slug', 'bu-blocks' );
+$classes[]        = $publication_slug . '-block-editorial-aside';
+
 if ( $attributes['themeColor'] ) {
 	$classes[] = 'has-' . $attributes['themeColor'] . '-background';
 }
@@ -42,7 +46,7 @@ if ( strpos( substr( $content, 0, 10 ), '<aside' ) ) {
 
 
 <aside 
-	<?php echo esc_attr( $attributes['anchor'] ? 'id="' . $attributes['anchor'] . '"' : '' ); ?> 
+	<?php echo $attributes['anchor'] ? 'id="' . esc_attr( $attributes['anchor'] ) . '"' : ''; ?> 
 	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?>
 >
 	<?php echo wp_kses_post( $aside_content ? $aside_content : $content ); ?>

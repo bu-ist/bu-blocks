@@ -1,6 +1,17 @@
 # Changelog
 
 ## Unreleased
+- Background Component: 
+  - Update PHP render of Background Component for all blocks to include same class names as the static blocks were outputting.
+- Refactor Drawer Block:
+- Breaking Changes: 
+   - none
+ - Added support for core `Color` Block Support
+ - Added support for custom `__bublocks_colorthemes` Block Support
+ - Added anchor support
+ - Expanded default alignment support
+ - Refactor block structure to modernize
+ - Convert block from Static to Dynamic using render.php.
 - Refactor BU Custom HTML Block: 
   - Breaking Changes: 
      - `bu_blocks_custom_html_attributes` Filter removed, existing themes/plugins will need a different method. BU Prepress will need an update: https://github.com/bu-ist/bu-prepress/blob/8f42214963733b36ea800c5d5aab9e90d4b25896/src/blocks/edition/custom-html/index.php#L10
