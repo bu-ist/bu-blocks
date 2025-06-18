@@ -92,8 +92,8 @@ The block uses the HeadingLevelToolbar component for heading level selection. Se
 ## Changelog
 
 ### 2.0.0
-- Breaking Changes:
-  - Changed block rendering from static to dynamic
+- Breaking Changes: None are known.
+- Changed block rendering from static to dynamic
 - Added support for core `Color` Block Support
 - Added text alignment support
 - Added Block Alignment Support
