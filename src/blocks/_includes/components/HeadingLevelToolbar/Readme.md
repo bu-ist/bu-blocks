@@ -39,13 +39,3 @@ const [level, setLevel] = useState(2);
     levels={[2,3,4]} // Optional: limit to H2–H4
 />
 ```
-
-## Accessibility
-
-- Uses appropriate ARIA roles and labels for toolbar and buttons.
-- Keyboard navigable.
-
-## Styling
-
-- Follows editor UI conventions.
-- Customizable via CSS classes or props.
