@@ -21,7 +21,7 @@ $classes = array_map( 'trim', array_filter( $classes ) );
 
 // Set Publication slug.
 $publication_slug = apply_filters( 'bu_blocks_publication_slug', 'bu-blocks' );
-$classes[]        = $publication_slug . '-block-editorial-drawer';
+$classes[]        = $publication_slug . '-block-editorial-headline';
 
 // Determine if this is a static or dynamic block.
 if ( strpos( $content, 'wp-block-editorial-headline' ) !== false ) {
