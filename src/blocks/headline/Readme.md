@@ -82,6 +82,7 @@ The block uses the HeadingLevelToolbar component for heading level selection. Se
 | `preText`  | string   | ''      | Text before main content      |
 | `postText` | string   | ''      | Text after main content       |
 | `align`    | string   | ''      | Text alignment                |
+| `anchor`   | string   | ''      | Anchor ID for the Heading     |
 
 ## ToDo
 
