@@ -86,7 +86,7 @@ The block uses the HeadingLevelToolbar component for heading level selection. Se
 
 ## ToDo
 
-- Add support for custom HTML anchor IDs
+- Add support for generating automatic HTML anchor IDs
 - Implement spacing Block Support?
 - Add block patterns for common use cases
 
