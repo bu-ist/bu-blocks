@@ -468,8 +468,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _deprecated_deprecated__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./deprecated/deprecated */ "./src/blocks/headline/deprecated/deprecated.js");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * BLOCK: Editorial Headline
  *
@@ -495,26 +493,12 @@ __webpack_require__.r(__webpack_exports__);
 
 // WordPress dependencies.
 
-
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_0__.name, {
   title: _block_json__WEBPACK_IMPORTED_MODULE_0__.title,
   icon: (0,_components_block_icons__WEBPACK_IMPORTED_MODULE_3__["default"])('headline'),
   edit: _edit__WEBPACK_IMPORTED_MODULE_4__["default"],
   save: () => null,
   deprecated: _deprecated_deprecated__WEBPACK_IMPORTED_MODULE_5__["default"]
-  // save( { attributes } ) {
-  // 	const { content, level } = attributes;
-  // 	const tagName = 'h' + level;
-  // 	const blockProps = useBlockProps.save();
-
-  // 	return (
-  // 		<RichText.Content
-  // 			{ ...blockProps }
-  // 			tagName={ tagName }
-  // 			value={ content }
-  // 		/>
-  // 	);
-  // },
 });
 
 /***/ }),
