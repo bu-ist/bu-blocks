@@ -33,16 +33,28 @@ if ( $attributes['themeColor'] ) {
 // @todo: move this into a template override in each child theme?
 // Check if $content contains 'wp-block-button wp-block-bu-button' string
 // from older static version of this block.
+// If this is a static block, recover the attributes from the saved content.
+// This is only needed if the site has older static blocks that were saved before the dynamic template was introduced.
 if ( empty( $attributes['url'] ) && empty( $attributes['text'] ) && strpos( $content, 'wp-block-button wp-block-bu-button' ) ) {
 	$attributes = bu_blocks_button_v2_get_attributes( $content, $attributes );
-	$classes[]  = $attributes['classes_old'];
+	$classes[]  = $attributes['classes_static_v2']; // Add old static classes.
 	$classes[]  = 'wp-block-button'; // Add old incorrect class. This should be removed as CSS is fixed.
 	$classes    = array_unique( $classes ); // Deduplicate any repeated class names.
 }
+
+// Add classes to the block attributes.
+$block_wrapper_attributes = array(
+	'class' => implode( ' ', $classes ),
+);
+
+// Add ID attribute if anchor is set.
+if ( ! empty( $attributes['anchor'] ) ) {
+	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
+}
+
 ?>
 <a 
-	<?php echo $attributes['anchor'] ? 'id="' . esc_attr( $attributes['anchor'] ) . '"' : ''; ?>
-	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?> 
+	<?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?> 
 	href="<?php echo esc_url( $attributes['url'] ); ?>" 
 >
 	<span class="wp-block-bu-button-text">
