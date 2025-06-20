@@ -34,8 +34,6 @@ if ( strpos( substr( $content, 0, 10 ), '<aside' ) ) {
 	// Note: This assumes the first aside element is the one we want.
 	$aside_node = $doc->getElementsByTagName( 'aside' )->item( 0 );
 
-
-
 	ob_start();
 
 	// Loop through each element inside the outer aside tag.

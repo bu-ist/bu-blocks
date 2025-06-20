@@ -23,7 +23,6 @@ import deprecated from './deprecated/deprecated';
 
 // WordPress dependencies.
 import { registerBlockType } from '@wordpress/blocks';
-import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 registerBlockType( metadata.name, {
 	title: metadata.title,
@@ -31,17 +30,4 @@ registerBlockType( metadata.name, {
 	edit: Edit,
 	save: () => null,
 	deprecated,
-	// save( { attributes } ) {
-	// 	const { content, level } = attributes;
-	// 	const tagName = 'h' + level;
-	// 	const blockProps = useBlockProps.save();
-
-	// 	return (
-	// 		<RichText.Content
-	// 			{ ...blockProps }
-	// 			tagName={ tagName }
-	// 			value={ content }
-	// 		/>
-	// 	);
-	// },
 } );

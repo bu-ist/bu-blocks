@@ -28,40 +28,23 @@ if ( strpos( $content, 'wp-block-editorial-headline' ) !== false ) {
 	$is_static_block = true;
 }
 
-// Check if $content starts with <aside tag from older static version of this block.
+// If this is a static block, recover the attributes from the saved content.
+// This is only needed if the site has older static blocks that were saved before the dynamic template was introduced.
 if ( $is_static_block ) {
-	// Use DOMDocument to parse the content.
-	$dom = new DOMDocument();
-	$dom->loadHTML( $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-
-	// Get the first heading element.
-	$heading = $dom->getElementsByTagName( '*' )->item( 0 );
-
-	// Initialize attributes array.
-	if ( $heading ) {
-		// Extract level from tag name (h2 -> 2).
-		$attributes['level'] = (int) str_replace( 'h', '', $heading->tagName ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-
-		// Extract inner HTML content, preserving any HTML tags inside the heading.
-		$inner_html = '';
-		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-		foreach ( $heading->childNodes as $child ) {
-			$inner_html .= $dom->saveHTML( $child );
-		}
-		$attributes['content'] = $inner_html;
-
-		// Get the heading classes.
-		$classes_static = $heading->getAttribute( 'class' );
-		// Strip out old `wp-block-editorial-headline` class.
-		$classes_static = str_replace( 'wp-block-editorial-headline', '', $classes );
-		// Merge $classes_static and $classes.
-		$classes = array_merge( $classes_static, $classes );
-		$classes = array_unique( $classes ); // Deduplicate any repeated class names.
-	}
+	$attributes = bu_blocks_headline_v1_get_attributes( $content, $attributes );
+	$classes[]  = $attributes['classes_static_v1'];
+	$classes    = array_unique( $classes ); // Deduplicate any repeated class names.
 }
 
+// Create the block wrapper attributes.
+$block_wrapper_attributes = array(
+	'class' => implode( ' ', $classes ),
+);
+// Add ID attribute if anchor is set.
+if ( ! empty( $attributes['anchor'] ) ) {
+	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
+}
 ?>
-
-<h<?php echo esc_attr( $attributes['level'] ); ?> <?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?>>
-	<?php echo wp_kses_post( $attributes['content'] ); ?>
-</h<?php echo esc_attr( $attributes['level'] ); ?>>
+<h<?php echo esc_attr( $attributes['level'] ); ?> 
+	<?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>
+><?php echo wp_kses_post( $attributes['content'] ); ?></h<?php echo esc_attr( $attributes['level'] ); ?>>
