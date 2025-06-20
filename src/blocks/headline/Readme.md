@@ -103,6 +103,7 @@ The block uses the HeadingLevelToolbar component for heading level selection. Se
   - Added deprecations for markup changes
 - Converted to dynamic block using render.php
 - Added migration support for static blocks
+- Moved the HeadingLevelToolbar selector to it's own component and out of the Heading block
 
 ### 1.0.0
 - Initial release
