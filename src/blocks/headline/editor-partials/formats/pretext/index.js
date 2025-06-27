@@ -7,7 +7,7 @@
 
 // Import WordPress dependencies
 import { __ } from '@wordpress/i18n';
-import { createElement, Fragment } from '@wordpress/element';
+import { createElement } from '@wordpress/element';
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import {
 	RichTextToolbarButton,
@@ -39,7 +39,7 @@ registerFormatType( 'editorial/pretext', {
 			onChange( toggleFormat( value, { type: 'editorial/pretext' } ) );
 
 		return (
-			<Fragment>
+			<>
 				<RichTextShortcut
 					type="access"
 					character="a"
@@ -53,7 +53,7 @@ registerFormatType( 'editorial/pretext', {
 					shortcutType="access"
 					shortcutCharacter="a"
 				/>
-			</Fragment>
+			</>
 		);
 	},
 } );

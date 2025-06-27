@@ -30,35 +30,17 @@ By default the block supports WordPress Core Color Block Supports. Theme.json ca
 
 ## Usage
 
-### Basic Example
+### Basic Example of HTML Output
 
-```jsx
-<!-- Basic headline -->
-<h2 class="wp-block-editorial-headline">
-    Welcome to Boston University
-</h2>
-
-<!-- With pre-text and post-text -->
-<h2 class="wp-block-editorial-headline">
-    <span class="wp-block-editorial-headline-pretext">Chapter 1:</span>
-    Course Overview
-    <span class="wp-block-editorial-headline-posttext">(Fall 2025)</span>
+```html
+<h2 class="wp-block-editorial-headline *YOUR CLASSES (optional)*">
+    <span class="wp-block-editorial-headline-pretext">*YOUR PRETEXT (optional)*</span>
+    *YOUR TEXT (required)*
+    <span class="wp-block-editorial-headline-posttext">*YOUR POSTTEXT (optional)*</span>
 </h2>
 ```
 
-### Style Variations
 
-```jsx
-<!-- Emphasis Weight Style -->
-<h2 class="wp-block-editorial-headline is-style-emphasis-weight">
-    <strong>Research</strong> Methods
-</h2>
-
-<!-- Emphasis Color Style -->
-<h2 class="wp-block-editorial-headline is-style-emphasis-color">
-    Data <strong>Analysis</strong>
-</h2>
-```
 
 ## Components
 
