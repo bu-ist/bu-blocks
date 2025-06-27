@@ -1602,6 +1602,16 @@ const blockIcons = function (name) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /**
+ * Get Allowed Formats compatibility function.
+ *
+ * todo: 5/17/2025: Remove this from all current blocks now that WP 5.3 has
+ * been released and put into production.
+ *
+ * However, this is still called in deprecated blocks so may need to remain
+ * or be moved into the deprecation folders for each block.
+ */
+
+/**
  * Provide the expected attribute value for a list of allowed
  * formatting controls.
  *

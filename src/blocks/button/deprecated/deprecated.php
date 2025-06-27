@@ -49,7 +49,7 @@ function bu_blocks_button_v2_get_attributes( $content, $attributes ) {
 	}
 
 	if ( ! empty( $classes ) ) {
-		$attributes['classes_old'] = $classes;
+		$attributes['classes_static_v2'] = $classes;
 	}
 
 	return $attributes;

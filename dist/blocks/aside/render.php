@@ -30,6 +30,8 @@ if ( strpos( substr( $content, 0, 10 ), '<aside' ) ) {
 	$doc = new DOMDocument();
 	$doc->loadHTML( $content );
 
+	// Get the first aside element.
+	// Note: This assumes the first aside element is the one we want.
 	$aside_node = $doc->getElementsByTagName( 'aside' )->item( 0 );
 
 	ob_start();
@@ -42,12 +44,18 @@ if ( strpos( substr( $content, 0, 10 ), '<aside' ) ) {
 	$aside_content = ob_get_clean();
 }
 
+// Create the block wrapper attributes.
+$block_wrapper_attributes = array(
+	'class' => implode( ' ', $classes ),
+);
+
+// Add ID attribute if anchor is set.
+if ( ! empty( $attributes['anchor'] ) ) {
+	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
+}
+
+
 ?>
-
-
-<aside 
-	<?php echo $attributes['anchor'] ? 'id="' . esc_attr( $attributes['anchor'] ) . '"' : ''; ?> 
-	<?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ) ) ) ); ?>
->
+<aside <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
 	<?php echo wp_kses_post( $aside_content ? $aside_content : $content ); ?>
 </aside>
