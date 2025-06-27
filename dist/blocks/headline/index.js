@@ -309,7 +309,7 @@ function HeadlineInspectorControls() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Help'),
     initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "PreText and PostText Formats"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "These formats are intended to style text such as \u201CChapter 3:\u201D as part of a headline text either before or after the main Headline text. Enter Headline and then select text in the headline and apply a pre or post text format from the Format Control Toolbar on the block."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Emphasis Color & Weight"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "Emphasis Color and Emphasis weight can be selectively applied to a word(s) by selecting characters and applying a ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Bold"), " style. The color or weight change will apply to any bold text inside the Headline tag."))));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "PreText and PostText Formats"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "These formats are intended to style text such as \u201CChapter 3:\u201D as part of a headline text either before or after the main Headline text. Enter Headline and then select text in the headline and apply a pre or post text format from the Format Control Toolbar on the block."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Emphasis Color & Weight"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "Emphasis Color and Emphasis weight can be selectively applied to a word(s) by selecting characters and applying a", ' ', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Bold"), " style. The color or weight change will apply to any bold text inside the Headline tag.")));
 }
 
 /***/ }),
@@ -392,14 +392,17 @@ const posttexticon = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createEl
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+
 /**
  * Format: bu-headline-pretext
  *
@@ -412,19 +415,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const pretexticon = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)('svg', {
+const pretexticon = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)('svg', {
   width: 20,
   height: 20,
   viewBox: '0 0 20 20'
-}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)('path', {
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)('path', {
   d: 'M18,4.3H8.56a.51.51,0,0,0-.51.52v2a.51.51,0,0,0,.51.51H18a.51.51,0,0,0,.52-.51v-2A.52.52,0,0,0,18,4.3Z'
-}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)('polygon', {
+}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)('polygon', {
   points: '1.53 6.59 4.51 6.59 4.51 7.65 7.1 5.83 4.51 4.02 4.51 5.08 1.53 5.08 1.53 5.08 1.53 6.59'
-}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)('path', {
+}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)('path', {
   d: 'M10,8.67v3.1h3V8.67h1.82v8.08H13.05V13.37H10v3.38H8.2V8.67Z'
 }));
-(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_2__.registerFormatType)('editorial/pretext', {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pretext'),
+(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_3__.registerFormatType)('editorial/pretext', {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pretext'),
   tagName: 'span',
   className: 'wp-block-editorial-headline-pretext',
   edit(props) {
@@ -433,16 +436,16 @@ const pretexticon = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createEle
       onChange,
       value
     } = props;
-    const onToggle = () => onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_2__.toggleFormat)(value, {
+    const onToggle = () => onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_3__.toggleFormat)(value, {
       type: 'editorial/pretext'
     }));
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichTextShortcut, {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichTextShortcut, {
       type: "access",
       character: "a",
       onUse: onToggle
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichTextToolbarButton, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichTextToolbarButton, {
       icon: pretexticon,
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pretext'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pretext'),
       onClick: onToggle,
       isActive: isActive,
       shortcutType: "access",
