@@ -13,46 +13,48 @@
  * @package bu-blocks
  */
 
-var_dump( $attributes ); // For debugging purposes, remove in production.
-// Create an array to store classnames for the block.
-$classes = array();
-
-// Trim values of the classes array after filtering out empty values.
-$classes = array_map( 'trim', array_filter( $classes ) );
-
-// Set Publication slug.
-$publication_slug = apply_filters( 'bu_blocks_publication_slug', 'bu-blocks' );
-$classes[]        = $publication_slug . '-block-editorial-introparagraph';
+// Create an array to store additional classnames for the block.
+$extra_classes = array();
+// Default to no drop cap.
+$has_dropcap        = false;
+$is_style           = false;
+$is_image_drop_cap  = false;
 
 // Determine if this is a static or dynamic block.
-$is_static_block = false;
 if ( strpos( $content, 'wp-block-editorial-introparagraph' ) !== false ) {
-	$is_static_block = true;
 	// If this is a static block, recover the attributes from the saved content.
 	// This is only needed if the site has older static blocks that were saved before the dynamic template was introduced.
-	$attributes = bu_blocks_introparagraph_v2_get_attributes( $content, $attributes );
-	if ( isset( $attributes['classes_static_v2'] ) ) {
-		$classes[] = $attributes['classes_static_v2'];
+	$attributes = bu_blocks_introparagraph_v2_get_attributes( $content, $attributes );	
+}
+
+// Convert $attributes['className'] to make checking for settings easier.
+$classNameArray = explode( ' ', $attributes['className'] );
+
+// Set Publication slug.
+// ToDo: change this in the future to a filter of the class name itself so we can
+// remove this publication specific logic from BU Blocks. If it's just a classname filter
+// then Prepress can just inject the class it wants to add instead of passing only the
+// publication slug and building the class here. The filter can return the block name
+// and Prepress can construct the <publicationname>-<blockname> class.
+$publication_slug = apply_filters( 'bu_blocks_publication_slug', 'bu-blocks' );
+$extra_classes[]  = $publication_slug . '-block-editorial-introparagraph';
+
+
+// Check if there's a dropcap style.
+// By testing if $classNameArray contains a class that begins with `is-style-dropcap`
+foreach ( $classNameArray as $class ) {
+	if ( strpos( $class, 'is-style-dropcap' ) === 0 ) {
+		$has_dropcap = true;
+		// Trim `is-style` from class.
+		$is_style = str_replace( 'is-style-', '', $class );
+		// Add `has-dropcap` class.
+		$extra_classes[] = 'has-dropcap';
+		break;
 	}
-	$classes    = array_unique( $classes ); // Deduplicate any repeated class names.
-
-	var_dump( $attributes ); // For debugging purposes, remove in production.
 }
-
-// Create the block wrapper attributes.
-$block_wrapper_attributes = array(
-	'class' => implode( ' ', $classes ),
-);
-// Add ID attribute if anchor is set.
-if ( ! empty( $attributes['anchor'] ) ) {
-	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
-}
-
-// Boolean to check if the drop cap is an image.
-$is_image_drop_cap = false;
 
 // Check if the drop cap is set and if the className indicates an image drop cap.
-if ( ! empty( $attributes['dropCapImageURL'] ) && strpos( $attributes['className'], 'is-style-dropcap-image' ) !== false ) {
+if ( ! empty( $attributes['dropCapImageURL'] ) && $is_style === 'dropcap-image' ) {
 	$is_image_drop_cap = true;
 
 	// Extract the first character from the content for the drop cap.
@@ -62,7 +64,7 @@ if ( ! empty( $attributes['dropCapImageURL'] ) && strpos( $attributes['className
 
 	// Create the SVG structure.
 	$drop_cap_svg = <<<EOD
-	<svg width="0" height="0">
+	<svg width="0" height="0" class="wp-block-editorial-introparagraph-svg-drop-cap">
 		<defs>
 			<clipPath id="dropcap-text-$drop_cap_character">
 				<text textAnchor="start"
@@ -79,22 +81,39 @@ if ( ! empty( $attributes['dropCapImageURL'] ) && strpos( $attributes['className
 	EOD;
 }
 
+// Dedupe any classes in $extra_classes that already exist in $classNameArray.
+$extra_classes = array_diff( $extra_classes, $classNameArray );
+
+// Create the block wrapper attributes.
+$block_wrapper_attributes = array(
+	'class' => implode( ' ', $extra_classes ),
+);
+// Add ID attribute if anchor is set.
+if ( ! empty( $attributes['anchor'] ) ) {
+	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
+}
 ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
 	<?php if ( $attributes['heading'] ) : ?>
-		<h4><?php echo wp_kses_post( $attributes['heading'] ); ?></h4>
+		<h4 class="wp-block-editorial-introparagraph-teaser-heading"><?php echo wp_kses_post( $attributes['heading'] ); ?></h4>
 	<?php endif; ?>
 	<?php if ( $attributes['list'] ) : ?>
-		<ul>
+		<ul class="wp-block-editorial-introparagraph-toc">
 			<?php echo wp_kses_post( $attributes['list'] ); ?>
 		</ul>
 	<?php endif; ?>
 	<?php if ( $attributes['content'] ) : ?>
 		<div class="wp-block-editorial-introparagraph-content">
-			<?php if ( $drop_cap_svg ) : ?>
-				<?php echo $drop_cap_svg; ?>
+			<?php
+				if ( $is_image_drop_cap ) {
+					echo $drop_cap_svg;
+				}
+			?>
+			<?php if ( $attributes['content'] ) : ?>
+				<p class="wp-block-editorial-introparagraph-content-text">
+					<?php echo wp_kses_post( $attributes['content'] ); ?>
+				</p>
 			<?php endif; ?>
-			<p><?php echo wp_kses_post( $attributes['content'] ); ?></p>
-		</div>		
+		</div>
 	<?php endif; ?>
 </div>

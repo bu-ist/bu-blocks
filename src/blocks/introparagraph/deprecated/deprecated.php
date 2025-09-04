@@ -47,45 +47,22 @@ function bu_blocks_introparagraph_v2_get_attributes( $content, $attributes ) {
 		
 
 		// Process className attribute from classes.
-		$classes = explode( ' ', $class_string );
-		var_dump( $classes ); // For debugging purposes, remove in production.
+		$extracted_classes = explode( ' ', $class_string );
 
-		// $style_classes = array_filter(
-		// 	$classes,
-		// 	function ( $class ) {
-		// 		return strpos( $class, 'is-style-' ) === 0;
-		// 	}
-		// );
-
-		// if ( ! empty( $style_classes ) ) {
-		// 	// Extract the style name from the first style class.
-		// 	$style_class = reset( $style_classes );
-		// 	$attributes['className'] = $style_class;
-		// } else {
-		// 	// Extract other non-default classes.
-		// 	$non_default_classes = array_filter(
-		// 		$classes,
-		// 		function ( $class ) {
-		// 			return $class !== 'wp-block-editorial-introparagraph';
-		// 		}
-		// 	);
-
-		// 	if ( ! empty( $non_default_classes ) ) {
-		// 		$attributes['className'] = implode( ' ', $non_default_classes );
-		// 	}
-		// }
 
 		// Extract attributes from classes and clean up class names.
-		foreach ( $classes as $key => $class ) {
+		foreach ( $extracted_classes as $key => $class ) {
 			// Remove 'wp-block-editorial-introparagraph' from classes.
+			// It will be added by the template.
 			if ( 'wp-block-editorial-introparagraph' === $class ) {
-				unset( $classes[ $key ] );
+				unset( $extracted_classes[ $key ] );
 				continue;
 			}
 			// Remove any Publication slug block classes that contain 
 			// `-block-editorial-introparagraph`, such as `butoday-block-editorial-introparagraph`.
+			// It will be added by the template or filters. 
 			if ( strpos( $class, '-block-editorial-introparagraph' ) !== false ) {
-				unset( $classes[ $key ] );
+				unset( $extracted_classes[ $key ] );
 				continue;
 			}
 
@@ -102,7 +79,26 @@ function bu_blocks_introparagraph_v2_get_attributes( $content, $attributes ) {
 			}
 		}
 
-		$attributes['classes_static_v2'] = implode( ' ', $classes );
+
+		// Update $attributes['className'] with any extracted classes.
+		if ( ! empty( $attributes['className'] ) ) {
+			// Create an array from className attribute.
+			$className_classes = explode( ' ', $attributes['className'] );
+			
+			// Check if any extracted $extracted_classes don't exist in $className_classes.
+			$missing_classes = array_diff( $extracted_classes, $className_classes );
+
+			// Add missing classes to $className_classes.
+			$className_classes = array_merge( $className_classes, $missing_classes );
+
+			// If there are missing classes, update the className attribute.
+			if ( ! empty( $missing_classes ) ) {
+				$attributes['className'] = implode( ' ', $className_classes );
+			}
+		} else {
+			// Recreate an `className` attribute with the extracted classes.
+			$attributes['className'] = implode( ' ', $extracted_classes );
+		}
 	}
 
 	// Extract anchor ID.
@@ -132,7 +128,13 @@ function bu_blocks_introparagraph_v2_get_attributes( $content, $attributes ) {
 	if ( $content_div ) {
 		$paragraph = $content_div->getElementsByTagName( 'p' )->item( 0 );
 		if ( $paragraph ) {
-			$attributes['content'] = $paragraph->nodeValue;
+			// Use innerHTML to preserve HTML tags
+			$paragraph_html = '';
+			$children = $paragraph->childNodes;
+			foreach ( $children as $child ) {
+				$paragraph_html .= $dom->saveHTML( $child );
+			}
+			$attributes['content'] = $paragraph_html;
 		}
 
 		// Check for dropcap image SVG.
