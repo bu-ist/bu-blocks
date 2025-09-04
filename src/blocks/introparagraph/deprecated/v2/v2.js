@@ -45,6 +45,9 @@ const v2_renderDropCapSVG = ( character, imageURL ) => {
 };
 
 export const config = {
+	supports: {
+		anchor: true,
+	},
 	attributes: {
 		heading: {
 			type: 'string',
