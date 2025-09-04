@@ -339,6 +339,7 @@ export default function Edit( props ) {
 						renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 					<RichText
 						tagname="p"
+						className="wp-block-editorial-introparagraph-content-text"
 						value={ content }
 						onChange={ ( value ) =>
 							setAttributes( { content: value } )
