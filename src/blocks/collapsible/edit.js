@@ -12,7 +12,8 @@ import {
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 
-import HeadingToolbar from '../headline/heading-toolbar';
+// Import Heading Level Toolbar component.
+import HeadingLevelToolbar from '../_includes/components/HeadingLevelToolbar/index.js';
 
 // Load SVG icon for collapsible heading buttons.
 import { ReactComponent as CollapsibleIcon } from './icon-collapsible.svg';
@@ -130,9 +131,8 @@ export default function Edit( props ) {
 			<EditorPartialsInspectorControls { ...props } />
 
 			<BlockControls>
-				<HeadingToolbar
-					minLevel={ 2 }
-					maxLevel={ 7 }
+				<HeadingLevelToolbar
+					levels={ [ 2, 3, 4, 5, 6 ] }
 					selectedLevel={ level }
 					onChange={ ( newLevel ) =>
 						setAttributes( { level: newLevel } )
