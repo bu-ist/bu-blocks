@@ -1,0 +1,22 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/introparagraph/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-editorial-introparagraph textarea {
+  font-size: 1.18169em;
+  line-height: 1.25887;
+  color: #3f2f39;
+  font-family: "Tiempos-Headline";
+  font-weight: 700;
+}
+.wp-block-editorial-introparagraph .wp-block-editorial-introparagraph-content:focus svg,
+.wp-block-editorial-introparagraph .wp-block-editorial-introparagraph-content:focus-within svg {
+  display: none !important;
+}
+
+/*# sourceMappingURL=index.css.map*/

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schemas.wp.org/wp/5.8/block.json",
+  "apiVersion": 2,
+  "name": "editorial/introparagraph",
+  "version": "0.0.0",
+  "title": "Intro Paragraph",
+  "description": "Add an introduction with a bulleted list and styled paragraph.",
+  "category": "bu-editorial",
+  "keywords": [
+    "intro",
+    "introduction",
+    "paragraph",
+    "lead",
+    "list"
+  ],
+  "icon": "editor-paragraph",
+  "textdomain": "bu-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "anchor": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "list": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "dropCapColor": {
+      "type": "string",
+      "default": ""
+    },
+    "paragraphColor": {
+      "type": "string",
+      "default": ""
+    },
+    "dropCapImageURL": {
+      "type": "string",
+      "default": ""
+    },
+    "dropCapImageId": {
+      "type": "number"
+    }
+  },
+  "styles": [
+    {
+      "name": "default",
+      "label": "Default",
+      "isDefault": true
+    },
+    {
+      "name": "large",
+      "label": "Large paragraph text"
+    },
+    {
+      "name": "split",
+      "label": "Split paragraph text"
+    },
+    {
+      "name": "dropcap-default",
+      "label": "Dropcap"
+    },
+    {
+      "name": "dropcap-boxed",
+      "label": "Boxed dropcap"
+    },
+    {
+      "name": "dropcap-outlined",
+      "label": "Outlined dropcap"
+    },
+    {
+      "name": "dropcap-dimensional",
+      "label": "Dimensional dropcap"
+    },
+    {
+      "name": "dropcap-image",
+      "label": "Image dropcap"
+    }
+  ],
+  "example": {
+    "attributes": {
+      "heading": "Tellus Dolor Purus ",
+      "dropCapColor": "primary",
+      "className": "is-style-dropcap-default",
+      "content": "Maecenas faucibus mollis interdum. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true
+    }
+  }
+}
