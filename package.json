@@ -1,7 +1,6 @@
 {
-  "name": "bu-blocks",
-  "version": "0.3.7",
-  "private": true,
+  "name": "@bostonuniversity/bu-blocks",
+  "version": "0.3.9",
   "main": "Gruntfile.js",
   "author": "Boston University: Interactive Design",
   "contributors": [
@@ -9,14 +8,15 @@
     "Ashley Kolodziej <kolodz10@bu.edu>",
     "Dakota Chichester <acketon@bu.edu>"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "cgb-scripts start",
     "build": "cgb-scripts build",
     "eject": "cgb-scripts eject"
   },
   "dependencies": {
-    "cgb-scripts": "^1.17.0",
-    "classnames": "^2.2.6",
     "object-fit-images": "^3.2.4"
   },
   "devDependencies": {
@@ -29,7 +29,22 @@
     "kss": "3.0.0-beta.23",
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "~1.0.0",
-    "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder#1.0.0",
-    "responsive-foundation": "git@github.com:bu-ist/responsive-foundation.git#4.0.1"
-  }
+    "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder.git#1.0.0",
+    "responsive-foundation": "git+ssh://git@github.com:bu-ist/responsive-foundation.git#4.0.1",
+    "cgb-scripts": "^1.17.0",
+    "classnames": "^2.2.6"
+  },
+  "description": "",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://acketon@github.com/bu-ist/bu-blocks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bu-ist/bu-blocks/issues"
+  },
+  "homepage": "https://github.com/bu-ist/bu-blocks#readme"
 }
