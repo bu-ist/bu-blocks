@@ -74,7 +74,7 @@ export const config = {
 
 		const blockProps = useBlockProps.save( {
 			className: getClasses( className, aspectRatio ),
-		  } );
+		} );
 
 		// Build out the full url.
 		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;

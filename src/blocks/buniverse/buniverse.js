@@ -133,7 +133,8 @@ registerBlockType( 'bu/buniverse', {
 		 */
 		const onChangeMinutes = ( value ) => {
 			const newValue = Number( value );
-			const newStart = ( newValue * 60 ) + ( ( seconds ) ? seconds : 0 );
+			// eslint-disable-next-line no-mixed-operators
+			const newStart = newValue * 60 + ( ( seconds ) ? seconds : 0 );
 
 			setAttributes( { minutes: newValue } );
 			setAttributes( { start: newStart } );
