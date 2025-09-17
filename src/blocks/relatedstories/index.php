@@ -185,7 +185,7 @@ function render_block( $attributes ) {
 		'cardCount'      => 2,
 		'cardCountClass' => '',
 		'includePosts'   => array(),
-		'relatedManual'  => false,
+		'relatedManual'  => true,
 	);
 	$attributes = wp_parse_args( $attributes, $defaults );
 
@@ -314,9 +314,9 @@ function register_block() {
 				),
 				'relatedManual' => array(
 					'type'    => 'boolean',
-					'default' => false,
+					'default' => true,
 				),
-				'includedPosts' => array(
+				'includePosts' => array(
 					'type'    => 'array',
 					'default' => array(),
 				),
@@ -364,7 +364,7 @@ function save_post( $post_ID, $post ) {
 		}
 
 		// Retrieve the classes to attach to the block wrapper.
-		$classes = get_block_classes( $attributes );
+		$classes = get_block_classes( $block['attrs'] );
 
 		$card_style = strpos( $classes, 'is-style-card' );
 
