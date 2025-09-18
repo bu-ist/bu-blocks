@@ -26,6 +26,8 @@
   - Update Block to Block API 2 for 5.7 compatibility
     - Adjust how `is-style-preview` class is checked as `props.attributes.classname` is sometimes undefined.
   - Editor Styles: adjust editor styles and selectors to match new markup of Block API 2
+    - Increase specificity of editor styles overriding frontend styles so `.bu-block-collapsible-content` shows when block is selected. 
+      - May cause some issues in child themes with overrides. 
 - Collapsible Control Block: 
   - Update to Block API 2, styling fixes for 5.7, fix center aligned styles.
   - add Editor.scss and Style.scss files that were missing and better styling for the block
