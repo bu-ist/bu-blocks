@@ -10,6 +10,7 @@ import classnames from 'classnames';
 // Internal dependencies.
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
+import deprecated from './deprecated/deprecated.js';
 
 //  Import CSS.
 import './style.scss';
@@ -27,23 +28,22 @@ const {
 } = wp.element;
 const {
 	PanelBody,
-	Path,
 	RadioControl,
-	SVG,
 	TextControl,
 	ToggleControl,
 } = wp.components;
 const {
 	InspectorControls,
 	RichText,
-	useBlockProps
+	useBlockProps,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 /**
  * Returns the class list for the block based on the current settings.
  *
  * @param {string} className     Default classes assigned to the block.
- * @param {string} stylizedTitle If the block has a stylized title.
+ * @param {string} aspectRatio   The aspect ratio of the video.
+ * @returns {string}             The combined class names.
  */
 const getClasses = ( className, aspectRatio ) => {
 	return (
@@ -62,7 +62,7 @@ registerBlockType( 'bu/buniverse', {
 	apiVersion: 2,
 	title: __( 'BUniverse Video' ),
 	description: __( 'Insert videos from bu.edu/buniverse. BUniverse videos allow for a high resolution cover image and better control over Youtube embeds.' ),
-	icon: blockIcons('buniverse'),
+	icon: blockIcons( 'buniverse' ),
 	category: 'bu',
 	attributes: {
 		id: {
@@ -133,6 +133,7 @@ registerBlockType( 'bu/buniverse', {
 		 */
 		const onChangeMinutes = ( value ) => {
 			const newValue = Number( value );
+			// eslint-disable-next-line no-mixed-operators
 			const newStart = newValue * 60 + ( ( seconds ) ? seconds : 0 );
 
 			setAttributes( { minutes: newValue } );
@@ -157,19 +158,19 @@ registerBlockType( 'bu/buniverse', {
 
 		// Build out the basic url, intentionally leaving off the extra parameters
 		// because they cause the iframe to reload every time they're changed.
-		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
+		const url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ id }&jsapi=1`;
 
-		return(
+		return (
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Video Settings' ) }>
 						<TextControl
-								label={ __( 'Video ID:' ) }
-								className="buniverse-set-video-id"
-								value={ id }
-								onChange={ ( value ) => setAttributes( { id: value } ) }
-								help={ __( 'Enter the ID portion of a BUniverse video URL.' )}
-							/>
+							label={ __( 'Video ID:' ) }
+							className="buniverse-set-video-id"
+							value={ id }
+							onChange={ ( value ) => setAttributes( { id: value } ) }
+							help={ __( 'Enter the ID portion of a BUniverse video URL.' ) }
+						/>
 						<RadioControl
 							className="buniverse-aspect-ratio-options"
 							label={ __( 'Aspect Ratio' ) }
@@ -228,8 +229,9 @@ registerBlockType( 'bu/buniverse', {
 						) }
 						{ id && (
 							<iframe
+								title={ __( 'BUniverse Video Player: ' ) + id }
 								src={ url }
-								frameborder="0"
+								frameBorder="0"
 								allow="autoplay; fullscreen"
 							></iframe>
 						) }
@@ -267,34 +269,38 @@ registerBlockType( 'bu/buniverse', {
 
 		const blockProps = useBlockProps.save( {
 			className: getClasses( className, aspectRatio ),
-		  } );
+		} );
 
 		// Build out the full url.
-		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
+		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ id }&jsapi=1`;
 		url += ( controls !== 1 ) ? '&controls=0' : '';
 		url += ( autoplay === 1 ) ? '&autoplay=true' : '';
-		url += ( start ) ? `&start=${start}` : '';
+		url += ( start ) ? `&start=${ start }` : '';
 
-		return(
+		return (
 			<figure { ...blockProps }>
 				<div className="wp-block-global-buniverse-wrapper">
 					{ id && (
 						<iframe
+							title={ __( 'BUniverse Video Player: ' ) + id }
 							src={ encodeURI( url ) }
-							frameborder="0"
+							frameBorder="0"
 							allow="autoplay; fullscreen"
 						></iframe>
 					) }
 				</div>
-					{ caption && (
-						<figcaption>
-							<p class="wp-block-global-buniverse-caption wp-prepress-component-caption">
-								{ caption }
-							</p>
-						</figcaption>
-					)}
+				{ caption && (
+					<figcaption>
+						<RichText.Content
+							tagName="p"
+							className="wp-block-global-buniverse-caption wp-prepress-component-caption"
+							value={ caption }
+						/>
+					</figcaption>
+				) }
 
 			</figure>
 		);
 	},
+	deprecated,
 } );
