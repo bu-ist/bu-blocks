@@ -21,8 +21,8 @@
 }
 
 // Open state, when block is selected or has a child block selected
-.wp-block-bu-collapsible.is-selected,
-.wp-block-bu-collapsible.has-child-selected {
+[data-type="bu/collapsible"].wp-block-bu-collapsible.is-selected,
+[data-type="bu/collapsible"].wp-block-bu-collapsible.has-child-selected {
 
 	& > .bu-block-collapsible-content {
 		display: block;
@@ -66,10 +66,6 @@
 
 	.bu-collapsible-heading {
 		margin: 0;
-	}
-
-	.bu-block-collapsible-content {
-
 	}
 
 	&.is-style-preview {

@@ -11,6 +11,10 @@
 .wp-block-bu-collapsible {
 	margin-top: -1px;
 
+	// Todo: let's refactor this to use :where() and drop the specificity so themes can overwrite it easier?
+	// Also could refactor this block to use Grid, 1 column wide and 1 row tall
+	// Then when open change grid layout to 1 column wide and 2 rows tall to show this content div.
+	// The core Accordion block is using that layout technique to show/hide the content area.
 	.bu-block-collapsible-content {
 		display: none;
 		padding: 20px;
