@@ -77,7 +77,7 @@ export const config = {
 		} );
 
 		// Build out the full url.
-		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${id}&jsapi=1`;
+		let url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ id }&jsapi=1`;
 		url += ( controls !== 1 ) ? '&controls=0' : '';
 		url += ( autoplay === 1 ) ? '&autoplay=true' : '';
 		url += ( start ) ? `&start=${ start }` : '';
