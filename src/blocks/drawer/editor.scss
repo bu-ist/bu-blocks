@@ -83,11 +83,12 @@
 				width: 100%;
 			}
 		}
-
-		.wp-block-editorial-drawer-clearfix {
-			clear:both;
-		}
 	}
+}
+
+// Clearfix element for the Editor due to foundation styles floating all elements when used in the bootstrap grid.
+.wp-block-editorial-drawer-clearfix {
+	clear:both;
 }
 
 
