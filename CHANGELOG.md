@@ -46,6 +46,7 @@
   - Update Buniverse Block to Block API 2 for 5.7 compatibility
   - Move TextControl for video id from editor to sidebar to aid in styling block when floated
   - Editor Styles: Add CSS4 Variable `--bu_blocks-block-bu-buniverse-editor-floated-width` so themes can adjust floated width easily
+  - Fix dot position for End of Article Paragraph block style.
 
 
 
