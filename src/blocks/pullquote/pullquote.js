@@ -12,7 +12,7 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes } from '../../components/background';
+import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
 import getAllowedFormats from '../../global/allowed-formats';
 import themeOptions from '../../global/theme-options';
 import blockIcons from '../../components/block-icons/';
@@ -26,6 +26,7 @@ const {
 } = wp.blocks;
 const {
 	Fragment,
+	useState,
 } = wp.element;
 const {
 	PanelBody,
@@ -152,6 +153,8 @@ registerBlockType( 'bu/pullquote', {
 			backgroundId,
 		} = attributes;
 
+		const [ isUploading, setIsUploading ] = useState( false );
+
 		// Return the background media positioning controls if a background is set
 		// and the style is not set to "Pop".
 		const mediaPositioningControls = () => {
@@ -220,34 +223,38 @@ registerBlockType( 'bu/pullquote', {
 					/>
 					{ mediaPositioningControls() }
 				</InspectorControls>
+				<BackgroundControls
+					allowedMediaTypes={ allowedMedia }
+					blockProps={ props }
+					placeholderText={ __( 'Add Image' ) }
+					setIsUploading={ setIsUploading }
+				/>
 				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug, textColor.slug ) }>
 					<div className="wp-block-bu-pullquote-inner">
-					{ isStyleDefault( className ) && (
-						<Fragment>
-							<figure>
-								<Background
-									allowedMediaTypes={ allowedMedia }
-									blockProps={ props }
-									placeholderText={ __( 'Add Image' ) }
-								/>
-							</figure>
-						</Fragment>
-					) }
-					<blockquote>
-						<div className="container-lockup">
-							<div className="container-icon-outer">
-								<div className="container-icon-inner">
-									{ className.includes( 'is-style-modern' ) && (
-										<Background
-											allowedMediaTypes={ allowedMedia }
-											blockProps={ props }
-											placeholderText={ __( 'Add Image' ) }
-										/>
-									) }
+						{ isStyleDefault( className ) && (
+							<Fragment>
+								<figure>
+									<Background
+										blockProps={ props }
+										isUploading={ isUploading }
+									/>
+								</figure>
+							</Fragment>
+						) }
+						<blockquote>
+							<div className="container-lockup">
+								<div className="container-icon-outer">
+									<div className="container-icon-inner">
+										{ className.includes( 'is-style-modern' ) && (
+											<Background
+												blockProps={ props }
+												isUploading={ isUploading }
+											/>
+										) }
+									</div>
 								</div>
-							</div>
-							<div className="container-text">
-								<hr />
+								<div className="container-text">
+									<hr />
 									<RichText
 										tagName="div"
 										className="quote-sizing"
@@ -267,22 +274,21 @@ registerBlockType( 'bu/pullquote', {
 										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
 										keepPlaceholderOnFocus
 									/>
-								<hr />
-							</div>
-							{ className.includes( 'is-style-modern' ) && photoCredit && (
-								<div className="wp-component-media-credit">
-									{ photoCredit }
+									<hr />
 								</div>
-							) }
-						</div>
-					</blockquote>
+								{ className.includes( 'is-style-modern' ) && photoCredit && (
+									<div className="wp-component-media-credit">
+										{ photoCredit }
+									</div>
+								) }
+							</div>
+						</blockquote>
 					</div>
 					{ isStyleDefault( className ) && photoCredit && (
 						<div className="wp-component-media-credit">
 							{ photoCredit }
 						</div>
-						)
-					}
+					) }
 				</div>
 			</Fragment>
 		);
@@ -310,27 +316,27 @@ registerBlockType( 'bu/pullquote', {
 		return (
 			<div className={ getClasses( className, backgroundId, imageFocus, themeColor, textColor ) }>
 				<div className="wp-block-bu-pullquote-inner">
-				{ isStyleDefault( className ) && (
-					<figure>
-						<Background
-							blockProps={ props }
-						/>
-					</figure>
-				) }
-				<blockquote>
-					<div className="container-lockup">
-						<div className="container-icon-outer">
-							<div className="container-icon-inner">
-								{ className.includes( 'is-style-modern' ) && (
-									<Background
-										blockProps={ props }
-									/>
-								) }
+					{ isStyleDefault( className ) && (
+						<figure>
+							<Background
+								blockProps={ props }
+							/>
+						</figure>
+					) }
+					<blockquote>
+						<div className="container-lockup">
+							<div className="container-icon-outer">
+								<div className="container-icon-inner">
+									{ className.includes( 'is-style-modern' ) && (
+										<Background
+											blockProps={ props }
+										/>
+									) }
+								</div>
 							</div>
-						</div>
 
-						<div className="container-text">
-							<hr />
+							<div className="container-text">
+								<hr />
 								<RichText.Content
 									tagName="div"
 									className="quote-sizing"
@@ -341,23 +347,22 @@ registerBlockType( 'bu/pullquote', {
 									className="caption"
 									value={ cite }
 								/>
-							<hr />
-						</div>
-						{ className.includes( 'is-style-modern' ) && photoCredit && (
-							<div className="wp-component-media-credit">
-								{ photoCredit }
+								<hr />
 							</div>
-						) }
-					</div>
-				</blockquote>
+							{ className.includes( 'is-style-modern' ) && photoCredit && (
+								<div className="wp-component-media-credit">
+									{ photoCredit }
+								</div>
+							) }
+						</div>
+					</blockquote>
 				</div>
 
 				{ isStyleDefault( className ) && photoCredit && (
 					<div className="wp-component-media-credit">
 						{ photoCredit }
 					</div>
-					)
-				}
+				) }
 			</div>
 		);
 	},

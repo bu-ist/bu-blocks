@@ -5,27 +5,33 @@
  * @author Boston University: Interactive Design <id@bu.edu>
  */
 
+const { select } = wp.data;
+const { applyFilters } = wp.hooks;
+const { registerPlugin } = wp.plugins;
+const { getBlockTypes } = wp.blocks;
+
 /**
  * Disables support for the blocks in this plugin for all but the `post` and `page` post types.
  *
  * Runs once the dom is loaded in order to avoid a race condition.
+ *
+ * @returns {null} Nothing to return
  */
-wp.domReady( function() {
-
+const UnregisterBlocks = () => {
 	// Bail if the default support has been filtered off.
-	if ( wp.hooks.applyFilters( 'buBlocks.blockSupport.disableDefault', false ) ) {
-		return;
+	if ( applyFilters( 'buBlocks.blockSupport.disableDefault', false ) ) {
+		return null;
 	}
 
 	// Create a filterable array of post types to restrict the blocks to.
-	const postTypes = wp.hooks.applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );
+	const postTypes = applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );
 
 	// Get the current post type.
-	const currentPostType = wp.data.select( 'core/editor' ).getCurrentPost().type;
+	const currentPostType = select( 'core/editor' ).getCurrentPostType();
 
 	// Bail if the current post type is in the array of post types to restrict the blocks to.
 	if ( postTypes.includes( currentPostType ) ) {
-		return;
+		return null;
 	}
 
 	// A filterable list of the blocks registered by this plugin.
@@ -33,7 +39,7 @@ wp.domReady( function() {
 	// to filter the list of all blocks. For example:
 	// const blocks = select( 'core/blocks' ).getBlockTypes();
 	// const buBlocks = blocks.filter( block => block.plugin === 'bu-blocks' );
-	const buBlocks = wp.hooks.applyFilters( 'buBlocks.blockSupport.blocks', [
+	const buBlocks = applyFilters( 'buBlocks.blockSupport.blocks', [
 		'editorial/aside',
 		'editorial-preset/aside',
 		'bu/buniverse',
@@ -52,8 +58,19 @@ wp.domReady( function() {
 		'bu/stats',
 	] );
 
+	const registeredBlocks = getBlockTypes().map( item => item.name );
+
 	// Unregister the blocks.
 	buBlocks.forEach( block => {
-		wp.blocks.unregisterBlockType( block );
+		if ( registeredBlocks.includes( block ) ) {
+			wp.blocks.unregisterBlockType( block );
+		}
 	} );
+
+	// Return null to avoid rendering anything.
+	return null;
+};
+
+registerPlugin( 'unregister-bu-blocks', {
+	render: UnregisterBlocks,
 } );
