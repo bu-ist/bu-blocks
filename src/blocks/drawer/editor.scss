@@ -10,7 +10,7 @@
 
 	.wp-block-editorial-drawer-content {
 		display: block !important;
-		float: none !important;
+		//float: none !important;
 		opacity: 1 !important;
 	}
 }
@@ -31,17 +31,26 @@
 	}
 }
 
-[data-type="editorial/drawer"] {
+// Set a default width when floated in the editor.
+// ToDo: this needs to be improved and rethought.
+.wp-block-editorial-drawer-teaser {
+	[data-align="left"] &,
+	[data-align="right"] & {
+		width: 50%;
+	}
+}
 
-	&[data-align="left"],
-	&[data-align="right"] {
+[data-align="left"],
+[data-align="right"] {
 
-		.editor-block-list__block-edit,
-		.block-editor-block-list__block-edit {
-			width: 50%;
-		}
 
-		.wp-block-editorial-drawer {
+	>[data-type="editorial/drawer"] {
+
+		&.wp-block-editorial-drawer {
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
+			overflow: unset;
 
 			&.is-size-narrow,
 			&.is-size-small,
@@ -49,20 +58,25 @@
 			&.is-size-wide {
 
 				.wp-block-editorial-drawer-teaser {
-					width: 100%;
+					//width: 100%;
 				}
 			}
 		}
 
-		.wp-block-editorial-drawer-teaser {
+		// .wp-block-editorial-drawer-teaser {
 
-			&::before,
-			&::after {
-				display: none;
-			}
-		}
+		// 	&::before,
+		// 	&::after {
+		// 		display: none;
+		// 	}
+		// }
 
+		// Float the content left so it fills the content column like it does
+		// on the frontend when a floated Drawer block's content area is opened.
+		// The content area should be the width of the unfloated blocks on the page, not the narrower
+		// width of the floated teaser part of the block.
 		.wp-block-editorial-drawer-content {
+			float:left;
 
 			.editor-block-list__block-edit
 			.block-editor-block-list__block-edit {
@@ -71,3 +85,73 @@
 		}
 	}
 }
+
+// Clearfix element for the Editor due to foundation styles floating all elements when used in the bootstrap grid.
+.wp-block-editorial-drawer-clearfix {
+	clear:both;
+}
+
+
+// Float the Teaser left and right instead of the
+// <aside> element that wraps around the entire block. This mimics the frontend styles
+// better.
+// To-do: reduce the specificity of these styles. To do so, the existing themes will need updates
+// to reduce the specificty of the frontend styles.
+
+[data-align="right"] {
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+
+		&.is-size-default,
+		&.is-size-narrow,
+		&.is-size-small,
+		&.is-size-medium,
+		&.is-size-wide {
+
+			.wp-block-editorial-drawer-teaser {
+				float: right;
+				margin-left: 2em;
+			}
+		}
+	}
+}
+
+// Ugly quick fix to ensure floated teaser element (for is-default-size)
+// in themes with CSS that is too specfic.
+// ToDo: remove this later and edit all child themes to reduce specificity there.
+[data-align="right"] {
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+		.wp-block-editorial-drawer-teaser {
+			float: right;
+			margin-left: 2em;
+		}
+	}
+}
+
+[data-align="left"] {
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+		&.is-size-default,
+		&.is-size-narrow,
+		&.is-size-small,
+		&.is-size-medium,
+		&.is-size-wide {
+
+			.wp-block-editorial-drawer-teaser {
+				float: left;
+				margin-right: 2em;
+			}
+		}
+	}
+}
+
+// Ugly quick fix to ensure floated teaser element (for is-default-size)
+// in themes with CSS that is too specfic.
+// ToDo: remove this later and edit all child themes to reduce specificity there.
+[data-align="left"] {
+	>[data-type="editorial/drawer"].wp-block-editorial-drawer {
+		.wp-block-editorial-drawer-teaser {
+			float: left;
+			margin-right: 2em;
+		}
+	}
+}
+

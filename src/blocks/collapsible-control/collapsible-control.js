@@ -7,6 +7,10 @@
 // Internal dependencies.
 import blockIcons from '../../components/block-icons';
 
+// Import CSS.
+import './style.scss';
+import './editor.scss';
+
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
@@ -16,14 +20,16 @@ const {
 	Path,
 	SVG
 } = wp.components;
+const { Fragment } = wp.element;
 const {
 	InspectorControls,
-	RichText
+	RichText,
+	useBlockProps
 } = wp.blockEditor;
 
 // Register the block.
 registerBlockType( 'bu/collapsible-control', {
-
+	apiVersion: 2,
 	title: __( 'Collapsible Control' ),
 	description: __( 'Toggle Collapsible blocks on the page' ),
 	keywords: [ __( 'collapsible' ), __( 'control' ), __( 'toggle' ) ],
@@ -49,14 +55,29 @@ registerBlockType( 'bu/collapsible-control', {
 		const { attributes, setAttributes } = props;
 		const { text, target } = attributes;
 
+		const togglebuttonclasses = 'bu-collapsible-control-toggle';
+
+		const blockProps = useBlockProps();
+
 		return (
 
-			<div>
-
+			<Fragment>
+				<p {...blockProps}>
+					<button>
+						<RichText
+							tagName="span"
+							className={togglebuttonclasses}
+							placeholder={ __( 'Toggle Text' ) }
+							value={ text }
+							onChange={ ( value ) => setAttributes( { text: value } ) }
+							formattingControls={ [ 'bold', 'italic' ] }
+							withoutInteractiveFormatting
+							keepPlaceholderOnFocus
+						/>
+					</button>
+				</p>
 				<InspectorControls>
-
 					<PanelBody title={ __( 'Control Options' ) }>
-
 						<RadioControl
 							label={ __( 'Target' ) }
 							help={ __( 'To control expanding/collapsing a select number of collapsible blocks on the page, place the collapsible blocks AND this control block inside a Group block.' ) }
@@ -73,22 +94,10 @@ registerBlockType( 'bu/collapsible-control', {
 								}
 							] }
 						/>
-
 					</PanelBody>
-
 				</InspectorControls>
 
-				<RichText
-					placeholder={ __( 'Toggle Text' ) }
-					value={ text }
-					className="button"
-					onChange={ ( value ) => setAttributes( { text: value } ) }
-					formattingControls={ [ 'bold', 'italic' ] }
-					withoutInteractiveFormatting
-					keepPlaceholderOnFocus
-				/>
-
-			</div>
+			</Fragment>
 
 		);
 
@@ -98,15 +107,17 @@ registerBlockType( 'bu/collapsible-control', {
 
 		const { text, target } = attributes;
 
-		const classes = 'bu-collapsible-control-toggle js-bu-collapsible-control-target-' + target;
+		const togglebuttonclasses = 'bu-collapsible-control-toggle js-bu-collapsible-control-target-' + target;
+
+		const blockProps = useBlockProps.save();
 
 		return(
 
-			<p>
+			<p {...blockProps}>
 				<RichText.Content
 					tagName="button"
 					value={ text }
-					className={ classes }
+					className={ togglebuttonclasses }
 				/>
 			</p>
 

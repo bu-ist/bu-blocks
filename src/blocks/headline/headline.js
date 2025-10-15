@@ -85,13 +85,20 @@ registerBlockType( 'editorial/headline', {
 		const { content, level, anchor } = attributes;
 		const tagName = 'h' + level;
 
+		/**
+		 * August 2023: Disabling this Anchor ID Generator as it is creating duplicate anchor ids on all headings if:
+		 * - Headline blocks are duplicated, resulting in duplicate anchors
+		 * - When Headline blocks are child blocks of other blocks they aren't included in the count using the current getBlocks() method.
+		 * - Duplicate anchors are a problem for SiteImprove and cause us to fail accessibility checks. Better to force users to manually insert ids.
+		 * - Core Gutenberg is considering a new feature to support unique non-duplicatable attributes: https://github.com/WordPress/gutenberg/issues/29693
+		 */
 		// Generate an index-based value for the anchor attribute if it is not set.
-		if ( ! anchor ) {
-			const headlineBlocks = getBlocks().filter( e => e.name === 'editorial/headline' );
-			const id = 'headline-' + ( headlineBlocks.length );
+		// if ( ! anchor ) {
+		// 	const headlineBlocks = getBlocks().filter( e => e.name === 'editorial/headline' );
+		// 	const id = 'headline-' + ( headlineBlocks.length );
 
-			setAttributes( { anchor: id } );
-		}
+		// 	setAttributes( { anchor: id } );
+		// }
 
 		return (
 			<Fragment>

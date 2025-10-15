@@ -23,13 +23,6 @@
 	}
 }
 
-// Add a clearfix so that the wrapping container added by Gutenberg
-// knows what to contain.
-aside.wp-block-editorial-relatedstories:after {
-	content: "";
-	display: table;
-	clear: both;
-}
 
 figure.wp-block-editorial-relatedstories-article-image {
 	margin: 0;
@@ -56,22 +49,12 @@ figure.wp-block-editorial-relatedstories-article-image {
 		padding-left: 1.5em;
 	}
 
-	.editor-url-input input,
-	.block-editor-url-input input {
-		&::-webkit-input-placeholder {
-			color: #fff;
-		}
+	.bu-blocks-related-stories-block-url-input-field {
+		margin-bottom: 0;
 
-		&::-moz-placeholder {
-			color: #fff;
-		}
-
-		&:-ms-input-placeholder {
-			color: #fff;
-		}
-
-		&:-moz-placeholder {
-			color: #fff;
+		input {
+			max-width: 100%;
+			border: 1px solid var(--wp-admin-theme-color);
 		}
 	}
 }
