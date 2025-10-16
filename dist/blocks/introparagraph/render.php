@@ -110,14 +110,12 @@ if ( ! empty( $attributes['anchor'] ) ) {
 		<div class="wp-block-editorial-introparagraph-content">
 			<?php
 				if ( $is_image_drop_cap ) {
-					echo $drop_cap_svg;
+					echo $drop_cap_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			?>
-			<?php if ( $attributes['content'] ) : ?>
-				<p class="wp-block-editorial-introparagraph-content-text">
-					<?php echo wp_kses_post( $attributes['content'] ); ?>
-				</p>
-			<?php endif; ?>
+			<p class="wp-block-editorial-introparagraph-content-text">
+				<?php echo wp_kses_post( $attributes['content'] ); ?>
+			</p>
 		</div>
 	<?php endif; ?>
 </div>
