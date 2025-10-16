@@ -121,7 +121,7 @@ export const config = {
 			saveList = false;
 		}
 
-		//Determine if a sepecific dropcap style has been selected.
+		// Determine if a specific dropcap style has been selected.
 		const hasDropCapStyle =
 			className && className.includes( 'is-style-dropcap' );
 
