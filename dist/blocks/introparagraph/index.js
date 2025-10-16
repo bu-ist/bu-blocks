@@ -425,7 +425,6 @@ const renderDropCapSVG = (character, imageURL) => {
  * @return {*}	JSX	The JSX for the Edit function.
  */
 function Edit(props) {
-  console.log(props);
   const {
     attributes,
     setAttributes,
@@ -456,10 +455,8 @@ function Edit(props) {
       dropCapColor: ''
     });
   }
-  console.log(className);
   // Determine if the drop cap SVG should be included in content.
   const isImageDropCap = className && className?.includes('is-style-dropcap-image');
-  console.log('dropcap: ', isImageDropCap);
   // Pull the first character from the article content use in the drop cap SVG.
   let dropCapCharacter = '';
   if ('undefined' !== typeof content) {
