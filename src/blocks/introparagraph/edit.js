@@ -97,7 +97,7 @@ export default function Edit( props ) {
 		className,
 	} = attributes;
 
-	// Determine if a sepecific dropcap style has been selected.
+	// Determine if a specific dropcap style has been selected.
 	const hasDropCapStyle =
 		className && className.includes( 'is-style-dropcap' );
 
