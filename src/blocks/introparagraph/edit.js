@@ -114,7 +114,6 @@ export default function Edit( props ) {
 	// Determine if the drop cap SVG should be included in content.
 	const isImageDropCap =
 		className && className?.includes( 'is-style-dropcap-image' );
-	console.log( 'dropcap: ', isImageDropCap );
 	// Pull the first character from the article content use in the drop cap SVG.
 	let dropCapCharacter = '';
 	if ( 'undefined' !== typeof content ) {
