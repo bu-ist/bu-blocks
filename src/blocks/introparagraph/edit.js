@@ -111,7 +111,6 @@ export default function Edit( props ) {
 			dropCapColor: '',
 		} );
 	}
-	console.log( className );
 	// Determine if the drop cap SVG should be included in content.
 	const isImageDropCap =
 		className && className?.includes( 'is-style-dropcap-image' );
