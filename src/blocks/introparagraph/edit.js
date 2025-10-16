@@ -84,7 +84,6 @@ const renderDropCapSVG = ( character, imageURL ) => {
  * @return {*}	JSX	The JSX for the Edit function.
  */
 export default function Edit( props ) {
-	console.log( props );
 	const { attributes, setAttributes, onReplace, clientId } = props;
 
 	const {
