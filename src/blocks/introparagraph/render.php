@@ -62,11 +62,15 @@ if ( ! empty( $attributes['dropCapImageURL'] ) && $is_style === 'dropcap-image' 
 	// Get the image URL for the drop cap.
 	$drop_cap_image_url = $attributes['dropCapImageURL'];
 
+	// Generate unique ID for the clipPath to avoid conflicts if multiple blocks are on the same page.
+	$clippath_prefix = 'dropcap-text-' . $drop_cap_character . '-';
+	$clippath_id = $clippath_prefix . wp_generate_uuid4(  );
+
 	// Create the SVG structure.
 	$drop_cap_svg = <<<EOD
 	<svg width="0" height="0" class="wp-block-editorial-introparagraph-svg-drop-cap">
 		<defs>
-			<clipPath id="dropcap-text-$drop_cap_character">
+			<clipPath id="$clippath_id">
 				<text textAnchor="start"
 					x="0"
 					y="50%"
@@ -74,7 +78,7 @@ if ( ! empty( $attributes['dropCapImageURL'] ) && $is_style === 'dropcap-image' 
 					class="dropcap-filltext">$drop_cap_character</text>
 			</clipPath>
 		</defs>
-		<g clip-path="url(#dropcap-text-$drop_cap_character)">
+		<g clip-path="url(#$clippath_id)">
 			<image xlink:href="$drop_cap_image_url" href="$drop_cap_image_url" width="100%" height="100%" preserveAspectRatio="none" />
 		</g>
 	</svg>
