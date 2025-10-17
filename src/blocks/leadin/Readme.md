@@ -15,6 +15,8 @@ Theme.json can be used to control the core color block support settings globally
 },
 ```
 ## ToDo:
+- The h4 for the deck should change to an h2.
+- The markup should change to a `<figure>` and `<figcaption>` for better accessibility.
 
 ## Changelog
 
