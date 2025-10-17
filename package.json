@@ -39,6 +39,7 @@
 		"@bostonuniversity/create-block-templates": "^0.0.4",
 		"@linthtml/linthtml": "^0.9.5",
 		"@wordpress/eslint-plugin": "^19.0.0",
+		"@wordpress/icons": "^10.32.0",
 		"@wordpress/prettier-config": "^4.0.0",
 		"@wordpress/scripts": "^27.1.0",
 		"@wordpress/stylelint-config": "^21.33.0",
