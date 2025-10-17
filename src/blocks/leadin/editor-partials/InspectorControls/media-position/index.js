@@ -3,9 +3,13 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, SelectControl } from '@wordpress/components';
 
 /**
+ * Media positioning controls for the Leadin block
  * Returns an Inspector PanelBody component with the background media positioning controls.
- * @param {Object} props - The component props.
- * @return {JSX.Element} The media positioning controls component.
+ *
+ * @param {Object}   props               - Component props
+ * @param {Object}   props.attributes    - Block attributes
+ * @param {Function} props.setAttributes - Function to update attributes
+ * @return {JSX.Element} Media positioning controls panel
  */
 export const MediaPositioningControls = ( props ) => {
 	const { attributes, setAttributes } = props;

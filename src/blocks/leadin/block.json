@@ -129,5 +129,14 @@
 			"backgroundType": "image",
 			"backgroundUrl": "https://www.bu.edu/brand/files/2019/09/10-3084-BUCITYIII-029.jpg"
 		}
-	}
+	},
+	"keywords": [
+		"header", 
+		"hero", 
+		"banner", 
+		"featured", 
+		"headline",
+		"lede",
+		"opening"
+	]
 }

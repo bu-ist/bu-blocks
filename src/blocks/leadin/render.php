@@ -13,8 +13,7 @@
  * @package bu-blocks
  */
 
-// var_dump( $attributes ); // For debugging only. Remove or comment out when done.
-
+// Todo: This may be able to be removed. Previous version of block used it.
 $defaults = array(
 	'backgroundAlt'      => '',
 	'backgroundAutoplay' => false,
@@ -41,8 +40,6 @@ $defaults = array(
 );
 
 $attributes = wp_parse_args( $attributes, $defaults );
-
-// var_dump( $attributes ); // For debugging only. Remove or comment out when done.
 
 // Determine which style is applied to the block.
 $style_emphasize_text  = strpos( $attributes['className'], 'is-style-emphasis-on-text' ) !== false;

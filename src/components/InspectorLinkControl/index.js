@@ -37,7 +37,6 @@ export const InspectorLinkControl = ( props ) => {
 
 	// Run anytime the URL or button text changes.
 	useEffect(() => {
-		console.log('InspectorPageUrl useEffect running with:', linkValue.url, buttonText);
 		handleChange( linkValue.url, buttonText );
 	}, [linkValue, buttonText] );
 
@@ -87,7 +86,6 @@ export const InspectorLinkControl = ( props ) => {
 							className={ 'bu-blocks-sidebar-linkcontrol-field' }
 							value={ linkValue }
 							onChange={ ( newval ) => {
-								console.log('LinkControl onChange newval:', newval);
 								setLinkValue( newval );
 							} }
 							settings={ [] }
