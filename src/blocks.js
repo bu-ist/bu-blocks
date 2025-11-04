@@ -18,10 +18,10 @@ import './blocks/clicktotweet/clicktotweet.js'; // no longer twitter
 import './blocks/collapsible-control/collapsible-control.js';
 import './blocks/collapsible/collapsible.js';
 import './blocks/custom-html/custom-html.js';
-import './blocks/drawer/drawer.js';
-import './blocks/headline/headline.js';
+//import './blocks/drawer/drawer.js';
+//import './blocks/headline/headline.js';
 import './blocks/introparagraph/introparagraph.js';
-import './blocks/leadin/leadin.js';
+//import './blocks/leadin/leadin.js';
 import './blocks/listicle/listicle.js';
 import './blocks/modal/modal.js';
 import './blocks/photoessay/photoessay.js';
