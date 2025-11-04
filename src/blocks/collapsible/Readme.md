@@ -25,5 +25,6 @@ Theme.json can be used to control the core color block support settings globally
 ### 2.0.0
 - Refactor block to modernize structure
   - Add support for Block Supports: Color
+  - Use Heading Level Toolbar component shared with other blocks.
   - Breaking Changes: 
     - Icon for +/- and up/down switched from BU Default Icons font to SVG markup to remove dependency on Responsive Foundation's icons. Existing themes will need to update.
