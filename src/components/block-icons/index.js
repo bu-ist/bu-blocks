@@ -209,6 +209,46 @@ const icons = {
 			></path>
 		</Fragment>
 	),
+	"prebuilt-layout" : (
+		<Fragment>
+			<path
+				fill="#C90813"
+				fillRule="nonzero"
+				d="M53.19 23.864H18.81c-.549 0-1 .451-1 1v22.255c0 .549.451 1 1 1h34.38c.549 0 1-.451 1-1V24.864c0-.549-.451-1-1-1zm-1.965 21.262H20.801V26.897h30.424v18.229z"
+				transform="translate(-11.734 -11.734) scale(.65929)"
+			></path>
+			<path
+				fill="#C90813"
+				fillRule="nonzero"
+				d="M29.84 36.28h-2.06l-.39 1.09h-1.24l2-5.34h1.38l2 5.34h-1.3l-.39-1.09zm-1.67-1.08h1.29l-.64-1.84-.65 1.84z"
+				transform="translate(-21.386 -22.287) scale(.97221)"
+			></path>
+			<path
+				fill="#C90813"
+				fillRule="nonzero"
+				d="M46 35.58H32.486a.17.17 0 01-.17-.15v-1.18a.17.17 0 01.17-.15H46a.17.17 0 01.17.15v1.18a.17.17 0 01-.17.15z"
+				transform="matrix(.7184 0 0 .65929 -13.183 -11.493)"
+			></path>
+			<path
+				fill="#C90813"
+				fillRule="nonzero"
+				d="M46 38.64H32.486a.17.17 0 01-.17-.15v-1.18a.17.17 0 01.17-.15H46a.17.17 0 01.17.15v1.18a.17.17 0 01-.17.15z"
+				transform="matrix(.7184 0 0 .65929 -13.183 -11.483)"
+			></path>
+			<path
+				fill="#C90813"
+				fillRule="nonzero"
+				d="M45.86 41.53H26.14c-.15 0-.27-.07-.27-.15V40.2c0-.08.12-.15.27-.15h19.72c.15 0 .27.07.27.15v1.18c0 .08-.13.15-.27.15z"
+				transform="matrix(.78492 0 0 .65929 -16.252 -11.388)"
+			></path>
+			<path
+				fill="#C90813"
+				fillRule="nonzero"
+				d="M46 32.69H32.416c-.06 0-.1-.06-.1-.14V31.4c0-.08 0-.14.1-.14H46c.06 0 .1.06.1.14v1.15c.03.08-.01.14-.1.14z"
+				transform="matrix(.7184 0 0 .65929 -13.183 -11.59)"
+			></path>
+		</Fragment>
+	),
 	"listicle" : (
 		<Fragment>
 			<g>

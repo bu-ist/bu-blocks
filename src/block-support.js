@@ -56,6 +56,7 @@ const UnregisterBlocks = () => {
 		'editorial/relatedstories',
 		//'editorial/slideshow',
 		'bu/stats',
+		'bu/prebuilt-layout',
 	] );
 
 	const registeredBlocks = getBlockTypes().map( item => item.name );

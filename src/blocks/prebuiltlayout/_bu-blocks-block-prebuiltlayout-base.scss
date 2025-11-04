@@ -1,0 +1,61 @@
+// =================================================================
+// Prebuilt Layout Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-prebuilt-layout {
+
+}
+
+.wp-block-prebuilt-layout__inner-container {
+	display: grid;
+	column-gap: var( --prebuilt-column-gap, var( --bu-container-column-gap, 1rem ) );;
+	row-gap: var( --prebuilt-row-gap, var( --bu-container-row-gap, 1rem ) );
+	margin-inline: auto;
+
+	.has-prebuilt-width-wide & {
+		max-width: var( --bu-container-max-inline-size--wide );
+	}
+
+	.has-prebuilt-width-content & {
+		max-width: var( --bu-container-max-inline-size--content );
+	}
+
+	.has-prebuilt-template-three & {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.has-prebuilt-template-staggered & {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto;
+		grid-template-areas: 
+			"a b b"
+			"c c d";
+		
+		.wp-block-prebuilt-segment {
+			margin: 0;
+
+			&:nth-child( 1 ) {
+				grid-area: a;
+			}
+			&:nth-child( 2 ) {
+				grid-area: b;
+			}
+			&:nth-child( 3 ) {
+				grid-area: c;
+			}
+			&:nth-child( 4 ) {
+				grid-area: d;
+			}
+		}
+	}
+
+	.wp-block-prebuilt-segment {
+		margin: 0;
+	}
+}
