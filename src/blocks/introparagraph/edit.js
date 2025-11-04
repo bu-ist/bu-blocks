@@ -123,10 +123,7 @@ export default function Edit( props ) {
 	// When an image is selected, set the URL and ID attributes on the block.
 	const onSelectImage = ( media ) => {
 		if ( ! media || ! media.url ) {
-			setAttributes( {
-				dropCapImageURL: '',
-				dropCapImageId: null,
-			} );
+			onRemoveImage(); // Reset the image attributes.
 			return;
 		}
 

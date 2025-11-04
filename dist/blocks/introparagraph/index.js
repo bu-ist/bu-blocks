@@ -143,7 +143,7 @@ const config = {
       saveList = false;
     }
 
-    // Determine if a sepecific dropcap style has been selected.
+    // Determine if a specific dropcap style has been selected.
     const hasDropCapStyle = className && className.includes('is-style-dropcap');
     const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, {
       'has-dropcap': hasDropCapStyle,
@@ -301,7 +301,7 @@ const config = {
       saveList = false;
     }
 
-    //Determine if a sepecific dropcap style has been selected.
+    // Determine if a specific dropcap style has been selected.
     const hasDropCapStyle = className && className.includes('is-style-dropcap');
     const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, {
       'has-dropcap': hasDropCapStyle,
@@ -442,7 +442,7 @@ function Edit(props) {
     className
   } = attributes;
 
-  // Determine if a sepecific dropcap style has been selected.
+  // Determine if a specific dropcap style has been selected.
   const hasDropCapStyle = className && className.includes('is-style-dropcap');
 
   // Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
@@ -466,10 +466,7 @@ function Edit(props) {
   // When an image is selected, set the URL and ID attributes on the block.
   const onSelectImage = media => {
     if (!media || !media.url) {
-      setAttributes({
-        dropCapImageURL: '',
-        dropCapImageId: null
-      });
+      onRemoveImage(); // Reset the image attributes.
       return;
     }
 
