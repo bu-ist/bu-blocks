@@ -17,6 +17,7 @@ Theme.json can be used to control the core color block support settings globally
 ## ToDo:
  - Add support for core `Color` Block Support
  - Add support for custom `__bublocks_colorthemes` Block Support
+ - Clean up and reorganize the InspectorControls into an `editor-partials` subfolder.
 
 
 ## Changelog
