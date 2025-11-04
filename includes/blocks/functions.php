@@ -68,3 +68,4 @@ require_once 'class-blockenqueues.php';
 require_once BU_BLOCKS_DIR . 'src/blocks/button/deprecated/deprecated.php';
 require_once BU_BLOCKS_DIR . 'src/blocks/collapsible-control/deprecated/deprecated.php';
 require_once BU_BLOCKS_DIR . 'src/blocks/headline/deprecated/deprecated.php';
+require_once BU_BLOCKS_DIR . 'src/blocks/introparagraph/deprecated/deprecated.php';

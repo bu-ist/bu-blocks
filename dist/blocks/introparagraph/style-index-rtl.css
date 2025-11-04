@@ -1,0 +1,101 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/introparagraph/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-editorial-introparagraph .wp-block-editorial-introparagraph-content::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+/*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.wp-block-editorial-introparagraph p {
+  background-size: 0%;
+}
+.wp-block-editorial-introparagraph svg {
+  display: none;
+}
+.wp-block-editorial-introparagraph.is-style-large .wp-block-editorial-introparagraph-content .editor-rich-text,
+.wp-block-editorial-introparagraph.is-style-large .wp-block-editorial-introparagraph-content .rich-text,
+.wp-block-editorial-introparagraph.is-style-large p:first-of-type {
+  font-size: 1.25em;
+}
+.wp-block-editorial-introparagraph.is-style-split .wp-block-editorial-introparagraph-content {
+  -moz-column-count: 2;
+       column-count: 2;
+  -moz-column-gap: 2em;
+       column-gap: 2em;
+}
+.wp-block-editorial-introparagraph.has-dropcap .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter,
+.wp-block-editorial-introparagraph.has-dropcap svg text {
+  font-weight: 700;
+  display: inline-block;
+  float: right;
+  font-size: 5em;
+  line-height: 1em;
+  margin: 0 0 0.125em 0.25em;
+  margin-bottom: -0.25em;
+}
+@-moz-document url-prefix() {
+  .wp-block-editorial-introparagraph.has-dropcap .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter,
+  .wp-block-editorial-introparagraph.has-dropcap svg text {
+    margin: 0 0 0 0.25em;
+    padding: 8px 0;
+  }
+}
+.wp-block-editorial-introparagraph.has-dropcap svg text {
+  transform: translateY(-5px);
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-boxed .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter {
+  color: white;
+  background: black;
+  font-size: 4.25em;
+  padding: 0.125em 0.25em;
+  margin-top: 0.1em;
+  margin-bottom: 0;
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-outlined .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0.125em 0.25em;
+  margin-top: 0.1em;
+  margin-bottom: 0;
+  font-size: 4.25em;
+}
+@-moz-document url-prefix() {
+  .wp-block-editorial-introparagraph.is-style-dropcap-boxed .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter, .wp-block-editorial-introparagraph.is-style-dropcap-outlined .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter {
+    padding: 20px;
+  }
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-dimensional .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter {
+  text-shadow: -1px 1px lightgray, -2px 2px lightgray, -3px 3px lightgray, -4px 4px lightgray, -5px 5px lightgray, -6px 6px lightgray, -7px 7px lightgray, -8px 8px lightgray, -9px 9px lightgray, -10px 10px lightgray;
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-image .wp-block-editorial-introparagraph-content {
+  position: relative;
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-image svg {
+  position: absolute;
+  display: block;
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-image svg,
+.wp-block-editorial-introparagraph.is-style-dropcap-image text {
+  height: 5em;
+  width: 5em;
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-image .dropcap-filltext {
+  fill: url(#dropcap-texture);
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-image .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter {
+  color: transparent;
+}
+.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-primary .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter,
+.wp-block-editorial-introparagraph.is-style-dropcap-image .has-dropcap-color-secondary .wp-block-editorial-introparagraph-content-text:not(:focus):first-letter {
+  color: transparent;
+}
+
+.wp-block-editorial-introparagraph-toc li {
+  font-style: italic;
+  font-size: 0.9em;
+}
