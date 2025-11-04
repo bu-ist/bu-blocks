@@ -20,7 +20,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Defines the plugin version.
-define( 'BU_BLOCKS_VERSION', '2.0.0-alpha' );
+//define( 'BU_BLOCKS_VERSION', '2.0.0-alpha' );
+
+/**
+ * Constants.
+ */
+define( 'BU_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
+define( 'BU_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
+
+/**
+ * Current plugin info.
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_file_data/
+ */
+$plugin_data = get_file_data(
+	__FILE__,
+	array(
+		'Version'     => 'Version',
+		'Text Domain' => 'Text Domain',
+	),
+	false
+);
+define( 'BU_BLOCKS_VERSION', $plugin_data['Version'] );
+define( 'BU_BLOCKS', $plugin_data['Text Domain'] );
 
 /**
  * Displays admin notice and prevents activation.
@@ -66,3 +88,9 @@ function init_plugin() {
 	include_once plugin_dir_path( __FILE__ ) . 'functions/init.php';
 }
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\init_plugin' );
+
+
+/**
+ * Blocks & Assets
+ */
+require_once BU_BLOCKS_DIR . 'includes/blocks/functions.php';

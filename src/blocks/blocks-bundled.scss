@@ -1,0 +1,31 @@
+/**
+* This file imports all of the base frontend styles for each block
+* in order to create a final compiled stylesheet that contains all
+* non-shared block frontend CSS. This lets us enqueue all of the block
+* styles together when desired.
+*
+* Note: each block also compiles it's block styles into a block specific
+* stylesheet for the frontend. This allows us to have the option to instead
+* load block styles as separate stylesheets for each block. A use case would
+* be for a project where most of the blocks are disabled, or in the future
+* when we support HTTP/2 and decide to switch to multiple small stylesheets
+* instead of a large one. Future versions of WordPress are also adding the ability
+* to inline CSS as well as load core blocks as individual stylesheets when they
+* are used on the page.
+*/
+
+//@import 'includes/tools';
+@import '../tools';
+@import '../src/global/bu-blocks-config';
+@import 'src/global/bu-blocks-extends';
+
+// Import block base styles from each block folder.
+@import 'aside/bu-blocks-block-aside-base';
+@import 'buniverse/bu-blocks-block-buniverse-base';
+@import 'button/bu-blocks-block-button-base';
+@import 'drawer/bu-blocks-block-drawer-base';
+@import 'collapsible/bu-blocks-block-collapsible-base';
+@import 'collapsible-control/bu-blocks-block-collapsible-control-base';
+@import 'headline/bu-blocks-block-headline-base';
+@import 'introparagraph/bu-blocks-block-introparagraph-base';
+@import 'leadin/bu-blocks-block-leadin-base';

@@ -1,0 +1,128 @@
+<?php
+/**
+ * Class to manage non-block assets on the front end of the website where the plugin is used.
+ *
+ * @package BU
+ */
+
+namespace BU\plugin_slug;
+
+/**
+ * Class Assets
+ */
+class PluginEnqueues {
+
+	/**
+	 * Assets constructor.
+	 *
+	 * @since 0.1.0
+	 */
+	public function __construct() {
+		// Enqueue front-end scripts & styles.
+		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
+		// Enqueue admin scripts & styles.
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		// Enqueue variations script.
+		add_action( 'enqueue_block_editor_assets', array( $this, 'variations_scripts' ) );
+	}
+
+
+	/**
+	 * Enqueue Frontend styles.
+	 *
+	 * @since 0.1.0
+	 */
+	public function frontend_styles() {
+
+		// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
+		wp_enqueue_style(
+			PLUGIN_SLUG . '-css-main',
+			BU_BLOCKS_URL . 'build/css/plugin.css',
+			array(),
+			filemtime( BU_BLOCKS_DIR . 'build/css/plugin.css' ),
+			'all'
+		);
+	}
+
+	/**
+	 * Enqueue Frontend javascript
+	 *
+	 * @since 0.2.0
+	 */
+	public function frontend_scripts() {
+
+		$asset_file = include BU_BLOCKS_DIR . '/build/js/plugin.asset.php';
+
+		wp_enqueue_script(
+			PLUGIN_SLUG . '-frontend',
+			BU_BLOCKS_URL . 'build/js/plugin.js',
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			array(
+				'strategy' => 'defer',
+			),
+		);
+	}
+
+	/**
+	 * Enqueue Admin styles
+	 *
+	 * @since 0.2.0
+	 */
+	public function admin_styles() {
+
+		// Enqueue the Main stylesheet for the plugin if needed for non-block styles.
+		wp_enqueue_style(
+			PLUGIN_SLUG . '-admin',
+			BU_BLOCKS_URL . 'build/css/admin.css',
+			array(),
+			filemtime( BU_BLOCKS_DIR . 'build/css/admin.css' ),
+			'all'
+		);
+	}
+
+	/**
+	 * Enqueue Admin javascript
+	 *
+	 * @since 0.2.0
+	 */
+	public function admin_scripts() {
+
+		$asset_file = include BU_BLOCKS_DIR . '/build/js/admin.asset.php';
+
+		wp_enqueue_script(
+			PLUGIN_SLUG . '-admin',
+			BU_BLOCKS_URL . 'build/js/admin.js',
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			array(
+				'strategy' => 'defer',
+			),
+		);
+	}
+
+	/**
+	 * Enqueue editor javascript
+	 *
+	 * @since 0.2.0
+	 */
+	public function variations_scripts() {
+
+		$asset_file = include BU_BLOCKS_DIR . '/build/js/variations.asset.php';
+
+		if ( file_exists( BU_BLOCKS_DIR . '/build/js/variations.js' ) ) {
+			wp_enqueue_script(
+				PLUGIN_SLUG . '-variations',
+				BU_BLOCKS_URL . '/build/js/variations.js',
+				$asset_file['dependencies'],
+				$asset_file['version'],
+				true
+			);
+		}
+	}
+}
+
+// Initialize the class.
+$plugin_enqueues = new PluginEnqueues();

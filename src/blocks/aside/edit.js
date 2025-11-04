@@ -8,7 +8,11 @@ import classnames from 'classnames';
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
 import allowedBlocks from '../../components/allowed-blocks';
-import { getColorSlug } from '../../global/color-utils.mjs';
+import {
+	getColorSlug,
+	getColorThemesSupportsByBlock,
+} from '../../global/color-utils.mjs';
+import ThemeColorPanel from '../../components/colorthemes-panel/index.js';
 
 // WordPress dependencies.
 import { __ } from '@wordpress/i18n';
@@ -21,9 +25,12 @@ import {
 	useBlockProps,
 	getColorObjectByAttributeValues,
 } from '@wordpress/block-editor';
+import { hasBlockSupport } from '@wordpress/blocks';
+
 
 export default function Edit( props ) {
-	const { attributes, setAttributes, className, presetTemplate } = props;
+	const { attributes, setAttributes, className, presetTemplate, name } =
+		props;
 
 	const { themeColor } = attributes;
 
@@ -35,38 +42,24 @@ export default function Edit( props ) {
 		className: classes,
 	} );
 
-	const themeColorObject = getColorObjectByAttributeValues(
-		themeOptions(),
-		themeColor
-	);
+	// themOptions() returns the full/global color palette added to editor settings.
+	const themeOptionsPalette = themeOptions();
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelColorSettings
-					__experimentalIsRenderedInSidebar
-					title={ __( 'Color Settings' ) }
-					colorSettings={ [
-						{
-							value: themeColorObject?.color,
-							onChange: ( value ) =>
-								setAttributes( {
-									themeColor: value
-										? getColorSlug( value, themeOptions() )
-										: undefined,
-								} ),
-							label: __( 'Theme' ),
-							disableCustomColors: true,
-							colors: themeOptions(),
-						},
-					] }
-				>
-					{ ! themeOptions() && (
-						<PanelRow>
-							<em>No Color Palette available for this site.</em>
-						</PanelRow>
-					) }
-				</PanelColorSettings>
+				<ThemeColorPanel
+					blockname={ name }
+					value={ themeColor }
+					themepalette={ themeOptionsPalette }
+					onChange={ ( value, palette ) =>
+						setAttributes( {
+							themeColor: value
+								? getColorSlug( value, palette )
+								: undefined,
+						} )
+					}
+				/>
 			</InspectorControls>
 			<aside { ...blockProps }>
 				<InnerBlocks

@@ -1,0 +1,88 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/collapsible/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.wp-block-bu-collapsible.is-selected > .bu-block-collapsible-content,
+.wp-block-bu-collapsible.has-child-selected > .bu-block-collapsible-content {
+  display: block;
+  padding: 5px 20px;
+  height: auto;
+  overflow: auto;
+  position: static;
+}
+.wp-block-bu-collapsible.is-selected > .bu-block-collapsible-content:after,
+.wp-block-bu-collapsible.has-child-selected > .bu-block-collapsible-content:after {
+  display: none;
+}
+.wp-block-bu-collapsible.is-selected > .bu-collapsible-heading,
+.wp-block-bu-collapsible.has-child-selected > .bu-collapsible-heading {
+  display: block;
+  border-bottom: 1px solid #ccc;
+}
+.wp-block-bu-collapsible.is-selected.is-style-preview .bu-collapsible-heading,
+.wp-block-bu-collapsible.has-child-selected.is-style-preview .bu-collapsible-heading {
+  border-bottom: 0;
+}
+
+.wp-block-bu-collapsible .bu-collapsible-heading {
+  margin: 0;
+}
+.wp-block-bu-collapsible.is-style-preview {
+  border: none;
+  position: relative;
+  margin-bottom: 30px;
+}
+.wp-block-bu-collapsible.is-style-preview .bu-block-collapsible-content {
+  padding: 0;
+  display: block;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+}
+.wp-block-bu-collapsible.is-style-preview .bu-block-collapsible-content:after {
+  content: "";
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(to bottom, transparent, #fff);
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/collapsible/editor-partials/InspectorControls/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-up, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-down, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-minus, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-plus {
+  display: block;
+  width: 15px;
+  margin: 3px;
+}
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-up svg g, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-down svg g, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-minus svg g, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-plus svg g {
+  display: none;
+}
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-up svg path, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-down svg path, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-minus svg path, .bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-plus svg path {
+  fill: currentColor;
+}
+
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-plus .wp-block-bu-collapsible-icon-plus {
+  display: block;
+}
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-minus .wp-block-bu-collapsible-icon-minus {
+  display: block;
+}
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-down .wp-block-bu-collapsible-icon-down {
+  display: block;
+}
+.bu-collapsible-icon-style-button .bu-collapsible-icon-style-button-up .wp-block-bu-collapsible-icon-up {
+  display: block;
+}
+
+/*# sourceMappingURL=index.css.map*/

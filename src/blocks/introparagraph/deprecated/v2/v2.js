@@ -1,0 +1,166 @@
+// WordPress dependencies.
+import { RichText, useBlockProps } from '@wordpress/block-editor';
+// Import a library used to manage multiple class names.
+import classnames from 'classnames';
+
+/**
+ * Render the SVG used for a drop cap when the drop cap has an
+ * image assigned to it.
+ *
+ * This is used in the block editor and stored in post content
+ * as part of the block markup.
+ *
+ *
+ * @param {string} character The character to display in the drop cap.
+ * @param {string} imageURL  The background image for the drop cap character.
+ */
+const v2_renderDropCapSVG = ( character, imageURL ) => {
+	const randomID = 'dropcap-text-' + character;
+	const clipPathURL = 'url(#' + randomID + ')';
+	const xlinkurlAttr = { 'xlink:href': imageURL };
+	return (
+		<svg>
+			<clipPath id={ randomID }>
+				<text
+					textAnchor="start"
+					x="0"
+					y="50%"
+					dy=".404em"
+					className="dropcap-filltext"
+				>
+					{ character }
+				</text>
+			</clipPath>
+			<g clip-path={ clipPathURL }>
+				<image
+					{ ...xlinkurlAttr }
+					href={ imageURL }
+					width="100%"
+					height="100%"
+					preserveAspectRatio="none"
+				/>
+			</g>
+		</svg>
+	);
+};
+
+export const config = {
+	supports: {
+		anchor: true,
+	},
+	attributes: {
+		heading: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-introparagraph h4',
+		},
+		list: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-introparagraph-toc',
+		},
+		content: {
+			type: 'string',
+			source: 'html',
+			selector: '.wp-block-editorial-introparagraph-content p',
+		},
+		dropCapColor: {
+			type: 'string',
+			default: '',
+		},
+		paragraphColor: {
+			type: 'string',
+			default: '',
+		},
+		className: {
+			type: 'string',
+			default: '',
+		},
+		dropCapImageURL: {
+			type: 'string',
+			default: '',
+		},
+		dropCapImageId: {
+			type: 'number',
+		},
+	},
+
+	save( props ) {
+		// Get the attributes from the props.
+		const { attributes } = props;
+		const {
+			heading,
+			list,
+			content,
+			dropCapColor,
+			dropCapImageURL,
+			paragraphColor,
+			className,
+		} = attributes;
+
+		let isImageDropCap = false;
+		if ( 'undefined' !== typeof attributes.className ) {
+			// Determine if the drop cap SVG should be included in content.
+			isImageDropCap =
+				className && className?.includes( 'is-style-dropcap-image' );
+		}
+
+		// Pull the first character from the article content use in the drop cap SVG.
+		let dropCapCharacter = '';
+		if ( 'undefined' !== typeof content ) {
+			dropCapCharacter = content.charAt( 0 );
+		}
+
+		// Determine if the list is empty and should be excluded from the saved block.
+		let saveList = true;
+		if (
+			'undefined' === typeof list ||
+			'<li></li>' === list ||
+			RichText.isEmpty( list )
+		) {
+			saveList = false;
+		}
+
+		// Determine if a specific dropcap style has been selected.
+		const hasDropCapStyle =
+			className && className.includes( 'is-style-dropcap' );
+
+		const classes = classnames( className, {
+			'has-dropcap': hasDropCapStyle,
+			[ `has-dropcap-color-${ dropCapColor }` ]:
+				hasDropCapStyle && dropCapColor,
+			[ `has-paragraph-color-${ paragraphColor }` ]:
+				! hasDropCapStyle && paragraphColor,
+		} );
+
+		const blockProps = useBlockProps.save( {
+			className: classes,
+		} );
+
+		return (
+			<div { ...blockProps }>
+				{ ! RichText.isEmpty( heading ) && (
+					<RichText.Content tagName="h4" value={ heading } />
+				) }
+				{ saveList && (
+					<RichText.Content
+						tagName="ul"
+						className="wp-block-editorial-introparagraph-toc"
+						value={ list }
+						multiline="li"
+					/>
+				) }
+				{ ! RichText.isEmpty( content ) && (
+					<div className="wp-block-editorial-introparagraph-content">
+						{ isImageDropCap &&
+							v2_renderDropCapSVG(
+								dropCapCharacter,
+								dropCapImageURL
+							) }
+						<RichText.Content tagName="p" value={ content } />
+					</div>
+				) }
+			</div>
+		);
+	},
+};

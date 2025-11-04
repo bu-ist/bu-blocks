@@ -9,6 +9,7 @@
 //
 
 .wp-block-bu-collapsible {
+	margin-bottom: var( --bu_blocks-block-bu-collapsible-margin-bottom );
 	margin-top: -1px;
 
 	.bu-block-collapsible-content {
@@ -35,20 +36,11 @@
 		padding: 0;
 		position: relative;
 		border: 1px solid #ccc;
-		@include icon( 'plus', 'after' );
-
-		&:after {
-			font-size: .75em;
-			position: absolute;
-			right: 15px;
-			top: 50%;
-			transform: translateY( -50% );
-			z-index: 0;
-		}
 
 		button {
 			padding-right: 50px;
 			white-space: normal;
+			color: inherit;
 
 			&:hover {
 				background-image: none;
@@ -58,12 +50,6 @@
 
 	}
 
-	&.icon-style-arrows > .bu-collapsible-heading::after {
-		content: '\F501';
-	}
-
-
-
 	&.is-open {
 
 		& > .bu-collapsible-heading {
@@ -72,14 +58,6 @@
 
 		& > .bu-block-collapsible-content {
 			display: block;
-		}
-
-		& > .bu-collapsible-heading::after {
-			content: '\002D';
-		}
-
-		&.icon-style-arrows > .bu-collapsible-heading::after {
-			content: '\F500'
 		}
 
 	}
@@ -188,6 +166,49 @@
 				background-image: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
 			}
 		}
+	}
+}
+
+
+.wp-block-bu-collapsible-icon {
+	display: block;
+    width: 0.75em;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+
+	svg {
+		g {
+			display: none;
+		}
+
+		path {
+			fill: currentColor;
+		}
+	}
+
+}
+
+.icon-style-plus-minus {
+	&.is-closed .wp-block-bu-collapsible-icon-plus {
+		display: block;
+	}
+
+	&.is-open .wp-block-bu-collapsible-icon-minus {
+		display: block;
+	}
+}
+
+
+.icon-style-arrows {
+	&.is-closed .wp-block-bu-collapsible-icon-down {
+		display: block;
+	}
+
+	&.is-open .wp-block-bu-collapsible-icon-up {
+		display: block;
 	}
 }
 

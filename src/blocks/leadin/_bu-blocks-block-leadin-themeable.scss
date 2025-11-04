@@ -66,56 +66,6 @@ $scope: blocks-get( 'scope' );
 		color: blocks-get( 'color-primary-text');
 	}
 
-	.container-words-inner {
-		z-index: 1;
-
-		&:before {
-			content: '';
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			width: 100%;
-			z-index: -1;
-		}
-
-		&.has-opacity-10:before {
-			opacity: .1;
-		}
-
-		&.has-opacity-20:before {
-			opacity: .2;
-		}
-
-		&.has-opacity-30:before {
-			opacity: .3;
-		}
-
-		&.has-opacity-40:before {
-			opacity: .4;
-		}
-
-		&.has-opacity-50:before {
-			opacity: .5;
-		}
-
-		&.has-opacity-60:before {
-			opacity: .6;
-		}
-
-		&.has-opacity-70:before {
-			opacity: .7;
-		}
-
-		&.has-opacity-80:before {
-			opacity: .8;
-		}
-
-		&.has-opacity-90:before {
-			opacity: .9;
-		}
-	}
-
 	.wp-block-editorial-leadin-caption {
 		color: blocks-get( 'font-color-aside');
 	}

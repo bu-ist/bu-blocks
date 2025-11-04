@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/wp/5.8/block.json",
+  "apiVersion": 2,
+  "name": "editorial/headline",
+  "version": "0.0.0",
+  "title": "Headline",
+  "icon": "block-default",
+  "category": "bu-editorial",
+  "description": "Add a section heading with an anchor and pre- and post-text formatting options.",
+  "textdomain": "bu-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "level": {
+      "type": "number",
+      "default": 2
+    },
+    "anchor": {
+      "type": "string"
+    },
+    "textAlign": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "color": {
+        "text": true,
+        "background": true,
+        "link": true,
+        "gradients": true
+    }
+  },
+  "styles": [
+    {
+      "name": "default",
+      "label": "Regular",
+      "isDefault": true
+    },
+    {
+      "name": "emphasis-weight",
+      "label": "Emphasize weight"
+    },
+    {
+      "name": "emphasis-color",
+      "label": "Emphasize color"
+    }
+  ],
+  "example": {
+		"attributes": {
+			"content": "Tellus Dolor Purus",
+            "level": 2
+        }
+	}
+}
