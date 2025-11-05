@@ -5,21 +5,19 @@ import classnames from 'classnames';
 import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
+import { __ } from '@wordpress/i18n';
 
-const { createBlock } = wp.blocks;
-const { PanelBody, RangeControl } = wp.components;
-const {
+import { createBlock } from '@wordpress/blocks';
+import { PanelBody, RangeControl } from '@wordpress/components';
+import {
 	InnerBlocks,
 	InspectorControls,
 	RichText,
 	useBlockProps,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+} from '@wordpress/block-editor';
 
-const { compose } = wp.compose;
-const { withDispatch, withSelect } = wp.data;
+import { compose } from '@wordpress/compose';
+import { withDispatch, withSelect } from '@wordpress/data';
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -30,24 +28,15 @@ const { withDispatch, withSelect } = wp.data;
  * @return {string} block classnames
  */
 const getBlockClasses = ( className, stats ) => {
-	return (
-		classnames(
-			className,
-			{
-				[ `has-${stats}-stats` ]: stats,
-			}
-		)
-	);
+	return classnames( className, {
+		[ `has-${ stats }-stats` ]: stats,
+	} );
 };
 
-const Edit = props => {
+const Edit = ( props ) => {
 	const {
 		clientId,
-		attributes: {
-			align,
-			caption,
-			stats,
-		},
+		attributes: { align, caption, stats },
 		className,
 		setAttributes,
 		getBlocksByClientId,
@@ -56,11 +45,11 @@ const Edit = props => {
 	} = props;
 
 	// Determine whether the block is aligned left or right.
-	const isAlignedLeftOrRight = ( align === 'left' || align === 'right' );
+	const isAlignedLeftOrRight = align === 'left' || align === 'right';
 
-	const blockProps = useBlockProps({
+	const blockProps = useBlockProps( {
 		className: getBlockClasses( className, stats ),
-	});
+	} );
 
 	/**
 	 * Updates the stats attribute and handles innerBlock insertions or removals.
@@ -96,12 +85,10 @@ const Edit = props => {
 				<div className="wp-block-bu-stats-row">
 					<InnerBlocks
 						allowedBlocks={ [ 'bu/stat' ] }
-						template={ [
-							[ 'bu/stat', {} ],
-						] }
+						template={ [ [ 'bu/stat', {} ] ] }
 						templateLock={ false }
 					/>
-					{ ! isAlignedLeftOrRight &&
+					{ ! isAlignedLeftOrRight && (
 						<InspectorControls>
 							<PanelBody title={ __( 'Options' ) }>
 								<RangeControl
@@ -114,16 +101,25 @@ const Edit = props => {
 								/>
 							</PanelBody>
 						</InspectorControls>
-					}
+					) }
 				</div>
 				<RichText
 					tagName="figcaption"
 					className="wp-block-bu-stats-caption"
 					placeholder={ __( 'Add a caption (optional)…' ) }
 					value={ caption }
-					onChange={ value => setAttributes( { caption: value } ) }
-					formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-					allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+					onChange={ ( value ) =>
+						setAttributes( { caption: value } )
+					}
+					formattingControls={ getAllowedFormats(
+						'formattingControls',
+						[ 'bold', 'italic', 'link' ]
+					) }
+					allowedFormats={ getAllowedFormats( 'allowedFormats', [
+						'core/bold',
+						'core/italic',
+						'core/link',
+					] ) }
 					keepPlaceholderOnFocus
 				/>
 			</figure>

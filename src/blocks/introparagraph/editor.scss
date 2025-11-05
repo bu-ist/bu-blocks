@@ -5,7 +5,7 @@
  * which makes it higher in priority.
  */
 
- *[data-type="editorial/introparagraph"] .wp-block-editorial-introparagraph {
+ .wp-block-editorial-introparagraph {
  	textarea {
 		font-size: 1.18169em;
 		line-height: 1.25887;
@@ -14,9 +14,8 @@
 		font-weight: 700;
 	}
 
-	&.has-dropcap:focus-within,
-	&.has-dropcap:focus {
-		
+	.wp-block-editorial-introparagraph-content:focus,
+	.wp-block-editorial-introparagraph-content:focus-within {
 		svg {
 			display: none !important;
 		}

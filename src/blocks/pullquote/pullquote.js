@@ -12,39 +12,39 @@ import './style.scss';
 import './editor.scss';
 
 // Internal dependencies.
-import Background, { BackgroundAttributes, BackgroundControls } from '../../components/background';
+import Background, {
+	BackgroundAttributes,
+	BackgroundControls,
+} from '../../components/background';
 import getAllowedFormats from '../../global/allowed-formats';
 import themeOptions from '../../global/theme-options';
+import { getColorSlug } from '../../global/color-utils.mjs';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	registerBlockType,
-} = wp.blocks;
-const {
-	Fragment,
-	useState,
-} = wp.element;
-const {
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { useState } from '@wordpress/element';
+import {
 	PanelBody,
-	Path,
+	PanelRow,
 	SelectControl,
 	TextControl,
-	SVG,
-} = wp.components;
-const {
+} from '@wordpress/components';
+import {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
-	withColors,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+	getColorObjectByColorValue,
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
 
 // Returns true if the current block style is "Default".
 const isStyleDefault = ( className ) => {
-	return ( ! className.includes( 'is-style-modern' ) && ! className.includes( 'is-style-pop' ) );
+	return (
+		! className.includes( 'is-style-modern' ) &&
+		! className.includes( 'is-style-pop' )
+	);
 };
 
 /**
@@ -54,22 +54,24 @@ const isStyleDefault = ( className ) => {
  * @param {number} backgroundId ID of the background media, if set.
  * @param {string} imageFocus   Value of the "Crop Media To" setting.
  * @param {string} themeColor   Value of the "Theme Color" setting.
+ * @param {string} textColor
  */
-const getClasses = ( className, backgroundId, imageFocus, themeColor, textColor ) => {
+const getClasses = (
+	className,
+	backgroundId,
+	imageFocus,
+	themeColor,
+	textColor
+) => {
 	const isStylePop = className.includes( 'is-style-pop' );
 
-	return (
-		classnames(
-			className,
-			{
-				'has-image': ( backgroundId && ! isStylePop ),
-				[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
-				[ `has-${themeColor}-theme` ]: themeColor,
-				[ `has-${textColor}-theme-text` ]: textColor,
-			}
-		)
-	);
-}
+	return classnames( className, {
+		'has-image': backgroundId && ! isStylePop,
+		[ `has-image-focus-${ imageFocus }` ]: imageFocus && ! isStylePop,
+		[ `has-${ themeColor }-theme` ]: themeColor,
+		[ `has-${ textColor }-theme-text` ]: textColor,
+	} );
+};
 
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
@@ -77,8 +79,8 @@ const allowedMedia = [ 'image' ];
 // Register the block.
 registerBlockType( 'bu/pullquote', {
 	title: __( 'BU Pullquote' ),
-	description: __( '' ),
-	icon: blockIcons('pullquote'),
+	description: __( 'Add a styled Pullquote' ),
+	icon: blockIcons( 'pullquote' ),
 	category: 'bu',
 	supports: {
 		align: [ 'full', 'wide' ],
@@ -87,7 +89,7 @@ registerBlockType( 'bu/pullquote', {
 		quote: {
 			type: 'array',
 			source: 'children',
-			selector: '.quote-sizing'
+			selector: '.quote-sizing',
 		},
 		photoCredit: {
 			type: 'string',
@@ -97,11 +99,11 @@ registerBlockType( 'bu/pullquote', {
 		cite: {
 			type: 'array',
 			source: 'children',
-			selector: 'footer'
+			selector: 'footer',
 		},
 		imageFocus: {
 			type: 'string',
-			default: 'center-middle'
+			default: 'center-middle',
 		},
 		className: {
 			type: 'string',
@@ -121,6 +123,7 @@ registerBlockType( 'bu/pullquote', {
 			name: '',
 			label: __( 'Default' ),
 			default: true,
+			isDefault: true,
 		},
 		{
 			name: 'modern',
@@ -131,18 +134,16 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
+	example: {
+		attributes: {
+			quote: 'Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
+			cite: 'Tellus Dolor Purus',
+		},
+	},
 
-	edit: withColors( 'themeColor', 'textColor' )( props => {
+	edit: function Edit( props ) {
 		// Get the block properties.
-		const {
-			attributes,
-			setAttributes,
-			className,
-			setThemeColor,
-			themeColor,
-			textColor,
-			setTextColor,
-		} = props;
+		const { attributes, setAttributes, className } = props;
 
 		// Get the block attributes.
 		const {
@@ -151,6 +152,8 @@ registerBlockType( 'bu/pullquote', {
 			photoCredit,
 			imageFocus,
 			backgroundId,
+			textColor,
+			themeColor,
 		} = attributes;
 
 		const [ isUploading, setIsUploading ] = useState( false );
@@ -163,35 +166,64 @@ registerBlockType( 'bu/pullquote', {
 			}
 
 			return (
-				<PanelBody title={ __( 'Media Positioning' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Media Positioning' ) }
+					initialOpen={ false }
+				>
 					<SelectControl
 						label={ __( 'Crop Media to:' ) }
 						value={ imageFocus }
-						onChange={ value => setAttributes( { imageFocus: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { imageFocus: value } )
+						}
 						options={ [
 							{ value: 'left-top', label: __( 'Left Top' ) },
-							{ value: 'left-middle', label: __( 'Left Center' ) },
-							{ value: 'left-bottom', label: __( 'Left Bottom' ) },
+							{
+								value: 'left-middle',
+								label: __( 'Left Center' ),
+							},
+							{
+								value: 'left-bottom',
+								label: __( 'Left Bottom' ),
+							},
 							{ value: 'center-top', label: __( 'Center Top' ) },
 							{ value: 'center-middle', label: __( 'Center' ) },
-							{ value: 'center-bottom', label: __( 'Center Bottom' ) },
+							{
+								value: 'center-bottom',
+								label: __( 'Center Bottom' ),
+							},
 							{ value: 'right-top', label: __( 'Right Top' ) },
-							{ value: 'right-middle', label: __( 'Right Center' ) },
-							{ value: 'right-bottom', label: __( 'Right Bottom' ) },
+							{
+								value: 'right-middle',
+								label: __( 'Right Center' ),
+							},
+							{
+								value: 'right-bottom',
+								label: __( 'Right Bottom' ),
+							},
 						] }
 					/>
 				</PanelBody>
 			);
 		};
 
+		const themeColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			themeColor
+		);
+		const textColorObject = getColorObjectByAttributeValues(
+			themeOptions(),
+			textColor
+		);
+
 		// Return the block editing interface.
 		return (
-			<Fragment>
+			<>
 				<InspectorControls>
-					<PanelBody title={ __( 'Media Options' ) } >
+					<PanelBody title={ __( 'Media Options' ) }>
 						<TextControl
 							label={ __( 'Media Credit' ) }
-							onChange={ photoCredit => setAttributes( { photoCredit } ) }
+							onChange={ ( value ) => setAttributes( { value } ) }
 							value={ photoCredit }
 						/>
 					</PanelBody>
@@ -200,27 +232,53 @@ registerBlockType( 'bu/pullquote', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										themeColor: value
+											? getColorSlug( value, themeOptions() )
+											: undefined,
+									} ),
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					<PanelColorSettings
 						title={ __( 'Text Color' ) }
+						description={ __( 'Description' ) }
 						colorSettings={ [
 							{
-								value: textColor.color,
-								onChange: setTextColor,
+								value: textColorObject?.color,
+								onChange: ( value ) =>
+									setAttributes( {
+										textColor: value
+											? getColorSlug( value, themeOptions() )
+											: undefined,
+									} ),
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
-
 						] }
-					/>
+					>
+						{ ! themeOptions() && (
+							<PanelRow>
+								<em>
+									No Color Palette available for this site.
+								</em>
+							</PanelRow>
+						) }
+					</PanelColorSettings>
 					{ mediaPositioningControls() }
 				</InspectorControls>
 				<BackgroundControls
@@ -228,24 +286,35 @@ registerBlockType( 'bu/pullquote', {
 					blockProps={ props }
 					placeholderText={ __( 'Add Image' ) }
 					setIsUploading={ setIsUploading }
+					imageSize="large"
 				/>
-				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug, textColor.slug ) }>
+				<div
+					className={ getClasses(
+						className,
+						backgroundId,
+						imageFocus,
+						themeColor,
+						textColor
+					) }
+				>
 					<div className="wp-block-bu-pullquote-inner">
 						{ isStyleDefault( className ) && (
-							<Fragment>
+							<>
 								<figure>
 									<Background
 										blockProps={ props }
 										isUploading={ isUploading }
 									/>
 								</figure>
-							</Fragment>
+							</>
 						) }
 						<blockquote>
 							<div className="container-lockup">
 								<div className="container-icon-outer">
 									<div className="container-icon-inner">
-										{ className.includes( 'is-style-modern' ) && (
+										{ className.includes(
+											'is-style-modern'
+										) && (
 											<Background
 												blockProps={ props }
 												isUploading={ isUploading }
@@ -260,27 +329,54 @@ registerBlockType( 'bu/pullquote', {
 										className="quote-sizing"
 										placeholder={ __( 'Add quote text…' ) }
 										value={ quote }
-										onChange={ value => setAttributes( { quote: value } ) }
-										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+										onChange={ ( value ) =>
+											setAttributes( { quote: value } )
+										}
+										formattingControls={ getAllowedFormats(
+											'formattingControls',
+											[ 'bold', 'italic', 'link' ]
+										) }
+										allowedFormats={ getAllowedFormats(
+											'allowedFormats',
+											[
+												'core/bold',
+												'core/italic',
+												'core/link',
+											]
+										) }
 										keepPlaceholderOnFocus
 									/>
 									<RichText
 										tagName="footer"
-										placeholder={ __( 'Add quote attribution…' ) }
+										placeholder={ __(
+											'Add quote attribution…'
+										) }
 										value={ cite }
-										onChange={ value => setAttributes( { cite: value } ) }
-										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+										onChange={ ( value ) =>
+											setAttributes( { cite: value } )
+										}
+										formattingControls={ getAllowedFormats(
+											'formattingControls',
+											[ 'bold', 'italic', 'link' ]
+										) }
+										allowedFormats={ getAllowedFormats(
+											'allowedFormats',
+											[
+												'core/bold',
+												'core/italic',
+												'core/link',
+											]
+										) }
 										keepPlaceholderOnFocus
 									/>
 									<hr />
 								</div>
-								{ className.includes( 'is-style-modern' ) && photoCredit && (
-									<div className="wp-component-media-credit">
-										{ photoCredit }
-									</div>
-								) }
+								{ className.includes( 'is-style-modern' ) &&
+									photoCredit && (
+										<div className="wp-component-media-credit">
+											{ photoCredit }
+										</div>
+									) }
 							</div>
 						</blockquote>
 					</div>
@@ -290,15 +386,13 @@ registerBlockType( 'bu/pullquote', {
 						</div>
 					) }
 				</div>
-			</Fragment>
+			</>
 		);
-	} ),
+	},
 
 	save( props ) {
 		// Get the block properties.
-		const {
-			attributes,
-		} = props;
+		const { attributes } = props;
 
 		// Get the block attributes.
 		const {
@@ -314,24 +408,28 @@ registerBlockType( 'bu/pullquote', {
 
 		// Returns the block rendering for the front end.
 		return (
-			<div className={ getClasses( className, backgroundId, imageFocus, themeColor, textColor ) }>
+			<div
+				className={ getClasses(
+					className,
+					backgroundId,
+					imageFocus,
+					themeColor,
+					textColor
+				) }
+			>
 				<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
 						<figure>
-							<Background
-								blockProps={ props }
-							/>
+							<Background blockProps={ props } />
 						</figure>
 					) }
 					<blockquote>
 						<div className="container-lockup">
 							<div className="container-icon-outer">
 								<div className="container-icon-inner">
-									{ className.includes( 'is-style-modern' ) && (
-										<Background
-											blockProps={ props }
-										/>
-									) }
+									{ className.includes(
+										'is-style-modern'
+									) && <Background blockProps={ props } /> }
 								</div>
 							</div>
 
@@ -349,11 +447,12 @@ registerBlockType( 'bu/pullquote', {
 								/>
 								<hr />
 							</div>
-							{ className.includes( 'is-style-modern' ) && photoCredit && (
-								<div className="wp-component-media-credit">
-									{ photoCredit }
-								</div>
-							) }
+							{ className.includes( 'is-style-modern' ) &&
+								photoCredit && (
+									<div className="wp-component-media-credit">
+										{ photoCredit }
+									</div>
+								) }
 						</div>
 					</blockquote>
 				</div>

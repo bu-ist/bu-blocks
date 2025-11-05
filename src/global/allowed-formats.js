@@ -1,4 +1,14 @@
 /**
+ * Get Allowed Formats compatibility function.
+ *
+ * todo: 5/17/2025: Remove this from all current blocks now that WP 5.3 has
+ * been released and put into production.
+ *
+ * However, this is still called in deprecated blocks so may need to remain
+ * or be moved into the deprecation folders for each block.
+ */
+
+/**
  * Provide the expected attribute value for a list of allowed
  * formatting controls.
  *
@@ -23,7 +33,8 @@
  */
 
 const getAllowedFormats = ( type, allowedFormats ) => {
-	const supportsAllowedFormats = ( 'undefined' === typeof wp.blockEditor ) ? false : true;
+	const supportsAllowedFormats =
+		'undefined' === typeof wp.blockEditor ? false : true;
 
 	if ( 'allowedFormats' === type ) {
 		return supportsAllowedFormats ? allowedFormats : false;
@@ -32,6 +43,6 @@ const getAllowedFormats = ( type, allowedFormats ) => {
 	}
 
 	return allowedFormats;
-}
+};
 
 export default getAllowedFormats;

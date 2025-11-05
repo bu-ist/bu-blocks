@@ -8,64 +8,65 @@ import classnames from 'classnames';
 // Internal dependencies.
 import themeOptions from '../../global/theme-options.js';
 import allowedBlocks from '../../components/allowed-blocks';
+import {
+	getColorSlug,
+	getColorThemesSupportsByBlock,
+} from '../../global/color-utils.mjs';
+import ThemeColorPanel from '../../components/colorthemes-panel/index.js';
 
 // WordPress dependencies.
-const { __ } = wp.i18n;
-const { Component, Fragment } = wp.element;
-const { compose } = wp.compose;
-const {
+import { __ } from '@wordpress/i18n';
+
+import { PanelRow } from '@wordpress/components';
+import {
 	InnerBlocks,
 	InspectorControls,
 	PanelColorSettings,
-	withColors,
-	useBlockProps
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+	useBlockProps,
+	getColorObjectByAttributeValues,
+} from '@wordpress/block-editor';
+import { hasBlockSupport } from '@wordpress/blocks';
 
-const BUAsideEdit = ( props ) => {
 
-		const {
-			attributes,
-			className,
-			themeColor,
-			setThemeColor,
-			presetTemplate,
-		} = props;
+export default function Edit( props ) {
+	const { attributes, setAttributes, className, presetTemplate, name } =
+		props;
 
-		const classes = classnames(
-			className,
-			{ [ `has-${themeColor.slug}-background` ]: themeColor.slug }
-		);
+	const { themeColor } = attributes;
 
-		const blockProps = useBlockProps( {
-			className: classes,
-		});
+	const classes = classnames( className, {
+		[ `has-${ themeColor }-background` ]: themeColor,
+	} );
 
-		return (
-			<Fragment>
-				<InspectorControls>
-					<PanelColorSettings
-						title={ __( 'Color Settings' ) }
-						colorSettings={ [
-							{
-								value: themeColor.color,
-								onChange: setThemeColor,
-								label: __( 'Theme' ),
-								disableCustomColors: true,
-								colors: themeOptions(),
-							},
-						] }
-					/>
-				</InspectorControls>
-				<aside {...blockProps}>
-					<InnerBlocks
-						allowedBlocks={ allowedBlocks() }
-						template={ presetTemplate }
-					/>
-				</aside>
-			</Fragment>
-		);
+	const blockProps = useBlockProps( {
+		className: classes,
+	} );
+
+	// themOptions() returns the full/global color palette added to editor settings.
+	const themeOptionsPalette = themeOptions();
+
+	return (
+		<>
+			<InspectorControls>
+				<ThemeColorPanel
+					blockname={ name }
+					value={ themeColor }
+					themepalette={ themeOptionsPalette }
+					onChange={ ( value, palette ) =>
+						setAttributes( {
+							themeColor: value
+								? getColorSlug( value, palette )
+								: undefined,
+						} )
+					}
+				/>
+			</InspectorControls>
+			<aside { ...blockProps }>
+				<InnerBlocks
+					allowedBlocks={ allowedBlocks() }
+					template={ presetTemplate }
+				/>
+			</aside>
+		</>
+	);
 }
-
-export default compose( [
-	withColors( 'themeColor' )
-] )( BUAsideEdit );

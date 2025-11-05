@@ -1,0 +1,4 @@
+**/.git
+**/dev/phpcs
+**/dist
+**/node_modules

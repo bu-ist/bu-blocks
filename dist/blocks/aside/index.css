@@ -1,0 +1,43 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/aside/editor.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+/**
+* Define CSS variables to allow child themes
+* to alter these values easily if needed.
+**/
+:root {
+  --bu_blocks-block-bu-aside-editor-floated-width: calc(100% / 3);
+}
+
+aside[data-type="editorial/aside"].wp-block-editorial-aside {
+  float: none;
+}
+
+[data-align=right] > [data-type="editorial/aside"].wp-block-editorial-aside,
+[data-align=left] > [data-type="editorial/aside"].wp-block-editorial-aside {
+  width: var(--bu_blocks-block-bu-aside-editor-floated-width);
+}
+
+[data-align=right] > [data-type="editorial/aside"].wp-block-editorial-aside {
+  float: right;
+}
+
+[data-align=left] > [data-type="editorial/aside"].wp-block-editorial-aside {
+  float: left;
+}
+
+.wp-block-editorial-aside.has-dark-background .wp-block-heading h2 {
+  color: #fff;
+}
+
+/*# sourceMappingURL=index.css.map*/

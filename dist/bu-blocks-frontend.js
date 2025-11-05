@@ -22,14 +22,16 @@ Custom Event Polyfill
 https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
 */
 (function () {
-  if (typeof window.CustomEvent === "function") return false;
+  if (typeof window.CustomEvent === 'function') {
+    return false;
+  }
   function CustomEvent(event, params) {
     params = params || {
       bubbles: false,
       cancelable: false,
       detail: null
     };
-    var evt = document.createEvent('CustomEvent');
+    const evt = document.createEvent('CustomEvent');
     evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
     return evt;
   }
@@ -38,9 +40,9 @@ https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
 })();
 
 /*
-.matches() polyfill:
-https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
- */
+  .matches() polyfill:
+  https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+   */
 if (!Element.prototype.matches) {
   Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
@@ -48,15 +50,15 @@ if (!Element.prototype.matches) {
 // https://tc39.github.io/ecma262/#sec-array.prototype.findindex
 if (!Array.prototype.findIndex) {
   Object.defineProperty(Array.prototype, 'findIndex', {
-    value: function (predicate) {
+    value(predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this == null) {
         throw new TypeError('"this" is null or not defined');
       }
-      var o = Object(this);
+      const o = Object(this);
 
       // 2. Let len be ? ToLength(? Get(O, "length")).
-      var len = o.length >>> 0;
+      const len = o.length >>> 0;
 
       // 3. If IsCallable(predicate) is false, throw a TypeError exception.
       if (typeof predicate !== 'function') {
@@ -64,10 +66,10 @@ if (!Array.prototype.findIndex) {
       }
 
       // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-      var thisArg = arguments[1];
+      const thisArg = arguments[1];
 
       // 5. Let k be 0.
-      var k = 0;
+      let k = 0;
 
       // 6. Repeat, while k < len
       while (k < len) {
@@ -75,7 +77,7 @@ if (!Array.prototype.findIndex) {
         // b. Let kValue be ? Get(O, Pk).
         // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
         // d. If testResult is true, return k.
-        var kValue = o[k];
+        const kValue = o[k];
         if (predicate.call(thisArg, kValue, k, o)) {
           return k;
         }
@@ -98,9 +100,11 @@ if (!Element.prototype.matches) {
 // element.closest() polyfill.
 if (!Element.prototype.closest) {
   Element.prototype.closest = function (s) {
-    var el = this;
+    let el = this;
     do {
-      if (Element.prototype.matches.call(el, s)) return el;
+      if (Element.prototype.matches.call(el, s)) {
+        return el;
+      }
       el = el.parentElement || el.parentNode;
     } while (el !== null && el.nodeType === 1);
     return null;
@@ -112,7 +116,7 @@ if ('NodeList' in window && !NodeList.prototype.forEach) {
   console.info('polyfill for IE11');
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
-    for (var i = 0; i < this.length; i++) {
+    for (let i = 0; i < this.length; i++) {
       callback.call(thisArg, this[i], i, this);
     }
   };
@@ -123,19 +127,19 @@ if ('NodeList' in window && !NodeList.prototype.forEach) {
 // Reference: http://es5.github.io/#x15.4.4.18
 if (!Array.prototype.forEach) {
   Array.prototype.forEach = function (callback /*, thisArg*/) {
-    var T, k;
+    let T, k;
     if (this == null) {
       throw new TypeError('this is null or not defined');
     }
 
     // 1. Let O be the result of calling toObject() passing the
     // |this| value as the argument.
-    var O = Object(this);
+    const O = Object(this);
 
     // 2. Let lenValue be the result of calling the Get() internal
     // method of O with the argument "length".
     // 3. Let len be toUint32(lenValue).
-    var len = O.length >>> 0;
+    const len = O.length >>> 0;
 
     // 4. If isCallable(callback) is false, throw a TypeError exception.
     // See: http://es5.github.com/#x9.11
@@ -192,23 +196,25 @@ if (!Array.prototype.forEach) {
 
 /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js */
 
-if ("document" in self) {
+if ('document' in self) {
   // Full polyfill for browsers with no classList support
   // Including IE < Edge missing SVGElement.classList
-  if (!("classList" in document.createElement("_")) || document.createElementNS && !("classList" in document.createElementNS("http://www.w3.org/2000/svg", "g"))) {
+  if (!('classList' in document.createElement('_')) || document.createElementNS && !('classList' in document.createElementNS('http://www.w3.org/2000/svg', 'g'))) {
     (function (view) {
-      "use strict";
+      'use strict';
 
-      if (!('Element' in view)) return;
-      var classListProp = "classList",
-        protoProp = "prototype",
+      if (!('Element' in view)) {
+        return;
+      }
+      const classListProp = 'classList',
+        protoProp = 'prototype',
         elemCtrProto = view.Element[protoProp],
         objCtr = Object,
         strTrim = String[protoProp].trim || function () {
-          return this.replace(/^\s+|\s+$/g, "");
+          return this.replace(/^\s+|\s+$/g, '');
         },
         arrIndexOf = Array[protoProp].indexOf || function (item) {
-          var i = 0,
+          let i = 0,
             len = this.length;
           for (; i < len; i++) {
             if (i in this && this[i] === item) {
@@ -216,25 +222,24 @@ if ("document" in self) {
             }
           }
           return -1;
-        }
+        },
         // Vendors: please allow content code to instantiate DOMExceptions
-        ,
         DOMEx = function (type, message) {
           this.name = type;
           this.code = DOMException[type];
           this.message = message;
         },
         checkTokenAndGetIndex = function (classList, token) {
-          if (token === "") {
-            throw new DOMEx("SYNTAX_ERR", "An invalid or illegal string was specified");
+          if (token === '') {
+            throw new DOMEx('SYNTAX_ERR', 'An invalid or illegal string was specified');
           }
           if (/\s/.test(token)) {
-            throw new DOMEx("INVALID_CHARACTER_ERR", "String contains an invalid character");
+            throw new DOMEx('INVALID_CHARACTER_ERR', 'String contains an invalid character');
           }
           return arrIndexOf.call(classList, token);
         },
         ClassList = function (elem) {
-          var trimmedClasses = strTrim.call(elem.getAttribute("class") || ""),
+          let trimmedClasses = strTrim.call(elem.getAttribute('class') || ''),
             classes = trimmedClasses ? trimmedClasses.split(/\s+/) : [],
             i = 0,
             len = classes.length;
@@ -242,7 +247,7 @@ if ("document" in self) {
             this.push(classes[i]);
           }
           this._updateClassName = function () {
-            elem.setAttribute("class", this.toString());
+            elem.setAttribute('class', this.toString());
           };
         },
         classListProto = ClassList[protoProp] = [],
@@ -256,17 +261,17 @@ if ("document" in self) {
         return this[i] || null;
       };
       classListProto.contains = function (token) {
-        token += "";
+        token += '';
         return checkTokenAndGetIndex(this, token) !== -1;
       };
       classListProto.add = function () {
-        var tokens = arguments,
+        let tokens = arguments,
           i = 0,
           l = tokens.length,
           token,
           updated = false;
         do {
-          token = tokens[i] + "";
+          token = tokens[i] + '';
           if (checkTokenAndGetIndex(this, token) === -1) {
             this.push(token);
             updated = true;
@@ -277,14 +282,14 @@ if ("document" in self) {
         }
       };
       classListProto.remove = function () {
-        var tokens = arguments,
+        let tokens = arguments,
           i = 0,
           l = tokens.length,
           token,
           updated = false,
           index;
         do {
-          token = tokens[i] + "";
+          token = tokens[i] + '';
           index = checkTokenAndGetIndex(this, token);
           while (index !== -1) {
             this.splice(index, 1);
@@ -297,23 +302,22 @@ if ("document" in self) {
         }
       };
       classListProto.toggle = function (token, force) {
-        token += "";
-        var result = this.contains(token),
-          method = result ? force !== true && "remove" : force !== false && "add";
+        token += '';
+        const result = this.contains(token),
+          method = result ? force !== true && 'remove' : force !== false && 'add';
         if (method) {
           this[method](token);
         }
         if (force === true || force === false) {
           return force;
-        } else {
-          return !result;
         }
+        return !result;
       };
       classListProto.toString = function () {
-        return this.join(" ");
+        return this.join(' ');
       };
       if (objCtr.defineProperty) {
-        var classListPropDesc = {
+        const classListPropDesc = {
           get: classListGetter,
           enumerable: true,
           configurable: true
@@ -324,7 +328,7 @@ if ("document" in self) {
           // IE 8 doesn't support enumerable:true
           // adding undefined to fight this issue https://github.com/eligrey/classList.js/issues/36
           // modernie IE8-MSW7 machine has IE8 8.0.6001.18702 and is affected
-          if (ex.number === undefined || ex.number === -0x7FF5EC54) {
+          if (ex.number === undefined || ex.number === -0x7ff5ec54) {
             classListPropDesc.enumerable = false;
             objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
           }
@@ -339,18 +343,18 @@ if ("document" in self) {
   // to normalize the add/remove and toggle APIs.
 
   (function () {
-    "use strict";
+    'use strict';
 
-    var testElement = document.createElement("_");
-    testElement.classList.add("c1", "c2");
+    let testElement = document.createElement('_');
+    testElement.classList.add('c1', 'c2');
 
     // Polyfill for IE 10/11 and Firefox <26, where classList.add and
     // classList.remove exist but support only one argument at a time.
-    if (!testElement.classList.contains("c2")) {
-      var createMethod = function (method) {
-        var original = DOMTokenList.prototype[method];
+    if (!testElement.classList.contains('c2')) {
+      const createMethod = function (method) {
+        const original = DOMTokenList.prototype[method];
         DOMTokenList.prototype[method] = function (token) {
-          var i,
+          let i,
             len = arguments.length;
           for (i = 0; i < len; i++) {
             token = arguments[i];
@@ -361,18 +365,17 @@ if ("document" in self) {
       createMethod('add');
       createMethod('remove');
     }
-    testElement.classList.toggle("c3", false);
+    testElement.classList.toggle('c3', false);
 
     // Polyfill for IE 10 and Firefox <24, where classList.toggle does not
     // support the second argument.
-    if (testElement.classList.contains("c3")) {
-      var _toggle = DOMTokenList.prototype.toggle;
+    if (testElement.classList.contains('c3')) {
+      const _toggle = DOMTokenList.prototype.toggle;
       DOMTokenList.prototype.toggle = function (token, force) {
         if (1 in arguments && !this.contains(token) === !force) {
           return force;
-        } else {
-          return _toggle.call(this, token);
         }
+        return _toggle.call(this, token);
       };
     }
     testElement = null;
@@ -416,16 +419,16 @@ __webpack_require__.r(__webpack_exports__);
 // Internal dependencies.
 
 _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].clicktotweet = function () {
-  var tweetBlocks = []; //stores all of our found blocks
-  var tweetLabel = "Tweet this";
-  var findElements = function () {
+  const tweetBlocks = []; //stores all of our found blocks
+  let tweetLabel = 'Tweet this';
+  const findElements = function () {
     //find all the blocks
-    var elements = document.querySelectorAll('.wp-block-bu-clicktotweet');
+    const elements = document.querySelectorAll('.wp-block-bu-clicktotweet');
     //if found
     if (elements.length > 0) {
       //for each found block do stuff
       elements.forEach(function (theBlock, item) {
-        var block = {};
+        const block = {};
 
         // Get DOM element.
         block.element = theBlock;
@@ -450,11 +453,11 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].clicktotweet = fu
   /*
   Setup click handlers for these blocks
   */
-  var setupHandlers = function () {
+  const setupHandlers = function () {
     if (tweetBlocks.length > 0) {
       // Loop through all found Tweet Blocks
       tweetBlocks.forEach(function (theBlock, item) {
-        var btn;
+        let btn;
 
         // If has subtext highlighted to tweet use that.
         if (theBlock.highlight) {
@@ -474,7 +477,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].clicktotweet = fu
         // If we have a button element, setup click handler
         // to open Tweet window.
         if (btn) {
-          btn.addEventListener("click", function (e) {
+          btn.addEventListener('click', function (e) {
             e.preventDefault();
             openTweet(theBlock.tweet_text);
           });
@@ -490,15 +493,15 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].clicktotweet = fu
   of the post	to Twitter.
   */
   var openTweet = function (text) {
-    var tweetedLink = window.location.href;
-    window.open("http://twitter.com/intent/tweet?url=" + tweetedLink + "&text=" + text + "&", "twitterwindow", "height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0");
+    const tweetedLink = window.location.href;
+    window.open('http://twitter.com/intent/tweet?url=' + tweetedLink + '&text=' + text + '&', 'twitterwindow', 'height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
   };
 
   /*
   Helper function to set the Button text
   to a new value on new and existing blocks.
    */
-  var setButtonText = function (str) {
+  const setButtonText = function (str) {
     tweetLabel = str;
     tweetBlocks.forEach(function (theBlock, item) {
       if (theBlock.btn) {
@@ -506,7 +509,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].clicktotweet = fu
       }
     });
   };
-  var tweetInit = function () {
+  const tweetInit = function () {
     //find the elements
     findElements();
 
@@ -515,14 +518,14 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].clicktotweet = fu
   };
 
   //start on dom ready (ie8+)
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener('DOMContentLoaded', function () {
     tweetInit();
   });
   return {
-    gettweetBlocks: function () {
+    gettweetBlocks() {
       return tweetBlocks;
     },
-    settweetButtonText: function (str) {
+    settweetButtonText(str) {
       setButtonText(str);
     }
   };
@@ -549,19 +552,21 @@ __webpack_require__.r(__webpack_exports__);
 
 _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleControl = function () {
   // Store all Control blocks
-  var collapsibleControlBlocks = [];
-  var allCollapsibleBlocks = [];
-  var allBlocksOpen = false;
-  var collapsibleOpenClass = 'is-open';
-  var collapsibleCloseClass = 'is-closed';
+  const collapsibleControlBlocks = [];
+  const allCollapsibleBlocks = [];
+  let allBlocksOpen = false;
+  const collapsibleOpenClass = 'is-open';
+  const collapsibleCloseClass = 'is-closed';
 
   /**
    * Open or close a group of collapsible blocks
    *
-   * @param array collapsible blocks
-   * @param bool true to open set of collapsible blocks, false to close
+   * @param array             collapsible blocks
+   * @param bool              true to open set of collapsible blocks, false to close
+   * @param collapsibleBlocks
+   * @param open
    */
-  var controlCollapsibleBlocks = function (collapsibleBlocks, open) {
+  const controlCollapsibleBlocks = function (collapsibleBlocks, open) {
     if (open === undefined) {
       open = true;
     }
@@ -585,8 +590,9 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
 
   /**
    * Toggle all Collapsible blocks
+   * @param control
    */
-  var toggleAll = function (control) {
+  const toggleAll = function (control) {
     if (0 === allCollapsibleBlocks.length) {
       return;
     }
@@ -596,8 +602,9 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
 
   /**
    * Toggle Collapsible blocks in control's group
+   * @param control
    */
-  var toggleGroup = function (control) {
+  const toggleGroup = function (control) {
     const groupIsOpen = control.groupIsOpen;
     const collapsibleBlocks = control.collapsibleBlocks;
     controlCollapsibleBlocks(collapsibleBlocks, !groupIsOpen);
@@ -607,15 +614,15 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
   /**
    * Find all Collapsible blocks on a page
    */
-  var findAllCollapsibleBlocks = function () {
-    var containers = document.querySelectorAll('.js-wp-block-bu-collapsible');
+  const findAllCollapsibleBlocks = function () {
+    const containers = document.querySelectorAll('.js-wp-block-bu-collapsible');
 
     // Don't coninue if no Collapsible blocks exist
     if (containers.length === 0) {
       return;
     }
     containers.forEach(function (element, i) {
-      var block = {};
+      const block = {};
       block.container = element;
       block.toggle = element.querySelector('.js-bu-block-collapsible-toggle');
       block.panel = element.querySelector('.js-bu-block-collapsible-content');
@@ -626,19 +633,20 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
   /**
    * Return all Collapsible blocks in the group with a Control
    *
-   * @param object control
+   * @param object  control
    *
+   * @param control
    * @return array list of all collapsible blocks in group
    */
-  var getGroupCollapsibleBlocks = function (control) {
-    var blocks = [];
-    var group = control.closest('.wp-block-group');
+  const getGroupCollapsibleBlocks = function (control) {
+    const blocks = [];
+    const group = control.closest('.wp-block-group');
     if (!group) {
       return blocks;
     }
-    var containers = group.querySelectorAll('.js-wp-block-bu-collapsible');
+    const containers = group.querySelectorAll('.js-wp-block-bu-collapsible');
     containers.forEach(function (element, i) {
-      var block = {};
+      const block = {};
       block.container = element;
       block.toggle = element.querySelector('.js-bu-block-collapsible-toggle');
       block.panel = element.querySelector('.js-bu-block-collapsible-content');
@@ -650,9 +658,9 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
   /**
    * Find all Controls and Collapsible blocks
    */
-  var findElements = function () {
-    var controls = document.querySelectorAll('.bu-collapsible-control-toggle');
-    var allCollapsibleBlocksFound = false;
+  const findElements = function () {
+    const controls = document.querySelectorAll('.bu-collapsible-control-toggle');
+    let allCollapsibleBlocksFound = false;
 
     // Don't coninue if no Controls are found
     if (controls.length === 0) {
@@ -661,7 +669,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
 
     // Store all controls
     controls.forEach(function (control, i) {
-      var block = {};
+      const block = {};
       block.toggle = control;
 
       // Check if Control targets all blocks or blocks in its group
@@ -683,7 +691,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
   /**
    * Set up handlers, aria, and other functionality
    */
-  var setupCollapsibleControlBlocks = function () {
+  const setupCollapsibleControlBlocks = function () {
     if (collapsibleControlBlocks.length === 0) {
       return;
     }
@@ -704,13 +712,13 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsibleContro
   /**
    * Init
    */
-  var collapsibleControlInit = function () {
+  const collapsibleControlInit = function () {
     findElements();
     setupCollapsibleControlBlocks();
   };
 
   // Start things on dom ready.
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener('DOMContentLoaded', function () {
     collapsibleControlInit();
   });
 }();
@@ -736,21 +744,22 @@ __webpack_require__.r(__webpack_exports__);
 
 _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = function () {
   // Store all collapsible block
-  var collapsibleBlocks = [];
-  var collapsibleOpenClass = 'is-open';
-  var collapsibleClosedClass = 'is-closed';
-  var eventOpen = new CustomEvent('bu-blocks-collapsible-open');
-  var eventClose = new CustomEvent('bu-blocks-collapsible-close');
+  const collapsibleBlocks = [];
+  const collapsibleOpenClass = 'is-open';
+  const collapsibleClosedClass = 'is-closed';
+  const eventOpen = new CustomEvent('bu-blocks-collapsible-open');
+  const eventClose = new CustomEvent('bu-blocks-collapsible-close');
 
   /**
    * Check if a Collapsible block is set to open by default by user.
    *
-   * @param object collapsible block
+   * @param object      collapsible block
+   * @param collapsible
    * @return bool
    */
-  var isOpenDefault = function (collapsible) {
+  const isOpenDefault = function (collapsible) {
     const container = collapsible.container;
-    if ('true' === container.getAttribute("data-default-open")) {
+    if ('true' === container.getAttribute('data-default-open')) {
       return true;
     }
     return false;
@@ -759,10 +768,11 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Check if a Collapsible block is open.
    *
-   * @param object collapsible block
+   * @param object      collapsible block
+   * @param collapsible
    * @return bool
    */
-  var isOpen = function (collapsible) {
+  const isOpen = function (collapsible) {
     const container = collapsible.container;
     if (container.classList.contains(collapsibleOpenClass)) {
       return true;
@@ -773,9 +783,10 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Open Collapsible block
    *
-   * @param object collapsible block
+   * @param object      collapsible block
+   * @param collapsible
    */
-  var openCollapsible = function (collapsible) {
+  const openCollapsible = function (collapsible) {
     const container = collapsible.container;
     const toggle = collapsible.toggle;
     const panel = collapsible.panel;
@@ -784,7 +795,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
     toggle.setAttribute('aria-expanded', true);
     panel.setAttribute('aria-hidden', false);
     if (container.classList.contains('is-style-preview')) {
-      toggle.innerHTML = toggle.getAttribute("data-close-text");
+      toggle.innerHTML = toggle.getAttribute('data-close-text');
     }
     //dispatch the event on the dom element
     container.dispatchEvent(eventOpen);
@@ -793,9 +804,10 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Close Collapsible block
    *
-   * @param object collapsible block
+   * @param object      collapsible block
+   * @param collapsible
    */
-  var closeCollapsible = function (collapsible) {
+  const closeCollapsible = function (collapsible) {
     const container = collapsible.container;
     const toggle = collapsible.toggle;
     const panel = collapsible.panel;
@@ -804,7 +816,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
     toggle.setAttribute('aria-expanded', false);
     panel.setAttribute('aria-hidden', true);
     if (container.classList.contains('is-style-preview')) {
-      toggle.innerHTML = toggle.getAttribute("data-open-text");
+      toggle.innerHTML = toggle.getAttribute('data-open-text');
     }
     //dispatch the event on the dom element
     container.dispatchEvent(eventClose);
@@ -813,9 +825,10 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Toggle collapsible block
    *
-   * @param element collapsible block
+   * @param element     collapsible block
+   * @param collapsible
    */
-  var toggleCollapsible = function (collapsible) {
+  const toggleCollapsible = function (collapsible) {
     if (isOpen(collapsible)) {
       closeCollapsible(collapsible);
     } else {
@@ -826,15 +839,15 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Find all Collapsible blocks
    */
-  var findElements = function () {
-    var containers = document.querySelectorAll('.js-wp-block-bu-collapsible');
+  const findElements = function () {
+    const containers = document.querySelectorAll('.js-wp-block-bu-collapsible');
 
     // Don't coninue if no Collapsible blocks exist
     if (containers.length === 0) {
       return;
     }
     containers.forEach(function (element, i) {
-      var block = {};
+      const block = {};
       block.container = element;
       block.toggle = element.querySelector('.js-bu-block-collapsible-toggle');
       block.panel = element.querySelector('.js-bu-block-collapsible-content');
@@ -845,7 +858,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Set up handlers, aria, and other functionality
    */
-  var setupCollapsibleBlocks = function () {
+  const setupCollapsibleBlocks = function () {
     if (collapsibleBlocks.length === 0) {
       return;
     }
@@ -883,20 +896,20 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].collapsible = fun
   /**
    * Init
    */
-  var collapsibleInit = function () {
+  const collapsibleInit = function () {
     findElements();
     setupCollapsibleBlocks();
   };
 
   // Start things on dom ready.
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener('DOMContentLoaded', function () {
     collapsibleInit();
   });
   return {
-    getcollapsibleBlocks: function () {
+    getcollapsibleBlocks() {
       return collapsibleBlocks;
     },
-    toggleCollapsible: function (collapsible) {
+    toggleCollapsible(collapsible) {
       if (collapsible) {
         toggleCollapsible(collapsible);
       }
@@ -925,11 +938,11 @@ __webpack_require__.r(__webpack_exports__);
 // Internal dependencies.
 
 _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].drawer = function () {
-  var drawerBlocks = []; //stores all of our found blocks
-  var $body = document.getElementsByTagName('body')[0]; //target body tag
-  var eventOpen = new CustomEvent('bu-blocks-drawer-open');
-  var eventClose = new CustomEvent('bu-blocks-drawer-close');
-  var toggleDrawer = function (drawer) {
+  const drawerBlocks = []; //stores all of our found blocks
+  const $body = document.getElementsByTagName('body')[0]; //target body tag
+  const eventOpen = new CustomEvent('bu-blocks-drawer-open');
+  const eventClose = new CustomEvent('bu-blocks-drawer-close');
+  const toggleDrawer = function (drawer) {
     // Using an if statement to check the class
     if (drawer.classList.contains('show-drawer')) {
       drawer.classList.remove('show-drawer');
@@ -941,14 +954,14 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].drawer = function
       drawer.dispatchEvent(eventOpen);
     }
   };
-  var findElements = function () {
+  const findElements = function () {
     //find all the blocks
-    var elements = document.querySelectorAll('.js-bu-block-drawer');
+    const elements = document.querySelectorAll('.js-bu-block-drawer');
     //if found
     if (elements.length > 0) {
       //for each found block do stuff
-      for (var i = 0; i < elements.length; i++) {
-        var block = {};
+      for (let i = 0; i < elements.length; i++) {
+        const block = {};
 
         //get first returned drawer content element
         block.drawer = elements[i];
@@ -962,26 +975,26 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].drawer = function
       }
     }
   };
-  var setupHandlers = function () {
+  const setupHandlers = function () {
     if (drawerBlocks.length > 0) {
       drawerBlocks.forEach(function (thisDrawer, item) {
         //some drawer blocks may have more than one trigger btn
         //so loop through all matched to setup events
         thisDrawer.button.forEach(function (button, index) {
           //for each btn we find, add an event handler
-          button.addEventListener("click", function (e) {
+          button.addEventListener('click', function (e) {
             e.preventDefault();
             toggleDrawer(thisDrawer.drawer);
           });
         });
-        thisDrawer.close.addEventListener("click", function (e) {
+        thisDrawer.close.addEventListener('click', function (e) {
           e.preventDefault();
           toggleDrawer(thisDrawer.drawer);
         });
       });
     }
   };
-  var drawerInit = function () {
+  const drawerInit = function () {
     //find the elements
     findElements();
 
@@ -990,14 +1003,14 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].drawer = function
   };
 
   //start on dom ready (ie8+)
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener('DOMContentLoaded', function () {
     drawerInit();
   });
   return {
-    getdrawerBlocks: function () {
+    getdrawerBlocks() {
       return drawerBlocks;
     },
-    toggleDrawer: function (drawer) {
+    toggleDrawer(drawer) {
       if (drawer) {
         toggleDrawer(drawer);
       }
@@ -1026,17 +1039,17 @@ __webpack_require__.r(__webpack_exports__);
 // Internal dependencies.
 
 _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].modal = function () {
-  var modalBlocks = [];
-  var $body = document.getElementsByTagName('body')[0];
-  var eventOpen = new CustomEvent('bu-blocks-modal-open');
-  var eventClose = new CustomEvent('bu-blocks-modal-close');
-  var lockScroll = function () {
+  const modalBlocks = [];
+  const $body = document.getElementsByTagName('body')[0];
+  const eventOpen = new CustomEvent('bu-blocks-modal-open');
+  const eventClose = new CustomEvent('bu-blocks-modal-close');
+  const lockScroll = function () {
     $body.classList.add('bu-blocks-modal-noscroll');
   };
-  var unlockScroll = function () {
+  const unlockScroll = function () {
     $body.classList.remove('bu-blocks-modal-noscroll');
   };
-  var toggleModal = function (overlay) {
+  const toggleModal = function (overlay) {
     // Using an if statement to check the class
     if (overlay.classList.contains('show-overlay')) {
       overlay.classList.remove('show-overlay');
@@ -1050,14 +1063,14 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].modal = function 
       lockScroll();
     }
   };
-  var findElements = function () {
+  const findElements = function () {
     //find all the blocks
-    var elements = document.querySelectorAll('.js-bu-block-modal');
+    const elements = document.querySelectorAll('.js-bu-block-modal');
     //if found
     if (elements.length > 0) {
       //for each found block do stuff
-      for (var i = 0; i < elements.length; i++) {
-        var block = {};
+      for (let i = 0; i < elements.length; i++) {
+        const block = {};
 
         //get first returned overlay element
         block.overlay = elements[i].querySelector('.js-bu-block-modal-overlay');
@@ -1071,26 +1084,26 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].modal = function 
       }
     }
   };
-  var setupHandlers = function () {
+  const setupHandlers = function () {
     if (modalBlocks.length > 0) {
       modalBlocks.forEach(function (thisModal, item) {
         //some modals may have more than one trigger btn
         //so loop through all matched to setup events
         thisModal.button.forEach(function (button, index) {
           //for each btn we find, add an event handler
-          button.addEventListener("click", function (e) {
+          button.addEventListener('click', function (e) {
             e.preventDefault();
             toggleModal(thisModal.overlay);
           });
         });
-        thisModal.close.addEventListener("click", function (e) {
+        thisModal.close.addEventListener('click', function (e) {
           e.preventDefault();
           toggleModal(thisModal.overlay);
         });
       });
     }
   };
-  var modalInit = function () {
+  const modalInit = function () {
     //find the elements
     findElements();
 
@@ -1099,14 +1112,14 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].modal = function 
   };
 
   //start on dom ready (ie8+)
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener('DOMContentLoaded', function () {
     modalInit();
   });
   return {
-    getmodalBlocks: function () {
+    getmodalBlocks() {
       return modalBlocks;
     },
-    toggleModal: function (overlay) {
+    toggleModal(overlay) {
       if (overlay) {
         toggleModal(overlay);
       }
@@ -1134,43 +1147,43 @@ __webpack_require__.r(__webpack_exports__);
 // Internal dependencies.
 
 _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = function () {
-  var scrollTop = 0;
-  var photoEssayBlocks = []; //stores all of our found blocks
-  var photoEssayGroups = [];
-  var photoEssayOverlay = false;
-  var photoEssayFigures = {};
-  var overlayActiveGroup = false;
-  var $html = document.getElementsByTagName('html')[0]; //target html tag
-  var $body = document.getElementsByTagName('body')[0]; //target body tag
+  let scrollTop = 0;
+  const photoEssayBlocks = []; //stores all of our found blocks
+  const photoEssayGroups = [];
+  let photoEssayOverlay = false;
+  const photoEssayFigures = {};
+  let overlayActiveGroup = false;
+  const $html = document.getElementsByTagName('html')[0]; //target html tag
+  const $body = document.getElementsByTagName('body')[0]; //target body tag
 
   /*
-  * Find all photo essay blocks
-  * and store in an array.
-  *
-  * For each found get all of the DOM
-  * elements we'll need
-  *
-  */
-  var findElements = function () {
+   * Find all photo essay blocks
+   * and store in an array.
+   *
+   * For each found get all of the DOM
+   * elements we'll need
+   *
+   */
+  const findElements = function () {
     //find all the blocks
-    var findBlocks = document.querySelectorAll('.js-block-editorial-photoessay');
-    var elements = [].slice.call(findBlocks);
+    const findBlocks = document.querySelectorAll('.js-block-editorial-photoessay');
+    const elements = [].slice.call(findBlocks);
 
     //if found
     if (elements.length > 0) {
       //for each found block do stuff
-      for (var i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements.length; i++) {
         var group = Array();
-        var block = {};
+        const block = {};
         block.element = elements[i];
 
         //get first returned social photo block element
         group.push(block);
-        var siblings = getSiblings(elements[i], '.js-block-editorial-photoessay');
+        const siblings = getSiblings(elements[i], '.js-block-editorial-photoessay');
         if (siblings.length > 0) {
           //add siblings to group.
           siblings.forEach(function (sibling, index) {
-            var sib = {};
+            const sib = {};
             sib.element = sibling;
             group.push(sib);
           });
@@ -1186,19 +1199,19 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * For Each Photo Essay Block Setup:
-  *
-  * Setup the Overlay Container DOM elements.
-  *
-  * Find each Figure inside each block inside each group and build
-  * an array for each "group" with all of the figures in order so we
-  * can later traverse.
-  *
-  * Then call setupHandlers() to setup
-  * remaining event handlers for opening the overlay, etc.
-  *
-  */
-  var setupBlocks = function () {
+   * For Each Photo Essay Block Setup:
+   *
+   * Setup the Overlay Container DOM elements.
+   *
+   * Find each Figure inside each block inside each group and build
+   * an array for each "group" with all of the figures in order so we
+   * can later traverse.
+   *
+   * Then call setupHandlers() to setup
+   * remaining event handlers for opening the overlay, etc.
+   *
+   */
+  const setupBlocks = function () {
     if (photoEssayGroups.length > 0) {
       photoEssayOverlay = {};
       photoEssayOverlay.container = appendOverlay();
@@ -1212,7 +1225,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
       // figure elements and push them into a global object.
       photoEssayGroups.forEach(function (group, index) {
         // Create an id for each group.
-        var groupID = "photoEssay_" + index;
+        const groupID = 'photoEssay_' + index;
 
         // Add an object with a key of the group id.
         photoEssayFigures[groupID] = Array();
@@ -1238,11 +1251,11 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Setup Handler for clicking on images/figure elements
-  * and opening the overlay with the selected figure (image)
-  * element.
-  */
-  var openPhotoHandler = function (figure, group) {
+   * Setup Handler for clicking on images/figure elements
+   * and opening the overlay with the selected figure (image)
+   * element.
+   */
+  const openPhotoHandler = function (figure, group) {
     // setup click handler
     figure.addEventListener('click', function (e) {
       e.preventDefault();
@@ -1259,11 +1272,11 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Setup remaining Handlers
-  * for Progress Bar and Audio Complete Callbacks
-  *
-  * These use callbacks set in the global Audio API
-  */
+   * Setup remaining Handlers
+   * for Progress Bar and Audio Complete Callbacks
+   *
+   * These use callbacks set in the global Audio API
+   */
   var setupHandlers = function () {
     for (group in photoEssayFigures) {
       photoEssayFigures[group].forEach(function (figure, item) {
@@ -1275,7 +1288,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
       overlayToggle();
     });
     function nextSharedAction() {
-      var next = nextPhoto();
+      const next = nextPhoto();
       removeActiveFigure();
       overlayAddContent(overlayActiveGroup[next]);
     }
@@ -1284,7 +1297,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
       nextSharedAction();
     });
     function prevSharedAction() {
-      var prev = prevPhoto();
+      const prev = prevPhoto();
       removeActiveFigure();
       overlayAddContent(overlayActiveGroup[prev]);
     }
@@ -1304,17 +1317,17 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Next Photo
-  *
-  * Find the next photo in the
-  * currently active group if any exist.
-  *
-  * Return the index to that item in the array.
-  */
+   * Next Photo
+   *
+   * Find the next photo in the
+   * currently active group if any exist.
+   *
+   * Return the index to that item in the array.
+   */
   var nextPhoto = function () {
-    var next = false;
-    var last = overlayActiveGroup.length - 1;
-    var current = overlayActiveGroup.findIndex(function (element) {
+    let next = false;
+    const last = overlayActiveGroup.length - 1;
+    const current = overlayActiveGroup.findIndex(function (element) {
       return element.classList.contains('active');
     });
     if (current < last) {
@@ -1326,17 +1339,17 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Previous Photo
-  *
-  * Find the previous photo in the
-  * currently active group if any exist.
-  *
-  * Return the index to that item in the array.
-  */
+   * Previous Photo
+   *
+   * Find the previous photo in the
+   * currently active group if any exist.
+   *
+   * Return the index to that item in the array.
+   */
   var prevPhoto = function () {
-    var prev = false;
-    var last = overlayActiveGroup.length - 1;
-    var current = overlayActiveGroup.findIndex(function (element) {
+    let prev = false;
+    const last = overlayActiveGroup.length - 1;
+    const current = overlayActiveGroup.findIndex(function (element) {
       return element.classList.contains('active');
     });
     if (current > 0) {
@@ -1348,11 +1361,11 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Open/Close Overlay
-  *
-  * Additionally sets up an event listener to
-  * monitor scroll events when the overlay is open.
-  */
+   * Open/Close Overlay
+   *
+   * Additionally sets up an event listener to
+   * monitor scroll events when the overlay is open.
+   */
   var overlayToggle = function () {
     if ($html.classList.contains('show-photo-essay-overlay')) {
       // Closing: Remove event listener.
@@ -1370,13 +1383,13 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Event Handler for scroll event
-  *
-  * Handles closing the overlay if the user
-  * intends to scroll "out" of it and continue reading.
-  *
-  * Serves as an alternative to the close button.
-  */
+   * Event Handler for scroll event
+   *
+   * Handles closing the overlay if the user
+   * intends to scroll "out" of it and continue reading.
+   *
+   * Serves as an alternative to the close button.
+   */
   var scrollEvent = function (e) {
     if ($html.scrollTop - scrollTop > 250) {
       //console.log("close");
@@ -1392,10 +1405,10 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Toggle the "show" class for the overlay
-  * element by toggling the class on the
-  * HTML tag.
-  */
+   * Toggle the "show" class for the overlay
+   * element by toggling the class on the
+   * HTML tag.
+   */
   var overlayClass = function () {
     if (overlayActiveGroup.length > 1) {
       $html.classList.toggle('photo-essay-overlay-has-multiple');
@@ -1404,11 +1417,11 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Remove all "active" classes on any
-  * figure element in the active group.
-  */
+   * Remove all "active" classes on any
+   * figure element in the active group.
+   */
   var removeActiveFigure = function () {
-    for (var i = 0; i < overlayActiveGroup.length; i++) {
+    for (let i = 0; i < overlayActiveGroup.length; i++) {
       if (overlayActiveGroup[i].matches('.active')) {
         overlayActiveGroup[i].classList.remove('active');
       }
@@ -1416,16 +1429,16 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Add clone of image & caption figure
-  * to the overlay component
-  *
-  * @param figure the figure to clone and add.
-  */
+   * Add clone of image & caption figure
+   * to the overlay component
+   *
+   * @param figure the figure to clone and add.
+   */
   var overlayAddContent = function (figure) {
-    figure.classList.add("active");
+    figure.classList.add('active');
 
     // Clone with child elements.
-    var newFigure = figure.cloneNode(true);
+    const newFigure = figure.cloneNode(true);
 
     // Clean anything that might exist.
     photoEssayOverlay.photoContainer.innerHTML = '';
@@ -1438,46 +1451,46 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   /*
-  * Add Overlay to the body
-  *
-  */
+   * Add Overlay to the body
+   *
+   */
   var appendOverlay = function () {
-    var element = document.createElement('div');
-    var html = overlayTemplate();
+    const element = document.createElement('div');
+    const html = overlayTemplate();
     element.innerHTML = html;
     return $body.appendChild(element);
   };
 
   /*
-  * Wrap an element in  some html:
-  *
-  * example: wrapElement(document.querySelector('a.wrap_me'), document.createElement('div'));
-  *
-  */
+   * Wrap an element in  some html:
+   *
+   * example: wrapElement(document.querySelector('a.wrap_me'), document.createElement('div'));
+   *
+   */
   var wrapElement = function (el, wrapper) {
     el.parentNode.insertBefore(wrapper, el);
     wrapper.appendChild(el);
   };
 
   /*
-  * Generate the template for the
-  * Overlay to display larger photos
-  * in from each photoessay block.
-  */
+   * Generate the template for the
+   * Overlay to display larger photos
+   * in from each photoessay block.
+   */
   var overlayTemplate = function () {
-    var html = ['<div class="wp-block-editorial-photoessay-overlay">', '<nav class="wp-block-editorial-photoessay-overlay-nav">', '<button class="wp-block-editorial-photoessay-overlay-prev js-block-editorial-photoessay-overlay-prev"><span>Previous</span></button>', '<button class="wp-block-editorial-photoessay-overlay-close js-block-editorial-photoessay-overlay-close"><span>Close</span></button>', '<button class="wp-block-editorial-photoessay-overlay-next js-block-editorial-photoessay-overlay-next"><span>Next</span></button>', '</nav>', '<div class="wp-block-editorial-photoessay-container">', '<div class="wp-block-editorial-photoessay-photocontainer">', '</div>', '</div>', '</div>'].join("\n");
+    const html = ['<div class="wp-block-editorial-photoessay-overlay">', '<nav class="wp-block-editorial-photoessay-overlay-nav">', '<button class="wp-block-editorial-photoessay-overlay-prev js-block-editorial-photoessay-overlay-prev"><span>Previous</span></button>', '<button class="wp-block-editorial-photoessay-overlay-close js-block-editorial-photoessay-overlay-close"><span>Close</span></button>', '<button class="wp-block-editorial-photoessay-overlay-next js-block-editorial-photoessay-overlay-next"><span>Next</span></button>', '</nav>', '<div class="wp-block-editorial-photoessay-container">', '<div class="wp-block-editorial-photoessay-photocontainer">', '</div>', '</div>', '</div>'].join('\n');
     return html;
   };
 
   /*
-  * Get Siblings of the passed element until
-  * selector doesn't match.
-  *
-  * Returns Array of sibling elements.
-  */
+   * Get Siblings of the passed element until
+   * selector doesn't match.
+   *
+   * Returns Array of sibling elements.
+   */
   var getSiblings = function (elem, selector) {
     // Setup siblings array
-    var siblings = [];
+    const siblings = [];
 
     // Get the next sibling element
     elem = elem.nextElementSibling;
@@ -1485,7 +1498,9 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
     // As long as a sibling exists
     while (elem) {
       // If selector doesn't match, bail
-      if (!elem.matches(selector)) break;
+      if (!elem.matches(selector)) {
+        break;
+      }
 
       // Otherwise, push it to the siblings array
       siblings.push(elem);
@@ -1495,7 +1510,7 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
     }
     return siblings;
   };
-  var init = function () {
+  const init = function () {
     //find the elements
     findElements();
 
@@ -1504,14 +1519,14 @@ _blocks_frontend_tools__WEBPACK_IMPORTED_MODULE_0__["default"].photoessay = func
   };
 
   //start on dom ready (ie8+)
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener('DOMContentLoaded', function () {
     init();
   });
   return {
-    getBlocks: function () {
+    getBlocks() {
       return photoEssayBlocks;
     },
-    getActiveGroup: function () {
+    getActiveGroup() {
       return overlayActiveGroup;
     }
   };

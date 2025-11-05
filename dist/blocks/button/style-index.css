@@ -1,0 +1,81 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/button/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.wp-block-bu-button {
+  transition: all 0.2s ease-in-out 0s;
+  background: #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em 1em;
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  margin-inline: auto;
+}
+.wp-block-bu-button:hover {
+  background: #ccc;
+}
+.wp-block-bu-button[class*=icon-]::before {
+  content: ">";
+  display: block;
+  transition: all 0.2s ease-in-out 0s;
+  font-weight: bold;
+}
+.wp-block-bu-button.align-icon-right::before {
+  margin-inline-start: 0.5em;
+  order: 2;
+}
+.wp-block-bu-button.align-icon-left::before {
+  margin-inline-end: 0.5em;
+}
+.wp-block-bu-button.is-style-default.has-dark-theme {
+  background: #333;
+  color: #fff !important;
+}
+.wp-block-bu-button.is-style-default.has-dark-theme:hover {
+  background: #222;
+}
+.wp-block-bu-button.is-style-default.has-light-theme {
+  background: #eee;
+}
+.wp-block-bu-button.is-style-default.has-light-theme:hover {
+  background: #ddd;
+}
+.wp-block-bu-button.is-style-outline, .wp-block-bu-button.is-style-accent, .wp-block-bu-button.is-style-text {
+  background: transparent;
+}
+.wp-block-bu-button.is-style-outline:hover, .wp-block-bu-button.is-style-accent:hover, .wp-block-bu-button.is-style-text:hover {
+  background: transparent;
+}
+.wp-block-bu-button.is-style-outline {
+  border: 2px solid #ddd;
+}
+.wp-block-bu-button.is-style-outline:hover {
+  border-color: #ccc;
+}
+.wp-block-bu-button.is-style-outline.has-dark-theme {
+  border-color: #444;
+}
+.wp-block-bu-button.is-style-outline.has-dark-theme:hover {
+  border-color: #000;
+}
+.wp-block-bu-button.is-style-outline.has-light-theme {
+  border-color: #eee;
+}
+.wp-block-bu-button.is-style-outline.has-light-theme:hover {
+  border-color: #ddd;
+}
+.wp-block-bu-button.is-style-text {
+  text-decoration: underline;
+}
+.wp-block-bu-button.is-style-text:hover {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

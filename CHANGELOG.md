@@ -1,6 +1,77 @@
 # Changelog
 
 ## Unreleased
+- Background Component: 
+  - Update PHP render of Background Component for all blocks to include same class names as the static blocks were outputting.
+- Refactor Drawer Block:
+- Breaking Changes: 
+   - none
+ - Added support for core `Color` Block Support
+ - Added support for custom `__bublocks_colorthemes` Block Support
+ - Added anchor support
+ - Expanded default alignment support
+ - Refactor block structure to modernize
+ - Convert block from Static to Dynamic using render.php.
+- Refactor BU Custom HTML Block: 
+  - Breaking Changes: 
+     - `bu_blocks_custom_html_attributes` Filter removed, existing themes/plugins will need a different method. BU Prepress will need an update: https://github.com/bu-ist/bu-prepress/blob/8f42214963733b36ea800c5d5aab9e90d4b25896/src/blocks/edition/custom-html/index.php#L10
+   - Refactor block structure to modernize
+     - Convert block from Static to Dynamic using render.php.
+- Refactor Collapsible Control Block:
+  - Refactor block structure to modernize
+   - Move Attributes from static markup locations to default (html comment)
+   - Add Deprecations for the attribute changes.
+  - Convert block from Static to Dynamic using render.php.
+    - Add `src/blocks/collapsible-control/deprecated/deprecated.php`  function using DOMDocument to parse old block instances to scrape attributes out of the saved markup of existing static blocks. This is called in Render.php but could/should be moved to child themes that need it such as r-editorial, law, cfa, etc. 
+- Refactor Button Block:
+  - Breaking Changes: 
+    - Remove "Accent" style option. Themes can add it back if needed.
+    - Remove old and incorrect `wp-block-button` class. This is a breaking change for themes.
+    - In SCSS partials rename classnames of styles from `.wp-block-button` to correct `.wp-block-bu-button`
+    - Remove wrapping `<p>` tag the previous version of the block had
+    - Removed `text-transform:uppercase` from the block. Themes should set this.
+  - Refactor Button block structure to modernize
+    - Move Attributes from static markup locations to default (html comment)
+    - Add Deprecations for the markup and attribute changes.
+  - Convert block from Static to Dynamic using render.php.
+  - Add Block Supports: Colors, Spacing, and Color Themes
+    - Added support for custom `__bublocks_colorthemes` Block Support  
+  - Convert block to Dynamic Block
+    - Add `src/blocks/button/deprecated/deprecated.php`  function using DOMDocument to parse old block instances to scrape attributes out of the saved markup of existing static blocks. This is called in Render.php but could/should be moved to child themes that need it such as r-editorial, law, cfa, etc. 
+- Refactor Aside Block:
+  - Breaking Changes: 
+    - Removed Text-Align: Center from block's default styles.
+  - Added support for core `Color` Block Support
+  - Added support for custom `__bublocks_colorthemes` Block Support
+  - Refactor block structure to modernize
+  - Convert block from Static to Dynamic using render.php.
+- Add <ThemeColorPanel/> component to handle existing Color Themes functionality and support block level overrides in child themes by using a custom Block Supports entry. 
+- Adds a `class-block-supports.php` that adds an easy way for existing themes such as r-editorial that rely on Color Themes to disable the new Block Supports features such as Color and Spacing for all blocks via a filter. 
+- Adds a new helper function `bu_blocks_get_registered_block_names()` that returns a list of registered block names in the plugin.
+- Remove each block's themeable SCSS file from being compiled as these aren't needed in the rep, but instead are used by other themes importing this repo via node.
+- Bug fix: Intro Paragraph block's onSplit function wasn't working to add a paragraph block when the user hits enter. 
+- Bug Fix: Intro Paragraph block was retaining the dropcap when switching Block Styles. Had to change how className was used since the old approach from the beta version of Gutenberg conflicts with current attribute and property usage of `className`. 
+- Multiple blocks were using the "full" image size in the Background component. This has been changed now to the `large` size instead. This should be a safe change for most blocks but may result in some layout bugs. Loading the `full` size however is not acceptable as the files sizes can be extreme.
+- Block Color Palette Options WP 5.8 bug fixes:
+  - **Stats** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code  
+  - **Modal** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code  
+  - **Leadin** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code  
+  - **Drawer** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code  
+  - **Intro Paragraph** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code 
+  - **Button block** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code 
+  - **Pullquote block** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code
+  - **Aside Block** color options fixed
+    - Fix 5.8 color palette issues in withColors(), add Example for inserter, remove 4.9 fallback code
+- Removed Block Support.js and all filters (buBlocks.blockSupport) that allowed for unregistering blocks in the plugin. The previous approach
+ disabled the blocks by default on all post types except `posts` and `pages` but now that the plugin has matured we are flipping this to a
+ new default of allowing the blocks on all post types. A theme can then choose to disable blocks as needed using: https://github.com/bu-ist/bu-id-block-utils/blob/develop/js-dev/disable-blocks.js
 - Fix #315 - disable autogenerated Anchor ID's in the Headline Block
 - Click to Tweet style fixes. Closes #320. Updates the styles to restore the styling for the Click to Tweet feature on Paragraph blocks.
 - Stats Block: 

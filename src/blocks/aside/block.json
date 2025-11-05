@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/wp/5.8/block.json",
+	"apiVersion": 2,
+	"name": "editorial/aside",
+	"version": "0.0.0",
+	"title": "Aside",
+    "description": "Add an <aside> element with related information. Accepts image, headline, paragraph, and button blocks as children. This block should be used for content that is indirectly related to the surrounding content.",
+	"category": "bu-editorial",
+	"icon": "block-default",
+	"textdomain": "bu-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php",
+    "attributes": {
+        "anchor": {
+            "type": "string",
+            "default": ""
+        },
+		"themeColor": {
+			"type": "string"
+		}
+	},
+    "example": {
+		"innerBlocks": [
+			{
+				"name": "core/heading",
+				"attributes": {
+					"content":"Aside Block Example1"
+				}
+			},
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "The Aside block allows you to add a variety of content blocks such as paragraphs and images."
+				}
+			}
+		]
+	},
+    "supports": {
+        "align": true,
+        "anchor": true,
+        "color": {
+            "text": true,
+            "background": true,
+            "link": true,
+            "gradients": true
+        },
+        "__bublocks_colorthemes": true
+	}
+}

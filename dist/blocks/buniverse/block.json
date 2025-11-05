@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "bu/buniverse",
+  "version": "0.0.0",
+  "title": "BUniverse Video",
+  "description": "Insert videos from bu.edu/buniverse. BUniverse videos allow for a high resolution cover image and better control over Youtube embeds.",
+  "category": "bu",
+  "icon": "block-default",
+  "textdomain": "bu-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "id": {
+      "type": "string"
+    },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "aspectRatio": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "controls": {
+      "type": "number",
+      "default": 1
+    },
+    "autoplay": {
+      "type": "number",
+      "default": 0
+    },
+    "start": {
+      "type": "number"
+    },
+    "minutes": {
+      "type": "number"
+    },
+    "seconds": {
+      "type": "number"
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "example": {
+    "attributes": {
+      "id": ""
+    }
+  },
+  "supports": {
+    "align": true,
+    "anchor": true
+  }
+}
