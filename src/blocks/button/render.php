@@ -52,10 +52,21 @@ if ( ! empty( $attributes['anchor'] ) ) {
 	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
 }
 
+// Build rel attribute.
+$rel = '';
+if ( ! empty( $attributes['noFollow'] ) && true === $attributes['noFollow'] ) {
+	$rel = $rel . ' nofollow';
+}
+if ( ! empty( $attributes['urlTarget'] ) && true === $attributes['urlTarget'] ) {
+	$rel = $rel . ' noopener';
+}
+
 ?>
 <a 
 	<?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?> 
 	href="<?php echo esc_url( $attributes['url'] ); ?>" 
+	<?php echo ( ! empty( $attributes['urlTarget'] ) && true === $attributes['urlTarget'] ) ? ' target="_blank" ' : ''; ?>
+	<?php echo ( ! empty( $rel ) ) ? ' rel="' . esc_attr( trim( $rel ) ) . '" ' : ''; ?>
 >
 	<span class="wp-block-bu-button-text">
 	<?php
