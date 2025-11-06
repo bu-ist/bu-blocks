@@ -61,7 +61,6 @@ export default function Edit( props ) {
 				isSelected={ isSelected }
 				value={ { url, noFollow, opensInNewTab: urlTarget } }
 				onChange={ ( newLink ) => {
-					console.log(`The selected item: ${newLink.title} (${newLink.url}), opensInNewTab: ${newLink.opensInNewTab}, noFollow: ${newLink.noFollow}`);
 					setAttributes( { 
 						url: newLink.url, 
 						urlTarget: newLink.opensInNewTab, 
