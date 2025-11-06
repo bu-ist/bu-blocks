@@ -43,6 +43,7 @@
 		"@wordpress/prettier-config": "^4.0.0",
 		"@wordpress/scripts": "^27.1.0",
 		"@wordpress/stylelint-config": "^21.33.0",
+		"@wordpress/icons": "^10.1.0",
 		"browserify": "^17.0.0",
 		"browserify-shim": "^3.8.16",
 		"classnames": "^2.5.1",

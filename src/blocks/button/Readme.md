@@ -16,9 +16,8 @@ Theme.json can be used to control the core color block support settings globally
 ```
 
 ## ToDo:
-- Replace URL Input for link with better LinkControl component and/or ours: https://github.com/bu-ist/id-gutenberg/issues/217
-- Add support for "Open in New Window"
-- Add field for `rel` parameter. (see core block)
+- ~~Replace URL Input for link with better LinkControl component and/or ours: https://github.com/bu-ist/id-gutenberg/issues/217~~
+
 
 ## Changelog
 
@@ -32,6 +31,8 @@ Theme.json can be used to control the core color block support settings globally
  - Refactor block structure to modernize
    - Move Attributes from static markup locations to default (html comment)
    - Add Deprecations for the markup and attribute changes.
+   - Add support for "Open in New Window"
+   - Add support for `noFollow` parameter. 
  - Convert block from Static to Dynamic using render.php.
  - Add Block Supports: Colors, Spacing, and Color Themes
    - Added support for custom `__bublocks_colorthemes` Block Support  

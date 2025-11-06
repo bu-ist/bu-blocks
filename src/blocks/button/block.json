@@ -27,6 +27,13 @@
 		},
 		"icon": {
 			"type": "string"
+		},
+		"urlTarget": {
+			"type": "boolean"
+		},
+		"noFollow": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"styles": [

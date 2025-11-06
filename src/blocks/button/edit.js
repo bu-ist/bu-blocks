@@ -8,21 +8,18 @@
 import classnames from 'classnames';
 
 // Internal dependencies.
-import themeOptions from '../../global/theme-options';
-import { getColorSlug } from '../../global/color-utils.mjs';
 import getAllowedFormats from '../../global/allowed-formats';
 import publicationSlug from '../../global/publication-slug';
-import ThemeColorPanel from '../../components/colorthemes-panel/index.js';
+import { ButtonInspectorControls as InspectorControls } from './editor-partials/inspector-controls';
+import { ToolbarLinkControl } from '../../components/ToolbarLinkControl/ToolbarLinkControl';
 
 // WordPress dependencies.
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, RadioControl } from '@wordpress/components';
 import {
-	InspectorControls,
 	RichText,
-	URLInput,
 	useBlockProps,
 } from '@wordpress/block-editor';
+import { useRef } from '@wordpress/element';
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -44,92 +41,57 @@ const getClasses = ( className, themeColor, icon ) =>
 
 export default function Edit( props ) {
 	const {
-		attributes: { text, url, icon, align, themeColor },
+		attributes: { text, url, icon, align, urlTarget, noFollow, themeColor },
 		setAttributes,
 		className,
-		name,
+		isSelected,
 	} = props;
 
+	// Use useRef to store a reference to the block.
+	const ref = useRef();
+
 	const blockProps = useBlockProps( {
+		ref, // A reference to the block used by URLPicker to anchor popover.
 		className: getClasses( className, themeColor, icon ),
 	} );
 
-	// themOptions() returns the full/global color palette added to editor settings.
-	const themeOptionsPalette = themeOptions();
-
 	return (
 		<>
-			<InspectorControls>
-				{ /* @ToDo: replace this with LinkToolbar component https://github.com/bu-ist/id-gutenberg/issues/217 */ }
-				<PanelBody
-					className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
-					title={ __( 'URL' ) }
-				>
-					<p className="description">Add link to the button</p>
-					<URLInput
-						value={ url }
-						onChange={ ( value ) =>
-							setAttributes( { url: value } )
-						}
-					/>
-				</PanelBody>
-				<ThemeColorPanel
-					blockname={ name }
-					value={ themeColor }
-					themepalette={ themeOptionsPalette }
-					onChange={ ( value, palette ) =>
-						setAttributes( {
-							themeColor: value
-								? getColorSlug( value, palette )
-								: undefined,
-						} )
-					}
-				/>
-				<PanelBody title={ __( 'Arrow Icon Settings' ) }>
-					<RadioControl
-						label="Placement"
-						selected={ icon }
-						options={ [
-							{
-								label: 'Before text',
-								value: 'align-icon-left',
-							},
-							{
-								label: 'After text',
-								value: 'align-icon-right',
-							},
-						] }
-						onChange={ ( value ) => {
-							setAttributes( { icon: value } );
-						} }
-					/>
-					<Button
-						onClick={ () => setAttributes( { icon: undefined } ) }
-						label={ 'Clear icon settings' }
-						isSecondary
-						isSmall
-					>
-						{ __( 'Clear' ) }
-					</Button>
-				</PanelBody>
-			</InspectorControls>
-			<RichText
-				{ ...blockProps }
-				tagName="div"
-				placeholder={ __( 'Add text…' ) }
-				value={ text }
-				onChange={ ( value ) => setAttributes( { text: value } ) }
-				formattingControls={ getAllowedFormats(
-					'formattingControls',
-					'bold',
-					'italic'
-				) }
-				allowedFormats={ getAllowedFormats( 'allowedFormats', [
-					'core/bold',
-					'core/italic',
-				] ) }
-				keepPlaceholderOnFocus
+			<ToolbarLinkControl
+				isSelected={ isSelected }
+				value={ { url, noFollow, opensInNewTab: urlTarget } }
+				onChange={ ( newLink ) => {
+					setAttributes( { 
+						url: newLink.url, 
+						urlTarget: newLink.opensInNewTab, 
+						noFollow: newLink.noFollow 
+					} );
+				} }
+				settings={ [
+					{ id: 'opensInNewTab', title: __( 'Open in New Tab' ) },
+					{ id: 'noFollow', title: __( 'Add No Follow' ) },
+				] }
+				anchorRef={ ref }
 			/>
+			<InspectorControls { ...props } />
+		<div { ...blockProps }>
+				<RichText
+					tagName="div"
+					placeholder={ __( 'Add text…' ) }
+					value={ text }
+					onChange={ ( value ) => setAttributes( { text: value } ) }
+					formattingControls={ getAllowedFormats(
+						'formattingControls',
+						'bold',
+						'italic'
+					) }
+					allowedFormats={ getAllowedFormats( 'allowedFormats', [
+						'core/bold',
+						'core/italic',
+					] ) }
+					keepPlaceholderOnFocus
+				/>
+			</div>
 		</>
 	);
 }
