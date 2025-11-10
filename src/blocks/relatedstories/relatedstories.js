@@ -298,18 +298,18 @@ registerBlockType( 'editorial/relatedstories', {
 			cardCountClass,
 		);
 
-		const blockProps = useBlockProps({
+		const blockProps = useBlockProps( {
 			className: classes,
-			'data-style': ( isCardStyle ? 'card' : 'list' )
-		});
+			'data-style': ( isCardStyle ? 'card' : 'list' ),
+		} );
 
 		let displayPosts;
 
 		// If only 2 cards are being displayed, ensure the displayed posts in the block are limited to 2.
-		if ( posts.length > 2 && isCardStyle && cardCount === 2 ) {
+		if ( posts && posts.length > 2 && isCardStyle && cardCount === 2 ) {
 			displayPosts = posts.slice( 0, 2 );
 		} else {
-			displayPosts = posts;
+			displayPosts = posts || []; // Use an empty array if no posts are available.
 		}
 
 		let currentPost = select( 'core/editor' ).getCurrentPost();
@@ -480,7 +480,7 @@ registerBlockType( 'editorial/relatedstories', {
 					<h3 className="wp-block-editorial-relatedstories-title">Related</h3>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
-							{ displayPosts && displayPosts.map( post => displayListItem( className, post ) ) }
+							{ displayPosts.map( post => displayListItem( className, post ) ) }
 						</ul>
 					) : (
 						<p class="wp-block-editorial-relatedstories-error">{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
