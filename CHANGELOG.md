@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.4.1
+
+- BU Stats Block: 5.7 upgrade related changes to SVG attributes caused block validation failures. This fixes it by adding a block deprecation to cover the previous way WP handled SVG elements in 5.4 and added attributes to the SVG element that are no longer added in 5.7. Fixes: https://github.com/bu-ist/bu-stats/issues/106
 
 ## 0.4.0
 

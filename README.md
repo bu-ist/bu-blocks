@@ -18,6 +18,9 @@ WordPress editor. These blocks were built for various sites within the
 BU WordPress ecosystem and have been tested and designed to be re-used
 for any project.
 
+## NPM Publishing ##
+Publish to NPM Manually via CLI. 
+
 ## How to run Visual Regression Testing ##
 To make testing changes to this plugin easier, you may wish to test your
 sandbox against an existing website. This is possible to do using wp-cli
