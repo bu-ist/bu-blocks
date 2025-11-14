@@ -72,7 +72,7 @@ registerBlockType( 'editorial/relatedstories', {
 	apiVersion: 2,
 	title: __( 'Related Stories' ),
 	description: __( 'A list of related stories to embed in an article.' ),
-	icon: blockIcons('related'),
+	icon: blockIcons( 'related' ),
 	category: 'bu-editorial',
 	attributes: {
 		align: {
@@ -112,13 +112,24 @@ registerBlockType( 'editorial/relatedstories', {
 		{
 			name: 'list',
 			label: __( 'List' ),
-			isDefault: true
+			isDefault: true,
 		},
 		{
 			name: 'card',
-			label: __( 'Card' )
+			label: __( 'Card' ),
 		},
 	],
+	supports: {
+		html: false,
+		innerBlocks: false,
+	},
+	example: {
+		attributes: {
+			className: 'is-style-list',
+			relatedManual: true,
+			includePosts: [],
+		},
+	},
 
 	// Only add alignment attributes when a list is being displayed.
 	getEditWrapperProps( attributes ) {
@@ -128,7 +139,7 @@ registerBlockType( 'editorial/relatedstories', {
 			return { 'data-align': align };
 		}
 		if ( className.includes( 'is-style-card' ) ) {
-				return { 'data-style': 'card' }
+			return { 'data-style': 'card' };
 		}
 
 		return { 'data-align': 'none' };
@@ -146,7 +157,7 @@ registerBlockType( 'editorial/relatedstories', {
 			relatedPostsError: false,
 			doingRelatedPostsFetch: false,
 
-			errorMessage : false,
+			errorMessage: false,
 		} ),
 		withSelect( ( select, props ) => {
 			const {
@@ -168,26 +179,26 @@ registerBlockType( 'editorial/relatedstories', {
 			} = props.attributes;
 
 			let query;
-			let isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
-			let perPage = isCardStyle && cardCount ? cardCount : 3;
+			const isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
+			const perPage = isCardStyle && cardCount ? cardCount : 3;
 
 			if ( relatedManual ) {
 				// Setup the query arguments to run against the core REST API.
 				query = {
 					per_page: perPage,
 					include: includePosts,
-				}
+				};
 			} else {
 				// If the YARPP posts state has not yet been set, and an
 				// existing YARPP API error has not been cleared, retrieve
 				// a list of related post IDs.
 				if ( yarppPosts.length === 0 && ! yarppPostsError ) {
-					let postID = select( 'core/editor' ).getCurrentPostId();
+					const postID = select( 'core/editor' ).getCurrentPostId();
 
 					if ( postID && ! doingYarppPostsFetch ) {
 						setState( { doingYarppPostsFetch: true } );
 
-						let postTypes = applyFilters( 'buBlocks.relatedStories.yarppPostTypes', [ 'post' ] );
+						const postTypes = applyFilters( 'buBlocks.relatedStories.yarppPostTypes', [ 'post' ] );
 
 						apiFetch(
 							{
@@ -197,7 +208,7 @@ registerBlockType( 'editorial/relatedstories', {
 										post_id: postID,
 										post_type: postTypes,
 									}
-								)
+								),
 							}
 						).then( posts => {
 							setState( {
@@ -225,14 +236,13 @@ registerBlockType( 'editorial/relatedstories', {
 				query = {
 					per_page: perPage,
 					include: yarppPosts,
-				}
+				};
 			}
 
 			// If a known number of posts has been provided, retrieve those posts.
 			if ( query.include.length > 0 && relatedPosts.length === 0 && ! relatedPostsError && ! doingRelatedPostsFetch ) {
-
 				// Filter the default post type used when retrieving.
-				let postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', [ 'post' ] );
+				const postTypes = applyFilters( 'buBlocks.relatedStories.postTypes', [ 'post' ] );
 
 				// Prevent immediate duplicate requests.
 				setState( { doingRelatedPostsFetch: true } );
@@ -264,7 +274,7 @@ registerBlockType( 'editorial/relatedstories', {
 			}
 
 			return {
-				posts: relatedPosts,        // Full post objects to display in the block.
+				posts: relatedPosts, // Full post objects to display in the block.
 				errorMessage: errorMessage, // A string to display in the block if an API request failed.
 			};
 		} ),
@@ -283,9 +293,8 @@ registerBlockType( 'editorial/relatedstories', {
 			className,
 		} = attributes;
 
-		let isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
+		const isCardStyle = ( className && className.includes( 'is-style-card' ) ) ? true : false;
 		let cardCountClass = '';
-
 
 		if ( isCardStyle && cardCount === 2 ) {
 			cardCountClass = 'has-two';
@@ -312,7 +321,7 @@ registerBlockType( 'editorial/relatedstories', {
 			displayPosts = posts || []; // Use an empty array if no posts are available.
 		}
 
-		let currentPost = select( 'core/editor' ).getCurrentPost();
+		const currentPost = select( 'core/editor' ).getCurrentPost();
 
 		const displayListItem = ( className, post ) => {
 			return (
@@ -354,17 +363,17 @@ registerBlockType( 'editorial/relatedstories', {
 		 * @param {Event} event
 		 */
 		const removeSelectedPost = ( event ) => {
-			let postId = event.target.parentNode.dataset.postId;
+			const postId = event.target.parentNode.dataset.postId;
 
 			if ( ! postId ) {
 				return;
 			}
 
-			let index = includePosts.indexOf( parseInt( postId ) );
+			const index = includePosts.indexOf( parseInt( postId ) );
 
 			if ( index > -1 ) {
 				setAttributes( {
-					includePosts: includePosts.filter( ( _, i ) => i !== index )
+					includePosts: includePosts.filter( ( _, i ) => i !== index ),
 				} );
 			}
 
@@ -379,7 +388,7 @@ registerBlockType( 'editorial/relatedstories', {
 		 */
 		const displaySelectedPost = ( post ) => {
 			return (
-				<li data-post-id={ post.id }>{ decodeEntities( post.title ) } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" class="components-button is-tertiary">Remove</button></li>
+				<li data-post-id={ post.id }>{ decodeEntities( post.title ) } <button onClick={ removeSelectedPost } type="button" id="remove-selected-post" className="components-button is-tertiary">Remove</button></li>
 			);
 		};
 
@@ -423,8 +432,6 @@ registerBlockType( 'editorial/relatedstories', {
 			resetRelatedState();
 		};
 
-
-
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -452,7 +459,7 @@ registerBlockType( 'editorial/relatedstories', {
 							<URLInput
 								value={ URLInputEntry }
 								onChange={ handleSelectPost }
-								className='bu-blocks-related-stories-block-url-input-field'
+								className="bu-blocks-related-stories-block-url-input-field"
 							/>
 						) }
 						{ relatedManual && (
@@ -476,14 +483,14 @@ registerBlockType( 'editorial/relatedstories', {
 						/>
 					</BlockControls>
 				) }
-				<aside {...blockProps}>
+				<aside { ...blockProps }>
 					<h3 className="wp-block-editorial-relatedstories-title">Related</h3>
 					{ displayPosts && displayPosts.length > 0 ? (
 						<ul className="wp-block-editorial-relatedstories-list">
 							{ displayPosts.map( post => displayListItem( className, post ) ) }
 						</ul>
 					) : (
-						<p class="wp-block-editorial-relatedstories-error">{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
+						<p className="wp-block-editorial-relatedstories-error">{ errorMessage ? errorMessage : 'Select related posts in this block\'s settings.' }</p>
 					) }
 				</aside>
 			</Fragment>
