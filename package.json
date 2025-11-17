@@ -1,50 +1,50 @@
 {
-  "name": "@bostonuniversity/bu-blocks",
-  "version": "0.4.1",
-  "main": "Gruntfile.js",
-  "author": "Boston University: Interactive Design",
-  "contributors": [
-    "Jeremy Felt <jfelt@bu.edu>",
-    "Ashley Kolodziej <kolodz10@bu.edu>",
-    "Dakota Chichester <acketon@bu.edu>"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "start": "cgb-scripts start",
-    "build": "cgb-scripts build",
-    "eject": "cgb-scripts eject"
-  },
-  "dependencies": {
-    "object-fit-images": "^3.2.4"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.4",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-kss": "^5.0.1",
-    "kss": "3.0.0-beta.23",
-    "grunt-wp-i18n": "^1.0.2",
-    "grunt-wp-readme-to-markdown": "~1.0.0",
-    "id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder.git#1.0.0",
-    "responsive-foundation": "git+ssh://git@github.com:bu-ist/responsive-foundation.git#4.0.1",
-    "cgb-scripts": "^1.17.0",
-    "classnames": "^2.2.6"
-  },
-  "description": "",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://acketon@github.com/bu-ist/bu-blocks.git"
-  },
-  "bugs": {
-    "url": "https://github.com/bu-ist/bu-blocks/issues"
-  },
-  "homepage": "https://github.com/bu-ist/bu-blocks#readme"
+	"name": "@bostonuniversity/bu-blocks",
+	"version": "0.4.2",
+	"main": "Gruntfile.js",
+	"author": "Boston University: Interactive Design",
+	"contributors": [
+		"Jeremy Felt <jfelt@bu.edu>",
+		"Ashley Kolodziej <kolodz10@bu.edu>",
+		"Dakota Chichester <acketon@bu.edu>"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"start": "cgb-scripts start",
+		"build": "cgb-scripts build",
+		"eject": "cgb-scripts eject"
+	},
+	"dependencies": {
+		"object-fit-images": "^3.2.4"
+	},
+	"devDependencies": {
+		"grunt": "^1.0.4",
+		"grunt-browser-sync": "^2.2.0",
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-copy": "^0.8.0",
+		"grunt-contrib-watch": "^1.1.0",
+		"grunt-kss": "^5.0.1",
+		"kss": "3.0.0-beta.23",
+		"grunt-wp-i18n": "^1.0.2",
+		"grunt-wp-readme-to-markdown": "~1.0.0",
+		"id-kss-builder": "git+ssh://git@github.com:bu-ist/id-kss-builder.git#1.0.0",
+		"responsive-foundation": "git+ssh://git@github.com:bu-ist/responsive-foundation.git#4.0.1",
+		"cgb-scripts": "^1.17.0",
+		"classnames": "^2.2.6"
+	},
+	"description": "",
+	"directories": {
+		"doc": "docs",
+		"test": "tests"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://acketon@github.com/bu-ist/bu-blocks.git"
+	},
+	"bugs": {
+		"url": "https://github.com/bu-ist/bu-blocks/issues"
+	},
+	"homepage": "https://github.com/bu-ist/bu-blocks#readme"
 }
