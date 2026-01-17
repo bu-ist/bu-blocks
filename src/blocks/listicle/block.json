@@ -1,0 +1,87 @@
+{
+	"$schema": "https://schemas.wp.org/wp/5.8/block.json",
+	"apiVersion": 2,
+	"name": "editorial/listicle",
+	"version": "0.0.0",
+	"title": "Listicle",
+	"description": "An individual item for an article that uses a list as its thematic structure.",
+	"category": "bu-editorial",
+	"icon": "block-default",
+	"textdomain": "bu-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php",
+	"attributes": {
+		"hed": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-editorial-listicle-header-content-hed"
+		},
+		"dek": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-editorial-listicle-header-content-dek"
+		},
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-editorial-listicle-section-content"
+		},
+		"aside": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-editorial-listicle-section-aside p"
+		},
+		"number": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-editorial-listicle-header-number"
+		},
+		"related": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-editorial-listicle-footer-list"
+		},
+		"credit": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-caption-text"
+		},
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"divider": {
+			"type": "boolean",
+			"default": true
+		},
+		"backgroundId": {
+			"type": "number"
+		},
+		"backgroundType": {
+			"type": "string"
+		},
+		"backgroundUrl": {
+			"type": "string"
+		},
+		"backgroundOpacity": {
+			"type": "number",
+			"default": 100
+		},
+		"backgroundAlt": {
+			"type": "string"
+		},
+		"backgroundCaption": {
+			"type": "string"
+		},
+		"backgroundAutoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"shareToolsDisabled": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}
