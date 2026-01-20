@@ -1,0 +1,90 @@
+{
+	"$schema": "https://schemas.wp.org/wp/5.8/block.json",
+	"apiVersion": 2,
+	"name": "bu/pullquote",
+	"version": "0.0.0",
+	"title": "BU Pullquote",
+	"description": "Add a styled Pullquote",
+	"category": "bu",
+	"icon": "block-default",
+	"textdomain": "bu-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php",
+	"attributes": {
+		"quote": {
+			"type": "string",
+			"default": ""
+		},
+		"photoCredit": {
+			"type": "string"
+		},
+		"cite": {
+			"type": "string",
+			"default": ""
+		},
+		"imageFocus": {
+			"type": "string",
+			"default": "center-middle"
+		},
+		"className": {
+			"type": "string"
+		},
+		"themeColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundId": {
+			"type": "number"
+		},
+		"backgroundType": {
+			"type": "string"
+		},
+		"backgroundUrl": {
+			"type": "string"
+		},
+		"backgroundOpacity": {
+			"type": "number",
+			"default": 100
+		},
+		"backgroundAlt": {
+			"type": "string"
+		},
+		"backgroundCaption": {
+			"type": "string"
+		},
+		"backgroundAutoplay": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "Default",
+			"isDefault": true
+		},
+		{
+			"name": "modern",
+			"label": "Modern"
+		},
+		{
+			"name": "pop",
+			"label": "Pop"
+		}
+	],
+	"supports": {
+		"align": [ "full", "wide" ]
+	},
+	"example": {
+		"attributes": {
+			"quote": "Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.",
+			"cite": "Tellus Dolor Purus"
+		}
+	}
+}

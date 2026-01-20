@@ -25,7 +25,7 @@ import './blocks/introparagraph/introparagraph.js';
 import './blocks/listicle/listicle.js';
 import './blocks/modal/modal.js';
 import './blocks/photoessay/photoessay.js';
-import './blocks/pullquote/pullquote.js';
+//import './blocks/pullquote/pullquote.js';
 import './blocks/relatedstories/relatedstories.js';
 import './blocks/stat/stats.js';
 
