@@ -212,24 +212,24 @@ const icons = {
 	"prebuilt-layout" : (
 		<Fragment>
 			<path
-				fill="#C90813" 
-				d="M23,3v18H1V3h22M24,2H0v20h24V2h0Z"
+				fill="#C90813"
+				d="M22,4l.03,16-20.03.03-.03-16.03h20.03M22.03,2H1.97c-1.09,0-1.97.88-1.97,1.97v16.07c0,1.09.88,1.97,1.97,1.97h20.07c1.09,0,1.97-.88,1.97-1.97V3.97c0-1.09-.88-1.97-1.97-1.97h0Z"
 			></path>
 			<path
 				fill="#C90813"
-				d="M14,4h-1v1h0v1h1v-2h0ZM12,4h-1v1h1v-1h0ZM10,4h-1v1h1v-1h0ZM8,4h-1v1h1v-1h0ZM6,4h-1v1h1v-1h0ZM4,4h-2v1h2v-1h0ZM3,6h-1v1h1v-1h0ZM3,8h-1v1h1v-1h0ZM3,10h-1v1h0v1h1v-1h0v-1h0ZM5,11h-1v1h1v-1h0ZM7,11h-1v1h1v-1h0ZM9,11h-1v1h1v-1h0ZM11,11h-1v1h1v-1h0ZM13,11h-1v1h1v-1h0ZM14,11h-1v1h1v-1h0ZM14,9h-1v1h1v-1h0ZM14,7h-1v1h1v-1h0Z"
+				d="M13,5h-1v1h0v1h1v-2h0ZM11,5h-1v1h1v-1h0ZM9,5h-1v1h1v-1h0ZM7,5h-1v1h1v-1h0ZM5,5h-2v1h2v-1h0ZM4,7h-1v1h1v-1h0ZM4,9h-1v1h1v-1h0ZM4,11h-1v1h1v-1h0ZM5,11h-1v1h1v-1h0ZM7,11h-1v1h1v-1h0ZM9,11h-1v1h1v-1h0ZM11,11h-1v1h1v-1h0ZM13,11h-1v1h1v-1h0ZM13,10h-1v1h1v-1h0ZM13,8h-1v1h1v-1h0Z"
 			></path>
 			<path
 				fill="#C90813"
-				d="M9,13h-1v1h0v1h1v-2h0ZM7,13h-1v1h1v-1h0ZM5,13h-1v1h1v-1h0ZM3,13h-1v1h0v1h1v-1h0v-1h0ZM3,16h-1v1h1v-1h0ZM3,18h-1v1h0v1h1v-1h0v-1h0ZM5,19h-1v1h1v-1h0ZM7,19h-1v1h1v-1h0ZM9,19h-1v1h1v-1h0ZM9,18h-1v1h1v-1h0ZM9,16h-1v1h1v-1h0Z"
+				d="M10,13h-1v1h0v1h1v-2h0ZM8,13h-1v1h1v-1h0ZM6,13h-1v1h1v-1h0ZM4,13h-1v1h0v1h1v-1h0v-1h0ZM4,16h-1v1h1v-1h0ZM4,18h-1v1h1v-1h0ZM5,18h-1v1h1v-1h0ZM7,18h-1v1h1v-1h0ZM9,18h-1v1h1v-1h0ZM10,18h-1v1h1v-1h0ZM10,16h-1v1h1v-1h0Z"
 			></path>
 			<path
 				fill="#C90813"
-				d="M22,4h-1v1h0v1h1v-2h0ZM20,4h-1v1h1v-1h0ZM18,4h-1v1h1v-1h0ZM16,4h-1v1h0v1h1v-1h0v-1h0ZM16,7h-1v1h1v-1h0ZM16,9h-1v1h1v-1h0ZM16,11h-1v1h1v-1h0ZM17,11h-1v1h1v-1h0ZM19,11h-1v1h1v-1h0ZM21,11h-1v1h1v-1h0ZM22,11h-1v1h1v-1h0ZM22,9h-1v1h1v-1h0ZM22,7h-1v1h1v-1h0Z"
+				d="M21,5h-1v1h0v1h1v-2h0ZM19,5h-1v1h1v-1h0ZM17,5h-1v1h1v-1h0ZM15,5h-1v1h0v1h1v-1h0v-1h0ZM15,8h-1v1h1v-1h0ZM15,10h-1v1h0v1h1v-1h0v-1h0ZM17,11h-1v1h1v-1h0ZM19,11h-1v1h1v-1h0ZM21,11h-1v1h1v-1h0ZM21,10h-1v1h1v-1h0ZM21,8h-1v1h1v-1h0Z"
 			></path>
 			<path
 				fill="#C90813"
-				d="M22,13h-1v1h0v1h1v-2h0ZM20,13h-1v1h1v-1h0ZM18,13h-1v1h1v-1h0ZM16,13h-1v1h1v-1h0ZM14,13h-1v1h1v-1h0ZM12,13h-2v1h2v-1h0ZM11,15h-1v1h1v-1h0ZM11,17h-1v1h1v-1h0ZM11,19h-1v1h1v-1h0ZM12,19h-1v1h1v-1h0ZM14,19h-1v1h1v-1h0ZM16,19h-1v1h1v-1h0ZM18,19h-1v1h1v-1h0ZM20,19h-1v1h1v-1h0ZM22,19h-1v1h1v-1h0ZM22,18h-1v1h1v-1h0ZM22,16h-1v1h1v-1h0Z"
+				d="M21,13h-1v1h0v1h1v-2h0ZM19,13h-1v1h1v-1h0ZM17,13h-1v1h1v-1h0ZM15,13h-1v1h1v-1h0ZM13,13h-2v1h2v-1h0ZM12,15h-1v1h1v-1h0ZM12,17h-1v1h0v1h1v-1h0v-1h0ZM14,18h-1v1h1v-1h0ZM16,18h-1v1h1v-1h0ZM18,18h-1v1h1v-1h0ZM20,18h-1v1h1v-1h0ZM21,18h-1v1h1v-1h0ZM21,16h-1v1h1v-1h0Z"
 			></path>
 		</Fragment>
 	),
