@@ -15,6 +15,7 @@ import './editor.scss';
 import themeOptions from '../../global/theme-options';
 import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
+import deprecatedStatChildBlock from './deprecated/deprecated';
 
 // WordPress dependencies.
 const {
@@ -26,7 +27,6 @@ const {
 const {
 	Circle,
 	PanelBody,
-	Path,
 	RangeControl,
 	SVG,
 } = wp.components;
@@ -46,6 +46,7 @@ const {
  * @param {string} circleTwoColor The color option for circle 2.
  * @param {string} className      Default classes assigned to the block.
  * @param {number} numberSize     The size at which to display the stat number.
+ * @return {string} The class list for the block.
  */
 const getBlockClasses = ( circleOneColor, circleTwoColor, className, numberSize ) => {
 	return (
@@ -65,6 +66,7 @@ const getBlockClasses = ( circleOneColor, circleTwoColor, className, numberSize 
  *
  * @param {number} circleOneFill The percentage of circle one to fill in.
  * @param {number} circleTwoFill The percentage of circle two to fill in.
+ * @return {JSX.Element} The SVG markup.
  */
 const statSVG = ( circleOneFill, circleTwoFill ) => (
 	<SVG
@@ -98,7 +100,7 @@ registerBlockType( 'bu/stat', {
 	parent: [ 'bu/stats' ],
 	title: __( 'Stat' ),
 	description: __( 'Display statistical information.' ),
-	icon: blockIcons('stat'),
+	icon: blockIcons( 'stat' ),
 	category: 'bu',
 	attributes: {
 		circleOneColor: {
@@ -147,7 +149,6 @@ registerBlockType( 'bu/stat', {
 	supports: {
 		inserter: false,
 	},
-
 	edit: withColors( 'circleOneColor', 'circleTwoColor' )( props => {
 		const {
 			attributes: {
@@ -167,16 +168,16 @@ registerBlockType( 'bu/stat', {
 			setCircleTwoColor,
 		} = props;
 
-		const blockProps = useBlockProps({
+		const blockProps = useBlockProps( {
 			className: getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ),
-		});
+		} );
 
 		return (
 			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
 
-						{ ( isSelected || !RichText.isEmpty( preText ) ) &&
+						{ ( isSelected || ! RichText.isEmpty( preText ) ) &&
 							<RichText
 								tagName="div"
 								className="wp-block-bu-stat-text-pre"
@@ -196,7 +197,7 @@ registerBlockType( 'bu/stat', {
 							/>
 						</div>
 
-						{ ( isSelected || !RichText.isEmpty( postText ) ) &&
+						{ ( isSelected || ! RichText.isEmpty( postText ) ) &&
 							<RichText
 								tagName="div"
 								className="wp-block-bu-stat-text-post"
@@ -264,8 +265,8 @@ registerBlockType( 'bu/stat', {
 			</div>
 		);
 	} ),
-
-	save( { attributes }) {
+	deprecated: deprecatedStatChildBlock,
+	save( { attributes } ) {
 		const {
 			circleOneColor,
 			circleOneFill,
@@ -278,15 +279,15 @@ registerBlockType( 'bu/stat', {
 			preText,
 		} = attributes;
 
-		const blockProps = useBlockProps.save({
+		const blockProps = useBlockProps.save( {
 			className: getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ),
-		});
+		} );
 
 		return (
 			<div { ...blockProps }>
 				<div className="wp-block-bu-stat-container-outer">
 					<div className="wp-block-bu-stat-container-inner">
-						{ !RichText.isEmpty( preText ) &&
+						{ ! RichText.isEmpty( preText ) &&
 							<RichText.Content
 								tagName="div"
 								className="wp-block-bu-stat-text-pre"
@@ -294,7 +295,7 @@ registerBlockType( 'bu/stat', {
 							/>
 						}
 						<div className="wp-block-bu-stat-number">{ number }</div>
-						{ !RichText.isEmpty( postText ) &&
+						{ ! RichText.isEmpty( postText ) &&
 							<RichText.Content
 								tagName="div"
 								className="wp-block-bu-stat-text-post"
