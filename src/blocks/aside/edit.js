@@ -11,61 +11,71 @@ import allowedBlocks from '../../components/allowed-blocks';
 
 // WordPress dependencies.
 const { __ } = wp.i18n;
-const { Component, Fragment } = wp.element;
-const { compose } = wp.compose;
+const { Fragment, useMemo } = wp.element;
 const {
 	InnerBlocks,
 	InspectorControls,
 	PanelColorSettings,
-	withColors,
-	useBlockProps
+	useBlockProps,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
-const BUAsideEdit = ( props ) => {
+export default function Edit( props ) {
+	const {
+		attributes,
+		className,
+		presetTemplate,
+		setAttributes,
+	} = props;
 
-		const {
-			attributes,
-			className,
-			themeColor,
-			setThemeColor,
-			presetTemplate,
-		} = props;
+	const { themeColor } = attributes;
 
-		const classes = classnames(
-			className,
-			{ [ `has-${themeColor.slug}-background` ]: themeColor.slug }
-		);
+	const classes = classnames(
+		className,
+		{ [ `has-${ themeColor }-background` ]: themeColor }
+	);
 
-		const blockProps = useBlockProps( {
-			className: classes,
-		});
+	const blockProps = useBlockProps( {
+		className: classes,
+	} );
 
-		return (
-			<Fragment>
-				<InspectorControls>
-					<PanelColorSettings
-						title={ __( 'Color Settings' ) }
-						colorSettings={ [
-							{
-								value: themeColor.color,
-								onChange: setThemeColor,
-								label: __( 'Theme' ),
-								disableCustomColors: true,
-								colors: themeOptions(),
+	// themOptions() returns the full/global color palette added to editor settings.
+	const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+	// Resolve color objects from slugs using WordPress built-in function
+	const themeColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, themeColor ), [ themeOptionsPalette, themeColor ] );
+
+	return (
+		<Fragment>
+			<InspectorControls>
+				<PanelColorSettings
+					title={ __( 'Color Settings' ) }
+					colorSettings={ [
+						{
+							value: themeColorObj ? themeColorObj.color : undefined,
+							onChange: ( value ) => {
+								// Get the color object from the selected color value.
+								const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+								// Set the attribute to the new color slug or an empty string if not found.
+								setAttributes( {
+									themeColor: newValueColorObj ? newValueColorObj.slug : '',
+								} );
 							},
-						] }
-					/>
-				</InspectorControls>
-				<aside {...blockProps}>
-					<InnerBlocks
-						allowedBlocks={ allowedBlocks() }
-						template={ presetTemplate }
-					/>
-				</aside>
-			</Fragment>
-		);
+							label: __( 'Theme' ),
+							disableCustomColors: true,
+							colors: themeOptionsPalette,
+						},
+					] }
+				/>
+			</InspectorControls>
+			<aside { ...blockProps }>
+				<InnerBlocks
+					allowedBlocks={ allowedBlocks() }
+					template={ presetTemplate }
+				/>
+			</aside>
+		</Fragment>
+	);
 }
 
-export default compose( [
-	withColors( 'themeColor' )
-] )( BUAsideEdit );

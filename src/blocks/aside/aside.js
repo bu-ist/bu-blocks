@@ -33,7 +33,7 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 	apiVersion: 2,
 	title: __( 'Aside' ),
 	description: __( 'Add an aside with related information. Accepts image, headline, paragraph, and button blocks as children.' ),
-	icon: blockIcons('aside'),
+	icon: blockIcons( 'aside' ),
 	category: 'bu-editorial',
 	supports: {
 		align: [ 'left', 'right' ],
@@ -56,10 +56,10 @@ const asideBlock = registerBlockType( 'editorial/aside', {
 
 		const blockProps = useBlockProps.save( {
 			className: classes,
-		});
+		} );
 
 		return (
-			<aside {...blockProps}>
+			<aside { ...blockProps }>
 				<InnerBlocks.Content />
 			</aside>
 		);
@@ -70,7 +70,7 @@ const presetTemplate = [
 	[ 'core/image' ],
 	[ 'core/heading', { placeholder: 'Enter aside title…' } ],
 	[ 'core/paragraph', { placeholder: 'Enter aside content…' } ],
-	[ 'core/button' ]
+	[ 'core/button' ],
 ];
 
 RegisterBlockPreset( asideBlock, presetTemplate );
