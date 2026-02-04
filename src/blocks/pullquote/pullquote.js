@@ -153,11 +153,11 @@ registerBlockType( 'bu/pullquote', {
 		} = attributes;
 
 		// Get color palette from themeOptions
-		const colors = useMemo( () => themeOptions(), [] );
+		const themeOptionsPalette = useMemo( () => themeOptions(), [] );
 
 		// Resolve color objects from slugs using WordPress built-in function
-		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( colors, themeColor ), [ colors, themeColor ] );
-		const textColorObj = useMemo( () => getColorObjectByAttributeValues( colors, textColor ), [ colors, textColor ] );
+		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, themeColor ), [ themeOptionsPalette, themeColor ] );
+		const textColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, textColor ), [ themeOptionsPalette, textColor ] );
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
@@ -209,7 +209,7 @@ registerBlockType( 'bu/pullquote', {
 								value: themeColorObj ? themeColorObj.color : undefined,
 								onChange: ( value ) => {
 									// Get the color object from the selected color value.
-									const newValueColorObj = getColorObjectByColorValue( colors, value );
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
 									// Set the attribute to the new color slug or an empty string if not found.
 									setAttributes( {
 										themeColor: newValueColorObj ? newValueColorObj.slug : '',
@@ -217,7 +217,7 @@ registerBlockType( 'bu/pullquote', {
 								},
 								label: __( 'Theme' ),
 								disableCustomColors: true,
-								colors: colors,
+								colors: themeOptionsPalette,
 							},
 						] }
 					/>
@@ -228,7 +228,7 @@ registerBlockType( 'bu/pullquote', {
 								value: textColorObj ? textColorObj.color : undefined,
 								onChange: ( value ) => {
 									// Get the color object from the selected color value.
-									const newValueColorObj = getColorObjectByColorValue( colors, value );
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
 									// Set the attribute to the new color slug or an empty string if not found.
 									setAttributes( {
 										textColor: newValueColorObj ? newValueColorObj.slug : '',
@@ -236,7 +236,7 @@ registerBlockType( 'bu/pullquote', {
 								},
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
-								colors: colors,
+								colors: themeOptionsPalette,
 							},
 
 						] }
