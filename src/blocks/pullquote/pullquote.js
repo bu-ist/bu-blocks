@@ -39,7 +39,8 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
-	withColors,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Returns true if the current block style is "Default".
@@ -131,17 +132,13 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
-
-	edit: withColors( 'themeColor', 'textColor' )( props => {
+	// Define the block edit function without withColors HOC
+	edit: ( props => {
 		// Get the block properties.
 		const {
 			attributes,
 			setAttributes,
 			className,
-			setThemeColor,
-			themeColor,
-			textColor,
-			setTextColor,
 		} = props;
 
 		// Get the block attributes.
@@ -151,7 +148,16 @@ registerBlockType( 'bu/pullquote', {
 			photoCredit,
 			imageFocus,
 			backgroundId,
+			themeColor,
+			textColor,
 		} = attributes;
+
+		// Get color palette from themeOptions
+		const colors = themeOptions();
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const themeColorObj = getColorObjectByAttributeValues( colors, themeColor );
+		const textColorObj = getColorObjectByAttributeValues( colors, textColor );
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
@@ -184,6 +190,9 @@ registerBlockType( 'bu/pullquote', {
 			);
 		};
 
+		console.log( `pullquote themeColor`, themeColor, themeColorObj );
+		console.log( `pullquote textColor`, textColor, textColorObj );
+
 		// Return the block editing interface.
 		return (
 			<Fragment>
@@ -200,11 +209,18 @@ registerBlockType( 'bu/pullquote', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObj ? themeColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( colors, value );
+									// Set the attribute to the new color slug or undefined if not found.
+									setAttributes( {
+										themeColor: newValueColorObj ? newValueColorObj.slug : undefined,
+									} );
+								},
 								label: __( 'Theme' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: colors,
 							},
 						] }
 					/>
@@ -212,11 +228,18 @@ registerBlockType( 'bu/pullquote', {
 						title={ __( 'Text Color' ) }
 						colorSettings={ [
 							{
-								value: textColor.color,
-								onChange: setTextColor,
+								value: textColorObj ? textColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( colors, value );
+									// Set the attribute to the new color slug or undefined if not found.
+									setAttributes( {
+										textColor: newValueColorObj ? newValueColorObj.slug : undefined,
+									} );
+								},
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: colors,
 							},
 
 						] }
@@ -229,7 +252,8 @@ registerBlockType( 'bu/pullquote', {
 					placeholderText={ __( 'Add Image' ) }
 					setIsUploading={ setIsUploading }
 				/>
-				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug, textColor.slug ) }>
+
+				<div className={ getClasses( className, backgroundId, imageFocus, themeColor, textColor ) }>
 					<div className="wp-block-bu-pullquote-inner">
 						{ isStyleDefault( className ) && (
 							<Fragment>
