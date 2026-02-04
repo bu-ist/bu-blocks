@@ -99,7 +99,7 @@
 	}
 
 	// asymmetrical layouts
-	.has-prebuilt-template-asymmetrical-a & {
+	.has-prebuilt-columns-asymmetrical-a & {
 		grid-template-columns: 1fr 1fr;
 
 		@container prebuilt-layout ( width > #{ $xs } ) {
@@ -107,7 +107,7 @@
 		}
 			
 	}
-	.has-prebuilt-template-asymmetrical-b & {
+	.has-prebuilt-columns-asymmetrical-b & {
 		grid-template-columns: 1fr 1fr;
 
 		@container prebuilt-layout ( width > #{ $xs } ) {
