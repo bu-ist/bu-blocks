@@ -57,7 +57,6 @@ const prebuiltlayout = registerBlockType( 'bu/prebuilt-layout', {
 
 		return (
 			<div {...blockProps}>
-<div class='wp-block-bu-prebuilt-layout'>
 	<div class='wp-block-bu-prebuilt-layout__inner-container'>
 		<div class='wp-block-bu-prebuilt-layout-segment'>
 			<p>Lorem ipsum dolor sit amet curabitur platea quis nibh. Pharetra praesent augue sollicitudin laoreet aliqua tellus quisque dolore ultrices phasellus. Diam vel sollicitudin porta enim ullamcorper est dictum nec est. Non urna sapien mollis id ac eu purus laoreet suspendisse nec eleifend pellentesque. Pharetra morbi posuere tempor egestas labore proin lacus nunc ac viverra et donec curabitur nullam.</p>
@@ -72,24 +71,6 @@ const prebuiltlayout = registerBlockType( 'bu/prebuilt-layout', {
 			<p>Lorem ipsum dolor sit amet curabitur platea quis nibh. Pharetra praesent augue sollicitudin laoreet aliqua tellus quisque dolore ultrices phasellus. Diam vel sollicitudin porta enim ullamcorper est dictum nec est. Non urna sapien mollis id ac eu purus laoreet suspendisse nec eleifend pellentesque. Pharetra morbi posuere tempor egestas labore proin lacus nunc ac viverra et donec curabitur nullam.</p>
 		</div>
 	</div>
-</div>
-
-<div class='wp-block-bu-prebuilt-layout'>
-	<div class='wp-block-bu-prebuilt-layout__inner-container'>
-		<div class='wp-block-bu-prebuilt-layout-segment'>
-			<p>Lorem ipsum dolor sit amet curabitur platea quis nibh. Pharetra praesent augue sollicitudin laoreet aliqua tellus quisque dolore ultrices phasellus. Diam vel sollicitudin porta enim ullamcorper est dictum nec est. Non urna sapien mollis id ac eu purus laoreet suspendisse nec eleifend pellentesque. Pharetra morbi posuere tempor egestas labore proin lacus nunc ac viverra et donec curabitur nullam.</p>
-		</div>
-		<div class='wp-block-bu-prebuilt-layout-segment'>
-			<p>Lorem ipsum dolor sit amet curabitur platea quis nibh. Pharetra praesent augue sollicitudin laoreet aliqua tellus quisque dolore ultrices phasellus. Diam vel sollicitudin porta enim ullamcorper est dictum nec est. Non urna sapien mollis id ac eu purus laoreet suspendisse nec eleifend pellentesque. Pharetra morbi posuere tempor egestas labore proin lacus nunc ac viverra et donec curabitur nullam.</p>
-		</div>
-		<div class='wp-block-bu-prebuilt-layout-segment'>
-			<p>Lorem ipsum dolor sit amet curabitur platea quis nibh. Pharetra praesent augue sollicitudin laoreet aliqua tellus quisque dolore ultrices phasellus. Diam vel sollicitudin porta enim ullamcorper est dictum nec est. Non urna sapien mollis id ac eu purus laoreet suspendisse nec eleifend pellentesque. Pharetra morbi posuere tempor egestas labore proin lacus nunc ac viverra et donec curabitur nullam.</p>
-		</div>
-		<div class='wp-block-bu-prebuilt-layout-segment'>
-			<p>Lorem ipsum dolor sit amet curabitur platea quis nibh. Pharetra praesent augue sollicitudin laoreet aliqua tellus quisque dolore ultrices phasellus. Diam vel sollicitudin porta enim ullamcorper est dictum nec est. Non urna sapien mollis id ac eu purus laoreet suspendisse nec eleifend pellentesque. Pharetra morbi posuere tempor egestas labore proin lacus nunc ac viverra et donec curabitur nullam.</p>
-		</div>
-	</div>
-</div>
 			</div>
 		);
 	},
