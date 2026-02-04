@@ -9,53 +9,122 @@
 //
 
 .wp-block-bu-prebuilt-layout {
+	container-name: prebuilt-layout;
+	container-type: inline-size;
 
-}
-
-.wp-block-bu-prebuilt-layout__inner-container {
-	display: grid;
-	column-gap: var( --prebuilt-column-gap, var( --bu-container-column-gap, 1rem ) );;
-	row-gap: var( --prebuilt-row-gap, var( --bu-container-row-gap, 1rem ) );
-	margin-inline: auto;
-
-	.has-prebuilt-width-wide & {
-		max-width: var( --bu-container-max-inline-size--wide );
+	// float alignment base sizing
+	&.alignleft,
+	&.alignright {
+		width: var(--bu-container-size--content, 50%);
 	}
 
-	.has-prebuilt-width-content & {
+	// Inner content width limits
+	&.has-prebuilt-width-content {
 		max-width: var( --bu-container-max-inline-size--content );
 	}
 
-	.has-prebuilt-template-three & {
-		grid-template-columns: 1fr 1fr 1fr;
+	&.has-prebuilt-width-wide {
+		max-width: var( --bu-container-max-inline-size--wide );
 	}
 
-	.has-prebuilt-template-staggered & {
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-template-rows: auto;
-		grid-template-areas: 
-			"a b b"
-			"c c d";
-		
-		.wp-block-bu-prebuilt-layout-segment {
-			margin: 0;
+	&.has-prebuilt-width-full {
+		max-width: unset;
+	}
+}
 
-			&:nth-child( 1 ) {
-				grid-area: a;
-			}
-			&:nth-child( 2 ) {
-				grid-area: b;
-			}
-			&:nth-child( 3 ) {
-				grid-area: c;
-			}
-			&:nth-child( 4 ) {
-				grid-area: d;
-			}
+.wp-block-bu-prebuilt-layout__inner-container {
+	column-gap: var( --prebuilt-column-gap, var( --bu-container-column-gap, 1rem ) );
+	display: grid;
+	grid-template-columns: repeat( 1, 1fr );
+	justify-items: center;
+	margin-inline: auto;
+	row-gap: var( --prebuilt-row-gap, var( --bu-container-row-gap, 1rem ) );
+
+	//make sure no margin or padding is applied to layout segments
+	.wp-block-bu-prebuilt-layout-segment {
+		margin: 0;
+		padding: 0;
+	}
+
+	// 2 columns layouts
+	&:has( > :where( *:nth-child( 2 ):nth-last-child( 1 ) ) ) {
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: repeat( 2, 1fr );
+		}
+
+		//allow dual columns while floated
+		.alignleft &,
+		.alignright & {
+			grid-template-columns: repeat( 2, 1fr );
 		}
 	}
 
-	.wp-block-bu-prebuilt-layout-segment {
-		margin: 0;
+	// 3 columns layouts
+	&:has( > :where( *:nth-child( 3 ):nth-last-child( 1 ) ) ) {
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: repeat( 2, 1fr );
+		}
+
+		@container prebuilt-layout ( width > #{ $sm } ) {
+			grid-template-columns: repeat( 3, 1fr );
+		}
+	}
+
+	// 4 columns layouts
+	&:has( > :where( *:nth-child( 4 ):nth-last-child( 1 ) ) ) {
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: repeat( 2, 1fr );
+		}
+
+		@container prebuilt-layout ( width > #{ $sm } ) {
+			grid-template-columns: repeat( 4, 1fr );
+		}
+	}
+
+	// 5 columns layouts
+	&:has( > :where( *:nth-child( 5 ):nth-last-child( 1 ) ) ) {
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: repeat( 2, 1fr );
+		}
+
+		@container prebuilt-layout ( width > #{ $sm } ) {
+			grid-template-columns: repeat( 3, 1fr );
+		}
+
+		@container prebuilt-layout ( width > #{ $lg } ) {
+			grid-template-columns: repeat( 5, 1fr );
+		}
+	}
+
+	// 6 columns layouts
+	&:has( > :where( *:nth-child( 6 ):nth-last-child( 1 ) ) ) {
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: repeat( 2, 1fr );
+		}
+
+		@container prebuilt-layout ( width > #{ $sm } ) {
+			grid-template-columns: repeat( 3, 1fr );
+		}
+
+		@container prebuilt-layout ( width > #{ $xl } ) {
+			grid-template-columns: repeat( 6, 1fr );
+		}
+	}
+
+	// asymmetrical layouts
+	.has-prebuilt-template-asymmetrical-a & {
+		grid-template-columns: 1fr 1fr;
+
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: 2fr 1fr;
+		}
+			
+	}
+	.has-prebuilt-template-asymmetrical-b & {
+		grid-template-columns: 1fr 1fr;
+
+		@container prebuilt-layout ( width > #{ $xs } ) {
+			grid-template-columns: 1fr 2fr;
+		}
 	}
 }
