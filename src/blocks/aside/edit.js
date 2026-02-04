@@ -40,7 +40,7 @@ export default function Edit( props ) {
 		className: classes,
 	} );
 
-	// themOptions() returns the full/global color palette added to editor settings.
+	// themeOptions() returns the full/global color palette added to editor settings.
 	const themeOptionsPalette = useMemo( () => themeOptions(), [] );
 
 	// Resolve color objects from slugs using WordPress built-in function
