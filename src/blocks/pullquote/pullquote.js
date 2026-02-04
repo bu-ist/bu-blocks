@@ -27,6 +27,7 @@ const {
 const {
 	Fragment,
 	useState,
+	useMemo,
 } = wp.element;
 const {
 	PanelBody,
@@ -153,11 +154,11 @@ registerBlockType( 'bu/pullquote', {
 		} = attributes;
 
 		// Get color palette from themeOptions
-		const colors = themeOptions();
+		const colors = useMemo( () => themeOptions(), [] );
 
 		// Resolve color objects from slugs using WordPress built-in function
-		const themeColorObj = getColorObjectByAttributeValues( colors, themeColor );
-		const textColorObj = getColorObjectByAttributeValues( colors, textColor );
+		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( colors, themeColor ), [ colors, themeColor ] );
+		const textColorObj = useMemo( () => getColorObjectByAttributeValues( colors, textColor ), [ colors, textColor ] );
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
@@ -213,9 +214,9 @@ registerBlockType( 'bu/pullquote', {
 								onChange: ( value ) => {
 									// Get the color object from the selected color value.
 									const newValueColorObj = getColorObjectByColorValue( colors, value );
-									// Set the attribute to the new color slug or undefined if not found.
+									// Set the attribute to the new color slug or an empty string if not found.
 									setAttributes( {
-										themeColor: newValueColorObj ? newValueColorObj.slug : undefined,
+										themeColor: newValueColorObj ? newValueColorObj.slug : '',
 									} );
 								},
 								label: __( 'Theme' ),
@@ -232,9 +233,9 @@ registerBlockType( 'bu/pullquote', {
 								onChange: ( value ) => {
 									// Get the color object from the selected color value.
 									const newValueColorObj = getColorObjectByColorValue( colors, value );
-									// Set the attribute to the new color slug or undefined if not found.
+									// Set the attribute to the new color slug or an empty string if not found.
 									setAttributes( {
-										textColor: newValueColorObj ? newValueColorObj.slug : undefined,
+										textColor: newValueColorObj ? newValueColorObj.slug : '',
 									} );
 								},
 								label: __( 'Text Color' ),
