@@ -27,19 +27,19 @@ const {
 const {
 	Fragment,
 	useState,
+	useMemo,
 } = wp.element;
 const {
 	PanelBody,
-	Path,
 	SelectControl,
 	TextControl,
-	SVG,
 } = wp.components;
 const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
-	withColors,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Returns true if the current block style is "Default".
@@ -54,6 +54,8 @@ const isStyleDefault = ( className ) => {
  * @param {number} backgroundId ID of the background media, if set.
  * @param {string} imageFocus   Value of the "Crop Media To" setting.
  * @param {string} themeColor   Value of the "Theme Color" setting.
+ * @param {string} textColor   Value of the "Text Color" setting.
+ * @returns {string} The class list for the block.
  */
 const getClasses = ( className, backgroundId, imageFocus, themeColor, textColor ) => {
 	const isStylePop = className.includes( 'is-style-pop' );
@@ -63,13 +65,13 @@ const getClasses = ( className, backgroundId, imageFocus, themeColor, textColor 
 			className,
 			{
 				'has-image': ( backgroundId && ! isStylePop ),
-				[ `has-image-focus-${imageFocus}` ]: ( imageFocus && ! isStylePop ),
-				[ `has-${themeColor}-theme` ]: themeColor,
-				[ `has-${textColor}-theme-text` ]: textColor,
+				[ `has-image-focus-${ imageFocus }` ]: ( imageFocus && ! isStylePop ),
+				[ `has-${ themeColor }-theme` ]: themeColor,
+				[ `has-${ textColor }-theme-text` ]: textColor,
 			}
 		)
 	);
-}
+};
 
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
@@ -78,7 +80,7 @@ const allowedMedia = [ 'image' ];
 registerBlockType( 'bu/pullquote', {
 	title: __( 'BU Pullquote' ),
 	description: __( '' ),
-	icon: blockIcons('pullquote'),
+	icon: blockIcons( 'pullquote' ),
 	category: 'bu',
 	supports: {
 		align: [ 'full', 'wide' ],
@@ -87,7 +89,7 @@ registerBlockType( 'bu/pullquote', {
 		quote: {
 			type: 'array',
 			source: 'children',
-			selector: '.quote-sizing'
+			selector: '.quote-sizing',
 		},
 		photoCredit: {
 			type: 'string',
@@ -97,11 +99,11 @@ registerBlockType( 'bu/pullquote', {
 		cite: {
 			type: 'array',
 			source: 'children',
-			selector: 'footer'
+			selector: 'footer',
 		},
 		imageFocus: {
 			type: 'string',
-			default: 'center-middle'
+			default: 'center-middle',
 		},
 		className: {
 			type: 'string',
@@ -131,17 +133,12 @@ registerBlockType( 'bu/pullquote', {
 			label: __( 'Pop' ),
 		},
 	],
-
-	edit: withColors( 'themeColor', 'textColor' )( props => {
+	edit: ( props => {
 		// Get the block properties.
 		const {
 			attributes,
 			setAttributes,
 			className,
-			setThemeColor,
-			themeColor,
-			textColor,
-			setTextColor,
 		} = props;
 
 		// Get the block attributes.
@@ -151,7 +148,16 @@ registerBlockType( 'bu/pullquote', {
 			photoCredit,
 			imageFocus,
 			backgroundId,
+			themeColor,
+			textColor,
 		} = attributes;
+
+		// Get color palette from themeOptions
+		const colors = useMemo( () => themeOptions(), [] );
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( colors, themeColor ), [ colors, themeColor ] );
+		const textColorObj = useMemo( () => getColorObjectByAttributeValues( colors, textColor ), [ colors, textColor ] );
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
@@ -191,7 +197,7 @@ registerBlockType( 'bu/pullquote', {
 					<PanelBody title={ __( 'Media Options' ) } >
 						<TextControl
 							label={ __( 'Media Credit' ) }
-							onChange={ photoCredit => setAttributes( { photoCredit } ) }
+							onChange={ value => setAttributes( { photoCredit: value } ) }
 							value={ photoCredit }
 						/>
 					</PanelBody>
@@ -200,11 +206,18 @@ registerBlockType( 'bu/pullquote', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObj ? themeColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( colors, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										themeColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Theme' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: colors,
 							},
 						] }
 					/>
@@ -212,11 +225,18 @@ registerBlockType( 'bu/pullquote', {
 						title={ __( 'Text Color' ) }
 						colorSettings={ [
 							{
-								value: textColor.color,
-								onChange: setTextColor,
+								value: textColorObj ? textColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( colors, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										textColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Text Color' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: colors,
 							},
 
 						] }
@@ -229,7 +249,8 @@ registerBlockType( 'bu/pullquote', {
 					placeholderText={ __( 'Add Image' ) }
 					setIsUploading={ setIsUploading }
 				/>
-				<div className={ getClasses( className, backgroundId, imageFocus, themeColor.slug, textColor.slug ) }>
+
+				<div className={ getClasses( className, backgroundId, imageFocus, themeColor, textColor ) }>
 					<div className="wp-block-bu-pullquote-inner">
 						{ isStyleDefault( className ) && (
 							<Fragment>

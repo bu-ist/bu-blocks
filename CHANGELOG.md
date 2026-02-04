@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bug: BU Pullquote Block - remove withColors() and refactor for 5.8 see: https://github.com/bu-ist/bu-blocks/pull/448
+
 ## 0.4.2
 
 -   Related Stories block was crashing in the editor when users were trying to access style options. This is a known bug in older gutenberg versions. Fixed by adding optional example. Details about error and eventual fix for later gutenberg issues can he found here: https://github.com/WordPress/gutenberg/pull/29894
