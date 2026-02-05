@@ -27,9 +27,7 @@ const {
 } = wp.blocks;
 const {
 	PanelBody,
-	Path,
 	RadioControl,
-	SVG,
 	ToggleControl,
 } = wp.components;
 const {
@@ -37,14 +35,15 @@ const {
 	InnerBlocks,
 	InspectorControls,
 	PanelColorSettings,
-	withColors,
 	useBlockProps,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
-	select
+	select,
 } = wp.data;
 
-const { useState } = wp.element;
+const { useState, useMemo } = wp.element;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
@@ -58,9 +57,11 @@ const {
  *
  * @param {number}  background Whether the block has background media assigned.
  * @param {string}  className  Default classes assigned to the block.
- * @param {boolean} round      Whether to display round images.
  * @param {boolean} hideTeaser Whether to display the teaser.
+ * @param {boolean} round      Whether to display round images.
+ * @param {string}  size       The assigned size class.
  * @param {string}  themeColor The assigned background color.
+ * @returns {string} The class names.
  */
 const getClasses = ( background, className, hideTeaser, round, size, themeColor ) => {
 	return (
@@ -70,7 +71,7 @@ const getClasses = ( background, className, hideTeaser, round, size, themeColor 
 				'has-hide-teaser': hideTeaser,
 				'is-style-round': round,
 				[ className ]: className,
-				[ `has-${themeColor}-background` ]: themeColor,
+				[ `has-${ themeColor }-background` ]: themeColor,
 				[ size ]: size && size !== '',
 				'has-media': background,
 			}
@@ -83,14 +84,14 @@ registerBlockType( 'editorial/drawer', {
 	apiVersion: 2,
 	title: __( 'Drawer' ),
 	description: __( 'Add content that can be toggled.' ),
-	icon: blockIcons('drawer'),
+	icon: blockIcons( 'drawer' ),
 	category: 'bu-editorial',
 	attributes: {
 		button: {
 			type: 'string',
 			default: 'Read More',
 			source: 'text',
-			selector: '.button.js-bu-block-drawer-open'
+			selector: '.button.js-bu-block-drawer-open',
 		},
 		className: {
 			type: 'string',
@@ -102,7 +103,7 @@ registerBlockType( 'editorial/drawer', {
 			type: 'string',
 			default: '',
 			source: 'html',
-			selector: 'h2'
+			selector: 'h2',
 		},
 		hideTeaser: {
 			type: 'boolean',
@@ -112,7 +113,7 @@ registerBlockType( 'editorial/drawer', {
 			type: 'string',
 			default: '',
 			source: 'html',
-			selector: 'p'
+			selector: 'p',
 		},
 		round: {
 			type: 'boolean',
@@ -137,11 +138,11 @@ registerBlockType( 'editorial/drawer', {
 		if ( clientId ) {
 			const drawerHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
 
-			return { 'data-selected-drawer': ( drawerHasSelectedBlock ) ? 'true' : undefined }
+			return { 'data-selected-drawer': ( drawerHasSelectedBlock ) ? 'true' : undefined };
 		}
 	},
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: ( props => {
 		// Get the properties and attributes we'll need.
 		const {
 			attributes: {
@@ -152,18 +153,17 @@ registerBlockType( 'editorial/drawer', {
 				lede,
 				round,
 				size,
+				themeColor,
 			},
 			className,
 			clientId,
 			isSelected,
 			setAttributes,
-			setThemeColor,
-			themeColor,
 		} = props;
 
 		const blockProps = useBlockProps( {
-			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor.slug ),
-		});
+			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor ),
+		} );
 
 		const [ isUploading, setIsUploading ] = useState( false );
 
@@ -172,8 +172,14 @@ registerBlockType( 'editorial/drawer', {
 			setAttributes( { clientId: clientId } );
 		}
 
+		// themeOptions() returns the full/global color palette added to editor settings.
+		const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, themeColor ), [ themeOptionsPalette, themeColor ] );
+
 		return (
-			<aside {...blockProps}>
+			<aside { ...blockProps }>
 				<BackgroundControls
 					allowedMediaTypes={ [ 'image' ] }
 					blockProps={ props }
@@ -232,15 +238,22 @@ registerBlockType( 'editorial/drawer', {
 						</div>
 					</div>
 				</section>
-				<div class="wp-block-editorial-drawer-clearfix"></div>
+				<div className="wp-block-editorial-drawer-clearfix"></div>
 				<InspectorControls>
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObj ? themeColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										themeColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Background' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
@@ -251,13 +264,13 @@ registerBlockType( 'editorial/drawer', {
 						<ToggleControl
 							label={ __( 'Hide teaser when drawer is open' ) }
 							checked={ hideTeaser }
-							onChange={ () => setAttributes( { hideTeaser: !hideTeaser } ) }
+							onChange={ () => setAttributes( { hideTeaser: ! hideTeaser } ) }
 						/>
 						{ backgroundId &&
 							<ToggleControl
 								label={ __( 'Round photos' ) }
 								checked={ round }
-								onChange={ () => setAttributes( { round: !round } ) }
+								onChange={ () => setAttributes( { round: ! round } ) }
 							/>
 						}
 						<RadioControl
@@ -270,7 +283,7 @@ registerBlockType( 'editorial/drawer', {
 								},
 								{
 									label: 'Narrow',
-									value: 'is-size-narrow'
+									value: 'is-size-narrow',
 								},
 								{
 									label: 'Small',
@@ -311,10 +324,10 @@ registerBlockType( 'editorial/drawer', {
 
 		const blockProps = useBlockProps.save( {
 			className: getClasses( backgroundId, className, hideTeaser, round, size, themeColor ),
-		});
+		} );
 
 		return (
-			<aside {...blockProps}>
+			<aside { ...blockProps }>
 				<div className="wp-block-editorial-drawer-teaser">
 					{ backgroundId &&
 						<figure>
