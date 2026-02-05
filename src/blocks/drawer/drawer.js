@@ -256,7 +256,7 @@ registerBlockType( 'editorial/drawer', {
 								},
 								label: __( 'Background' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: themeOptionsPalette,
 							},
 						] }
 					/>
