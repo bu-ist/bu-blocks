@@ -28,24 +28,21 @@ const {
 } = wp.blocks;
 const {
 	Button,
-	Dashicon,
-	G,
-	IconButton,
 	PanelBody,
-	Path,
 	RadioControl,
-	SVG,
 } = wp.components;
 const {
 	Fragment,
+	useMemo,
 } = wp.element;
 const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
 	URLInput,
-	withColors,
 	useBlockProps,
+	getColorObjectByColorValue,
+	getColorObjectByAttributeValues,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // The current publication owner.
@@ -57,14 +54,15 @@ const publication = publicationSlug();
  * @param {string} className  Additional classes assigned to the block.
  * @param {string} themeColor The theme color assigned to the block.
  * @param {string} icon       The icon placement.
+ * @return {string} The class list.
  */
 const getClasses = ( className, themeColor, icon ) => classnames(
 	'wp-block-button',
 	'wp-block-bu-button',
 	{
-		[ `${publication}-block-button` ]: publication && publication !== '',
-		[ `has-${themeColor}-theme` ]: themeColor,
-		[ `icon-navigateright ${icon}` ]: icon,
+		[ `${ publication }-block-button` ]: publication && publication !== '',
+		[ `has-${ themeColor }-theme` ]: themeColor,
+		[ `icon-navigateright ${ icon }` ]: icon,
 		[ className ]: className,
 	}
 );
@@ -74,7 +72,7 @@ registerBlockType( 'bu/button', {
 	apiVersion: 2,
 	title: __( 'Button' ),
 	description: __( 'Prompt visitors to take action with a custom button.' ),
-	icon: blockIcons('button'),
+	icon: blockIcons( 'button' ),
 	category: 'bu',
 	attributes: {
 		url: {
@@ -102,25 +100,25 @@ registerBlockType( 'bu/button', {
 		},
 		className: {
 			type: 'string',
-		}
+		},
 	},
 	styles: [
 		{
 			name: 'default',
 			label: __( 'Default' ),
-			isDefault: true
+			isDefault: true,
 		},
 		{
 			name: 'outline',
-			label: __( 'Outline' )
+			label: __( 'Outline' ),
 		},
 		{
 			name: 'text',
-			label: __( 'Text' )
+			label: __( 'Text' ),
 		},
 		{
 			name: 'accent',
-			label: __( 'Accent' )
+			label: __( 'Accent' ),
 		},
 	],
 	supports: {
@@ -129,24 +127,28 @@ registerBlockType( 'bu/button', {
 		align: [ 'left', 'center', 'right' ],
 	},
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: ( props => {
 		const {
 			attributes: {
 				text,
 				url,
 				icon,
-				align
+				align,
+				themeColor,
 			},
-			themeColor,
-			setThemeColor,
 			setAttributes,
-			isSelected,
 			className,
 		} = props;
 
 		const blockProps = useBlockProps( {
-			className: getClasses( className, themeColor.slug, icon ),
+			className: getClasses( className, themeColor, icon ),
 		} );
+
+		// themeOptions() returns the full/global color palette added to editor settings.
+		const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, themeColor ), [ themeOptionsPalette, themeColor ] );
 
 		return (
 			<Fragment>
@@ -155,50 +157,59 @@ registerBlockType( 'bu/button', {
 						title={ __( 'Color Settings' ) }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObj ? themeColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										themeColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Theme' ),
 								disableCustomColors: true,
 								colors: themeOptions(),
 							},
 						] }
 					/>
-						<PanelBody title={ __( 'Icon Settings' ) }>
-							<RadioControl
-								label='Placement'
-								selected={ icon }
-								options={ [
-									{ label: 'Before text', value: 'align-icon-left' },
-									{ label: 'After text', value: 'align-icon-right' },
-								] }
-								onChange={ ( value ) => { setAttributes( { icon: value } ) } }
-							/>
-							<Button
-								onClick={ () => setAttributes( { icon: undefined } ) }
-								label={ ( 'Clear icon settings' ) }
-								isDefault
-								isSmall
-							>
-								{ __( 'Clear' ) }
-							</Button>
-						</PanelBody>
-
-						<PanelBody
-							className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
-							title={ __( 'URL' ) }
+					<PanelBody title={ __( 'Icon Settings' ) }>
+						<RadioControl
+							label={ __( 'Placement' ) }
+							selected={ icon }
+							options={ [
+								{ label: 'Before text', value: 'align-icon-left' },
+								{ label: 'After text', value: 'align-icon-right' },
+							] }
+							onChange={ ( value ) => {
+								setAttributes( { icon: value } );
+							} }
+						/>
+						<Button
+							onClick={ () => setAttributes( { icon: undefined } ) }
+							label={ ( 'Clear icon settings' ) }
+							isDefault
+							isSmall
 						>
-							<p className="description">Add link to the button</p>
-							<URLInput
-								value={ url }
-								onChange={ ( value ) => setAttributes( { url: value } ) }
-							/>
-						</PanelBody>
+							{ __( 'Clear' ) }
+						</Button>
+					</PanelBody>
+
+					<PanelBody
+						className="components-panel__body-bu-button-block-url bu-blocks-button-block-url-input"
+						title={ __( 'URL' ) }
+					>
+						<p className="description">Add link to the button</p>
+						<URLInput
+							value={ url }
+							onChange={ ( value ) => setAttributes( { url: value } ) }
+						/>
+					</PanelBody>
 				</InspectorControls>
 				<p
-					className={`wp-block-bu-button-container ${align ? "" : "wp-block"}`}
+					className={ `wp-block-bu-button-container ${ align ? '' : 'wp-block' }` }
 				>
 					<RichText
-						{ ...blockProps}
+						{ ...blockProps }
 						tagName="div"
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
@@ -229,7 +240,7 @@ registerBlockType( 'bu/button', {
 		return (
 			<p>
 				<RichText.Content
-					{ ...blockProps}
+					{ ...blockProps }
 					tagName="a"
 					href={ url }
 					value={ text }
