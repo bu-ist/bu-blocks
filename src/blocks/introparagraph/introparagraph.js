@@ -21,12 +21,12 @@ const {
 } = wp.blocks;
 const {
 	Fragment,
+	useMemo,
 } = wp.element;
 const {
 	IconButton,
 	PanelBody,
 	Toolbar,
-	SVG,
 } = wp.components;
 const {
 	RichText,
@@ -36,7 +36,8 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	PanelColorSettings,
-	withColors,
+	getColorObjectByColorValue,
+	getColorObjectByAttributeValues,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 // Import a library used to manage multiple class names.
@@ -57,11 +58,12 @@ import deprecated from './deprecated';
  *
  * @param {string} character The character to display in the drop cap.
  * @param {string} imageURL  The background image for the drop cap character.
+ * @returns {JSX.Element} The SVG element.
  */
 const renderDropCapSVG = ( character, imageURL ) => {
-	let randomID = 'dropcap-text-' + character;
-	let clipPathURL = 'url(#' + randomID + ')';
-	let xlinkurlAttr = {'xlink:href': imageURL };
+	const randomID = 'dropcap-text-' + character;
+	const clipPathURL = 'url(#' + randomID + ')';
+	const xlinkurlAttr = { 'xlink:href': imageURL };
 	return (
 		<svg>
 			<clipPath id={ randomID }>
@@ -72,7 +74,7 @@ const renderDropCapSVG = ( character, imageURL ) => {
 					className="dropcap-filltext">{ character }</text>
 			</clipPath>
 			<g clip-path={ clipPathURL }>
-				<image {...xlinkurlAttr} href={ imageURL } width="100%" height="100%" preserveAspectRatio="none" />
+				<image { ...xlinkurlAttr } href={ imageURL } width="100%" height="100%" preserveAspectRatio="none" />
 			</g>
 		</svg>
 	);
@@ -83,7 +85,7 @@ registerBlockType( 'editorial/introparagraph', {
 
 	title: __( 'Intro Paragraph' ),
 	description: __( 'Add an introduction with a bulleted list and styled paragraph.' ),
-	icon: blockIcons('introparagraph'),
+	icon: blockIcons( 'introparagraph' ),
 	category: 'bu-editorial',
 	supports: {
 		anchor: true,
@@ -92,12 +94,12 @@ registerBlockType( 'editorial/introparagraph', {
 		heading: {
 			type: 'string',
 			source: 'html',
-			selector: '.wp-block-editorial-introparagraph h4'
+			selector: '.wp-block-editorial-introparagraph h4',
 		},
 		list: {
 			type: 'string',
 			source: 'html',
-			selector: '.wp-block-editorial-introparagraph-toc'
+			selector: '.wp-block-editorial-introparagraph-toc',
 		},
 		content: {
 			type: 'string',
@@ -128,48 +130,44 @@ registerBlockType( 'editorial/introparagraph', {
 		{
 			name: 'default',
 			label: __( 'Regular' ),
-			isDefault: true
+			isDefault: true,
 		},
 		{
 			name: 'large',
-			label: __( 'Large paragraph text' )
+			label: __( 'Large paragraph text' ),
 		},
 		{
 			name: 'split',
-			label: __( 'Split paragraph text' )
+			label: __( 'Split paragraph text' ),
 		},
 		{
 			name: 'dropcap-default',
-			label: __( 'Dropcap' )
+			label: __( 'Dropcap' ),
 		},
 		{
 			name: 'dropcap-boxed',
-			label: __( 'Boxed dropcap' )
+			label: __( 'Boxed dropcap' ),
 		},
 		{
 			name: 'dropcap-outlined',
-			label: __( 'Outlined dropcap' )
+			label: __( 'Outlined dropcap' ),
 		},
 		{
 			name: 'dropcap-dimensional',
-			label: __( 'Dimensional dropcap' )
+			label: __( 'Dimensional dropcap' ),
 		},
 		{
 			name: 'dropcap-image',
-			label: __( 'Image dropcap' )
-		}
+			label: __( 'Image dropcap' ),
+		},
 	],
 
-	edit: withColors( 'paragraphColor', 'dropCapColor' )( props => {
+	edit: ( props => {
 		const {
 			attributes,
 			className,
 			insertBlocksAfter,
 			setAttributes,
-			paragraphColor,
-			setParagraphColor,
-			dropCapColor,
-			setDropCapColor,
 		} = props;
 
 		const {
@@ -178,7 +176,16 @@ registerBlockType( 'editorial/introparagraph', {
 			list,
 			dropCapImageURL,
 			dropCapImageId,
+			dropCapColor,
+			paragraphColor,
 		} = attributes;
+
+		// themeOptions() returns the full/global color palette added to editor settings.
+		const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const dropCapColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, dropCapColor ), [ themeOptionsPalette, dropCapColor ] );
+		const paragraphColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, paragraphColor ), [ themeOptionsPalette, paragraphColor ] );
 
 		// Determine if a sepecific dropcap style has been selected.
 		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
@@ -212,29 +219,27 @@ registerBlockType( 'editorial/introparagraph', {
 			// The first check is for images already in the media library.
 			// The second is for newly uploaded images.
 			if ( media.sizes ) {
-				if ( media.sizes['bu_prepress_3x2_xs'] ) {
-					selectedMediaURL = media.sizes['bu_prepress_3x2_xs'].url
-				} else if ( media.sizes['thumbnail'] ) {
-					selectedMediaURL = media.sizes['thumbnail'].url
-				} else if ( media.sizes['medium'] ) {
-					selectedMediaURL = media.sizes['medium'].url
+				if ( media.sizes[ 'bu_prepress_3x2_xs' ] ) {
+					selectedMediaURL = media.sizes[ 'bu_prepress_3x2_xs' ].url;
+				} else if ( media.sizes[ 'thumbnail' ] ) {
+					selectedMediaURL = media.sizes[ 'thumbnail' ].url;
+				} else if ( media.sizes[ 'medium' ] ) {
+					selectedMediaURL = media.sizes[ 'medium' ].url;
 				}
 			} else if ( media.media_details ) {
-				if ( media.media_details.sizes['bu_prepress_3x2_xs'] ) {
-					selectedMediaURL = media.media_details.sizes['bu_prepress_3x2_xs'].source_url
-				} else if ( media.media_details.sizes['thumbnail'] ) {
-					selectedMediaURL = media.media_details.sizes['thumbnail'].source_url
-				} else if ( media.media_details.sizes['medium'] ) {
-					selectedMediaURL = media.media_details.sizes['medium'].source_url
+				if ( media.media_details.sizes[ 'bu_prepress_3x2_xs' ] ) {
+					selectedMediaURL = media.media_details.sizes[ 'bu_prepress_3x2_xs' ].source_url;
+				} else if ( media.media_details.sizes[ 'thumbnail' ] ) {
+					selectedMediaURL = media.media_details.sizes[ 'thumbnail' ].source_url;
+				} else if ( media.media_details.sizes[ 'medium' ] ) {
+					selectedMediaURL = media.media_details.sizes[ 'medium' ].source_url;
 				}
 			}
 
-
 			setAttributes( {
 				dropCapImageURL: selectedMediaURL,
-				dropCapImageId: media.id
+				dropCapImageId: media.id,
 			} );
-
 		};
 
 		// When an image is removed, reset the URL and ID attributes on the block.
@@ -249,11 +254,18 @@ registerBlockType( 'editorial/introparagraph', {
 					title={ __( 'Paragraph color' ) }
 					colorSettings={ [
 						{
-							value: paragraphColor.color,
-							onChange: setParagraphColor,
+							value: paragraphColorObj ? paragraphColorObj.color : undefined,
+							onChange: ( value ) => {
+								// Get the color object from the selected color value.
+								const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+								// Set the attribute to the new color slug or an empty string if not found.
+								setAttributes( {
+									paragraphColor: newValueColorObj ? newValueColorObj.slug : '',
+								} );
+							},
 							label: __( 'Paragraph' ),
 							disableCustomColors: true,
-							colors: themeOptions(),
+							colors: themeOptionsPalette,
 						},
 					] }
 				/>
@@ -267,11 +279,18 @@ registerBlockType( 'editorial/introparagraph', {
 					title={ __( 'Drop cap color' ) }
 					colorSettings={ [
 						{
-							value: dropCapColor.color,
-							onChange: setDropCapColor,
+							value: dropCapColorObj ? dropCapColorObj.color : undefined,
+							onChange: ( value ) => {
+								// Get the color object from the selected color value.
+								const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+								// Set the attribute to the new color slug or an empty string if not found.
+								setAttributes( {
+									dropCapColor: newValueColorObj ? newValueColorObj.slug : '',
+								} );
+							},
 							label: __( 'Drop cap' ),
 							disableCustomColors: true,
-							colors: themeOptions(),
+							colors: themeOptionsPalette,
 						},
 					] }
 				/>
@@ -327,8 +346,8 @@ registerBlockType( 'editorial/introparagraph', {
 			className,
 			{
 				'has-dropcap': hasDropCapStyle,
-				[`has-dropcap-color-${dropCapColor.slug}`]: hasDropCapStyle && dropCapColor && dropCapColor.slug,
-				[`has-paragraph-color-${paragraphColor.slug}`]: ! hasDropCapStyle && paragraphColor && paragraphColor.slug,
+				[ `has-dropcap-color-${ dropCapColor }` ]: hasDropCapStyle && dropCapColor && dropCapColor,
+				[ `has-paragraph-color-${ paragraphColor }` ]: ! hasDropCapStyle && paragraphColor && paragraphColor,
 			},
 		);
 
@@ -341,9 +360,9 @@ registerBlockType( 'editorial/introparagraph', {
 				</InspectorControls>
 				<div className={ classes }>
 					<PlainText
-						tagname='h4'
+						tagname="h4"
 						value={ heading }
-						onChange={ heading => setAttributes( { heading } ) }
+						onChange={ value => setAttributes( { heading: value } ) }
 						placeholder={ __( 'Enter Teaser Headline (optional)' ) }
 					/>
 					<RichText
@@ -360,8 +379,8 @@ registerBlockType( 'editorial/introparagraph', {
 						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 						<RichText
 							tagname="p"
-							value= { content }
-							onChange={ content => setAttributes( { content: content } ) }
+							value={ content }
+							onChange={ value => setAttributes( { content: value } ) }
 							placeholder={ __( 'Write paragraph…' ) }
 							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
 							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
@@ -404,7 +423,7 @@ registerBlockType( 'editorial/introparagraph', {
 		let dropCapCharacter = '';
 		if ( 'undefined' !== typeof content ) {
 			dropCapCharacter = content.charAt( 0 );
-		};
+		}
 
 		// Determine if the list is empty and should be excluded from the saved block.
 		let saveList = true;
@@ -419,8 +438,8 @@ registerBlockType( 'editorial/introparagraph', {
 			className,
 			{
 				'has-dropcap': hasDropCapStyle,
-				[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,
-				[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
+				[ `has-dropcap-color-${ dropCapColor }` ]: hasDropCapStyle && dropCapColor,
+				[ `has-paragraph-color-${ paragraphColor }` ]: ! hasDropCapStyle && paragraphColor,
 			},
 		);
 
@@ -442,7 +461,7 @@ registerBlockType( 'editorial/introparagraph', {
 						{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
 						<RichText.Content
 							tagName="p"
-							value= { content }
+							value={ content }
 						/>
 					</div>
 				) }
