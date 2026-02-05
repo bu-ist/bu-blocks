@@ -1,9 +1,13 @@
 # Changelog
 
 ## Unreleased
+
+
 ### WordPress 5.8 Compatibility: 
 - Bug: Button Block - remove withColors() and refactor for 5.8
+- Bug: Aside Block - remove withColors() and refactor for 5.8.
 - Bug: BU Pullquote Block - remove withColors() and refactor for 5.8 see: https://github.com/bu-ist/bu-blocks/pull/448
+
 
 ## 0.4.2
 
