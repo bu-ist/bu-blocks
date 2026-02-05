@@ -187,7 +187,7 @@ registerBlockType( 'editorial/introparagraph', {
 		const dropCapColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, dropCapColor ), [ themeOptionsPalette, dropCapColor ] );
 		const paragraphColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, paragraphColor ), [ themeOptionsPalette, paragraphColor ] );
 
-		// Determine if a sepecific dropcap style has been selected.
+		// Determine if a specific dropcap style has been selected.
 		let hasDropCapStyle = className.includes( 'is-style-dropcap' );
 
 		// Ensure that the has-dropcap, other has-dropcap classes, and paragraph classes are aligned.
