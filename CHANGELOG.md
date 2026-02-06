@@ -4,6 +4,7 @@
 
 
 ### WordPress 5.8 Compatibility:
+- Bug: Leadin Block - remove withColors() and refactor for 5.8
 - Bug: Modal Block - remove withColors() and refactor for 5.8.
 - Bug: Button Block - remove withColors() and refactor for 5.8.
 - Bug: Aside Block - remove withColors() and refactor for 5.8.

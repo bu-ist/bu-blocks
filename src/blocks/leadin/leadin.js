@@ -28,6 +28,7 @@ const {
 const {
 	Fragment,
 	useState,
+	useMemo,
 } = wp.element;
 const {
 	PanelBody,
@@ -42,7 +43,8 @@ const {
 	PanelColorSettings,
 	RichText,
 	URLInput,
-	withColors,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 const {
 	applyFilters,
@@ -164,7 +166,7 @@ registerBlockType( 'bu/leadin', {
 	styles: blockStyles,
 	supports: blockSupports,
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: ( props => {
 		// Get the block properties and attributes.
 		const {
 			attributes: {
@@ -185,9 +187,8 @@ registerBlockType( 'bu/leadin', {
 				boxOpacity,
 				videoUncropped,
 				url,
+				themeColor,
 			},
-			themeColor,
-			setThemeColor,
 			setAttributes,
 			className,
 			isSelected,
@@ -201,6 +202,12 @@ registerBlockType( 'bu/leadin', {
 		const isStyleTextToImage = className.includes( 'is-style-text-to-image' );
 		const isStyleImageToText = className.includes( 'is-style-image-to-text' );
 		const publication = publicationSlug();
+
+		// themeOptions() returns the full/global color palette added to editor settings.
+		const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const themeColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, themeColor ), [ themeOptionsPalette, themeColor ] );
 
 		const classes = classnames(
 			'wp-block-editorial-leadin',
@@ -218,7 +225,7 @@ registerBlockType( 'bu/leadin', {
 				[ `has-media-focus-${imageFocus}` ]: imageFocus,
 				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
 				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
-				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+				[ `has-${themeColor}-theme` ]: themeColor,
 			}
 		);
 
@@ -424,11 +431,18 @@ registerBlockType( 'bu/leadin', {
 						initialOpen={ false }
 						colorSettings={ [
 							{
-								value: themeColor.color,
-								onChange: setThemeColor,
+								value: themeColorObj ? themeColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										themeColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Theme' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: themeOptionsPalette,
 							},
 						] }
 					/>
