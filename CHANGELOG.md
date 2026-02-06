@@ -4,6 +4,8 @@
 
 
 ### WordPress 5.8 Compatibility:
+- Bug: Introparagraph Block - remove withColors() and refactor for 5.8
+- Bug: Drawer Block - remove withColors() and refactor for 5.8
 - Bug: Leadin Block - remove withColors() and refactor for 5.8
 - Bug: Modal Block - remove withColors() and refactor for 5.8.
 - Bug: Button Block - remove withColors() and refactor for 5.8.
