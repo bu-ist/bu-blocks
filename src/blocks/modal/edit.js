@@ -19,6 +19,7 @@ const {
 	Fragment,
 	useState,
 	useEffect,
+	useMemo,
 } = wp.element;
 
 const {
@@ -26,8 +27,9 @@ const {
 	InnerBlocks,
 	PanelColorSettings,
 	RichText,
-	withColors,
 	useBlockProps,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
 
 const {
@@ -44,11 +46,9 @@ const {
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
 
-const BUEditorialModalEdit = ( props ) => {
+export default function Edit( props ) {
 	const {
 		attributes,
-		themeColor,
-		setThemeColor,
 		setAttributes,
 		className,
 		clientId,
@@ -59,6 +59,7 @@ const BUEditorialModalEdit = ( props ) => {
 		calloutHeading,
 		calloutText,
 		trigger,
+		themeColor,
 	} = attributes;
 
 	const [ isUploading, setIsUploading ] = useState( false );
@@ -66,25 +67,31 @@ const BUEditorialModalEdit = ( props ) => {
 	const classes = classnames(
 		className,
 		{
-			[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+			[ `has-${ themeColor }-theme` ]: themeColor,
 			'has-media': backgroundId,
 		}
 	);
 
 	// ToDo: explore removing this and using just the CSS classes .is-selected and .has-selected-child.
-	const modalSelected = (clientId) => {
+	const modalSelected = ( clientId ) => {
 		if ( clientId ) {
 			const modalHasSelectedBlock = hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId );
 			return ( modalHasSelectedBlock ) ? 'true' : 'false';
 		} else {
 			return 'false';
 		}
-	}
+	};
 
-	const blockProps = useBlockProps({
+	// themeOptions() returns the full/global color palette added to editor settings.
+	const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+	// Resolve color objects from slugs using WordPress built-in function
+	const themeColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, themeColor ), [ themeOptionsPalette, themeColor ] );
+
+	const blockProps = useBlockProps( {
 		className: classes,
-		'data-selected-modal': modalSelected(clientId),
-	});
+		'data-selected-modal': modalSelected( clientId ),
+	} );
 
 	useEffect( () => {
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
@@ -100,11 +107,18 @@ const BUEditorialModalEdit = ( props ) => {
 					title={ __( 'Theme Settings' ) }
 					colorSettings={ [
 						{
-							value: themeColor.color,
-							onChange: setThemeColor,
+							value: themeColorObj ? themeColorObj.color : undefined,
+							onChange: ( value ) => {
+								// Get the color object from the selected color value.
+								const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+								// Set the attribute to the new color slug or an empty string if not found.
+								setAttributes( {
+									themeColor: newValueColorObj ? newValueColorObj.slug : '',
+								} );
+							},
 							label: __( 'Theme' ),
 							disableCustomColors: true,
-							colors: themeOptions(),
+							colors: themeOptionsPalette,
 						},
 					] }
 				/>
@@ -171,8 +185,5 @@ const BUEditorialModalEdit = ( props ) => {
 			</aside>
 		</Fragment>
 	);
-};
+}
 
-export default compose( [
-	withColors( 'themeColor' ),
-] )( BUEditorialModalEdit );
