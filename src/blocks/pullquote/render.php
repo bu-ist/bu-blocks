@@ -102,15 +102,19 @@ $block_wrapper_attributes = array(
 	'class' => implode( ' ', $classes ),
 );
 
+// Add ID attribute if anchor is set.
+if ( ! empty( $attributes['anchor'] ) ) {
+	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
+}
 ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
 	<div class="wp-block-bu-pullquote-inner">
 		<?php if ( $is_style_default && $attributes['backgroundId'] ) : ?>
-			<figure>
+			<figure class="wp-block-bu-pullquote-background-media">
 				<?php do_action( 'bu_blocks_background', $attributes, 'large' ); ?>
 			</figure>
 		<?php endif; ?>
-		<blockquote>
+		<blockquote class="wp-block-bu-pullquote-blockquote">
 			<div class="container-lockup">
 				<div class="container-icon-outer">
 					<div class="container-icon-inner">

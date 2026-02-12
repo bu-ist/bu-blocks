@@ -13,6 +13,9 @@
 	"style": "file:./style.css",
 	"render": "file:./render.php",
 	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
 		"quote": {
 			"type": "string",
 			"default": ""
@@ -79,7 +82,16 @@
 		}
 	],
 	"supports": {
-		"align": [ "full", "wide" ]
+		"align": [ "full", "wide" ],
+		"html": false,
+		"anchor": true,
+        "color": {
+            "text": true,
+            "background": true,
+            "link": true,
+            "gradients": true
+        },
+        "__bublocks_colorthemes": true
 	},
 	"example": {
 		"attributes": {
