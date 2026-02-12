@@ -106,8 +106,6 @@ $block_wrapper_attributes = array(
 if ( ! empty( $attributes['anchor'] ) ) {
 	$block_wrapper_attributes['id'] = esc_attr( $attributes['anchor'] );
 }
-
-
 ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
 	<div class="wp-block-bu-pullquote-inner">
