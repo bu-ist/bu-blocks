@@ -110,7 +110,7 @@ if ( ! empty( $attributes['anchor'] ) ) {
 <div <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
 	<div class="wp-block-bu-pullquote-inner">
 		<?php if ( $is_style_default && $attributes['backgroundId'] ) : ?>
-			<figure>
+			<figure class="wp-block-bu-pullquote-background-media">
 				<?php do_action( 'bu_blocks_background', $attributes, 'large' ); ?>
 			</figure>
 		<?php endif; ?>

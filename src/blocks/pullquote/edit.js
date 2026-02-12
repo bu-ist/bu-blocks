@@ -198,7 +198,7 @@ export default function Edit( props ) {
 				<div className="wp-block-bu-pullquote-inner">
 					{ isStyleDefault( className ) && (
 						<>
-							<figure>
+							<figure className="wp-block-bu-pullquote-background-media">
 								<Background
 									blockProps={ props }
 									isUploading={ isUploading }
