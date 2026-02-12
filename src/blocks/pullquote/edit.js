@@ -13,7 +13,7 @@ import Background, {
 import getAllowedFormats from '../../global/allowed-formats';
 import themeOptions from '../../global/theme-options';
 import { getColorSlug } from '../../global/color-utils.mjs';
-import blockIcons from '../../components/block-icons';
+import ThemeColorPanel from '../../components/colorthemes-panel/index.js';
 
 // WordPress dependencies.
 import { __ } from '@wordpress/i18n';
@@ -26,10 +26,8 @@ import {
 } from '@wordpress/components';
 import {
 	InspectorControls,
-	PanelColorSettings,
 	RichText,
 	useBlockProps,
-	getColorObjectByAttributeValues,
 } from '@wordpress/block-editor';
 
 // Returns true if the current block style is "Default".
@@ -71,7 +69,7 @@ const allowedMedia = [ 'image' ];
 
 export default function Edit( props ) {
 	// Get the block properties.
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, name } = props;
 	const className = props?.className ?? '';
 
 	// Get the block attributes.
@@ -146,14 +144,8 @@ export default function Edit( props ) {
 		);
 	};
 
-	const themeColorObject = getColorObjectByAttributeValues(
-		themeOptions(),
-		themeColor
-	);
-	const textColorObject = getColorObjectByAttributeValues(
-		themeOptions(),
-		textColor
-	);
+	// themOptions() returns the full/global color palette added to editor settings.
+	const themeOptionsPalette = themeOptions();
 
 	// Return the block editor interface.
 	return (
@@ -168,54 +160,31 @@ export default function Edit( props ) {
 						value={ photoCredit }
 					/>
 				</PanelBody>
-				<PanelColorSettings
-					title={ __( 'Theme Color' ) }
-					initialOpen={ false }
-					colorSettings={ [
-						{
-							value: themeColorObject?.color,
-							onChange: ( value ) =>
-								setAttributes( {
-									themeColor: value
-										? getColorSlug( value, themeOptions() )
-										: undefined,
-								} ),
-							label: __( 'Theme' ),
-							disableCustomColors: true,
-							colors: themeOptions(),
-						},
-					] }
-				>
-					{ ! themeOptions() && (
-						<PanelRow>
-							<em>No Color Palette available for this site.</em>
-						</PanelRow>
-					) }
-				</PanelColorSettings>
-				<PanelColorSettings
-					title={ __( 'Text Color' ) }
-					description={ __( 'Description' ) }
-					colorSettings={ [
-						{
-							value: textColorObject?.color,
-							onChange: ( value ) =>
-								setAttributes( {
-									textColor: value
-										? getColorSlug( value, themeOptions() )
-										: undefined,
-								} ),
-							label: __( 'Text Color' ),
-							disableCustomColors: true,
-							colors: themeOptions(),
-						},
-					] }
-				>
-					{ ! themeOptions() && (
-						<PanelRow>
-							<em>No Color Palette available for this site.</em>
-						</PanelRow>
-					) }
-				</PanelColorSettings>
+				<ThemeColorPanel
+					blockname={ name }
+					value={ themeColor }
+					themepalette={ themeOptionsPalette }
+					onChange={ ( value, palette ) =>
+						setAttributes( {
+							themeColor: value
+								? getColorSlug( value, palette )
+								: undefined,
+						} )
+					}
+				/>
+				<ThemeColorPanel
+					title='Text Color Theme'
+					blockname={ name }
+					value={ textColor }
+					themepalette={ themeOptionsPalette }
+					onChange={ ( value, palette ) =>
+						setAttributes( {
+							textColor: value
+								? getColorSlug( value, palette )
+								: undefined,
+						} )
+					}
+				/>
 				{ mediaPositioningControls() }
 			</InspectorControls>
 			<BackgroundControls
