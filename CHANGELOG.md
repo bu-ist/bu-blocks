@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+## 0.4.3
 
 ### WordPress 5.8 Compatibility:
 - Bug: Stats Block - remove withColors() and refactor for 5.8.
