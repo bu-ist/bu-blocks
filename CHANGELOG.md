@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## 0.4.3
+
+### WordPress 5.8 Compatibility:
+- Bug: Stats Block - remove withColors() and refactor for 5.8.
+- Bug: Button Block - remove withColors() and refactor for 5.8
+- Bug: Introparagraph Block - remove withColors() and refactor for 5.8
+- Bug: Drawer Block - remove withColors() and refactor for 5.8
+- Bug: Leadin Block - remove withColors() and refactor for 5.8
+- Bug: Modal Block - remove withColors() and refactor for 5.8.
+- Bug: Button Block - remove withColors() and refactor for 5.8.
+- Bug: Aside Block - remove withColors() and refactor for 5.8.
+- Bug: BU Pullquote Block - remove withColors() and refactor for 5.8 see: https://github.com/bu-ist/bu-blocks/pull/448
+
+
 ## 0.4.2
 
 -   Related Stories block was crashing in the editor when users were trying to access style options. This is a known bug in older gutenberg versions. Fixed by adding optional example. Details about error and eventual fix for later gutenberg issues can he found here: https://github.com/WordPress/gutenberg/pull/29894

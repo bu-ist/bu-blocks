@@ -35,9 +35,13 @@ const {
 	PanelColorSettings,
 	PlainText,
 	RichText,
-	withColors,
 	useBlockProps,
+	getColorObjectByAttributeValues,
+	getColorObjectByColorValue,
 } = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const {
+	useMemo,
+} = wp.element;
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -149,7 +153,7 @@ registerBlockType( 'bu/stat', {
 	supports: {
 		inserter: false,
 	},
-	edit: withColors( 'circleOneColor', 'circleTwoColor' )( props => {
+	edit: ( props => {
 		const {
 			attributes: {
 				circleOneFill,
@@ -158,18 +162,23 @@ registerBlockType( 'bu/stat', {
 				number,
 				postText,
 				preText,
+				circleOneColor,
+				circleTwoColor,
 			},
-			circleOneColor,
-			circleTwoColor,
 			className,
 			isSelected,
 			setAttributes,
-			setCircleOneColor,
-			setCircleTwoColor,
 		} = props;
 
+		// themeOptions() returns the full/global color palette added to editor settings.
+		const themeOptionsPalette = useMemo( () => themeOptions(), [] );
+
+		// Resolve color objects from slugs using WordPress built-in function
+		const circleOneColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, circleOneColor ), [ themeOptionsPalette, circleOneColor ] );
+		const circleTwoColorObj = useMemo( () => getColorObjectByAttributeValues( themeOptionsPalette, circleTwoColor ), [ themeOptionsPalette, circleTwoColor ] );
+
 		const blockProps = useBlockProps( {
-			className: getBlockClasses( circleOneColor.slug, circleTwoColor.slug, className, numberSize ),
+			className: getBlockClasses( circleOneColor, circleTwoColor, className, numberSize ),
 		} );
 
 		return (
@@ -245,18 +254,32 @@ registerBlockType( 'bu/stat', {
 						title={ __( 'Color Options' ) }
 						colorSettings={ [
 							{
-								value: circleOneColor.color,
-								onChange: setCircleOneColor,
+								value: circleOneColorObj ? circleOneColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										circleOneColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Bottom Circle' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: themeOptionsPalette,
 							},
 							{
-								value: circleTwoColor.color,
-								onChange: setCircleTwoColor,
+								value: circleTwoColorObj ? circleTwoColorObj.color : undefined,
+								onChange: ( value ) => {
+									// Get the color object from the selected color value.
+									const newValueColorObj = getColorObjectByColorValue( themeOptionsPalette, value );
+									// Set the attribute to the new color slug or an empty string if not found.
+									setAttributes( {
+										circleTwoColor: newValueColorObj ? newValueColorObj.slug : '',
+									} );
+								},
 								label: __( 'Top Circle' ),
 								disableCustomColors: true,
-								colors: themeOptions(),
+								colors: themeOptionsPalette,
 							},
 						] }
 					/>

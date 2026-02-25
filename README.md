@@ -1,9 +1,9 @@
 # BU Blocks #
 
-**Contributors:** toddmilliken  
+**Contributors:** toddmilliken, acketon
 **Tags:** gutenberg, blocks  
-**Requires at least:** 4.9.8  
-**Tested up to:** 5.4  
+**Requires at least:** 5.7 
+**Tested up to:** 5.8  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
