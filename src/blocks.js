@@ -27,6 +27,7 @@ import './blocks/stat/stats.js';
 import './blocks/custom-html/custom-html.js';
 import './blocks/collapsible/collapsible.js';
 import './blocks/collapsible-control/collapsible-control.js';
+import './blocks/prebuiltlayout/prebuiltlayout.js';
 
 // Add the 'Caption' style to the core paragraph block.
 import './components/paragraph-caption-style/paragraph-caption-style.js';
