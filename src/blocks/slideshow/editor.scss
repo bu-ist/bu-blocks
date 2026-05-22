@@ -4,3 +4,14 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+
+// Setup as a horizontal scrolling track of child image blocks.
+ .wp-block-bu-blocks-slideshow-container {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    padding: 40px 0;
+ }
+
+.wp-block-bu-blocks-slideshow-list {
+}

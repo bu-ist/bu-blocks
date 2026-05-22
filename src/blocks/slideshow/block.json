@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schemas.wp.org/wp/5.8/block.json",
+    "apiVersion": 2,
+    "name": "bu-blocks/slideshow",
+    "version": "0.0.0",
+    "title": "BU Slideshow",
+    "description": "Add a styled Slideshow",
+    "category": "bu",
+    "icon": "format-gallery",
+    "textdomain": "bu-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "viewScript": "file:./viewScript.js",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "attributes": {
+        "aspectRatio": {
+			"type": "string",
+			"default": "16by9"
+		},
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"crop": {
+			"type": "boolean",
+			"default": false
+		},
+		"showNextUp": {
+			"type": "boolean",
+			"default": false
+		},
+		"height": {
+			"type": "number",
+			"default": 500
+		}
+    },
+    "supports": {
+        "align": [
+            "full",
+            "wide"
+        ],
+        "html": false,
+        "anchor": true
+    }
+}

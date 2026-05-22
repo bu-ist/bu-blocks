@@ -290,6 +290,7 @@ require_once $path_to_src . 'blocks/relatedstories/collection-endpoint.php';
 require_once $path_to_src . 'blocks/leadin/index.php';
 require_once $path_to_src . 'blocks/collapsible/index.php';
 require_once $path_to_src . 'components/background/index.php';
+require_once $path_to_src . 'blocks/slideshow-image/index.php';
 
 // Kicks off all hooks.
 namespace\init_hooks();

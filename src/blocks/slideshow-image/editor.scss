@@ -1,0 +1,31 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+
+.wp-block-bu-blocks-slideshow-image {
+    height: 500px;
+
+
+}
+
+.bu-blocks-slideshow-media {
+    height: 100%;
+    position: relative;
+
+    img {
+        height: 100%;
+        width: auto;
+    }
+
+    figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
+}
