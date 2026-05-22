@@ -105,7 +105,7 @@ module.exports = function( grunt ) {
 			},
 			splide: {
 				cwd: 'node_modules/@splidejs/splide/dist', // set working folder / root to copy
-				src: [ 'js/splide.min.js', 'css/splide.min.css' ],
+				src: [ 'css/splide.min.css' ],
 				dest: 'dist/vendor/splide', // destination folder
 				expand: true,
 			},
