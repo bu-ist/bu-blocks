@@ -131,6 +131,20 @@ function enqueue_block_assets() {
 
 	if ( ! is_admin() ) {
 		wp_enqueue_script(
+			'bu-blocks-slideshow-block-viewscript', // Handle.
+			plugins_url( '/dist/blocks/slideshow/viewScript.min.js', dirname( __FILE__ ) ),
+			array(), // Dependencies.
+			filemtime( plugin_dir_path( __DIR__ ) . '/dist/blocks/slideshow/viewScript.min.js' ),
+			true // Enqueue the script in the footer.
+		);
+		wp_enqueue_style(
+			'bu-blocks-slideshow-block-splide-core', // Handle.
+			plugins_url( '/dist/vendor/splide/css/splide.min.css', dirname( __FILE__ ) ),
+			array(), // Dependencies.
+			filemtime( plugin_dir_path( __DIR__ ) . '/dist/vendor/splide/css/splide.min.css' )
+		);
+
+		wp_enqueue_script(
 			'bu-blocks-frontend-js', // Handle.
 			plugins_url( '/dist/bu-blocks-frontend.js', dirname( __FILE__ ) ), // Bu-blocks-frontend.js: Frontend scripts. Built with Webpack.
 			array(), // Dependencies.
@@ -276,6 +290,7 @@ require_once $path_to_src . 'blocks/relatedstories/collection-endpoint.php';
 require_once $path_to_src . 'blocks/leadin/index.php';
 require_once $path_to_src . 'blocks/collapsible/index.php';
 require_once $path_to_src . 'components/background/index.php';
+require_once $path_to_src . 'blocks/slideshow-image/index.php';
 
 // Kicks off all hooks.
 namespace\init_hooks();

@@ -61,7 +61,9 @@ module.exports = function( grunt ) {
 			js: {
 				files: [
 					'src/blocks-frontend.js',
-					'src/**/**/frontend.js'
+					'src/**/**/frontend.js',
+					'src/blocks/**/**/*.js',
+					'src/**/**/*.js',
 				],
 				tasks: [ 'build' ],
 				options: {
@@ -83,24 +85,58 @@ module.exports = function( grunt ) {
 		copy: {
 			css: {
 				options: {
-					mode: true
+					mode: true,
 				},
 				src: 'dist/blocks.style.build.css',
-				dest: 'docs/blocks.style.build.css'
+				dest: 'docs/blocks.style.build.css',
 			},
 			js: {
 				options: {
-					mode: true
+					mode: true,
 				},
 				src: 'dist/bu-blocks-frontend.js',
-				dest: 'docs/bu-blocks-frontend.js'
+				dest: 'docs/bu-blocks-frontend.js',
 			},
 			kssassets: {
-				cwd: 'kss-assets',  // set working folder / root to copy
-				src: '**/*',           // copy all files and subfolders
-				dest: 'docs/kss-assets',    // destination folder
-				expand: true           // required when using cwd
-			}
+				cwd: 'kss-assets', // set working folder / root to copy
+				src: '**/*', // copy all files and subfolders
+				dest: 'docs/kss-assets', // destination folder
+				expand: true, // required when using cwd
+			},
+			splide: {
+				cwd: 'node_modules/@splidejs/splide/dist', // set working folder / root to copy
+				src: [ 'css/splide.min.css' ],
+				dest: 'dist/vendor/splide', // destination folder
+				expand: true,
+			},
+		},
+		browserify: {
+			options: {
+				watch: true,
+				browserifyOptions: {
+					debug: false,
+					transform: [ [ 'babelify' ] ],
+				},
+			},
+			dist: {
+				files: [
+					{
+						'dist/blocks/slideshow/viewScript.js': [ 'src/blocks/slideshow/viewScript.js' ],
+					},
+				],
+			},
+		},
+		uglify: {
+			blocks: {
+				options: {
+					sourceMap: true,
+				},
+				expand: true,
+				cwd: 'dist/blocks/',
+				src: [ '**/*.js', '!**/*.min.js' ],
+				dest: 'dist/blocks/',
+				ext: '.min.js',
+			},
 		},
 		kss: {
 			options: {
@@ -148,7 +184,9 @@ module.exports = function( grunt ) {
 
 	// 3. Where we tell Grunt we plan to use this plug-in.
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
+	grunt.loadNpmTasks( 'grunt-browserify' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-kss' );
 	grunt.loadNpmTasks( 'grunt-browser-sync' );
@@ -158,10 +196,11 @@ module.exports = function( grunt ) {
 	// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
 	grunt.registerTask( 'i18n', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'readme', [ 'wp_readme_to_markdown' ] );
-	grunt.registerTask( 'install',  [ 'build' ] );
-	grunt.registerTask( 'styles',   [ 'kss', 'copy:css', 'copy:kssassets' ] );
-	grunt.registerTask( 'build',    [ 'styles', 'kss', 'concat', 'copy:css', 'copy:js', 'copy:kssassets'  ] );
-	grunt.registerTask( 'default',  [ 'kss', 'browserSync', 'watch' ] );
+	grunt.registerTask( 'install', [ 'build' ] );
+	grunt.registerTask( 'scripts', [ 'browserify' ] );
+	grunt.registerTask( 'styles', [ 'kss', 'copy:css', 'copy:kssassets' ] );
+	grunt.registerTask( 'build', [ 'styles', 'kss', 'concat', 'copy:css', 'copy:js', 'copy:kssassets', 'copy:splide', 'scripts', 'uglify' ] );
+	grunt.registerTask( 'default', [ 'kss', 'browserSync', 'watch', 'copy:splide' ] );
 
 	grunt.util.linefeed = '\n';
 };
