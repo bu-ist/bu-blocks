@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bug Fix: line breaks don't work in Leadin Block Hed/Dek fields. Sanitization is stripping <br> tags. 
+
 ## 0.4.3
 
 ### WordPress 5.8 Compatibility:
