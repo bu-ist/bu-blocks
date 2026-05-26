@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+## 0.4.4
 - Bug Fix: line breaks don't work in Leadin Block Hed/Dek fields. Sanitization is stripping <br> tags. 
 
 ## 0.4.3
