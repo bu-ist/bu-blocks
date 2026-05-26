@@ -20,6 +20,8 @@ function bu_blocks_kses_title() {
 		'em'     => array(),
 		'b'      => array(),
 		'i'      => array(),
+		'br'	 => array(),
+		'wbr'	 => array(),
 	);
 }
 
