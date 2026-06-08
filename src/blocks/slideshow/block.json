@@ -15,25 +15,25 @@
     "render": "file:./render.php",
     "attributes": {
         "aspectRatio": {
-			"type": "string",
-			"default": "16by9"
-		},
-		"className": {
-			"type": "string",
-			"default": ""
-		},
-		"crop": {
-			"type": "boolean",
-			"default": false
-		},
-		"showNextUp": {
-			"type": "boolean",
-			"default": false
-		},
-		"height": {
-			"type": "number",
-			"default": 500
-		}
+          "type": "string",
+          "default": "16by9"
+        },
+        "className": {
+          "type": "string",
+          "default": ""
+        },
+        "crop": {
+          "type": "boolean",
+          "default": false
+        },
+        "showNextUp": {
+          "type": "boolean",
+          "default": false
+        },
+        "height": {
+          "type": "number",
+          "default": 500
+        }
     },
     "supports": {
         "align": [

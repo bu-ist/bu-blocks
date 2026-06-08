@@ -21,6 +21,8 @@ const {
 	InspectorControls,
 } = wp.blockEditor;
 
+//const { serverSideRender: ServerSideRender } = wp;
+
 /**
  * Returns the class list for the block based on the current settings.
  *
@@ -54,6 +56,7 @@ export default function Edit( props ) {
 		},
 		className,
 		setAttributes,
+		isSelected,
 	} = props;
 
 	const blockProps = useBlockProps( {

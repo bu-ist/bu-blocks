@@ -15754,6 +15754,13 @@ aside[data-type="editorial/aside"].wp-block-editorial-aside {
  * which makes it higher in priority.
  */
 .wp-block-bu-blocks-slideshow-container {
+  overflow: hidden; }
+
+.wp-block-bu-blocks-slideshow.is-selected .wp-block-bu-blocks-slideshow-container,
+.wp-block-bu-blocks-slideshow.has-child-selected .wp-block-bu-blocks-slideshow-container {
+  /* Show the outline when the block or a child block is selected. */
+  outline: 2px solid var(--wp--preset--color--primary);
+  outline-offset: 2px;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative;
