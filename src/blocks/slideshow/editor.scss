@@ -4,3 +4,30 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+
+// Setup as a horizontal scrolling track of child image blocks.
+ .wp-block-bu-blocks-slideshow__container {
+	overflow:hidden;
+ }
+
+.wp-block-bu-blocks-slideshow.is-selected,
+.wp-block-bu-blocks-slideshow.has-child-selected {
+	.wp-block-bu-blocks-slideshow__container {
+		/* Show the outline when the block or a child block is selected. */
+		outline: 2px solid var(--wp--preset--color--primary);
+		outline-offset: 2px;
+
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+		position: relative;
+		padding: 40px 0;
+	}
+}
+
+
+
+.wp-block-bu-blocks-slideshow__list {
+	height: 100%;
+	display: flex;
+	width: max-content;
+}

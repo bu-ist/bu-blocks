@@ -1,0 +1,19 @@
+// =================================================================
+// Slideshow Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-bu-blocks-slideshow-image  {
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+}
