@@ -9,7 +9,9 @@ const {
 	PanelBody,
 	RadioControl,
 	ToggleControl,
+	SelectControl,
 	__experimentalNumberControl: NumberControl,
+	__experimentalUnitControl: UnitControl,
 } = wp.components;
 const {
 	Fragment,
@@ -40,10 +42,20 @@ const getClasses = ( aspectRatio, className, crop, showNextUp ) => {
 			{
 				'has-crop': crop,
 				'has-shownextup': showNextUp,
-				[ `has-aspectratio-${ aspectRatio }` ]: aspectRatio,
+				[ `has-aspectratio-${ convertAspectRatioToClass( aspectRatio ) }` ]: aspectRatio,
 			}
 		)
 	);
+};
+
+/**
+ * Converts an aspect ratio string to a class-friendly format.
+ *
+ * @param {string} aspectRatio The aspect ratio string (e.g., "16:9").
+ * @returns {string} The class-friendly aspect ratio string (e.g., "16by9").
+ */
+const convertAspectRatioToClass = ( aspectRatio ) => {
+	return aspectRatio.replace( ':', 'by' );
 };
 
 export default function Edit( props ) {
@@ -53,6 +65,7 @@ export default function Edit( props ) {
 			crop,
 			showNextUp,
 			height,
+			perPage,
 		},
 		className,
 		setAttributes,
@@ -65,7 +78,7 @@ export default function Edit( props ) {
 
 	// eslint-disable-next-line no-restricted-syntax
 	const innerBlocksProps = __experimentalUseInnerBlocksProps(
-		{ className: 'wp-block-bu-blocks-slideshow-list' },
+		{ className: 'wp-block-bu-blocks-slideshow__list' },
 		{
 			allowedBlocks: [ 'bu-blocks/slideshow-image' ],
 			template: [
@@ -78,7 +91,7 @@ export default function Edit( props ) {
 	return (
 		<Fragment>
 			<div { ...blockProps } >
-				<div className="wp-block-bu-blocks-slideshow-container">
+				<div className="wp-block-bu-blocks-slideshow__container">
 					<ul { ...innerBlocksProps }>
 					</ul>
 				</div>
@@ -86,23 +99,46 @@ export default function Edit( props ) {
 
 			<InspectorControls>
 				<PanelBody title={ __( 'Display Settings' ) }>
-					<NumberControl
-						label={ __( 'Height' ) }
-						value={ height }
-						onChange={ ( value ) => setAttributes( { height: value } ) }
-					/>
+
 					<RadioControl
 						className="wp-block-bu-blocks-slideshow-aspect-ratio-options"
 						label={ __( 'Aspect Ratio' ) }
 						selected={ aspectRatio }
 						options={ [
-							{ label: '16:9', value: '16by9' },
-							{ label: '4:3', value: '4by3' },
-							{ label: '1:1', value: '1by1' },
-							{ label: '3:4', value: '3by4' },
-							{ label: '9:16', value: '9by16' },
+							{ label: '16:9', value: '16:9' },
+							{ label: '4:3', value: '4:3' },
+							{ label: '1:1', value: '1:1' },
+							{ label: '3:4', value: '3:4' },
+							{ label: '9:16', value: '9:16' },
+							{ label: 'Custom', value: 'custom' },
 						] }
 						onChange={ option => setAttributes( { aspectRatio: option } ) }
+					/>
+					{ aspectRatio === 'custom' && (
+						<UnitControl
+							label={ __( 'Height' ) }
+							value={ height }
+							onChange={ ( value ) => setAttributes( { height: value } ) }
+							units={ [
+								{ value: 'px', label: 'px' },
+								{ value: 'vh', label: 'vh' },
+								{ value: 'vw', label: 'vw' },
+								{ value: 'em', label: 'em' },
+								{ value: 'rem', label: 'rem' },
+							] }
+							size="small"
+						/>
+					) }
+					<SelectControl
+						className="wp-block-bu-blocks-slideshow-edit-per-page-options"
+						label={ __( 'Slides Per View' ) }
+						value={ perPage }
+						onChange={ option => setAttributes( { perPage: option } ) }
+						options={ [
+							{ label: '1', value: '1' },
+							{ label: '2', value: '2' },
+							{ label: '3', value: '3' },
+						] }
 					/>
 					<ToggleControl
 						label={ __( 'Crop Images to Fit Slideshow' ) }

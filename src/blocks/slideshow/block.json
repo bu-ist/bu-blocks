@@ -16,11 +16,15 @@
     "attributes": {
         "aspectRatio": {
           "type": "string",
-          "default": "16by9"
+          "default": "16:9"
         },
         "className": {
           "type": "string",
           "default": ""
+        },
+        "perPage": {
+          "type": "number",
+          "default": 1
         },
         "crop": {
           "type": "boolean",
@@ -31,8 +35,8 @@
           "default": false
         },
         "height": {
-          "type": "number",
-          "default": 500
+          "type": "string",
+          "default": ""
         }
     },
     "supports": {
@@ -41,6 +45,10 @@
             "wide"
         ],
         "html": false,
-        "anchor": true
+        "anchor": true,
+        "color": {
+            "background": true,
+            "text": true
+        }
     }
 }

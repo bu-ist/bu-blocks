@@ -45,12 +45,6 @@ export default function Save( { attributes } ) {
 	);
 
 	return (
-		<div { ...blockProps } >
-			<div className="wp-block-bu-blocks-slideshow-container">
-				<ul className="wp-block-bu-blocks-slideshow-list">
-					<InnerBlocks.Content />
-				</ul>
-			</div>
-		</div>
+		<InnerBlocks.Content />
 	);
 }

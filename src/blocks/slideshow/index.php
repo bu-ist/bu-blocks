@@ -62,7 +62,7 @@ function register_block() {
 				),
 				'height'    => array(
 					'type'      => 'string',
-					'default'   => '500',
+					'default'   => '500px',
 				),
 			),
 			'render_callback' => __NAMESPACE__ . '\\render_block',

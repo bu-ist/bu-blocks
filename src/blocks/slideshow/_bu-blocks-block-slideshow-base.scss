@@ -9,19 +9,21 @@
 //
 
 .wp-block-bu-blocks-slideshow {
+	margin-block: 3rem;
+	box-sizing: border-box;
 
+	&.has-background {
+		padding: 2rem;
+	}
 }
 
-.wp-block-bu-blocks-slideshow .wp-block-bu-blocks-slideshow-list {
+.wp-block-bu-blocks-slideshow .wp-block-bu-blocks-slideshow__list {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	height: 100%;
-	display: flex;
-	width: max-content;
 }
 
-.wp-block-bu-blocks-slideshow-list li {
+.wp-block-bu-blocks-slideshow__list li {
 	list-style-type: none;
 }
 

@@ -28,13 +28,18 @@ $block_wrapper_attributes = array(
 
 ?>
 
-<div <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
+<li <?php echo wp_kses_data( get_block_wrapper_attributes( $block_wrapper_attributes ) ); ?>>
     <?php if ( $attributes['imageId'] ) : ?>
-        <figure class="bu-blocks-slideshow-media">
-            <img
-                src="<?php echo esc_url( wp_get_attachment_image_url( $attributes['imageId'], 'medium' ) ); ?>"
-                alt="<?php echo esc_attr( get_post_meta( $attributes['imageId'], '_wp_attachment_image_alt', true ) ); ?>"
-            />
-        </figure>
+
+			<div class="splide__slide__container">
+				<img
+					src="<?php echo esc_url( wp_get_attachment_image_url( $attributes['imageId'], 'large' ) ); ?>"
+					alt="<?php echo esc_attr( get_post_meta( $attributes['imageId'], '_wp_attachment_image_alt', true ) ); ?>"
+				/>
+			</div>
+			<figcaption class="wp-block-bu-blocks-slideshow-image__caption">
+				<?php echo esc_html( $attributes['caption'] ); ?>
+			</figcaption>
+
     <?php endif; ?>
-</div>
+	</li>
