@@ -24,8 +24,10 @@ function register_route() {
 		'bu-blocks/v1',
 		'collection',
 		array(
-			'methods'  => 'GET',
-			'callback' => __NAMESPACE__ . '\rest_response',
+			'methods'             => 'GET',
+			'callback'            => __NAMESPACE__ . '\rest_response',
+			// Public by design: WP_Query returns only posts the visitor can already read.
+			'permission_callback' => '__return_true',
 		)
 	);
 }
