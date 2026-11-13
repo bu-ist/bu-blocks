@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.4.5
+- Restrict the `bu-blocks/v1/customhtml` REST route to users who can edit the requested post.
+- Declare the public `bu-blocks/v1/collection` and `bu-blocks/v1/yarpprelated` routes with an explicit `permission_callback`.
+
 ## 0.4.4
 - Bug Fix: line breaks don't work in Leadin Block Hed/Dek fields. Sanitization is stripping <br> tags. 
 

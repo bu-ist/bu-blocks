@@ -23,8 +23,10 @@ function register_route() {
 		'bu-blocks/v1',
 		'yarpprelated',
 		array(
-			'methods'  => 'GET',
-			'callback' => __NAMESPACE__ . '\rest_response',
+			'methods'             => 'GET',
+			'callback'            => __NAMESPACE__ . '\rest_response',
+			// Public by design: returns only the IDs of related posts.
+			'permission_callback' => '__return_true',
 		)
 	);
 }

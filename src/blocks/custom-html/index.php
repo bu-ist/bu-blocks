@@ -47,10 +47,26 @@ function register_route() {
 		'bu-blocks/v1',
 		'customhtml',
 		array(
-			'methods'  => \WP_REST_Server::ALLMETHODS,
-			'callback' => __NAMESPACE__ . '\rest_response',
+			'methods'             => \WP_REST_Server::ALLMETHODS,
+			'callback'            => __NAMESPACE__ . '\rest_response',
+			'permission_callback' => __NAMESPACE__ . '\rest_permission_check',
 		)
 	);
+}
+
+/**
+ * Limit the custom HTML endpoint to users who can edit the requested post.
+ *
+ * Both methods read or write raw HTML in the post's meta, so reads are
+ * restricted as well: the meta of draft and private posts is not public.
+ *
+ * @param \WP_REST_Request $request The incoming REST API request object.
+ * @return bool True if the current user can edit the requested post.
+ */
+function rest_permission_check( $request ) {
+	$post_id = absint( $request->get_param( 'post_id' ) );
+
+	return $post_id > 0 && current_user_can( 'edit_post', $post_id );
 }
 
 /**
