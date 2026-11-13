@@ -1,6 +1,6 @@
 {
 	"name": "@bostonuniversity/bu-blocks",
-	"version": "0.4.4",
+	"version": "0.4.5",
 	"main": "Gruntfile.js",
 	"author": "Boston University: Interactive Design",
 	"contributors": [
